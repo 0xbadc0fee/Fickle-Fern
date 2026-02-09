@@ -1,0 +1,16 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    store_session.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This command stores the calling instance's windows to a temporary file, can be called on any instance
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+local &intercomName
+
+   &intercomName = intercom.name()
+
+   store temp/session_&intercomName win
+
+   enddo

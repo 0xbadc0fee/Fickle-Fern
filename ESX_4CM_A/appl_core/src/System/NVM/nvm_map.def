@@ -1,0 +1,11 @@
+/* nvm_map.def
+*
+* NVM_FIELD(name, DPL_LIST, DPL_VALUE, CNTRL_VALUE)
+*
+* DPL_VALUE: datapool global variable
+* CNTRL_VALUE: control structure varialbe
+*/
+
+/* Elevator Control Parameters */
+NVM_FIELD(elevatorMinSpeed, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_minSpeed, gt_elevatorConfig.u8_minSpeed)
+NVM_FIELD(elevatorMaxSpeed, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_maxSpeed, gt_elevatorConfig.u8_maxSpeed)

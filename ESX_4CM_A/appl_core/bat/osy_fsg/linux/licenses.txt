@@ -1,0 +1,3 @@
+The openSYDE Signature Generator binary uses and is linked with OpenSSL, which is available under the
+ "Apache License, Version 2.0". For details see "apache-license-2.0.txt".
+Copyright The OpenSSL Project Authors. All Rights Reserved.

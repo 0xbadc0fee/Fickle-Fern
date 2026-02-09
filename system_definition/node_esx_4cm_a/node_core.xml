@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-node-core-definition>
+    <file-version>1</file-version>
+    <node datapool-auto-nvm-start-address="true">
+        <type>ESX-4CM-A</type>
+        <properties>
+            <name>ESX_4CM_A</name>
+            <comment/>
+            <diagnostic-server>open-syde</diagnostic-server>
+            <flash-loader>open-syde</flash-loader>
+            <communication-interfaces>
+                <communication-interface interface-number="0" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
+                    <type>can</type>
+                    <communication-protocol/>
+                    <bus connected="true" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+                <communication-interface interface-number="1" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
+                    <type>can</type>
+                    <communication-protocol/>
+                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+                <communication-interface interface-number="2" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
+                    <type>can</type>
+                    <communication-protocol/>
+                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+                <communication-interface interface-number="3" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
+                    <type>can</type>
+                    <communication-protocol/>
+                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+                <communication-interface interface-number="0" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
+                    <type>ethernet</type>
+                    <ip-address byte1="192" byte2="168" byte3="0" byte4="2"/>
+                    <net-mask byte1="255" byte2="255" byte3="255" byte4="0"/>
+                    <default-gateway byte1="0" byte2="0" byte3="0" byte4="0"/>
+                    <communication-protocol/>
+                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+            </communication-interfaces>
+            <open-syde-server-settings max-clients="1" max-parallel-transmissions="64" application-index="2" max-tx-message-buffer="585" max-rx-routing-message-buffer="585"/>
+            <stw-flashloader-settings>
+                <reset-message active="false" extended="false" id="0" dlc="8">
+                    <data-bytes>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                    </data-bytes>
+                </reset-message>
+            </stw-flashloader-settings>
+            <code-export-settings>
+                <scaling-support>float32</scaling-support>
+            </code-export-settings>
+        </properties>
+        <applications length="3">
+            <application active="true" process-id="0" generated-code-version="0">
+                <type>binary</type>
+                <name>BootCore</name>
+                <comment>ESX-4CM-A boot core application.</comment>
+                <project-path>ESX_4CM_A/boot_core</project-path>
+                <ide-call>"C:/lc3p/logiCAD3.exe" -nl en</ide-call>
+                <code-generator-path>../connectors/syde_coder_c/osy_syde_coder_c.exe</code-generator-path>
+                <generate-path/>
+                <result length="1">
+                    <output-file>./result/boot_core.hex</output-file>
+                </result>
+            </application>
+            <application active="true" process-id="1" generated-code-version="6">
+                <type>programming_application</type>
+                <name>SafetyCore</name>
+                <comment>ESX-4CM-A safety core application.</comment>
+                <project-path>ESX_4CM_A/safety_core</project-path>
+                <ide-call>"C:/lc3p/logiCAD3.exe" -nl en</ide-call>
+                <code-generator-path>../connectors/syde_coder_c/osy_syde_coder_c.exe</code-generator-path>
+                <generate-path>./src/opensyde/generated</generate-path>
+                <result length="1">
+                    <output-file>./result/safety_core.hex</output-file>
+                </result>
+            </application>
+            <application active="true" process-id="2" generated-code-version="6">
+                <type>programming_application</type>
+                <name>ApplCore</name>
+                <comment>ESX-4CM-A application core application.</comment>
+                <project-path>ESX_4CM_A/appl_core</project-path>
+                <ide-call>"C:/lc3p/logiCAD3.exe" -nl en</ide-call>
+                <code-generator-path>../connectors/syde_coder_c/osy_syde_coder_c.exe</code-generator-path>
+                <generate-path>./src/opensyde/generated</generate-path>
+                <result length="1">
+                    <output-file>./result/appl_core.hex</output-file>
+                </result>
+            </application>
+        </applications>
+        <com-protocols length="1">
+            <com-protocol>comm_j1939_core.xml</com-protocol>
+        </com-protocols>
+        <data-pools length="3">
+            <data-pool>dp_checkpoints_core.xml</data-pool>
+            <data-pool>dp_configuration_core.xml</data-pool>
+            <data-pool>dp_j1939_core.xml</data-pool>
+        </data-pools>
+    </node>
+</opensyde-node-core-definition>

@@ -1,0 +1,195 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    instance.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This script implements the "derivate" interface for TC299 derivates
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+local &args
+local &event
+
+entry %LINE &args
+   &event = string.split("&args"," ",0)
+
+   if (&event=="describe_mcu")
+   (
+      gosub describe_mcu &args
+   )
+
+   if (&event=="prepare_mcu")
+   (
+      gosub prepare_mcu &args
+   )
+
+   if (&event=="startup_memory_protect_begin")
+   (
+      rpc all_cpus map.denyAccess 0x9f000000--0x9f203fff    ; Disallow cached EMEM range
+      rpc all_cpus map.denyAccess 0xbf000000--0xbf203fff    ; Disallow uncached EMEM range
+      rpc all_cpus map.denyAccess 0xf0000000--0xffffffff
+      intercom.wait all
+   )
+
+   if (&event=="startup_memory_protect_end")
+   (
+      rpc all_cpus map.noDenyAccess 0x9f000000--0x9f203fff    ; Allow cached EMEM range
+      rpc all_cpus map.noDenyAccess 0xbf000000--0xbf203fff    ; Allow uncached EMEM range
+      rpc all_cpus map.noDenyAccess 0xf0000000--0xffffffff
+      intercom.wait all
+   )
+
+   enddo
+
+describe_mcu:
+(
+   local &args
+   local &fblMode       &fblOp
+   local &fbl2Mode      &fbl2Op
+   local &unlockFlash   &unlockFlash
+   local &normOp
+   entry %LINE &args
+
+   &fblMode     = string.scanAndExtract(string.lower("&args"),"fblmode=","false()")
+   &fbl2Mode    = string.scanAndExtract(string.lower("&args"),"fbl2mode=","false()")
+   &unlockFlash = string.scanAndExtract(string.lower("&args"),"unlockflash=","false()")
+
+   ; Unlock flashloader sectors if called with fblmode=true()
+   if &fblMode
+      &fblOp = "TARGET"
+   else
+      &fblOp = "NOP"
+
+   ; Unlock 2ndlevel flashloader sectors if called with fbl2mode=true()
+   if &fbl2Mode
+      &fbl2Op = "TARGET"
+   else
+      &fbl2Op = "NOP"
+
+   ; Do not allow flashing of application reserved sectors in flashloader modes
+   if &fblMode||&fbl2Mode
+      &normOp = "NOP"
+   else
+      &normOp = "TARGET"
+
+   if &unlockFlash
+   (
+      &fblOp = "TARGET"
+      &fbl2Op = "TARGET"
+      &normOp = "TARGET"
+   )
+
+   ; Program flash PF0
+   flash.create  1. 0xA0000000--0xA000BFFF  0x4000 &fblOp  Long /INFO "Flash Loader"      /BootModeHeaDer 0xA0000000--0xA000001F ; PS0, S0..S2
+   flash.create  1. 0xA000C000--0xA000FFFF  0x4000 &normOp Long /INFO "Boot Sector Core0" /BootModeHeaDer 0xA000FFE0--0xA000FFFF ; PS0, S3
+   flash.create  1. 0xA0010000--0xA0013FFF  0x4000 &normOp Long /INFO "Boot Sector Core1"                                        ; PS0, S4
+   flash.create  1. 0xA0014000--0xA0017FFF  0x4000 &normOp Long /INFO "Boot Sector Core2 (Tuning Protection)"                    ; PS0, S5
+   flash.create  1. 0xA0018000--0xA001BFFF  0x4000 &fblOp  Long /INFO "Flash Loader (HSM)"                                       ; PS0, S6
+   flash.create  1. 0xA001C000--0xA001FFFF  0x4000 &fblOp  Long /INFO "Flash Loader"      /BootModeHeaDer 0xA001FFE0--0xA001FFFF ; PS0, S7
+   flash.create  1. 0xA0020000--0xA0037FFF  0x8000 &fblOp  Long /INFO "Flash Loader"      /BootModeHeaDer 0xA0020000--0xA002001F ; PS0, S8..S10
+   flash.create  1. 0xA0038000--0xA005FFFF  0x8000 &fbl2Op Long /INFO "2nd level FL"                                             ; PS0, S11..S15
+   flash.create  1. 0xA0060000--0xA007FFFF 0x10000 NOP     Long /INFO "HSM code sector"                                          ; PS0, S16..S17
+   flash.create  2. 0xA0080000--0xA009FFFF 0x10000 &normOp Long   ; PS1, S18..S19
+   flash.create  2. 0xA00A0000--0xA00FFFFF 0x20000 &normOp Long   ; PS1, S20..S22
+   flash.create  3. 0xA0100000--0xA017FFFF 0x40000 &normOp Long   ; PS2, S23..S24
+   flash.create  4. 0xA0180000--0xA01FFFFF 0x40000 &normOp Long   ; PS3, S25..S26
+   rpc all_cpus map.bonchip      0xA0000000--0xA01FFFFF
+   rpc all_cpus map.bonchip      0x80000000--0x801FFFFF
+
+   ; Program flash PF1
+   flash.create  5. 0xA0200000--0xA021FFFF  0x4000 &normOp Long   ; PS0, S0..S7
+   flash.create  5. 0xA0220000--0xA025FFFF  0x8000 &normOp Long   ; PS0, S8..S15
+   flash.create  5. 0xA0260000--0xA027FFFF 0x10000 &normOp Long   ; PS0, S16..S17
+   flash.create  6. 0xA0280000--0xA029FFFF 0x10000 &normOp Long   ; PS1, S18..S19
+   flash.create  6. 0xA02A0000--0xA02FFFFF 0x20000 &normOp Long   ; PS1, S20..S22
+   flash.create  7. 0xA0300000--0xA037FFFF 0x40000 &normOp Long   ; PS2, S23..S24
+   flash.create  8. 0xA0380000--0xA03FFFFF 0x40000 &normOp Long   ; PS3, S25..S26
+   rpc all_cpus map.bonchip      0x80200000--0x803FFFFF
+
+   ; Program flash PF2
+   flash.create  9. 0xA0400000--0xA041FFFF  0x4000 &normOp Long   ; PS0, S0..S7
+   flash.create  9. 0xA0420000--0xA045FFFF  0x8000 &normOp Long   ; PS0, S8..S15
+   flash.create  9. 0xA0460000--0xA047FFFF 0x10000 &normOp Long   ; PS0, S16..S17
+   flash.create 10. 0xA0480000--0xA049FFFF 0x10000 &normOp Long   ; PS1, S18..S19
+   flash.create 10. 0xA04A0000--0xA04FFFFF 0x20000 &normOp Long   ; PS1, S20..S22
+   flash.create 11. 0xA0500000--0xA057FFFF 0x40000 &normOp Long   ; PS2, S23..S24
+   flash.create 12. 0xA0580000--0xA05FFFFF 0x40000 &normOp Long   ; PS3, S25..S26
+   rpc all_cpus map.bonchip      0x80400000--0x805FFFFF
+
+   ; Program flash PF3
+   flash.create 13. 0xA0600000--0xA061FFFF  0x4000 &normOp Long   ; PS0, S0..S7
+   flash.create 13. 0xA0620000--0xA065FFFF  0x8000 &normOp Long   ; PS0, S8..S15
+   flash.create 13. 0xA0660000--0xA067FFFF 0x10000 &normOp Long   ; PS0, S16..S17
+   flash.create 14. 0xA0680000--0xA069FFFF 0x10000 &normOp Long   ; PS1, S18..S19
+   flash.create 14. 0xA06A0000--0xA06FFFFF 0x20000 &normOp Long   ; PS1, S20..S22
+   flash.create 15. 0xA0700000--0xA077FFFF 0x40000 &normOp Long   ; PS2, S23..S24
+   flash.create 16. 0xA0780000--0xA07FFFFF 0x40000 &normOp Long   ; PS3, S25..S26
+   rpc all_cpus map.bonchip      0x80600000--0x807FFFFF
+
+   ; Data flash DF0
+   flash.create 17. 0xAF000000--0xAF0BFFFF  0x2000 &normOp Long /INFO "EEPROM"          ; DF0, EEPROM0..EEPROM95
+   flash.create 18. 0xAF100000--0xAF1003FF   0x400 NOP     Long /INFO "UCB_PFlash"      ; DF0, UCB0
+   flash.create 18. 0xAF100400--0xAF1007FF   0x400 NOP     Long /INFO "UCB_DFlash"      ; DF0, UCB1
+   flash.create 18. 0xAF100800--0xAF100BFF   0x400 NOP     Long /INFO "UCB_HSMCOTP"     ; DF0, UCB2
+   flash.create 18. 0xAF100C00--0xAF100FFF   0x400 NOP     Long /INFO "UCB_OTP"         ; DF0, UCB3
+   flash.create 18. 0xAF101000--0xAF1013FF   0x400 NOP     Long /INFO "UCB_IFX"         ; DF0, UCB4
+   flash.create 18. 0xAF101400--0xAF1017FF   0x400 NOP     Long /INFO "UCB_DBG"         ; DF0, UCB5
+   flash.create 18. 0xAF101800--0xAF101BFF   0x400 NOP     Long /INFO "UCB_HSM"         ; DF0, UCB6
+   flash.create 18. 0xAF101C00--0xAF101FFF   0x400 NOP     Long /INFO "UCB_HSMCFG"      ; DF0, UCB7
+   flash.create 18. 0xAF102000--0xAF102FFF   0x400 NOP     Long                         ; DF0, UCB8..UCB11
+   flash.create 18. 0xAF103000--0xAF103FFF   0x400 NOP     Long /INFO "Erase Counter"   ; DF0, UCB12..UCB15
+
+   ; Data flash DF1
+   flash.create 19. 0xAF110000--0xAF11FFFF 0x02000 NOP     Long /INFO "HSM"             ; HSM0..HSM7
+
+   ; Create alias for cached address space
+   flash.createAlias 0x80000000--0x8FFFFFFF 0xA0000000
+
+   ; HSM private access to DF1
+   flash.createAlias 0xFF110000--0xFF11FFFF 0xAF110000
+
+   flash.target 0xC0000000 0xD0000000 0x4000 ~~~~/../lauterbach/tc2.bin /DualPort
+
+   ; Now deny access to memory map gaps (large ones, and ones that are close to memories the user might look at)
+   rpc all_cpus map.denyAccess  0x00000000--0x4fffffff
+   rpc all_cpus map.denyAccess  0x501c3000--0x5fffffff
+   rpc all_cpus map.denyAccess  0x601c3000--0x6fffffff
+   rpc all_cpus map.denyAccess  0x701c1800--0x7fffffff
+   rpc all_cpus map.denyAccess  0x80800000--0x82ffffff
+   rpc all_cpus map.denyAccess  0x90008000--0x900fffff
+   rpc all_cpus map.denyAccess  0x90102000--0x9effffff
+   rpc all_cpus map.denyAccess  0x9f204000--0x9fffffff
+   rpc all_cpus map.denyAccess  0xa0800000--0xa2ffffff
+   rpc all_cpus map.denyAccess  0xb0008000--0xb0100000
+   rpc all_cpus map.denyAccess  0xbe180000--0xbeffffff
+   rpc all_cpus map.denyAccess  0xbf204000--0xbfffffff
+
+   return
+)
+
+prepare_mcu:
+(
+   print "prepare_mcu(tc299): preparing mcu"
+
+   ; Disable Watchdog Timers on TC29xT[E]
+   map.noDenyAccess 0xf0036000--0xf00363ff      ; Allow SCU access
+   per.set.simple D:0xF00360F4 %Long 0x00000008 ; SCU_WDTSCON1,    Request to disable the Safety Watchdog
+   per.set.simple D:0xF0036104 %Long 0x00000008 ; SCU_WDTCPU0CON1, Request to disable the cpu0 wachtdog
+   per.set.simple D:0xF0036110 %Long 0x00000008 ; SCU_WDTCPU1CON1, Request to disable the cpu1 watchdog
+   per.set.simple D:0xF003611C %Long 0x00000008 ; SCU_WDTCPU2CON1, Request to disable the cpu2 watchdog
+
+   ; stop STM on break
+   map.noDenyAccess 0xf0000000--0xf00003ff      ; Allow STM access
+   per.set   0xF00000E8 %LONG 0x12000000        ; enable STM suspend
+   per.set   0xF00001E8 %LONG 0x12000000        ; enable STM suspend
+   per.set   0xF00002E8 %LONG 0x12000000        ; enable STM suspend
+
+   ; ... also on each spontaneous reset
+   data.startup.sequence \
+      set 0xF00000E8 %LONG 0x12000000 \
+      set 0xF00001E8 %LONG 0x12000000 \
+      set 0xF00002E8 %LONG 0x12000000
+   data.startup.on
+
+   return
+)

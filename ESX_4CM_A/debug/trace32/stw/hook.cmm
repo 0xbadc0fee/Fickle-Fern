@@ -1,0 +1,32 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    hook.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: Branch to user-defined event hook script (on master instance only)
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+global &g_installedHooks
+local &event
+
+entry &event
+
+   local &index
+   local &hook
+
+   &index = 0.
+
+   repeat
+   (
+      &hook = string.split("&g_installedHooks", ";", &index)
+      &index = &index+1.
+
+      if (string.length("&hook")>0.)
+      (
+         do &hook &event
+      )
+   )
+   while (string.length("&hook")>0.)
+
+   enddo

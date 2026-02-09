@@ -1,0 +1,18 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    rpc.cmm
+;  Version: 05.06.2019, Notz                                Copyrights (c) 2019, STW
+;
+;  Description: Helper routine to send commands to the different window instances, e.g. core, MCS, ...
+;               The first parameter decide to which instance the command should be send.
+;               For example {rpc CORE1 print "STW TriCore AURIX generic debug script"} will send the print command
+;               to instance of core 1
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+LOCAL &Params
+LOCAL &Module
+
+ENTRY &Module %LINE &Params
+
+   &Params

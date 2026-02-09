@@ -1,0 +1,103 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    instance.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This script is called by the startup procedure for every intercom instance and initializes
+;               instance-specific state (globals, debugger state, windows, ...)
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+global &g_instanceElf     ; elf file run by this instance
+global &g_instancePrefix  ; symbol prefix for disambiguation when sharing symbols across cores: \\<prefix>\symbol
+global &g_instanceCpu     ; cpu name
+global &g_instanceCore    ; index of cpu core controlled by this index
+global &g_intercomMaster
+
+   local &intercomName
+   local &sessionStore
+   local &cpuName
+   local &cpuCore
+   local &elfFile
+   entry &g_intercomMaster &g_instanceCpu &g_instanceCore &g_instanceElf
+
+   &g_instancePrefix = os.file.basename(&g_instanceElf, ".elf")
+
+   ; Register RPC commands
+   globalon CMD rpc do stw/rpc.cmm
+
+   ; Add quit button
+   do lauterbach/toolbar_quit_all.cmm
+
+   system.cpu         &g_instanceCpu
+   system.config.core &g_instanceCore 1.
+
+   ; Add reload and reset buttons to toolbar
+   menu.reprogram
+   (
+      ADD
+      TOOLBAR
+      (
+         TOOLITEM "Reload Program [F10]" "RL,B" "do commands/cmd_reload.cmm true()"
+         TOOLITEM "Reset Target [F11]"   "RS,R" "do commands/cmd_reset.cmm  true()"
+      )
+
+      ADD
+         MENU
+         (
+            POPUP "&STW"
+            (
+               POPUP "STW RTOS"
+               (
+                  MENUITEM "Extended Task List"
+                  (
+                     Task.ListExt
+                  )
+                  MENUITEM "Task List"
+                  (
+                     Task.List
+                  )
+                  MENUITEM "Task Stack"
+                  (
+                     Task.Stack
+                  )
+                  MENUITEM "Task Performance"
+                  (
+                     Perf.ListTask
+                  )
+               )
+               MENUITEM "Reload Program,F10"
+               (
+                  do commands/cmd_reload.cmm true()
+               )
+               MENUITEM "Reset Target,F11"
+               (
+                  do commands/cmd_reset.cmm  true()
+               )
+            )
+         )
+   )
+
+   mode.hll                                      ; switch to high level language mode
+   setup.var %DECIMAL %HEX                       ; show variables in HEX and DECIMAL format
+
+   ; Set color of frame
+   framepos ,,,, Auto
+
+   ; Show core registers
+   winpos 0. 0. ,,,,,,
+   register /SpotLight
+
+   ; Show code at PC
+   winpos 0. 30. ,,,,,,
+   list.auto
+
+   ; show intercom state on intercom master instance
+   &intercomName = intercom.name()
+   if ("&intercomName"=="&g_intercomMaster")
+   (
+      winpos 60. 0. ,,,,,,
+      targetsystem.state default title synch.all intercomPort
+   )
+
+enddo

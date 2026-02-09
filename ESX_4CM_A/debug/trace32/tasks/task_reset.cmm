@@ -1,0 +1,62 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    task_reset.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This task resets the ecu, it must be run on the master instance
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+global &g_instancePrefix   ;
+global &g_startupDelay     ;
+
+local &breakOnCore
+local &breakOnSymbol
+local &startSymbol
+
+parameters &breakOnCore &breakOnSymbol
+
+   print "--- Performing reset ------------------------------------>"
+
+   hook "user_reset_initiated"
+
+   ; Protect memories which are not available during the startup phase (derivate dependent)
+   ; It is performed during the initial startup, as we might want to restore previous sessions' var.view windows,
+   ; which might trigger an initial bus error on memories which are only available after the software startup
+   derivate "startup_memory_protect_begin"
+   (
+      hook "system_up.pre"
+      system.mode up
+      hook "system_up.post"
+
+      rpc all_cpus system.polling off
+
+      derivate "prepare_mcu"
+      hook "mcu_prepared"
+
+      if ("&breakOnCore"!="")
+      (
+         print "Installing temporary breakpoint &breakOnCore:&breakOnSymbol"
+         rpc &breakOnCore break.direct &breakOnSymbol
+      )
+
+      ; If there are hyphens in the path or the ELF file itself the symbol name must be enclosed by two grave accents
+      &startSymbol="`"+"\\&g_instancePrefix\Global\_start"+"`"
+      ; Launch application
+      register.set.pc &startSymbol
+
+      hook "application_launch"
+
+      if ("&g_initialBreak"!="nogo")
+      (
+         go
+
+         screen.wait &g_startupDelay
+      )
+
+      rpc all_cpus system.polling fast
+   )
+   derivate "startup_memory_protect_end"
+
+   hook "user_reset_complete"
+
+   enddo

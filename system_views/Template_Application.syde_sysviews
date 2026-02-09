@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-system-views>
+    <file-version>2</file-version>
+    <opensyde-system-views length="1">
+        <opensyde-system-view>view_newview.xml</opensyde-system-view>
+    </opensyde-system-views>
+    <last-known-halc-crcs/>
+</opensyde-system-views>

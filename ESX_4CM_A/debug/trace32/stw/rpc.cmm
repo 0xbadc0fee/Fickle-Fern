@@ -1,0 +1,77 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    rpc.cmm
+;  Version: 05.06.2019, Notz                                Copyrights (c) 2019, STW
+;
+;  Description: Helper routine to send commands to the different window instances, e.g. core, MCS, ...
+;               The first parameter decide to which instance the command should be send.
+;               For example {rpc CORE1 print "STW TriCore AURIX generic debug script"} will send the print command
+;               to instance of core 1
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+LOCAL &Params
+LOCAL &Module
+
+ENTRY &Module %LINE &Params
+
+   ;----------------------------- All instances ------------------------------------------------------------------------
+   ; Send the data to all available instances
+   if ("&Module"=="all")
+   (
+      gosub core0
+      gosub core1
+      gosub core2
+   )
+
+   ; Send data to all available core window instances
+   if ("&Module"=="all_cpus")
+   (
+      gosub core0
+      gosub core1
+      gosub core2
+   )
+
+   ;----------------------------- Core instances -----------------------------------------------------------------------
+   ; Send data to core0 window instance
+   if ("&Module"=="core0")
+   (
+      gosub core0
+   )
+
+   ; Send data to core1 window instance
+   if ("&Module"=="core1")
+   (
+      gosub core1
+   )
+
+   ; Send data to core2 window instance
+   if ("&Module"=="core2")
+   (
+      gosub core2
+   )
+
+enddo
+
+;-------- These functions are just necessary to reduce redundant code --------------------------------------------------
+core0:
+(
+   intercom.execute core0 &Params
+   return
+)
+core1:
+(
+   if ("&g_core1Elf"!="")
+   (
+      intercom.execute core1 &Params
+   )
+   return
+)
+core2:
+(
+   if ("&g_core2Elf"!="")
+   (
+      intercom.execute core2 &Params
+   )
+   return
+)

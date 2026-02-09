@@ -1,0 +1,424 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    startup.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This script performs the startup tasks on the master trace32 instance (boot core instance)
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+global &g_core0Elf
+global &g_core0InstancePrefix
+global &g_core1Elf
+global &g_core1InstancePrefix
+global &g_core2Elf
+global &g_core2InstancePrefix
+global &g_shareSymbols
+global &g_installedHooks
+global &g_instancePrefix   ; symbol prefix for disambiguation when sharing symbols across cores: \\<prefix>\symbol
+global &g_startupDelay
+global &g_cpuName
+global &g_debugPortType
+global &g_debugPortSpeed
+global &g_fblMode
+global &g_fbl2Mode
+global &g_unlockFlash
+global &g_userHook
+global &g_initialBreak
+global &g_initialBreakSymbol
+
+private &commandLine
+private &startSymbol
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Master instance main function
+
+entry %LINE &commandLine
+
+   ; Set new home directory, so we can use relative paths
+   chdir ~~~~/
+
+   ; parse x=y argument pairs to global variables
+   gosub parse_args &commandLine
+
+   ; initialize user hooks
+   gosub init_hook
+
+   ; Prepare debugger settings, detect cpu, setup derivate
+   gosub initialize_debugger
+   hook "debugger_initialized"
+
+   ; Setup intercom and run instance initialization
+   gosub initialize_intercom
+   hook "intercom_available"
+
+   ; Describe mcu settings (describe flash, ...)
+   derivate "describe_mcu" fblmode=&g_fblMode fbl2mode=&g_fbl2Mode unlockflash=&g_unlockFlash
+   hook "mcu_described"
+
+   ; Set debugger session properties
+   gosub prepare_debugger
+   hook "debugger_prepared"
+
+   ; Prepare mcu now (initialize state that is affected by resets) and on every reset
+   ;globalon reset do events/event_reset.cmm
+   derivate "prepare_mcu"
+   hook "mcu_prepared"
+
+   ; Trigger initial reload
+   do load_application.cmm
+
+   if (("&g_initialBreak"!="off")&&("&g_initialBreak"!="nogo"))
+   (
+      local &variableName
+      local &breakOnSymbol
+
+      ; If there are hyphens in the path or the ELF file itself the symbol name must be enclosed by two grave accents
+      &variableName   = "&"+"g_"+"&g_initialBreak"+"InstancePrefix"
+      &&breakOnSymbol = "`"+"\\&variableName\Global\&g_initialBreakSymbol"+"`"
+
+      ; Disable window updates (prevent memory reads that could potentially bus-error during startup)
+      print "Installing temporary breakpoint &g_initialBreak:&breakOnSymbol"
+      rpc &g_initialBreak break.direct &breakOnSymbol
+   )
+
+   ; If there are hyphens in the path or the ELF file itself the symbol name must be enclosed by two grave accents
+   &startSymbol="`"+"\\&g_instancePrefix\Global\_start"+"`"
+   ; Launch application
+   register.set.pc &startSymbol
+
+   hook "application_launch"
+
+   derivate "startup_memory_protect_begin"
+
+   if ("&g_initialBreak"!="nogo")
+   (
+      go
+      wait &g_startupDelay
+   )
+
+   ; Initialize RTOS plugin
+   rpc all_cpus task.config "stw_rtos_plugin/stw_rtos.t32"
+
+   derivate "startup_memory_protect_end"
+
+   hook "initial_running"
+
+   ; We're done!
+   enddo
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Parse arguments (startup)
+
+parse_args:
+(
+   local &commandLine
+   local &ARG_ShareSymbols   ; Share symbols across cores?
+   local &ARG_FblMode        ; Run in flashloader mode?   (unlock flashloader sectors)
+   local &ARG_Fbl2Mode       ; Run in 2nd level fbl mode? (unlock second level fbl sectors)
+   local &ARG_UnlockFlash    ; Unlock all flash (use at your own risk!)
+   entry %LINE &commandLine
+
+   ; Parse arguments (Arguments: "coreX_elf")
+   &g_core0Elf      = string.scanAndExtract(string.lower("&commandLine"),"core0_elf=","")
+   &g_core1Elf      = string.scanAndExtract(string.lower("&commandLine"),"core1_elf=","")
+   &g_core2Elf      = string.scanAndExtract(string.lower("&commandLine"),"core2_elf=","")
+
+   &ARG_FblMode     = string.scanAndExtract(string.lower("&commandLine"),"fblmode=","false")
+   &ARG_Fbl2Mode    = string.scanAndExtract(string.lower("&commandLine"),"fbl2mode=","false")
+   &ARG_UnlockFlash = string.scanAndExtract(string.lower("&commandLine"),"unlockflash=","false")
+
+   ; DebugPortType
+   ; Select debug port type: DAP2, DAP3 or JTAG. Default: DAP3
+   &g_debugPortType = string.scanAndExtract(string.lower("&commandLine"),"debugporttype=","DAP3")
+   ; Revert the string lower operation done before. Necessary for further processing
+   &g_debugPortType = string.upper("&g_debugPortType")
+
+   ; DebugPortSpeed
+   ; Select debug port speed (JTAG only). Default: 40.0MHz
+   &g_debugPortSpeed = string.scanAndExtract(string.lower("&commandLine"),"debugportspeed=","40.0MHz")
+
+   ; ShareSymbols
+   ; Select whether to share symbols across cores (useful for exposed-if debugging). Default: false
+   &ARG_ShareSymbols = string.scanAndExtract(string.lower("&commandLine"),"sharesymbols=","false")
+
+   ; StartupDelay
+   ; Used to prevent debugger access during startup/reset/reload to avoid bus-errors
+   &g_startupDelay   = string.scanAndExtract(string.lower("&commandLine"),"startupdelay=","500.ms")
+
+   ; InitialBreak
+   ; Used intercom names "core0", "core1", ... or "nobreak" if no initial break shall be performed or "nogo" if there
+   ; shall be no initial go (e.g. if you want to manually change system settings before go)
+   &g_initialBreak = string.scanAndExtract(string.lower("&commandLine"),"initialbreak=","core1")
+
+   ; InitialBreakSymbol
+   ; If InitialBreak is selected, break on this symbol, default "main"
+   &g_initialBreakSymbol = string.scanAndExtract(string.lower("&commandLine"),"initialbreaksymbol=","main")
+   ;&g_initialBreakSymbol = string.scanAndExtract(string.lower("&commandLine"),"initialbreaksymbol=","startup_trg_core_early_init")
+
+   ; g_userHook
+   &g_userHook     = string.scanAndExtract(string.lower("&commandLine"),"userhook=","")
+
+   &g_shareSymbols = string.compare(string.lower("&ARG_ShareSymbols"),"true")
+   &g_unlockFlash  = string.compare(string.lower("&ARG_UnlockFlash"),"true")
+   &g_fblMode      = string.compare(string.lower("&ARG_FblMode"),"true")
+   &g_fbl2Mode     = string.compare(string.lower("&ARG_Fbl2Mode"),"true")
+
+   if (&g_fblMode)
+   (
+      print "parse_args(): Activating flashloader mode."
+   )
+
+   if (&g_fbl2Mode)
+   (
+      print "parse_args(): Activating 2nd level flashloader mode."
+   )
+
+   return
+)
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Prepare debugger for intercom setup (startup)
+
+initialize_debugger:
+(
+   ; check for power of target
+   if (!state.power())
+   (
+      print "Device is not powered! Waiting for power-up..."
+
+      screen.wait state.power() 20s  ; make sure target is powered up, wait with a timeout of 20s
+
+      if timeout()
+      (
+         print %ERROR "Device is not powered!"
+         stop
+      )
+   )
+
+   print "Selecting debug port type ""&g_debugPortType"""
+
+   if (("&g_debugPortType"=="DAP2")||("&g_debugPortType"=="DAP3"))
+   (
+      ; debugger_tricore.pdf:66
+      system.config.debugporttype &g_debugPortType
+
+      ; this is only required in case we connect the mcu's nTRST line to the DAPEN signal of the debugger
+      system.config.dap.dapen     ON
+   )
+   else if ("&g_debugPortType"=="JTAG")
+   (
+      SYStem.CONFIG DEBUGPORTTYPE JTAG
+      SYStem.JtagClock &g_debugPortSpeed
+   )
+   else
+   (
+      print "Unknown debug port type ""&g_debugPortType"""
+      gosub error_exit
+   )
+
+   sys.detect.cpu
+   &g_cpuName = system.cpu()
+
+   if (("&g_cpuName"=="TC299TF")||("&g_cpuName"=="TC299TX"))
+   (
+      gosub init_derivate "derivates/tc299.cmm"
+   )
+   else if ("&g_cpuName"=="TC267D")
+   (
+      gosub init_derivate "derivates/tc267.cmm"
+   )
+   else if ("&g_cpuName"=="TC399XX")
+   (
+      gosub init_derivate "derivates/tc399.cmm"
+   )
+   else if ("&g_cpuName"=="TC367DP")
+   (
+      gosub init_derivate "derivates/tc367.cmm"
+   )
+   else
+   (
+      print "Unsupported CPU type ""&g_cpuName"", stopping"
+      gosub error_exit
+   )
+
+   return
+)
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Initialize intercom setup (startup)
+
+initialize_intercom:
+(
+   local &activeInstances
+
+   intercom.enable core0
+   &activeInstances = "core0"
+
+   if ("&g_core1Elf"!="")
+   (
+      targetSystem.newInstance core1
+      &activeInstances = "&activeInstances core1"
+   )
+
+   if ("&g_core2Elf"!="")
+   (
+      targetSystem.newInstance core2
+      &activeInstances = "&activeInstances core2"
+   )
+
+   ; "launch" local gui
+   title "Core 0 (Boot Core)"
+   do instance.cmm core0 &g_cpuName 1. &g_core0Elf
+
+   if ("&g_core1Elf"!="")
+   (
+      wait intercom.ping(core1) 1.s
+      intercom.execute core1 title "Core 1 (Safety Core)"
+      intercom.execute core1 do instance.cmm core0 &g_cpuName 2. &g_core1Elf
+   )
+
+   if ("&g_core2Elf"!="")
+   (
+      wait intercom.ping(core2) 1.s
+      intercom.execute core2 title "Core 2 (Application Core)"
+      intercom.execute core2 do instance.cmm core0 &g_cpuName 3. &g_core2Elf
+   )
+
+   intercom.wait all
+
+   rpc all_cpus synch.reset
+   rpc all_cpus synch.on
+   rpc all_cpus synch.connect &activeInstances
+   rpc all_cpus synch.xtrack  &activeInstances
+
+   ; all cores resume operation once "go" is issued on a single core
+   rpc all_cpus synch.MasterGo on
+   rpc all_cpus synch.SlaveGo  on
+   ; break all cores if one is halted:
+   rpc all_cpus synch.MasterBreak on
+   rpc all_cpus synch.SlaveBreak  on
+   ; Synchronize system mode across cores
+   rpc all_cpus synch.MasterSystemMode on
+   rpc all_cpus synch.SlaveSystemMode  on
+
+   return
+)
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Initialize debugger session settings (startup)
+
+prepare_debugger:
+(
+   rpc all_cpus break.implementation program onchip
+
+   rpc all_cpus system.option imaskasm on    ; stop interrupts during ASM stepping
+   rpc all_cpus system.option imaskhll off   ; do not stop interrupts during HLL stepping
+   rpc all_cpus system.option dualport on    ; enable access when CPU is running
+   rpc all_cpus system.option stepsoft off   ; disable stepsoft option as default
+   rpc all_cpus system.option perstop  on    ;
+   rpc all_cpus system.option wdtsus   on    ; link watchdog timer to the suspend bus (requires perstop == on)
+
+   ; we reset using system.mode up exclusively for now, so we do not need to invalidate the data and instruction caches
+   ; see "TriCore Debugger and Trace" (debugger_tricore.pdf)
+   rpc all_cpus system.option dcfreeze off
+   rpc all_cpus system.option dcread   on
+
+   ; execute dsync instruction on memory access (clear store buffer)
+   rpc all_cpus system.option dsync halt
+
+   rpc all_cpus system.option.resetbehavior RestoreGo
+
+   ; Protect memories which are not available during the startup phase (derivate dependent)
+   ; It is performed during the initial startup, as we might want to restore previous sessions' var.view windows,
+   ; which might trigger an initial bus error on memories which are only available after the software startup
+   derivate "startup_memory_protect_begin"
+
+   ; now start up all instances
+   hook "system_up.pre"
+   system.mode up
+   hook "system_up.post"
+
+   intercom.execute others system.attach
+   intercom.wait all
+
+   return
+)
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Initialize derivate interface (startup)
+; This function installs a global cmd "derivate", which addresses the derivate specific implementation for certain
+; events
+;
+; Argument: path to derivate specific script
+
+init_derivate:
+(
+   local &derivateScript
+   entry &derivateScript
+
+   globalon cmd derivate do &derivateScript
+
+   return
+)
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Initialize hook mechanism (startup)
+
+init_hook:
+(
+   local &hookFile
+
+   if ("&g_userHook"!="")
+   (
+      if (!os.file(&g_userHook))
+      (
+         print "Warning: Manually specified user hook ""&g_userHook"" does not exist."
+      )
+      else
+      (
+         &hookFile="&g_userHook"
+      )
+   )
+   else
+   (
+      &hookFile="../user_hook.cmm"
+   )
+
+   if (os.file(&hookFile))
+   (
+      gosub install_hook "&hookFile"
+   )
+
+   globalon cmd hook do stw/hook.cmm
+
+   return
+)
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Install hook  (startup)
+
+install_hook:
+(
+   local &hook
+   entry &hook
+
+   if (string.length("&g_installedHooks")>0.)
+   (
+      &g_installedHooks = "&g_installedHooks;&hook"
+   )
+   else
+   (
+      &g_installedHooks = "&hook"
+   )
+
+   return
+)
+
+; ----------------------------------------------------------------------------------------------------------------------
+; Spartanic error handler (startup)
+
+error_exit:
+   print "Startup bailing out due to detected errors."
+   ; Bail out early.
+   enddo

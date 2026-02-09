@@ -1,0 +1,11 @@
+/* checkpoints_map.def
+*
+* CNTRL2DP(name, DP_LVALUE, SRC_RVALUE)
+*
+* DP_LVALUE: expression that can be assigned into (datapool global field)
+* SRC_RVALUE: expression that yields the value to assign (from your control structs)
+*/
+
+/* Elevator Control checkpoints */
+CNTRL2DP(elevatorCP1, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1, gt_elevatorCheckpoints.u8_chkPoint1)
+CNTRL2DP(elevatorCP2, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint2, gt_elevatorCheckpoints.u8_chkPoint2)

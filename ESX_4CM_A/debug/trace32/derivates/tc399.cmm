@@ -1,0 +1,208 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    instance.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This script implements the "derivate" interface for TC399 derivates
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+local &args
+local &event
+
+entry %LINE &args
+   &event = string.split("&args"," ",0)
+
+   if (&event=="describe_mcu")
+   (
+      gosub describe_mcu &args
+   )
+
+   if (&event=="prepare_mcu")
+   (
+      gosub prepare_mcu &args
+   )
+
+   if (&event=="startup_memory_protect_begin")
+   (
+      rpc all_cpus map.denyAccess 0x99000000--0x993fffff    ; Disallow cached EMEM range
+      rpc all_cpus map.denyAccess 0xb9000000--0xb93fffff    ; Disallow uncached EMEM range
+      rpc all_cpus map.denyAccess 0xf0000000--0xffffffff    ; Disallow peripheral address space
+      intercom.wait all
+   )
+
+   if (&event=="startup_memory_protect_end")
+   (
+      rpc all_cpus map.noDenyAccess 0x99000000--0x993fffff    ; Allow cached EMEM range
+      rpc all_cpus map.noDenyAccess 0xb9000000--0xb93fffff    ; Allow uncached EMEM range
+      rpc all_cpus map.noDenyAccess 0xf0000000--0xffffffff    ; Allow peripheral address sapce
+      intercom.wait all
+   )
+
+   enddo
+
+describe_mcu:
+(
+   local &args
+   local &fblMode       &fblOp
+   local &fbl2Mode      &fbl2Op
+   local &unlockFlash   &unlockFlash
+   local &brickMode2000
+   local &normOp
+   local &ucbOp
+   entry %LINE &args
+
+   &fblMode       = string.scanAndExtract(string.lower("&args"),"fblmode=","false()")
+   &fbl2Mode      = string.scanAndExtract(string.lower("&args"),"fbl2mode=","false()")
+   &unlockFlash   = string.scanAndExtract(string.lower("&args"),"unlockflash=","false()")
+   &brickMode2000 = string.scanAndExtract(string.lower("&args"),"brickmode2000=","false()")
+
+   ; Unlock flashloader sectors if called with fblmode=true()
+   if &fblMode
+      &fblOp = "TARGET"
+   else
+      &fblOp = "NOP"
+
+   ; Unlock 2ndlevel flashloader sectors if called with fbl2mode=true()
+   if &fbl2Mode
+      &fbl2Op = "TARGET"
+   else
+      &fbl2Op = "NOP"
+
+   ; Do not allow flashing of application reserved sectors in flashloader modes
+   if &fblMode||&fbl2Mode
+      &normOp = "NOP"
+   else
+      &normOp = "TARGET"
+
+   if &unlockFlash
+   (
+      &fblOp  = "TARGET"
+      &fbl2Op = "TARGET"
+      &normOp = "TARGET"
+   )
+
+   if &brickMode2000
+   (
+      print "Brickmode 2000 detected!"
+      &ucbOp  = "TARGET"
+   )
+   else
+   (
+      &ucbOp  = "NOP"
+   )
+
+   ; Program flash PF0 3MiB [0xA0000000, 0xA0300000[
+   flash.create  1. 0xA0000000--0xA002FFFF  0x4000 &fblOp  Long 0. /INFO "Flash Loader" ; PS0
+   flash.create  1. 0xA0030000--0xA007FFFF  0x4000 &fbl2Op Long 0. /INFO "Reserved (2nd level/HSM)"
+   flash.create  1. 0xA0080000--0xA0083FFF  0x4000 &normOp Long 0. /INFO "Boot Sector Core0"
+   flash.create  1. 0xA0084000--0xA0087FFF  0x4000 &normOp Long 0. /INFO "Boot Sector Core1"
+   flash.create  1. 0xA0088000--0xA008BFFF  0x4000 &normOp Long 0. /INFO "Boot Sector Core2"
+   flash.create  1. 0xA008C000--0xA00FFFFF  0x4000 &normOp Long 0.
+   flash.create  2. 0xA0100000--0xA01FFFFF  0x4000 &normOp Long 0. ; PS1
+   flash.create  3. 0xA0200000--0xA02FFFFF  0x4000 &normOp Long 0. ; PS2
+
+   ; Program flash PF1 3MiB  (0xA0300000--0xA05FFFFF)
+   flash.create  4. 0xA0300000--0xA03FFFFF  0x4000 &normOp Long 1. ; PS0
+   flash.create  5. 0xA0400000--0xA04FFFFF  0x4000 &normOp Long 1. ; PS1
+   flash.create  6. 0xA0500000--0xA05FFFFF  0x4000 &normOp Long 1. ; PS2
+
+   ; Program flash PF2 3 MiB (0xA0600000--0xA08FFFFF)
+   flash.create  7. 0xA0600000--0xA06FFFFF  0x4000 &normOp Long 2. ; PS0
+   flash.create  8. 0xA0700000--0xA07FFFFF  0x4000 &normOp Long 2. ; PS1
+   flash.create  9. 0xA0800000--0xA08FFFFF  0x4000 &normOp Long 2. ; PS2
+
+   ; Program flash PF3 3 MiB (0xA0900000--0xA0BFFFFF)
+   flash.create  10. 0xA0900000--0xA09FFFFF  0x4000 &normOp Long 3. ; PS0
+   flash.create  11. 0xA0A00000--0xA0AFFFFF  0x4000 &normOp Long 3. ; PS1
+   flash.create  12. 0xA0B00000--0xA0BFFFFF  0x4000 &normOp Long 3. ; PS2
+
+   ; Program flash PF4 3 MiB (0xA0C00000--0xA0EFFFFF)
+   flash.create  13. 0xA0C00000--0xA0CFFFFF  0x4000 &normOp Long 4. ; PS0
+   flash.create  14. 0xA0D00000--0xA0DFFFFF  0x4000 &normOp Long 4. ; PS1
+   flash.create  15. 0xA0E00000--0xA0EFFFFF  0x4000 &normOp Long 4. ; PS2
+
+   ; Program flash PF5 1 MiB (0xA0F00000--0xA0FFFFFF)
+   flash.create  16. 0xA0F00000--0xA0FFFFFF  0x4000 &normOp Long 5.; PS0
+
+   ; Use on-chip resources for breakpoints inside the whole flash range
+   rpc all_cpus map.bonchip      0x80000000--0x80FFFFFF
+   rpc all_cpus map.bonchip      0xA0000000--0xA0FFFFFF
+
+   ; Data flash DF0 1MiB (currently defaulting to single-ended mode!)
+   flash.create  17. 0xAF000000--0xAF0FFFFF  0x1000 &normOp Long /INFO "EEPROM0" ; DF0, EEPROM0..EEPROM255
+   flash.create  18. 0xAF400000--0xAF405FFF   0x200 &ucbOp  Long /INFO "UCBs"    ; DF0, UCB
+
+   ; Data flash DF1 128 KiB (currently defaulting to single-ended mode!)
+   flash.create  19. 0xAFC00000--0xAFC1FFFF  0x1000 &normOp Long /INFO "EEPROM1" ; DF1, EEPROM0..31
+
+   ; Create alias for cached address space
+   flash.createAlias 0x80000000--0x8FFFFFFF 0xA0000000
+
+   flash.target 0xC0000000 0xD0000000 0x4000 ~~~~/../lauterbach/tc3.bin /DualPort
+
+   ; Now deny access to memory map gaps (large ones, and ones that are close to memories the user might look at)
+   rpc all_cpus map.denyAccess 0x00000000--0x0FFFFFFF       ; Segment 0
+   rpc all_cpus map.denyAccess 0x1001C000--0x100FFFFF       ; CPU5: Gap before PSPR
+   rpc all_cpus map.denyAccess 0x3001C000--0x300FFFFF       ; CPU4: Gap before PSPR
+   rpc all_cpus map.denyAccess 0x4001C000--0x400FFFFF       ; CPU3: Gap before PSPR
+   rpc all_cpus map.denyAccess 0x5001C000--0x500FFFFF       ; CPU2: Gap before PSPR
+   rpc all_cpus map.denyAccess 0x6003C000--0x600FFFFF       ; CPU1: Gap before PSPR
+   rpc all_cpus map.denyAccess 0x7003C000--0x700FFFFF       ; CPU0: Gap before PSPR
+   rpc all_cpus map.denyAccess 0x701C3000--0x7FFFFFFF       ; Gap between CPU0 and begin of PFLASH (cached)
+
+   rpc all_cpus map.denyAccess 0x80040000--0x8007FFFF       ; Reserved flash area (cached)
+   rpc all_cpus map.denyAccess 0x90120000--0x903FFFFF       ; Gap between DLMU/LMU and DAM (cached)
+   rpc all_cpus map.denyAccess 0x90420000--0x99000000       ; Gap between DAM and EMEM (cached)
+   rpc all_cpus map.denyAccess 0x99400000--0x9FFFFFFF       ; Gap EMEM and uncached flash (cached)
+
+   rpc all_cpus map.denyAccess 0xA0040000--0xA007FFFF       ; Reserved flash area (uncached)
+   rpc all_cpus map.denyAccess 0x99400000--0x9FFFFFFF       ; Gap between end of EMEM and begin of PFLASH (uncached)
+   rpc all_cpus map.denyAccess 0xAFE80000--0xAFFFFFFF       ; Gap before and across BootROM
+   rpc all_cpus map.denyAccess 0xB0120000--0xB03FFFFF       ; Gap between DLMU/LMU and DAM (uncached)
+   rpc all_cpus map.denyAccess 0xB0420000--0xB9000000       ; Gap between DAM and EMEM (uncached)
+   rpc all_cpus map.denyAccess 0xB9400000--0xBFFFFFFF       ; Gap behind EMEM (uncached)
+
+   if &fblMode
+   else
+      rpc all_cpus map.denyAccess 0x80000040--0x800000FF       ; Gap between bmhd+entry and startaddress (for unfilled hex)
+      rpc all_cpus map.denyAccess 0xA0000040--0xA00000FF       ; Gap between bmhd+entry and startaddress (uncached)
+
+   return
+)
+
+prepare_mcu:
+(
+   print "prepare_mcu(tc399): preparing mcu"
+
+   ; Disable Watchdog Timers on TC39xX[X]
+   map.noDenyAccess 0xF0036000--0xF00363FF      ; Allow SCU access
+   per.set.simple D:0xF00362AC %Long 0x00000008 ; SCU_WDTSCON1,    Request to disable the safety watchdog
+   per.set.simple D:0xF0036250 %Long 0x00000008 ; SCU_WDTCPU0CON1, Request to disable the cpu0 watchdog
+   per.set.simple D:0xF003625C %Long 0x00000008 ; SCU_WDTCPU1CON1, Request to disable the cpu1 watchdog
+   per.set.simple D:0xF0036268 %Long 0x00000008 ; SCU_WDTCPU2CON1, Request to disable the cpu2 watchdog
+   per.set.simple D:0xF0036274 %Long 0x00000008 ; SCU_WDTCPU3CON1, Request to disable the cpu3 watchdog
+   per.set.simple D:0xF0036280 %Long 0x00000008 ; SCU_WDTCPU4CON1, Request to disable the cpu4 watchdog
+   per.set.simple D:0xF003628C %Long 0x00000008 ; SCU_WDTCPU5CON1, Request to disable the cpu5 watchdog
+
+   ; stop STM on break
+   map.noDenyAccess 0xf0001000--0xf00015ff      ; Allow STM access
+   per.set   0xF00010E8 %LONG 0x12000000        ; enable STM0 suspend
+   per.set   0xF00011E8 %LONG 0x12000000        ; enable STM1 suspend
+   per.set   0xF00012E8 %LONG 0x12000000        ; enable STM2 suspend
+   per.set   0xF00013E8 %LONG 0x12000000        ; enable STM3 suspend
+   per.set   0xF00014E8 %LONG 0x12000000        ; enable STM4 suspend
+   per.set   0xF00015E8 %LONG 0x12000000        ; enable STM5 suspend
+
+   ; ... also on each spontaneous reset
+   data.startup.sequence \
+      set 0xF00010E8 %LONG 0x12000000 \
+      set 0xF00011E8 %LONG 0x12000000 \
+      set 0xF00012E8 %LONG 0x12000000 \
+      set 0xF00013E8 %LONG 0x12000000 \
+      set 0xF00014E8 %LONG 0x12000000 \
+      set 0xF00015E8 %LONG 0x12000000
+   data.startup.on
+
+   return
+)

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-view-definition>
+    <file-version>1</file-version>
+    <opensyde-system-view darkmode="false" device-config-selected-bit-rate="125">
+        <name>NewView</name>
+        <service-mode active="false">
+            <availability setup="false" update="false" dashboard="false"/>
+        </service-mode>
+        <device-config-mode>all-connected-interfaces</device-config-mode>
+        <update-rates fast="100" medium="500" slow="1000"/>
+        <active-nodes>
+            <active-node state="true"/>
+            <active-node state="false"/>
+            <active-node state="false"/>
+            <active-node state="false"/>
+            <active-node state="false"/>
+        </active-nodes>
+        <node-update-information>
+            <node-specific-update-information position="0">
+                <data-block-paths>
+                    <data-block-path>ESX_4CM_A/boot_core/result/boot_core.hex</data-block-path>
+                    <data-block-path>ESX_4CM_A/safety_core/result/safety_core.hex</data-block-path>
+                    <data-block-path>ESX_4CM_A/appl_core/result/appl_core.hex</data-block-path>
+                </data-block-paths>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files>
+                    <skip-update-of-file state="false"/>
+                    <skip-update-of-file state="false"/>
+                    <skip-update-of-file state="false"/>
+                </skip-update-of-files>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="1">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="2">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="3">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="4">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+        </node-update-information>
+        <pc connected="true" bus-index="0">
+            <dll-path type="0"></dll-path>
+            <box>
+                <position x="20" y="20"/>
+                <size width="150" height="150"/>
+                <zorder value="1.7976931348623157e+308"/>
+            </box>
+            <connection>
+                <line>
+                    <color r="155" g="155" b="170" a="255"/>
+                    <width pixels="3"/>
+                    <zorder value="2"/>
+                    <interaction-points>
+                        <interaction-point x="95" y="170.5"/>
+                        <interaction-point x="171" y="322"/>
+                    </interaction-points>
+                </line>
+            </connection>
+        </pc>
+        <dashboards>
+            <dashboard active="true" tab-index="-1" tab-type="scene">
+                <name>Dashboard</name>
+                <comment/>
+                <charts/>
+                <labels/>
+                <params/>
+                <pie-charts/>
+                <spin-boxes/>
+                <sliders/>
+                <progress-bars/>
+                <tables/>
+                <toggles/>
+                <text-elements/>
+                <boundaries/>
+                <images/>
+                <line-arrows/>
+            </dashboard>
+        </dashboards>
+        <rail-assignments/>
+    </opensyde-system-view>
+</opensyde-view-definition>

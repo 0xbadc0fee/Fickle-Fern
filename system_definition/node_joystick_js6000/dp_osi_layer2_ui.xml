@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-dp-ui-definition>
+    <file-version>1</file-version>
+    <data-pool>
+        <lists length="8">
+            <list>
+                <data-elements length="0"/>
+            </list>
+            <list>
+                <data-elements length="0"/>
+            </list>
+            <list>
+                <data-elements length="0"/>
+            </list>
+            <list>
+                <data-elements length="0"/>
+            </list>
+            <list>
+                <data-elements length="0"/>
+            </list>
+            <list>
+                <data-elements length="0"/>
+            </list>
+            <list>
+                <data-elements length="0"/>
+            </list>
+            <list>
+                <data-elements length="0"/>
+            </list>
+        </lists>
+    </data-pool>
+</opensyde-dp-ui-definition>

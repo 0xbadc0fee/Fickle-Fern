@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-comm-ui-definition>
+    <file-version>1</file-version>
+    <com-protocol>
+        <com-message-containers length="4">
+            <com-message-container>
+                <tx-messages length="1">
+                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
+                        <com-signals length="13">
+                            <com-signal color-index="5"/>
+                            <com-signal color-index="28"/>
+                            <com-signal color-index="35"/>
+                            <com-signal color-index="29"/>
+                            <com-signal color-index="48"/>
+                            <com-signal color-index="39"/>
+                            <com-signal color-index="34"/>
+                            <com-signal color-index="64"/>
+                            <com-signal color-index="41"/>
+                            <com-signal color-index="19"/>
+                            <com-signal color-index="22"/>
+                            <com-signal color-index="54"/>
+                            <com-signal color-index="11"/>
+                        </com-signals>
+                    </com-message>
+                </tx-messages>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container>
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container>
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container>
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+        </com-message-containers>
+    </com-protocol>
+</opensyde-comm-ui-definition>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-comm-core-definition>
+    <file-version>1</file-version>
+    <com-protocol data-pool-name="OSI_Layer2">
+        <communication-protocol>layer 2</communication-protocol>
+        <com-message-containers length="4">
+            <com-message-container com-protocol-usage-flag="false">
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container com-protocol-usage-flag="false">
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container com-protocol-usage-flag="false">
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container com-protocol-usage-flag="false">
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+        </com-message-containers>
+    </com-protocol>
+</opensyde-comm-core-definition>

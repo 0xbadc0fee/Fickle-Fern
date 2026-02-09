@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-node-ui-definition>
+    <file-version>1</file-version>
+    <node>
+        <com-protocols length="1">
+            <com-protocol>comm_j1939_ui.xml</com-protocol>
+        </com-protocols>
+        <data-pools length="1">
+            <data-pool>dp_j1939_ui.xml</data-pool>
+        </data-pools>
+        <box>
+            <position x="814" y="404"/>
+            <size width="165" height="110"/>
+            <zorder value="6"/>
+        </box>
+        <busconnections>
+            <connection type="can" busnumber="0">
+                <interaction-points>
+                    <interaction-point x="900" y="399.5"/>
+                    <interaction-point x="900" y="322"/>
+                </interaction-points>
+            </connection>
+        </busconnections>
+    </node>
+</opensyde-node-ui-definition>

@@ -1,0 +1,137 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    instance.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This script implements the "derivate" interface for TC267 derivates
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+local &args
+local &event
+
+entry %LINE &args
+   &event = string.split("&args"," ",0)
+
+   if (&event=="describe_mcu")
+   (
+      gosub describe_mcu &args
+   )
+
+   if (&event=="prepare_mcu")
+   (
+      gosub prepare_mcu &args
+   )
+
+   if (&event=="startup_memory_protect_begin")
+   (
+      rpc all_cpus map.denyAccess 0x9F000000--0x9FFFFFFF    ; Disallow cached EMEM range
+      rpc all_cpus map.denyAccess 0xBF000000--0xBFFFFFFF    ; Disallow uncached EMEM range
+      intercom.wait all
+   )
+
+   if (&event=="startup_memory_protect_end")
+   (
+      rpc all_cpus map.noDenyAccess 0x9F000000--0x9FFFFFFF    ; Allow cached EMEM range
+      rpc all_cpus map.noDenyAccess 0xBF000000--0xBFFFFFFF    ; Allow uncached EMEM range
+      intercom.wait all
+   )
+
+   enddo
+
+describe_mcu:
+(
+   local &args
+   local &fblMode       &fblOp
+   local &unlockFlash   &unlockFlash
+   local &normOp
+   entry %LINE &args
+
+   &fblMode     = string.scanAndExtract(string.lower("&args"),"fblmode=","false()")
+   &unlockFlash = string.scanAndExtract(string.lower("&args"),"unlockflash=","false()")
+
+   ; Unlock flashloader sectors if called with fblmode=true()
+   if &fblMode
+   (
+      &fblOp  = "TARGET"
+      &normOp = "NOP"
+   )
+   else
+   (
+      &fblOp  = "NOP"
+      &normOp = "TARGET"
+   )
+
+   if &unlockFlash
+   (
+      &fblOp = "TARGET"
+      &normOp = "TARGET"
+   )
+
+   ; Program flash PF0
+   flash.create  1. 0xA0000000--0xA000BFFF  0x4000 &fblOp  Long /INFO "Flash Loader"      /BootModeHeaDer 0xA0000000--0xA000001F ; PS0, S0..S2
+   flash.create  1. 0xA000C000--0xA000FFFF  0x4000 &normOp Long /INFO "Boot Sector Core0" /BootModeHeaDer 0xA000FFE0--0xA000FFFF ; PS0, S3
+   flash.create  1. 0xA0010000--0xA0013FFF  0x4000 &normOp Long /INFO "Boot Sector Core1"                                        ; PS0, S4
+   flash.create  1. 0xA0014000--0xA0017FFF  0x4000 &fblOp  Long /INFO "Flash Loader (Tuning Protection)"                         ; PS0, S5
+   flash.create  1. 0xA0018000--0xA001FFFF  0x4000 &fblOp  Long /INFO "Flash Loader"      /BootModeHeaDer 0xA001FFE0--0xA001FFFF ; PS0, S6..S7
+   flash.create  1. 0xA0020000--0xA002FFFF  0x8000 &fblOp  Long /INFO "Flash Loader"      /BootModeHeaDer 0xA0020000--0xA002001F ; PS0, S8..S10
+   flash.create  1. 0xA0030000--0xA005FFFF  0x8000 &normOp Long   ; PS0, S11..S15
+   flash.create  1. 0xA0060000--0xA007FFFF 0x10000 &normOp Long   ; PS0, S16..S17
+   flash.create  2. 0xA0080000--0xA009FFFF 0x10000 &normOp Long   ; PS1, S18..S19
+   flash.create  2. 0xA0080000--0xA009FFFF 0x10000 &normOp Long   ; PS1, S18..S19
+   flash.create  2. 0xA00A0000--0xA00FFFFF 0x20000 &normOp Long   ; PS1, S20..S22
+   rpc all_cpus map.bonchip      0xA0000000--0xA00FFFFF
+   rpc all_cpus map.bonchip      0x80000000--0x800FFFFF
+
+   ; Program flash PF1
+   flash.create  5. 0xA0100000--0xA011FFFF  0x4000 &normOp Long   ; PS0, S0..S7
+   flash.create  5. 0xA0120000--0xA015FFFF  0x8000 &normOp Long   ; PS0, S8..S15
+   flash.create  5. 0xA0160000--0xA017FFFF 0x10000 &normOp Long   ; PS0, S16..S17
+   flash.create  6. 0xA0180000--0xA019FFFF 0x10000 &normOp Long   ; PS1, S18..S19
+   flash.create  6. 0xA01A0000--0xA01FFFFF 0x20000 &normOp Long   ; PS1, S20..S22
+   flash.create  7. 0xA0200000--0xA027FFFF 0x40000 &normOp Long   ; PS2, S23..S24
+   rpc all_cpus map.bonchip      0x80100000--0x8027FFFF
+
+   ; Data flash DF0
+   flash.create  8. 0xAF000000--0xAF017FFF  0x2000 &normOp Long /INFO "EEPROM"          ; DF0, EEPROM0..EEPROM11
+   flash.create  9. 0xAF100000--0xAF1003FF   0x400 NOP     Long /INFO "UCB_PFlash"      ; DF0, UCB0
+   flash.create  9. 0xAF100400--0xAF1007FF   0x400 NOP     Long /INFO "UCB_DFlash"      ; DF0, UCB1
+   flash.create  9. 0xAF100800--0xAF100BFF   0x400 NOP     Long /INFO "UCB_HSMCOTP"     ; DF0, UCB2
+   flash.create  9. 0xAF100C00--0xAF100FFF   0x400 NOP     Long /INFO "UCB_OTP"         ; DF0, UCB3
+   flash.create  9. 0xAF101000--0xAF1013FF   0x400 NOP     Long /INFO "UCB_IFX"         ; DF0, UCB4
+   flash.create  9. 0xAF101400--0xAF1017FF   0x400 NOP     Long /INFO "UCB_DBG"         ; DF0, UCB5
+   flash.create  9. 0xAF101800--0xAF101BFF   0x400 NOP     Long /INFO "UCB_HSM"         ; DF0, UCB6
+   flash.create  9. 0xAF101C00--0xAF101FFF   0x400 NOP     Long                         ; DF0, UCB7
+   flash.create  9. 0xAF102000--0xAF102FFF   0x400 NOP     Long                         ; DF0, UCB8..UCB11
+   flash.create  9. 0xAF103000--0xAF103FFF   0x400 NOP     Long /INFO "Erase Counter"   ; DF0, UCB12..UCB15
+
+   ; Create alias for cached address space
+   flash.createAlias 0x80000000--0x8FFFFFFF 0xA0000000
+
+   flash.target 0xC0000000 0xD0000000 0x4000 ~~~~/../lauterbach/tc2.bin /DualPort
+
+   return
+)
+
+prepare_mcu:
+(
+   ; Disable Watchdog Timers on TC267D
+   ; Disable the Safety Watchdog Timer (overall system level watchdog):
+   per.set.simple D:0xF00360F4 %Long 0x00000008 // SCU_WDTSCON1, Request to disable the WDT
+   ; Disable the CPU Watchdog Timers:
+   per.set.simple D:0xF0036104 %Long 0x00000008 // SCU_WDTCPU0CON1, Request to disable the WDT
+   per.set.simple D:0xF0036110 %Long 0x00000008 // SCU_WDTCPU1CON1, Request to disable the WDT
+
+   ;=================================================================================================================
+   ; stop STM on break
+   per.set   0xF00000E8 %LONG 0x12000000              ; enable STM suspend
+   per.set   0xF00001E8 %LONG 0x12000000              ; enable STM suspend
+
+   ; ... also on each spontaneous reset
+   data.startup.sequence \
+      set 0xF00000E8 %LONG 0x12000000 \
+      set 0xF00001E8 %LONG 0x12000000
+   data.startup.on
+
+   return
+)

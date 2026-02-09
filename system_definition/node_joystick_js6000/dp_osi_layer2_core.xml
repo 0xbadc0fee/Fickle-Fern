@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-dp-core-definition>
+    <file-version>1</file-version>
+    <data-pool related-application-index="-1" is-safety="false" scope-is-private="true" definition-crc-version="2">
+        <type>com</type>
+        <name>OSI_Layer2</name>
+        <version major="0" minor="0" release="0"/>
+        <comment>Automatically generated Datapool for OSI Layer 2 CAN communication</comment>
+        <lists length="8">
+            <list>
+                <name>CAN1_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN1_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN2_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN2_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN3_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN3_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN4_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN4_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+        </lists>
+        <export-settings/>
+    </data-pool>
+</opensyde-dp-core-definition>

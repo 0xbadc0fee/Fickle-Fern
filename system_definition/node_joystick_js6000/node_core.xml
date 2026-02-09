@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-node-core-definition>
+    <file-version>1</file-version>
+    <node datapool-auto-nvm-start-address="true">
+        <type>3rd Party</type>
+        <properties>
+            <name>Joystick_JS6000</name>
+            <comment/>
+            <diagnostic-server>none</diagnostic-server>
+            <flash-loader>none</flash-loader>
+            <communication-interfaces>
+                <communication-interface interface-number="0" node-id="1" update-available="false" routing-available="false" diagnosis-available="false">
+                    <type>can</type>
+                    <communication-protocol/>
+                    <bus connected="true" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+                <communication-interface interface-number="1" node-id="0" update-available="false" routing-available="false" diagnosis-available="false">
+                    <type>can</type>
+                    <communication-protocol/>
+                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+                <communication-interface interface-number="2" node-id="0" update-available="false" routing-available="false" diagnosis-available="false">
+                    <type>can</type>
+                    <communication-protocol/>
+                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+                <communication-interface interface-number="3" node-id="0" update-available="false" routing-available="false" diagnosis-available="false">
+                    <type>can</type>
+                    <communication-protocol/>
+                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                </communication-interface>
+            </communication-interfaces>
+            <open-syde-server-settings max-clients="1" max-parallel-transmissions="64" application-index="-1" max-tx-message-buffer="585" max-rx-routing-message-buffer="585"/>
+            <stw-flashloader-settings>
+                <reset-message active="false" extended="false" id="0" dlc="8">
+                    <data-bytes>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                        <data-byte value="0"/>
+                    </data-bytes>
+                </reset-message>
+            </stw-flashloader-settings>
+            <code-export-settings>
+                <scaling-support>float32</scaling-support>
+            </code-export-settings>
+        </properties>
+        <applications length="0"/>
+        <com-protocols length="2">
+            <com-protocol>comm_osi_layer2_core.xml</com-protocol>
+            <com-protocol>comm_j1939_core.xml</com-protocol>
+        </com-protocols>
+        <data-pools length="2">
+            <data-pool>dp_osi_layer2_core.xml</data-pool>
+            <data-pool>dp_j1939_core.xml</data-pool>
+        </data-pools>
+    </node>
+</opensyde-node-core-definition>

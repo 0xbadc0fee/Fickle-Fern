@@ -1,0 +1,128 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    load_application.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This script loads the application according to the command line parameters passed to the startup
+;               script
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+global &g_core0Elf
+global &g_core0InstancePrefix
+global &g_core1Elf
+global &g_core1InstancePrefix
+global &g_core2Elf
+global &g_core2InstancePrefix
+global &g_shareSymbols
+
+   print "--- Loading application -------------------------------------------------------------------------------------"
+
+   hook "application_loading"
+
+   rpc core0 flash.reprogram.all  ; enable automatic flash programming
+   (
+      ; todo: This does not scale well, see if we can loop this stuff
+      if ("&g_core0Elf"!="")
+      (
+         &g_core0InstancePrefix = os.file.basename(&g_core0Elf, ".elf")
+         gosub program "core0" "&g_core0Elf" "/VERIFY"
+      )
+
+      if ("&g_core1Elf"!="")
+      (
+         &g_core1InstancePrefix = os.file.basename(&g_core1Elf, ".elf")
+         gosub program "core1" "&g_core1Elf" "/VERIFY /NOREG"
+      )
+
+      if ("&g_core2Elf"!="")
+      (
+         &g_core2InstancePrefix = os.file.basename(&g_core2Elf, ".elf")
+         gosub program "core2" "&g_core2Elf" "/VERIFY /NOREG"
+      )
+   )
+   rpc core0 flash.reprogram.off  ; Finally program flash memory
+   system.up                      ; This effectively clears the flash alarms that might have been raised during programming
+
+   ; hopefully this happens in parallel to the programming
+   if (&g_shareSymbols)
+   (
+      gosub load_elf_symbols "core0" "&g_core1Elf"
+      gosub load_elf_symbols "core0" "&g_core2Elf"
+
+      gosub load_elf_symbols "core1" "&g_core0Elf"
+      gosub load_elf_symbols "core1" "&g_core2Elf"
+
+      gosub load_elf_symbols "core2" "&g_core0Elf"
+      gosub load_elf_symbols "core2" "&g_core1Elf"
+   )
+
+   ; wait until all instances idle
+   intercom.wait all
+
+   ; setup task system support
+   if (os.file("stw_rtos_plugin/stw_rtos.t32"))
+   (
+      rpc all_cpus task.config "stw_rtos_plugin/stw_rtos.t32"
+   )
+
+   hook "application_loaded"
+
+   print "--- Loading application finished ----------------------------------------------------------------------------"
+
+enddo
+
+program:
+(
+   local &coreId
+   local &hexFile
+   local &elfFile
+   local &loadParameters
+   local &expansionHelper
+   parameters &coreId &elfFile &loadParameters
+
+   rpc &coreId symbol.reset
+
+   if (os.file("&elfFile"))
+   (
+      &hexFile = string.replace("&elfFile",".elf",".hex",0)
+
+      if (os.file("&hexFile"))
+      (
+         print "&coreId: Programming ""&hexFile"", loading symbols from ""&elfFile"""
+         ; Always program in core0 instance, as the old scheme would not work on TC39x!
+         rpc core0 data.load.IntelHex &hexFile /NosYmbol
+         ; ... but still load symbols on their designated instances
+         gosub load_elf_symbols "&coreId" "&elfFile" "&loadParameters"
+      )
+      else
+      (
+         print "&coreId: Programming and loading symbols from ""&elfFile"""
+         ; Always program in core0 instance, as the old scheme would not work on TC39x!
+         rpc core0 data.load.elf      &elfFile /GNU &loadParameters /NosYmbol
+         ; ... but still load symbols on their designated instances
+         gosub load_elf_symbols "&coreId" "&elfFile" "&loadParameters"
+      )
+   )
+   else
+   (
+      print "&coreId: No valid elf file supplied"
+   )
+
+   return
+)
+
+load_elf_symbols:
+(
+   local &coreId
+   local &elfFile
+   local &loadParameters
+   parameters &coreId &elfFile &loadParameters
+
+   if (os.file("&elfFile"))
+   (
+      rpc &coreId data.load.elf      &elfFile /GNU /NOCODE /NOCLEAR &loadParameters
+   )
+
+   return
+)

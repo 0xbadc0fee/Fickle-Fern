@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-dp-core-definition>
+    <file-version>1</file-version>
+    <data-pool related-application-index="-1" is-safety="false" scope-is-private="true" definition-crc-version="2">
+        <type>com</type>
+        <name>J1939</name>
+        <version major="0" minor="0" release="0"/>
+        <comment>Automatically generated Datapool for J1939 CAN communication</comment>
+        <lists length="8">
+            <list>
+                <name>CAN1_TX</name>
+                <comment/>
+                <data-elements length="21">
+                    <data-element factor="0.125" offset="0">
+                        <name>ActlEngPrcntTrqueHighResolution</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>This parameter displays an additional torque in percent of the reference engine torque.</comment>
+                        <min-value value="0"/>
+                        <max-value value="7"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-125">
+                        <name>ActualEngPercentTorque</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The calculated output torque of the engine.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-125">
+                        <name>DriversDemandEngPercentTorque</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The requested torque output of the engine by the driver.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-125">
+                        <name>EngDemandPercentTorque</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The requested torque output of the engine by all dynamic internal inputs, including smoke control, noise control and low</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.125" offset="0">
+                        <name>EngSpeed</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Actual engine speed which is calculated over a minimum crankshaft angle of 720 degrees divided by the number of cylinders.</comment>
+                        <min-value value="0"/>
+                        <max-value value="64255"/>
+                        <unit>rpm</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>EngStarterMode</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>There are several phases in a starting action and different reasons why a start cannot take place.</comment>
+                        <min-value value="0"/>
+                        <max-value value="15"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>EngTorqueMode</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>State signal which indicates which engine torque mode is currently generating, limiting, or controlling the torque.</comment>
+                        <min-value value="0"/>
+                        <max-value value="15"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>SrcAddrssOfCtrllngDvcFrEngCntrl</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The source address of the SAE J1939 device currently controlling the engine.</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.03125" offset="-273">
+                        <name>EngCoolantTemp</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Temperature of liquid found in engine cooling system.</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-40">
+                        <name>EngFuelTemp1</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Temperature of fuel (or gas) passing through the first fuel control system.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-40">
+                        <name>EngIntercoolerTemp</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Temperature of liquid found in the intercooler located after the turbocharger.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.40000000000000002" offset="0">
+                        <name>EngIntercoolerThermostatOpening</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The current position of the thermostat used to regulate the temperature of the engine intercooler.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.03125" offset="-273">
+                        <name>EngOilTemp1</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Temperature of the engine lubricant.</comment>
+                        <min-value value="0"/>
+                        <max-value value="64255"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.03125" offset="-273">
+                        <name>EngTurboOilTemp</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Temperature of the turbocharger lubricant.</comment>
+                        <min-value value="0"/>
+                        <max-value value="64255"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.050000000000000003" offset="0">
+                        <name>EngAirFilter1DiffPress</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="2" offset="0">
+                        <name>EngAirIntakePress</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Absolute air pressure at input port to intake manifold or air box.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.5" offset="0">
+                        <name>EngCoolantFilterDiffPress</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.5" offset="0">
+                        <name>EngDslPrtclateFilterIntakePress</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.03125" offset="-273">
+                        <name>EngExhaustGasTemp</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Temperature of combustion byproducts leaving the engine.</comment>
+                        <min-value value="0"/>
+                        <max-value value="64255"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="2" offset="0">
+                        <name>EngIntakeManifold1Press</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The gage pressure measurement of the air intake manifold.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-40">
+                        <name>EngIntakeManifold1Temp</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Temperature of pre-combustion air found in intake manifold of engine air supply system.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN1_RX</name>
+                <comment/>
+                <data-elements length="10">
+                    <data-element factor="1" offset="0">
+                        <name>ControlPurpose</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>State signal which indicates which control mode the sending device is using to generate the TSC1 command.</comment>
+                        <min-value value="0"/>
+                        <max-value value="31"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>EngOverrideCtrlMode</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="3"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>EngRqedSpeedCtrlConditions</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>This mode tells the engine control system the governor characteristics that are desired during speed control.</comment>
+                        <min-value value="0"/>
+                        <max-value value="3"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.125" offset="0">
+                        <name>EngRqedSpeed_SpeedLimit</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter provided to the engine from external sources in the torque/speed control message.</comment>
+                        <min-value value="0"/>
+                        <max-value value="64255"/>
+                        <unit>rpm</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-125">
+                        <name>EngRqedTorque_TorqueLimit</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter provided to the engine or retarder in the torque/speed control message for controlling or limiting the output torque.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.125" offset="0">
+                        <name>EngineRequestedTorqueHiRes</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>This parameter displays an additional torque in percent of the reference engine torque.</comment>
+                        <min-value value="0"/>
+                        <max-value value="7"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>MessageChecksum</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The checksum is used to verify the signal path from the transmitting device to the receiving device.</comment>
+                        <min-value value="0"/>
+                        <max-value value="15"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>MessageCounter</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time.</comment>
+                        <min-value value="0"/>
+                        <max-value value="15"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>OverrideCtrlModePriority</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="3"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>TransmissionRate</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.</comment>
+                        <min-value value="0"/>
+                        <max-value value="7"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN2_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN2_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN3_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN3_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN4_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN4_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+        </lists>
+        <export-settings/>
+    </data-pool>
+</opensyde-dp-core-definition>

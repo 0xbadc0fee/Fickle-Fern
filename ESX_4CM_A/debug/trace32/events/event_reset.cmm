@@ -1,0 +1,6 @@
+   print "Reset detected."
+
+   do prepare_mcu
+   go main
+
+   enddo

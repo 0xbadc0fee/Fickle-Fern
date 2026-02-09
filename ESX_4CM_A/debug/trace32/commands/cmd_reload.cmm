@@ -1,0 +1,32 @@
+;-----------------------------------------------------------------------------------------------------------------------
+;  Name:    cmd_reload.cmm
+;  Version: 08.06.2020, Steinberg                                                                Copyright (c) 2020, STW
+;
+;  Description: This command reloads the ecu, it can be called on any instance
+;
+;  Target:      TriCore AURIX generic
+;-----------------------------------------------------------------------------------------------------------------------
+
+global &g_intercomMaster   ; master instance intercom name
+global &g_instancePrefix   ; symbol prefix for disambiguation when sharing symbols across cores: \\<prefix>\symbol
+
+   local &intercomName
+   local &doBreak
+   entry &doBreak
+
+   &intercomName = intercom.name()
+
+   if ("&doBreak"=="")
+      &doBreak = false()
+
+   if (&doBreak)
+   (
+      ; If there are hyphens in the path or the ELF file itself the symbol must be enclosed by two grave accents
+      rpc &g_intercomMaster do tasks/task_reload.cmm "&intercomName" "`\\&g_instancePrefix\Global\main`"
+   )
+   else
+   (
+      rpc &g_intercomMaster do tasks/task_reload.cmm
+   )
+
+   enddo

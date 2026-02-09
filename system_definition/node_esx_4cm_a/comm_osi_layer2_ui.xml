@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-comm-ui-definition>
+    <file-version>1</file-version>
+    <com-protocol>
+        <com-message-containers length="4">
+            <com-message-container>
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container>
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container>
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container>
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+        </com-message-containers>
+    </com-protocol>
+</opensyde-comm-ui-definition>

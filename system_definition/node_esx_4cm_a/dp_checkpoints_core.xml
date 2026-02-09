@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-dp-core-definition>
+    <file-version>1</file-version>
+    <data-pool related-application-index="2" is-safety="false" scope-is-private="true" definition-crc-version="2">
+        <type>diag</type>
+        <name>Checkpoints</name>
+        <version major="0" minor="0" release="0"/>
+        <comment>Datapool to store all checkpoints for dashboard viewing</comment>
+        <lists length="1">
+            <list>
+                <name>ElevatorControl</name>
+                <comment/>
+                <data-elements length="2">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>checkpoint1</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>checkpoint2</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+        </lists>
+        <export-settings/>
+    </data-pool>
+</opensyde-dp-core-definition>

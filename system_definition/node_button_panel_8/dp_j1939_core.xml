@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-dp-core-definition>
+    <file-version>1</file-version>
+    <data-pool related-application-index="-1" is-safety="false" scope-is-private="true" definition-crc-version="2">
+        <type>com</type>
+        <name>J1939</name>
+        <version major="0" minor="0" release="0"/>
+        <comment>Automatically generated Datapool for J1939 CAN communication</comment>
+        <lists length="8">
+            <list>
+                <name>CAN1_TX</name>
+                <comment/>
+                <data-elements length="13">
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_01</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_02</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_03</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_04</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_05</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_06</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_07</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_08</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_09</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_10</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_11</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_12</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_State_Mux</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN1_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN2_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN2_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN3_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN3_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN4_TX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list>
+                <name>CAN4_RX</name>
+                <comment/>
+                <data-elements length="0"/>
+                <data-sets>
+                    <data-set>
+                        <name>Init</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+        </lists>
+        <export-settings/>
+    </data-pool>
+</opensyde-dp-core-definition>

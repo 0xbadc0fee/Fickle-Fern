@@ -1,0 +1,21 @@
+
+; Environment variables
+OS=
+ID=T32
+
+; USB information
+PBI=
+CORE=1
+USB
+
+IC=NETASSIST
+PORT=20000
+
+
+; Printer settings
+PRINTER=WINDOWS
+
+; Screen fonts
+SCREEN=
+FONT=SMALL
+HEADER=TRACE32 TriCore-Core0 (BootCPU)

@@ -1,0 +1,13 @@
+/* can_out_map.def
+*
+* CNTRL2DP(name, DPL_VALUE, CNTRL_VALUE)
+*
+* DP_LVALUE: expression that can be assigned into (datapool global field)
+* SRC_RVALUE: expression that yields the value to assign (from control structs)
+*/
+
+/* Elevator Control Outputs */
+CNTRL2DP(elevatorStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkElevatorOn, gt_ui.t_display.u8_elevatorStatus)
+
+/* Engine Control Outputs */
+CNTRL2DP(elevatorStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_TSC1_EngRqedSpeed_SpeedLimit, gt_engine.u16_rpmCommand)

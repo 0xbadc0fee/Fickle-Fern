@@ -1,0 +1,72 @@
+; --------------------------------------------------------------------------------
+; @Title: Add toolbar button to close all PowerView instances
+; @Description:
+;   This script installs a toolbar button, which when pressed closes all
+;   PowerView instances that are connected to the same debug module.
+;
+;   Note: INTERCOM must be enabled for all connected PowerView instances.
+;
+;   Usage: Call without parameter
+;   DO ~~/demo/practice/intercom/toolbar_quit_all.cmm
+;
+; @Author: REI
+; @Copyright: (C) 1989-2014 Lauterbach GmbH, licensed for use with TRACE32(R) only
+; --------------------------------------------------------------------------------
+; $Id: toolbar_quit_all.cmm 8581 2015-08-17 14:15:21Z wwbenayed $
+
+
+; get command line parameters
+  LOCAL &command
+  ENTRY &command
+
+; called without command -> install toolbar button
+  IF "&command"==""
+  (
+    MENU.ReProgram
+    (
+      ADD
+      TOOLBAR
+      (
+        TOOLITEM "Quit all PowerView instances" "[=7VlX$s10E0NN02FV0F100yUViSqonGaL1TVWG0@0lfgNRL0]"
+        (
+          DO "lauterbach/toolbar_quit_all.cmm" COMMAND_QUIT
+        )
+      )
+    )
+    ENDDO
+  )
+
+  IF "&command"=="COMMAND_QUIT"
+  (
+    ; first quit all other instances, then local instance
+    LOCAL &index &podport &icport
+
+    ; store active session windows
+    intercom.execute all do commands/cmd_store_session.cmm
+    intercom.wait all
+
+    ; now close all instances
+    &index=0.
+    WHILE INTERCOM.PODPORTNUMBER()>1
+    (
+      IF INTERCOM.PORT()==INTERCOM.PODPORT(&index)
+      (
+        ; skip local PowerView instance
+        &index=&index+1
+      )
+      ELSE
+      (
+        &podport=INTERCOM.PODPORT(&index)
+        &icport=FORMAT.DECIMAL(1.,&podport)
+        INTERCOM.executeNoWait &icport QUIT
+        ; wait until the shut down instance drops out of enumeration
+        WAIT &podport!=INTERCOM.PODPORT(&index)
+      )
+    )
+    ; finally quit local instance
+    Quit
+    ENDDO
+  )
+
+ENDDO
+

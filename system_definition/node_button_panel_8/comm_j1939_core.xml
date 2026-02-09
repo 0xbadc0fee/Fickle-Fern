@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-comm-core-definition>
+    <file-version>1</file-version>
+    <com-protocol data-pool-name="J1939">
+        <communication-protocol>j1939</communication-protocol>
+        <com-message-containers length="4">
+            <com-message-container com-protocol-usage-flag="true">
+                <tx-messages length="1">
+                    <com-message can-id="419406241" is-extended="true" dlc="8" cycle-time="0" minimum-cycle-time="10" receive-timeout="0">
+                        <name>CAN_Btn_Panel_Rec</name>
+                        <comment/>
+                        <tx-method>on-application-event</tx-method>
+                        <com-signals length="13">
+                            <com-signal data-element-index="0" bit-start="8" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520661"/>
+                            </com-signal>
+                            <com-signal data-element-index="1" bit-start="10" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520662"/>
+                            </com-signal>
+                            <com-signal data-element-index="2" bit-start="12" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520663"/>
+                            </com-signal>
+                            <com-signal data-element-index="3" bit-start="14" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520664"/>
+                            </com-signal>
+                            <com-signal data-element-index="4" bit-start="16" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520665"/>
+                            </com-signal>
+                            <com-signal data-element-index="5" bit-start="18" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520666"/>
+                            </com-signal>
+                            <com-signal data-element-index="6" bit-start="20" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520667"/>
+                            </com-signal>
+                            <com-signal data-element-index="7" bit-start="22" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520668"/>
+                            </com-signal>
+                            <com-signal data-element-index="8" bit-start="24" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520669"/>
+                            </com-signal>
+                            <com-signal data-element-index="9" bit-start="26" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520670"/>
+                            </com-signal>
+                            <com-signal data-element-index="10" bit-start="28" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520671"/>
+                            </com-signal>
+                            <com-signal data-element-index="11" bit-start="30" bit-length="2" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520672"/>
+                            </com-signal>
+                            <com-signal data-element-index="12" bit-start="0" bit-length="8" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>default</multiplexer-type>
+                                <j1939-suspect-parameter spn="520660"/>
+                            </com-signal>
+                        </com-signals>
+                    </com-message>
+                </tx-messages>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container com-protocol-usage-flag="false">
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container com-protocol-usage-flag="false">
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+            <com-message-container com-protocol-usage-flag="false">
+                <tx-messages length="0"/>
+                <rx-messages length="0"/>
+            </com-message-container>
+        </com-message-containers>
+    </com-protocol>
+</opensyde-comm-core-definition>

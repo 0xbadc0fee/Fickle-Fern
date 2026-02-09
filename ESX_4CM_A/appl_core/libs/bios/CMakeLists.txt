@@ -1,0 +1,17 @@
+add_library(esx_4cm_a_c_bios_application_core STATIC IMPORTED GLOBAL)
+set_target_properties(esx_4cm_a_c_bios_application_core PROPERTIES IMPORTED_LOCATION "${CMAKE_CURRENT_LIST_DIR}/libesx_4cm_a_c_bios_application_core.a")
+target_include_directories(esx_4cm_a_c_bios_application_core INTERFACE .)
+target_compile_options(esx_4cm_a_c_bios_application_core INTERFACE -mcpu=tc29xx;-g2;-std=gnu99;-fno-common;-ffunction-sections;-fdata-sections;-Wall;-Wdouble-promotion)
+target_link_options(esx_4cm_a_c_bios_application_core INTERFACE -mcpu=tc29xx;-nocrt0;-Wl,--gc-sections;-Wl,--mem-holes;-Wl,--cref;-Wl,--extmap=a)
+target_link_directories(esx_4cm_a_c_bios_application_core INTERFACE .)
+
+add_library(esx_4cm_a_c_bios_application_core.link_c_layout_1 INTERFACE)
+target_link_options(esx_4cm_a_c_bios_application_core.link_c_layout_1   INTERFACE -T link_c_layout_1.ld)
+target_link_libraries(esx_4cm_a_c_bios_application_core.link_c_layout_1 INTERFACE esx_4cm_a_c_bios_application_core)
+add_library(esx_4cm_a_c_bios_application_core.link_c_layout_2 INTERFACE)
+target_link_options(esx_4cm_a_c_bios_application_core.link_c_layout_2   INTERFACE -T link_c_layout_2.ld)
+target_link_libraries(esx_4cm_a_c_bios_application_core.link_c_layout_2 INTERFACE esx_4cm_a_c_bios_application_core)
+add_library(esx_4cm_a_c_bios_application_core.link_c_layout_3 INTERFACE)
+target_link_options(esx_4cm_a_c_bios_application_core.link_c_layout_3   INTERFACE -T link_c_layout_3.ld)
+target_link_libraries(esx_4cm_a_c_bios_application_core.link_c_layout_3 INTERFACE esx_4cm_a_c_bios_application_core)
+

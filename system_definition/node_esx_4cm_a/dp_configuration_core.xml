@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-dp-core-definition>
+    <file-version>1</file-version>
+    <data-pool related-application-index="2" is-safety="false" scope-is-private="true" definition-crc-version="2" nvm-start-address="0" nvm-size="20000">
+        <type>nvm</type>
+        <name>Configuration</name>
+        <version major="0" minor="0" release="0"/>
+        <comment>NVM Datapool to hold Configuration Data</comment>
+        <lists length="1">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="100">
+                <name>ElevatorConfig</name>
+                <comment/>
+                <data-elements length="2">
+                    <data-element factor="1" offset="0" nvm-start-address="0">
+                        <name>minSpeed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="1"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" nvm-start-address="1">
+                        <name>maxSpeed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="2"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>DEFAULT</name>
+                        <comment>Dataset to hold all default values
+</comment>
+                    </data-set>
+                </data-sets>
+            </list>
+        </lists>
+        <export-settings/>
+    </data-pool>
+</opensyde-dp-core-definition>
