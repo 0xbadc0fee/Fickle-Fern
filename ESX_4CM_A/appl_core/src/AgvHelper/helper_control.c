@@ -16,6 +16,7 @@
 #include "helper_control.h"
 #include "math.h"
 #include "x_sys.h"
+#include <stdint.h>
 
 #include "stwerrors.h"
 #include "stwtypes.h"
@@ -117,7 +118,7 @@ sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *
     sint16 s16_error = C_NO_ERR;
     float32 f32_current = 0u;
     float32 f32_step_max = 0u;
-    float32 f32_next =0u;
+    float32 f32_next = 0u;
 
     //Fault handling
     //todo check all params?
@@ -141,7 +142,6 @@ sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *
     }
     else if(f32_target < f32_current)
     {
-
         const float32 diff = f32_current - f32_target;
         const float32 step = (diff > f32_step_max) ? f32_step_max : diff;
         f32_next = f32_current - step;
@@ -151,10 +151,7 @@ sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *
         f32_next = f32_current; //hold at target
     }
 
-
     pt_state->f32_output = CLAMP_F32(f32_next, pt_params->f32_min_limit, pt_params->f32_max_limit);
-
-
 
     return s16_error;
 }
@@ -191,7 +188,45 @@ sint16 lowPassFlt(void)
 
 }
 
+/** \brief Initialize AgvHelper - Toggle Button
+ *
+ *  This function maintains a toggle button with a set debounce.
+ *
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
+ */
+sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state)
+{
+    sint16 s16_error = C_NO_ERR;
 
+    u8_raw_btn = (u8_raw_btn != 0u) ? 1u : 0u;
 
+    if(u8_faulted)
+    {
+        *(pt_btn->p_btn_state) = (u8_safe_state != 0u) ? 1u : 0u;
+        pt_btn->u32_hold_ms =0u;
+        pt_btn->u8_btn_set =1u;
+        return C_WARN;
+    }
+
+    if(u8_raw_btn == 0u)
+    {
+        pt_btn->u32_hold_ms = 0u;
+        pt_btn->u8_btn_set = 1u;
+    }
+
+    if(pt_btn->u32_hold_ms < (UINT32_MAX - u32_dt_ms))
+    {
+        pt_btn->u32_hold_ms += _u32_deb_ms;
+    }
+
+    if( (pt_btn->u8_btn_set == 1u) && (pt_btn->u32_hold_ms >= _u32_deb_ms))
+    {
+        *(pt_btn->p_btn_state) = (*(pt_btn->p_btn_state) == 0u) ? 1u : 0u;
+        pt_btn->u8_btn_set = 0u;
+    }
+
+    return s16_error;
+}
 
 //EOF

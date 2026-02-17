@@ -77,18 +77,25 @@ typedef struct
 
 typedef struct
 {
-        float f32_output;  //!<Current Ramped Output
+        float32 f32_output;  //!<Current Ramped Output
         uint8 u8_faulted; //!<Latched invalid-input fault
 }T_RampState;
 
 typedef struct
 {
-        float f32_dt_s; //!<Execution period [s]
-        float f32_ramp_rate; //!<Ramp Rate[unit/s]
-        float f32_min_limit; //!<MIN Output Limit
-        float f32_max_limit; //!<MAX Output Limit
-        float f32_safe_state; //!<Safe State Output
+        float32 f32_dt_s; //!<Execution period [s]
+        float32 f32_ramp_rate; //!<Ramp Rate[unit/s]
+        float32 f32_min_limit; //!<MIN Output Limit
+        float32 f32_max_limit; //!<MAX Output Limit
+        float32 f32_safe_state; //!<Safe State Output
 } T_RampParams;
+
+typedef struct
+{
+       uint8 *p_btn_state;
+       uint32 u32_hold_ms;
+       uint8 u8_btn_set;
+}T_ToggleBtn;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
@@ -99,7 +106,8 @@ sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_st
 sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *pt_state);
 sint16 movingAdvFlt(void);
 sint16 lowPassFlt(void);
-//sint16 getNeuStatus(uint8 *pu8_neu_status);
+sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state);
+//sint16 calcNeuStatus(uint8 *pu8_neu_status);
 
 
 #endif /* APPL_CORE_SRC_AGVHELPER_HELPER_CONTROL_H_ */
