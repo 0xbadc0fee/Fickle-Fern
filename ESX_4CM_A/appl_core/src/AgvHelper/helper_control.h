@@ -22,7 +22,7 @@
 #include "hmi_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-
+#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x)))
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /** \brief Checkpoints Structure - Engine Start Control
@@ -48,12 +48,6 @@ typedef struct
  */
 typedef struct
 {
-        //Local Control Variables
-        //uint8 u8_engineOffStatus;                  //!<Local On Off Command Variable
-
-        //RX CAN Variables
-       // uint8 *pu8_reqEngineOffStatus;              //!<Requested Engine Status (From Engine)
-
         //Control Checkpoints
         T_ChkPoints_Helper *pt_chk_helper;   //!<Helper Checkpoints Structure
 
@@ -81,13 +75,28 @@ typedef struct
 
    } T_PID_state;
 
+typedef struct
+{
+        float f32_output;  //!<Current Ramped Output
+        uint8 u8_faulted; //!<Latched invalid-input fault
+}T_RampState;
+
+typedef struct
+{
+        float f32_dt_s; //!<Execution period [s]
+        float f32_ramp_rate; //!<Ramp Rate[unit/s]
+        float f32_min_limit; //!<MIN Output Limit
+        float f32_max_limit; //!<MAX Output Limit
+        float f32_safe_state; //!<Safe State Output
+} T_RampParams;
+
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 //sint16 initHelperControl(T_UserInterface *_ui, T_ChkPoints_Helper *_chkp);
-void PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_state, T_PID_coeff *t_PID_coeff);
-sint16 rampCalc(void);
+sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_state, T_PID_coeff *t_PID_coeff);
+sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *pt_state);
 sint16 movingAdvFlt(void);
 sint16 lowPassFlt(void);
 //sint16 getNeuStatus(uint8 *pu8_neu_status);

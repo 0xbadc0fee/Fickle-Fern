@@ -7,7 +7,7 @@
     license     use only under terms of contract / confidential
 
     created     Jan 6, 2026 STW Technic
-*/
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -36,8 +36,9 @@ T_PID_state gt_pid_autoGF;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-void PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_state, T_PID_coeff *t_PID_coeff)
+sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_state, T_PID_coeff *t_PID_coeff)
 {
+    sint16 s16_error = C_NO_ERR;
     float32 f32_error;
     float32 f32_pPart;
     float32 f32_iPart;
@@ -100,23 +101,62 @@ void PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_stat
             t_pid_state->f32_output=t_PID_coeff->s32_min_output;
         }
     }
+    return s16_error;
 }
 
 
-/** \brief Initialize AgvHelper - Helper Control
+/** \brief Initialize AgvHelper - Ramp Calculation
  *
- *  This function initializes
+ *  This function reduces the rate of change between a new target value and the current value over a configurable period of time (linear)
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 rampCalc(void)
+sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *pt_state)
 {
     sint16 s16_error = C_NO_ERR;
+    float32 f32_current = 0u;
+    float32 f32_step_max = 0u;
+    float32 f32_next =0u;
+
+    //Fault handling
+    //todo check all params?
+    if ((pt_state == (void*)0 || (pt_params == (void*)0)))
+    {
+        return C_WARN;
+    }
+
+    pt_state->f32_output = CLAMP_F32(pt_state->f32_output, pt_params->f32_min_limit, pt_params->f32_max_limit);
+
+    f32_current = pt_state->f32_output;
+
+    f32_step_max = pt_params->f32_ramp_rate * pt_params->f32_dt_s; //Limit change per cycle
+
+    //Linear transition toward target; hold once reached.
+    if(f32_target > f32_current)
+    {
+        const float32 diff =  f32_target - f32_current;
+        const float32 step = (diff > f32_step_max) ? f32_step_max : diff;
+        f32_next = f32_current + step;
+    }
+    else if(f32_target < f32_current)
+    {
+
+        const float32 diff = f32_current - f32_target;
+        const float32 step = (diff > f32_step_max) ? f32_step_max : diff;
+        f32_next = f32_current - step;
+    }
+    else
+    {
+        f32_next = f32_current; //hold at target
+    }
+
+
+    pt_state->f32_output = CLAMP_F32(f32_next, pt_params->f32_min_limit, pt_params->f32_max_limit);
+
 
 
     return s16_error;
-
 }
 
 /** \brief Initialize AgvHelper - Helper Control
