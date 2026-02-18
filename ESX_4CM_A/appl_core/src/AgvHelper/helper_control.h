@@ -23,6 +23,11 @@
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x)))
+
+#define NEU_ON  (1u)
+#define NEU_OFF (0u)
+#define JOY_DEADBAND (200)
+
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /** \brief Checkpoints Structure - Engine Start Control
@@ -92,9 +97,9 @@ typedef struct
 
 typedef struct
 {
-       uint8 *p_btn_state;
-       uint32 u32_hold_ms;
-       uint8 u8_btn_set;
+       uint8 *pu_btn_state; //!<Button ON/OFF state
+       uint32 u32_hold_ms; //!<Hold Button MS
+       uint8 u8_btn_set; //!<Button Armed State
 }T_ToggleBtn;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
@@ -107,7 +112,7 @@ sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *
 sint16 movingAdvFlt(void);
 sint16 lowPassFlt(void);
 sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state);
-//sint16 calcNeuStatus(uint8 *pu8_neu_status);
+sint16 setNeuStatus(uint8 *pu8_joystick_neu, sint16 s16_joystickY);
 
 
 #endif /* APPL_CORE_SRC_AGVHELPER_HELPER_CONTROL_H_ */

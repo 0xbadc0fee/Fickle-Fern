@@ -21,18 +21,21 @@
 #include "stwerrors.h"
 #include "stwtypes.h"
 
-
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_PID_state gt_pid_autoGF;
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /** \brief Initialize AgvHelper - PID Output
  *
  *  This function calculates what the PID output should be for a given set of parameters and feedback.
+ *
+ *  \param f32_command
+ *  \param f32_feedback
+ *  \param t_pid_state
+ *  \param _t_PID_coeff
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -192,10 +195,17 @@ sint16 lowPassFlt(void)
  *
  *  This function maintains a toggle button with a set debounce.
  *
+ *  \param pt_btn Pointer to the toggle button structure
+ *  \param u8_raw_btn Current raw button input value
+ *  \param u32_dt_ms Cyclic execution period in milliseconds
+ *  \param _u32_deb_ms Minimum press duration required to toggle
+ *  \param u8_faulted Indicates interlock or fault condition active
+ *  \param u8_safe_state Forced output state during fault
+ *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state)
+sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -203,9 +213,9 @@ sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, ui
 
     if(u8_faulted)
     {
-        *(pt_btn->p_btn_state) = (u8_safe_state != 0u) ? 1u : 0u;
-        pt_btn->u32_hold_ms =0u;
-        pt_btn->u8_btn_set =1u;
+        *(pt_btn->pu_btn_state) = (u8_safe_state != 0u) ? 1u : 0u;
+        pt_btn->u32_hold_ms = 0u;
+        pt_btn->u8_btn_set = 1u;
         return C_WARN;
     }
 
@@ -222,8 +232,44 @@ sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, ui
 
     if( (pt_btn->u8_btn_set == 1u) && (pt_btn->u32_hold_ms >= _u32_deb_ms))
     {
-        *(pt_btn->p_btn_state) = (*(pt_btn->p_btn_state) == 0u) ? 1u : 0u;
+        *(pt_btn->pu_btn_state) = (*(pt_btn->pu_btn_state) == 0u) ? 1u : 0u;
         pt_btn->u8_btn_set = 0u;
+    }
+
+    return s16_error;
+}
+
+/** \brief Get AgvHelper - Joystick NEU Status
+ *
+ *  This function sets the joystick Neutral status
+ *
+ *  \param pu8_joystick_neu Pointer to the Joystick Neutral Status
+ *  \param s16_joystickY Pointer to the Joystick Y Axis *
+ *
+ *  \return boolean
+ */
+sint16 setNeuStatus(uint8 *pu8_joystick_neu, sint16 s16_joystickY)
+{
+    sint16 s16_error = C_NO_ERR;
+    uint8 u8_brake_status = 0u;
+    uint8 u8_brake_value = 0u;
+    uint8 *pu8_yaxis_stat = 0u;
+
+    //check_inputFaultStatus("BRAKE_SWITCH", &u8_brake_status);  //todo
+    //get_inputValue("BRAKE_SWITCH", &u8_brake_value);// todo
+    //check YAXIS CAN fault status todo
+
+    if((u8_brake_status != C_NO_ERR) && (pu8_yaxis_stat != C_NO_ERR) && (u8_brake_value != 0u))
+    {
+        *pu8_joystick_neu =
+        ((s16_joystickY  >= -(sint16)JOY_DEADBAND) &&
+        (s16_joystickY <= (sint16)JOY_DEADBAND))
+        ? NEU_ON
+        : NEU_OFF;
+    }
+    else
+    {
+        *pu8_joystick_neu = NEU_OFF;
     }
 
     return s16_error;
