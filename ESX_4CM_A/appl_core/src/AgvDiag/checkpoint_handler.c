@@ -17,6 +17,7 @@
 #include "stwerrors.h"
 
 //Include OSY Diagnostic Datapool headers
+#include "osy_dph_data_pool_protector.h"
 #include "checkpoints_data_pool.h"
 
 //Include Controls that have checkpoints
@@ -37,14 +38,14 @@ sint16 update_checkpointHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
 
-    //TODO_STW - Safe Datapool Lock
+    (void)osy_dph_lock_data_pool(CHECKPOINTS_DATA_POOL_INDEX);
 
     //Expand out the Checkpoint Mapping File
-    #define CNTRL2DP(name, DP_LVALUE, SRC_RVALUE) DP_ASSIGN((DP_LVALUE), (SRC_RVALUE));
+    #define CNTRL2DP(name, CNTRL_VALUE, DPL_VALUE) VAR_ASSIGN((DPL_VALUE), (CNTRL_VALUE));
     #include "checkpoint_map.def"
     #undef CNTRL2DP
 
-    //TODO_STW - Safe Datapool Release
+    (void)osy_dph_lock_data_pool(CHECKPOINTS_DATA_POOL_INDEX);
 
     return s16_error;
 }
