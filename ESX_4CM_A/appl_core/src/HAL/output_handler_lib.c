@@ -194,39 +194,39 @@ sint16 check_outputFaultStatus(uint8 u8_output)
     {
         // SHORT UB+ / OL
         if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_UB) == X_OUT_FAULT_SHORT_UB))
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_SHORT_UB].u8_IsActive = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_UB].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_SHORT_UB].u8_IsActive = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_UB].u8_is_active = FALSE;
 
         // SHORT TO GND
         if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_GND) == X_OUT_FAULT_SHORT_GND))
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_SHORT_GND].u8_IsActive = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_GND].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_SHORT_GND].u8_IsActive = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_GND].u8_is_active = FALSE;
 
         // OPEN LOAD
         if (((u32_hwOutputFault & X_OUT_FAULT_OPEN_LOAD) == X_OUT_FAULT_OPEN_LOAD))
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_OL].u8_IsActive = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_OL].u8_IsActive = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = FALSE;
 
         // OVERCURRENT
         if (((u32_hwOutputFault & X_OUT_FAULT_OVERCURRENT) == X_OUT_FAULT_OVERCURRENT))
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_OC].u8_IsActive = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OC].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_OC].u8_IsActive = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OC].u8_is_active = FALSE;
 
         // PWM FAULT
         if (((u32_hwOutputFault & X_OUT_FAULT_DUTY_CYCLE_OOOB) == X_OUT_FAULT_DUTY_CYCLE_OOOB))
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_DC_OOB].u8_IsActive = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_DC_OOB].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_dtc[e_OUTFAULT_DC_OOB].u8_IsActive = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_DC_OOB].u8_is_active = FALSE;
     }
 
     else if (s16_Error == C_NO_ERR && !u32_hwOutputFault)
     {
-        for (uint8 i = 0; i < e_NUM_OUTFAULTS; i++)
-            at_vehicleOutputs[u8_output].t_dtc[i].u8_IsActive = FALSE;
+        for (uint8 i = 0; i < MAX_NUM_FMI; i++)
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[i].u8_is_active = FALSE;
     }
     return s16_Error;
 }
@@ -239,9 +239,9 @@ sint16 check_outputFaultStatus(uint8 u8_output)
  * \return Error Return Value
  * \retval C_NO_ERR(0) No Error
  **/
-sint16 get_numOutputs(uint16 *const opu16_Count)
+sint16 get_numOutputs(uint8 *const opu8_Count)
 {
-    *opu16_Count = u8_numOutputs;
+    *opu8_Count = u8_numOutputs;
     return C_NO_ERR;
 }
 
@@ -344,4 +344,31 @@ sint16 findOutputByName(const char *targetName, uint8 *opu8_Index)
     *opu8_Index = 255;  // Not found
     return s16_Error;
 }
+
+/** \brief Clear all active output faults
+    Searches the output array for any output that has an active fault and sets
+    it to FALSE
+
+    \return Error Return Value
+    \retval C_NO_ERR(0)  All Output Faults Reset
+**/
+sint16 clear_outputFaults(void)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    for (uint8 i = 0; i < u8_numOutputs; i++)
+    {
+        if (at_vehicleOutputs[i].u8_diagEnabled)
+        {
+            at_vehicleOutputs[i].t_fault.u8_fault_status = FALSE;
+            for(uint8 j = 0; j< MAX_NUM_FMI; j++)
+            {
+                at_vehicleOutputs[i].t_fault.t_fmi[j].u8_is_active = FALSE;
+            }
+        }
+    }
+
+    return s16_error;
+}
+
 //EOF

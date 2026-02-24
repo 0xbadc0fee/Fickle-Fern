@@ -15,7 +15,7 @@
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DP_ASSIGN(dp_lvalue, src_rvalue) do { (dp_lvalue) = (src_rvalue); } while (0)
+#define VAR_ASSIGN(tar_value, src_value) do { (tar_value) = (src_value); } while (0)
 
 #define NVM_LIST_BIT(list_id)     (1UL << (list_id))
 

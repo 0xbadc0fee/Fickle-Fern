@@ -76,40 +76,6 @@ sint16 update_elevatorControl(void)
 
     //get_inputStatus("THROTPOS", &u8_throttleSensorStatus);
 
-    /*
-    if(firstRun == TRUE)
-    {
-        start_delay_time = get_current_time - start time;
-    }
-    sint16 s16_error = C_NO_ERR;
-
-    mt_elevator.pt_chkElevator->u8_chkPoint1 = 255;
-
-    //if joystick button is faulted, set the joystick status to faulted
-    check_jocyStickStatus(mt_elevator.pu8_onOffCommand, &u8_status);
-
-
-    get_outputValue("DOOR_SWITCH", &door_state);
-
-    if(door_state == OPENED)
-    {
-
-    }
-
-    if(u8_status != FAULTED)
-    {
-        if(*(mt_elevator.pu8_onOffCommand) == (uint8)JS_BUTTON_PRESSED)
-        {
-            //do something
-        }
-    }
-    else
-    {
-
-    }
-    */
-
-
 
 
     return s16_error;

@@ -21,6 +21,7 @@
 #include "string.h"
 #include "osy_com_j1939_dm1.h"
 #include <math.h>
+#include "alarm_handler_lib.h"
 
 
 
@@ -76,17 +77,19 @@ typedef struct {
     uint8 mq_outputChanged;          //!< Output Changed Status
     //------------------------------DIAG PARAMS-------------------------------//
     uint8 u8_diagEnabled;        //!< Enable - Disable Toggle for Output Diagnostics / Alarm
-    uint32 u32_SPN;                  //!< DM1 SPN Assigned to Output
-    T_osy_com_j1939_dtc t_dtc[e_NUM_OUTFAULTS];  //!< Output Alarm Status Structure
+    T_FloryFault t_fault;
     uint16 u16_dti;                  //!< Fault Test Interval
 
 } T_VehicleOutput;
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
+extern T_VehicleOutput at_vehicleOutputs[X_OUT_COUNT];
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_outputHandler(void);
 sint16 update_outputHandler(void);
 sint16 add_hwOutput(T_VehicleOutput output);
+sint16 get_numOutputs(uint8 *const opu8_Count);
+sint16 clear_outputFaults(void);
 sint16 set_outputValue(const char *targetName, float32 value);
 
 #endif /* APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_ */

@@ -96,7 +96,7 @@ sint16 update_canInputs(void)
 
     (void)osy_dph_lock_data_pool(J1939_DATA_POOL_INDEX);
 
-    #define DP2CNTRL(name, DST_LVALUE, SRC_RVALUE) DP_ASSIGN((DST_LVALUE), (SRC_RVALUE));
+    #define DP2CNTRL(name, CNTRL_VALUE, DPL_VALUE) VAR_ASSIGN((CNTRL_VALUE), (DPL_VALUE));
     #include "can_in_map.def"
     #undef DP2CNTRL
 
@@ -120,7 +120,7 @@ sint16 update_canOutputs(void)
 
     (void)osy_dph_lock_data_pool(J1939_DATA_POOL_INDEX);
 
-    #define CNTRL2DP(name, DP_LVALUE, SRC_RVALUE) DP_ASSIGN((DP_LVALUE), (SRC_RVALUE));
+    #define CNTRL2DP(name, CNTRL_VALUE, DPL_VALUE) VAR_ASSIGN((DPL_VALUE), (CNTRL_VALUE));
     #include "can_out_map.def"
     #undef CNTRL2DP
 

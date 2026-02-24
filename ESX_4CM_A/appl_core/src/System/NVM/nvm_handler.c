@@ -46,7 +46,7 @@ sint16 init_nvmParameters(void)
     init_osyNVMDatapools(CONFIGURATION_DATA_POOL_INDEX, CONFIGURATION_NUMBER_OF_LISTS);
 
     //populate all control nvm structs with globals
-    #define NVM_FIELD(name, DPL_LIST, DPL_VALUE, CNTRL_VALUE) DP_ASSIGN((CNTRL_VALUE), (DPL_VALUE));
+    #define NVM_FIELD(name, DPL_LIST, DPL_VALUE, CNTRL_VALUE) VAR_ASSIGN((CNTRL_VALUE), (DPL_VALUE));
     #include "nvm_map.def"
     #undef NVM_FIELD
 

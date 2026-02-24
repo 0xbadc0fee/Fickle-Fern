@@ -16,7 +16,7 @@
 #include "x_in.h"
 #include "x_in_client.h"
 #include "string.h"
-#include "osy_com_j1939_dm1.h"
+#include "alarm_handler_lib.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define DEFAULT_DIG_DEBOUNCE    100 //!< .1ms debounce used on digital input signals
@@ -63,23 +63,24 @@ typedef struct {
     uint8 mq_inputChanged;          //!< Input Changed Status
     //-----------------------------DIAG PARAMS-------------------------------//
     uint8 u8_diagEnabled;           //!<Enable - Disable Toggle for Input Diagnostics / Alarm
-    uint32 u32_SPN;                 //!<DM1 SPN Assigned to Input
-    T_osy_com_j1939_dtc t_dtc[e_NUM_INFAULTS];   //!<DM1 DTC Object - 7 possible faults for inputs
-    uint16 u16_dti;                 //!< Fault Test Interval
+    T_FloryFault t_fault;           //!<Fault Information
+    uint16 u16_dti;                 //!<Fault Test Interval
     sint32 s32_diagMin;             //!<Minimum Diagnostic Parameter (Voltage, Current, etc (based on type))
     sint32 s32_diagMax;             //!<Maximum Diagnostic Parameter (Voltage, Current, etc (based on type))
 
 } T_VehicleInput;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
+extern T_VehicleInput at_vehicleInputs[X_IN_COUNT];
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_inputHandler(void);
 sint16 update_inputHandler(void);
 sint16 add_hwInput(T_VehicleInput input);
+sint16 get_inputFaultStatus(const char *targetName, uint8 *opu8_status);
+sint16 get_numInputs(uint8 *const opu8_Count);
+sint16 clear_inputFaults(void);
 sint16 get_inputValue(const char *targetName, float32 *opf32_value);
-
-
 
 #endif /* APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_ */
 

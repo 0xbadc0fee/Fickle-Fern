@@ -29,7 +29,25 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /* -- (Module) Global Variables ------------------------------------------------------------------------------------- */
-static T_osy_com_j1939_dtc mac_DmDtcs[445];
+T_osy_com_j1939_dtc gat_DmDtcs[445];
+
+static uint8 hau8_TxTpBuffer[1782];
+T_osy_com_j1939_dm1_appl_tx_config hc_TxConfig =
+{
+   .t_DmConfig =
+   {
+      .t_LampStatus      = {0},
+      .pt_Dtcs           = &gat_DmDtcs[0],
+      .u16_MaxDtcs       = 445U,
+      .u8_SourceAddress  = J1939_DM_SOURCE_ADDRESS,
+      .t_ThreadLockData  = {0},
+      .t_ProcessLockData = {0},
+   },
+   .pu8_TpBuffer    = &hau8_TxTpBuffer[0],
+   .au8_StateBuffer  = {0},
+   .u16_TpBufferSize   = 1782U,
+   .u8_Enabled      = 0U
+};
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 static void m_J1939HandlerOnAckReceived(const uint8 ou8_CanChannel, const uint8 ou8_SourceAddress,
@@ -50,7 +68,6 @@ static void m_J1939Dm1ErrorRx(const uint8 ou8_CanChannel, const uint8 ou8_Source
 static void m_J1939Dm1ErrorTx(const uint8 ou8_CanChannel, const uint8 ou8_SourceAddress, const uint8 ou8_ErrorType);
 
 // DM2
-static void m_J1939Dm2SendRequest();
 static void m_J1939Dm2DtcReceived(const uint8 ou8_CanChannel, const uint8 ou8_SourceAddress,
                                   const T_osy_com_j1939_dtc_rx * const opc_ReceivedDtc);
 static void m_J1939Dm2ErrorRx(const uint8 ou8_CanChannel, const uint8 ou8_SourceAddress, const uint8 ou8_ErrorType);
@@ -60,6 +77,24 @@ static void m_J1939Dm2AbortRx(const uint8 ou8_CanChannel, const uint8 ou8_Source
 static void m_J1939Dm2AbortTx(const uint8 ou8_CanChannel, const uint8 ou8_SourceAddress,
                               const uint8 ou8_DestinationAddress, const uint8 ou8_WasSent, const uint8 ou8_AbortReason);
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
+
+sint16 osy_j1939_set_lamps(T_osy_com_j1939_dm_lamp_status _lamps)
+{
+
+    sint16 s16_error = C_NO_ERR;
+
+    hc_TxConfig.t_DmConfig.t_LampStatus.u8_AmberWarnLamp = _lamps.u8_AmberWarnLamp;
+    hc_TxConfig.t_DmConfig.t_LampStatus.u8_FlashAmberWarnLamp = _lamps.u8_FlashAmberWarnLamp;
+    hc_TxConfig.t_DmConfig.t_LampStatus.u8_MalfIndLamp = _lamps.u8_MalfIndLamp;
+    hc_TxConfig.t_DmConfig.t_LampStatus.u8_FlashMalfIndLamp = _lamps.u8_FlashMalfIndLamp;
+    hc_TxConfig.t_DmConfig.t_LampStatus.u8_ProtectLamp = _lamps.u8_ProtectLamp;
+    hc_TxConfig.t_DmConfig.t_LampStatus.u8_FlashProtectLamp = _lamps.u8_FlashProtectLamp;
+    hc_TxConfig.t_DmConfig.t_LampStatus.u8_RedStopLamp = _lamps.u8_RedStopLamp;
+    hc_TxConfig.t_DmConfig.t_LampStatus.u8_FlashRedStopLamp = _lamps.u8_FlashRedStopLamp;
+
+    return s16_error;
+
+}
 
 //----------------------------------------------------------------------------------------------------------------------
 /*! \brief   Handle information about incoming J1939 ACK and NACK messages
@@ -109,23 +144,6 @@ static sint16 m_InitJ1939Dm1Tx(void)
    sint16 s16_Return;
 
    // TX configuration for sending as J1939 node
-   static uint8 hau8_TxTpBuffer[1782];
-   static T_osy_com_j1939_dm1_appl_tx_config hc_TxConfig =
-   {
-      {
-         {},                          // Lamp status
-         &mac_DmDtcs[0],              // All DTCs
-         445U,                        // Maximum count DTCs
-         J1939_DM_SOURCE_ADDRESS,     // Source Address
-         {},                          // Thread lock
-         {0U}                         // Process lock
-      },
-      &hau8_TxTpBuffer[0], // Tp buffer
-      {},                  // Status buffer
-      1782U,               // Size Tp buffer
-      0U                   // disabled
-   };
-
    static const T_osy_com_j1939_dm1_appl_tx_configs hc_TX_CCONFIGS =
    {
       &hc_TxConfig,
@@ -199,7 +217,7 @@ static sint16 m_InitJ1939Dm2Tx(void)
    static T_osy_com_j1939_dm_logic_node_tx_config hc_TxConfig =
    {
       {},                          // Lamp status
-      &mac_DmDtcs[0],              // All DTCs
+      &gat_DmDtcs[0],              // All DTCs
       445U,                        // Maximum count DTCs
       J1939_DM_SOURCE_ADDRESS,     // Source Address
       {},                          // Thread lock
@@ -294,7 +312,7 @@ static void m_J1939Dm1DtcReceived(const uint8 ou8_CanChannel, const uint8 ou8_So
       if ((opc_ReceivedDtc->u16_DtcTotalCount == 0) ||
           (opc_ReceivedDtc->u16_DtcIndex == 0))
       {
-         const T_osy_com_j1939_dm_lamp_status * const pc_Lamp = &opc_ReceivedDtc->t_Lamp;
+         //const T_osy_com_j1939_dm_lamp_status * const pc_Lamp = &opc_ReceivedDtc->t_Lamp;
          //gt_J1939Datapool_DataPoolValues.t_Dm1Values.u8_Dm1_DTCReceivedCnt += 1u;
          //gt_J1939Datapool_DataPoolValues.t_Dm1Values.u8_Dm1_AmberWarnLamp = pc_Lamp->u8_AmberWarnLamp;
          //gt_J1939Datapool_DataPoolValues.t_Dm1Values.u8_Dm1_MalfIndLamp = pc_Lamp->u8_MalfIndLamp;
@@ -346,7 +364,7 @@ static void m_J1939Dm2DtcReceived(const uint8 ou8_CanChannel, const uint8 ou8_So
       if ((opc_ReceivedDtc->u16_DtcTotalCount == 0) ||
           (opc_ReceivedDtc->u16_DtcIndex == 0))
       {
-         const T_osy_com_j1939_dm_lamp_status * const pc_Lamp = &opc_ReceivedDtc->t_Lamp;
+         //const T_osy_com_j1939_dm_lamp_status * const pc_Lamp = &opc_ReceivedDtc->t_Lamp;
 
          //gt_J1939Datapool_DataPoolValues.t_Dm2Values.u8_Dm2_DTCReceivedCnt += 1u;
          //gt_J1939Datapool_DataPoolValues.t_Dm2Values.u8_Dm2_AmberWarnLamp = pc_Lamp->u8_AmberWarnLamp;

@@ -34,7 +34,10 @@ T_VehicleOutput elevatorControlValve =
             .mq_outputChanged       = TRUE,
 
             .u8_diagEnabled         = FALSE,
-            .u32_SPN                = 520193,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE
+            },
             .u16_dti                = 0,
         };
 
