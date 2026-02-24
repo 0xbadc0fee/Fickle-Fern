@@ -21,6 +21,7 @@
 
 //Include Controls that have checkpoints
 #include "elevator_control.h"
+#include "header_lift_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
@@ -33,6 +34,7 @@
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
 T_Config_Elevator gt_elevatorConfig;    //!<Structure that holds all agVWork - Elevator Control NVM Config
+T_Config_HeaderControl gt_nvmHeaderControl;    //!<Structure that holds the Joystick HLL config.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void)

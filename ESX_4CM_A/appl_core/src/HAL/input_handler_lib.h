@@ -48,7 +48,7 @@ typedef enum {
     e_INFAULT_HIGH_DC,        //!<Input Duty Cycle High Fault
     e_INFAULT_LOW_DC,         //!<Input Duty Cycle Low Fault
     e_NUM_INFAULTS            //!<Total Number of possible output faults
-} E_OutputFaults;
+} E_InputFaults;
 
 
 /*! \brief Struct for a Vehicle Input Object **/
@@ -77,6 +77,7 @@ typedef struct {
 sint16 init_inputHandler(void);
 sint16 update_inputHandler(void);
 sint16 add_hwInput(T_VehicleInput input);
+sint16 get_inputValue(const char *targetName, float32 *opf32_value);
 
 
 

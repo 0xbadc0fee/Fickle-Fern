@@ -87,6 +87,7 @@ typedef struct {
 sint16 init_outputHandler(void);
 sint16 update_outputHandler(void);
 sint16 add_hwOutput(T_VehicleOutput output);
+sint16 set_outputValue(const char *targetName, float32 value);
 
 #endif /* APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_ */
 

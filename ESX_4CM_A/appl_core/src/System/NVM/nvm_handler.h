@@ -21,11 +21,13 @@
 #include "x_nvm.h"
 
 #include "elevator_control.h"
+#include "header_lift_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 extern T_Config_Elevator gt_elevatorConfig;
+extern  T_Config_HeaderControl gt_nvmHeaderControl;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void);
