@@ -54,8 +54,11 @@ typedef struct
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_alarmHandler(void);
 sint16 update_alarmHandler(void);
-void add_dm1LogicAlarm(T_FloryFault *_dtc);
 
+void add_logicFault(T_FloryFault *_dtc);
+sint16 clear_logicFaults(void);
+
+void add_dm1LogicAlarm(T_FloryFault *_dtc);
 sint16 set_dm1Lamp(E_LampID _lamp, uint8 _state);
 sint16 clear_dm1Lamps(void);
 

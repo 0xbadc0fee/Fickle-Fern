@@ -15,7 +15,7 @@
 //PROJECT
 #include "stwtypes.h"
 #include "stwerrors.h"
-#include "alarm_handler_lib.h"
+#include "fault_handler.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
@@ -33,10 +33,13 @@ sint16 init_faultHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
 
-    //parse through logic faults and register DM1s
+    //add logic alarms to the logic fault list
+    add_logicFault(&elevatorLogicFault1);
+
+    //register logic faults to dm1s if required
     add_dm1LogicAlarm(&elevatorLogicFault1);
 
-    //(all input and ouput DM1 are auto detected by init_alarmHandler())
+    //(all input and ouput DM1 are auto detected)
     //initialize DM1 Alarm Handler
     init_alarmHandler();
 
@@ -53,26 +56,20 @@ sint16 update_faultHandler(void)
     return s16_error;
 }
 
-sint16 set_logicFaultStatus(uint32 u32_spn, uint16 u16_fmi, uint8 u8_state)
-{
-    sint16 s16_error = C_NO_ERR;
 
 
-    return s16_error;
-}
-
-/*
-sint16 clear_machineFaults(void);
+sint16 clear_machineFaults(void)
 {
     sint16 s16_error = C_NO_ERR;
 
     clear_inputFaults();
     clear_logicFaults();
     clear_outputFaults();
+    clear_dm1Lamps();
 
     return s16_error;
 }
-*/
+
 
 
 

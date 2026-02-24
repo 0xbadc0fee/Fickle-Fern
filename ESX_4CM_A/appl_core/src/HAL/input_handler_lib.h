@@ -79,7 +79,7 @@ sint16 update_inputHandler(void);
 sint16 add_hwInput(T_VehicleInput input);
 sint16 get_inputFaultStatus(const char *targetName, uint8 *opu8_status);
 sint16 get_numInputs(uint8 *const opu8_Count);
-
+sint16 clear_inputFaults(void);
 
 
 #endif /* APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_ */

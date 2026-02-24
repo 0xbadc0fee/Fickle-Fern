@@ -112,7 +112,6 @@ sint16 init_inputHandler(void)
     Function to be called cyclically that reads all configured hardware inputs and updates
     their values. Also performs fault checking on all configured inputs.
 
-    \internal Task function - called by OS scheduler
 **/
 sint16 update_inputHandler(void)
 {
@@ -388,7 +387,31 @@ sint16 findInputByName(const char *targetName, uint8 *opu8_Index)
     return s16_Error;  // Status remains C_RANGE if if not found
 }
 
+/** \brief Clear all active input faults
+    Searches the input array for any input that has an active fault and sets
+    it to FALSE
 
+    \return Error Return Value
+    \retval C_NO_ERR(0)  All Input Faults Reset
+**/
+sint16 clear_inputFaults(void)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    for (uint8 i = 0; i < u8_numInputs; i++)
+    {
+        if (at_vehicleInputs[i].u8_diagEnabled)
+        {
+            at_vehicleInputs[i].t_fault.u8_fault_status = FALSE;
+            for(uint8 j = 0; j< MAX_NUM_FMI; j++)
+            {
+                at_vehicleInputs[i].t_fault.t_fmi[j].u8_is_active = FALSE;
+            }
+        }
+    }
+
+    return s16_error;
+}
 
 
 //EOF

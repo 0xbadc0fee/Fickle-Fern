@@ -344,4 +344,31 @@ sint16 findOutputByName(const char *targetName, uint8 *opu8_Index)
     *opu8_Index = 255;  // Not found
     return s16_Error;
 }
+
+/** \brief Clear all active output faults
+    Searches the output array for any output that has an active fault and sets
+    it to FALSE
+
+    \return Error Return Value
+    \retval C_NO_ERR(0)  All Output Faults Reset
+**/
+sint16 clear_outputFaults(void)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    for (uint8 i = 0; i < u8_numOutputs; i++)
+    {
+        if (at_vehicleOutputs[i].u8_diagEnabled)
+        {
+            at_vehicleOutputs[i].t_fault.u8_fault_status = FALSE;
+            for(uint8 j = 0; j< MAX_NUM_FMI; j++)
+            {
+                at_vehicleOutputs[i].t_fault.t_fmi[j].u8_is_active = FALSE;
+            }
+        }
+    }
+
+    return s16_error;
+}
+
 //EOF
