@@ -192,55 +192,59 @@ sint16 check_inputFaultStatus(uint8 u8_input)
 
     if (u32_hwInputFault)
     {
+
+        at_vehicleInputs[u8_input].t_fault.u8_fault_status = TRUE;
+
         // SHORT UB+ / OL
         if (((u32_hwInputFault & X_IN_FAULT_SHORT_TO_UB) == X_IN_FAULT_SHORT_TO_UB))
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_SHORT_UB].u8_IsActive = TRUE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_SHORT_UB].u8_is_active = TRUE;
         else
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_SHORT_UB].u8_IsActive = FALSE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_SHORT_UB].u8_is_active = FALSE;
 
         // SHORT TO GND
         if (((u32_hwInputFault & X_IN_FAULT_SHORT_TO_GND) == X_IN_FAULT_SHORT_TO_GND))
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_SHORT_GND].u8_IsActive = TRUE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_SHORT_GND].u8_is_active = TRUE;
         else
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_SHORT_GND].u8_IsActive = FALSE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_SHORT_GND].u8_is_active = FALSE;
 
         // OPEN LOAD
         if (((u32_hwInputFault & X_IN_FAULT_OPEN_LOAD) == X_IN_FAULT_OPEN_LOAD))
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_OL].u8_IsActive = TRUE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_OL].u8_is_active = TRUE;
         else
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_OL].u8_IsActive = FALSE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_OL].u8_is_active = FALSE;
 
         // HIGH FREQ
         if (((u32_hwInputFault & X_IN_FAULT_FREQUENCY_UPPER_LIMIT) == X_IN_FAULT_FREQUENCY_UPPER_LIMIT))
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_HIGH_FREQ].u8_IsActive = TRUE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_HIGH_FREQ].u8_is_active = TRUE;
         else
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_HIGH_FREQ].u8_IsActive = FALSE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_HIGH_FREQ].u8_is_active = FALSE;
 
         // LOW FREQ
         if (((u32_hwInputFault & X_IN_FAULT_FREQUENCY_LOWER_LIMIT) == X_IN_FAULT_FREQUENCY_LOWER_LIMIT))
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_LOW_FREQ].u8_IsActive = TRUE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_LOW_FREQ].u8_is_active = TRUE;
         else
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_LOW_FREQ].u8_IsActive = FALSE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_LOW_FREQ].u8_is_active = FALSE;
 
         // LOW DC
         if (((u32_hwInputFault & X_IN_FAULT_DUTY_CYCLE_LOWER_LIMIT) == X_IN_FAULT_DUTY_CYCLE_LOWER_LIMIT))
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_LOW_DC].u8_IsActive = TRUE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_LOW_DC].u8_is_active = TRUE;
         else
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_LOW_DC].u8_IsActive = FALSE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_LOW_DC].u8_is_active = FALSE;
 
         // HIGH DC
         if (((u32_hwInputFault & X_IN_FAULT_DUTY_CYCLE_UPPER_LIMIT) == X_IN_FAULT_DUTY_CYCLE_UPPER_LIMIT))
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_HIGH_DC].u8_IsActive = TRUE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_HIGH_DC].u8_is_active = TRUE;
         else
-            at_vehicleInputs[u8_input].t_dtc[e_INFAULT_HIGH_DC].u8_IsActive = FALSE;
-
+            at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_HIGH_DC].u8_is_active = FALSE;
     }
 
     else if (s16_Error == C_NO_ERR && !u32_hwInputFault) //!< If no errors and no returned faults: set fault fields to FALSE
     {
+        at_vehicleInputs[u8_input].t_fault.u8_fault_status = FALSE;
+
         for (uint8 i = 0; i < e_NUM_INFAULTS; i++)
         {
-            at_vehicleInputs[u8_input].t_dtc[i].u8_IsActive = FALSE;
+            at_vehicleInputs[u8_input].t_fault.t_fmi[i].u8_is_active = FALSE;
         }
     }
 
@@ -287,6 +291,28 @@ sint16 get_numInputs(uint8 *const opu8_Count)
     return C_NO_ERR;
 }
 
+/** \brief Get the input fault status for a specific input
+
+    \param[out] opu8_status Fault status of input
+
+    \return Error Return Value
+    \retval C_NO_ERR(0) No Error
+    \retval C_RANGE(-5) Input Not Found
+**/
+sint16 get_inputFaultStatus(const char *targetName, uint8 *opu8_status)
+{
+    sint16 s16_error;
+    uint8 u8_index = 0;
+
+    s16_error = findInputByName(targetName, &u8_index);
+
+    if (C_NO_ERR == s16_error)
+        *opu8_status = at_vehicleInputs[u8_index].t_fault.u8_fault_status;
+    else
+        *opu8_status = 255;
+
+    return s16_error;
+}
 
 // Helper Functions ------------------------------------------------------------------------
 
