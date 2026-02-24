@@ -43,9 +43,8 @@ sint16 init_headerControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHead
     mt_hdr_control.pu8_relief_swich = &_ui->t_display.u8_relief_switch_status;
 
     //populate local copy of RX ui elements
-    //TODO_STW - map these pointers to the correct buttons
-    mt_hdr_control.pu8_joy_lift_header = &_ui->t_joystick.u8_b1_state;
-    mt_hdr_control.pu8_joy_lift_header = &_ui->t_joystick.u8_b2_state;
+    mt_hdr_control.pu8_joy_lift_header = &_ui->t_joystick.u8_b5_state;
+    mt_hdr_control.pu8_joy_lift_header = &_ui->t_joystick.u8_b6_state;
 
     //populate local copy of NVM elements
     mt_hdr_control.pt_nvm_hdr_control = _nvmHeaderControl;

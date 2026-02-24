@@ -34,7 +34,7 @@
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
 T_Config_Elevator gt_elevatorConfig;    //!<Structure that holds all agVWork - Elevator Control NVM Config
-T_Config_HeaderControl gt_nvmHeaderControl;    //!<Structure that holds the Joystick HLL config.
+T_Config_HeaderControl gt_headerConfig;    //!<Structure that holds the Joystick HLL config.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void)

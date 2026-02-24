@@ -27,7 +27,7 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 extern T_Config_Elevator gt_elevatorConfig;
-extern  T_Config_HeaderControl gt_nvmHeaderControl;
+extern T_Config_HeaderControl gt_headerConfig;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void);
