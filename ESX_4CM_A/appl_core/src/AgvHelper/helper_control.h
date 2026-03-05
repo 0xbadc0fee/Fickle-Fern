@@ -17,15 +17,18 @@
 
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
+//STD
+#include "x_stdtypes.h"
+//STW
 #include "stwtypes.h"
-
+//PROJECT
 #include "hmi_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x)))
 
-#define NEU_ON  (1u)
-#define NEU_OFF (0u)
+#define NEU_ON  (TRUE)
+#define NEU_OFF (FALSE)
 #define JOY_DEADBAND (200)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
@@ -55,8 +58,6 @@ typedef struct
 {
         //Control Checkpoints
         T_ChkPoints_Helper *pt_chk_helper;   //!<Helper Checkpoints Structure
-
-
 }T_HelperControl;
 
 /** \brief Structure containing PID coefficients (Kp, Ki, Kd, Max/Min output).*/
@@ -97,6 +98,31 @@ typedef struct
 
 typedef struct
 {
+        uint16 u16_sample_time_ms;
+        uint16 u16_sample_no;
+        float32 f32_safe_output;
+} T_MoveAvgCfg;
+
+typedef struct
+{
+        float32 * pf32_buf; //!<Caller buffer
+        uint16 u16_buf_len;  //!<Buffer capacity
+        uint16 u16_head; //!<Next write index
+        uint16 u16_count; //!<Samples currently stored
+        uint32 u32_accum_ms; //!<Accumulates dt until >= sample time ms
+        float32 f32_sum; //!<Running sum of samples in window
+        float32 f32_out; //!<Current filtered output
+        uint8 u8_faulted; //!<1 = Faulted and forced safe
+        uint8 u8_init;//!<Easy init
+}T_MoveAvgFilter;
+
+typedef struct
+{
+        float32 f32_output; //!<Previous filtered output
+} T_LowPassFilter;
+
+typedef struct
+{
        uint8 *pu_btn_state; //!<Button ON/OFF state
        uint32 u32_hold_ms; //!<Hold Button MS
        uint8 u8_btn_set; //!<Button Armed State
@@ -109,8 +135,9 @@ typedef struct
 //sint16 initHelperControl(T_UserInterface *_ui, T_ChkPoints_Helper *_chkp);
 sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_state, T_PID_coeff *t_PID_coeff);
 sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *pt_state);
-sint16 movingAdvFlt(void);
-sint16 lowPassFlt(void);
+sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt,float32 * const pf32_buffer, uint16 u16_buf_len, float32 f32_safe_output);
+sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *const pt_cfg, uint32 u32_dt_ms, float32 f32_new_value , uint8 u8_value_valid, float32 * const pf32_output);
+sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_alpha, uint8 u8_input_valid, float32 *pf32_output);
 sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state);
 sint16 setNeuStatus(uint8 *pu8_joystick_neu, sint16 s16_joystickY);
 
