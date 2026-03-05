@@ -33,12 +33,44 @@ T_VehicleInput throttlePosition =
             .Name_Description       = "THROTPOS",
             .u16_hardwareID         = X_IN_IDA35V_7,
             .e_inputType            = IT_DIGITAL,
-
             .f32_inputValue         = FALSE,
             .f32_prevInputValue     = FALSE,
             .mq_inputChanged        = TRUE,
             .u8_diagEnabled         = TRUE,
-            .u32_SPN                = 520192,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE,
+                .u8_fault_status    = FALSE,
+                .u32_spn            = 520192,
+                .t_fmi = {
+                    [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5 },
+                    [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+                }
+            },
+            .u16_dti                = 1000,
+            .s32_diagMin            = 500,
+            .s32_diagMax            = 4500,
+        };
+
+T_VehicleInput wheel_speed_sensor =
+        {
+            .Name_Description       = "WHEEL_SPEED",
+            .u16_hardwareID         = X_IN_IDA35V_8,
+            .e_inputType            = IT_FREQ,
+            .f32_inputValue         = FALSE,
+            .f32_prevInputValue     = FALSE,
+            .mq_inputChanged        = TRUE,
+            .u8_diagEnabled         = TRUE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE,
+                .u8_fault_status    = FALSE,
+                .u32_spn            = 520193,
+                .t_fmi = {
+                    [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5 },
+                    [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+                }
+            },
             .u16_dti                = 1000,
             .s32_diagMin            = 500,
             .s32_diagMax            = 4500,
@@ -59,6 +91,9 @@ sint16 init_hwInputs(void)
     sint16 s16_return = C_NO_ERR;
 
     s16_return |= add_hwInput(throttlePosition);
+    s16_return |= add_hwInput(wheel_speed_sensor);
+
+
     s16_return |= init_inputHandler();
 
     return s16_return;

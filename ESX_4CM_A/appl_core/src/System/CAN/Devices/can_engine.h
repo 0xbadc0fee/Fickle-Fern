@@ -26,7 +26,7 @@ typedef struct
     sint16 s16_engineIntakeTemp;    //!<Engine Intake Manifold Temperature
 
     //TX
-    uint16 u16_rpmCommand;          //!<Throttle command for engine
+    uint16 u16_rpm_command;          //!<Throttle command for engine
 
 }T_Engine;
 
