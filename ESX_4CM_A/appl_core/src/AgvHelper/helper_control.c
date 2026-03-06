@@ -410,42 +410,42 @@ sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uin
 
     u8_raw_btn = (u8_raw_btn != FALSE) ? TRUE : FALSE;
 
-    //IR-22.1 Fault/Interlock forces Safe State
+    //IR-21.1 Fault/Interlock forces Safe State
     if(u8_faulted == TRUE)
     {
         *(pt_btn->pu_btn_state) = (u8_safe_state != FALSE) ? TRUE : FALSE;
         pt_btn->u32_hold_ms = 0u;
-
         //IR-22.2 Requires a new press after fault clears
         pt_btn->u8_btn_set = FALSE;
         return C_WARN;
     }
 
-    //FR-22.2 Required release before accepting new press
+    //FR-21.2 Required release before accepting new press
     if(u8_raw_btn == FALSE)
     {
         pt_btn->u32_hold_ms = 0u;
         pt_btn->u8_btn_set = TRUE;
-        return s16_error;
-    }
-
-    //FR-22.1 Measure continuous press time
-    if(pt_btn->u32_hold_ms <= (UINT32_MAX - u32_dt_ms))
-    {
-        pt_btn->u32_hold_ms += _u32_deb_ms;
     }
     else
     {
-        pt_btn->u32_hold_ms =  UINT32_MAX;
+        //FR-21.1 Measure continuous press time
+        if(pt_btn->u32_hold_ms < (UINT32_MAX - u32_dt_ms))
+        {
+            pt_btn->u32_hold_ms += u32_dt_ms;
+        }
+        else
+        {
+            pt_btn->u32_hold_ms = UINT32_MAX;
+        }
+    
+        //FR-21.1 & FR-21.2 Toggle once when press duration >= debounce, only once per press
+        if( (pt_btn->u8_btn_set == TRUE) && (pt_btn->u32_hold_ms >= _u32_deb_ms))
+        {
+            *(pt_btn->pu_btn_state) = (*(pt_btn->pu_btn_state) == FALSE) ? TRUE : FALSE;
+            pt_btn->u8_btn_set = FALSE;
+        }
     }
-
-    //FR-22.1 & FR 22.2 Toggle once when press duration >= debounce, only once per press
-    if( (pt_btn->u8_btn_set == TRUE) && (pt_btn->u32_hold_ms >= _u32_deb_ms))
-    {
-        *(pt_btn->pu_btn_state) = (*(pt_btn->pu_btn_state) == FALSE) ? TRUE : FALSE;
-        pt_btn->u8_btn_set = FALSE;
-    }
-
+  
     return s16_error;
 }
 
