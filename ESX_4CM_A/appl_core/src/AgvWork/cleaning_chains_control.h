@@ -1,6 +1,7 @@
 /*! \file       cleaning_chains_control.h
-    \brief      <description>
-
+    \brief      The Cleaning Chain Control Module shall read the operator Shaft Drive Enable
+    command which will be used by the rest of the Control Systems to establish the operational
+    status of all three cleaning chains.
 
     \implementation
     project     Flory_8772_4CM
@@ -20,9 +21,6 @@
 #include "hmi_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define INPUT_FAULTED (1u)
-#define INPUT_OK (0u)
-
 #define DOOR_OPEN (1u)
 #define DOOR_CLOSED (0u)
 
@@ -48,7 +46,7 @@ typedef struct
 /** \brief Control Structure - Cleaning Chains Control
  *
  * This structure represents all variables and pointers that
- * are utilized and tracked for elevator control that need to
+ * are utilized and tracked for cleaning chains control that need to
  * persist through cyclic calls (static).
  *
  * This structure does not include any variables that are considered
@@ -66,8 +64,8 @@ typedef struct
         uint32 u32_deb_ms ; //!<Toggle Button Time Filter
         uint8 u8_safe_state;    //!<Toggle Button Safe State
         uint8 u8_shaft_drive_latched;   //!< Shaft Drive Button Latched Status
-        uint8 u32_ign_on_ms;    //!<OS Start MS timer
-        uint8 u32_dt_timer_ms;  //!<OS Start DT timer
+        uint32 u32_ign_on_ms;    //!<OS Start MS timer
+        uint32 u32_dt_timer_ms;  //!<OS Start DT timer
 
         //TX CAN Variables
         uint8 *pu8_shaft_drive_value;   //!<On/Off Status of Shaft Drive (To Display)
