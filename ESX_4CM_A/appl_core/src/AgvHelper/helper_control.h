@@ -27,10 +27,6 @@
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x)))
 
-#define NEU_ON  (TRUE)
-#define NEU_OFF (FALSE)
-#define JOY_DEADBAND (200)
-
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /** \brief Checkpoints Structure - Engine Start Control
@@ -139,7 +135,5 @@ sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt,float32 * const pf32_
 sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *const pt_cfg, uint32 u32_dt_ms, float32 f32_new_value , uint8 u8_value_valid, float32 * const pf32_output);
 sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_alpha, uint8 u8_input_valid, float32 *pf32_output);
 sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state);
-sint16 setNeuStatus(uint8 *pu8_joystick_neu, sint16 s16_joystickY);
-
 
 #endif /* APPL_CORE_SRC_AGVHELPER_HELPER_CONTROL_H_ */

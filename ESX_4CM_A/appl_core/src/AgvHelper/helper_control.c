@@ -449,40 +449,4 @@ sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uin
     return s16_error;
 }
 
-/** \brief Get AgvHelper - Joystick NEU Status
- *
- *  This function sets the joystick Neutral status
- *
- *  \param pu8_joystick_neu Pointer to the Joystick Neutral Status
- *  \param s16_joystickY Pointer to the Joystick Y Axis *
- *
- *  \return boolean
- */
-sint16 setNeuStatus(uint8 *pu8_joystick_neu, sint16 s16_joystickY) //TBD
-{
-    sint16 s16_error = C_NO_ERR;
-    uint8 u8_brake_status = 0u;
-    uint8 u8_brake_value = 0u;
-    uint8 *pu8_yaxis_stat = 0u;
-
-    //check_inputFaultStatus("BRAKE_SWITCH", &u8_brake_status);  //todo
-    //get_inputValue("BRAKE_SWITCH", &u8_brake_value);// todo
-    //check YAXIS CAN fault status todo
-
-    if((u8_brake_status != C_NO_ERR) && (pu8_yaxis_stat != C_NO_ERR) && (u8_brake_value != FALSE))
-    {
-        *pu8_joystick_neu =
-        ((s16_joystickY  >= -(sint16)JOY_DEADBAND) &&
-        (s16_joystickY <= (sint16)JOY_DEADBAND))
-        ? NEU_ON
-        : NEU_OFF;
-    }
-    else
-    {
-        *pu8_joystick_neu = NEU_OFF;
-    }
-
-    return s16_error;
-}
-
 //EOF
