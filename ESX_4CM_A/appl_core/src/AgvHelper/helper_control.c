@@ -6,7 +6,7 @@
     copyright   STW Technic (c) 2026
     license     use only under terms of contract / confidential
 
-    created     Jan 6, 2026 STW Technic
+    created     March 6, 2026 STW Technic
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -28,7 +28,7 @@
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** \brief Initialize AgvHelper - PID Output
+/** \brief PID Output AgvHelper - Helper Control
  *
  *  This function calculates what the PID output should be for a given set of parameters and feedback.
  *
@@ -145,7 +145,7 @@ sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_st
 }
 
 
-/** \brief Initialize AgvHelper - Ramp Calculation
+/** \brief Ramp Calculation AgvHelper - Helper Control
  *
  *  This function reduces the rate of change between a new target value and the current value over a configurable period of time (linear)
  *

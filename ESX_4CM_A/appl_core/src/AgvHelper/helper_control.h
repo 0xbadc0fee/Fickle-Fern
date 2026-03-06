@@ -1,6 +1,6 @@
 
 /*! \file       helper_control.h
-    \brief      <description>
+    \brief      Helper Module for 8772 Harvester
 
 
     \implementation
@@ -8,13 +8,12 @@
     copyright   STW Technic (c) 2026
     license     use only under terms of contract / confidential
 
-    created     Jan 7, 2026 Tiffany.Gohnert
+    created     March 6, 2026 Tiffany.Gohnert
     \endimplementation
  */
 
 #ifndef APPL_CORE_SRC_AGVHELPER_HELPER_CONTROL_H_
 #define APPL_CORE_SRC_AGVHELPER_HELPER_CONTROL_H_
-
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -25,36 +24,9 @@
 #include "hmi_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x)))
+#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Clamp F32 Macro
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-
-/** \brief Checkpoints Structure - Engine Start Control
- *
- * This structure represents all checkpoints that are relevant
- * to engine start control
- */
-typedef struct
-{
-        uint8 u8_chkP;
-
-}T_ChkPoints_Helper;
-
-
-/** \brief Control Structure - Engine Start Control
- *
- * This structure represents all variables and pointers that
- * are utilized and tracked for elevator control that need to
- * persist through cyclic calls (static).
- *
- * This structure does not include any variables that are considered
- * temporary.
- */
-typedef struct
-{
-        //Control Checkpoints
-        T_ChkPoints_Helper *pt_chk_helper;   //!<Helper Checkpoints Structure
-}T_HelperControl;
 
 /** \brief Structure containing PID coefficients (Kp, Ki, Kd, Max/Min output).*/
 typedef struct
@@ -66,7 +38,6 @@ typedef struct
       float32 f32_ki;
    } T_PID_coeff;
 
-//define terms that monitor PID state
 /** \brief Structure containing all relevant PID information for each PID loop*/
 typedef struct
    {
@@ -77,12 +48,14 @@ typedef struct
 
    } T_PID_state;
 
+ /** \brief Structure containing all relevant RAMP output information*/
 typedef struct
 {
         float32 f32_output;  //!<Current Ramped Output
         uint8 u8_faulted; //!<Latched invalid-input fault
 }T_RampState;
 
+/** \brief Structure containing all relevant RAMP Parameters*/
 typedef struct
 {
         float32 f32_dt_s; //!<Execution period [s]
@@ -92,6 +65,7 @@ typedef struct
         float32 f32_safe_state; //!<Safe State Output
 } T_RampParams;
 
+/** \brief Structure containing all relevant Moving Average Configuration Init Parameters*/
 typedef struct
 {
         uint16 u16_sample_time_ms;
@@ -99,6 +73,7 @@ typedef struct
         float32 f32_safe_output;
 } T_MoveAvgCfg;
 
+/** \brief Structure containing all relevant Moving Average Parameters*/
 typedef struct
 {
         float32 * pf32_buf; //!<Caller buffer
@@ -112,11 +87,13 @@ typedef struct
         uint8 u8_init;//!<Easy init
 }T_MoveAvgFilter;
 
+/** \brief Structure containing all relevant Low Pass Filter output information*/
 typedef struct
 {
         float32 f32_output; //!<Previous filtered output
 } T_LowPassFilter;
 
+/** \brief Structure containing all relevant Toggle Button Parameters*/
 typedef struct
 {
        uint8 *pu_btn_state; //!<Button ON/OFF state
@@ -128,7 +105,6 @@ typedef struct
 
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-//sint16 initHelperControl(T_UserInterface *_ui, T_ChkPoints_Helper *_chkp);
 sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_state, T_PID_coeff *t_PID_coeff);
 sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *pt_state);
 sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt,float32 * const pf32_buffer, uint16 u16_buf_len, float32 f32_safe_output);
