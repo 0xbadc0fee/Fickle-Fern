@@ -9,3 +9,6 @@
 /* Elevator Control Parameters */
 NVM_FIELD(elevatorMinSpeed, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_minSpeed, gt_elevatorConfig.u8_minSpeed)
 NVM_FIELD(elevatorMaxSpeed, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_maxSpeed, gt_elevatorConfig.u8_maxSpeed)
+
+/* Header Control Parameter */
+NVM_FIELD(hllEnable, CONFIGURATION_LIST_INDEX_HEADERCONFIG, gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable, gt_headerConfig.u8_joystick_hll_enable)
