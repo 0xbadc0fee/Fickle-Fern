@@ -415,7 +415,7 @@ sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uin
     {
         *(pt_btn->pu_btn_state) = (u8_safe_state != FALSE) ? TRUE : FALSE;
         pt_btn->u32_hold_ms = 0u;
-        //IR-22.2 Requires a new press after fault clears
+        //IR-21.2 Requires a new press after fault clears
         pt_btn->u8_btn_set = FALSE;
         return C_WARN;
     }
