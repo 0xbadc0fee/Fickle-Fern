@@ -792,6 +792,8 @@ Discarded input sections
                 0x0000000000000000        0xe appl_core\src\HAL\output_handler_lib.o
  .text.add_hwOutput
                 0x0000000000000000       0x6e appl_core\src\HAL\output_handler_lib.o
+ .text.get_outputFaultStatus
+                0x0000000000000000       0x30 appl_core\src\HAL\output_handler_lib.o
  .text.clear_outputFaults
                 0x0000000000000000       0x52 appl_core\src\HAL\output_handler_lib.o
  .rodata.t_PID_PARAMETERS
@@ -4127,7 +4129,7 @@ Discarded input sections
 
 Linker version: GNU ld version (GNU Binutils) 2.20 (TriCore) using BFD version (GNU Binutils) 2.20 (v2.3), Tool Version v2.7
 Name of linker executable: c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/bin/ld.exe
-Date of link run: Tue Feb 24 14:44:41 2026
+Date of link run: Wed Mar 11 11:39:21 2026
 Name of linker map file: C:\Users\kyle.boch\Documents\development\Flory\live\FLORY_8772-Controller\ESX_4CM_A\appl_core\result/appl_core.map
 
 >>> Symbols (global (S = g) and static (S = l); sorted by address)
@@ -16552,7 +16554,7 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  *(SafeTLib.debug_sfnames)
 
 .debug_aranges  memory region -> *default*
-                0x0000000000000000      0xc00
+                0x0000000000000000      0xc08
  *(.debug_aranges)
  .debug_aranges
                 0x0000000000000000       0x20 appl_core\src\AgvDiag\checkpoint_handler.o
@@ -16571,143 +16573,143 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  .debug_aranges
                 0x00000000000001b8       0x50 appl_core\src\HAL\nvm_handler_lib.o
  .debug_aranges
-                0x0000000000000208       0x58 appl_core\src\HAL\output_handler_lib.o
+                0x0000000000000208       0x60 appl_core\src\HAL\output_handler_lib.o
  .debug_aranges
-                0x0000000000000260       0x38 appl_core\src\System\CAN\can_handler.o
+                0x0000000000000268       0x38 appl_core\src\System\CAN\can_handler.o
  .debug_aranges
-                0x0000000000000298       0x28 appl_core\src\System\Ethernet\ethernet_init.o
+                0x00000000000002a0       0x28 appl_core\src\System\Ethernet\ethernet_init.o
  .debug_aranges
-                0x00000000000002c0       0x28 appl_core\src\System\IO\hw_inputs.o
+                0x00000000000002c8       0x28 appl_core\src\System\IO\hw_inputs.o
  .debug_aranges
-                0x00000000000002e8       0x28 appl_core\src\System\IO\hw_outputs.o
+                0x00000000000002f0       0x28 appl_core\src\System\IO\hw_outputs.o
  .debug_aranges
-                0x0000000000000310       0x30 appl_core\src\System\NVM\nvm_handler.o
+                0x0000000000000318       0x30 appl_core\src\System\NVM\nvm_handler.o
  .debug_aranges
-                0x0000000000000340       0x20 appl_core\src\main.o
+                0x0000000000000348       0x20 appl_core\src\main.o
  .debug_aranges
-                0x0000000000000360       0x20 appl_core\src\opensyde\generated\checkpoints_data_pool.o
+                0x0000000000000368       0x20 appl_core\src\opensyde\generated\checkpoints_data_pool.o
  .debug_aranges
-                0x0000000000000380       0x20 appl_core\src\opensyde\generated\comm_j1939_can1.o
+                0x0000000000000388       0x20 appl_core\src\opensyde\generated\comm_j1939_can1.o
  .debug_aranges
-                0x00000000000003a0       0x20 appl_core\src\opensyde\generated\configuration_data_pool.o
+                0x00000000000003a8       0x20 appl_core\src\opensyde\generated\configuration_data_pool.o
  .debug_aranges
-                0x00000000000003c0       0x20 appl_core\src\opensyde\generated\j1939_data_pool.o
+                0x00000000000003c8       0x20 appl_core\src\opensyde\generated\j1939_data_pool.o
  .debug_aranges
-                0x00000000000003e0       0x40 appl_core\src\opensyde\generated\osy_init.o
+                0x00000000000003e8       0x40 appl_core\src\opensyde\generated\osy_init.o
  .debug_aranges
-                0x0000000000000420       0x88 appl_core\src\opensyde\j1939\osy_app_j1939.o
+                0x0000000000000428       0x88 appl_core\src\opensyde\j1939\osy_app_j1939.o
  .debug_aranges
-                0x00000000000004a8       0x38 appl_core\src\opensyde\osy_app.o
+                0x00000000000004b0       0x38 appl_core\src\opensyde\osy_app.o
  .debug_aranges
-                0x00000000000004e0       0x28 appl_core\src\opensyde\osy_srv.o
+                0x00000000000004e8       0x28 appl_core\src\opensyde\osy_srv.o
  .debug_aranges
-                0x0000000000000508       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_lshrdi3.o)
+                0x0000000000000510       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_lshrdi3.o)
  .debug_aranges
-                0x0000000000000528       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcpy.o)
+                0x0000000000000530       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcpy.o)
  .debug_aranges
-                0x0000000000000548       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcmp.o)
+                0x0000000000000550       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcmp.o)
  .debug_aranges
-                0x0000000000000568       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
+                0x0000000000000570       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
  .debug_aranges
-                0x0000000000000588       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
+                0x0000000000000590       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
  .debug_aranges
-                0x00000000000005a8       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
+                0x00000000000005b0       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
  .debug_aranges
-                0x00000000000005d8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
+                0x00000000000005e0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
  .debug_aranges
-                0x00000000000005f8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
+                0x0000000000000600       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
  .debug_aranges
-                0x0000000000000618       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
+                0x0000000000000620       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
  .debug_aranges
-                0x0000000000000638       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
+                0x0000000000000640       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
  .debug_aranges
-                0x0000000000000658       0x18 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_thenan_df.o)
+                0x0000000000000660       0x18 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_thenan_df.o)
  .debug_aranges
-                0x0000000000000670       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
+                0x0000000000000678       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
  .debug_aranges
-                0x0000000000000690       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
+                0x0000000000000698       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
  .debug_aranges
-                0x00000000000006b0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
+                0x00000000000006b8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
  .debug_aranges
-                0x00000000000006d0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
+                0x00000000000006d8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
  .debug_aranges
-                0x00000000000006f0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ashldi3.o)
+                0x00000000000006f8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ashldi3.o)
  .debug_aranges
-                0x0000000000000710       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
+                0x0000000000000718       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
  .debug_aranges
-                0x0000000000000730       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
+                0x0000000000000738       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
  .debug_aranges
-                0x0000000000000750       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
+                0x0000000000000758       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
  .debug_aranges
-                0x0000000000000770       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
+                0x0000000000000778       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
  .debug_aranges
-                0x0000000000000790       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
+                0x0000000000000798       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
  .debug_aranges
-                0x00000000000007b0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
+                0x00000000000007b8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
  .debug_aranges
-                0x00000000000007d0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
+                0x00000000000007d8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
  .debug_aranges
-                0x00000000000007f0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
+                0x00000000000007f8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
  .debug_aranges
-                0x0000000000000810       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
+                0x0000000000000818       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
  .debug_aranges
-                0x0000000000000830       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
+                0x0000000000000838       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
  .debug_aranges
-                0x0000000000000860       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
+                0x0000000000000868       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
  .debug_aranges
-                0x0000000000000880       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
+                0x0000000000000888       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
  .debug_aranges
-                0x00000000000008a0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
+                0x00000000000008a8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
  .debug_aranges
-                0x00000000000008c0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
+                0x00000000000008c8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
  .debug_aranges
-                0x00000000000008e0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
+                0x00000000000008e8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
  .debug_aranges
-                0x0000000000000900       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
+                0x0000000000000908       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
  .debug_aranges
-                0x0000000000000920       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
+                0x0000000000000928       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
  .debug_aranges
-                0x0000000000000940       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
+                0x0000000000000948       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
  .debug_aranges
-                0x0000000000000960       0x18 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfiles.o)
+                0x0000000000000968       0x18 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfiles.o)
  .debug_aranges
-                0x0000000000000978       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
+                0x0000000000000980       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
  .debug_aranges
-                0x00000000000009a0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
+                0x00000000000009a8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
  .debug_aranges
-                0x00000000000009c0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
+                0x00000000000009c8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
  .debug_aranges
-                0x00000000000009e0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
+                0x00000000000009e8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
  .debug_aranges
-                0x0000000000000a00       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
+                0x0000000000000a08       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
  .debug_aranges
-                0x0000000000000a20       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
+                0x0000000000000a28       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
  .debug_aranges
-                0x0000000000000a40       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
+                0x0000000000000a48       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
  .debug_aranges
-                0x0000000000000a70       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
+                0x0000000000000a78       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
  .debug_aranges
-                0x0000000000000a90       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
+                0x0000000000000a98       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
  .debug_aranges
-                0x0000000000000ab0       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
+                0x0000000000000ab8       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
  .debug_aranges
-                0x0000000000000ad8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
+                0x0000000000000ae0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
  .debug_aranges
-                0x0000000000000af8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
+                0x0000000000000b00       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
  .debug_aranges
-                0x0000000000000b18       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
+                0x0000000000000b20       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
  .debug_aranges
-                0x0000000000000b38       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
+                0x0000000000000b40       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
  .debug_aranges
-                0x0000000000000b58       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
+                0x0000000000000b60       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
  .debug_aranges
-                0x0000000000000b78       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
+                0x0000000000000b80       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
  .debug_aranges
-                0x0000000000000b98       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
+                0x0000000000000ba0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
  .debug_aranges
-                0x0000000000000bb8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
+                0x0000000000000bc0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
  .debug_aranges
-                0x0000000000000bd8       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/crtn.o
+                0x0000000000000be0       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/crtn.o
  *(SafeTLib.debug_aranges)
 
 .debug_pubnames
@@ -16715,7 +16717,7 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  *(SafeTLib.debug_pubnames)
 
 .debug_info     memory region -> *default*
-                0x0000000000000000    0x23399
+                0x0000000000000000    0x23420
  *(.debug_info)
  .debug_info    0x0000000000000000      0x46b appl_core\src\AgvDiag\checkpoint_handler.o
  .debug_info    0x000000000000046b      0x566 appl_core\src\AgvDiag\fault_handler.o
@@ -16725,75 +16727,75 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  .debug_info    0x00000000000020f9      0xf6f appl_core\src\HAL\alarm_handler_lib.o
  .debug_info    0x0000000000003068      0xe7a appl_core\src\HAL\input_handler_lib.o
  .debug_info    0x0000000000003ee2      0x921 appl_core\src\HAL\nvm_handler_lib.o
- .debug_info    0x0000000000004803      0xe1f appl_core\src\HAL\output_handler_lib.o
- .debug_info    0x0000000000005622     0x1d3c appl_core\src\System\CAN\can_handler.o
- .debug_info    0x000000000000735e     0x1628 appl_core\src\System\Ethernet\ethernet_init.o
- .debug_info    0x0000000000008986      0x62d appl_core\src\System\IO\hw_inputs.o
- .debug_info    0x0000000000008fb3      0x5b2 appl_core\src\System\IO\hw_outputs.o
- .debug_info    0x0000000000009565      0x66e appl_core\src\System\NVM\nvm_handler.o
- .debug_info    0x0000000000009bd3      0xec6 appl_core\src\main.o
- .debug_info    0x000000000000aa99      0xbc3 appl_core\src\opensyde\generated\checkpoints_data_pool.o
- .debug_info    0x000000000000b65c     0x15bb appl_core\src\opensyde\generated\comm_j1939_can1.o
- .debug_info    0x000000000000cc17      0xdb5 appl_core\src\opensyde\generated\configuration_data_pool.o
- .debug_info    0x000000000000d9cc     0x1f38 appl_core\src\opensyde\generated\j1939_data_pool.o
- .debug_info    0x000000000000f904     0x240d appl_core\src\opensyde\generated\osy_init.o
- .debug_info    0x0000000000011d11     0x2ad9 appl_core\src\opensyde\j1939\osy_app_j1939.o
- .debug_info    0x00000000000147ea      0x413 appl_core\src\opensyde\osy_app.o
- .debug_info    0x0000000000014bfd     0x23e7 appl_core\src\opensyde\osy_srv.o
- .debug_info    0x0000000000016fe4       0xb4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_lshrdi3.o)
- .debug_info    0x0000000000017098       0xb4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcpy.o)
- .debug_info    0x000000000001714c       0xb4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcmp.o)
- .debug_info    0x0000000000017200      0x35a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
- .debug_info    0x000000000001755a      0x34c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
- .debug_info    0x00000000000178a6      0x84b c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
- .debug_info    0x00000000000180f1      0x7ad c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
- .debug_info    0x000000000001889e      0x6cc c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
- .debug_info    0x0000000000018f6a      0x5d3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
- .debug_info    0x000000000001953d      0x502 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
- .debug_info    0x0000000000019a3f      0x3d1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_thenan_df.o)
- .debug_info    0x0000000000019e10      0x4e6 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
- .debug_info    0x000000000001a2f6      0x3b3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
- .debug_info    0x000000000001a6a9      0x338 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
- .debug_info    0x000000000001a9e1      0x2a1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
- .debug_info    0x000000000001ac82       0xb4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ashldi3.o)
- .debug_info    0x000000000001ad36      0x331 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
- .debug_info    0x000000000001b067      0x583 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
- .debug_info    0x000000000001b5ea      0x4fe c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
- .debug_info    0x000000000001bae8      0x498 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
- .debug_info    0x000000000001bf80      0x5d3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
- .debug_info    0x000000000001c553      0x598 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
- .debug_info    0x000000000001caeb      0x3f5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
- .debug_info    0x000000000001cee0      0x280 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
- .debug_info    0x000000000001d160      0x2bd c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
- .debug_info    0x000000000001d41d      0x47c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
- .debug_info    0x000000000001d899      0x5af c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
- .debug_info    0x000000000001de48      0x2b5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
- .debug_info    0x000000000001e0fd      0x260 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
- .debug_info    0x000000000001e35d      0x27c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
- .debug_info    0x000000000001e5d9      0x28c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
- .debug_info    0x000000000001e865      0x29d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
- .debug_info    0x000000000001eb02      0x30d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
- .debug_info    0x000000000001ee0f      0x268 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
- .debug_info    0x000000000001f077      0x526 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfiles.o)
- .debug_info    0x000000000001f59d      0x4e8 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
- .debug_info    0x000000000001fa85      0x316 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
- .debug_info    0x000000000001fd9b      0x5e4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
- .debug_info    0x000000000002037f      0x2ba c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
- .debug_info    0x0000000000020639      0x280 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
- .debug_info    0x00000000000208b9      0x4ff c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
- .debug_info    0x0000000000020db8      0x66c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
- .debug_info    0x0000000000021424      0x511 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
- .debug_info    0x0000000000021935      0x2db c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
- .debug_info    0x0000000000021c10      0x53a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
- .debug_info    0x000000000002214a      0x1c5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
- .debug_info    0x000000000002230f      0x1b5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
- .debug_info    0x00000000000224c4      0x295 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
- .debug_info    0x0000000000022759      0x27a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
- .debug_info    0x00000000000229d3      0x28e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
- .debug_info    0x0000000000022c61      0x230 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
- .debug_info    0x0000000000022e91      0x2b4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
- .debug_info    0x0000000000023145      0x1da c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
- .debug_info    0x000000000002331f       0x7a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/crtn.o
+ .debug_info    0x0000000000004803      0xea6 appl_core\src\HAL\output_handler_lib.o
+ .debug_info    0x00000000000056a9     0x1d3c appl_core\src\System\CAN\can_handler.o
+ .debug_info    0x00000000000073e5     0x1628 appl_core\src\System\Ethernet\ethernet_init.o
+ .debug_info    0x0000000000008a0d      0x62d appl_core\src\System\IO\hw_inputs.o
+ .debug_info    0x000000000000903a      0x5b2 appl_core\src\System\IO\hw_outputs.o
+ .debug_info    0x00000000000095ec      0x66e appl_core\src\System\NVM\nvm_handler.o
+ .debug_info    0x0000000000009c5a      0xec6 appl_core\src\main.o
+ .debug_info    0x000000000000ab20      0xbc3 appl_core\src\opensyde\generated\checkpoints_data_pool.o
+ .debug_info    0x000000000000b6e3     0x15bb appl_core\src\opensyde\generated\comm_j1939_can1.o
+ .debug_info    0x000000000000cc9e      0xdb5 appl_core\src\opensyde\generated\configuration_data_pool.o
+ .debug_info    0x000000000000da53     0x1f38 appl_core\src\opensyde\generated\j1939_data_pool.o
+ .debug_info    0x000000000000f98b     0x240d appl_core\src\opensyde\generated\osy_init.o
+ .debug_info    0x0000000000011d98     0x2ad9 appl_core\src\opensyde\j1939\osy_app_j1939.o
+ .debug_info    0x0000000000014871      0x413 appl_core\src\opensyde\osy_app.o
+ .debug_info    0x0000000000014c84     0x23e7 appl_core\src\opensyde\osy_srv.o
+ .debug_info    0x000000000001706b       0xb4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_lshrdi3.o)
+ .debug_info    0x000000000001711f       0xb4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcpy.o)
+ .debug_info    0x00000000000171d3       0xb4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcmp.o)
+ .debug_info    0x0000000000017287      0x35a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
+ .debug_info    0x00000000000175e1      0x34c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
+ .debug_info    0x000000000001792d      0x84b c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
+ .debug_info    0x0000000000018178      0x7ad c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
+ .debug_info    0x0000000000018925      0x6cc c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
+ .debug_info    0x0000000000018ff1      0x5d3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
+ .debug_info    0x00000000000195c4      0x502 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
+ .debug_info    0x0000000000019ac6      0x3d1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_thenan_df.o)
+ .debug_info    0x0000000000019e97      0x4e6 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
+ .debug_info    0x000000000001a37d      0x3b3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
+ .debug_info    0x000000000001a730      0x338 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
+ .debug_info    0x000000000001aa68      0x2a1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
+ .debug_info    0x000000000001ad09       0xb4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ashldi3.o)
+ .debug_info    0x000000000001adbd      0x331 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
+ .debug_info    0x000000000001b0ee      0x583 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
+ .debug_info    0x000000000001b671      0x4fe c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
+ .debug_info    0x000000000001bb6f      0x498 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
+ .debug_info    0x000000000001c007      0x5d3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
+ .debug_info    0x000000000001c5da      0x598 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
+ .debug_info    0x000000000001cb72      0x3f5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
+ .debug_info    0x000000000001cf67      0x280 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
+ .debug_info    0x000000000001d1e7      0x2bd c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
+ .debug_info    0x000000000001d4a4      0x47c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
+ .debug_info    0x000000000001d920      0x5af c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
+ .debug_info    0x000000000001decf      0x2b5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
+ .debug_info    0x000000000001e184      0x260 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
+ .debug_info    0x000000000001e3e4      0x27c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
+ .debug_info    0x000000000001e660      0x28c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
+ .debug_info    0x000000000001e8ec      0x29d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
+ .debug_info    0x000000000001eb89      0x30d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
+ .debug_info    0x000000000001ee96      0x268 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
+ .debug_info    0x000000000001f0fe      0x526 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfiles.o)
+ .debug_info    0x000000000001f624      0x4e8 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
+ .debug_info    0x000000000001fb0c      0x316 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
+ .debug_info    0x000000000001fe22      0x5e4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
+ .debug_info    0x0000000000020406      0x2ba c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
+ .debug_info    0x00000000000206c0      0x280 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
+ .debug_info    0x0000000000020940      0x4ff c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
+ .debug_info    0x0000000000020e3f      0x66c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
+ .debug_info    0x00000000000214ab      0x511 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
+ .debug_info    0x00000000000219bc      0x2db c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
+ .debug_info    0x0000000000021c97      0x53a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
+ .debug_info    0x00000000000221d1      0x1c5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
+ .debug_info    0x0000000000022396      0x1b5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
+ .debug_info    0x000000000002254b      0x295 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
+ .debug_info    0x00000000000227e0      0x27a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
+ .debug_info    0x0000000000022a5a      0x28e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
+ .debug_info    0x0000000000022ce8      0x230 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
+ .debug_info    0x0000000000022f18      0x2b4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
+ .debug_info    0x00000000000231cc      0x1da c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
+ .debug_info    0x00000000000233a6       0x7a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/crtn.o
  *(SafeTLib.debug_info)
 
 .debug_abbrev   memory region -> *default*
@@ -16879,7 +16881,7 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  *(SafeTLib.debug_abbrev)
 
 .debug_line     memory region -> *default*
-                0x0000000000000000     0x658b
+                0x0000000000000000     0x65a4
  *(.debug_line)
  .debug_line    0x0000000000000000        0x0 appl_core\src\AgvChassis\engine_start_control.o
  .debug_line    0x0000000000000000      0x2a5 appl_core\src\AgvDiag\checkpoint_handler.o
@@ -16890,79 +16892,79 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  .debug_line    0x0000000000000ad1      0x41c appl_core\src\HAL\alarm_handler_lib.o
  .debug_line    0x0000000000000eed      0x2e3 appl_core\src\HAL\input_handler_lib.o
  .debug_line    0x00000000000011d0      0x253 appl_core\src\HAL\nvm_handler_lib.o
- .debug_line    0x0000000000001423      0x2c8 appl_core\src\HAL\output_handler_lib.o
- .debug_line    0x00000000000016eb      0x405 appl_core\src\System\CAN\can_handler.o
- .debug_line    0x0000000000001af0      0x3bc appl_core\src\System\Ethernet\ethernet_init.o
- .debug_line    0x0000000000001eac      0x178 appl_core\src\System\IO\hw_inputs.o
- .debug_line    0x0000000000002024      0x176 appl_core\src\System\IO\hw_outputs.o
- .debug_line    0x000000000000219a      0x2eb appl_core\src\System\NVM\nvm_handler.o
- .debug_line    0x0000000000002485      0x770 appl_core\src\main.o
- .debug_line    0x0000000000002bf5      0x1b6 appl_core\src\opensyde\generated\checkpoints_data_pool.o
- .debug_line    0x0000000000002dab      0x26d appl_core\src\opensyde\generated\comm_j1939_can1.o
- .debug_line    0x0000000000003018      0x1ba appl_core\src\opensyde\generated\configuration_data_pool.o
- .debug_line    0x00000000000031d2      0x1aa appl_core\src\opensyde\generated\j1939_data_pool.o
- .debug_line    0x000000000000337c      0x357 appl_core\src\opensyde\generated\osy_init.o
- .debug_line    0x00000000000036d3      0x595 appl_core\src\opensyde\j1939\osy_app_j1939.o
- .debug_line    0x0000000000003c68       0xf9 appl_core\src\opensyde\osy_app.o
- .debug_line    0x0000000000003d61      0x5fb appl_core\src\opensyde\osy_srv.o
- .debug_line    0x000000000000435c       0x78 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_lshrdi3.o)
- .debug_line    0x00000000000043d4       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcpy.o)
- .debug_line    0x0000000000004448       0x79 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcmp.o)
- .debug_line    0x00000000000044c1       0x72 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
- .debug_line    0x0000000000004533       0x73 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
- .debug_line    0x00000000000045a6       0xf3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
- .debug_line    0x0000000000004699       0xc1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
- .debug_line    0x000000000000475a       0xac c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
- .debug_line    0x0000000000004806       0x78 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
- .debug_line    0x000000000000487e       0x7d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
- .debug_line    0x00000000000048fb       0x57 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_thenan_df.o)
- .debug_line    0x0000000000004952       0x78 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
- .debug_line    0x00000000000049ca      0x100 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
- .debug_line    0x0000000000004aca       0xf3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
- .debug_line    0x0000000000004bbd       0x77 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
- .debug_line    0x0000000000004c34       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ashldi3.o)
- .debug_line    0x0000000000004ca8       0x70 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
- .debug_line    0x0000000000004d18       0xb0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
- .debug_line    0x0000000000004dc8       0x91 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
- .debug_line    0x0000000000004e59       0xa8 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
- .debug_line    0x0000000000004f01       0x78 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
- .debug_line    0x0000000000004f79       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
- .debug_line    0x0000000000004fed      0x116 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
- .debug_line    0x0000000000005103       0xa4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
- .debug_line    0x00000000000051a7       0x6d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
- .debug_line    0x0000000000005214      0x10a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
- .debug_line    0x000000000000531e       0xee c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
- .debug_line    0x000000000000540c       0x9f c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
- .debug_line    0x00000000000054ab       0x69 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
- .debug_line    0x0000000000005514       0xb1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
- .debug_line    0x00000000000055c5       0xa9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
- .debug_line    0x000000000000566e       0xc0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
- .debug_line    0x000000000000572e       0xa5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
- .debug_line    0x00000000000057d3       0x5f c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
- .debug_line    0x0000000000005832       0x94 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfiles.o)
- .debug_line    0x00000000000058c6      0x173 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
- .debug_line    0x0000000000005a39       0xa7 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
- .debug_line    0x0000000000005ae0       0xf7 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
- .debug_line    0x0000000000005bd7       0xa7 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
- .debug_line    0x0000000000005c7e       0x67 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
- .debug_line    0x0000000000005ce5       0xec c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
- .debug_line    0x0000000000005dd1      0x124 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
- .debug_line    0x0000000000005ef5       0xe3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
- .debug_line    0x0000000000005fd8       0xb1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
- .debug_line    0x0000000000006089       0xeb c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
- .debug_line    0x0000000000006174       0x6c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
- .debug_line    0x00000000000061e0       0x6c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
- .debug_line    0x000000000000624c       0xc8 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
- .debug_line    0x0000000000006314       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
- .debug_line    0x0000000000006388       0x79 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
- .debug_line    0x0000000000006401       0x6b c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
- .debug_line    0x000000000000646c       0x6d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
- .debug_line    0x00000000000064d9       0x6d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
- .debug_line    0x0000000000006546       0x45 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/crtn.o
+ .debug_line    0x0000000000001423      0x2e1 appl_core\src\HAL\output_handler_lib.o
+ .debug_line    0x0000000000001704      0x405 appl_core\src\System\CAN\can_handler.o
+ .debug_line    0x0000000000001b09      0x3bc appl_core\src\System\Ethernet\ethernet_init.o
+ .debug_line    0x0000000000001ec5      0x178 appl_core\src\System\IO\hw_inputs.o
+ .debug_line    0x000000000000203d      0x176 appl_core\src\System\IO\hw_outputs.o
+ .debug_line    0x00000000000021b3      0x2eb appl_core\src\System\NVM\nvm_handler.o
+ .debug_line    0x000000000000249e      0x770 appl_core\src\main.o
+ .debug_line    0x0000000000002c0e      0x1b6 appl_core\src\opensyde\generated\checkpoints_data_pool.o
+ .debug_line    0x0000000000002dc4      0x26d appl_core\src\opensyde\generated\comm_j1939_can1.o
+ .debug_line    0x0000000000003031      0x1ba appl_core\src\opensyde\generated\configuration_data_pool.o
+ .debug_line    0x00000000000031eb      0x1aa appl_core\src\opensyde\generated\j1939_data_pool.o
+ .debug_line    0x0000000000003395      0x357 appl_core\src\opensyde\generated\osy_init.o
+ .debug_line    0x00000000000036ec      0x595 appl_core\src\opensyde\j1939\osy_app_j1939.o
+ .debug_line    0x0000000000003c81       0xf9 appl_core\src\opensyde\osy_app.o
+ .debug_line    0x0000000000003d7a      0x5fb appl_core\src\opensyde\osy_srv.o
+ .debug_line    0x0000000000004375       0x78 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_lshrdi3.o)
+ .debug_line    0x00000000000043ed       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcpy.o)
+ .debug_line    0x0000000000004461       0x79 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memcmp.o)
+ .debug_line    0x00000000000044da       0x72 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
+ .debug_line    0x000000000000454c       0x73 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
+ .debug_line    0x00000000000045bf       0xf3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
+ .debug_line    0x00000000000046b2       0xc1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
+ .debug_line    0x0000000000004773       0xac c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
+ .debug_line    0x000000000000481f       0x78 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
+ .debug_line    0x0000000000004897       0x7d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
+ .debug_line    0x0000000000004914       0x57 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_thenan_df.o)
+ .debug_line    0x000000000000496b       0x78 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
+ .debug_line    0x00000000000049e3      0x100 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
+ .debug_line    0x0000000000004ae3       0xf3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
+ .debug_line    0x0000000000004bd6       0x77 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
+ .debug_line    0x0000000000004c4d       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ashldi3.o)
+ .debug_line    0x0000000000004cc1       0x70 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
+ .debug_line    0x0000000000004d31       0xb0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
+ .debug_line    0x0000000000004de1       0x91 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
+ .debug_line    0x0000000000004e72       0xa8 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
+ .debug_line    0x0000000000004f1a       0x78 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
+ .debug_line    0x0000000000004f92       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
+ .debug_line    0x0000000000005006      0x116 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
+ .debug_line    0x000000000000511c       0xa4 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
+ .debug_line    0x00000000000051c0       0x6d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
+ .debug_line    0x000000000000522d      0x10a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
+ .debug_line    0x0000000000005337       0xee c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
+ .debug_line    0x0000000000005425       0x9f c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
+ .debug_line    0x00000000000054c4       0x69 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
+ .debug_line    0x000000000000552d       0xb1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
+ .debug_line    0x00000000000055de       0xa9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
+ .debug_line    0x0000000000005687       0xc0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
+ .debug_line    0x0000000000005747       0xa5 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
+ .debug_line    0x00000000000057ec       0x5f c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
+ .debug_line    0x000000000000584b       0x94 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfiles.o)
+ .debug_line    0x00000000000058df      0x173 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
+ .debug_line    0x0000000000005a52       0xa7 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
+ .debug_line    0x0000000000005af9       0xf7 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
+ .debug_line    0x0000000000005bf0       0xa7 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
+ .debug_line    0x0000000000005c97       0x67 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
+ .debug_line    0x0000000000005cfe       0xec c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
+ .debug_line    0x0000000000005dea      0x124 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
+ .debug_line    0x0000000000005f0e       0xe3 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
+ .debug_line    0x0000000000005ff1       0xb1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
+ .debug_line    0x00000000000060a2       0xeb c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
+ .debug_line    0x000000000000618d       0x6c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
+ .debug_line    0x00000000000061f9       0x6c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
+ .debug_line    0x0000000000006265       0xc8 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
+ .debug_line    0x000000000000632d       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
+ .debug_line    0x00000000000063a1       0x79 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
+ .debug_line    0x000000000000641a       0x6b c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
+ .debug_line    0x0000000000006485       0x6d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
+ .debug_line    0x00000000000064f2       0x6d c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
+ .debug_line    0x000000000000655f       0x45 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/crtn.o
  *(SafeTLib.debug_line)
 
 .debug_frame    memory region -> *default*
-                0x0000000000000000      0xe90
+                0x0000000000000000      0xea8
  *(.debug_frame)
  .debug_frame   0x0000000000000000       0x20 appl_core\src\AgvDiag\checkpoint_handler.o
  .debug_frame   0x0000000000000020       0x40 appl_core\src\AgvDiag\fault_handler.o
@@ -16972,72 +16974,72 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  .debug_frame   0x0000000000000158       0xb0 appl_core\src\HAL\alarm_handler_lib.o
  .debug_frame   0x0000000000000208       0xd0 appl_core\src\HAL\input_handler_lib.o
  .debug_frame   0x00000000000002d8       0x90 appl_core\src\HAL\nvm_handler_lib.o
- .debug_frame   0x0000000000000368       0xb0 appl_core\src\HAL\output_handler_lib.o
- .debug_frame   0x0000000000000418       0x58 appl_core\src\System\CAN\can_handler.o
- .debug_frame   0x0000000000000470       0x38 appl_core\src\System\Ethernet\ethernet_init.o
- .debug_frame   0x00000000000004a8       0x30 appl_core\src\System\IO\hw_inputs.o
- .debug_frame   0x00000000000004d8       0x30 appl_core\src\System\IO\hw_outputs.o
- .debug_frame   0x0000000000000508       0x40 appl_core\src\System\NVM\nvm_handler.o
- .debug_frame   0x0000000000000548       0x20 appl_core\src\main.o
- .debug_frame   0x0000000000000568       0x20 appl_core\src\opensyde\generated\checkpoints_data_pool.o
- .debug_frame   0x0000000000000588       0x20 appl_core\src\opensyde\generated\comm_j1939_can1.o
- .debug_frame   0x00000000000005a8       0x20 appl_core\src\opensyde\generated\configuration_data_pool.o
- .debug_frame   0x00000000000005c8       0x20 appl_core\src\opensyde\generated\j1939_data_pool.o
- .debug_frame   0x00000000000005e8       0x60 appl_core\src\opensyde\generated\osy_init.o
- .debug_frame   0x0000000000000648      0x100 appl_core\src\opensyde\j1939\osy_app_j1939.o
- .debug_frame   0x0000000000000748       0x50 appl_core\src\opensyde\osy_app.o
- .debug_frame   0x0000000000000798       0x40 appl_core\src\opensyde\osy_srv.o
- .debug_frame   0x00000000000007d8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
- .debug_frame   0x00000000000007f8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
- .debug_frame   0x0000000000000818       0x50 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
- .debug_frame   0x0000000000000868       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
- .debug_frame   0x0000000000000890       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
- .debug_frame   0x00000000000008b8       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
- .debug_frame   0x00000000000008e0       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
- .debug_frame   0x0000000000000908       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
- .debug_frame   0x0000000000000930       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
- .debug_frame   0x0000000000000950       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
- .debug_frame   0x0000000000000970       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
- .debug_frame   0x0000000000000990       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
- .debug_frame   0x00000000000009b0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
- .debug_frame   0x00000000000009d0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
- .debug_frame   0x00000000000009f0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
- .debug_frame   0x0000000000000a10       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
- .debug_frame   0x0000000000000a38       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
- .debug_frame   0x0000000000000a60       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
- .debug_frame   0x0000000000000a80       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
- .debug_frame   0x0000000000000aa0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
- .debug_frame   0x0000000000000ac0       0x40 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
- .debug_frame   0x0000000000000b00       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
- .debug_frame   0x0000000000000b28       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
- .debug_frame   0x0000000000000b48       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
- .debug_frame   0x0000000000000b68       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
- .debug_frame   0x0000000000000b88       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
- .debug_frame   0x0000000000000ba8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
- .debug_frame   0x0000000000000bc8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
- .debug_frame   0x0000000000000be8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
- .debug_frame   0x0000000000000c08       0x38 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
- .debug_frame   0x0000000000000c40       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
- .debug_frame   0x0000000000000c60       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
- .debug_frame   0x0000000000000c80       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
- .debug_frame   0x0000000000000ca0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
- .debug_frame   0x0000000000000cc0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
- .debug_frame   0x0000000000000ce0       0x40 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
- .debug_frame   0x0000000000000d20       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
- .debug_frame   0x0000000000000d40       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
- .debug_frame   0x0000000000000d60       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
- .debug_frame   0x0000000000000d90       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
- .debug_frame   0x0000000000000db0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
- .debug_frame   0x0000000000000dd0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
- .debug_frame   0x0000000000000df0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
- .debug_frame   0x0000000000000e10       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
- .debug_frame   0x0000000000000e30       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
- .debug_frame   0x0000000000000e50       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
- .debug_frame   0x0000000000000e70       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
+ .debug_frame   0x0000000000000368       0xc8 appl_core\src\HAL\output_handler_lib.o
+ .debug_frame   0x0000000000000430       0x58 appl_core\src\System\CAN\can_handler.o
+ .debug_frame   0x0000000000000488       0x38 appl_core\src\System\Ethernet\ethernet_init.o
+ .debug_frame   0x00000000000004c0       0x30 appl_core\src\System\IO\hw_inputs.o
+ .debug_frame   0x00000000000004f0       0x30 appl_core\src\System\IO\hw_outputs.o
+ .debug_frame   0x0000000000000520       0x40 appl_core\src\System\NVM\nvm_handler.o
+ .debug_frame   0x0000000000000560       0x20 appl_core\src\main.o
+ .debug_frame   0x0000000000000580       0x20 appl_core\src\opensyde\generated\checkpoints_data_pool.o
+ .debug_frame   0x00000000000005a0       0x20 appl_core\src\opensyde\generated\comm_j1939_can1.o
+ .debug_frame   0x00000000000005c0       0x20 appl_core\src\opensyde\generated\configuration_data_pool.o
+ .debug_frame   0x00000000000005e0       0x20 appl_core\src\opensyde\generated\j1939_data_pool.o
+ .debug_frame   0x0000000000000600       0x60 appl_core\src\opensyde\generated\osy_init.o
+ .debug_frame   0x0000000000000660      0x100 appl_core\src\opensyde\j1939\osy_app_j1939.o
+ .debug_frame   0x0000000000000760       0x50 appl_core\src\opensyde\osy_app.o
+ .debug_frame   0x00000000000007b0       0x40 appl_core\src\opensyde\osy_srv.o
+ .debug_frame   0x00000000000007f0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
+ .debug_frame   0x0000000000000810       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
+ .debug_frame   0x0000000000000830       0x50 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
+ .debug_frame   0x0000000000000880       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
+ .debug_frame   0x00000000000008a8       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
+ .debug_frame   0x00000000000008d0       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
+ .debug_frame   0x00000000000008f8       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
+ .debug_frame   0x0000000000000920       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
+ .debug_frame   0x0000000000000948       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
+ .debug_frame   0x0000000000000968       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
+ .debug_frame   0x0000000000000988       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
+ .debug_frame   0x00000000000009a8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
+ .debug_frame   0x00000000000009c8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
+ .debug_frame   0x00000000000009e8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
+ .debug_frame   0x0000000000000a08       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
+ .debug_frame   0x0000000000000a28       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
+ .debug_frame   0x0000000000000a50       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
+ .debug_frame   0x0000000000000a78       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
+ .debug_frame   0x0000000000000a98       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
+ .debug_frame   0x0000000000000ab8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
+ .debug_frame   0x0000000000000ad8       0x40 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
+ .debug_frame   0x0000000000000b18       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
+ .debug_frame   0x0000000000000b40       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
+ .debug_frame   0x0000000000000b60       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
+ .debug_frame   0x0000000000000b80       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
+ .debug_frame   0x0000000000000ba0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
+ .debug_frame   0x0000000000000bc0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
+ .debug_frame   0x0000000000000be0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
+ .debug_frame   0x0000000000000c00       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
+ .debug_frame   0x0000000000000c20       0x38 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
+ .debug_frame   0x0000000000000c58       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
+ .debug_frame   0x0000000000000c78       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
+ .debug_frame   0x0000000000000c98       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
+ .debug_frame   0x0000000000000cb8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
+ .debug_frame   0x0000000000000cd8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
+ .debug_frame   0x0000000000000cf8       0x40 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
+ .debug_frame   0x0000000000000d38       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
+ .debug_frame   0x0000000000000d58       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
+ .debug_frame   0x0000000000000d78       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
+ .debug_frame   0x0000000000000da8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
+ .debug_frame   0x0000000000000dc8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
+ .debug_frame   0x0000000000000de8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
+ .debug_frame   0x0000000000000e08       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
+ .debug_frame   0x0000000000000e28       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
+ .debug_frame   0x0000000000000e48       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
+ .debug_frame   0x0000000000000e68       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
+ .debug_frame   0x0000000000000e88       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
  *(SafeTLib.debug_frame)
 
 .debug_str      memory region -> *default*
-                0x0000000000000000      0x8a6
+                0x0000000000000000      0x8af
  *(.debug_str)
  .debug_str     0x0000000000000000        0x0 appl_core\src\AgvChassis\engine_start_control.o
  .debug_str     0x0000000000000000        0x0 appl_core\src\AgvDiag\checkpoint_handler.o
@@ -17048,74 +17050,74 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  .debug_str     0x00000000000000ae       0x39 appl_core\src\HAL\alarm_handler_lib.o
  .debug_str     0x00000000000000e7       0x28 appl_core\src\HAL\input_handler_lib.o
  .debug_str     0x000000000000010f       0x26 appl_core\src\HAL\nvm_handler_lib.o
- .debug_str     0x0000000000000135       0x1f appl_core\src\HAL\output_handler_lib.o
- .debug_str     0x0000000000000154       0x6e appl_core\src\System\CAN\can_handler.o
- .debug_str     0x00000000000001c2       0x2e appl_core\src\System\Ethernet\ethernet_init.o
- .debug_str     0x00000000000001f0        0x0 appl_core\src\System\IO\hw_inputs.o
- .debug_str     0x00000000000001f0        0x0 appl_core\src\System\IO\hw_outputs.o
- .debug_str     0x00000000000001f0       0x39 appl_core\src\System\NVM\nvm_handler.o
- .debug_str     0x0000000000000229       0x48 appl_core\src\main.o
- .debug_str     0x0000000000000271       0x43 appl_core\src\opensyde\generated\checkpoints_data_pool.o
- .debug_str     0x00000000000002b4       0x6c appl_core\src\opensyde\generated\comm_j1939_can1.o
- .debug_str     0x0000000000000320       0x43 appl_core\src\opensyde\generated\configuration_data_pool.o
- .debug_str     0x0000000000000363       0x43 appl_core\src\opensyde\generated\j1939_data_pool.o
- .debug_str     0x00000000000003a6      0x15e appl_core\src\opensyde\generated\osy_init.o
- .debug_str     0x0000000000000504      0x19d appl_core\src\opensyde\j1939\osy_app_j1939.o
- .debug_str     0x00000000000006a1       0x33 appl_core\src\opensyde\osy_app.o
- .debug_str     0x00000000000006d4      0x144 appl_core\src\opensyde\osy_srv.o
- .debug_str     0x0000000000000818        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
- .debug_str     0x0000000000000818        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
- .debug_str     0x0000000000000818        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
- .debug_str     0x0000000000000821        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
- .debug_str     0x000000000000082a        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
- .debug_str     0x0000000000000833        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
- .debug_str     0x000000000000083c        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
- .debug_str     0x000000000000083c        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_thenan_df.o)
- .debug_str     0x000000000000083c        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
- .debug_str     0x000000000000083c        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
- .debug_str     0x000000000000083c        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
- .debug_str     0x000000000000083c        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
- .debug_str     0x000000000000083c        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
- .debug_str     0x000000000000083c        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
- .debug_str     0x0000000000000845        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
- .debug_str     0x000000000000084e        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
- .debug_str     0x000000000000084e        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
- .debug_str     0x0000000000000857        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
- .debug_str     0x0000000000000860        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
- .debug_str     0x0000000000000860        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
- .debug_str     0x0000000000000860        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
- .debug_str     0x0000000000000860        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
- .debug_str     0x0000000000000860        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
- .debug_str     0x000000000000086a        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
- .debug_str     0x000000000000086a        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
- .debug_str     0x000000000000086a        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
- .debug_str     0x000000000000086a        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
- .debug_str     0x000000000000086a        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
- .debug_str     0x000000000000086a        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
- .debug_str     0x000000000000086a        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
- .debug_str     0x000000000000086a        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfiles.o)
- .debug_str     0x0000000000000874        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
- .debug_str     0x0000000000000874        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
- .debug_str     0x0000000000000874        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
- .debug_str     0x000000000000087e        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
- .debug_str     0x000000000000087e        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
- .debug_str     0x000000000000087e        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
- .debug_str     0x0000000000000888        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
- .debug_str     0x0000000000000892        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
- .debug_str     0x000000000000089c        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
- .debug_str     0x000000000000089c        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
- .debug_str     0x00000000000008a6        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
- .debug_str     0x00000000000008a6        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
- .debug_str     0x00000000000008a6        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
- .debug_str     0x00000000000008a6        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
- .debug_str     0x00000000000008a6        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
- .debug_str     0x00000000000008a6        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
- .debug_str     0x00000000000008a6        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
- .debug_str     0x00000000000008a6        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
+ .debug_str     0x0000000000000135       0x28 appl_core\src\HAL\output_handler_lib.o
+ .debug_str     0x000000000000015d       0x6e appl_core\src\System\CAN\can_handler.o
+ .debug_str     0x00000000000001cb       0x2e appl_core\src\System\Ethernet\ethernet_init.o
+ .debug_str     0x00000000000001f9        0x0 appl_core\src\System\IO\hw_inputs.o
+ .debug_str     0x00000000000001f9        0x0 appl_core\src\System\IO\hw_outputs.o
+ .debug_str     0x00000000000001f9       0x39 appl_core\src\System\NVM\nvm_handler.o
+ .debug_str     0x0000000000000232       0x48 appl_core\src\main.o
+ .debug_str     0x000000000000027a       0x43 appl_core\src\opensyde\generated\checkpoints_data_pool.o
+ .debug_str     0x00000000000002bd       0x6c appl_core\src\opensyde\generated\comm_j1939_can1.o
+ .debug_str     0x0000000000000329       0x43 appl_core\src\opensyde\generated\configuration_data_pool.o
+ .debug_str     0x000000000000036c       0x43 appl_core\src\opensyde\generated\j1939_data_pool.o
+ .debug_str     0x00000000000003af      0x15e appl_core\src\opensyde\generated\osy_init.o
+ .debug_str     0x000000000000050d      0x19d appl_core\src\opensyde\j1939\osy_app_j1939.o
+ .debug_str     0x00000000000006aa       0x33 appl_core\src\opensyde\osy_app.o
+ .debug_str     0x00000000000006dd      0x144 appl_core\src\opensyde\osy_srv.o
+ .debug_str     0x0000000000000821        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
+ .debug_str     0x0000000000000821        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
+ .debug_str     0x0000000000000821        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
+ .debug_str     0x000000000000082a        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
+ .debug_str     0x0000000000000833        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
+ .debug_str     0x000000000000083c        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
+ .debug_str     0x0000000000000845        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
+ .debug_str     0x0000000000000845        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_thenan_df.o)
+ .debug_str     0x0000000000000845        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
+ .debug_str     0x0000000000000845        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
+ .debug_str     0x0000000000000845        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
+ .debug_str     0x0000000000000845        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
+ .debug_str     0x0000000000000845        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
+ .debug_str     0x0000000000000845        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
+ .debug_str     0x000000000000084e        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
+ .debug_str     0x0000000000000857        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
+ .debug_str     0x0000000000000857        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
+ .debug_str     0x0000000000000860        0x9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
+ .debug_str     0x0000000000000869        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
+ .debug_str     0x0000000000000869        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
+ .debug_str     0x0000000000000869        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
+ .debug_str     0x0000000000000869        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
+ .debug_str     0x0000000000000869        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
+ .debug_str     0x0000000000000873        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
+ .debug_str     0x0000000000000873        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
+ .debug_str     0x0000000000000873        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
+ .debug_str     0x0000000000000873        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
+ .debug_str     0x0000000000000873        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
+ .debug_str     0x0000000000000873        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
+ .debug_str     0x0000000000000873        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
+ .debug_str     0x0000000000000873        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfiles.o)
+ .debug_str     0x000000000000087d        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
+ .debug_str     0x000000000000087d        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
+ .debug_str     0x000000000000087d        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
+ .debug_str     0x0000000000000887        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
+ .debug_str     0x0000000000000887        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
+ .debug_str     0x0000000000000887        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
+ .debug_str     0x0000000000000891        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
+ .debug_str     0x000000000000089b        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
+ .debug_str     0x00000000000008a5        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
+ .debug_str     0x00000000000008a5        0xa c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
+ .debug_str     0x00000000000008af        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
+ .debug_str     0x00000000000008af        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
+ .debug_str     0x00000000000008af        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
+ .debug_str     0x00000000000008af        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
+ .debug_str     0x00000000000008af        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
+ .debug_str     0x00000000000008af        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
+ .debug_str     0x00000000000008af        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
+ .debug_str     0x00000000000008af        0x0 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
  *(SafeTLib.debug_str)
 
 .debug_loc      memory region -> *default*
-                0x0000000000000000     0x3679
+                0x0000000000000000     0x36b8
  *(.debug_loc)
  .debug_loc     0x0000000000000000       0x20 appl_core\src\AgvWork\elevator_control.o
  .debug_loc     0x0000000000000020       0x5e appl_core\src\AgvWork\header_lift_control.o
@@ -17123,51 +17125,51 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  .debug_loc     0x0000000000000123      0x449 appl_core\src\HAL\alarm_handler_lib.o
  .debug_loc     0x000000000000056c      0x420 appl_core\src\HAL\input_handler_lib.o
  .debug_loc     0x000000000000098c      0x3b6 appl_core\src\HAL\nvm_handler_lib.o
- .debug_loc     0x0000000000000d42      0x4bd appl_core\src\HAL\output_handler_lib.o
- .debug_loc     0x00000000000011ff       0x63 appl_core\src\System\CAN\can_handler.o
- .debug_loc     0x0000000000001262      0x137 appl_core\src\System\Ethernet\ethernet_init.o
- .debug_loc     0x0000000000001399       0x50 appl_core\src\System\IO\hw_inputs.o
- .debug_loc     0x00000000000013e9       0x3a appl_core\src\System\IO\hw_outputs.o
- .debug_loc     0x0000000000001423       0xf7 appl_core\src\System\NVM\nvm_handler.o
- .debug_loc     0x000000000000151a       0x83 appl_core\src\main.o
- .debug_loc     0x000000000000159d       0xd8 appl_core\src\opensyde\j1939\osy_app_j1939.o
- .debug_loc     0x0000000000001675      0x162 appl_core\src\opensyde\osy_srv.o
- .debug_loc     0x00000000000017d7       0x9e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
- .debug_loc     0x0000000000001875       0x71 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
- .debug_loc     0x00000000000018e6      0x394 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
- .debug_loc     0x0000000000001c7a      0x42c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
- .debug_loc     0x00000000000020a6      0x19b c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
- .debug_loc     0x0000000000002241       0x52 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
- .debug_loc     0x0000000000002293       0x61 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
- .debug_loc     0x00000000000022f4       0x9e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
- .debug_loc     0x0000000000002392      0x18e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
- .debug_loc     0x0000000000002520       0x62 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
- .debug_loc     0x0000000000002582      0x13c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
- .debug_loc     0x00000000000026be       0x48 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
- .debug_loc     0x0000000000002706      0x1a6 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
- .debug_loc     0x00000000000028ac       0xe9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
- .debug_loc     0x0000000000002995       0x34 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
- .debug_loc     0x00000000000029c9       0x52 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
- .debug_loc     0x0000000000002a1b       0x3c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
- .debug_loc     0x0000000000002a57      0x21a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
- .debug_loc     0x0000000000002c71       0xa2 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
- .debug_loc     0x0000000000002d13      0x11b c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
- .debug_loc     0x0000000000002e2e       0x31 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
- .debug_loc     0x0000000000002e5f       0x3c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
- .debug_loc     0x0000000000002e9b       0x47 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
- .debug_loc     0x0000000000002ee2       0x73 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
- .debug_loc     0x0000000000002f55       0xbb c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
- .debug_loc     0x0000000000003010       0x21 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
- .debug_loc     0x0000000000003031      0x279 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
- .debug_loc     0x00000000000032aa       0xa2 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
- .debug_loc     0x000000000000334c       0x63 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
- .debug_loc     0x00000000000033af       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
- .debug_loc     0x0000000000003423       0x34 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
- .debug_loc     0x0000000000003457       0x8c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
- .debug_loc     0x00000000000034e3       0x99 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
- .debug_loc     0x000000000000357c       0x1e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
- .debug_loc     0x000000000000359a       0xc1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
- .debug_loc     0x000000000000365b       0x1e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
+ .debug_loc     0x0000000000000d42      0x4fc appl_core\src\HAL\output_handler_lib.o
+ .debug_loc     0x000000000000123e       0x63 appl_core\src\System\CAN\can_handler.o
+ .debug_loc     0x00000000000012a1      0x137 appl_core\src\System\Ethernet\ethernet_init.o
+ .debug_loc     0x00000000000013d8       0x50 appl_core\src\System\IO\hw_inputs.o
+ .debug_loc     0x0000000000001428       0x3a appl_core\src\System\IO\hw_outputs.o
+ .debug_loc     0x0000000000001462       0xf7 appl_core\src\System\NVM\nvm_handler.o
+ .debug_loc     0x0000000000001559       0x83 appl_core\src\main.o
+ .debug_loc     0x00000000000015dc       0xd8 appl_core\src\opensyde\j1939\osy_app_j1939.o
+ .debug_loc     0x00000000000016b4      0x162 appl_core\src\opensyde\osy_srv.o
+ .debug_loc     0x0000000000001816       0x9e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
+ .debug_loc     0x00000000000018b4       0x71 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
+ .debug_loc     0x0000000000001925      0x394 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
+ .debug_loc     0x0000000000001cb9      0x42c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
+ .debug_loc     0x00000000000020e5      0x19b c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
+ .debug_loc     0x0000000000002280       0x52 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
+ .debug_loc     0x00000000000022d2       0x61 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
+ .debug_loc     0x0000000000002333       0x9e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
+ .debug_loc     0x00000000000023d1      0x18e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
+ .debug_loc     0x000000000000255f       0x62 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
+ .debug_loc     0x00000000000025c1      0x13c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
+ .debug_loc     0x00000000000026fd       0x48 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
+ .debug_loc     0x0000000000002745      0x1a6 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
+ .debug_loc     0x00000000000028eb       0xe9 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
+ .debug_loc     0x00000000000029d4       0x34 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
+ .debug_loc     0x0000000000002a08       0x52 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
+ .debug_loc     0x0000000000002a5a       0x3c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
+ .debug_loc     0x0000000000002a96      0x21a c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
+ .debug_loc     0x0000000000002cb0       0xa2 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
+ .debug_loc     0x0000000000002d52      0x11b c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
+ .debug_loc     0x0000000000002e6d       0x31 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
+ .debug_loc     0x0000000000002e9e       0x3c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
+ .debug_loc     0x0000000000002eda       0x47 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
+ .debug_loc     0x0000000000002f21       0x73 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
+ .debug_loc     0x0000000000002f94       0xbb c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
+ .debug_loc     0x000000000000304f       0x21 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
+ .debug_loc     0x0000000000003070      0x279 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
+ .debug_loc     0x00000000000032e9       0xa2 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
+ .debug_loc     0x000000000000338b       0x63 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
+ .debug_loc     0x00000000000033ee       0x74 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
+ .debug_loc     0x0000000000003462       0x34 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
+ .debug_loc     0x0000000000003496       0x8c c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
+ .debug_loc     0x0000000000003522       0x99 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
+ .debug_loc     0x00000000000035bb       0x1e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
+ .debug_loc     0x00000000000035d9       0xc1 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
+ .debug_loc     0x000000000000369a       0x1e c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
  *(SafeTLib.debug_loc)
 
 .debug_macinfo
@@ -17175,7 +17177,7 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  *(SafeTLib.debug_macinfo)
 
 .debug_ranges   memory region -> *default*
-                0x0000000000000000      0xae8
+                0x0000000000000000      0xaf0
  *(.debug_ranges)
  .debug_ranges  0x0000000000000000       0x10 appl_core\src\AgvDiag\checkpoint_handler.o
  .debug_ranges  0x0000000000000010       0x20 appl_core\src\AgvDiag\fault_handler.o
@@ -17185,69 +17187,69 @@ LOAD c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/c
  .debug_ranges  0x00000000000000a8      0x1c8 appl_core\src\HAL\alarm_handler_lib.o
  .debug_ranges  0x0000000000000270       0xe8 appl_core\src\HAL\input_handler_lib.o
  .debug_ranges  0x0000000000000358       0x58 appl_core\src\HAL\nvm_handler_lib.o
- .debug_ranges  0x00000000000003b0       0xe8 appl_core\src\HAL\output_handler_lib.o
- .debug_ranges  0x0000000000000498       0x48 appl_core\src\System\CAN\can_handler.o
- .debug_ranges  0x00000000000004e0       0x60 appl_core\src\System\Ethernet\ethernet_init.o
- .debug_ranges  0x0000000000000540       0x18 appl_core\src\System\IO\hw_inputs.o
- .debug_ranges  0x0000000000000558       0x18 appl_core\src\System\IO\hw_outputs.o
- .debug_ranges  0x0000000000000570       0x20 appl_core\src\System\NVM\nvm_handler.o
- .debug_ranges  0x0000000000000590       0x10 appl_core\src\main.o
- .debug_ranges  0x00000000000005a0       0x10 appl_core\src\opensyde\generated\checkpoints_data_pool.o
- .debug_ranges  0x00000000000005b0       0x10 appl_core\src\opensyde\generated\comm_j1939_can1.o
- .debug_ranges  0x00000000000005c0       0x10 appl_core\src\opensyde\generated\configuration_data_pool.o
- .debug_ranges  0x00000000000005d0       0x10 appl_core\src\opensyde\generated\j1939_data_pool.o
- .debug_ranges  0x00000000000005e0       0x30 appl_core\src\opensyde\generated\osy_init.o
- .debug_ranges  0x0000000000000610       0x78 appl_core\src\opensyde\j1939\osy_app_j1939.o
- .debug_ranges  0x0000000000000688       0x28 appl_core\src\opensyde\osy_app.o
- .debug_ranges  0x00000000000006b0       0x88 appl_core\src\opensyde\osy_srv.o
- .debug_ranges  0x0000000000000738       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
- .debug_ranges  0x0000000000000748       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
- .debug_ranges  0x0000000000000758       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
- .debug_ranges  0x0000000000000778       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
- .debug_ranges  0x0000000000000788       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
- .debug_ranges  0x0000000000000798       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
- .debug_ranges  0x00000000000007a8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
- .debug_ranges  0x00000000000007b8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
- .debug_ranges  0x00000000000007c8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
- .debug_ranges  0x00000000000007d8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
- .debug_ranges  0x00000000000007e8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
- .debug_ranges  0x00000000000007f8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
- .debug_ranges  0x0000000000000808       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
- .debug_ranges  0x0000000000000818       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
- .debug_ranges  0x0000000000000828       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
- .debug_ranges  0x0000000000000838       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
- .debug_ranges  0x0000000000000848       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
- .debug_ranges  0x0000000000000858       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
- .debug_ranges  0x0000000000000868       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
- .debug_ranges  0x0000000000000878       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
- .debug_ranges  0x0000000000000888       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
- .debug_ranges  0x00000000000008a8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
- .debug_ranges  0x00000000000008b8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
- .debug_ranges  0x00000000000008c8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
- .debug_ranges  0x00000000000008d8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
- .debug_ranges  0x00000000000008e8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
- .debug_ranges  0x00000000000008f8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
- .debug_ranges  0x0000000000000908       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
- .debug_ranges  0x0000000000000918       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
- .debug_ranges  0x0000000000000928       0x18 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
- .debug_ranges  0x0000000000000940       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
- .debug_ranges  0x0000000000000950       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
- .debug_ranges  0x0000000000000978       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
- .debug_ranges  0x0000000000000988       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
- .debug_ranges  0x0000000000000998       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
- .debug_ranges  0x00000000000009a8       0x38 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
- .debug_ranges  0x00000000000009e0       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
- .debug_ranges  0x0000000000000a08       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
- .debug_ranges  0x0000000000000a18       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
- .debug_ranges  0x0000000000000a48       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
- .debug_ranges  0x0000000000000a58       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
- .debug_ranges  0x0000000000000a68       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
- .debug_ranges  0x0000000000000a78       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
- .debug_ranges  0x0000000000000a88       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
- .debug_ranges  0x0000000000000a98       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
- .debug_ranges  0x0000000000000aa8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
- .debug_ranges  0x0000000000000ab8       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
- .debug_ranges  0x0000000000000ac8       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/crtn.o
+ .debug_ranges  0x00000000000003b0       0xf0 appl_core\src\HAL\output_handler_lib.o
+ .debug_ranges  0x00000000000004a0       0x48 appl_core\src\System\CAN\can_handler.o
+ .debug_ranges  0x00000000000004e8       0x60 appl_core\src\System\Ethernet\ethernet_init.o
+ .debug_ranges  0x0000000000000548       0x18 appl_core\src\System\IO\hw_inputs.o
+ .debug_ranges  0x0000000000000560       0x18 appl_core\src\System\IO\hw_outputs.o
+ .debug_ranges  0x0000000000000578       0x20 appl_core\src\System\NVM\nvm_handler.o
+ .debug_ranges  0x0000000000000598       0x10 appl_core\src\main.o
+ .debug_ranges  0x00000000000005a8       0x10 appl_core\src\opensyde\generated\checkpoints_data_pool.o
+ .debug_ranges  0x00000000000005b8       0x10 appl_core\src\opensyde\generated\comm_j1939_can1.o
+ .debug_ranges  0x00000000000005c8       0x10 appl_core\src\opensyde\generated\configuration_data_pool.o
+ .debug_ranges  0x00000000000005d8       0x10 appl_core\src\opensyde\generated\j1939_data_pool.o
+ .debug_ranges  0x00000000000005e8       0x30 appl_core\src\opensyde\generated\osy_init.o
+ .debug_ranges  0x0000000000000618       0x78 appl_core\src\opensyde\j1939\osy_app_j1939.o
+ .debug_ranges  0x0000000000000690       0x28 appl_core\src\opensyde\osy_app.o
+ .debug_ranges  0x00000000000006b8       0x88 appl_core\src\opensyde\osy_srv.o
+ .debug_ranges  0x0000000000000740       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfdi.o)
+ .debug_ranges  0x0000000000000750       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_floatdidf.o)
+ .debug_ranges  0x0000000000000760       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_addsub_df.o)
+ .debug_ranges  0x0000000000000780       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_mul_df.o)
+ .debug_ranges  0x0000000000000790       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_div_df.o)
+ .debug_ranges  0x00000000000007a0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ne_df.o)
+ .debug_ranges  0x00000000000007b0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_si_to_df.o)
+ .debug_ranges  0x00000000000007c0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_usi_to_df.o)
+ .debug_ranges  0x00000000000007d0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udivdi3.o)
+ .debug_ranges  0x00000000000007e0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(umoddi3.o)
+ .debug_ranges  0x00000000000007f0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(memmove.o)
+ .debug_ranges  0x0000000000000800       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fixunsdfsi.o)
+ .debug_ranges  0x0000000000000810       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_pack_df.o)
+ .debug_ranges  0x0000000000000820       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_unpack_df.o)
+ .debug_ranges  0x0000000000000830       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_fpcmp_parts_df.o)
+ .debug_ranges  0x0000000000000840       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_ge_df.o)
+ .debug_ranges  0x0000000000000850       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(_df_to_si.o)
+ .debug_ranges  0x0000000000000860       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161\libgcc.a(udiv6432.o)
+ .debug_ranges  0x0000000000000870       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(abort.o)
+ .debug_ranges  0x0000000000000880       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(errno.o)
+ .debug_ranges  0x0000000000000890       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(exit.o)
+ .debug_ranges  0x00000000000008b0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(raise.o)
+ .debug_ranges  0x00000000000008c0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(signal.o)
+ .debug_ranges  0x00000000000008d0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strcmp.o)
+ .debug_ranges  0x00000000000008e0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strlen.o)
+ .debug_ranges  0x00000000000008f0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncmp.o)
+ .debug_ranges  0x0000000000000900       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strncpy.o)
+ .debug_ranges  0x0000000000000910       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xctype.o)
+ .debug_ranges  0x0000000000000920       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xexit.o)
+ .debug_ranges  0x0000000000000930       0x18 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xstoul.o)
+ .debug_ranges  0x0000000000000948       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xtolotab.o)
+ .debug_ranges  0x0000000000000958       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fputs.o)
+ .debug_ranges  0x0000000000000980       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(memchr.o)
+ .debug_ranges  0x0000000000000990       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(strrchr.o)
+ .debug_ranges  0x00000000000009a0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfwprep.o)
+ .debug_ranges  0x00000000000009b0       0x38 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fclose.o)
+ .debug_ranges  0x00000000000009e8       0x28 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(fflush.o)
+ .debug_ranges  0x0000000000000a10       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xatexit.o)
+ .debug_ranges  0x0000000000000a20       0x30 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libdnk_c.a(xfofind.o)
+ .debug_ranges  0x0000000000000a50       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_close.o)
+ .debug_ranges  0x0000000000000a60       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_virtio.o)
+ .debug_ranges  0x0000000000000a70       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_write.o)
+ .debug_ranges  0x0000000000000a80       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_exit.o)
+ .debug_ranges  0x0000000000000a90       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_remove.o)
+ .debug_ranges  0x0000000000000aa0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_rmdir.o)
+ .debug_ranges  0x0000000000000ab0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(libos_errno.o)
+ .debug_ranges  0x0000000000000ac0       0x10 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/../../../../tricore/lib/tc161\libos.a(vio_unlink.o)
+ .debug_ranges  0x0000000000000ad0       0x20 c:/hightec/toolchains/tricore/v4.9.2.0/bin/../lib/gcc/tricore/4.9.4/tc161/crtn.o
  *(SafeTLib.debug_ranges)
 
 .debug_weaknames
@@ -18215,6 +18217,7 @@ get_numInputs                                     appl_core\src\HAL\input_handle
                                                   appl_core\src\HAL\alarm_handler_lib.o
 get_numOutputs                                    appl_core\src\HAL\output_handler_lib.o
                                                   appl_core\src\HAL\alarm_handler_lib.o
+get_outputFaultStatus                             appl_core\src\HAL\output_handler_lib.o
 get_system_reset_status                           appl_core\src\HAL\STW_4CM_HAL\system.o
                                                   appl_core\src\main.o
 get_system_time_ms                                appl_core\src\HAL\STW_4CM_HAL\system.o
