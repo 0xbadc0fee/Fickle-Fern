@@ -27,6 +27,7 @@
 #include "ethernet_init.h"
 #include "hitch_position_control.h"
 #include "header_lift_control.h"
+#include "auger_cart_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -115,6 +116,7 @@ int main(void)
         update_elevatorControl();
         update_headerControl();
         update_hitchPosControl();
+        update_augerControl();
 
         //Outputs
         update_checkpointHandler();

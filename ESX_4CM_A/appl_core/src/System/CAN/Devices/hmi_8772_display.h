@@ -33,6 +33,7 @@ typedef struct
    uint8 u8_elevatorStatus;             //!<Elevator Control On/Off Status
 
    uint8 u8_relief_switch_status;       //!<Header Lift/Lower Relief Switch Status
+   uint8 u8_auger_status;
 
 }T_8772_Display;
 

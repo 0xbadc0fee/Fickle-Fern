@@ -14,3 +14,8 @@ CNTRL2DP(elevatorStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_TSC1_EngRqe
 
 /* Header Control Outputs */
 CNTRL2DP(reliefStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHydOilPressRelief, gt_ui.t_display.u8_relief_switch_status)
+
+/* Auger Cart Control Outputs */
+CNTRL2DP(augerStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkAugerUnloadOn, gt_ui.t_display.u8_auger_status)
+/*CNTRL2DP(button2LED, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Rec_Button_State_Mux, t_buttonPanel.u8_b2_lights)*/
+/*CNTRL2DP(button6LED, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Rec_Button_State_Mux, t_buttonPanel.u8_b6_lights)*/
