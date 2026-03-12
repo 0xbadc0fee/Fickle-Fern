@@ -67,15 +67,12 @@ sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleani
     mt_cchains.t_btn_shaft.u32_hold_ms = 0u;
     mt_cchains.t_btn_shaft.u8_btn_set = TRUE;
 
-    //Initialize outputs to disabled state
-
-
     return s16_error;
 }
 
 /** \brief Update AgvWork - Clean Chains Control
  *
- *  This function contains the cyclical logic for AgvWork - Cleaning Chains Control.
+ *  This function contains the cyclically logic for AgvWork - Cleaning Chains Control.
  *
  *  Primary logic for this function is to set the speed of the cleaning chains drive (cleaning shafts)
  *  based on CAN commands from the joystick.
