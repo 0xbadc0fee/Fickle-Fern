@@ -27,6 +27,7 @@
 #include "ethernet_init.h"
 
 #include "header_lift_control.h"
+#include "stick_remover_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -87,6 +88,7 @@ int main(void)
     {
         s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
         s16_Error += init_headerControl(&gt_ui, &gt_headerConfig);
+        s16_Error += init_stickRemoverControl(&gt_ui);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -113,6 +115,7 @@ int main(void)
         //Run AgvWork Controls
         update_elevatorControl();
         update_headerControl();
+        update_stickRemoverControl();
 
         //Outputs
         update_checkpointHandler();
