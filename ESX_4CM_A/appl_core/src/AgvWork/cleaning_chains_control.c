@@ -16,9 +16,9 @@
 //STW
 #include "stwerrors.h"
 #include "stwtypes.h"
+#include "system.h"
 //PROJECT
 #include "cleaning_chains_control.h"
-#include "helper_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
@@ -58,24 +58,17 @@ sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleani
     mt_cchains.pt_cp_cchains = _chkCleaningShaft;
 
     //Initialize local variables
-    mt_cchains.u8_door_fault_status = FALSE;
-    mt_cchains.u8_door_value = DOOR_CLOSED;
-    mt_cchains.u8_shaft_fault_status= FALSE;
-    mt_cchains.u8_ign_value = IGN_OFF;
-    mt_cchains.u8_ign_fault_status = FALSE;
-    mt_cchains.u32_ign_on_ms = 0u;
-    mt_cchains.u32_dt_ms = 0u;
-    mt_cchains.u32_deb_ms = 0u;
-    mt_cchains.u8_safe_state = FALSE; //FR-8.2 & IR-8.2 Disabled safe state
-    mt_cchains.u8_shaft_drive_latched = FALSE;
-
+    mt_cchains.u32_ign_start_time_ms = 0u;
+    mt_cchains.u8_prev_ign_on = FALSE;
+    mt_cchains.u8_safe_state = SHAFT_DRIVE_OFF; //FR-8.2 & IR-8.2 Disabled safe state
+    mt_cchains.u8_shaft_drive_latched = SHAFT_DRIVE_OFF;
     //Initialize toggle button helper
     mt_cchains.t_btn_shaft.pu_btn_state = &mt_cchains.u8_shaft_drive_latched;
     mt_cchains.t_btn_shaft.u32_hold_ms = 0u;
     mt_cchains.t_btn_shaft.u8_btn_set = TRUE;
 
     //Initialize outputs to disabled state
-    mt_cchains.u8_shaft_drive_latched = SHAFT_DRIVE_OFF;
+
 
     return s16_error;
 }
@@ -96,44 +89,55 @@ sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleani
 sint16 update_cChainsControl(void)
 {
     sint16 s16_error = C_NO_ERR;
+
     uint8 u8_faulted = FALSE;
+    uint8 u8_door_fault_status = FALSE;
+    uint8 u8_ign_fault_status = FALSE;
+
+    float32 f32_door_value = DOOR_CLOSED;
+    float32 f32_ign_value = IGN_OFF;
+    uint8 u8_shaft_cmd = FALSE;
+
+    uint8 u8_ign_on = FALSE;
+    uint32 u32_now_ms = get_system_time_ms();
+
+    if(mt_cchains.pu8_shaft_drive_command != NULL)
+    {
+        u8_shaft_cmd = *mt_cchains.pu8_shaft_drive_command;
+    }
 
     //Ready required interlock inputs
-    get_inputFaultStatus("CAB_DOOR", &mt_cchains.u8_door_fault_status);
-    get_inputValue("CAB_DOOR", &mt_cchains.u8_door_value);
+    get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
+    get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGN_SWITCH", &mt_cchains.u8_ign_fault_status);
-    get_inputValue("IGN_SWITCH", &mt_cchains.u8_ign_value);
+    get_inputFaultStatus("IGN_SWITCH", &u8_ign_fault_status);
+    get_inputValue("IGN_SWITCH", &f32_ign_value);
 
     //FR-8.2 Program Start debounce timing
-    if((mt_cchains.u8_ign_fault_status == TRUE) || (mt_cchains.u8_ign_value == IGN_OFF))
+    u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
+    if((u8_ign_on == TRUE) && (mt_cchains.u8_prev_ign_on == FALSE))
     {
-        mt_cchains.u32_ign_on_ms = 0u; //Reset timer
+        mt_cchains.u32_ign_start_time_ms = u32_now_ms; //Start timer
     }
-    else
+
+    if(u8_ign_on == FALSE)
     {
-        if(mt_cchains.u32_ign_on_ms  < (UINT32_MAX - mt_cchains.u32_dt_ms))
-        {
-            mt_cchains.u32_ign_on_ms += mt_cchains.u32_dt_ms;
-        }
-        else
-        {
-            mt_cchains.u32_ign_on_ms = UINT32_MAX;
-        }
+        mt_cchains.u32_ign_start_time_ms = 0u;
     }
 
     //FR-8.2 / IR-8.2 Disable Shaft Drive and reset when conditions not satisfied
-    if((mt_cchains.u8_door_fault_status == TRUE) ||
-    (mt_cchains.u8_door_value != DOOR_CLOSED) ||
-    (mt_cchains.u8_ign_fault_status == TRUE) ||
-    (mt_cchains.u8_ign_value == IGN_OFF) ||
-    (mt_cchains.u32_ign_on_ms < PROGRAM_START_DEB_MS))
+    if((u8_door_fault_status == TRUE) ||
+    (f32_door_value != DOOR_CLOSED) ||
+    (u8_ign_fault_status == TRUE) ||
+    (f32_ign_value == IGN_OFF) ||
+    (mt_cchains.pu8_shaft_drive_command == NULL) ||
+    ((u32_now_ms - mt_cchains.u32_ign_start_time_ms) < PROGRAM_START_DEB_MS))
     {
         u8_faulted = TRUE;
     }
 
     //FR-8.1-2 IR-8.2 Apply latching and reset logic to Shaft Drive Enable. Force to safe state if fault.
-    s16_error = toggleButton(&mt_cchains.t_btn_shaft, *mt_cchains.pu8_shaft_drive_command, mt_cchains.u32_dt_ms, mt_cchains.u32_deb_ms, u8_faulted, mt_cchains.u8_safe_state);
+    s16_error = toggleButton(&mt_cchains.t_btn_shaft, u8_shaft_cmd , 0u, 0u, u8_faulted, mt_cchains.u8_safe_state);
 
     //FR-8.3 Transmit Shaft Drive Enable to the display
     *mt_cchains.pu8_shaft_drive_value = mt_cchains.u8_shaft_drive_latched;
@@ -143,6 +147,8 @@ sint16 update_cChainsControl(void)
 
     //Publish checkpoints
     mt_cchains.pt_cp_cchains->u8_chkPoint1 = *mt_cchains.pu8_shaft_drive_value;
+
+    mt_cchains.u8_prev_ign_on = u8_ign_on;
 
     return s16_error;
 
@@ -159,8 +165,10 @@ sint16 update_cChainsControl(void)
  */
 void getShaftDriveStatus(uint8 *pu8_shaft_drive_status)
 {
-    *pu8_shaft_drive_status = *mt_cchains.pu8_shaft_drive_value;
+    if(mt_cchains.pu8_shaft_drive_command != NULL && pu8_shaft_drive_status != NULL)
+    {
+        *pu8_shaft_drive_status = *mt_cchains.pu8_shaft_drive_value;
+    }
 }
-
 
 //EOF

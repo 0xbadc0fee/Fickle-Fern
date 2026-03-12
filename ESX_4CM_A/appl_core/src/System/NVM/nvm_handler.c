@@ -22,6 +22,7 @@
 //Include Controls that have checkpoints
 #include "elevator_control.h"
 #include "header_lift_control.h"
+#include "cleaning_chains_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"

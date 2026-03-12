@@ -16,9 +16,11 @@
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "stwtypes.h"
-#include <stdbool.h>
 
 #include "hmi_definition.h"
+#include "input_handler_lib.h"
+#include "output_handler_lib.h"
+#include "helper_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define DOOR_OPEN (1u)
@@ -34,7 +36,7 @@
 /** \brief Checkpoints Structure - Cleaning Chains Control
  *
  * This structure represents all checkpoints that are relevant
- * to engine start control
+ * to shaft drive control
  */
 typedef struct
 {
@@ -55,17 +57,10 @@ typedef struct
 typedef struct
 {
         //Local Control Variables
-        uint8 u8_door_fault_status; //!<Local Door Closed Status Variable
-        uint8 u8_door_value;    //!< Cab Door Switch OPEN/CLOSE Status
-        uint8 u8_ign_fault_status;  //!<Local Ignition Start Switch Status Variable
-        uint8 u8_ign_value; //!<Ignition Switch ON/OFF Status
-        uint8 u8_shaft_fault_status;    //!<Ignition Switch Fault Status
-        uint32 u32_dt_ms;   //!<Toggle Button DT MS
-        uint32 u32_deb_ms ; //!<Toggle Button Time Filter
         uint8 u8_safe_state;    //!<Toggle Button Safe State
         uint8 u8_shaft_drive_latched;   //!< Shaft Drive Button Latched Status
-        uint32 u32_ign_on_ms;    //!<OS Start MS timer
-        uint32 u32_dt_timer_ms;  //!<OS Start DT timer
+        uint32 u32_ign_start_time_ms;    //!<OS Start MS timer
+        uint8 u8_prev_ign_on; //!<Previous IGN ON state
 
         //TX CAN Variables
         uint8 *pu8_shaft_drive_value;   //!<On/Off Status of Shaft Drive (To Display)
@@ -84,7 +79,7 @@ typedef struct
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains * _chkCleaningShaft);
+sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleaningShaft);
 sint16 update_cChainsControl(void);
 void getShaftDriveStatus(uint8 *pu8_shaft_drive_status);
 

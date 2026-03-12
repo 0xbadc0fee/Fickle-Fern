@@ -34,6 +34,8 @@ typedef struct
 
    uint8 u8_relief_switch_status;       //!<Header Lift/Lower Relief Switch Status
 
+   uint8 u8_shaft_drive_status;         //!<Cleaning Chains Shaft Drive Status
+
 }T_8772_Display;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */

@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_550818174 mt_Variable;
+static T_osy_non_existing_type_1215799524 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CHECKPOINTS_PROJECT_ID_550818174
+CHECKPOINTS_PROJECT_ID_1215799524
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -47,6 +47,18 @@ static const T_Checkpoints_ElevatorControl_Values mt_ElevatorControlMaxValues =
    255U    ///< checkpoint2 (Variable description)
 };
 
+///Minimum values
+static const T_Checkpoints_CleaningChainsControl_Values mt_CleaningChainsControlMinValues =
+{
+   0U    ///< checkpoint1 (Variable description)
+};
+
+///Maximum values
+static const T_Checkpoints_CleaningChainsControl_Values mt_CleaningChainsControlMaxValues =
+{
+   255U    ///< checkpoint1 (Variable description)
+};
+
 ///List definitions:
 static const T_osy_dpa_element_definition mat_DataPoolElevatorControlElements[CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS] =
 {
@@ -54,10 +66,16 @@ static const T_osy_dpa_element_definition mat_DataPoolElevatorControlElements[CH
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint2, &mt_ElevatorControlMinValues.u8_checkpoint2, &mt_ElevatorControlMaxValues.u8_checkpoint2 }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolCleaningChainsControlElements[CHECKPOINTS_CLEANINGCHAINSCONTROL_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_CleaningChainsControlValues.u8_checkpoint1, &mt_CleaningChainsControlMinValues.u8_checkpoint1, &mt_CleaningChainsControlMaxValues.u8_checkpoint1 }
+};
+
 ///list of lists:
 static const T_osy_dpa_list_definition mat_DataPoolLists[CHECKPOINTS_NUMBER_OF_LISTS] =
 {
-   { CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_ElevatorControl_Values), &mat_DataPoolElevatorControlElements[0], &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues, NULL }
+   { CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_ElevatorControl_Values), &mat_DataPoolElevatorControlElements[0], &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues, NULL },
+   { CHECKPOINTS_CLEANINGCHAINSCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_CLEANINGCHAINSCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_CleaningChainsControl_Values), &mat_DataPoolCleaningChainsControlElements[0], &gt_Checkpoints_DataPoolValues.t_CleaningChainsControlValues, NULL }
 };
 
 ///Datapool definition:
@@ -68,7 +86,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Checkpoints",  ///< name of Datapool
    CHECKPOINTS_NUMBER_OF_LISTS,
-   0xd2a2428eU, ///< CRC of Datapool definition
+   0x6b599966U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],
