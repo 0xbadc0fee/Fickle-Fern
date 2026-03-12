@@ -41,6 +41,57 @@ T_VehicleOutput elevatorControlValve =
             .u16_dti                = 0,
         };
 
+T_VehicleOutput headLightSwitch =
+        {
+            .Name_Description       = "HEAD_LIGHTS",
+            .u16_hardwareID         = X_OUT_OPL2A_3,
+            .e_outputType            = OT_DIGITAL,
+
+            .f32_outputValue        = 0.0f,
+            .f32_prevOutputValue    = 0.0f,
+            .mq_outputChanged       = TRUE,
+
+            .u8_diagEnabled         = FALSE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE
+            },
+            .u16_dti                = 0,
+        };
+T_VehicleOutput workLightSwitch =
+        {
+            .Name_Description       = "WORK_LIGHTS",
+            .u16_hardwareID         = X_OUT_OPL2A_4,
+            .e_outputType            = OT_DIGITAL,
+
+            .f32_outputValue        = 0.0f,
+            .f32_prevOutputValue    = 0.0f,
+            .mq_outputChanged       = TRUE,
+
+            .u8_diagEnabled         = FALSE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE
+            },
+            .u16_dti                = 0,
+        };
+T_VehicleOutput tailLightSwitch =
+        {
+            .Name_Description       = "TAIL_LIGHTS",
+            .u16_hardwareID         = X_OUT_OPL2A_2,
+            .e_outputType            = OT_DIGITAL,
+
+            .f32_outputValue        = 0.0f,
+            .f32_prevOutputValue    = 0.0f,
+            .mq_outputChanged       = TRUE,
+
+            .u8_diagEnabled         = FALSE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE
+            },
+            .u16_dti                = 0,
+        };
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Outputs

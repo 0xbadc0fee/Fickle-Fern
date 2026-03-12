@@ -25,7 +25,6 @@ typedef struct
 {
    //RX Variables
    uint8 u8_elevatorSpeedRequest;       //!<Requested Speed of Elevator
-
    //TX Variables
    uint8 u8_controllerVersionMinor;     //!<Controller Software Version - Minor
    uint8 u8_controllerVersionMajor;     //!<Controller Software Version - Major
@@ -33,6 +32,9 @@ typedef struct
    uint8 u8_elevatorStatus;             //!<Elevator Control On/Off Status
 
    uint8 u8_relief_switch_status;       //!<Header Lift/Lower Relief Switch Status
+
+   uint8 u8_headlights_status; //!<Head Light Status
+   uint8 u8_worklights_status; //!<Work Light Status
 
 }T_8772_Display;
 

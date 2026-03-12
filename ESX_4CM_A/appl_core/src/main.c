@@ -28,6 +28,8 @@
 
 #include "header_lift_control.h"
 
+#include "lighting_control.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
@@ -86,7 +88,8 @@ int main(void)
     if(C_NO_ERR == s16_Error)
     {
         s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
-        s16_Error += init_headerControl(&gt_ui, &gt_headerConfig);
+        s16_Error += init_headerControl(&gt_ui, &gt_headerConfig); //Initialize Header Control
+        s16_Error += init_lightControl(&gt_ui); //Initialize Light Control
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -109,6 +112,7 @@ int main(void)
         update_canInputs();
 
         //Run AgvChassis Controls
+        update_lightControl();
 
         //Run AgvWork Controls
         update_elevatorControl();
