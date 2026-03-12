@@ -530,6 +530,42 @@ T_VehicleOutput manaulCartRelay =
             .u16_dti                = 0,
         };
 
+T_VehicleOutput augerCartRelay =
+        {
+            .Name_Description       = "AUGER_UNLOAD",
+            .u16_hardwareID         = X_OUT_OPHSP2A_13,
+            .e_outputType            = OT_DIGITAL,
+
+            .f32_outputValue        = 0.0f,
+            .f32_prevOutputValue    = 0.0f,
+            .mq_outputChanged       = TRUE,
+
+            .u8_diagEnabled         = FALSE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE
+            },
+            .u16_dti                = 0,
+        };
+
+T_VehicleOutput manaulCartRelay =
+        {
+            .Name_Description       = "MANUAL_UNLOAD",
+            .u16_hardwareID         = X_OUT_OPHSP2A_13,
+            .e_outputType            = OT_DIGITAL,
+
+            .f32_outputValue        = 0.0f,
+            .f32_prevOutputValue    = 0.0f,
+            .mq_outputChanged       = TRUE,
+
+            .u8_diagEnabled         = FALSE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE
+            },
+            .u16_dti                = 0,
+        };
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Outputs
  *
