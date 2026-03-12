@@ -34,6 +34,8 @@ typedef struct
 
    uint8 u8_relief_switch_status;       //!<Header Lift/Lower Relief Switch Status
 
+   uint8 u8_stick_remover_status; //!<Stick Remover Status
+
 }T_8772_Display;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */

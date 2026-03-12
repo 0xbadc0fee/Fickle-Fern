@@ -9,3 +9,6 @@
 /* Elevator Control CAN Parameters */
 DP2CNTRL(elevatorSpeed, gt_ui.t_display.u8_elevatorSpeedRequest, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiElevatorSpeedCmd)
 DP2CNTRL(elevatorOnOff, gt_ui.t_joystick.u8_b1_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button1PressedStatus)
+
+/* Stick Remover CAN Parameters */
+DP2CNTRL(stickRemOnOff, gt_ui.t_buttonPanel.u8_b5_state, 		gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_05)
