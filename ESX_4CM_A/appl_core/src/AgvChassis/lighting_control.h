@@ -14,25 +14,28 @@
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "stwtypes.h"
-#include <stdbool.h>
 
+#include "output_handler_lib.h"
 #include "hmi_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define WORK_ON (1u)
 #define WORK_OFF (0u)
-
 #define HEAD_ON (1u)
 #define HEAD_OFF (0u)
-
 #define TAIL_ON (1u)
 #define TAIL_OFF (0u)
+
+#define LIGHT_MODE_OFF (0u)
+#define LIGHT_MODE_HEAD_TAIL (1u)
+#define LIGHT_MODE_WORK (2u)
+
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /** \brief Control Structure - Lighting Control
  *
  * This structure represents all variables and pointers that
- * are utilized and tracked for cleaning chains control that need to
+ * are utilized and tracked for light controls that need to
  * persist through cyclic calls (static).
  *
  * This structure does not include any variables that are considered
@@ -41,13 +44,11 @@
 typedef struct
 {
         //Local Control Variables
-        uint8 u8_light_fault_status;    //!<Lighting Fault Status
         uint8 u8_work_status;    //!<Lighting Work Status
-        uint8 u8_work_flt_status; //!<Lighting Work Fault Status
         uint8 u8_head_status;    //!<Lighting Head Status
-        uint8 u8_head_flt_status; //!<Lighting Head Fault Status
         uint8 u8_tail_status;    //!<Lighting Tail Status
-        uint8 u8_tail_flt_status; //!<Lighting Tail Fault Status
+        uint8 u8_light_mode; //!<Light Mode Setting Current
+        uint8 u8_prev_light_btn; //<!Previous Light button State
 
         //TX CAN Variables
         uint8 *pu8_lgt_select_mode;   //!<Light Selector Mode Indicator TX

@@ -26,6 +26,10 @@
 
 #include "ethernet_init.h"
 
+#include "header_lift_control.h"
+
+#include "lighting_control.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
@@ -71,9 +75,10 @@ int main(void)
     uint8 u8_ResetRequest;
 
     //Initialize System
-    s16_Error = init_canInterfaces();  // Initialize CAN
+
+    s16_Error  = ethernet_init();       // Initialize Ethernet
+    s16_Error += init_canInterfaces();  // Initialize CAN
     s16_Error += init_hwInputs();       // Initialize HW Inputs
-    s16_Error += init_hwOutputs();      // Initialize HW Outputs
     s16_Error += init_nvmParameters();  // Initialize NVM Objects
 
     // Start openSYDE task
@@ -83,12 +88,8 @@ int main(void)
     if(C_NO_ERR == s16_Error)
     {
         s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
-    }
-
-    //Initialize AgvChassis Controls
-    if(C_NO_ERR == s16_Error)
-    {
-        //s16_Error += init_throttleControl(&gt_ui, &gt_throttleCheckpoints, &gt_throttleConfig); //Initialize Elevator Control
+        s16_Error += init_headerControl(&gt_ui, &gt_headerConfig); //Initialize Header Control
+        s16_Error += init_lightControl(&gt_ui); //Initialize Light Control
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -111,11 +112,11 @@ int main(void)
         update_canInputs();
 
         //Run AgvChassis Controls
-        //update_throttleControl();
+        update_lightControl();
 
         //Run AgvWork Controls
         update_elevatorControl();
-        //update_suctionFanControl();
+        update_headerControl();
 
         //Outputs
         update_checkpointHandler();
