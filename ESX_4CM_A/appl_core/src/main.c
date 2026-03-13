@@ -27,6 +27,7 @@
 #include "ethernet_init.h"
 
 #include "header_lift_control.h"
+#include "power_assist_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -87,6 +88,7 @@ int main(void)
     {
         s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
         s16_Error += init_headerControl(&gt_ui, &gt_headerConfig);
+        s16_Error += init_powerAssistControl(&gt_ui, &gt_powerAssistConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()

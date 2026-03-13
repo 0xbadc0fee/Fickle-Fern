@@ -12,3 +12,6 @@ NVM_FIELD(elevatorMaxSpeed, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configur
 
 /* Header Control Parameter */
 NVM_FIELD(hllEnable, CONFIGURATION_LIST_INDEX_HEADERCONFIG, gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable, gt_headerConfig.u8_joystick_hll_enable)
+
+/* Power Assist Parameter */
+NVM_FIELD(PAInstalled, CONFIGURATION_LIST_INDEX_POWERASSISTCONFIG, gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed, gt_powerAssistConfig.u8_power_assist_installed)

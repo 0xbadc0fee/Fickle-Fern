@@ -436,7 +436,53 @@ T_VehicleInput tvi_head_pressure =
     .s32_diagMax            = 1,
 };
 
+T_VehicleInput tractionValveSwitch =
+        {
+            .Name_Description       = "TRACTION_VALVE_SWITCH",
+            .u16_hardwareID         = X_IN_IDA35V_5,
+            .e_inputType            = IT_DIGITAL,
+            .f32_inputValue         = FALSE,
+            .f32_prevInputValue     = FALSE,
+            .mq_inputChanged        = TRUE,
+            .u8_diagEnabled         = TRUE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE,
+                .u8_fault_status    = FALSE,
+                .u32_spn            = 520193, //TODO
+                .t_fmi = {
+                    [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5 },
+                    [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+                }
+            },
+            .u16_dti                = 1000,
+            .s32_diagMin            = 0,
+            .s32_diagMax            = 0,
+        };
 
+T_VehicleInput ignitionSwitch =
+        {
+            .Name_Description       = "IGN_SWITCH",
+            .u16_hardwareID         = X_IN_IACV_1,
+            .e_inputType            = IT_DIGITAL,
+            .f32_inputValue         = FALSE,
+            .f32_prevInputValue     = FALSE,
+            .mq_inputChanged        = TRUE,
+            .u8_diagEnabled         = TRUE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE,
+                .u8_fault_status    = FALSE,
+                .u32_spn            = 520193, //TODO
+                .t_fmi = {
+                    [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5 },
+                    [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+                }
+            },
+            .u16_dti                = 1000,
+            .s32_diagMin            = 0,
+            .s32_diagMax            = 0,
+        };
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Inputs
  *
