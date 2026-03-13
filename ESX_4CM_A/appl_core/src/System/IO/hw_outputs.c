@@ -41,6 +41,41 @@ T_VehicleOutput elevatorControlValve =
             .u16_dti                = 0,
         };
 
+T_VehicleOutput stickBoxExRetRelay =
+        {
+            .Name_Description       = "STICK_BOX_CLOSE",
+            .u16_hardwareID         = X_OUT_OPHSP2A_3,
+            .e_outputType            = OT_DIGITAL,
+
+            .f32_outputValue        = 0.0f,
+            .f32_prevOutputValue    = 0.0f,
+            .mq_outputChanged       = TRUE,
+
+            .u8_diagEnabled         = FALSE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE
+            },
+            .u16_dti                = 0,
+        };
+
+T_VehicleOutput stickBoxActRelay =
+        {
+            .Name_Description       = "STICK_BOX_OPEN",
+            .u16_hardwareID         = X_OUT_OPHSP2A_1,
+            .e_outputType            = X_OUT_OPHSP2A_2,
+
+            .f32_outputValue        = 0.0f,
+            .f32_prevOutputValue    = 0.0f,
+            .mq_outputChanged       = TRUE,
+
+            .u8_diagEnabled         = FALSE,
+            .t_fault=
+            {
+                .u8_dm1_enable      = FALSE
+            },
+            .u16_dti                = 0,
+        };
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Outputs
