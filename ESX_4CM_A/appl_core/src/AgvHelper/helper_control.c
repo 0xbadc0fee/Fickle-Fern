@@ -16,10 +16,10 @@
 //STW
 #include "stwerrors.h"
 #include "stwtypes.h"
+#include "system.h"
 //PROJECT
 #include "helper_control.h"
 #include "math.h"
-#include "x_sys.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
@@ -62,18 +62,18 @@ sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_st
     }
 
     //FR-17.1 Control Rate
-    u64_currentTime = (uint64)x_sys_get_time_us();  //Calculate delta t, used in Ipart and Dpart
+    u64_currentTime = get_system_time_us();  //Calculate delta t, used in Ipart and Dpart
 
     //IR-17.1 Compute Control Error
     if(isnan(f32_command) || isnan(f32_feedback))
-       {
-           t_pid_state->f32_output = 0.0f;
-           t_pid_state->f32_error_accum = 0.0f;
-           t_pid_state->f32_prev_error = 0.0f;
-           t_pid_state->u64_last_time = u64_currentTime;
-           return C_WARN;
+    {
+        t_pid_state->f32_output = 0.0f;
+        t_pid_state->f32_error_accum = 0.0f;
+        t_pid_state->f32_prev_error = 0.0f;
+        t_pid_state->u64_last_time = u64_currentTime;
+        return C_WARN;
 
-       }
+    }
 
     //FR-17.2 Compute Control Error
     f32_error = f32_command-f32_feedback;  //Calculate error between target and actual pressures
@@ -149,15 +149,22 @@ sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_st
  *
  *  This function reduces the rate of change between a new target value and the current value over a configurable period of time (linear)
  *
+ *  \param f32_target
+ *  \param pt_params
+ *  \param pt_state
+ *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *pt_state)
 {
     sint16 s16_error = C_NO_ERR;
-    float32 f32_current = 0u;
-    float32 f32_step_max = 0u;
-    float32 f32_next = 0u;
+    float32 f32_current = 0.0f;
+    float32 f32_step_max = 0.0f;
+    float32 f32_next = 0.0f;
+    float32 f32_dt_s = 0.0f;
+    uint32 u32_dt_ms = 0u;
+    uint32 u32_now_ms = get_system_time_ms();
 
     //IR-18 Fault Handling
     if ((pt_state == NULL)|| (pt_params == NULL))
@@ -167,21 +174,34 @@ sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *
 
     //IR-18.1-18.3 Param Validation
     if(isnan(f32_target) ||
-    isnan(pt_params->f32_dt_s) || isnan(pt_params->f32_dt_s <= 0.0f) ||
     isnan(pt_params->f32_ramp_rate) || isnan(pt_params->f32_ramp_rate < 0.0f) ||
-    isnan(pt_params->f32_min_limit) || isnan(pt_params->f32_max_limit) ||
+    isnan(pt_params->f32_min_limit) || isnan(pt_params->f32_max_limit) || isnan(pt_params->f32_safe_state)
     (pt_params->f32_min_limit > pt_params->f32_max_limit))
     {
-        pt_state->f32_output = CLAMP_F32(pt_state->f32_output, pt_params->f32_min_limit, pt_params->f32_max_limit); //Force safe-state
+        pt_state->f32_output = CLAMP_F32(pt_params->f32_safe_state, pt_params->f32_min_limit, pt_params->f32_max_limit); //Force safe-state
         return C_WARN;
     }
+
+    //First call: Init time base
+    if(pt_state->u32_last_time_ms == 0u)
+    {
+        pt_state->u32_last_time_ms = u32_now_ms;
+        pt_state->f32_output = CLAMP_F32(pt_state->f32_output, pt_params->f32_min_limit, pt_params->f32_max_limit);
+        return s16_error;
+    }
+
+    //Calculate elapsed time
+    u32_dt_ms = u32_now_ms - pt_state->u32_last_time_ms;
+    pt_state->u32_last_time_ms = u32_now_ms;
+
+    f32_dt_s = ((float32)u32_dt_ms/1000.0F);
 
     //FR-18.5 Clamp current output before use
     pt_state->f32_output = CLAMP_F32(pt_state->f32_output, pt_params->f32_min_limit, pt_params->f32_max_limit);
     f32_current = pt_state->f32_output;
 
     //FR-18.1/FR-18.3 Limit Change per cycle
-    f32_step_max = pt_params->f32_ramp_rate * pt_params->f32_dt_s; //Limit change per cycle
+    f32_step_max = pt_params->f32_ramp_rate * f32_dt_s; //Limit change per cycle
 
     //FR-18.2/FR-18.4 Linear transition toward target; hold once reached.
     if(f32_target > f32_current)
@@ -235,7 +255,6 @@ sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt, float32 * const pf32
     pt_mv_adv_flt->u32_accum_ms = 0u;
     pt_mv_adv_flt->f32_sum = 0.0f;
     pt_mv_adv_flt->f32_out = f32_safe_output;
-    pt_mv_adv_flt->u8_faulted = FALSE;
 
     return s16_error;
 }
@@ -246,20 +265,18 @@ sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt, float32 * const pf32
  *
  *  \param pt_mv_adv_flt
  *  \param pt_cfg
- *  \param u32_dt_ms
  *  \param f32_new_value
- *  \param u8_value_valid
- *  \param pf32_output
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *const pt_cfg, uint32 u32_dt_ms, float32 f32_new_value , uint8 u8_value_valid, float32 * const pf32_output)
+sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *const pt_cfg, float32 f32_new_value)
 {
     sint16 s16_error = C_NO_ERR;
     float32 f32_old = 0.0f;
+    uint32 u32_now_ms = get_system_time_ms();
 
-    if((pt_mv_adv_flt == NULL) || (pt_cfg == NULL) || (pf32_output == NULL))
+    if((pt_mv_adv_flt == NULL) || (pt_cfg == NULL))
     {
         return C_WARN;
     }
@@ -273,42 +290,43 @@ sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *co
     {
         pt_mv_adv_flt->f32_out = pt_cfg->f32_safe_output;
         pt_mv_adv_flt->u8_faulted = TRUE;
-        *pf32_output = pt_mv_adv_flt->f32_out;
         return C_WARN;
     }
 
     //IR-19.2 Invalid sample value
-    if(u8_value_valid == FALSE || isnan(f32_new_value))
+    if(isnan(f32_new_value))
     {
         pt_mv_adv_flt->f32_out = pt_cfg->f32_safe_output;
         pt_mv_adv_flt->u8_faulted = TRUE;
-        *pf32_output = pt_mv_adv_flt->f32_out;
         return C_WARN;
     }
 
     //IR-1.3
     pt_mv_adv_flt->u8_faulted = FALSE;
 
-    //FR-19.2/19.3 Filter
-    if(pt_mv_adv_flt->u32_accum_ms <= (UINT32_MAX - u32_dt_ms))
+    //FR-19.2/19.3 First valid sample
+    if(pt_mv_adv_flt->u16_count == 0u)
     {
-        pt_mv_adv_flt->u32_accum_ms += u32_dt_ms;
-    }
-    else
-    {
-        pt_mv_adv_flt->u32_accum_ms = UINT32_MAX;
+        pt_mv_adv_flt->pf32_buf[0] = f32_new_value;
+        pt_mv_adv_flt->f32_sum = f32_new_value;
+        pt_mv_adv_flt->f32_out = f32_new_value;
+        pt_mv_adv_flt->u16_head = 1u;
+        pt_mv_adv_flt->u16_count = 1u;
+        pt_mv_adv_flt->u32_accum_ms = u32_now_ms;
+        return s16_error;
     }
 
-    if((pt_mv_adv_flt->u16_count == 0u) || (pt_mv_adv_flt->u32_accum_ms >= (uint32)pt_cfg->u16_sample_time_ms))
+    //FR-19.2/19.3 Filter
+    if((u32_now_ms - pt_mv_adv_flt->u32_accum_ms) >= ((uint32)pt_cfg->u16_sample_time_ms))
     {
-        pt_mv_adv_flt->u32_accum_ms =0u;
+        pt_mv_adv_flt->u32_accum_ms =u32_now_ms;
 
         if(pt_mv_adv_flt->u16_count < pt_cfg->u16_sample_no)
         {
             pt_mv_adv_flt->pf32_buf[pt_mv_adv_flt->u16_head] = f32_new_value;
             pt_mv_adv_flt->f32_sum += f32_new_value;
-
             pt_mv_adv_flt->u16_head++;
+
             if(pt_mv_adv_flt->u16_head >= pt_cfg->u16_sample_no)
             {
                 pt_mv_adv_flt->u16_head = 0u;
@@ -316,29 +334,25 @@ sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *co
 
             pt_mv_adv_flt->u16_count++; //FR-19.4
         }
-    }
-    else
-    {
-        f32_old = pt_mv_adv_flt->pf32_buf[pt_mv_adv_flt->u16_head];
-        pt_mv_adv_flt->pf32_buf[pt_mv_adv_flt->u16_head] = f32_new_value;
-        pt_mv_adv_flt->f32_sum += (f32_new_value = f32_old);
 
-        pt_mv_adv_flt->u16_head++;
-        if(pt_mv_adv_flt->u16_head >= pt_cfg->u16_sample_no)
+        else
         {
-            pt_mv_adv_flt->u16_head = 0u;
+            f32_old = pt_mv_adv_flt->pf32_buf[pt_mv_adv_flt->u16_head];
+            pt_mv_adv_flt->pf32_buf[pt_mv_adv_flt->u16_head] = f32_new_value;
+            pt_mv_adv_flt->f32_sum += (f32_new_value - f32_old);
+
+            pt_mv_adv_flt->u16_head++;
+            if(pt_mv_adv_flt->u16_head >= pt_cfg->u16_sample_no)
+            {
+                pt_mv_adv_flt->u16_head = 0u;
+            }
         }
 
         pt_mv_adv_flt->f32_out = pt_mv_adv_flt->f32_sum / (float32)pt_mv_adv_flt->u16_count; //FR-19.1/19.4
     }
 
-    *pf32_output = pt_mv_adv_flt->f32_out;
-
-
     return s16_error;
-
 }
-
 
 /** \brief Low Pass Filter AgvHelper - Helper Control
  *
@@ -353,11 +367,11 @@ sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *co
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_alpha, uint8 u8_input_valid, float32 *pf32_output)
+sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_alpha, uint8 u8_input_valid)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((pt_filter == NULL) || (pf32_output == NULL))
+    if(pt_filter == NULL)
     {
         return C_WARN;
     }
@@ -369,7 +383,7 @@ sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_
     }
 
     // IR-20.2 Invalid Input
-    if ((u8_input_valid == FALSE) ||  isnan(f32_input))
+    if ((u8_input_valid == FALSE) || isnan(f32_input))
     {
         return C_WARN;
     }
@@ -380,8 +394,6 @@ sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_
         pt_filter->f32_output = pt_filter->f32_output + f32_alpha * (f32_input - pt_filter->f32_output);
     }
 
-    *pf32_output = pt_filter->f32_output;
-
     return s16_error;
 }
 
@@ -391,7 +403,6 @@ sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_
  *
  *  \param pt_btn Pointer to the toggle button structure
  *  \param u8_raw_btn Current raw button input value
- *  \param u32_dt_ms Cyclic execution period in milliseconds
  *  \param _u32_deb_ms Minimum press duration required to toggle
  *  \param u8_faulted Indicates interlock or fault condition active
  *  \param u8_safe_state Forced output state during fault
@@ -399,9 +410,10 @@ sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state)
+sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint32 u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state)
 {
     sint16 s16_error = C_NO_ERR;
+    uint32 u32_now_ms = get_system_time_ms();
 
     if((pt_btn == NULL) || (pt_btn->pu_btn_state == NULL))
     {
@@ -429,23 +441,19 @@ sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uin
     else
     {
         //FR-21.1 Measure continuous press time
-        if(pt_btn->u32_hold_ms < (UINT32_MAX - u32_dt_ms))
+        if(pt_btn->u32_hold_ms == 0u)
         {
-            pt_btn->u32_hold_ms += u32_dt_ms;
+            pt_btn->u32_hold_ms += u32_now_ms;
         }
-        else
-        {
-            pt_btn->u32_hold_ms = UINT32_MAX;
-        }
-    
+
         //FR-21.1 & FR-21.2 Toggle once when press duration >= debounce, only once per press
-        if( (pt_btn->u8_btn_set == TRUE) && (pt_btn->u32_hold_ms >= _u32_deb_ms))
+        if( (pt_btn->u8_btn_set == TRUE) && (pt_btn->u32_hold_ms >= u32_deb_ms))
         {
             *(pt_btn->pu_btn_state) = (*(pt_btn->pu_btn_state) == FALSE) ? TRUE : FALSE;
             pt_btn->u8_btn_set = FALSE;
         }
     }
-  
+
     return s16_error;
 }
 
