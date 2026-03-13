@@ -175,7 +175,7 @@ sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *
     //IR-18.1-18.3 Param Validation
     if(isnan(f32_target) ||
     isnan(pt_params->f32_ramp_rate) || isnan(pt_params->f32_ramp_rate < 0.0f) ||
-    isnan(pt_params->f32_min_limit) || isnan(pt_params->f32_max_limit) || isnan(pt_params->f32_safe_state)
+    isnan(pt_params->f32_min_limit) || isnan(pt_params->f32_max_limit) || isnan(pt_params->f32_safe_state) ||
     (pt_params->f32_min_limit > pt_params->f32_max_limit))
     {
         pt_state->f32_output = CLAMP_F32(pt_params->f32_safe_state, pt_params->f32_min_limit, pt_params->f32_max_limit); //Force safe-state
