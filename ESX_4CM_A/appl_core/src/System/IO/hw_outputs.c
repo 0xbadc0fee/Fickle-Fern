@@ -44,7 +44,7 @@ T_VehicleOutput elevatorControlValve =
 T_VehicleOutput stickRemControlRelay =
         {
             .Name_Description       = "STICK_REMOVER_RELAY",
-            .u16_hardwareID         = X_OUT_OPHSP2A_1, //X_OUT_OPLSP2A_1,
+            .u16_hardwareID         = X_OUT_OPL2A_1, 
             .e_outputType            = OT_DIGITAL,
 
             .f32_outputValue        = 0.0f,
