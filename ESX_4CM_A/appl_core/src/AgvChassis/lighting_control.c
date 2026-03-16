@@ -140,20 +140,20 @@ sint16 update_lightControl(void)
     *mt_lighting.pu8_work_status = mt_lighting.u8_work_status;
 
     //FR-16.4 - FR-16.6 Output Light status IR 16.2 Fault in Output results in NO CHANGE
-    get_outputFaultStatus("HEAD_LIGHTS", &u8_head_flt_status);
+    get_outputFaultStatus("HEADLIGHTS", &u8_head_flt_status);
     if(u8_head_flt_status == FALSE)
     {
-        set_outputValue("HEAD_LIGHTS", (float32)(mt_lighting.u8_head_status));
+        set_outputValue("HEADLIGHTS", (float32)(mt_lighting.u8_head_status));
     }
-    get_outputFaultStatus("WORK_LIGHTS", &u8_work_flt_status);
+    get_outputFaultStatus("WORKLIGHTS", &u8_work_flt_status);
     if(u8_work_flt_status == FALSE)
     {
-        set_outputValue("WORK_LIGHTS", (float32)(mt_lighting.u8_work_status));
+        set_outputValue("WORKLIGHTS", (float32)(mt_lighting.u8_work_status));
     }
-    get_outputFaultStatus("TAIL_LIGHTS", &u8_tail_flt_status);
+    get_outputFaultStatus("TAILLIGHTS", &u8_tail_flt_status);
     if(u8_tail_flt_status == FALSE)
     {
-        set_outputValue("TAIL_LIGHTS", (float32)(mt_lighting.u8_tail_status));
+        set_outputValue("TAILLIGHTS", (float32)(mt_lighting.u8_tail_status));
     }
 
     return s16_error;
