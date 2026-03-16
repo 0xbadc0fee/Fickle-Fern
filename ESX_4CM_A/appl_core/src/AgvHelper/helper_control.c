@@ -32,10 +32,10 @@
  *
  *  This function calculates what the PID output should be for a given set of parameters and feedback.
  *
- *  \param f32_command
- *  \param f32_feedback
- *  \param t_pid_state
- *  \param _t_PID_coeff
+ *  \param f32_command PID Command
+ *  \param f32_feedback PID Feedback
+ *  \param t_pid_state PID State
+ *  \param _t_PID_coeff PID coefficient
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -149,9 +149,9 @@ sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_st
  *
  *  This function reduces the rate of change between a new target value and the current value over a configurable period of time (linear)
  *
- *  \param f32_target
- *  \param pt_params
- *  \param pt_state
+ *  \param f32_target Ramp Target
+ *  \param pt_params Ramp Parameters Pointer
+ *  \param pt_state Ramp State Pointer
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -172,10 +172,15 @@ sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *
         return C_WARN;
     }
 
+    if(isnan(pt_params->f32_safe_state))
+    {
+        return C_WARN;
+    }
+
     //IR-18.1-18.3 Param Validation
     if(isnan(f32_target) ||
     isnan(pt_params->f32_ramp_rate) || isnan(pt_params->f32_ramp_rate < 0.0f) ||
-    isnan(pt_params->f32_min_limit) || isnan(pt_params->f32_max_limit) || isnan(pt_params->f32_safe_state) ||
+    isnan(pt_params->f32_min_limit) || isnan(pt_params->f32_max_limit) ||
     (pt_params->f32_min_limit > pt_params->f32_max_limit))
     {
         pt_state->f32_output = CLAMP_F32(pt_params->f32_safe_state, pt_params->f32_min_limit, pt_params->f32_max_limit); //Force safe-state
@@ -231,10 +236,10 @@ sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *
  *
  *  The Moving Average Filter Module Init initialized movingAdvFlt.
  *
- *  \param pt_mvAdvFlt
- *  \param pf32_buffer
- *  \param u16_buf_len
- *  \param f32_safe_output
+ *  \param pt_mvAdvFlt Average Filter Pointer
+ *  \param pf32_buffer Buffer
+ *  \param u16_buf_len Buffer Length
+ *  \param f32_safe_output Safe Output
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -263,9 +268,9 @@ sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt, float32 * const pf32
  *
  *  The Moving Average Filter Module produces a smoothed output by averaging values within a configurable sample window and forces a safe output when required parameters or values are invalid.
  *
- *  \param pt_mv_adv_flt
- *  \param pt_cfg
- *  \param f32_new_value
+ *  \param pt_mv_adv_flt Average Filter Pointer
+ *  \param pt_cfg Configuration Filter Pointer
+ *  \param f32_new_value New Value
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -286,15 +291,8 @@ sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *co
     (pt_mv_adv_flt->u16_buf_len == 0u)||
     (pt_cfg->u16_sample_time_ms == 0u) ||
     (pt_cfg->u16_sample_no == 0u) ||
-    (pt_cfg->u16_sample_no > pt_mv_adv_flt->u16_buf_len))
-    {
-        pt_mv_adv_flt->f32_out = pt_cfg->f32_safe_output;
-        pt_mv_adv_flt->u8_faulted = TRUE;
-        return C_WARN;
-    }
-
-    //IR-19.2 Invalid sample value
-    if(isnan(f32_new_value))
+    (pt_cfg->u16_sample_no > pt_mv_adv_flt->u16_buf_len)||
+    isnan(f32_new_value))  //IR-19.2 Invalid sample value
     {
         pt_mv_adv_flt->f32_out = pt_cfg->f32_safe_output;
         pt_mv_adv_flt->u8_faulted = TRUE;
@@ -319,7 +317,7 @@ sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *co
     //FR-19.2/19.3 Filter
     if((u32_now_ms - pt_mv_adv_flt->u32_accum_ms) >= ((uint32)pt_cfg->u16_sample_time_ms))
     {
-        pt_mv_adv_flt->u32_accum_ms =u32_now_ms;
+        pt_mv_adv_flt->u32_accum_ms = u32_now_ms;
 
         if(pt_mv_adv_flt->u16_count < pt_cfg->u16_sample_no)
         {
@@ -362,7 +360,6 @@ sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *co
  *  \param f32_input new raw input value
  *  \param f32_alpha filter coefficient
  *  \param u8_input_valid flag for input valid value
- *  \param pf32_output New filtered value written
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -371,19 +368,8 @@ sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_
 {
     sint16 s16_error = C_NO_ERR;
 
-    if(pt_filter == NULL)
-    {
-        return C_WARN;
-    }
-
-    // IR-20.1 Invalid Coefficient
-    if((f32_alpha < 0.0f) || (f32_alpha > 1.0f) || isnan(f32_alpha))
-    {
-        return C_WARN;
-    }
-
-    // IR-20.2 Invalid Input
-    if ((u8_input_valid == FALSE) || isnan(f32_input))
+    // IR-20.1 Invalid Coefficient  OR IR-20.2 Invalid Input
+    if((f32_alpha < 0.0f) || (f32_alpha > 1.0f) || isnan(f32_alpha) ||(pt_filter == NULL) || (u8_input_valid == FALSE) || isnan(f32_input))
     {
         return C_WARN;
     }
