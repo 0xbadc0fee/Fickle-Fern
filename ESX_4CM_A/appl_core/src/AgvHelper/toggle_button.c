@@ -85,7 +85,7 @@ sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint8 u8_reset)
     u8_raw_btn = (u8_raw_btn != FALSE) ? TRUE : FALSE;
 
     //IR-21.1 Fault/Interlock forces Safe State
-    if(u8_faulted == TRUE)
+    if(u8_reset == TRUE)
     {
         *(pt_btn->pu_btn_state) = (pt_btn->u8_safe_state != FALSE) ? TRUE : FALSE;
         pt_btn->u32_hold_ms = 0u;
