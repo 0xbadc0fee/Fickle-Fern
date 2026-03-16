@@ -34,6 +34,7 @@ T_VehicleOutput tvo_auto_unload =
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
+<<<<<<< HEAD
     .u8_diagEnabled = FALSE,
     .t_fault = { .u8_dm1_enable = FALSE },
 
