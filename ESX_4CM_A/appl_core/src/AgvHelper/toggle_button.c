@@ -67,12 +67,12 @@ sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u
  *
  *  \param pt_btn Pointer to the toggle button structure
  *  \param u8_raw_btn Current raw button input value
- *  \param u8_faulted Indicates interlock or fault condition active
+ *  \param u8_reset Indicates reset condition
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint8 u8_faulted)
+sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint8 u8_reset)
 {
     sint16 s16_error = C_NO_ERR;
     uint32 u32_now_ms = get_system_time_ms();
