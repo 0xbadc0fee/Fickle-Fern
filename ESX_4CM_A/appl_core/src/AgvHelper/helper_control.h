@@ -45,20 +45,18 @@ typedef struct
       float32 f32_error_accum;
       uint64 u64_last_time;
       float32 f32_output;
-
    } T_PID_state;
 
  /** \brief Structure containing all relevant RAMP output information*/
 typedef struct
 {
         float32 f32_output;  //!<Current Ramped Output
-        uint8 u8_faulted; //!<Latched invalid-input fault
+        uint32 u32_last_time_ms;
 }T_RampState;
 
 /** \brief Structure containing all relevant RAMP Parameters*/
 typedef struct
 {
-        float32 f32_dt_s; //!<Execution period [s]
         float32 f32_ramp_rate; //!<Ramp Rate[unit/s]
         float32 f32_min_limit; //!<MIN Output Limit
         float32 f32_max_limit; //!<MAX Output Limit
@@ -84,7 +82,6 @@ typedef struct
         float32 f32_sum; //!<Running sum of samples in window
         float32 f32_out; //!<Current filtered output
         uint8 u8_faulted; //!<1 = Faulted and forced safe
-        uint8 u8_init;//!<Easy init
 }T_MoveAvgFilter;
 
 /** \brief Structure containing all relevant Low Pass Filter output information*/
@@ -108,8 +105,8 @@ typedef struct
 sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_state, T_PID_coeff *t_PID_coeff);
 sint16 rampCalc(float32 f32_target, const T_RampParams *pt_params, T_RampState *pt_state);
 sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt,float32 * const pf32_buffer, uint16 u16_buf_len, float32 f32_safe_output);
-sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *const pt_cfg, uint32 u32_dt_ms, float32 f32_new_value , uint8 u8_value_valid, float32 * const pf32_output);
-sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_alpha, uint8 u8_input_valid, float32 *pf32_output);
-sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn, uint32 u32_dt_ms, uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state);
+sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt,const T_MoveAvgCfg *const pt_cfg, float32 f32_new_value);
+sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, float32 f32_alpha, uint8 u8_input_valid);
+sint16 toggleButton(T_ToggleBtn * pt_btn, uint8 u8_raw_btn,uint32 _u32_deb_ms, uint8 u8_faulted, uint8 u8_safe_state);
 
 #endif /* APPL_CORE_SRC_AGVHELPER_HELPER_CONTROL_H_ */
