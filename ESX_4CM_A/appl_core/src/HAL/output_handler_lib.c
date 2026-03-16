@@ -245,6 +245,29 @@ sint16 get_numOutputs(uint8 *const opu8_Count)
     return C_NO_ERR;
 }
 
+/** \brief Get the output fault status for a specific output
+
+    \param[out] opu8_status Fault status of output
+
+    \return Error Return Value
+    \retval C_NO_ERR(0) No Error
+    \retval C_RANGE(-5) Output Not Found
+**/
+sint16 get_outputFaultStatus(const char *targetName, uint8 *opu8_status)
+{
+    sint16 s16_error;
+    uint8 u8_index = 0;
+
+    s16_error = findOutputByName(targetName, &u8_index);
+
+    if (C_NO_ERR == s16_error)
+        *opu8_status = at_vehicleOutputs[u8_index].t_fault.u8_fault_status;
+    else
+        *opu8_status = 255;
+
+    return s16_error;
+}
+
 // Setter Functions ------------------------------------------------------------------------
 /*! \brief Set output value by name
     Searches for an output by name and sets its value

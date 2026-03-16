@@ -90,6 +90,8 @@ sint16 update_outputHandler(void);
 sint16 add_hwOutput(T_VehicleOutput output);
 sint16 get_numOutputs(uint8 *const opu8_Count);
 sint16 clear_outputFaults(void);
+sint16 get_outputFaultStatus(const char *targetName, uint8 *opu8_status);
+sint16 set_outputValue(const char *targetName, float32 value);
 
 #endif /* APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_ */
 

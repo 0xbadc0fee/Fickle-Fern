@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3577990488 mt_Variable;
+static T_osy_non_existing_type_1484555524 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CONFIGURATION_PROJECT_ID_3577990488
+CONFIGURATION_PROJECT_ID_1484555524
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -52,7 +52,7 @@ static const T_Configuration_ElevatorConfig_Values mat_ElevatorConfigDataSetValu
 {
    {
       1U,   ///< minSpeed (Parameter description)
-      1U    ///< maxSpeed (Parameter description)
+      2U    ///< maxSpeed (Parameter description)
    }
 };
 
@@ -62,6 +62,18 @@ static const T_osy_dpa_data_set mat_ElevatorConfigDataSetTable[CONFIGURATION_ELE
    { &mat_ElevatorConfigDataSetValues[0] }
 };
 
+///Minimum values
+static const T_Configuration_HeaderConfig_Values mt_HeaderConfigMinValues =
+{
+   0U    ///< joystick_hll_enable (Parameter to set the HLL functionality between footpedals and joystick)
+};
+
+///Maximum values
+static const T_Configuration_HeaderConfig_Values mt_HeaderConfigMaxValues =
+{
+   255U    ///< joystick_hll_enable (Parameter to set the HLL functionality between footpedals and joystick)
+};
+
 ///List definitions:
 static const T_osy_dpa_element_definition mat_DataPoolElevatorConfigElements[CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS] =
 {
@@ -69,10 +81,16 @@ static const T_osy_dpa_element_definition mat_DataPoolElevatorConfigElements[CON
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_maxSpeed, &mt_ElevatorConfigMinValues.u8_maxSpeed, &mt_ElevatorConfigMaxValues.u8_maxSpeed }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolHeaderConfigElements[CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable, &mt_HeaderConfigMinValues.u8_joystick_hll_enable, &mt_HeaderConfigMaxValues.u8_joystick_hll_enable }
+};
+
 ///list of lists:
 static const T_osy_dpa_list_definition mat_DataPoolLists[CONFIGURATION_NUMBER_OF_LISTS] =
 {
-   { CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Configuration_ElevatorConfig_Values), &mat_DataPoolElevatorConfigElements[0], &gt_Configuration_DataPoolValues.t_ElevatorConfigValues, &mat_ElevatorConfigDataSetTable[0] }
+   { CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Configuration_ElevatorConfig_Values), &mat_DataPoolElevatorConfigElements[0], &gt_Configuration_DataPoolValues.t_ElevatorConfigValues, &mat_ElevatorConfigDataSetTable[0] },
+   { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000064U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, NULL }
 };
 
 ///Datapool definition:
@@ -83,7 +101,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Configuration",  ///< name of Datapool
    CONFIGURATION_NUMBER_OF_LISTS,
-   0x65ec8d4fU, ///< CRC of Datapool definition
+   0x29a32972U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    20000U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],
