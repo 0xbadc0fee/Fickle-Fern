@@ -38,6 +38,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/opensyde/generated}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/HAL}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/HAL/STW_4CM_HAL}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/System}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/System/IO}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/System/CAN}&quot;"/>
@@ -46,7 +47,7 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/System/NVM}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/AgvWork}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/AgvDiag}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/AgvHMI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/AgvHelper}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/libs/lwip/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/libs/opensyde_server}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/appl_core/src/opensyde}&quot;"/>

@@ -20,7 +20,10 @@
 #include "can_engine.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
+
 #define JOYSTICK_LIMIT_PERCENT 47.5f  //!<Percentage limit of the Joystick Y Axis When Speed Limit is enabled.
+#define JOYSTICK_FAULT         0xFFFFFFFF //TODO_STW: Figure out what the joystick fault value is.
+
 #define WHEEL_DIAMETER         31.5f  //!<Wheel Diameter in Inches
 #define WHEEL_PPR              44.0f  //!<Pulses per wheel revolution
 #define GEAR_RATIO             2.517f //!<Flory Wheel Gear Ratio
@@ -98,13 +101,12 @@ typedef struct
 
     uint8 u8_speed_enable;
     sint16  s16_yPos;                       //!<Local Variable for Joystick Y Position
+    uint16  u16_joystick_command;
     float32 f32_raw_output;                 //!<Raw/ unramped output value
     float32 f32_ramped_output;              //!<Ramped output value to valves
 
     uint8 u8_cc_active;
-    uint8 u8_cc_prev_active;
     uint16 u16_cc_max_speed;
-
 
     //TX CAN Variables
     uint8 *pu8_neutral_state;               //!<Pointer to the Neutral State to Display

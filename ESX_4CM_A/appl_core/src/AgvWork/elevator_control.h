@@ -16,7 +16,7 @@
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "stwtypes.h"
 
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define ELEVATOR_ON  (1u)
@@ -86,7 +86,7 @@ typedef struct
 
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator);
+sint16 init_elevatorControl(T_CANDevices *_ui, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator);
 sint16 update_elevatorControl(void);
 
 

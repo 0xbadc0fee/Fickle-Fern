@@ -20,7 +20,7 @@
 #include "hw_outputs.h"
 
 #include "checkpoint_handler.h"
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "can_handler.h"
 #include "nvm_handler.h"
 
@@ -85,8 +85,8 @@ int main(void)
     //Initialize AgvWork Controls
     if(C_NO_ERR == s16_Error)
     {
-        s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
-        s16_Error += init_headerControl(&gt_ui, &gt_headerConfig);
+        s16_Error += init_elevatorControl(&gt_can_devs, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
+        s16_Error += init_headerControl(&gt_can_devs, &gt_headerConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()

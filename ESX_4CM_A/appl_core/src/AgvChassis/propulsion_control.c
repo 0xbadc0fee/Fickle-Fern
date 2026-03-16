@@ -17,10 +17,23 @@
 #include "stwerrors.h"
 #include "stwtypes.h"
 #include "x_stdtypes.h"
+#include <stdlib.h>
+
+#include "system.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
+sint16 calc_wheelSpeed(void);
+sint16 check_edcInterlocks(uint8 *u8_edc_enable);
+sint16 output_edcValves(void);
+sint16 check_ccLimits(void);
+sint16 ramp_targetSpeedCommand(E_RampTypes _rampType);
+E_RampTypes calc_rampType(void);
+
+sint16 check_joystickInterlocks(void);
+sint16 calc_joystickSpeedCommand(void);
+
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
 T_PropulsionControl mt_prop_control;
 
@@ -52,21 +65,21 @@ T_RampParams        mt_max_deccel_config;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_propulsionControl(T_UserInterface *_ui, T_Engine *_engine, T_ChkPoints_Propulsion *_chkProp)
+sint16 init_propulsionControl(T_CANDevices *_can_dev, T_Engine *_engine, T_ChkPoints_Propulsion *_chkProp)
 {
     sint16 s16_error = C_NO_ERR;
 
     //populate local copy of TX ui elements
-    mt_prop_control.pu8_gear_selector      = &_ui->t_display.u8_gear_select;
-    mt_prop_control.ps16_joy_y_pos         = &_ui->t_joystick.s16_yPos;
-    mt_prop_control.pu8_speed_limit_enable = &_ui->t_display.u8_speed_limit_enable;
-    mt_prop_control.pu8_max_speed_set      = &_ui->t_display.u8_max_speed_set;
+    mt_prop_control.pu8_gear_selector      = &_can_dev->t_display.u8_gear_select;
+    mt_prop_control.ps16_joy_y_pos         = &_can_dev->t_joystick.s16_yPos;
+    mt_prop_control.pu8_speed_limit_enable = &_can_dev->t_display.u8_speed_limit_enable;
+    mt_prop_control.pu8_max_speed_set      = &_can_dev->t_display.u8_max_speed_set;
 
 
     //populate local copy of RX ui elements
-    mt_prop_control.pu8_neutral_state   = &_ui->t_display.u8_neutral_state;
-    mt_prop_control.pu8_wheel_speed_10  = &_ui->t_display.u8_wheel_speed_10;
-    mt_prop_control.pu8_speed_limit_set = &_ui->t_display.u8_speed_limit_set;
+    mt_prop_control.pu8_neutral_state   = &_can_dev->t_display.u8_neutral_state;
+    mt_prop_control.pu8_wheel_speed_10  = &_can_dev->t_display.u8_wheel_speed_10;
+    mt_prop_control.pu8_speed_limit_set = &_can_dev->t_display.u8_speed_limit_set;
 
     //populate local copy of engine elements
     mt_prop_control.pu8_engine_status = &_engine->u8_engineStatus;
@@ -105,7 +118,8 @@ sint16 update_propulsionControl(void)
     s16_error += calc_wheelSpeed();
 
     //FR-13.2/4 High/Low Gear Selection
-    if(t_active_gear.u8_state)
+    toggleButton(&mt_prop_control.t_active_gear, mt_prop_control.pu8_gear_selector);
+    if(mt_prop_control.t_active_gear.u8_btn_set)
         set_outputValue("GEAR_SELECTOR", (float32)HIGH_SPEED_GEAR);
     else
         set_outputValue("GEAR_SELECTOR", (float32)LOW_SPEED_GEAR);
@@ -130,30 +144,32 @@ sint16 update_propulsionControl(void)
 
         if(mt_prop_control.u8_speed_enable)
         {
+            //update max speed set (cc) and speed limit enable toggles.
+            toggleButton(&mt_prop_control.t_cc_enable, mt_prop_control.pu8_max_speed_set);
+            toggleButton(&mt_prop_control.t_speed_limit_enable, mt_prop_control.pu8_speed_limit_enable);
 
             //FR-13.7/8/12/13/14/15/16/17
             s16_error += calc_joystickSpeedCommand();
 
             //FR13.18
-            s16_error += calc_rampType();
-            s16_error += ramp_targetSpeedCommand();
+            s16_error += ramp_targetSpeedCommand(calc_rampType());
         }
         else
         {
             mt_prop_control.f32_raw_output = 0.0;
-            s16_error += ramp_targetSpeedCommand();
+            s16_error += ramp_targetSpeedCommand(calc_rampType());
         }
     }
 
     //FR-13.9 Neutral Indicator to Display
-    mt_prop_control->pu8_neutral_state = mt_prop_control.u8_neutral_ind;
+    *(mt_prop_control.pu8_neutral_state) = mt_prop_control.u8_neutral_ind;
 
     //FR-13.10 Reverse Indicator Output
     s16_error += set_outputValue("REV_IND", mt_prop_control.u8_reverse_ind);
 
     //Populate CAN and Checkpoints
     mt_prop_control.pt_chkProp->f32_wheel_speed_10 = mt_prop_control.f32_wheel_speed_mph * 10;
-    mt_prop_control->pu8_wheel_speed_10 = mt_prop_control.f32_wheel_speed_mph * 10;
+    *(mt_prop_control.pu8_wheel_speed_10) = mt_prop_control.f32_wheel_speed_mph * 10;
 
 
     //update hardware output values
@@ -163,19 +179,19 @@ sint16 update_propulsionControl(void)
 
 }
 
-sint16 check_joystickInterlocks()
+sint16 check_joystickInterlocks(void)
 {
     sint16 s16_error = C_NO_ERR;
 
-    uint8 u8_door_state = FALSE;
+    float32 f32_door_state = FALSE;
     uint8 u8_door_status = FALSE;
     uint8 u8_pb_status = FALSE;
 
-    s16_error += get_inputValue("DOOR_SWITCH", &(float32*)u8_door_state);
+    s16_error += get_inputValue("DOOR_SWITCH", &f32_door_state);
     s16_error += get_inputFaultStatus("DOOR_SWITCH", &u8_door_status);
     s16_error += get_inputFaultStatus("PARK_BRAKE", &u8_pb_status);
 
-    if(u8_door_state || u8_door_status ||u8_pb_status || mt_prop_control.s16_yPos == JOYSTICK_FAULT)
+    if(f32_door_state || u8_door_status ||u8_pb_status || mt_prop_control.s16_yPos == JOYSTICK_FAULT)
         mt_prop_control.u8_speed_enable = FALSE;
 
     else
@@ -185,39 +201,35 @@ sint16 check_joystickInterlocks()
     return s16_error;
 }
 
-sint16 calc_joystickSpeedCommand()
+sint16 calc_joystickSpeedCommand(void)
 {
     sint16 s16_error = C_NO_ERR;
     uint16 u16_command_magnitude;
-    float32 f32_target_output = 0;
 
-    u16_command_magnitude = abs(mt_prop_control.s16_yPos);
+    mt_prop_control.u16_joystick_command = abs(mt_prop_control.s16_yPos);
 
     //FR-13.16/17 - Speed Limit Functionality
-    if(*(mt_prop_control.pu8_speed_limit_enable))
+    if(mt_prop_control.t_speed_limit_enable.u8_btn_set)
     {
-        if(u16_command_magnitude >= SPEED_LIMIT_PER)
-            u16_command_magnitude = SPEED_LIMIT_PER;
+        if(mt_prop_control.u16_joystick_command >= SPEED_LIMIT_PER)
+            mt_prop_control.u16_joystick_command = SPEED_LIMIT_PER;
     }
 
     //FR-12/13/14/15 - Cruise Control Functionality
-    if(mt_prop_control.u8_cc_active)
-    {
-        s16_error += check_ccLimits(u16_command_magnitude);
-    }
+    s16_error += check_ccLimits();
 
     //FR13.7 Joystick Command Calculation
-    if (u16_command_magnitude < 250.0)
+    if (mt_prop_control.u16_joystick_command < 250.0)
         mt_prop_control.f32_raw_output = 0.0;
 
-    else if (u16_command_magnitude <= 750.0)
-        mt_prop_control.f32_raw_output = (2.0 * u16_command_magnitude) + 500.0;
+    else if (mt_prop_control.u16_joystick_command <= 750.0)
+        mt_prop_control.f32_raw_output = (2.0 * mt_prop_control.u16_joystick_command) + 500.0;
 
-    else if (u16_command_magnitude <= 1500.0)
-        mt_prop_control.f32_raw_output = ((4.0 / 3.0) * u16_command_magnitude) + 1000.0;
+    else if (mt_prop_control.u16_joystick_command <= 1500.0)
+        mt_prop_control.f32_raw_output = ((4.0 / 3.0) * mt_prop_control.u16_joystick_command) + 1000.0;
 
-    else if (u16_command_magnitude <= 9000.0)
-        mt_prop_control.f32_raw_output = ((4.0 / 5.0) * u16_command_magnitude) + 1800.0;
+    else if (mt_prop_control.u16_joystick_command <= 9000.0)
+        mt_prop_control.f32_raw_output = ((4.0 / 5.0) * mt_prop_control.u16_joystick_command) + 1800.0;
 
     else
         mt_prop_control.f32_raw_output = 9000.0;
@@ -226,10 +238,10 @@ sint16 calc_joystickSpeedCommand()
 
 
     //FR-13.8 Joystick State Calculation
-    if(mt_prop_control.s16_yPos > 0 && u16_command_magnitude >= NEUTRAL_DEADBAND)
+    if(mt_prop_control.s16_yPos > 0 && mt_prop_control.u16_joystick_command >= NEUTRAL_DEADBAND)
         mt_prop_control.u8_joystick_state = E_JOYSTICK_FWD;
 
-    else if(mt_prop_control.s16_yPos < 0 && u16_command_magnitude >= NEUTRAL_DEADBAND)
+    else if(mt_prop_control.s16_yPos < 0 && mt_prop_control.u16_joystick_command >= NEUTRAL_DEADBAND)
         mt_prop_control.u8_joystick_state = E_JOYSTICK_REV;
 
     else if(u16_command_magnitude < NEUTRAL_DEADBAND)
@@ -256,15 +268,40 @@ sint16 calc_joystickSpeedCommand()
     return s16_error;
 }
 
-sint16 check_ccLimits(uint16 u16_command)
+sint16 check_ccLimits(void)
 {
+    sint16 s16_error = C_NO_ERR;
+    static uint8 u8_prev_active = FALSE;
 
-    if(mt_prop_control.t_cc_enable.pu_btn_state)
+    //set active or inactive flag
+    if(*(mt_prop_control.t_cc_enable.pu_btn_state))
+        mt_prop_control.u8_cc_active = TRUE;
+    else
     {
-        if()
-        u16_command
+        if(u8_prev_active && (mt_prop_control.u16_joystick_command >= mt_prop_control.u16_cc_max_speed))
+            mt_prop_control.u8_cc_active = TRUE;
+        else
+            mt_prop_control.u8_cc_active = FALSE;
     }
 
+    //check if toggled active from inactive
+    if(mt_prop_control.u8_cc_active && !u8_prev_active)
+        mt_prop_control.u16_cc_max_speed = mt_prop_control.u16_joystick_command;
+
+    //set limit
+    if(mt_prop_control.u8_cc_active && (mt_prop_control.u16_joystick_command >= mt_prop_control.u16_cc_max_speed))
+        mt_prop_control.u16_joystick_command = mt_prop_control.u16_cc_max_speed;
+
+    //set previously active flag
+    u8_prev_active = mt_prop_control.u8_cc_active;
+
+    return s16_error;
+
+}
+
+E_RampTypes calc_rampType(void)
+{
+    return E_ACCEL_RAMP;
 }
 
 sint16 ramp_targetSpeedCommand(E_RampTypes _rampType)
@@ -306,15 +343,14 @@ sint16 calc_wheelSpeed(void)
 {
     sint16 s16_error = C_NO_ERR;
     float32 f32_rpm = 0.0;
-    float32 f32_filtered_rpm = 0.0;
 
     s16_error += get_inputValue("WHEEL_SPEED", &mt_prop_control.f32_wheel_frequency);
 
-    f32_rpm = mt_prop_control.f32_wheel_frequency * 60.0 / WHEEL_PPR;
+    f32_rpm = mt_prop_control.f32_wheel_frequency * 60.0f / WHEEL_PPR;
     mt_prop_control.pt_chkProp->f32_wheel_rpm = f32_rpm;
 
     //TODO_STW: Alter this call after moving average filter rework is done.
-    //s16_error += movingAvgFlt(&mt_filter_wheel_speed, &mt_wheel_filter_config, f32_rpm);
+    s16_error += movingAvgFlt(&mt_filter_wheel_speed, &mt_wheel_filter_config, f32_rpm);
 
     mt_prop_control.f32_wheel_speed_mph = (mt_filter_wheel_speed.f32_out * WHEEL_DIAMETER) / (GEAR_RATIO * 336.0f);
     return s16_error;
@@ -335,19 +371,19 @@ sint16 check_edcInterlocks(uint8 *u8_edc_enable)
     if( *(mt_prop_control.pu8_engine_status) == ENGINE_RUNNING)
     {
         if(get_system_time_ms() < EDC_STARTUP_DELAY || u8_fwd_status || u8_rev_status || f32_park_brake)
-            u8_edc_enable = FALSE;
+            *u8_edc_enable = FALSE;
         else
-            u8_edc_enable = TRUE;
+            *u8_edc_enable = TRUE;
     }
     else
     {
-        u8_edc_enable = FALSE;
+        *u8_edc_enable = FALSE;
     }
 
     return s16_error;
 }
 
-sint16 output_edcValves()
+sint16 output_edcValves(void)
 {
     sint16 s16_error = C_NO_ERR;
 
