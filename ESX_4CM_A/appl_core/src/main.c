@@ -25,7 +25,7 @@
 #include "nvm_handler.h"
 
 #include "ethernet_init.h"
-
+#include "hitch_position_control.h"
 #include "header_lift_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
@@ -87,6 +87,7 @@ int main(void)
     {
         s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
         s16_Error += init_headerControl(&gt_ui, &gt_headerConfig);
+        s16_Error += init_hitchPosControl(&gt_ui, &gt_headerConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -113,6 +114,7 @@ int main(void)
         //Run AgvWork Controls
         update_elevatorControl();
         update_headerControl();
+        update_hitchPosControl();
 
         //Outputs
         update_checkpointHandler();
