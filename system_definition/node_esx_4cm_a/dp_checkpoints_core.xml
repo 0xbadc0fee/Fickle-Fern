@@ -84,7 +84,7 @@
             <list>
                 <name>GeneralTesting</name>
                 <comment/>
-                <data-elements length="3">
+                <data-elements length="4">
                     <data-element factor="1" offset="0" diag-event-call="false">
                         <name>test1</name>
                         <type base-type="uint8" is-array="false"/>
@@ -111,6 +111,16 @@
                         <comment>Variable description</comment>
                         <min-value value="-3.4028235e+38"/>
                         <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>test4</name>
+                        <type base-type="uint32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="4294967295"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>

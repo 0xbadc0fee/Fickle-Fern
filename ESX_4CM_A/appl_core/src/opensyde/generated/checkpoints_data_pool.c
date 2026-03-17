@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3685730338 mt_Variable;
+static T_osy_non_existing_type_400348320 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CHECKPOINTS_PROJECT_ID_3685730338
+CHECKPOINTS_PROJECT_ID_400348320
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -70,7 +70,8 @@ static const T_Checkpoints_GeneralTesting_Values mt_GeneralTestingMinValues =
 {
    0U,   ///< test1 (Variable description)
    -32768,   ///< test2 (Variable description)
-   -3.40282347e+38F    ///< test3 (Variable description)
+   -3.40282347e+38F,   ///< test3 (Variable description)
+   0UL    ///< test4 (Variable description)
 };
 
 ///Maximum values
@@ -78,7 +79,8 @@ static const T_Checkpoints_GeneralTesting_Values mt_GeneralTestingMaxValues =
 {
    255U,   ///< test1 (Variable description)
    32767,   ///< test2 (Variable description)
-   3.40282347e+38F    ///< test3 (Variable description)
+   3.40282347e+38F,   ///< test3 (Variable description)
+   4294967295UL    ///< test4 (Variable description)
 };
 
 ///List definitions:
@@ -100,7 +102,8 @@ static const T_osy_dpa_element_definition mat_DataPoolGeneralTestingElements[CHE
 {
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u8_test1, &mt_GeneralTestingMinValues.u8_test1, &mt_GeneralTestingMaxValues.u8_test1 },
    { OSY_DPA_ELEMENT_TYPE_SINT16, 0U, 2U, &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.s16_test2, &mt_GeneralTestingMinValues.s16_test2, &mt_GeneralTestingMaxValues.s16_test2 },
-   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.f32_test3, &mt_GeneralTestingMinValues.f32_test3, &mt_GeneralTestingMaxValues.f32_test3 }
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.f32_test3, &mt_GeneralTestingMinValues.f32_test3, &mt_GeneralTestingMaxValues.f32_test3 },
+   { OSY_DPA_ELEMENT_TYPE_UINT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u32_test4, &mt_GeneralTestingMinValues.u32_test4, &mt_GeneralTestingMaxValues.u32_test4 }
 };
 
 ///list of lists:
@@ -119,7 +122,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Checkpoints",  ///< name of Datapool
    CHECKPOINTS_NUMBER_OF_LISTS,
-   0x7ea81159U, ///< CRC of Datapool definition
+   0xa0ff020cU, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

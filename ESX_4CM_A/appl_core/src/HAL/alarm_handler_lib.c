@@ -21,6 +21,7 @@
 #include "x_can.h"
 //PROJECT
 
+#include "checkpoints_data_pool.h"
 
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
@@ -98,8 +99,12 @@ sint16 init_alarmHandler(void)
     //DTCs for Logic Faults
     for(uint8 i=0; i< u8_num_logic_faults; i++)
     {
-        add_J1939dtc(&mat_logic_faults[i]);
-        u16_num_logic_dtcs+=10;
+        if(mat_logic_faults[i].u8_dm1_enable)
+        {
+            //add fault to DTC runner list
+            add_J1939dtc(&mat_logic_faults[i]);
+            u16_num_logic_dtcs+=10;
+        }
     }
 
     return s16_error;
@@ -127,50 +132,66 @@ sint16 update_alarmHandler(void)
     //Set Lamps
     osy_j1939_set_lamps(mt_dm1_lamps);
 
-    //set is active flags for outputs
-    for(uint16 k = 0; k<u8_num_outputs; k++)
+    for(uint16 faults = 0; faults < u16_num_dtcs; faults++)
     {
-        if(gat_DmDtcs[u16_num_dtcs].u32_Spn == at_vehicleOutputs[k].t_fault.u32_spn)
+        /*
+        //set is active flags for outputs
+        for(uint16 k = 0; k<u8_num_outputs; k++)
+        {
+            if(gat_DmDtcs[faults].u32_Spn == at_vehicleOutputs[k].t_fault.u32_spn)
+            {
+                for(uint8 p=0; p<MAX_NUM_FMI; p++)
+                {
+                    if(at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active)
+                        gat_DmDtcs[(k*MAX_NUM_FMI)+p].u8_IsActive = TRUE;
+                    else if (!at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active)
+                        gat_DmDtcs[(k*MAX_NUM_FMI)+p].u8_IsActive = FALSE;
+                }
+            }
+        }
+
+        //set is active flags for inputs
+        for(uint16 k = 0; k<u8_num_inputs; k++)
+        {
+            if(gat_DmDtcs[faults].u32_Spn == at_vehicleInputs[k].t_fault.u32_spn)
+            {
+                for(uint8 p=0; p<MAX_NUM_FMI; p++)
+                {
+                    if(at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active)
+                        gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs].u8_IsActive = TRUE;
+                    else if (!at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active)
+                        gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs].u8_IsActive = FALSE;
+                }
+            }
+        }*/
+
+        //gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u32_test4 = gat_DmDtcs[faults].u32_Spn;
+        //gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.f32_test3 = (float32)gat_DmDtcs[faults].u8_Fmi;
+
+        if(faults == 0)
+        {
+            //gat_DmDtcs[faults].u8_IsActive = TRUE;
+            gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u32_test4 = mat_logic_faults[0].u32_spn;
+            gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u8_test1 = mat_logic_faults[0].t_fmi[0].u8_fmi_value;
+        }
+
+        //set active flags for logic alarms
+        for(uint16 k = 0; k<u8_num_logic_faults; k++)
         {
             for(uint8 p=0; p<MAX_NUM_FMI; p++)
             {
-                if(at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p].u8_IsActive = TRUE;
-                else if (!at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p].u8_IsActive = FALSE;
+                //check if current dtc being checked
+                if(gat_DmDtcs[faults].u32_Spn == mat_logic_faults[k].u32_spn &&
+                   gat_DmDtcs[faults].u8_Fmi  == mat_logic_faults[k].t_fmi[p].u8_fmi_value &&
+                   mat_logic_faults[k].t_fmi[p].u8_fmi_value != 0)
+                {
+                    gat_DmDtcs[faults].u8_IsActive = (mat_logic_faults[k].t_fmi[p].u8_is_active) ? TRUE : FALSE;
+                }
             }
         }
     }
 
-    //set is active flags for inputs
-    for(uint16 k = 0; k<u8_num_inputs; k++)
-    {
-        if(gat_DmDtcs[u16_num_dtcs].u32_Spn == at_vehicleInputs[k].t_fault.u32_spn)
-        {
-            for(uint8 p=0; p<MAX_NUM_FMI; p++)
-            {
-                if(at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs].u8_IsActive = TRUE;
-                else if (!at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs].u8_IsActive = FALSE;
-            }
-        }
-    }
 
-    //set active flags for logic alarms
-    for(uint8 k = 0; k<u8_num_logic_alarms; k++)
-    {
-        if(gat_DmDtcs[u16_num_dtcs].u32_Spn == mat_logic_alarms[k].u32_spn)
-        {
-            for(uint8 p=0; p<MAX_NUM_FMI; p++)
-            {
-                if(mat_logic_alarms[k].t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs+u16_num_input_dtcs].u8_IsActive = TRUE;
-                else if (!at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs+u16_num_input_dtcs].u8_IsActive = FALSE;
-            }
-        }
-    }
 
     osy_com_j1939_dm1_unlock_tx(X_CAN_BUS_01, 0);
 
@@ -196,24 +217,13 @@ void add_J1939dtc(T_FloryFault *_dtc)
         gat_DmDtcs[u16_num_dtcs].u8_IsActive = _dtc->t_fmi[i].u8_is_active;
         gat_DmDtcs[u16_num_dtcs].u8_OccurrenceCounter = 0;
         gat_DmDtcs[u16_num_dtcs].u8_SpnConvMode = 0;
+
         u16_num_dtcs++;
     }
+
+
 }
 
-
-/*!
-   \brief  Add Logic Fault to List of Logic Alarm
-
-   Add a fault to the DM1 runner list.
-
-   \param[in] _dtc Fault to add to alarm list
-
-*/
-void add_dm1LogicAlarm(T_FloryFault *_dtc)
-{
-    memcpy(&mat_logic_alarms[u8_num_logic_alarms], &_dtc, sizeof(mat_logic_alarms[u8_num_logic_alarms]));
-    u8_num_logic_alarms++;
-}
 
 /*!
    \brief  Add Logic Fault to List of Logic Faults
@@ -223,7 +233,8 @@ void add_dm1LogicAlarm(T_FloryFault *_dtc)
 */
 void add_logicFault(T_FloryFault *_dtc)
 {
-    memcpy(&mat_logic_faults[u8_num_logic_faults], &_dtc, sizeof(mat_logic_alarms[u8_num_logic_faults]));
+
+    mat_logic_faults[u8_num_logic_faults] = *_dtc;
     u8_num_logic_faults++;
 }
 
@@ -328,19 +339,6 @@ sint16 set_logicFaultStatus(uint32 u32_spn, uint16 u16_fmi, uint8 u8_state)
                     u8_fmi_found = TRUE;
                     mat_logic_faults[i].t_fmi[k].u8_is_active = u8_state;
                 }
-            }
-        }
-    }
-
-    //Update the alarm list
-    for(uint8 i = 0;i<u8_num_logic_alarms; i++)
-    {
-        if(u32_spn == mat_logic_alarms[i].u32_spn)
-        {
-            for(uint8 k = 0; k<MAX_NUM_FMI; k++)
-            {
-                if(u16_fmi == mat_logic_alarms[i].t_fmi[k].u8_fmi_value)
-                    mat_logic_alarms[i].t_fmi[k].u8_is_active = u8_state;
             }
         }
     }

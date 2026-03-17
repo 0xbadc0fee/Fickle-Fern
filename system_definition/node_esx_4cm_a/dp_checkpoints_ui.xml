@@ -18,7 +18,8 @@
                 </data-elements>
             </list>
             <list>
-                <data-elements length="3">
+                <data-elements length="4">
+                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>

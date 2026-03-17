@@ -56,9 +56,9 @@ sint16 init_alarmHandler(void);
 sint16 update_alarmHandler(void);
 
 void add_logicFault(T_FloryFault *_dtc);
+sint16 set_logicFaultStatus(uint32 u32_spn, uint16 u16_fmi, uint8 u8_state);
 sint16 clear_logicFaults(void);
 
-void add_dm1LogicAlarm(T_FloryFault *_dtc);
 sint16 set_dm1Lamp(E_LampID _lamp, uint8 _state);
 sint16 clear_dm1Lamps(void);
 

@@ -16,8 +16,12 @@
 #include "elevator_control.h"
 #include "stwerrors.h"
 #include "stwtypes.h"
+
+
 #include "hw_inputs.h"
 #include "hw_outputs.h"
+#include "fault_handler.h"
+
 
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
@@ -86,7 +90,13 @@ sint16 update_elevatorControl(void)
     s16_error = set_outputValue("STICKBOX_ON",f32_door_state);
 
     mt_elevator.pt_chkElevator->f32_chkPoint3= f32_door_state;
+
+
+    s16_error = set_logicFaultStatus(520999, 5, TRUE);
+    s16_error = set_logicFaultStatus(520999, 6, TRUE);
     mt_elevator.pt_chkElevator->s16_chkPoint2= s16_error;
+
+    set_dm1Lamp(e_AMBER_WARN, TRUE);
 
 
 

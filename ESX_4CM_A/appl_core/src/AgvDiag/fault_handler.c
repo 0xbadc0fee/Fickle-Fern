@@ -26,20 +26,25 @@
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_FloryFault elevatorLogicFault1;    //!<Elevator Control Logic Fault 1
+T_FloryFault elevatorLogicFault1 =
+{
+    .u8_dm1_enable = TRUE,
+    .u8_fault_status = FALSE,
+    .u32_spn = 520999,
+    .t_fmi = {
+        [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+        [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+    }
+};
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 init_faultHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
 
-    //add logic alarms to the logic fault list
+    //add logic faults to the logic fault list
     add_logicFault(&elevatorLogicFault1);
 
-    //register logic faults to dm1s if required
-    add_dm1LogicAlarm(&elevatorLogicFault1);
-
-    //(all input and ouput DM1 are auto detected)
     //initialize DM1 Alarm Handler
     init_alarmHandler();
 

@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CHECKPOINTS_PROJECT_ID_3685730338 void checkpoints_project_id_3685730338(void) {}
+#define CHECKPOINTS_PROJECT_ID_400348320 void checkpoints_project_id_400348320(void) {}
 
 ///Index of this Datapool
 #define CHECKPOINTS_DATA_POOL_INDEX (0U)
@@ -44,7 +44,8 @@ extern "C" {
 #define CHECKPOINTS_ELEM_INDEX_GENERALTESTING_TEST1 (0U)
 #define CHECKPOINTS_ELEM_INDEX_GENERALTESTING_TEST2 (1U)
 #define CHECKPOINTS_ELEM_INDEX_GENERALTESTING_TEST3 (2U)
-#define CHECKPOINTS_GENERALTESTING_NUMBER_OF_ELEMENTS (3U)
+#define CHECKPOINTS_ELEM_INDEX_GENERALTESTING_TEST4 (3U)
+#define CHECKPOINTS_GENERALTESTING_NUMBER_OF_ELEMENTS (4U)
 
 ///Index of Datasets
 #define CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_DATA_SETS (0U)
@@ -74,6 +75,8 @@ extern "C" {
 #define CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST2 (0.0F)
 #define CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST3 (1.0F)
 #define CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST3 (0.0F)
+#define CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST4 (1.0F)
+#define CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST4 (0.0F)
 
 ///Scaling utilities
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_ELEVATORCONTROL_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT1)
@@ -96,6 +99,8 @@ extern "C" {
 #define CHECKPOINTS_GET_SCALED_VALUE_GENERALTESTING_TEST2() ((gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.s16_test2 * CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST2) + CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST2)
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_GENERALTESTING_TEST3(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.f32_test3 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST3) / CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST3)
 #define CHECKPOINTS_GET_SCALED_VALUE_GENERALTESTING_TEST3() ((gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.f32_test3 * CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST3) + CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST3)
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_GENERALTESTING_TEST4(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u32_test4 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST4) / CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST4)
+#define CHECKPOINTS_GET_SCALED_VALUE_GENERALTESTING_TEST4() ((gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u32_test4 * CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST4) + CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST4)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 ///Elements in list "ElevatorControl":
@@ -120,6 +125,7 @@ typedef struct
    uint8 u8_test1; /* Variable description */
    sint16 s16_test2; /* Variable description */
    float32 f32_test3; /* Variable description */
+   uint32 u32_test4; /* Variable description */
 } T_Checkpoints_GeneralTesting_Values;
 
 ///Elements of all lists:
@@ -139,7 +145,7 @@ extern const T_osy_dpa_data_pool gt_Checkpoints_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void checkpoints_project_id_3685730338(void);
+extern void checkpoints_project_id_400348320(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

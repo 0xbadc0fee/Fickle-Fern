@@ -19,16 +19,17 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
-#include "checkpoint_handler.h"
+
 #include "hmi_definition.h"
-#include "can_handler.h"
-#include "nvm_handler.h"
 
 #include "ethernet_init.h"
 
 #include "header_lift_control.h"
 
 #include "nvm_handler.h"
+#include "fault_handler.h"
+#include "can_handler.h"
+#include "checkpoint_handler.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -84,6 +85,8 @@ int main(void)
     s16_Error += init_hwOutputs();      // Initialize HW Outputs
     s16_Error += init_nvmParameters();  // Initialize NVM Objects
 
+    s16_Error += init_faultHandler();  // Initialize Fault / Alarm (DM1) Handler
+
 
 
     //Initialize AgvWork Controls
@@ -107,7 +110,6 @@ int main(void)
 
     do
     {
-
         //Run Control Sequence
 
         //Inputs
@@ -121,6 +123,7 @@ int main(void)
         //update_headerControl();
 
         //Outputs
+        update_faultHandler();
         update_checkpointHandler();
         update_canOutputs();
         update_hwOutputs();
