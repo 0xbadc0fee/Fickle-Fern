@@ -18,9 +18,7 @@
 #include "stwtypes.h"
 
 #include "hmi_definition.h"
-#include "input_handler_lib.h"
-#include "output_handler_lib.h"
-#include "helper_control.h"
+#include "toggle_button.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define DOOR_OPEN (1u)
