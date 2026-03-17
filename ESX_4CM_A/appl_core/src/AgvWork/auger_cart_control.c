@@ -17,6 +17,8 @@
 #include "stwerrors.h"
 #include "stwtypes.h"
 //PROJECT
+#include "hw_inputs.h"
+#include "hw_outputs.h"
 #include "auger_cart_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */

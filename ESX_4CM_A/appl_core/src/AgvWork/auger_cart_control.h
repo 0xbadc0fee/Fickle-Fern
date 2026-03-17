@@ -18,9 +18,6 @@
 #include "system.h"
 #include "stwtypes.h"
 
-#include "hw_inputs.h"
-#include "hw_outputs.h"
-
 #include "toggle_button.h"
 #include "hitch_position_control.h"
 
