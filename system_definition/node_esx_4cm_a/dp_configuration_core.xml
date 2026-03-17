@@ -6,7 +6,7 @@
         <name>Configuration</name>
         <version major="0" minor="0" release="0"/>
         <comment>NVM Datapool to hold Configuration Data</comment>
-        <lists length="2">
+        <lists length="1">
             <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="100">
                 <name>ElevatorConfig</name>
                 <comment/>
@@ -43,23 +43,6 @@
 </comment>
                     </data-set>
                 </data-sets>
-            </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="100" nvm-size="1">
-                <name>HeaderConfig</name>
-                <comment/>
-                <data-elements length="1">
-                    <data-element factor="1" offset="0" nvm-start-address="100">
-                        <name>joystick_hll_enable</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment>Parameter to set the HLL functionality between footpedals and joystick</comment>
-                        <min-value value="0"/>
-                        <max-value value="255"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values/>
-                    </data-element>
-                </data-elements>
-                <data-sets/>
             </list>
         </lists>
         <export-settings/>

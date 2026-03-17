@@ -28,6 +28,8 @@
 
 #include "header_lift_control.h"
 
+#include "nvm_handler.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
@@ -71,16 +73,20 @@ int main(void)
     sint16 s16_Error;
     sint16 s16_Return;
     uint8 u8_ResetRequest;
+    uint8 u8_ign_status;
 
     //Initialize System
 
     s16_Error  = ethernet_init();       // Initialize Ethernet
     s16_Error += init_canInterfaces();  // Initialize CAN
-    s16_Error += init_hwInputs();       // Initialize HW Inputs
-    s16_Error += init_nvmParameters();  // Initialize NVM Objects
-
     // Start openSYDE task
     s16_Error += osy_srv_init();
+
+
+    //s16_Error += init_hwInputs();       // Initialize HW Inputs
+    s16_Error += init_nvmParameters();  // Initialize NVM Objects
+
+
 
     //Initialize AgvWork Controls
     if(C_NO_ERR == s16_Error)
@@ -97,6 +103,8 @@ int main(void)
       s16_Error += s16_Return;
     }
 
+    system_keep_alive(TRUE);
+
     //add required startup delay here
 
     do
@@ -105,24 +113,38 @@ int main(void)
         //Run Control Sequence
 
         //Inputs
-        update_hwInputs();
+        //update_hwInputs();
         update_canInputs();
 
         //Run AgvChassis Controls
 
         //Run AgvWork Controls
         update_elevatorControl();
-        update_headerControl();
+        //update_headerControl();
 
         //Outputs
         update_checkpointHandler();
         update_canOutputs();
-        update_hwOutputs();
+        //update_hwOutputs();
 
 
         u8_ResetRequest = get_system_reset_status();
+
+        s16_Error = get_ignition_status(&u8_ign_status);
+        // get state of ignition
+        if ((u8_ign_status == FALSE) && (s16_Error == C_NO_ERR))
+        {
+            //Shutdown Sequence
+            reset_nvmParameters();
+            write_nvmParameters();
+        }
+
+
+
     }
     while (u8_ResetRequest == FALSE);
+
+
 
    return 0;
 }

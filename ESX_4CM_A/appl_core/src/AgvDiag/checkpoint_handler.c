@@ -45,7 +45,7 @@ sint16 update_checkpointHandler(void)
     #include "checkpoint_map.def"
     #undef CNTRL2DP
 
-    (void)osy_dph_lock_data_pool(CHECKPOINTS_DATA_POOL_INDEX);
+    (void)osy_dph_unlock_data_pool(CHECKPOINTS_DATA_POOL_INDEX);
 
     return s16_error;
 }

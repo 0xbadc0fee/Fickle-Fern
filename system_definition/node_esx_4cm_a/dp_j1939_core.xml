@@ -10,7 +10,7 @@
             <list>
                 <name>CAN1_TX</name>
                 <comment/>
-                <data-elements length="43">
+                <data-elements length="53">
                     <data-element factor="1" offset="0">
                         <name>ControlPurpose</name>
                         <type base-type="uint8" is-array="false"/>
@@ -125,6 +125,126 @@
                         <comment>This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.</comment>
                         <min-value value="0"/>
                         <max-value value="7"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Ind_01_Aux1</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="3"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Ind_02_Auger</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Ind_03_SB_OP</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Ind_04_Lights</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Ind_05_PA</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Ind_06_ManUL</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Ind_07_SB_CL</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Ind_08_SR</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="3"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_LED_Mux</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0">
+                        <name>Button_Panel_Backlight</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment/>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
@@ -538,7 +658,7 @@
             <list>
                 <name>CAN1_RX</name>
                 <comment/>
-                <data-elements length="54">
+                <data-elements length="63">
                     <data-element factor="0.125" offset="0">
                         <name>ActlEngPrcntTrqueHighResolution</name>
                         <type base-type="uint8" is-array="false"/>
@@ -899,6 +1019,162 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
+                    <data-element factor="0.03125" offset="-273">
+                        <name>EngCoolantTemp</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Temperature of liquid found in engine cooling system.</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-40">
+                        <name>EngFuelTemp1</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Temperature of fuel (or gas) passing through the first fuel control system.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-40">
+                        <name>EngIntercoolerTemp</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Temperature of liquid found in the intercooler located after the turbocharger.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.40000000000000002" offset="0">
+                        <name>EngIntercoolerThermostatOpening</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The current position of the thermostat used to regulate the temperature of the engine intercooler.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.03125" offset="-273">
+                        <name>EngOilTemp1</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Temperature of the engine lubricant.</comment>
+                        <min-value value="0"/>
+                        <max-value value="64255"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.03125" offset="-273">
+                        <name>EngTurboOilTemp</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Temperature of the turbocharger lubricant.</comment>
+                        <min-value value="0"/>
+                        <max-value value="64255"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.050000000000000003" offset="0">
+                        <name>EngAirFilter1DiffPress</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="2" offset="0">
+                        <name>EngAirIntakePress</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Absolute air pressure at input port to intake manifold or air box.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.5" offset="0">
+                        <name>EngCoolantFilterDiffPress</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.5" offset="0">
+                        <name>EngDslPrtclateFilterIntakePress</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="0.03125" offset="-273">
+                        <name>EngExhaustGasTemp</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Temperature of combustion byproducts leaving the engine.</comment>
+                        <min-value value="0"/>
+                        <max-value value="64255"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="2" offset="0">
+                        <name>EngIntakeManifold1Press</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>The gage pressure measurement of the air intake manifold.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>kPa</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="-40">
+                        <name>EngIntakeManifold1Temp</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Temperature of pre-combustion air found in intake manifold of engine air supply system.</comment>
+                        <min-value value="0"/>
+                        <max-value value="250"/>
+                        <unit>deg C</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
                     <data-element factor="1" offset="0">
                         <name>AgvHmiCameraReset</name>
                         <type base-type="uint8" is-array="false"/>
@@ -1032,7 +1308,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0">
-                        <name>Button_State_01</name>
+                        <name>Button_State_01_Aux1</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -1044,7 +1320,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0">
-                        <name>Button_State_02</name>
+                        <name>Button_State_02_Auger</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -1056,7 +1332,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0">
-                        <name>Button_State_03</name>
+                        <name>Button_State_03_SB_OP</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -1068,7 +1344,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0">
-                        <name>Button_State_04</name>
+                        <name>Button_State_04_Lights</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -1080,7 +1356,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0">
-                        <name>Button_State_05</name>
+                        <name>Button_State_05_PA</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -1092,7 +1368,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0">
-                        <name>Button_State_06</name>
+                        <name>Button_State_06_ManUL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -1104,7 +1380,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0">
-                        <name>Button_State_07</name>
+                        <name>Button_State_07_SB_CL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -1116,55 +1392,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0">
-                        <name>Button_State_08</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_09</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_10</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_11</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_12</name>
+                        <name>Button_State_08_SR</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -1180,7 +1408,7 @@
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
-                        <max-value value="0"/>
+                        <max-value value="255"/>
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>

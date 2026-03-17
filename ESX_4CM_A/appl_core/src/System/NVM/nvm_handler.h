@@ -31,6 +31,8 @@ extern T_Config_HeaderControl gt_headerConfig;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void);
+sint16 write_nvmParameters(void);
+sint16 reset_nvmParameters(void);
 
 #endif /* APPL_CORE_SRC_SYSTEM_NVM_NVM_HANDLER_H_ */
 
