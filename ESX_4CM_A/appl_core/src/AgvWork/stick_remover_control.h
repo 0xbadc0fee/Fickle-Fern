@@ -16,9 +16,7 @@
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "stwtypes.h"
 #include "hmi_definition.h"
-#include "input_handler_lib.h"
-#include "output_handler_lib.h"
-#include "helper_control.h"
+#include "toggle_button.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define DOOR_OPEN                 (1u)
@@ -44,7 +42,6 @@
 typedef struct
 {
     /* Local Control Variables */
-    uint8 u8_safe_state;                 //!< Toggle Button Safe State
     uint8 u8_stick_remover_latched;      //!< Stick Remover Latched Status
     uint32 u32_ign_start_time_ms;        //!< System time captured on IGN OFF->ON transition
     uint8 u8_prev_ign_on;                //!< Previous IGN ON state
