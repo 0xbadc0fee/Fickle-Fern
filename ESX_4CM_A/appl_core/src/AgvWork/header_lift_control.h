@@ -24,12 +24,23 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
+/** \brief Checkpoints Structure - Header Control
+ *
+ * This structure represents all checkpoints that are relevant
+ * to header control
+ */
+typedef struct
+{
+    uint8   u8_chk1;   //!<Checkpoint #1
+    sint16  s16_chk2;  //!<Checkpoint #2
+    float32 f32_chk3;  //!<Checkpoint #3
 
+}T_ChkPoints_Header;
 
-/** \brief Configuration Structure - Elevator Control
+/** \brief Configuration Structure - Header Control
  *
  * This structure represents all NVM configuration variables
- * that are relevant to elevator control
+ * that are relevant to header control
  */
 typedef struct
 {
@@ -62,13 +73,16 @@ typedef struct
     //NVM Configuration Parameters
     T_Config_HeaderControl *pt_nvm_hdr_control;      //!<Header Control Configuration Structure
 
+    //Control Checkpoints
+    T_ChkPoints_Header *pt_chkPoints;   //!<Header Control Checkpoints Structure
+
 
 }T_HeaderControl;
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_headerControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHeaderControl);
+sint16 init_headerControl(T_UserInterface *_ui, T_ChkPoints_Header *_chkPoints, T_Config_HeaderControl *_nvmHeaderControl);
 sint16 update_headerControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_HEADER_LIFT_CONTROL_H_ */

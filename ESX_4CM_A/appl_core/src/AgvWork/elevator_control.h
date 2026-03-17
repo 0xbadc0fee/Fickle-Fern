@@ -31,9 +31,9 @@
  */
 typedef struct
 {
-    uint8 u8_chkPoint1;                    //!<Checkpoint #1
-    uint8 u8_chkPoint2;                    //!<Checkpoint #2
-    uint8 u8_chk3;                         //!<Checkpoint #3
+    uint8   u8_chkPoint1;                    //!<Checkpoint #1
+    sint16  s16_chkPoint2;                    //!<Checkpoint #2
+    float32 f32_chkPoint3;                         //!<Checkpoint #3
 
 }T_ChkPoints_Elevator;
 

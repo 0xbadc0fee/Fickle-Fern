@@ -62,6 +62,9 @@ sint16 init_outputHandler(void)
     s16_error |= x_msw_set_state(X_MSW_02, X_ON);
     s16_error |= x_msw_set_state(X_MSW_03, X_ON);
 
+    //TODO_STW: Make the return errors distinguishable between diagnostic init error and hardware init error
+    //TODO_STW: Add Current Control to update function
+
     //Initialize Output Runner List
     // loop through all outputs and initialize
     for (uint8 i = 0; i < u8_numOutputs; i++)
@@ -354,18 +357,17 @@ sint16 add_hwOutput(T_VehicleOutput output)
  */
 sint16 findOutputByName(const char *targetName, uint8 *opu8_Index)
 {
-    sint16 s16_Error = C_RANGE;
 
     for (uint8 i = 0; i < u8_numOutputs; i++)
     {
         if (strcmp(at_vehicleOutputs[i].Name_Description, targetName) == 0)
         {
             *opu8_Index = i;  // Return index of matching item
-            s16_Error = C_NO_ERR;
+            return C_NO_ERR;
         }
     }
     *opu8_Index = 255;  // Not found
-    return s16_Error;
+    return C_RANGE;
 }
 
 /** \brief Clear all active output faults

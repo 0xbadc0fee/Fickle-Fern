@@ -56,6 +56,9 @@ sint16 init_inputHandler(void)
         // switch case based on intended input type
         switch(at_vehicleInputs[i].e_inputType)
         {
+            //TODO_STW: Make the pull circuitry configurable
+            //TODO_STW: Make the diagnostic min and max NON configurable but auto detected based off Type and hardware id.
+            //TODO_STW: Make the return errors distinguishable between diagnostic init error and hardware init error
             case IT_VOLTAGE:
                 s16_initError |= x_in_voltage_init( at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT,  DEFAULT_ADCINPUT_FILTER);
 
@@ -330,18 +333,14 @@ sint16 get_inputFaultStatus(const char *targetName, uint8 *opu8_status)
  */
 sint16 add_hwInput(T_VehicleInput input)
 {
-    // (0) Set error to neutral value - C_UNKNOWN_ERR
     sint16 s16_Error = C_NO_ERR;
 
-    // (1) Check if array is full - C_RANGE
     if (u8_numInputs == X_IN_COUNT)
     {
         s16_Error = C_RANGE;
     }
     else
     {
-        // (2) Check for duplicate hardware pins - C_CONFIG
-        s16_Error = C_NO_ERR;  // Assume no duplicates
         for (uint8 i = 0; i < u8_numInputs; i++)
         {
             if (at_vehicleInputs[i].u16_hardwareID == input.u16_hardwareID)
@@ -373,18 +372,17 @@ sint16 add_hwInput(T_VehicleInput input)
 **/
 sint16 findInputByName(const char *targetName, uint8 *opu8_Index)
 {
-    sint16 s16_Error = C_RANGE;
-
     for (uint8 i = 0; i < u8_numInputs; i++)
     {
         if (strcmp(at_vehicleInputs[i].Name_Description, targetName) == 0)
         {
             *opu8_Index = i;  // Return index of matching item
-            s16_Error = C_NO_ERR;
+            return C_NO_ERR;
         }
     }
+
     *opu8_Index = 255;  // Not found
-    return s16_Error;  // Status remains C_RANGE if if not found
+    return C_RANGE;
 }
 
 /** \brief Clear all active input faults

@@ -20,11 +20,11 @@
 ///check for correct version of structure definitions
 #if OSY_COM_CONFIG_DEFINITION_VERSION != 0x0003U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_2240009122 mt_Variable;
+static T_osy_non_existing_type_2727223965 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-COMM_J1939_CAN1_PROJECT_ID_2240009122
+COMM_J1939_CAN1_PROJECT_ID_2727223965
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -34,8 +34,8 @@ static T_osy_com_message_status mat_StatusTx[COMM_J1939_CAN1_NUMBER_OF_TX_MSGS];
 static T_osy_com_message_status mat_StatusRx[COMM_J1939_CAN1_NUMBER_OF_RX_MSGS];
 
 ///mux status
-static T_osy_com_message_mux_status mat_StatusMuxTxMessages[3];
-static T_osy_com_message_mux_status mat_StatusMuxRxMessages[5];
+static T_osy_com_message_mux_status mat_StatusMuxTxMessages[6];
+static T_osy_com_message_mux_status mat_StatusMuxRxMessages[7];
 
 ///Tx signal definitions
 static const T_osy_com_signal_definition mat_TSC1[10] =
@@ -52,45 +52,69 @@ static const T_osy_com_signal_definition mat_TSC1[10] =
    { OSY_COM_BYTE_ORDER_LITTLE, 32U, 3U, 0U, 9U }
 };
 
+static const T_osy_com_signal_definition mat_CAN_Btn_Panel_TransValue136[2] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 0U, 18U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 1U, 0U, 19U }
+};
+
+static const T_osy_com_signal_definition mat_CAN_Btn_Panel_TransValue176[8] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 0U, 18U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 8U, 0U, 10U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 8U, 0U, 11U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 24U, 8U, 0U, 12U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 8U, 0U, 13U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 14U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 48U, 8U, 0U, 15U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 8U, 0U, 16U }
+};
+
+static const T_osy_com_signal_definition mat_CAN_Btn_Panel_TransValue177[2] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 0U, 18U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 8U, 0U, 17U }
+};
+
 static const T_osy_com_signal_definition mat_CAN_Display_Trans1[26] =
 {
-   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 0U, 10U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 1U, 0U, 11U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 22U, 1U, 0U, 12U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 43U, 1U, 0U, 13U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 44U, 1U, 0U, 14U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 45U, 1U, 0U, 15U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 46U, 1U, 0U, 16U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 47U, 1U, 0U, 17U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 21U, 1U, 0U, 18U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 34U, 1U, 0U, 19U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 8U, 0U, 20U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 17U, 1U, 0U, 21U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 24U, 8U, 0U, 22U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 35U, 1U, 0U, 23U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 20U, 1U, 0U, 24U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 19U, 1U, 0U, 25U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 48U, 16U, 0U, 26U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 18U, 1U, 0U, 27U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 23U, 1U, 0U, 28U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 41U, 1U, 0U, 29U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 36U, 1U, 0U, 30U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 38U, 1U, 0U, 31U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 33U, 1U, 0U, 32U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 37U, 1U, 0U, 33U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 39U, 1U, 0U, 34U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 1U, 0U, 35U }
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 0U, 20U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 1U, 0U, 21U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 22U, 1U, 0U, 22U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 43U, 1U, 0U, 23U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 44U, 1U, 0U, 24U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 45U, 1U, 0U, 25U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 46U, 1U, 0U, 26U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 47U, 1U, 0U, 27U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 21U, 1U, 0U, 28U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 34U, 1U, 0U, 29U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 8U, 0U, 30U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 17U, 1U, 0U, 31U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 24U, 8U, 0U, 32U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 35U, 1U, 0U, 33U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 20U, 1U, 0U, 34U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 19U, 1U, 0U, 35U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 48U, 16U, 0U, 36U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 18U, 1U, 0U, 37U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 23U, 1U, 0U, 38U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 41U, 1U, 0U, 39U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 36U, 1U, 0U, 40U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 38U, 1U, 0U, 41U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 33U, 1U, 0U, 42U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 37U, 1U, 0U, 43U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 39U, 1U, 0U, 44U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 1U, 0U, 45U }
 };
 
 static const T_osy_com_signal_definition mat_CAN_Display_Trans2[7] =
 {
-   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 8U, 0U, 36U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 8U, 0U, 37U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 38U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 48U, 8U, 0U, 39U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 8U, 0U, 40U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 24U, 8U, 0U, 41U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 16U, 0U, 42U }
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 8U, 0U, 46U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 8U, 0U, 47U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 48U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 48U, 8U, 0U, 49U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 8U, 0U, 50U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 24U, 8U, 0U, 51U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 16U, 0U, 52U }
 };
 
 ///Rx signal definitions
@@ -132,74 +156,99 @@ static const T_osy_com_signal_definition mat_BJM1[22] =
    { OSY_COM_BYTE_ORDER_LITTLE, 20U, 2U, 1U, 29U }
 };
 
+static const T_osy_com_signal_definition mat_ET1[6] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 1U, 30U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 8U, 1U, 31U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 48U, 8U, 1U, 32U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 8U, 1U, 33U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 16U, 1U, 34U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 16U, 1U, 35U }
+};
+
+static const T_osy_com_signal_definition mat_IC1[7] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 8U, 1U, 36U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 24U, 8U, 1U, 37U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 8U, 1U, 38U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 1U, 39U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 16U, 1U, 40U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 8U, 1U, 41U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 8U, 1U, 42U }
+};
+
 static const T_osy_com_signal_definition mat_DISP_CAN_Rec1[9] =
 {
-   { OSY_COM_BYTE_ORDER_LITTLE, 1U, 1U, 1U, 30U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 1U, 1U, 31U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 4U, 1U, 1U, 32U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 3U, 1U, 1U, 33U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 8U, 1U, 34U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 6U, 1U, 1U, 35U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 1U, 36U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 5U, 1U, 1U, 37U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 16U, 1U, 38U }
+   { OSY_COM_BYTE_ORDER_LITTLE, 1U, 1U, 1U, 43U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 1U, 1U, 44U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 4U, 1U, 1U, 45U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 3U, 1U, 1U, 46U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 8U, 1U, 47U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 6U, 1U, 1U, 48U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 1U, 49U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 5U, 1U, 1U, 50U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 16U, 1U, 51U }
 };
 
 static const T_osy_com_signal_definition mat_DISP_CAN_Rec2[2] =
 {
-   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 8U, 1U, 39U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 1U, 1U, 40U }
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 8U, 1U, 52U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 1U, 1U, 53U }
 };
 
-static const T_osy_com_signal_definition mat_CAN_Btn_Panel_Rec[13] =
+static const T_osy_com_signal_definition mat_CAN_Btn_Panel_RecValue32[9] =
 {
-   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 2U, 1U, 41U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 10U, 2U, 1U, 42U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 12U, 2U, 1U, 43U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 14U, 2U, 1U, 44U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 2U, 1U, 45U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 18U, 2U, 1U, 46U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 20U, 2U, 1U, 47U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 22U, 2U, 1U, 48U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 24U, 2U, 1U, 49U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 26U, 2U, 1U, 50U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 28U, 2U, 1U, 51U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 30U, 2U, 1U, 52U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 1U, 53U }
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 1U, 62U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 2U, 1U, 54U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 10U, 2U, 1U, 55U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 12U, 2U, 1U, 56U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 14U, 2U, 1U, 57U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 2U, 1U, 58U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 18U, 2U, 1U, 59U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 20U, 2U, 1U, 60U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 22U, 2U, 1U, 61U }
 };
 
 ///Tx message definitions
-static const T_osy_com_message_mux_definition mat_MessagesMuxTx[3] =
+static const T_osy_com_message_mux_definition mat_MessagesMuxTx[6] =
 {
    { 0U, 10U, &mat_TSC1[0] },
+   { 136U, 2U, &mat_CAN_Btn_Panel_TransValue136[0] },
+   { 176U, 8U, &mat_CAN_Btn_Panel_TransValue176[0] },
+   { 177U, 2U, &mat_CAN_Btn_Panel_TransValue177[0] },
    { 0U, 26U, &mat_CAN_Display_Trans1[0] },
    { 0U, 7U, &mat_CAN_Display_Trans2[0] }
 };
 
 static const T_osy_com_message_definition mat_MessagesTx[COMM_J1939_CAN1_NUMBER_OF_TX_MSGS] =
 {
-   { 0xc0000feU, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxTxMessages[0], &mat_MessagesMuxTx[0] },  /// TSC1 (Torque/Speed Control 1)
-   { 0x18ff0000U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxTxMessages[1], &mat_MessagesMuxTx[1] },  /// CAN_Display_Trans1
-   { 0x18ff0100U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxTxMessages[2], &mat_MessagesMuxTx[2] }  /// CAN_Display_Trans2
+   { 0xc0000feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 50U, 0U, &mat_StatusMuxTxMessages[0], &mat_MessagesMuxTx[0] },  /// TSC1 (Torque/Speed Control 1)
+   { 0x18efa103U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 50U, 3U, &mat_StatusMuxTxMessages[1], &mat_MessagesMuxTx[1] },  /// CAN_Btn_Panel_Trans (Button Panel LED Indicator Controls)
+   { 0x18ff0003U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 50U, 0U, &mat_StatusMuxTxMessages[4], &mat_MessagesMuxTx[4] },  /// CAN_Display_Trans1 (General UI Machine Feedback 1)
+   { 0x18ff0103U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 50U, 0U, &mat_StatusMuxTxMessages[5], &mat_MessagesMuxTx[5] }  /// CAN_Display_Trans2 (General UI Machine Feedback 2)
 };
 
 ///Rx message definitions
-static const T_osy_com_message_mux_definition mat_MessagesMuxRx[5] =
+static const T_osy_com_message_mux_definition mat_MessagesMuxRx[7] =
 {
    { 0U, 8U, &mat_EEC1[0] },
    { 0U, 22U, &mat_BJM1[0] },
+   { 0U, 6U, &mat_ET1[0] },
+   { 0U, 7U, &mat_IC1[0] },
    { 0U, 9U, &mat_DISP_CAN_Rec1[0] },
    { 0U, 2U, &mat_DISP_CAN_Rec2[0] },
-   { 0U, 13U, &mat_CAN_Btn_Panel_Rec[0] }
+   { 32U, 9U, &mat_CAN_Btn_Panel_RecValue32[0] }
 };
 
 static const T_osy_com_message_definition mat_MessagesRx[COMM_J1939_CAN1_NUMBER_OF_RX_MSGS] =
 {
    { 0xcf004feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 310U, 0U, &mat_StatusMuxRxMessages[0], &mat_MessagesMuxRx[0] },  /// EEC1 (Electronic Engine Controller 1)
    { 0xcfdd6feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 310U, 0U, &mat_StatusMuxRxMessages[1], &mat_MessagesMuxRx[1] },  /// BJM1 (Basic Joystick Message 1)
-   { 0x18ff0200U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[2], &mat_MessagesMuxRx[2] },  /// DISP_CAN_Rec1
-   { 0x18ff0400U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[3], &mat_MessagesMuxRx[3] },  /// DISP_CAN_Rec2
-   { 0x18ffa1a1U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[4], &mat_MessagesMuxRx[4] }  /// CAN_Btn_Panel_Rec
+   { 0x18feeefeU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 3010U, 0U, &mat_StatusMuxRxMessages[2], &mat_MessagesMuxRx[2] },  /// ET1 (Engine Temperature 1)
+   { 0x18fef6feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 1510U, 0U, &mat_StatusMuxRxMessages[3], &mat_MessagesMuxRx[3] },  /// IC1 (Intake/Exhaust Conditions 1)
+   { 0x18ff021dU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 160U, 0U, &mat_StatusMuxRxMessages[4], &mat_MessagesMuxRx[4] },  /// DISP_CAN_Rec1 (General UI Machine Parameters 2)
+   { 0x18ff041dU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 160U, 0U, &mat_StatusMuxRxMessages[5], &mat_MessagesMuxRx[5] },  /// DISP_CAN_Rec2 (General UI Machine Parameters 1)
+   { 0x18ffa1a1U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 40U, 1U, &mat_StatusMuxRxMessages[6], &mat_MessagesMuxRx[6] }  /// CAN_Btn_Panel_Rec (Button Panel Button States)
 };
 
 /* -- Module Global Function Prototypes ----------------------------------------------------------------------------- */

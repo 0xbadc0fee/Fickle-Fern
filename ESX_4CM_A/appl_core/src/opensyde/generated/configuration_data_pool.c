@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_1484555524 mt_Variable;
+static T_osy_non_existing_type_2383036431 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CONFIGURATION_PROJECT_ID_1484555524
+CONFIGURATION_PROJECT_ID_2383036431
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -65,13 +65,13 @@ static const T_osy_dpa_data_set mat_ElevatorConfigDataSetTable[CONFIGURATION_ELE
 ///Minimum values
 static const T_Configuration_HeaderConfig_Values mt_HeaderConfigMinValues =
 {
-   0U    ///< joystick_hll_enable (Parameter to set the HLL functionality between footpedals and joystick)
+   0U    ///< joystick_hll_enable (Parameter description)
 };
 
 ///Maximum values
 static const T_Configuration_HeaderConfig_Values mt_HeaderConfigMaxValues =
 {
-   255U    ///< joystick_hll_enable (Parameter to set the HLL functionality between footpedals and joystick)
+   255U    ///< joystick_hll_enable (Parameter description)
 };
 
 ///List definitions:
@@ -101,7 +101,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Configuration",  ///< name of Datapool
    CONFIGURATION_NUMBER_OF_LISTS,
-   0x29a32972U, ///< CRC of Datapool definition
+   0x3a7f403fU, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    20000U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

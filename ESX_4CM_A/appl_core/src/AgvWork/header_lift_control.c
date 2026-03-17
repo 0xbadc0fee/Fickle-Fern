@@ -35,7 +35,7 @@ T_HeaderControl mt_hdr_control;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_headerControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHeaderControl)
+sint16 init_headerControl(T_UserInterface *_ui, T_ChkPoints_Header *_chkPoints, T_Config_HeaderControl *_nvmHeaderControl)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -48,6 +48,9 @@ sint16 init_headerControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHead
 
     //populate local copy of NVM elements
     mt_hdr_control.pt_nvm_hdr_control = _nvmHeaderControl;
+
+    //populate local copy of checkpoints
+    mt_hdr_control.pt_chkPoints = _chkPoints;
 
     //iniitalize command variables
     mt_hdr_control.u8_lift_command = FALSE;
@@ -80,14 +83,16 @@ sint16 update_headerControl(void)
     uint8 u8_lower_output = FALSE;
 
     //get the relief switch status and pass value onto CAN
-    get_inputValue("RIGHT_PEDAL", &f32_relief_switch);
+    get_inputValue("RELIEF_PRESS", &f32_relief_switch);
     *(mt_hdr_control.pu8_relief_swich) = (uint8)f32_relief_switch;
+
+    mt_hdr_control.pt_chkPoints->f32_chk3 = f32_relief_switch;
 
     //check if joystick HLL is disabled or not
     if(!mt_hdr_control.pt_nvm_hdr_control->u8_joystick_hll_enable)
     {
-        get_inputValue("RIGHT_PEDAL", &f32_right_pedal);
-        get_inputValue("LEFT_PEDAL", &f32_left_pedal);
+        get_inputValue("RIGHT_SWITCH", &f32_right_pedal);
+        get_inputValue("LEFT_SWITCH", &f32_left_pedal);
 
         mt_hdr_control.u8_lift_command = (uint8)f32_right_pedal;
         mt_hdr_control.u8_lower_command = (uint8)f32_left_pedal;
@@ -103,7 +108,7 @@ sint16 update_headerControl(void)
     if(mt_hdr_control.u8_lift_command)
     {
         //check the limit switch
-        get_inputValue("HDR_LIMIT_SWITCH", &f32_limit_switch);
+        get_inputValue("HEAD_LIMIT", &f32_limit_switch);
         u8_lower_output = FALSE;
 
         if(f32_limit_switch)
@@ -125,8 +130,8 @@ sint16 update_headerControl(void)
     }
 
     //set the hardware output
-    set_outputValue("HDR_LOWER", (float32)u8_lower_output);
-    set_outputValue("HDR_LIFT", (float32)u8_lift_output);
+    set_outputValue("HEAD_LOWER_COIL", (float32)u8_lower_output);
+    set_outputValue("HEAD_LIFT_COIL", (float32)u8_lift_output);
 
 
     return s16_error;

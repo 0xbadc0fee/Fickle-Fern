@@ -42,7 +42,7 @@ const X_MEM_APPLICATION_INFO T_x_sys_application_information gt_ApplicationInfor
    .acn_Devicename         = X_SYS_DEVICE_NAME,
    .acn_Date               = __DATE__,
    .acn_Time               = __TIME__,
-   .acn_ApplicationName    = "ESX-4CM-A FLORY TEMPLATE",
+   .acn_ApplicationName    = "ESX-4CM-A FLORY 8772",
    .acn_ApplicationVersion = "V2.00r2",
    .u8_LenAdditionalInfo   = OSY_FL_LEN_ADDITIONAL_INFO,
    .acn_AdditionalInfo     = " "
@@ -76,14 +76,12 @@ int main(void)
     uint8 u8_ign_status;
 
     //Initialize System
-
     s16_Error  = ethernet_init();       // Initialize Ethernet
     s16_Error += init_canInterfaces();  // Initialize CAN
-    // Start openSYDE task
-    s16_Error += osy_srv_init();
+    s16_Error += osy_srv_init();        // Initialize openSYDE System
 
-
-    //s16_Error += init_hwInputs();       // Initialize HW Inputs
+    s16_Error += init_hwInputs();       // Initialize HW Inputs
+    s16_Error += init_hwOutputs();      // Initialize HW Outputs
     s16_Error += init_nvmParameters();  // Initialize NVM Objects
 
 
@@ -92,7 +90,7 @@ int main(void)
     if(C_NO_ERR == s16_Error)
     {
         s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
-        s16_Error += init_headerControl(&gt_ui, &gt_headerConfig);
+        s16_Error += init_headerControl(&gt_ui, &gt_headerCheckpoints, &gt_headerConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -113,7 +111,7 @@ int main(void)
         //Run Control Sequence
 
         //Inputs
-        //update_hwInputs();
+        update_hwInputs();
         update_canInputs();
 
         //Run AgvChassis Controls
@@ -125,7 +123,7 @@ int main(void)
         //Outputs
         update_checkpointHandler();
         update_canOutputs();
-        //update_hwOutputs();
+        update_hwOutputs();
 
 
         u8_ResetRequest = get_system_reset_status();
@@ -135,8 +133,7 @@ int main(void)
         if ((u8_ign_status == FALSE) && (s16_Error == C_NO_ERR))
         {
             //Shutdown Sequence
-            reset_nvmParameters();
-            write_nvmParameters();
+            //write_nvmParameters();
         }
 
 

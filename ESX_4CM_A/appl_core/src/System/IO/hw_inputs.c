@@ -32,7 +32,7 @@ T_VehicleInput tvi_hyd_oil_temp =
 {
     .Name_Description       = "HYD_OIL_TEMP",
     .u16_hardwareID         = X_IN_IDA5V_7,
-    .e_inputType            = IT_CURRENT,
+    .e_inputType            = IT_VOLTAGE,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
@@ -73,7 +73,7 @@ T_VehicleInput tvi_relief_press =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_head_limit =
@@ -97,7 +97,7 @@ T_VehicleInput tvi_head_limit =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 12000,
 };
 
 T_VehicleInput tvi_right_switch =
@@ -121,7 +121,7 @@ T_VehicleInput tvi_right_switch =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_left_switch =
@@ -145,7 +145,7 @@ T_VehicleInput tvi_left_switch =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_air_restrict =
@@ -217,7 +217,7 @@ T_VehicleInput tvi_traction_valve =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_hyd_fluid_level =
@@ -241,7 +241,7 @@ T_VehicleInput tvi_hyd_fluid_level =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_wheel_speed =
@@ -264,8 +264,8 @@ T_VehicleInput tvi_wheel_speed =
         }
     },
     .u16_dti                = 1000,
-    .s32_diagMin            = 500,
-    .s32_diagMax            = 4500,
+    .s32_diagMin            = 600,
+    .s32_diagMax            = 20000000,
 };
 
 T_VehicleInput tvi_park_brake =
@@ -289,7 +289,7 @@ T_VehicleInput tvi_park_brake =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 12000,
 };
 
 T_VehicleInput tvi_fan_speed =
@@ -312,8 +312,8 @@ T_VehicleInput tvi_fan_speed =
         }
     },
     .u16_dti                = 1000,
-    .s32_diagMin            = 500,
-    .s32_diagMax            = 4500,
+    .s32_diagMin            = 600,
+    .s32_diagMax            = 20000000,
 };
 
 T_VehicleInput tvi_ignition_switch =
@@ -337,7 +337,7 @@ T_VehicleInput tvi_ignition_switch =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 12000,
 };
 
 T_VehicleInput tvi_cab_door =
@@ -361,7 +361,7 @@ T_VehicleInput tvi_cab_door =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_throttle_up =
@@ -385,7 +385,7 @@ T_VehicleInput tvi_throttle_up =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 5000,
 };
 
 T_VehicleInput tvi_throttle_down =
@@ -409,13 +409,13 @@ T_VehicleInput tvi_throttle_down =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 5000,
 };
 
 T_VehicleInput tvi_head_pressure =
 {
     .Name_Description       = "HEAD_PRESSURE",
-    .u16_hardwareID         = X_IN_IDA5V_7,
+    .u16_hardwareID         = X_IN_IDA35V_7,
     .e_inputType            = IT_DIGITAL,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
@@ -433,7 +433,7 @@ T_VehicleInput tvi_head_pressure =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 

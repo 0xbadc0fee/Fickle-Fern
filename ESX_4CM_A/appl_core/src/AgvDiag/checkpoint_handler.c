@@ -22,6 +22,7 @@
 
 //Include Controls that have checkpoints
 #include "elevator_control.h"
+#include "header_lift_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
@@ -32,6 +33,7 @@
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
 T_ChkPoints_Elevator gt_elevatorCheckpoints;    //!<structure that holds all AgvWork - Elevator Control Checkpoints
+T_ChkPoints_Header gt_headerCheckpoints;    //!<structure that holds all AgvWork - Header Control Checkpoints
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 update_checkpointHandler(void)

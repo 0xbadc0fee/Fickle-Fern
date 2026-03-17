@@ -124,7 +124,7 @@ T_VehicleOutput tvo_dv_sweep =
 {
     .Name_Description = "DV_SWEEP",
     .u16_hardwareID = X_OUT_OPHSP2A_10,
-    .e_outputType = OT_DIGITAL,
+    .e_outputType = OT_PWM,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
@@ -165,8 +165,10 @@ T_VehicleOutput tvo_head_lower =
     .u8_diagEnabled = FALSE,
     .t_fault = { .u8_dm1_enable = FALSE },
 
-    .u16_dti = 0,
+    .u16_dti = 0
 };
+
+
 
 T_VehicleOutput tvo_hitch_extend =
 {
@@ -181,7 +183,7 @@ T_VehicleOutput tvo_hitch_extend =
     .u8_diagEnabled = FALSE,
     .t_fault = { .u8_dm1_enable = FALSE },
 
-    .u16_dti = 0,
+    .u16_dti = 0
 };
 
 T_VehicleOutput tvo_hitch_retract =
@@ -197,7 +199,7 @@ T_VehicleOutput tvo_hitch_retract =
     .u8_diagEnabled = FALSE,
     .t_fault = { .u8_dm1_enable = FALSE },
 
-    .u16_dti = 0,
+    .u16_dti = 0
 };
 
 T_VehicleOutput tvo_taillights =
@@ -268,7 +270,7 @@ T_VehicleOutput tvo_power_assist =
 {
     .Name_Description = "POWER_ASSIST",
     .u16_hardwareID = X_OUT_OPHSP4A_4,
-    .e_outputType = OT_PWM,
+    .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
@@ -284,7 +286,7 @@ T_VehicleOutput tvo_traction_valve =
 {
     .Name_Description = "TRACTION_VALVE",
     .u16_hardwareID = X_OUT_OPHSP2A_1,
-    .e_outputType = OT_PWM,
+    .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
@@ -300,7 +302,7 @@ T_VehicleOutput tvo_shift_coil =
 {
     .Name_Description = "SHIFT_COIL",
     .u16_hardwareID = X_OUT_OPHSP2A_12,
-    .e_outputType = OT_PWM,
+    .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
@@ -363,7 +365,7 @@ T_VehicleOutput tvo_propel_rev =
 T_VehicleOutput tvo_rotary_trap =
 {
     .Name_Description = "ROTARY_TRAP",
-    .u16_hardwareID = X_OUT_OPHSP2A_6,
+    .u16_hardwareID = X_OUT_OPHSP2A_7,
     .e_outputType = OT_PWM,
 
     .f32_outputValue = 0.0F,

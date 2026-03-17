@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CONFIGURATION_PROJECT_ID_1484555524 void configuration_project_id_1484555524(void) {}
+#define CONFIGURATION_PROJECT_ID_2383036431 void configuration_project_id_2383036431(void) {}
 
 ///Index of this Datapool
 #define CONFIGURATION_DATA_POOL_INDEX (1U)
@@ -72,7 +72,7 @@ typedef struct
 ///Elements in list "HeaderConfig":
 typedef struct
 {
-   uint8 u8_joystick_hll_enable; /* Parameter to set the HLL functionality between footpedals and joystick */
+   uint8 u8_joystick_hll_enable; /* Parameter description */
 } T_Configuration_HeaderConfig_Values;
 
 ///Elements of all lists:
@@ -91,7 +91,7 @@ extern const T_osy_dpa_data_pool gt_Configuration_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void configuration_project_id_1484555524(void);
+extern void configuration_project_id_2383036431(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

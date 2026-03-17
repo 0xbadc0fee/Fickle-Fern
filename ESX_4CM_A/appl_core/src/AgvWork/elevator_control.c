@@ -16,6 +16,8 @@
 #include "elevator_control.h"
 #include "stwerrors.h"
 #include "stwtypes.h"
+#include "hw_inputs.h"
+#include "hw_outputs.h"
 
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
@@ -73,8 +75,18 @@ sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElev
 sint16 update_elevatorControl(void)
 {
     sint16 s16_error = C_NO_ERR;
+    uint8 u8_status = 0;
+    float32 f32_door_state = 3;
 
-    //get_inputStatus("THROTPOS", &u8_throttleSensorStatus);
+    s16_error = get_inputFaultStatus("CAB_DOOR", &u8_status);
+    mt_elevator.pt_chkElevator->u8_chkPoint1 = u8_status;
+
+    s16_error = get_inputValue("CAB_DOOR", &f32_door_state);
+
+    s16_error = set_outputValue("STICKBOX_ON",f32_door_state);
+
+    mt_elevator.pt_chkElevator->f32_chkPoint3= f32_door_state;
+    mt_elevator.pt_chkElevator->s16_chkPoint2= s16_error;
 
 
 
