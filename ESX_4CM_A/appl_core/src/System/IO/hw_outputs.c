@@ -34,7 +34,7 @@ T_VehicleOutput tvo_auto_unload =
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
-<<<<<<< HEAD
+
     .u8_diagEnabled = FALSE,
     .t_fault = { .u8_dm1_enable = FALSE },
 
@@ -456,25 +456,6 @@ T_VehicleOutput tvo_fan_hydro_fwd =
 
     .u16_dti = 0,
 };
-=======
-T_VehicleOutput stickRemControlRelay =
-        {
-            .Name_Description       = "STICK_REMOVER_RELAY",
-            .u16_hardwareID         = X_OUT_OPL2A_1, 
-            .e_outputType            = OT_DIGITAL,
-
-            .f32_outputValue        = 0.0f,
-            .f32_prevOutputValue    = 0.0f,
-            .mq_outputChanged       = TRUE,
-
-            .u8_diagEnabled         = FALSE,
-            .t_fault=
-            {
-                .u8_dm1_enable      = FALSE
-            },
-            .u16_dti                = 0,
-        };
->>>>>>> a9220607de73b6e6613d785edee8c112be845324
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Outputs

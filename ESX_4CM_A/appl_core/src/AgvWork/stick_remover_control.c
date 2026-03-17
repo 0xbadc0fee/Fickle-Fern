@@ -149,14 +149,11 @@ sint16 update_stickRemoverControl(void)
     u8_reset);
 
     // FR-11.3 / IR-11.2 Output status, no movement on output fault
-    get_outputFaultStatus("STICK_REMOVER_RELAY", &u8_output_fault_status);
-
+    get_outputFaultStatus("STICK_REMOVER", &u8_output_fault_status);
 
     if(u8_output_fault_status == FALSE)
     {
-        set_outputValue("STICK_REMOVER_RELAY",
-        (float32)mt_stick_remover.u8_stick_remover_latched);
-
+        set_outputValue("STICK_REMOVER", (float32)mt_stick_remover.u8_stick_remover_latched);
     }
     else
     {
@@ -170,7 +167,7 @@ sint16 update_stickRemoverControl(void)
         *(mt_stick_remover.pu8_stick_remover_status) = mt_stick_remover.u8_stick_remover_latched;
     }
 
-    if(mt_stick_remover.pu8_stick_remover_led_status != NULL)
+    if(mt_stick_remover.pu8_stick_remover_led_status != NULL) //STW_TODO Fix LED codes
     {
         *(mt_stick_remover.pu8_stick_remover_led_status) =
         (u8_output_fault_status == TRUE) ? 0x10u :
