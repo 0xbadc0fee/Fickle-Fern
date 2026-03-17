@@ -89,6 +89,7 @@ int main(void)
         s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
         s16_Error += init_headerControl(&gt_ui, &gt_headerConfig);
         s16_Error += init_hitchPosControl(&gt_ui, &gt_headerConfig);
+        s16_Error += init_augerControl(&gt_ui);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
