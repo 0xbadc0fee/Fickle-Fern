@@ -16,9 +16,7 @@
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "hmi_definition.h"
 #include "stwtypes.h"
-#include "input_handler_lib.h"
-#include "output_handler_lib.h"
-#include "helper_control.h"
+#include "toggle_button.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define DOOR_OPEN                 (1u)
@@ -81,7 +79,6 @@ typedef struct
 
         //NVM Configuration Parameters
         T_Config_StickBoxControl *pt_nvm_stick_control;      //!<StickB Control Configuration Structure
-
 
 }T_StickBControl;
 

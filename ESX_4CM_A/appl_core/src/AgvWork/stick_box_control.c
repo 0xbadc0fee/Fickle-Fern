@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-/*! \file       stick_box_control.h
+/*! \file       stick_box_control.c
     \brief      <description>
 
     project     Flory_8772-4CM
@@ -17,6 +17,8 @@
 #include "stwtypes.h"
 #include "system.h"
 //PROJECT
+#include "hw_inputs.h"
+#include "hw_outputs.h"
 #include "stick_box_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
@@ -42,7 +44,7 @@ sint16 init_stickBControl(T_UserInterface *_ui, T_Config_StickBoxControl *_nvmSt
 {
     sint16 s16_error = C_NO_ERR;
 
-    if(_ui == NULL)
+    if(_ui == NULL || _nvmStickBControl == NULL)
     {
         return C_WARN;
     }
@@ -59,14 +61,17 @@ sint16 init_stickBControl(T_UserInterface *_ui, T_Config_StickBoxControl *_nvmSt
     //Initialize command variables
     mt_stick_box.u8_closed_cmd = STICK_BOX_CMD_OFF;
     mt_stick_box.u8_open_cmd = STICK_BOX_CMD_OFF;
-    mt_stick_box.u8_safe_state = STICK_BOX_CMD_OFF;
     mt_stick_box.u32_ign_start_time_ms = 0u;
     mt_stick_box.u8_prev_ign_on = FALSE;
 
-    //Initialize toggle button helper
-    mt_stick_box.t_btn_close_aux.pu_btn_state = &mt_stick_box.u8_closed_cmd;
-    mt_stick_box.t_btn_close_aux.u32_hold_ms  = 0u;
-    mt_stick_box.t_btn_close_aux.u8_btn_set   = TRUE;
+    // Initialize toggle button helper
+    s16_error += toggleButton_init(
+    &mt_stick_box.t_btn_close_aux,
+    &mt_stick_box.u8_closed_cmd,
+    0u,
+    0u,
+    STICK_BOX_CMD_OFF
+    );
 
     return s16_error;
 }
@@ -93,6 +98,8 @@ sint16 update_stickBControl(void)
     uint8 u8_open_output_fault = FALSE;
     uint8 u8_ign_on = FALSE;
 
+    uint8 u8_startup_deb_complete = FALSE;
+
     float32 f32_door_value = DOOR_CLOSED;
     float32 f32_ign_value = IGN_OFF;
 
@@ -118,25 +125,36 @@ sint16 update_stickBControl(void)
         u8_open_btn = FALSE;
     }
 
-    // Read required interlock inputs
+    //Read required interlock inputs
     get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
     get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGN_SWITCH", &u8_ign_fault_status);
-    get_inputValue("IGN_SWITCH", &f32_ign_value);
+    get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
+    get_inputValue("IGNITION_SWITCH", &f32_ign_value);
 
-    // Program start debounce timing
+    // Determine ignition ON status
     u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
 
+    // Program start debounce timing
     if((u8_ign_on == TRUE) && (mt_stick_box.u8_prev_ign_on == FALSE))
     {
         mt_stick_box.u32_ign_start_time_ms = u32_now_ms;
     }
-
-    if(u8_ign_on == FALSE)
+    else if(u8_ign_on == FALSE)
     {
         mt_stick_box.u32_ign_start_time_ms = 0u;
     }
+
+    // FR-10.6 Auxiliary Mode close overwritten FALSE when door open or startup < 3 sec
+    if((u8_ign_on == TRUE) &&
+    ((u32_now_ms - mt_stick_box.u32_ign_start_time_ms) >= PROGRAM_START_DEB_MS))
+    {
+        u8_startup_deb_complete = TRUE;
+    }
+
+    get_outputFaultStatus("STICKBOX_ON", &u8_open_output_fault);
+
+    get_outputFaultStatus("STICKBOX_CLOSE", &u8_close_output_fault);
 
     // FR-10.2 Default output commands disabled on boot/update before logic
     mt_stick_box.u8_open_cmd = STICK_BOX_CMD_OFF;
@@ -154,30 +172,21 @@ sint16 update_stickBControl(void)
     {
         // FR-10.3 Close interpreted as latched in Auxiliary Mode
         if((u8_door_fault_status == TRUE) ||
+        (u8_close_output_fault == TRUE) ||
         (f32_door_value != DOOR_CLOSED) ||
-        ((u32_now_ms - mt_stick_box.u32_ign_start_time_ms) < PROGRAM_START_DEB_MS))
+        (u8_startup_deb_complete == FALSE))
         {
             u8_aux_close_reset = TRUE;
         }
 
         s16_error +=  toggleButton(&mt_stick_box.t_btn_close_aux,
         u8_close_btn,
-        0u,
-        0u,
-        u8_aux_close_reset,
-        mt_stick_box.u8_safe_state);
+        u8_aux_close_reset);
 
         // FR-10.5 Prevent any open activation in Auxiliary Mode
         mt_stick_box.u8_open_cmd = STICK_BOX_CMD_OFF;
     }
-    // FR-10.6 Auxiliary Mode close overwritten FALSE when door open or startup < 3 sec
-    if((mt_stick_box.u8_stick_box_mode == STICK_BOX_MODE_DISABLED) &&
-    ((u8_door_fault_status == TRUE) ||
-    (f32_door_value != DOOR_CLOSED) ||
-    ((u32_now_ms - mt_stick_box.u32_ign_start_time_ms) < PROGRAM_START_DEB_MS)))
-    {
-        mt_stick_box.u8_closed_cmd = STICK_BOX_CMD_OFF;
-    }
+
 
     // FR-10.7 Mutual exclusivity, Close has priority if both requested
     if((mt_stick_box.u8_closed_cmd == STICK_BOX_CMD_ON) &&
@@ -187,10 +196,9 @@ sint16 update_stickBControl(void)
     }
 
     // FR-10.8 / FR-10.9 Output hardware commands
-    get_outputFaultStatus("STICK_BOX_CLOSE", &u8_close_output_fault);
     if(u8_close_output_fault == FALSE)
     {
-        set_outputValue("STICK_BOX_CLOSE", (float32)mt_stick_box.u8_closed_cmd);
+        set_outputValue("STICKBOX_CLOSE", (float32)mt_stick_box.u8_closed_cmd);
     }
     else
     {
@@ -198,10 +206,9 @@ sint16 update_stickBControl(void)
         s16_error += C_WARN;
     }
 
-    get_outputFaultStatus("STICK_BOX_OPEN", &u8_open_output_fault);
     if(u8_open_output_fault == FALSE)
     {
-        set_outputValue("STICK_BOX_OPEN", (float32)mt_stick_box.u8_open_cmd);
+        set_outputValue("STICKBOX_ON", (float32)mt_stick_box.u8_open_cmd);
     }
     else
     {
