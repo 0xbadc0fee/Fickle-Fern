@@ -39,7 +39,7 @@
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u32_deb_ms_set, uint8 u8_safe_state_set)
+sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u32_deb_ms_set, uint8 u32_hold_ms_set, uint8 u8_safe_state_set)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -51,11 +51,11 @@ sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u
     pt_btn->pu_btn_state   = pu8_btn_state_set;
 
     pt_btn->u32_deb_ms   = u32_deb_ms_set;
-    pt_btn->u8_safe_state = (u8_safe_state_set != FALSE) ? TRUE : FALSE;
+    pt_btn->u8_safe_state = u8_safe_state_set;
 
     *(pt_btn->pu_btn_state) = FALSE;
 
-    pt_btn->u32_hold_ms = 0u;
+    pt_btn->u32_hold_ms = u32_hold_ms_set;
     pt_btn->u8_btn_set = TRUE;
 
     return s16_error;
