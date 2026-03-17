@@ -34,7 +34,6 @@ T_VehicleOutput tvo_auto_unload =
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
-<<<<<<< HEAD
     .u8_diagEnabled = FALSE,
     .t_fault = { .u8_dm1_enable = FALSE },
 
@@ -456,115 +455,6 @@ T_VehicleOutput tvo_fan_hydro_fwd =
 
     .u16_dti = 0,
 };
-=======
-T_VehicleOutput hitchRetractRelay =
-        {
-            .Name_Description       = "HITCH_IN",
-            .u16_hardwareID         = X_OUT_OPL4A_2,
-            .e_outputType            = OT_DIGITAL,
-
-            .f32_outputValue        = 0.0f,
-            .f32_prevOutputValue    = 0.0f,
-            .mq_outputChanged       = TRUE,
-
-            .u8_diagEnabled         = FALSE,
-            .t_fault=
-            {
-                .u8_dm1_enable      = FALSE
-            },
-            .u16_dti                = 0,
-        };
-
-T_VehicleOutput hitchExtendRelay =
-        {
-            .Name_Description       = "HITCH_OUT",
-            .u16_hardwareID         = X_OUT_OPL4A_3,
-            .e_outputType            = OT_DIGITAL,
-
-            .f32_outputValue        = 0.0f,
-            .f32_prevOutputValue    = 0.0f,
-            .mq_outputChanged       = TRUE,
-
-            .u8_diagEnabled         = FALSE,
-            .t_fault=
-            {
-                .u8_dm1_enable      = FALSE
-            },
-            .u16_dti                = 0,
-        };
->>>>>>> bccc731 (FPC-156 Hitch Position Control)
-
-T_VehicleOutput augerCartRelay =
-        {
-            .Name_Description       = "AUGER_UNLOAD",
-            .u16_hardwareID         = X_OUT_OPHSP2A_13,
-            .e_outputType            = OT_DIGITAL,
-
-            .f32_outputValue        = 0.0f,
-            .f32_prevOutputValue    = 0.0f,
-            .mq_outputChanged       = TRUE,
-
-            .u8_diagEnabled         = FALSE,
-            .t_fault=
-            {
-                .u8_dm1_enable      = FALSE
-            },
-            .u16_dti                = 0,
-        };
-
-T_VehicleOutput manaulCartRelay =
-        {
-            .Name_Description       = "MANUAL_UNLOAD",
-            .u16_hardwareID         = X_OUT_OPHSP2A_13,
-            .e_outputType            = OT_DIGITAL,
-
-            .f32_outputValue        = 0.0f,
-            .f32_prevOutputValue    = 0.0f,
-            .mq_outputChanged       = TRUE,
-
-            .u8_diagEnabled         = FALSE,
-            .t_fault=
-            {
-                .u8_dm1_enable      = FALSE
-            },
-            .u16_dti                = 0,
-        };
-
-T_VehicleOutput augerCartRelay =
-        {
-            .Name_Description       = "AUGER_UNLOAD",
-            .u16_hardwareID         = X_OUT_OPHSP2A_13,
-            .e_outputType            = OT_DIGITAL,
-
-            .f32_outputValue        = 0.0f,
-            .f32_prevOutputValue    = 0.0f,
-            .mq_outputChanged       = TRUE,
-
-            .u8_diagEnabled         = FALSE,
-            .t_fault=
-            {
-                .u8_dm1_enable      = FALSE
-            },
-            .u16_dti                = 0,
-        };
-
-T_VehicleOutput manaulCartRelay =
-        {
-            .Name_Description       = "MANUAL_UNLOAD",
-            .u16_hardwareID         = X_OUT_OPHSP2A_13,
-            .e_outputType            = OT_DIGITAL,
-
-            .f32_outputValue        = 0.0f,
-            .f32_prevOutputValue    = 0.0f,
-            .mq_outputChanged       = TRUE,
-
-            .u8_diagEnabled         = FALSE,
-            .t_fault=
-            {
-                .u8_dm1_enable      = FALSE
-            },
-            .u16_dti                = 0,
-        };
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Outputs
