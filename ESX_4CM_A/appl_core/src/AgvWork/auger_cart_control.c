@@ -1,6 +1,7 @@
 //-----------------------------------------------------------------------------
 /*! \file       auger_cart_control.c
-    \brief      <description>
+    \brief      The Auger Cart Control Module shall universally control all unloading operations of a variety of
+    possible attached cart configurations and do so in an operator safe manner.
 
     project     FloryTemplate_4CM
     copyright   STW Technic (c) 2026
@@ -11,7 +12,6 @@
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
-#include <stdint.h>
 #include "x_stdtypes.h"
 //STW
 #include "stwerrors.h"
@@ -75,6 +75,22 @@ sint16 init_augerControl(T_UserInterface *_ui)
     mt_augerc.u8_auger_latched = AUGER_DISABLED;
     mt_augerc.u8_manual_latched = AUGER_DISABLED;
 
+    //Initialize toggle button helper - Auger
+    s16_error += toggleButton_init(
+    &mt_augerc.t_btn_auger,
+    &mt_augerc.u8_auger_latched,
+    0u,
+    AUGER_DISABLED
+    );
+
+    // Initialize toggle button helper - Manual
+    s16_error += toggleButton_init(
+    &mt_augerc.t_btn_manual,
+    &mt_augerc.u8_manual_latched,
+    0u,
+    AUGER_DISABLED
+    );
+
     return s16_error;
 }
 
@@ -95,9 +111,9 @@ sint16 update_augerControl(void)
 {
     sint16 s16_error = C_NO_ERR;
 
-    uint8 u8_aug_reset = FALSE;
-    uint8 u8_man_reset = FALSE;
-    uint8 u8_reset_btn = FALSE;
+    uint8 u8_common_reset = FALSE;
+    uint8 u8_aug_btn_reset = FALSE;
+    uint8 u8_man_btn_reset = FALSE;
 
     uint8 u8_aug_cmd = mt_augerc.u8_safe_state;
     uint8 u8_man_cmd = mt_augerc.u8_safe_state;
@@ -114,33 +130,33 @@ sint16 update_augerControl(void)
 
     uint32 u32_now_ms = get_system_time_ms();
 
-    /* Read commands safely */
+    // Read commands safely
     if(mt_augerc.pu8_auger_command != NULL)
     {
-        u8_aug_cmd = *(mt_augerc.pu8_auger_command);
+        u8_aug_cmd = (*(mt_augerc.pu8_auger_command) == 1u);
     }
     else
     {
-        u8_aug_reset = TRUE;
+        u8_aug_btn_reset = TRUE;
     }
 
     if(mt_augerc.pu8_manual_command != NULL)
     {
-        u8_man_cmd = *(mt_augerc.pu8_manual_command);
+        u8_man_cmd = (*(mt_augerc.pu8_manual_command) == 1u);
     }
     else
     {
-        u8_man_reset = TRUE;
+        u8_man_btn_reset = TRUE;
     }
 
-    /* Read required interlock inputs */
+    // Read required interlock inputs
     get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
     get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGN_SWITCH", &u8_ign_fault_status);
-    get_inputValue("IGN_SWITCH", &f32_ign_value);
+    get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
+    get_inputValue("IGNITION_SWITCH", &f32_ign_value);
 
-    /* Program start debounce timing */
+    // Program start debounce timing
     u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
 
     if((u8_ign_on == TRUE) && (mt_augerc.u8_prev_ign_on == FALSE))
@@ -164,12 +180,19 @@ sint16 update_augerControl(void)
     ((u32_now_ms - mt_augerc.u32_ign_start_time_ms) < PROGRAM_START_DEB_MS) ||
     (u8_hitch_on == TRUE))
     {
-        u8_reset_btn = TRUE;
+        u8_common_reset = TRUE;
     }
 
+    get_outputFaultStatus("AUGER_UNLOAD", &u8_aug_output_fault);
+    get_outputFaultStatus("MANUAL_UNLOAD", &u8_man_output_fault);
+
+    //Combine common reset with output-specific reset
+    u8_aug_btn_reset = (uint8)(u8_aug_btn_reset || u8_common_reset || u8_aug_output_fault);
+    u8_man_btn_reset = (uint8)(u8_man_btn_reset || u8_common_reset || u8_man_output_fault);
+
     //FR-9.1-2 Apply latching and reset logic to Auger and Manual Unload. Force to safe state if fault.
-    s16_error += toggleButton(&mt_augerc.t_btn_auger, u8_aug_cmd, 0u, 0u, u8_reset_btn, mt_augerc.u8_safe_state);
-    s16_error += toggleButton(&mt_augerc.t_btn_manual, u8_man_cmd, 0u, 0u, u8_reset_btn, mt_augerc.u8_safe_state);
+    s16_error += toggleButton(&mt_augerc.t_btn_auger, u8_aug_cmd, u8_aug_btn_reset);
+    s16_error += toggleButton(&mt_augerc.t_btn_manual, u8_man_cmd, u8_man_btn_reset);
 
     //FR-9.3 The control module shall enforce mutual exclusivity to the Auger Unload Enable and Manual Unload commands giving preference to Manual Unload Enable in case of a conflict.
     if((mt_augerc.u8_manual_latched == AUGER_ENABLED) && (mt_augerc.u8_auger_latched == AUGER_ENABLED))
@@ -178,25 +201,21 @@ sint16 update_augerControl(void)
     }
 
     //FR-9.5 Output status
-    get_outputFaultStatus("AUGER_UNLOAD", &u8_aug_output_fault);
     if(u8_aug_output_fault == FALSE)
     {
         set_outputValue("AUGER_UNLOAD", (float32)mt_augerc.u8_auger_latched);
     }
     else
     {
-        u8_aug_reset = TRUE;
         s16_error = C_WARN;
     }
 
-    get_outputFaultStatus("MANUAL_UNLOAD", &u8_man_output_fault);
     if(u8_man_output_fault == FALSE)
     {
         set_outputValue("MANUAL_UNLOAD", (float32)mt_augerc.u8_manual_latched);
     }
     else
     {
-        u8_man_reset = TRUE;
         s16_error = C_WARN;
     }
 
@@ -205,9 +224,9 @@ sint16 update_augerControl(void)
     {
         //LED Indicator
         *(mt_augerc.pu8_auger_status_indic) =
-        (u8_aug_output_fault == TRUE) ? 0x10u :
-        (u8_aug_reset == TRUE) ? 0x10u :
-        (mt_augerc.u8_auger_latched == AUGER_ENABLED) ? 0x08u :
+        (u8_aug_output_fault == TRUE) ? 0x08u :
+        (mt_augerc.u8_auger_latched == AUGER_ENABLED) ? 0x10u :
+        (mt_augerc.u8_auger_latched == AUGER_DISABLED) ? 0x01u :
         0x01u;
     }
 
@@ -215,9 +234,9 @@ sint16 update_augerControl(void)
     {
         //LED Indicator
         *(mt_augerc.pu8_manual_enable_status) =
-        (u8_man_output_fault == TRUE) ? 0x10u :
-        (u8_man_reset == TRUE) ? 0x10u :
-        (mt_augerc.u8_manual_latched == AUGER_ENABLED) ? 0x08u :
+        (u8_man_output_fault == TRUE) ? 0x08u :
+        (mt_augerc.u8_manual_latched == AUGER_ENABLED) ? 0x10u :
+        (mt_augerc.u8_manual_latched == AUGER_DISABLED) ? 0x01u :
         0x01u;
     }
 

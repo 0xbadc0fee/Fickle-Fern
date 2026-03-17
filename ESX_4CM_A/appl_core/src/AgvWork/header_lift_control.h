@@ -1,3 +1,4 @@
+//-----------------------------------------------------------------------------
 /*! \file       header_lift_control.h
     \brief      <description>
 
@@ -9,7 +10,7 @@
 
    	created     Feb 24, 2026 kyle.boch
    	\endimplementation
-*/
+ */
 #ifndef APPL_CORE_SRC_AGVWORK_HEADER_LIFT_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_HEADER_LIFT_CONTROL_H_
 
@@ -17,27 +18,24 @@
 #include "hmi_definition.h"
 #include "stwtypes.h"
 
-#include "hw_inputs.h"
-#include "hw_outputs.h"
-
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
 
-/** \brief Configuration Structure - Elevator Control
+/** \brief Configuration Structure - Header Lift Control
  *
  * This structure represents all NVM configuration variables
  * that are relevant to elevator control
  */
 typedef struct
 {
-    uint8 u8_joystick_hll_enable; //!<Configuration parameter for if the Joystick or Hardware switches are used for HLL commands
+        uint8 u8_joystick_hll_enable; //!<Configuration parameter for if the Joystick or Hardware switches are used for HLL commands
 
 }T_Config_HeaderControl;
 
-/** \brief Control Structure - Header Lift  Control
+/** \brief Control Structure - Header Lift Control
  *
  * This structure represents all variables and pointers that
  * are utilized and tracked for header lift lower control that need to
@@ -48,19 +46,19 @@ typedef struct
  */
 typedef struct
 {
-    //Local Control Variables
-    uint8 u8_lift_command;                  //!<Lift Command
-    uint8 u8_lower_command;                 //!<Lower Command
+        //Local Control Variables
+        uint8 u8_lift_command;                  //!<Lift Command
+        uint8 u8_lower_command;                 //!<Lower Command
 
-    //TX CAN Variables
-    uint8 *pu8_relief_swich;                //!<Pointer to the Releif Switch Status to Display
+        //TX CAN Variables
+        uint8 *pu8_relief_switch;                //!<Pointer to the Relief Switch Status to Display
 
-    //RX CAN Variables
-    uint8 *pu8_joy_lift_header;              //!<Pointer to Header Lift Button from Joystick
-    uint8 *pu8_joy_lwr_header;               //!<Pointer to Header Lower Button from Joystick
+        //RX CAN Variables
+        uint8 *pu8_joy_lift_header;              //!<Pointer to Header Lift Button from Joystick
+        uint8 *pu8_joy_lwr_header;               //!<Pointer to Header Lower Button from Joystick
 
-    //NVM Configuration Parameters
-    T_Config_HeaderControl *pt_nvm_hdr_control;      //!<Header Control Configuration Structure
+        //NVM Configuration Parameters
+        T_Config_HeaderControl *pt_nvm_hdr_control;      //!<Header Control Configuration Structure
 
 
 }T_HeaderControl;

@@ -16,6 +16,8 @@
 #include "stwerrors.h"
 #include "stwtypes.h"
 //PROJECT
+#include "hw_inputs.h"
+#include "hw_outputs.h"
 #include "hitch_position_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
@@ -39,6 +41,11 @@ sint16 init_hitchPosControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHi
 {
     sint16 s16_error = C_NO_ERR;
 
+    if((_ui == NULL) || (_nvmHitchPosControl == NULL))
+    {
+        return C_WARN;
+    }
+
     //populate local copy of RX ui elements
     mt_hp_control.pu8_joy_hitch_in = &_ui->t_joystick.u8_b5_state;
     mt_hp_control.pu8_joy_hitch_out = &_ui->t_joystick.u8_b6_state;
@@ -46,14 +53,9 @@ sint16 init_hitchPosControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHi
     //populate local copy of NVM elements
     mt_hp_control.pt_nvm_hp_control = _nvmHitchPosControl;
 
-    //iniitalize command variables
+    //Initialize command variables
     mt_hp_control.u8_in_command = FALSE;
     mt_hp_control.u8_out_command = FALSE;
-
-    if(_ui == NULL)
-    {
-        return C_WARN;
-    }
 
     return s16_error;
 }
@@ -63,7 +65,7 @@ sint16 init_hitchPosControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHi
  *  This function contains the cyclical logic for AgvWork - Hitch Position Control.
  *
  *  Primary logic for this function is to move hitch in and out based on operator commands
- *  This logic tackles functionality descibed in FR2.X of the Functional Requirements
+ *  This logic tackles functionality described in FR2.X of the Functional Requirements
  *
  *
  *  \return s16_error Error Code
@@ -73,8 +75,8 @@ sint16 update_hitchPosControl(void)
 {
     sint16 s16_error = C_NO_ERR;
 
-    float32 f32_right_pedal = 0u;
-    float32 f32_left_pedal  = 0u;
+    float32 f32_right_pedal = 0.0F;
+    float32 f32_left_pedal  = 0.0F;
 
     uint8 u8_in_output = 0u;
     uint8 u8_out_output = 0u;
@@ -88,22 +90,29 @@ sint16 update_hitchPosControl(void)
     mt_hp_control.u8_in_command = FALSE;
     mt_hp_control.u8_out_command = FALSE;
 
+    if(mt_hp_control.pt_nvm_hp_control == NULL)
+    {
+        return C_WARN;
+    }
+
     //FR-2.1 - FR-2.2 Check if joystick HLL is disabled or not
     if(mt_hp_control.pt_nvm_hp_control->u8_joystick_hll_enable == FALSE)
     {
-        get_inputFaultStatus("RIGHT_PEDAL", &u8_right_pedal_fault);
-        get_inputFaultStatus("LEFT_PEDAL", &u8_left_pedal_fault);
+        get_inputFaultStatus("RIGHT_SWITCH", &u8_right_pedal_fault);
+        get_inputFaultStatus("LEFT_SWITCH", &u8_left_pedal_fault);
 
         if((u8_right_pedal_fault == FALSE) && (u8_left_pedal_fault == FALSE))
         {
-            get_inputValue("RIGHT_PEDAL", &f32_right_pedal);
+            get_inputValue("RIGHT_SWITCH", &f32_right_pedal);
             mt_hp_control.u8_out_command = (uint8)f32_right_pedal;
 
-            get_inputValue("LEFT_PEDAL", &f32_left_pedal);
+            get_inputValue("LEFT_SWITCH", &f32_left_pedal);
             mt_hp_control.u8_in_command = (uint8)f32_left_pedal;
         }
         else
         {
+            u8_in_output = FALSE;
+            u8_out_output = FALSE;
             s16_error = C_WARN;
         }
     }
@@ -116,8 +125,21 @@ sint16 update_hitchPosControl(void)
         }
         else
         {
+            u8_in_output = FALSE;
+            u8_out_output = FALSE;
             s16_error = C_WARN;
         }
+    }
+
+    //FR-2.3 Set the hardware output
+    get_outputFaultStatus("HITCH_RETRACT", &u8_hitch_in_fault);
+    get_outputFaultStatus("HITCH_EXTEND", &u8_hitch_out_fault);
+    if((u8_hitch_in_fault == TRUE) || (u8_hitch_out_fault == TRUE))
+    {
+        //Default to safe state NO MOVEMENT
+        mt_hp_control.u8_in_command = FALSE;
+        mt_hp_control.u8_out_command = FALSE;
+        s16_error = C_WARN;
     }
 
     //FR-2.3 Prevent  simultaneous activation of  Hitch “IN” and “OUT” operations.
@@ -126,30 +148,20 @@ sint16 update_hitchPosControl(void)
         u8_in_output = TRUE;
         u8_out_output = FALSE;
     }
-    else if (mt_hp_control.u8_in_command == TRUE)
+    else if (mt_hp_control.u8_out_command == TRUE)
     {
         u8_in_output = FALSE;
         u8_out_output = TRUE;
     }
+    //Default to safe state NO MOVEMENT
     else
     {
         u8_in_output = FALSE;
         u8_out_output = FALSE;
     }
 
-    //FR-2.3 Set the hardware output
-    get_outputFaultStatus("HITCH_IN", &u8_hitch_in_fault);
-    get_outputFaultStatus("HITCH_OUT", &u8_hitch_out_fault);
-    if((u8_right_pedal_fault == TRUE) && (u8_left_pedal_fault == TRUE))
-    {
-        //Default to safe state NO MOVEMENT
-        mt_hp_control.u8_in_command = FALSE;
-        mt_hp_control.u8_out_command = FALSE;
-        s16_error = C_WARN;
-    }
-
-    set_outputValue("HITCH_IN", (float32)u8_in_output);
-    set_outputValue("HITCH_OUT", (float32)u8_out_output);
+    set_outputValue("HITCH_RETRACT", (float32)u8_in_output);
+    set_outputValue("HITCH_EXTEND", (float32)u8_out_output);
 
     return s16_error;
 }
@@ -167,7 +179,12 @@ sint16 update_hitchPosControl(void)
  */
 void get_hitchPosStatus(uint8 * pu8_hitchON)
 {
-    if ((mt_hp_control.u8_in_command == TRUE) || (mt_hp_control.u8_in_command == TRUE))
+    if(pu8_hitchON == NULL)
+    {
+        return;
+    }
+
+    if ((mt_hp_control.u8_in_command == TRUE) || (mt_hp_control.u8_out_command == TRUE))
     {
         *pu8_hitchON = TRUE;
     }

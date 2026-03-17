@@ -1,6 +1,6 @@
 /*! \file       auger_cart_control.h
-    \brief      <description>
-
+    \brief     The Auger Cart Control Module shall universally control all unloading operations of a variety of
+   possible attached cart configurations and do so in an operator safe manner.
 
     \implementation
     project     Flory_8772-4CM
@@ -21,7 +21,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
-#include "helper_control.h"
+#include "toggle_button.h"
 #include "hitch_position_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
@@ -79,4 +79,3 @@ sint16 init_augerControl(T_UserInterface *_ui);
 sint16 update_augerControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_AUGER_CART_CONTROL_H_ */
-

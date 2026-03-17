@@ -16,8 +16,6 @@
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "hmi_definition.h"
-#include "input_handler_lib.h"
-#include "output_handler_lib.h"
 #include "header_lift_control.h"
 #include "stwtypes.h"
 
