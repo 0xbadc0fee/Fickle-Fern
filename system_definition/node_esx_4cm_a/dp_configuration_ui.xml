@@ -4,8 +4,7 @@
     <data-pool>
         <lists length="2">
             <list>
-                <data-elements length="2">
-                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
+                <data-elements length="1">
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>
                 </data-elements>
             </list>

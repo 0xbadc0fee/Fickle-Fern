@@ -13,11 +13,9 @@
 #define APPL_CORE_SRC_AGVWORK_ELEVATOR_CONTROL_H_
 
 #include "stwtypes.h"
-
 #include "hmi_definition.h"
-#include "input_handler_lib.h"
-#include "output_handler_lib.h"
-#include "helper_control.h"
+#include "toggle_button.h"
+#include "ramp_calc.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define ELEVATOR_ON  (1u)
@@ -31,22 +29,15 @@
 /** \brief Checkpoints Structure - Elevator Control */
 typedef struct
 {
-        uint8 u8_chkPoint1;                    //!<Checkpoint #1
-        uint8 u8_chkPoint2;                    //!<Checkpoint #2
-        uint8 u8_chk3;                         //!<Checkpoint #3
-        uint8 u8_chkPoint1;                    //!<Checkpoint #1
-        uint8 u8_chkPoint2;                    //!<Checkpoint #2
-        float32 f32_chkPoint1;                   //!<Checkpoint #3
-
+        uint8 u8_checkpoint1;                    //!<Checkpoint #1
+        float32 f32_checkpoint2;                    //!<Checkpoint #2
+        float32 f32_checkpoint3;                         //!<Checkpoint #3
 }T_ChkPoints_Elevator;
 
 
 typedef struct
 {
-        uint8 u8_minSpeed;                      //!<Configuration Parameter 1
-        uint8 u8_maxSpeed;                      //!<Configuration Parameter 2
-        float32 f32_max_current;           //rename f32_valve_threshold_A           //!<Configuration Parameter 1
-
+        float32 f32_max_current;
 }T_Config_Elevator;
 
 
@@ -61,29 +52,17 @@ typedef struct
 
         //TX CAN Variables
         uint8 *pu8_elevatorStatus;              //!<On/Off Status of Elevator (To Display)
-
-        //RX CAN Variables
-        uint8 *pu8_requestedSpeed;              //!<Elevator Requested Speed (From Display)
-        uint8 *pu8_onOffCommand;                //!<Elevator On/Off Command (From Joystick)
-
-        //TX CAN Variables
-        uint8 *pu8_elevatorStatus;              //!<On/Off Status of Elevator (To Display)
         uint8 *pu8_elevatorButtonColor;         //!<Button color code for the Elevator On/Off button (To Button Panel)
-        //Ramp Control
-        T_RampParams t_ramp_params;
-        T_RampState  t_ramp_state;
-        float32 f32_safe_state;
 
         //RX CAN Variables
         uint8 *pu8_requestedSpeed;              //!<Elevator Requested Speed (From Display)
         uint8 *pu8_onOffCommand;                //!<Elevator On/Off Command (From Joystick)
-        //NVM Configuration Parameters
-        T_Config_Elevator *pt_nvmElevator;      //!<Elevator Control Configuration Structure
+
+        //Ramp Control
+        T_RampState  t_ramp_state;
 
         //NVM Configuration Parameters
         T_Config_Elevator *pt_nvmElevator;      //!<Elevator Control Configuration Structure
-        //Control Checkpoints
-        T_ChkPoints_Elevator *pt_chkElevator;   //!<Elevator Control Checkpoints Structure
 
         //Control Checkpoints
         T_ChkPoints_Elevator *pt_chkElevator;   //!<Elevator Control Checkpoints Structure
