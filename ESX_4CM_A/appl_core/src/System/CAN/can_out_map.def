@@ -16,6 +16,6 @@ CNTRL2DP(elevatorStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_TSC1_EngRqe
 CNTRL2DP(reliefStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHydOilPressRelief, gt_ui.t_display.u8_relief_switch_status)
 
 /* Light Control Outputs */
-/*CNTRL2DP(lightStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans1_Button_State_04, gt_ui.t_buttonPanel.u8_b4_lights)*/
+/*CNTRL2DP(lightStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans1_Button_State_04, gt_ui.t_buttonPanel.u8_b4_lights) //TODO_STW: gt_ui.t_buttonPanel.u8_b4_lights*/  
 CNTRL2DP(headLightStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHeadLtsOn, gt_ui.t_display.u8_headlights_status)
 CNTRL2DP(workLightStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisWorkLtsOn, gt_ui.t_display.u8_worklights_status)
