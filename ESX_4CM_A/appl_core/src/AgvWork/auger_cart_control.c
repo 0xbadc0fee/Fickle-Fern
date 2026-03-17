@@ -63,16 +63,6 @@ sint16 init_augerControl(T_UserInterface *_ui)
     mt_augerc.u32_ign_start_time_ms = 0u;
     mt_augerc.u8_prev_ign_on = FALSE;
 
-    //Initialize toggle button helper Auger
-    mt_augerc.t_btn_auger.pu_btn_state = &mt_augerc.u8_auger_latched;
-    mt_augerc.t_btn_auger.u32_hold_ms = 0u;
-    mt_augerc.t_btn_auger.u8_btn_set = TRUE;
-
-    //Initialize toggle button helper Manual
-    mt_augerc.t_btn_manual.pu_btn_state = &mt_augerc.u8_manual_latched;
-    mt_augerc.t_btn_manual.u32_hold_ms = 0u;
-    mt_augerc.t_btn_manual.u8_btn_set = TRUE;
-
     //Initialize outputs to disabled state
     mt_augerc.u8_auger_latched = AUGER_DISABLED;
     mt_augerc.u8_manual_latched = AUGER_DISABLED;
@@ -82,6 +72,7 @@ sint16 init_augerControl(T_UserInterface *_ui)
     &mt_augerc.t_btn_auger,
     &mt_augerc.u8_auger_latched,
     0u,
+    0u,
     AUGER_DISABLED
     );
 
@@ -89,6 +80,7 @@ sint16 init_augerControl(T_UserInterface *_ui)
     s16_error += toggleButton_init(
     &mt_augerc.t_btn_manual,
     &mt_augerc.u8_manual_latched,
+    0u,
     0u,
     AUGER_DISABLED
     );
