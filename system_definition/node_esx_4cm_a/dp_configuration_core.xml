@@ -10,7 +10,7 @@
             <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="100">
                 <name>ElevatorConfig</name>
                 <comment/>
-                <data-elements length="1">
+                <data-elements length="2">
                     <data-element factor="1" offset="0" nvm-start-address="0">
                         <name>max_current</name>
                         <type base-type="float32" is-array="false"/>
@@ -21,6 +21,18 @@
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="1"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" nvm-start-address="4">
+                        <name>threshold_a</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
                 </data-elements>

@@ -24,6 +24,8 @@
 #define ELEVATOR_MIN_CURRENT_A  (0.0F)
 #define ELEVATOR_MAX_CURRENT_A  (10000.0F)
 
+#define ELEVATOR_RAMP_RATE (10.0f)
+
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /** \brief Checkpoints Structure - Elevator Control */
@@ -38,6 +40,7 @@ typedef struct
 typedef struct
 {
         float32 f32_max_current;
+        float32 f32_threshold_a;
 }T_Config_Elevator;
 
 

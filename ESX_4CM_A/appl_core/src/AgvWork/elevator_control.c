@@ -43,7 +43,7 @@ static T_ElevatorControl mt_elevator;
 sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator)
 {
     sint16 s16_error = C_NO_ERR;
-    float32 f32_ramp_rate = (ELEVATOR_MAX_CURRENT_A - ELEVATOR_MIN_CURRENT_A);
+
     if((_ui == NULL) || (_chkElevator == NULL) || (_nvmElevator == NULL))
     {
         return C_WARN;
@@ -75,7 +75,7 @@ sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElev
     );
 
     // Ramp initialization
-    s16_error += rampInit(&mt_elevator.t_ramp_state, f32_ramp_rate, ELEVATOR_MIN_CURRENT_A, ELEVATOR_MAX_CURRENT_A, 0.0F);
+    s16_error += rampInit(&mt_elevator.t_ramp_state, ELEVATOR_RAMP_RATE, ELEVATOR_MIN_CURRENT_A, ELEVATOR_MAX_CURRENT_A, 0.0F);
 
     return s16_error;
 }
@@ -173,6 +173,12 @@ sint16 update_elevatorControl(void)
     {
         f32_output_current = 0.0F;
         mt_elevator.t_ramp_state.f32_output = 0.0F;
+    }
+
+    //FR-6.7 Bind the elevator speed command to within maximum current threshold and output
+    if( f32_output_current > mt_elevator.pt_nvmElevator->f32_threshold_a)
+    {
+        f32_output_current =  mt_elevator.pt_nvmElevator->f32_threshold_a;
     }
 
     // FR-6.7 Output to speed flow control valve
