@@ -12,3 +12,11 @@ DP2CNTRL(elevatorOnOff, gt_ui.t_joystick.u8_b1_state, 			 gt_J1939_DataPoolValue
 
 /*Cleaning Chains Control CAN Parameters */
 DP2CNTRL(shaftDriveOnOff, gt_ui.t_joystick.u8_b2_state, 	     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button2PressedStatus)
+
+/*Front Sweeps Control CAN Parameters */
+DP2CNTRL(frontSweepsEnable, gt_ui.t_display.u8_drum_speed_enable, 	     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiFrontSweepsEnable)
+DP2CNTRL(frontSweepsRequest, gt_ui.t_display.u8_drum_speed_request, 	     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec2_AgvHmiFrontSweepSpeedCmd)
+
+/*Rotary Trap Control CAN Parameters */
+DP2CNTRL(rotaryTrapRange, gt_ui.t_display.u8_trap_speed_range, 	     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiRotaryTrapSpeedCmd)
+DP2CNTRL(rotaryTrapIncrease, gt_ui.t_joystick.u8_b3_state, 	     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button3PressedStatus)

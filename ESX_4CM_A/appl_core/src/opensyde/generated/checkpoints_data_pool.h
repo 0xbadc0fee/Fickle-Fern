@@ -19,28 +19,40 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CHECKPOINTS_PROJECT_ID_1215799524 void checkpoints_project_id_1215799524(void) {}
+#define CHECKPOINTS_PROJECT_ID_2235396529 void checkpoints_project_id_2235396529(void) {}
 
 ///Index of this Datapool
 #define CHECKPOINTS_DATA_POOL_INDEX (0U)
 
 ///Index of lists
 #define CHECKPOINTS_LIST_INDEX_ELEVATORCONTROL (0U)
-#define CHECKPOINTS_LIST_INDEX_CLEANINGCHAINSCONTROL (1U)
-#define CHECKPOINTS_NUMBER_OF_LISTS (2U)
+#define CHECKPOINTS_LIST_INDEX_CLEANINGCHAINSCONTROLS (1U)
+#define CHECKPOINTS_LIST_INDEX_FRONTSWEEPSCONTROL (2U)
+#define CHECKPOINTS_LIST_INDEX_ROTARYTRAP (3U)
+#define CHECKPOINTS_NUMBER_OF_LISTS (4U)
 
 ///Index of elements
 #define CHECKPOINTS_ELEM_INDEX_ELEVATORCONTROL_CHECKPOINT1 (0U)
 #define CHECKPOINTS_ELEM_INDEX_ELEVATORCONTROL_CHECKPOINT2 (1U)
 #define CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS (2U)
 
-#define CHECKPOINTS_ELEM_INDEX_CLEANINGCHAINSCONTROL_CHECKPOINT1 (0U)
-#define CHECKPOINTS_CLEANINGCHAINSCONTROL_NUMBER_OF_ELEMENTS (1U)
+#define CHECKPOINTS_ELEM_INDEX_CLEANINGCHAINSCONTROLS_CHECKPOINT1 (0U)
+#define CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_ELEMENTS (1U)
+
+#define CHECKPOINTS_ELEM_INDEX_FRONTSWEEPSCONTROL_CHECKPOINT1 (0U)
+#define CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_ELEMENTS (1U)
+
+#define CHECKPOINTS_ELEM_INDEX_ROTARYTRAP_CHECKPOINT1 (0U)
+#define CHECKPOINTS_ROTARYTRAP_NUMBER_OF_ELEMENTS (1U)
 
 ///Index of Datasets
 #define CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_DATA_SETS (0U)
 
-#define CHECKPOINTS_CLEANINGCHAINSCONTROL_NUMBER_OF_DATA_SETS (0U)
+#define CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_DATA_SETS (0U)
+
+#define CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_DATA_SETS (0U)
+
+#define CHECKPOINTS_ROTARYTRAP_NUMBER_OF_DATA_SETS (0U)
 
 ///Scaling values
 #define CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT1 (1.0F)
@@ -48,8 +60,14 @@ extern "C" {
 #define CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT2 (1.0F)
 #define CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT2 (0.0F)
 
-#define CHECKPOINTS_SCALING_FACTOR_CLEANINGCHAINSCONTROL_CHECKPOINT1 (1.0F)
-#define CHECKPOINTS_SCALING_OFFSET_CLEANINGCHAINSCONTROL_CHECKPOINT1 (0.0F)
+#define CHECKPOINTS_SCALING_FACTOR_CLEANINGCHAINSCONTROLS_CHECKPOINT1 (1.0F)
+#define CHECKPOINTS_SCALING_OFFSET_CLEANINGCHAINSCONTROLS_CHECKPOINT1 (0.0F)
+
+#define CHECKPOINTS_SCALING_FACTOR_FRONTSWEEPSCONTROL_CHECKPOINT1 (1.0F)
+#define CHECKPOINTS_SCALING_OFFSET_FRONTSWEEPSCONTROL_CHECKPOINT1 (0.0F)
+
+#define CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_CHECKPOINT1 (1.0F)
+#define CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_CHECKPOINT1 (0.0F)
 
 ///Scaling utilities
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_ELEVATORCONTROL_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT1)
@@ -57,8 +75,14 @@ extern "C" {
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_ELEVATORCONTROL_CHECKPOINT2(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint2 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT2) / CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT2)
 #define CHECKPOINTS_GET_SCALED_VALUE_ELEVATORCONTROL_CHECKPOINT2() ((gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint2 * CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT2) + CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT2)
 
-#define CHECKPOINTS_SET_VALUE_FROM_SCALED_CLEANINGCHAINSCONTROL_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_CleaningChainsControlValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_CLEANINGCHAINSCONTROL_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_CLEANINGCHAINSCONTROL_CHECKPOINT1)
-#define CHECKPOINTS_GET_SCALED_VALUE_CLEANINGCHAINSCONTROL_CHECKPOINT1() ((gt_Checkpoints_DataPoolValues.t_CleaningChainsControlValues.u8_checkpoint1 * CHECKPOINTS_SCALING_FACTOR_CLEANINGCHAINSCONTROL_CHECKPOINT1) + CHECKPOINTS_SCALING_OFFSET_CLEANINGCHAINSCONTROL_CHECKPOINT1)
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_CLEANINGCHAINSCONTROLS_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_CLEANINGCHAINSCONTROLS_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_CLEANINGCHAINSCONTROLS_CHECKPOINT1)
+#define CHECKPOINTS_GET_SCALED_VALUE_CLEANINGCHAINSCONTROLS_CHECKPOINT1() ((gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_checkpoint1 * CHECKPOINTS_SCALING_FACTOR_CLEANINGCHAINSCONTROLS_CHECKPOINT1) + CHECKPOINTS_SCALING_OFFSET_CLEANINGCHAINSCONTROLS_CHECKPOINT1)
+
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_FRONTSWEEPSCONTROL_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_FRONTSWEEPSCONTROL_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_FRONTSWEEPSCONTROL_CHECKPOINT1)
+#define CHECKPOINTS_GET_SCALED_VALUE_FRONTSWEEPSCONTROL_CHECKPOINT1() ((gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues.u8_checkpoint1 * CHECKPOINTS_SCALING_FACTOR_FRONTSWEEPSCONTROL_CHECKPOINT1) + CHECKPOINTS_SCALING_OFFSET_FRONTSWEEPSCONTROL_CHECKPOINT1)
+
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_ROTARYTRAP_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_CHECKPOINT1)
+#define CHECKPOINTS_GET_SCALED_VALUE_ROTARYTRAP_CHECKPOINT1() ((gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.u8_checkpoint1 * CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_CHECKPOINT1) + CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_CHECKPOINT1)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 ///Elements in list "ElevatorControl":
@@ -68,17 +92,31 @@ typedef struct
    uint8 u8_checkpoint2; /* Variable description */
 } T_Checkpoints_ElevatorControl_Values;
 
-///Elements in list "CleaningChainsControl":
+///Elements in list "CleaningChainsControls":
 typedef struct
 {
    uint8 u8_checkpoint1; /* Variable description */
-} T_Checkpoints_CleaningChainsControl_Values;
+} T_Checkpoints_CleaningChainsControls_Values;
+
+///Elements in list "FrontSweepsControl":
+typedef struct
+{
+   uint8 u8_checkpoint1; /* Variable description */
+} T_Checkpoints_FrontSweepsControl_Values;
+
+///Elements in list "RotaryTrap":
+typedef struct
+{
+   uint8 u8_checkpoint1; /* Variable description */
+} T_Checkpoints_RotaryTrap_Values;
 
 ///Elements of all lists:
 typedef struct
 {
    T_Checkpoints_ElevatorControl_Values t_ElevatorControlValues;
-   T_Checkpoints_CleaningChainsControl_Values t_CleaningChainsControlValues;
+   T_Checkpoints_CleaningChainsControls_Values t_CleaningChainsControlsValues;
+   T_Checkpoints_FrontSweepsControl_Values t_FrontSweepsControlValues;
+   T_Checkpoints_RotaryTrap_Values t_RotaryTrapValues;
 } T_Checkpoints_DataPoolValues;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
@@ -90,7 +128,7 @@ extern const T_osy_dpa_data_pool gt_Checkpoints_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void checkpoints_project_id_1215799524(void);
+extern void checkpoints_project_id_2235396529(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

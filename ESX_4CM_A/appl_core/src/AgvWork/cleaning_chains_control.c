@@ -1,6 +1,8 @@
 //-----------------------------------------------------------------------------
 /*! \file       cleaning_chains_control.c
-    \brief      <description>
+    \brief      The Cleaning Chain Control Module shall read the operator Shaft
+    Drive Enable command which will be used by the rest of the Control Systems to
+    establish the operational status of all three cleaning chains.
 
     project     FloryTemplate_4CM
     copyright   STW Technic (c) 2026
@@ -161,7 +163,7 @@ sint16 update_cChainsControl(void)
     set_outputValue("SHAFT_PUMP", (float32)(*mt_cchains.pu8_shaft_drive_value));
 
     //Publish checkpoints
-    mt_cchains.pt_cp_cchains->u8_chkPoint1 = *mt_cchains.pu8_shaft_drive_value;
+    mt_cchains.pt_cp_cchains->u8_checkpoint1 = *mt_cchains.pu8_shaft_drive_value;
 
     mt_cchains.u8_prev_ign_on = u8_ign_on;
 

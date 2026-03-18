@@ -28,6 +28,8 @@
 
 #include "header_lift_control.h"
 #include "cleaning_chains_control.h"
+#include "front_sweeps_control.h"
+#include "rotary_trap_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -88,7 +90,9 @@ int main(void)
     {
         s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
         s16_Error += init_headerControl(&gt_ui, &gt_headerConfig);
-        s16_Error += init_cChainsControl(&gt_ui, &gt_cleaningShaft);
+        s16_Error += init_cChainsControl(&gt_ui, &gt_cleaningShaftCheckpoints);
+        s16_Error += init_frontSweepsControl(&gt_ui, &gt_frontSweepsCheckpoints);
+        s16_Error += init_rotaryTrapControl(&gt_ui, &gt_rotaryTrapCheckpoints);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -116,12 +120,13 @@ int main(void)
         update_elevatorControl();
         update_headerControl();
         update_cChainsControl();
+        update_frontSweepsControl();
+        update_rotaryTrapControl();
 
         //Outputs
         update_checkpointHandler();
         update_canOutputs();
         update_hwOutputs();
-
 
         u8_ResetRequest = get_system_reset_status();
     }

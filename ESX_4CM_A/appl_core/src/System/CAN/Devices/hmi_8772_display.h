@@ -26,6 +26,10 @@ typedef struct
    //RX Variables
    uint8 u8_elevatorSpeedRequest;       //!<Requested Speed of Elevator
 
+   uint8 u8_drum_speed_request;       //!<Requested Speed of Front Sweeps
+   uint8 u8_drum_speed_enable;       //!<Requested Front Sweeps enabled
+   uint8 u8_trap_speed_range; //!<Requested Rotary Trap Speed Range
+
    //TX Variables
    uint8 u8_controllerVersionMinor;     //!<Controller Software Version - Minor
    uint8 u8_controllerVersionMajor;     //!<Controller Software Version - Major
