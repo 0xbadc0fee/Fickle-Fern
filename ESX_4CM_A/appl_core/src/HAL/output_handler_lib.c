@@ -198,39 +198,43 @@ sint16 check_outputFaultStatus(uint8 u8_output)
 
     if (u32_hwOutputFault)
     {
+        at_vehicleOutputs[u8_output].t_fault.u8_fault_status = TRUE;
+
         // SHORT UB+ / OL
         if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_UB) == X_OUT_FAULT_SHORT_UB))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_UB].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[0].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_UB].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[0].u8_is_active = FALSE;
 
         // SHORT TO GND
         if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_GND) == X_OUT_FAULT_SHORT_GND))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_GND].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[1].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_GND].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[1].u8_is_active = FALSE;
 
         // OPEN LOAD
         if (((u32_hwOutputFault & X_OUT_FAULT_OPEN_LOAD) == X_OUT_FAULT_OPEN_LOAD))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[2].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[2].u8_is_active = FALSE;
 
         // OVERCURRENT
         if (((u32_hwOutputFault & X_OUT_FAULT_OVERCURRENT) == X_OUT_FAULT_OVERCURRENT))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OC].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[3].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OC].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[3].u8_is_active = FALSE;
 
         // PWM FAULT
         if (((u32_hwOutputFault & X_OUT_FAULT_DUTY_CYCLE_OOOB) == X_OUT_FAULT_DUTY_CYCLE_OOOB))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_DC_OOB].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[4].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_DC_OOB].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[4].u8_is_active = FALSE;
     }
 
     else if (s16_Error == C_NO_ERR && !u32_hwOutputFault)
     {
+        at_vehicleOutputs[u8_output].t_fault.u8_fault_status = FALSE;
+
         for (uint8 i = 0; i < MAX_NUM_FMI; i++)
             at_vehicleOutputs[u8_output].t_fault.t_fmi[i].u8_is_active = FALSE;
     }

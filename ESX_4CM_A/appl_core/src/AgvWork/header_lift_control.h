@@ -68,7 +68,7 @@ typedef struct
 
     //RX CAN Variables
     uint8 *pu8_joy_lift_header;              //!<Pointer to Header Lift Button from Joystick
-    uint8 *pu8_joy_lwr_header;               //!<Pointer to Header Lower Button from Joystick
+    uint8 *pu8_joy_lower_header;             //!<Pointer to Header Lower Button from Joystick
 
     //NVM Configuration Parameters
     T_Config_HeaderControl *pt_nvm_hdr_control;      //!<Header Control Configuration Structure

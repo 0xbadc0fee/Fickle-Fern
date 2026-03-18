@@ -91,6 +91,7 @@ sint16 update_elevatorControl(void)
 
     mt_elevator.pt_chkElevator->u8_chkPoint1 = faultEnabled;
 
+    /*
     if((get_system_time_ms() - u32_startTime) >= 10000)
     {
         if(faultEnabled)
@@ -106,6 +107,7 @@ sint16 update_elevatorControl(void)
             u32_startTime = get_system_time_ms();
         }
     }
+    */
 
     s16_error = get_inputFaultStatus("CAB_DOOR", &u8_status);
 

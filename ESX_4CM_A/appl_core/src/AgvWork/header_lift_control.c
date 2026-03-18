@@ -44,7 +44,7 @@ sint16 init_headerControl(T_UserInterface *_ui, T_ChkPoints_Header *_chkPoints, 
 
     //populate local copy of RX ui elements
     mt_hdr_control.pu8_joy_lift_header = &_ui->t_joystick.u8_b5_state;
-    mt_hdr_control.pu8_joy_lift_header = &_ui->t_joystick.u8_b6_state;
+    mt_hdr_control.pu8_joy_lower_header = &_ui->t_joystick.u8_b6_state;
 
     //populate local copy of NVM elements
     mt_hdr_control.pt_nvm_hdr_control = _nvmHeaderControl;
@@ -82,8 +82,14 @@ sint16 update_headerControl(void)
     uint8 u8_lift_output = FALSE;
     uint8 u8_lower_output = FALSE;
 
-    //get the relief switch status and pass value onto CAN
+    uint8 u8_hw_in_lift_fault = FALSE;
+    uint8 u8_hw_in_lower_fault = FALSE;
+    uint8 u8_hw_out_lift_fault = FALSE;
+    uint8 u8_hw_out_lower_fault = FALSE;
+
+    //FR-1.5 get the relief switch status and pass value onto CAN
     get_inputValue("RELIEF_PRESS", &f32_relief_switch);
+    //FR-1.6
     *(mt_hdr_control.pu8_relief_swich) = (uint8)f32_relief_switch;
 
     mt_hdr_control.pt_chkPoints->f32_chk3 = f32_relief_switch;
@@ -91,23 +97,45 @@ sint16 update_headerControl(void)
     //check if joystick HLL is disabled or not
     if(!mt_hdr_control.pt_nvm_hdr_control->u8_joystick_hll_enable)
     {
-        get_inputValue("RIGHT_SWITCH", &f32_right_pedal);
-        get_inputValue("LEFT_SWITCH", &f32_left_pedal);
+        get_inputFaultStatus("RIGHT_SWITCH", &u8_hw_in_lift_fault);
+        get_inputFaultStatus("LEFT_SWITCH", &u8_hw_in_lower_fault);
 
-        mt_hdr_control.u8_lift_command = (uint8)f32_right_pedal;
-        mt_hdr_control.u8_lower_command = (uint8)f32_left_pedal;
+
+        if(u8_hw_in_lift_fault || u8_hw_in_lower_fault)
+        {
+            mt_hdr_control.u8_lift_command = FALSE;
+            mt_hdr_control.u8_lower_command = FALSE;
+        }
+        else
+        {
+            get_inputValue("RIGHT_SWITCH", &f32_right_pedal);
+            get_inputValue("LEFT_SWITCH", &f32_left_pedal);
+
+            mt_hdr_control.u8_lift_command = (uint8)f32_right_pedal;
+            mt_hdr_control.u8_lower_command = (uint8)f32_left_pedal;
+        }
+
 
     }
     else //if joystick hll enabled - header lift lower through joystick
     {
         mt_hdr_control.u8_lift_command = *(mt_hdr_control.pu8_joy_lift_header);
-        mt_hdr_control.u8_lower_command = *(mt_hdr_control.pu8_joy_lift_header);
+        mt_hdr_control.u8_lower_command = *(mt_hdr_control.pu8_joy_lower_header);
+
+        //IR-1.1
+        if(mt_hdr_control.u8_lift_command == JS_BUTTON_FAULT || mt_hdr_control.u8_lower_command == JS_BUTTON_FAULT)
+        {
+            mt_hdr_control.u8_lift_command = FALSE;
+            mt_hdr_control.u8_lower_command = FALSE;
+        }
+
+
     }
 
-    //Header lift takes prio - perform logic
+    //FR-1.3 Header lift takes prio - perform logic
     if(mt_hdr_control.u8_lift_command)
     {
-        //check the limit switch
+        //FR-1.4 check the limit switch
         get_inputValue("HEAD_LIMIT", &f32_limit_switch);
         u8_lower_output = FALSE;
 
@@ -128,6 +156,19 @@ sint16 update_headerControl(void)
         u8_lower_output = FALSE;
         u8_lift_output = FALSE;
     }
+
+    //IR-1.2
+    get_outputFaultStatus("HEAD_LIFT_COIL", &u8_hw_out_lift_fault);
+    get_outputFaultStatus("HEAD_LOWER_COIL", &u8_hw_out_lower_fault);
+
+    if(u8_hw_out_lift_fault || u8_hw_out_lower_fault)
+    {
+        u8_lower_output = FALSE;
+        u8_lift_output = FALSE;
+    }
+
+
+
 
     //set the hardware output
     set_outputValue("HEAD_LOWER_COIL", (float32)u8_lower_output);

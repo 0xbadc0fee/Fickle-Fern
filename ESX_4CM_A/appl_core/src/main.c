@@ -120,7 +120,7 @@ int main(void)
 
         //Run AgvWork Controls
         update_elevatorControl();
-        //update_headerControl();
+        update_headerControl();
 
         //Outputs
         update_faultHandler();
