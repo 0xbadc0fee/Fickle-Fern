@@ -21,6 +21,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 #include "fault_handler.h"
+#include "system.h"
 
 
 
@@ -59,6 +60,8 @@ sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElev
     //populate local copy of NVM elements
     mt_elevator.pt_nvmElevator = _nvmElevator;
 
+
+
     return s16_error;
 
 }
@@ -82,19 +85,34 @@ sint16 update_elevatorControl(void)
     uint8 u8_status = 0;
     float32 f32_door_state = 3;
 
+    static uint32 u32_startTime = 0;
+
+    static uint8 faultEnabled = FALSE;
+
+    mt_elevator.pt_chkElevator->u8_chkPoint1 = faultEnabled;
+
+    if((get_system_time_ms() - u32_startTime) >= 10000)
+    {
+        if(faultEnabled)
+        {
+            set_logicFaultStatus(520999, 6, FALSE);
+            faultEnabled = FALSE;
+            u32_startTime = get_system_time_ms();
+        }
+        else
+        {
+            set_logicFaultStatus(520999, 6, TRUE);
+            faultEnabled = TRUE;
+            u32_startTime = get_system_time_ms();
+        }
+    }
+
     s16_error = get_inputFaultStatus("CAB_DOOR", &u8_status);
-    mt_elevator.pt_chkElevator->u8_chkPoint1 = u8_status;
 
     s16_error = get_inputValue("CAB_DOOR", &f32_door_state);
 
     s16_error = set_outputValue("STICKBOX_ON",f32_door_state);
 
-    mt_elevator.pt_chkElevator->f32_chkPoint3= f32_door_state;
-
-
-    s16_error = set_logicFaultStatus(520999, 5, TRUE);
-    s16_error = set_logicFaultStatus(520999, 6, TRUE);
-    mt_elevator.pt_chkElevator->s16_chkPoint2= s16_error;
 
     set_dm1Lamp(e_AMBER_WARN, TRUE);
 

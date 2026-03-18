@@ -37,6 +37,7 @@ typedef enum {
 typedef struct
 {
     uint8 u8_is_active;
+    uint8 u8_prev_active;
     uint8 u8_fmi_value;
 }T_FMI;
 
