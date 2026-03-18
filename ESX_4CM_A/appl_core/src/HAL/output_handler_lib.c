@@ -63,7 +63,6 @@ sint16 init_outputHandler(void)
     s16_error |= x_msw_set_state(X_MSW_03, X_ON);
 
     //TODO_STW: Make the return errors distinguishable between diagnostic init error and hardware init error
-    //TODO_STW: Add Current Control to update function
 
     //Initialize Output Runner List
     // loop through all outputs and initialize
@@ -159,6 +158,10 @@ sint16 update_outputHandler(void)
 
                 case OT_PWM:
                     s16_error |= x_out_set_duty_cycle(at_vehicleOutputs[j].u16_hardwareID, (uint32) at_vehicleOutputs[j].f32_outputValue);
+                    break;
+
+                case OT_CC:
+                    s16_error |= x_out_set_current_setpoint(at_vehicleOutputs[j].u16_hardwareID, (sint32) at_vehicleOutputs[j].f32_outputValue);
                     break;
 
 
@@ -370,7 +373,7 @@ sint16 findOutputByName(const char *targetName, uint8 *opu8_Index)
     return C_RANGE;
 }
 
-/** \brief Clear all active output faults
+/** \brief Clear all active output faults and occurence counters
     Searches the output array for any output that has an active fault and sets
     it to FALSE
 
@@ -381,6 +384,7 @@ sint16 clear_outputFaults(void)
 {
     sint16 s16_error = C_NO_ERR;
 
+    //clear all active status'
     for (uint8 i = 0; i < u8_numOutputs; i++)
     {
         if (at_vehicleOutputs[i].u8_diagEnabled)

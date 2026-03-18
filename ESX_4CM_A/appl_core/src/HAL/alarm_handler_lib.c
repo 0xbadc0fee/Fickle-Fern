@@ -153,8 +153,16 @@ sint16 update_alarmHandler(void)
                             u8_alarmFound = TRUE;
                             gat_DmDtcs[faults].u8_IsActive = (at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active) ? TRUE : FALSE;
 
-                            //increase occurence counter
-                            gat_DmDtcs[faults].u8_OccurrenceCounter = 1;
+                            if(at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active && !at_vehicleOutputs[k].t_fault.t_fmi[p].u8_prev_active)
+                            {
+                                if (gat_DmDtcs[faults].u8_OccurrenceCounter < 126)
+                                {
+                                    gat_DmDtcs[faults].u8_OccurrenceCounter++;
+                                    fault_nvm_write(&mat_nvmDtcs[faults], gat_DmDtcs[faults].u8_OccurrenceCounter);
+                                }
+
+                            }
+                            at_vehicleOutputs[k].t_fault.t_fmi[p].u8_prev_active = at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active;
 
                         }
                     }
@@ -179,8 +187,16 @@ sint16 update_alarmHandler(void)
                             u8_alarmFound = TRUE;
                             gat_DmDtcs[faults].u8_IsActive = (at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active) ? TRUE : FALSE;
 
-                            //increase occurence counter
-                            gat_DmDtcs[faults].u8_OccurrenceCounter = 1;
+                            if(at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active && !at_vehicleInputs[k].t_fault.t_fmi[p].u8_prev_active)
+                            {
+                                if (gat_DmDtcs[faults].u8_OccurrenceCounter < 126)
+                                {
+                                    gat_DmDtcs[faults].u8_OccurrenceCounter++;
+                                    fault_nvm_write(&mat_nvmDtcs[faults], gat_DmDtcs[faults].u8_OccurrenceCounter);
+                                }
+
+                            }
+                            at_vehicleInputs[k].t_fault.t_fmi[p].u8_prev_active = at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active;
                         }
                     }
                 }
@@ -341,6 +357,23 @@ sint16 clear_dm1Lamps(void)
     return s16_error;
 }
 
+/*!
+   \brief  Set all J1939 Occurence Counts to 0
+
+*/
+sint16 clear_dm1OccurCounts(void)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    //loop through all DTCs and set NVM and RAM Occurence Counters to 0
+    for(uint16 faults = 0; faults < u16_num_dtcs; faults++)
+    {
+        gat_DmDtcs[faults].u8_OccurrenceCounter = 0;
+        fault_nvm_write(&mat_nvmDtcs[faults], 0);
+    }
+
+    return s16_error;
+}
 
 /*!
    \brief  Set the Fault/Alarm status of a Logic Fault
@@ -410,4 +443,7 @@ sint16 clear_logicFaults(void)
 
     return s16_error;
 }
+
+
+
 //EOF

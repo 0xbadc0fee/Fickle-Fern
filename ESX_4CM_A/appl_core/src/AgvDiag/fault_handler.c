@@ -70,6 +70,8 @@ sint16 clear_machineFaults(void)
     clear_inputFaults();
     clear_logicFaults();
     clear_outputFaults();
+
+    clear_dm1OccurCounts();
     clear_dm1Lamps();
 
     return s16_error;

@@ -26,7 +26,7 @@
 
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DEFAULT_PWM_CC_FREQ 10000u                  //!< Default PWM CC Frequency if not otherwise set
+#define DEFAULT_PWM_CC_FREQ 100000u                  //!< Default PWM CC Frequency if not otherwise set
 #define DEFAULT_CC_FILTER   20u                     //!< Default 10mS Filter if not otherwise set
 #define DEFAULT_CC_DITHER   500u                    //!< Default dither is 5%% if not otherwise set
 
