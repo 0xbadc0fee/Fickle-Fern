@@ -437,7 +437,6 @@ T_VehicleInput tvi_head_pressure =
     .s32_diagMax            = 19000,
 };
 
-
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Inputs
  *

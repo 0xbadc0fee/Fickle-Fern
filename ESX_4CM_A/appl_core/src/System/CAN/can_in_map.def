@@ -11,5 +11,9 @@ DP2CNTRL(elevatorSpeed, gt_ui.t_display.u8_elevatorSpeedRequest, gt_J1939_DataPo
 DP2CNTRL(elevatorOnOff, gt_ui.t_joystick.u8_b1_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button1PressedStatus)
 
 /* Header Control CAN Parameters */
-DP2CNTRL(headerLift, gt_ui.t_joystick.u8_b5_state, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button5PressedStatus)
-DP2CNTRL(headerLower, gt_ui.t_joystick.u8_b6_state, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button6PressedStatus)
+DP2CNTRL(headerLift, gt_ui.t_joystick.u8_b5_state, 				 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button5PressedStatus)
+DP2CNTRL(headerLower, gt_ui.t_joystick.u8_b6_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button6PressedStatus)
+
+/* Auger Cart Control CAN Parameters */
+DP2CNTRL(augerOnOff,  gt_ui.t_buttonPanel.u8_b2_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_02)
+DP2CNTRL(manualOnOff, gt_ui.t_buttonPanel.u8_b6_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_06)
