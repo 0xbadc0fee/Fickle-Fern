@@ -24,7 +24,7 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_HeaderControl mt_hdr_control;
+static T_HeaderControl mt_hdr_control;
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /** \brief Initialize AgvWork - Header Lift Control
@@ -118,21 +118,21 @@ sint16 update_headerControl(void)
         {
             u8_lower_output = FALSE;
             u8_lift_output = FALSE;
-            s16_error = C_WARN;
+            s16_error += C_WARN;
         }
     }
     else if(mt_hdr_control.pt_nvm_hdr_control->u8_joystick_hll_enable == FALSE)
     {
         if((mt_hdr_control.pu8_joy_lwr_header != NULL) && (mt_hdr_control.pu8_joy_lift_header != NULL))
         {
-            mt_hdr_control.u8_lift_command = (*(mt_hdr_control.pu8_joy_lift_header) == 1u);
-            mt_hdr_control.u8_lower_command = (*(mt_hdr_control.pu8_joy_lwr_header) == 1u);
+            mt_hdr_control.u8_lift_command = (*(mt_hdr_control.pu8_joy_lift_header) != FALSE) ? TRUE : FALSE;
+            mt_hdr_control.u8_lower_command = (*(mt_hdr_control.pu8_joy_lwr_header) != FALSE) ? TRUE : FALSE;
         }
         else
         {
             u8_lower_output = FALSE;
             u8_lift_output = FALSE;
-            s16_error = C_WARN;
+            s16_error += C_WARN;
         }
     }
 
@@ -145,7 +145,7 @@ sint16 update_headerControl(void)
         //Default to safe state NO MOVEMENT
         mt_hdr_control.u8_lift_command= FALSE;
         mt_hdr_control.u8_lower_command = FALSE;
-        s16_error = C_WARN;
+        s16_error += C_WARN;
     }
 
     //FR-1.3 Header lift takes priority- perform logic
@@ -177,14 +177,10 @@ sint16 update_headerControl(void)
         u8_lift_output = FALSE;
     }
 
-
     set_outputValue("HEAD_LOWER_COIL", (float32)u8_lower_output);
     set_outputValue("HEAD_LIFT_COIL", (float32)u8_lift_output);
 
-
     return s16_error;
-
 }
-
 
 //EOF

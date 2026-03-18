@@ -24,7 +24,7 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_HitchPosControl mt_hp_control;
+static T_HitchPosControl mt_hp_control;
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /** \brief Initialize AgvWork - Hitch Position Control
@@ -113,21 +113,21 @@ sint16 update_hitchPosControl(void)
         {
             u8_in_output = FALSE;
             u8_out_output = FALSE;
-            s16_error = C_WARN;
+            s16_error += C_WARN;
         }
     }
     else if(mt_hp_control.pt_nvm_hp_control->u8_joystick_hll_enable == TRUE)
     {
         if((mt_hp_control.pu8_joy_hitch_out != NULL) && (mt_hp_control.pu8_joy_hitch_in != NULL))
         {
-            mt_hp_control.u8_out_command = (*(mt_hp_control.pu8_joy_hitch_out) == 1u);
-            mt_hp_control.u8_in_command = (*(mt_hp_control.pu8_joy_hitch_in) == 1u);
+            mt_hp_control.u8_out_command = (*(mt_hp_control.pu8_joy_hitch_out) != FALSE) ? TRUE : FALSE;
+            mt_hp_control.u8_in_command = (*(mt_hp_control.pu8_joy_hitch_in) != FALSE) ? TRUE : FALSE;
         }
         else
         {
             u8_in_output = FALSE;
             u8_out_output = FALSE;
-            s16_error = C_WARN;
+            s16_error += C_WARN;
         }
     }
 
@@ -139,7 +139,7 @@ sint16 update_hitchPosControl(void)
         //Default to safe state NO MOVEMENT
         mt_hp_control.u8_in_command = FALSE;
         mt_hp_control.u8_out_command = FALSE;
-        s16_error = C_WARN;
+        s16_error += C_WARN;
     }
 
     //FR-2.3 Prevent  simultaneous activation of  Hitch “IN” and “OUT” operations.

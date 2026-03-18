@@ -128,7 +128,7 @@ sint16 update_augerControl(void)
     // Read commands safely
     if(mt_augerc.pu8_auger_command != NULL)
     {
-        u8_aug_cmd = (*(mt_augerc.pu8_auger_command) == 1u);
+        u8_aug_cmd = (*(mt_augerc.pu8_auger_command) != FALSE) ? TRUE : FALSE;
     }
     else
     {
@@ -137,7 +137,7 @@ sint16 update_augerControl(void)
 
     if(mt_augerc.pu8_manual_command != NULL)
     {
-        u8_man_cmd = (*(mt_augerc.pu8_manual_command) == 1u);
+        u8_man_cmd = (*(mt_augerc.pu8_manual_command) != FALSE) ? TRUE : FALSE;
     }
     else
     {
@@ -208,7 +208,7 @@ sint16 update_augerControl(void)
     }
     else
     {
-        s16_error = C_WARN;
+        s16_error += C_WARN;
     }
 
     if(u8_man_output_fault == FALSE)
@@ -217,7 +217,7 @@ sint16 update_augerControl(void)
     }
     else
     {
-        s16_error = C_WARN;
+        s16_error += C_WARN;
     }
 
     //FR-9.6 Transmit button panel and display
