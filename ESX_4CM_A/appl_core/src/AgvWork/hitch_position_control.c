@@ -96,7 +96,8 @@ sint16 update_hitchPosControl(void)
     }
 
     //FR-2.1 - FR-2.2 Check if joystick HLL is disabled or not
-    if(mt_hp_control.pt_nvm_hp_control->u8_joystick_hll_enable == FALSE)
+    //if joystick HLL is enabled - then use foot pedals for hitch
+    if(mt_hp_control.pt_nvm_hp_control->u8_joystick_hll_enable)
     {
         get_inputFaultStatus("RIGHT_SWITCH", &u8_right_pedal_fault);
         get_inputFaultStatus("LEFT_SWITCH", &u8_left_pedal_fault);
@@ -116,12 +117,18 @@ sint16 update_hitchPosControl(void)
             s16_error += C_WARN;
         }
     }
-    else if(mt_hp_control.pt_nvm_hp_control->u8_joystick_hll_enable == TRUE)
+    else //otherwise use joystick commands
     {
         if((mt_hp_control.pu8_joy_hitch_out != NULL) && (mt_hp_control.pu8_joy_hitch_in != NULL))
         {
-            mt_hp_control.u8_out_command = (*(mt_hp_control.pu8_joy_hitch_out) != FALSE) ? TRUE : FALSE;
-            mt_hp_control.u8_in_command = (*(mt_hp_control.pu8_joy_hitch_in) != FALSE) ? TRUE : FALSE;
+            mt_hp_control.u8_out_command = *(mt_hp_control.pu8_joy_hitch_out);
+            mt_hp_control.u8_in_command = *(mt_hp_control.pu8_joy_hitch_in);
+
+            if(mt_hp_control.u8_in_command == JS_BUTTON_FAULT || mt_hp_control.u8_out_command == JS_BUTTON_FAULT)
+            {
+                mt_hp_control.u8_out_command = FALSE;
+                mt_hp_control.u8_in_command = FALSE;
+            }
         }
         else
         {

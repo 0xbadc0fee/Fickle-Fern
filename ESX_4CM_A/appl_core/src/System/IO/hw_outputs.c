@@ -204,17 +204,17 @@ T_VehicleOutput tvo_dv_sweep =
 T_VehicleOutput tvo_head_lift =
 {
     .Name_Description = "HEAD_LIFT_COIL",
-    .u16_hardwareID = X_OUT_OPHSP2A_14,
+    .u16_hardwareID = X_OUT_OPL4A_3,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
-    .u8_diagEnabled = TRUE,
+    .u8_diagEnabled = FALSE,
     .t_fault=
     {
-        .u8_dm1_enable      = TRUE,
+        .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520207,
         .t_fmi = {
@@ -225,20 +225,20 @@ T_VehicleOutput tvo_head_lift =
         }
     },
 
-    .u16_dti = 0,
+    .u16_dti = 1000,
 };
 
 T_VehicleOutput tvo_head_lower =
 {
     .Name_Description = "HEAD_LOWER_COIL",
-    .u16_hardwareID = X_OUT_OPHSP2A_15,
+    .u16_hardwareID = X_OUT_OPL4A_2,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
-    .u8_diagEnabled = TRUE,
+    .u8_diagEnabled = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -252,7 +252,7 @@ T_VehicleOutput tvo_head_lower =
         }
     },
 
-    .u16_dti = 0
+    .u16_dti = 1000
 };
 
 
@@ -260,7 +260,7 @@ T_VehicleOutput tvo_head_lower =
 T_VehicleOutput tvo_hitch_extend =
 {
     .Name_Description = "HITCH_EXTEND",
-    .u16_hardwareID = X_OUT_OPL4A_3,
+    .u16_hardwareID = X_OUT_OPHSP2A_14,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -274,18 +274,20 @@ T_VehicleOutput tvo_hitch_extend =
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520209,
         .t_fmi = {
-            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
-            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_UB},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_GND},
+            [2] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OL},
+            [3] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OC}
         }
     },
 
-    .u16_dti = 0
+    .u16_dti = 1000
 };
 
 T_VehicleOutput tvo_hitch_retract =
 {
     .Name_Description = "HITCH_RETRACT",
-    .u16_hardwareID = X_OUT_OPL4A_2,
+    .u16_hardwareID = X_OUT_OPHSP2A_15,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -299,12 +301,14 @@ T_VehicleOutput tvo_hitch_retract =
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520210,
         .t_fmi = {
-            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
-            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_UB},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_GND},
+            [2] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OL},
+            [3] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OC}
         }
     },
 
-    .u16_dti = 0
+    .u16_dti = 1000
 };
 
 T_VehicleOutput tvo_taillights =
