@@ -17,10 +17,10 @@ CNTRL2DP(reliefStatus, gt_ui.t_display.u8_relief_switch_status, gt_J1939_DataPoo
 
 /* Auger Cart Control Outputs */
 CNTRL2DP(augerStatus, 	  gt_ui.t_display.u8_auger_status,   	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkAugerUnloadOn)
-CNTRL2DP(button2LED, 	  gt_ui.t_buttonPanel.u8_b2_lights, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans1_Button_Ind_02_Auger)
-CNTRL2DP(button6LED, 	  gt_ui.t_buttonPanel.u8_b6_lights, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans1_Button_Ind_06_ManUL)
+CNTRL2DP(button2LED, 	  gt_ui.t_buttonPanel.u8_b2_lights, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_02_Auger)
+CNTRL2DP(button6LED, 	  gt_ui.t_buttonPanel.u8_b6_lights, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_06_ManUL)
 
 /* Light Control Outputs */
-CNTRL2DP(lightStatus,     gt_ui.t_buttonPanel.u8_b4_lights,	    gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans1_Button_Ind_04_Lights)
-CNTRL2DP(headLightStatus, gt_ui.t_display.u8_headlights_status, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHeadLtsOn, )
-CNTRL2DP(workLightStatus, gt_ui.t_display.u8_worklights_status, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisWorkLtsOn, )
+CNTRL2DP(lightStatus,     gt_ui.t_buttonPanel.u8_b4_lights,	    gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_04_Lights)
+CNTRL2DP(headLightStatus, gt_ui.t_display.u8_headlights_status, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHeadLtsOn)
+CNTRL2DP(workLightStatus, gt_ui.t_display.u8_worklights_status, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisWorkLtsOn)

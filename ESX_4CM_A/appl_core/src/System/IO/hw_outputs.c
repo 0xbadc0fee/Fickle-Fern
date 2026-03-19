@@ -204,7 +204,8 @@ T_VehicleOutput tvo_dv_sweep =
 T_VehicleOutput tvo_head_lift =
 {
     .Name_Description = "HEAD_LIFT_COIL",
-    .u16_hardwareID = X_OUT_OPL4A_3,
+    //.u16_hardwareID = X_OUT_OPHSP2A_14,
+    .u16_hardwareID = X_OUT_OPL2A_2,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -231,7 +232,8 @@ T_VehicleOutput tvo_head_lift =
 T_VehicleOutput tvo_head_lower =
 {
     .Name_Description = "HEAD_LOWER_COIL",
-    .u16_hardwareID = X_OUT_OPL4A_2,
+    //.u16_hardwareID = X_OUT_OPHSP2A_15,
+    .u16_hardwareID = X_OUT_OPL2A_3,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -260,7 +262,7 @@ T_VehicleOutput tvo_head_lower =
 T_VehicleOutput tvo_hitch_extend =
 {
     .Name_Description = "HITCH_EXTEND",
-    .u16_hardwareID = X_OUT_OPHSP2A_14,
+    .u16_hardwareID = X_OUT_OPL4A_3,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -287,7 +289,7 @@ T_VehicleOutput tvo_hitch_extend =
 T_VehicleOutput tvo_hitch_retract =
 {
     .Name_Description = "HITCH_RETRACT",
-    .u16_hardwareID = X_OUT_OPHSP2A_15,
+    .u16_hardwareID = X_OUT_OPL4A_2,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -313,8 +315,9 @@ T_VehicleOutput tvo_hitch_retract =
 
 T_VehicleOutput tvo_taillights =
 {
-    .Name_Description = "TAIL_LIGHTS",
-    .u16_hardwareID = X_OUT_OPL2A_2,
+    .Name_Description = "TAILLIGHTS",
+    //.u16_hardwareID = X_OUT_OPL2A_2,
+    .u16_hardwareID = X_OUT_OPHSP2A_15,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -339,7 +342,8 @@ T_VehicleOutput tvo_taillights =
 T_VehicleOutput tvo_headlights =
 {
     .Name_Description = "HEADLIGHTS",
-    .u16_hardwareID = X_OUT_OPL2A_3,
+    //.u16_hardwareID = X_OUT_OPL2A_3,
+    .u16_hardwareID = X_OUT_OPL2A_4,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -364,7 +368,8 @@ T_VehicleOutput tvo_headlights =
 T_VehicleOutput tvo_worklights =
 {
     .Name_Description = "WORKLIGHTS",
-    .u16_hardwareID = X_OUT_OPL2A_4,
+    //.u16_hardwareID = X_OUT_OPL2A_4,
+    .u16_hardwareID = X_OUT_OPHSP2A_14,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
