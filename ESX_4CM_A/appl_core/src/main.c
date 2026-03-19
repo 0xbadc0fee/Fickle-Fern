@@ -32,6 +32,8 @@
 #include "can_handler.h"
 #include "checkpoint_handler.h"
 
+#include "lighting_control.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
@@ -97,6 +99,7 @@ int main(void)
         s16_Error += init_headerControl(&gt_ui, &gt_headerCheckpoints, &gt_headerConfig);
         s16_Error += init_hitchPosControl(&gt_ui, &gt_headerConfig);
         s16_Error += init_augerControl(&gt_ui);
+        s16_Error += init_lightControl(&gt_ui); //Initialize Light Control
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -120,6 +123,7 @@ int main(void)
         update_canInputs();
 
         //Run AgvChassis Controls
+        update_lightControl();
 
         //Run AgvWork Controls
         update_elevatorControl();

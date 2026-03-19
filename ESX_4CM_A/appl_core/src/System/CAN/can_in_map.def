@@ -17,3 +17,6 @@ DP2CNTRL(headerLower, gt_ui.t_joystick.u8_b6_state, 			 gt_J1939_DataPoolValues.
 /* Auger Cart Control CAN Parameters */
 DP2CNTRL(augerOnOff,  gt_ui.t_buttonPanel.u8_b2_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_02_Auger)
 DP2CNTRL(manualOnOff, gt_ui.t_buttonPanel.u8_b6_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_06_ManUL)
+
+/* Light Control CAN Parameters */
+DP2CNTRL(lightState, gt_ui.t_buttonPanel.u8_b4_state,            gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_04_Lights)
