@@ -13,6 +13,9 @@
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "elevator_control.h"
 #include "header_lift_control.h"
+#include "cleaning_chains_control.h"
+#include "front_sweeps_control.h"
+#include "rotary_trap_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -20,7 +23,10 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 extern T_ChkPoints_Elevator gt_elevatorCheckpoints;
-extern T_ChkPoints_Header gt_headerCheckpoints;
+extern T_ChkPoints_Header  gt_headerCheckpoints;
+extern T_ChkPoints_CChains gt_cleaningShaftCheckpoints;
+extern T_ChkPoints_FSweeps gt_frontSweepsCheckpoints;
+extern T_ChkPoints_RTrap   gt_rotaryTrapCheckpoints;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 update_checkpointHandler(void);

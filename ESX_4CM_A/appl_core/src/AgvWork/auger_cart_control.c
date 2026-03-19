@@ -152,7 +152,6 @@ sint16 update_augerControl(void)
     // Program start debounce timing
     u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
 
-    // Program start debounce timing
     if((u8_ign_on == TRUE) && (mt_augerc.u8_prev_ign_on == FALSE))
     {
         mt_augerc.u32_ign_start_time_ms = u32_now_ms;
