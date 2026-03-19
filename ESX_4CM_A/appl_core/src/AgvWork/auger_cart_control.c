@@ -51,12 +51,12 @@ sint16 init_augerControl(T_UserInterface *_ui)
     }
 
     //populate local RX/TX pointers
-    mt_augerc.pu8_auger_command   = &_ui->t_buttonPanel.u8_b2_state;
-    mt_augerc.pu8_manual_command   = &_ui->t_buttonPanel.u8_b6_state;
+    mt_augerc.pu8_auto_command       = &_ui->t_buttonPanel.u8_b2_state;
+    mt_augerc.pu8_manual_command      = &_ui->t_buttonPanel.u8_b6_state;
 
-    mt_augerc.pu8_auger_enable_status = &_ui->t_display.u8_auger_status;
-    mt_augerc.pu8_auger_status_indic = &_ui->t_buttonPanel.u8_b2_lights;
-    mt_augerc.pu8_manual_enable_status = &_ui->t_buttonPanel.u8_b6_lights;
+    mt_augerc.pu8_auto_enable_status  = &_ui->t_display.u8_auger_status;
+    mt_augerc.pu8_auto_status_indic   = &_ui->t_buttonPanel.u8_b2_lights;
+    mt_augerc.pu8_manual_status_indic = &_ui->t_buttonPanel.u8_b6_lights;
 
     //Initialize local variables
     mt_augerc.u8_safe_state = AUGER_DISABLED; //IR-9.2 Disabled safe state
@@ -64,15 +64,14 @@ sint16 init_augerControl(T_UserInterface *_ui)
     mt_augerc.u8_prev_ign_on = FALSE;
 
     //Initialize outputs to disabled state
-    mt_augerc.u8_auger_latched = AUGER_DISABLED;
+    mt_augerc.u8_auto_latched = AUGER_DISABLED;
     mt_augerc.u8_manual_latched = AUGER_DISABLED;
 
     //Initialize toggle button helper - Auger
     s16_error += toggleButton_init(
-    &mt_augerc.t_btn_auger,
-    &mt_augerc.u8_auger_latched,
-    0u,
-    0u,
+    &mt_augerc.t_btn_auto,
+    &mt_augerc.u8_auto_latched,
+    500u,
     AUGER_DISABLED
     );
 
@@ -80,8 +79,7 @@ sint16 init_augerControl(T_UserInterface *_ui)
     s16_error += toggleButton_init(
     &mt_augerc.t_btn_manual,
     &mt_augerc.u8_manual_latched,
-    0u,
-    0u,
+    500u,
     AUGER_DISABLED
     );
 
@@ -126,16 +124,16 @@ sint16 update_augerControl(void)
     uint32 u32_now_ms = get_system_time_ms();
 
     // Read commands safely
-    if(mt_augerc.pu8_auger_command != NULL)
+    if(mt_augerc.pu8_auto_command != NULL && *(mt_augerc.pu8_auto_command) != BTN_FAULT)
     {
-        u8_aug_cmd = (*(mt_augerc.pu8_auger_command) != FALSE) ? TRUE : FALSE;
+        u8_aug_cmd = (*(mt_augerc.pu8_auto_command) != FALSE) ? TRUE : FALSE;
     }
     else
     {
         u8_aug_btn_reset = TRUE;
     }
 
-    if(mt_augerc.pu8_manual_command != NULL)
+    if(mt_augerc.pu8_manual_command != NULL && *(mt_augerc.pu8_manual_command) != BTN_FAULT)
     {
         u8_man_cmd = (*(mt_augerc.pu8_manual_command) != FALSE) ? TRUE : FALSE;
     }
@@ -184,27 +182,30 @@ sint16 update_augerControl(void)
         u8_common_reset = TRUE;
     }
 
-    get_outputFaultStatus("AUGER_UNLOAD", &u8_aug_output_fault);
+    get_outputFaultStatus("AUTO_UNLOAD", &u8_aug_output_fault);
     get_outputFaultStatus("MANUAL_UNLOAD", &u8_man_output_fault);
 
     //Combine common reset with output-specific reset
     u8_aug_btn_reset = (uint8)(u8_aug_btn_reset || u8_common_reset || u8_aug_output_fault);
     u8_man_btn_reset = (uint8)(u8_man_btn_reset || u8_common_reset || u8_man_output_fault);
 
+
     //FR-9.1-2 Apply latching and reset logic to Auger and Manual Unload. Force to safe state if fault.
-    s16_error += toggleButton(&mt_augerc.t_btn_auger, u8_aug_cmd, u8_aug_btn_reset);
+    s16_error = toggleButton(&mt_augerc.t_btn_auto, u8_aug_cmd, u8_aug_btn_reset);
     s16_error += toggleButton(&mt_augerc.t_btn_manual, u8_man_cmd, u8_man_btn_reset);
 
+
+
     //FR-9.3 The control module shall enforce mutual exclusivity to the Auger Unload Enable and Manual Unload commands giving preference to Manual Unload Enable in case of a conflict.
-    if((mt_augerc.u8_manual_latched == AUGER_ENABLED) && (mt_augerc.u8_auger_latched == AUGER_ENABLED))
+    if((mt_augerc.u8_manual_latched == AUGER_ENABLED) && (mt_augerc.u8_auto_latched == AUGER_ENABLED))
     {
-        mt_augerc.u8_auger_latched = AUGER_DISABLED;
+        mt_augerc.u8_auto_latched = AUGER_DISABLED;
     }
 
     //FR-9.5 Output status
     if(u8_aug_output_fault == FALSE)
     {
-        set_outputValue("AUGER_UNLOAD", (float32)mt_augerc.u8_auger_latched);
+        set_outputValue("AUTO_UNLOAD", (float32)mt_augerc.u8_auto_latched);
     }
     else
     {
@@ -221,29 +222,36 @@ sint16 update_augerControl(void)
     }
 
     //FR-9.6 Transmit button panel and display
-    if(mt_augerc.pu8_auger_status_indic != NULL)
+    //Keypad Auto Button Indicator
+    if(mt_augerc.pu8_auto_status_indic != NULL)
     {
-        //LED Indicator
-        *(mt_augerc.pu8_auger_status_indic) =
-        (u8_aug_output_fault == TRUE) ? 0x08u :
-        (mt_augerc.u8_auger_latched == AUGER_ENABLED) ? 0x10u :
-        (mt_augerc.u8_auger_latched == AUGER_DISABLED) ? 0x01u :
-        0x01u;
+        if(u8_aug_output_fault)
+            *(mt_augerc.pu8_auto_status_indic) = BLUE_OFF | GREEN_OFF | AMBER_FLASH | RED_OFF;
+        else if(mt_augerc.u8_auto_latched == AUGER_ENABLED)
+            *(mt_augerc.pu8_auto_status_indic) = BLUE_OFF | GREEN_ON | AMBER_OFF | RED_OFF;
+        else if (mt_augerc.u8_auto_latched == AUGER_DISABLED)
+            *(mt_augerc.pu8_auto_status_indic) = BLUE_OFF | GREEN_OFF | AMBER_OFF | RED_ON;
+        else
+            *(mt_augerc.pu8_auto_status_indic) = BLUE_OFF | GREEN_OFF | AMBER_OFF | RED_OFF;
     }
 
-    if(mt_augerc.pu8_manual_enable_status != NULL)
+    //Keypad Manual Button Indicator
+    if(mt_augerc.pu8_manual_status_indic != NULL)
     {
-        //LED Indicator
-        *(mt_augerc.pu8_manual_enable_status) =
-        (u8_man_output_fault == TRUE) ? 0x08u :
-        (mt_augerc.u8_manual_latched == AUGER_ENABLED) ? 0x10u :
-        (mt_augerc.u8_manual_latched == AUGER_DISABLED) ? 0x01u :
-        0x01u;
+        if(u8_man_output_fault)
+            *(mt_augerc.pu8_manual_status_indic) = BLUE_OFF | GREEN_OFF | AMBER_FLASH | RED_OFF;
+        else if(mt_augerc.u8_manual_latched == AUGER_ENABLED)
+            *(mt_augerc.pu8_manual_status_indic) = BLUE_OFF | GREEN_ON | AMBER_OFF | RED_OFF;
+        else if (mt_augerc.u8_manual_latched == AUGER_DISABLED)
+            *(mt_augerc.pu8_manual_status_indic) = BLUE_OFF | GREEN_OFF | AMBER_OFF | RED_ON;
+        else
+            *(mt_augerc.pu8_manual_status_indic) = BLUE_OFF | GREEN_OFF | AMBER_OFF | RED_OFF;
     }
 
-    if(mt_augerc.pu8_auger_enable_status != NULL)
+    //Display
+    if(mt_augerc.pu8_auto_enable_status != NULL)
     {
-        *(mt_augerc.pu8_auger_enable_status) = mt_augerc.u8_auger_latched;
+        *(mt_augerc.pu8_auto_enable_status) = mt_augerc.u8_auto_latched;
     }
 
     mt_augerc.u8_prev_ign_on = u8_ign_on;

@@ -32,14 +32,14 @@
  *  This function initializes the toggle button.
  *
  *  \param pt_btn Pointer to the toggle button structure
- *  \param pu8_btn_state Current button state
+ *  \param pu8_btn_state Pointer to variable to hold the output button state
  *  \param _u32_deb_ms Minimum press duration required to toggle
- *  \param u8_safe_state Forced output state during fault
+ *  \param u8_safe_state Forced output state during fault or after reset
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u32_deb_ms_set, uint8 u32_hold_ms_set, uint8 u8_safe_state_set)
+sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u32_deb_ms_set, uint8 u8_safe_state_set)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -55,7 +55,7 @@ sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u
 
     *(pt_btn->pu_btn_state) = FALSE;
 
-    pt_btn->u32_hold_ms = u32_hold_ms_set;
+    pt_btn->u32_hold_ms = 0;
     pt_btn->u8_btn_set = TRUE;
 
     return s16_error;
@@ -102,6 +102,7 @@ sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint8 u8_reset)
     }
     else
     {
+
         //FR-21.1 Measure continuous press time
         if(pt_btn->u32_hold_ms == 0u)
         {

@@ -325,7 +325,7 @@ T_VehicleInput tvi_ignition_switch =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -349,7 +349,7 @@ T_VehicleInput tvi_cab_door =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,

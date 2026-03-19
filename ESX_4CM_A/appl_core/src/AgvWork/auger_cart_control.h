@@ -48,22 +48,23 @@ typedef struct
 {
         //Local Control Variables
         uint8 u8_safe_state; //!<Auger Safe State
-        uint8 u8_auger_latched; //!<Auger Latched state
+        uint8 u8_auto_latched; //!<Auger Latched state
         uint8 u8_manual_latched; //!<Manual Latched state
+
         uint32 u32_ign_start_time_ms;    //!<OS Start MS timer
         uint8 u8_prev_ign_on; //!<Previous IGN ON state
 
         //TX CAN Variables
-        uint8 *pu8_auger_enable_status;   //!<Auger Unload Enable Status (To Display)
-        uint8 *pu8_auger_status_indic;   //!<Auger Status Indicator (To Button Panel)
-        uint8 *pu8_manual_enable_status;   //!<Manual Unload Enable Status (To Button Panel)
+        uint8 *pu8_auto_enable_status;   //!<Auger Unload Enable Status (To Display)
+        uint8 *pu8_auto_status_indic;   //!<Auger Status Indicator (To Button Panel)
+        uint8 *pu8_manual_status_indic;   //!<Manual Unload Enable Status (To Button Panel)
 
         //RX CAN Variables
-        uint8 *pu8_auger_command; //!<Auger On/Off Command (From Joystick)
+        uint8 *pu8_auto_command; //!<Auger On/Off Command (From Joystick)
         uint8 *pu8_manual_command; //!<Manual On/Off Command (From Joystick)
 
         //Button Variables
-        T_ToggleBtn t_btn_auger;   //!<Toggle Button Control
+        T_ToggleBtn t_btn_auto;   //!<Toggle Button Control
         T_ToggleBtn t_btn_manual;   //!<Toggle Button Control
 
 
