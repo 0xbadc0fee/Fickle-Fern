@@ -81,7 +81,6 @@ sint16 update_frontSweepsControl(void)
 
     float32 f32_req = FRONT_SWEEPS_PWM_SAFE_STATE;
     float32 f32_target_cmd_pct = FRONT_SWEEPS_DISABLED;
-    float32 f32_pwm_output_pct = FRONT_SWEEPS_PWM_SAFE_STATE;
 
     // Validate pointers
     if((mt_front_sweeps.pu8_drum_speed_enable == NULL) ||
@@ -95,7 +94,7 @@ sint16 update_frontSweepsControl(void)
     {
         //FR-3.1, FR-3.2 Read inputs
         u8_enable = (*(mt_front_sweeps.pu8_drum_speed_enable) != FALSE) ? TRUE : FALSE;
-        f32_req = (float32)(*(mt_front_sweeps.pu8_drum_speed_request));
+        f32_req = (float32)(*(mt_front_sweeps.pu8_drum_speed_request))* 100.0f;
     }
 
     getShaftDriveStatus(&u8_shaft_drive);
@@ -111,22 +110,10 @@ sint16 update_frontSweepsControl(void)
     }
 
     //Publish checkpoints
-    mt_front_sweeps.pt_cp_frontsweeps->u8_checkpoint1 = f32_target_cmd_pct;
+    mt_front_sweeps.pt_cp_frontsweeps->u8_checkpoint1 = *(mt_front_sweeps.pu8_drum_speed_request);
 
     // FR-3.5 Ramp toward target
     s16_error += rampCalc(f32_target_cmd_pct, &mt_front_sweeps.t_sweeps_ramp);
-
-    // FR-3.6 Convert final drum speed command to PWM
-    if(mt_front_sweeps.t_sweeps_ramp.f32_output <= 0.0F)
-    {
-        f32_pwm_output_pct = FRONT_SWEEPS_PWM_SAFE_STATE;
-    }
-    else
-    {
-        f32_pwm_output_pct = FRONT_SWEEPS_PWM_THRESHOLD_CURRENT +
-        ((mt_front_sweeps.t_sweeps_ramp.f32_output * 0.01F) *
-        (FRONT_SWEEPS_PWM_END_CURRENT - FRONT_SWEEPS_PWM_THRESHOLD_CURRENT));
-    }
 
     // Output fault handling
     s16_error += get_outputFaultStatus("DV_SWEEP", &u8_output_fault);
@@ -137,7 +124,7 @@ sint16 update_frontSweepsControl(void)
     else
     {
         // Output command
-        s16_error += set_outputValue("DV_SWEEP", f32_pwm_output_pct);
+        s16_error += set_outputValue("DV_SWEEP", mt_front_sweeps.t_sweeps_ramp.f32_output);
     }
 
     return s16_error;

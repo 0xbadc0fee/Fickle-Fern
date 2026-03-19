@@ -18,7 +18,7 @@
 #include "stwtypes.h"
 //PROJECT
 #include "ramp_calc.h"
-#include "../HAL/STW_4CM_HAL/system.h"
+#include "system.h"
 #include "math.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */

@@ -24,8 +24,6 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
-#include "checkpoints_data_pool.h"
-
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
 #define PROGRAM_START_DEB_MS (3000u) //3 seconds

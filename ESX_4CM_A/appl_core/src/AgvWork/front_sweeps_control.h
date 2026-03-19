@@ -33,7 +33,7 @@
 #define FRONT_SWEEPS_PWM_THRESHOLD_CURRENT (4000.0F)
 #define FRONT_SWEEPS_PWM_END_CURRENT (18000.0F)
 
-#define FRONT_SWEEPS_RAMP_RATE (10.0F)
+#define FRONT_SWEEPS_RAMP_RATE (1000.0F)
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 
