@@ -24,7 +24,9 @@
 #define ELEVATOR_MIN_CURRENT_A  (0.0F)
 #define ELEVATOR_MAX_CURRENT_A  (10000.0F)
 
-#define ELEVATOR_RAMP_RATE (10.0f)
+#define ELEVATOR_RAMP_RATE (1000.0f)
+
+#define ELEVATOR_SAFE_STATE (0.0F)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -40,9 +42,7 @@ typedef struct
 typedef struct
 {
         float32 f32_max_current;
-        float32 f32_threshold_a;
 }T_Config_Elevator;
-
 
 typedef struct
 {
@@ -80,7 +80,5 @@ typedef struct
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator);
 sint16 update_elevatorControl(void);
-
-
 
 #endif /* APPL_CORE_SRC_AGVWORK_ELEVATOR_CONTROL_H_ */

@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CONFIGURATION_PROJECT_ID_3519452165 void configuration_project_id_3519452165(void) {}
+#define CONFIGURATION_PROJECT_ID_3144642970 void configuration_project_id_3144642970(void) {}
 
 ///Index of this Datapool
 #define CONFIGURATION_DATA_POOL_INDEX (1U)
@@ -31,8 +31,7 @@ extern "C" {
 
 ///Index of elements
 #define CONFIGURATION_ELEM_INDEX_ELEVATORCONFIG_MAX_CURRENT (0U)
-#define CONFIGURATION_ELEM_INDEX_ELEVATORCONFIG_THRESHOLD_A (1U)
-#define CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS (2U)
+#define CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS (1U)
 
 #define CONFIGURATION_ELEM_INDEX_HEADERCONFIG_JOYSTICK_HLL_ENABLE (0U)
 #define CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS (1U)
@@ -46,8 +45,6 @@ extern "C" {
 ///Scaling values
 #define CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT (1.0F)
 #define CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MAX_CURRENT (0.0F)
-#define CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_THRESHOLD_A (1.0F)
-#define CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_THRESHOLD_A (0.0F)
 
 #define CONFIGURATION_SCALING_FACTOR_HEADERCONFIG_JOYSTICK_HLL_ENABLE (1.0F)
 #define CONFIGURATION_SCALING_OFFSET_HEADERCONFIG_JOYSTICK_HLL_ENABLE (0.0F)
@@ -55,8 +52,6 @@ extern "C" {
 ///Scaling utilities
 #define CONFIGURATION_SET_VALUE_FROM_SCALED_ELEVATORCONFIG_MAX_CURRENT(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MAX_CURRENT) / CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT)
 #define CONFIGURATION_GET_SCALED_VALUE_ELEVATORCONFIG_MAX_CURRENT() ((gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current * CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT) + CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MAX_CURRENT)
-#define CONFIGURATION_SET_VALUE_FROM_SCALED_ELEVATORCONFIG_THRESHOLD_A(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_threshold_a = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_THRESHOLD_A) / CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_THRESHOLD_A)
-#define CONFIGURATION_GET_SCALED_VALUE_ELEVATORCONFIG_THRESHOLD_A() ((gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_threshold_a * CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_THRESHOLD_A) + CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_THRESHOLD_A)
 
 #define CONFIGURATION_SET_VALUE_FROM_SCALED_HEADERCONFIG_JOYSTICK_HLL_ENABLE(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_HEADERCONFIG_JOYSTICK_HLL_ENABLE) / CONFIGURATION_SCALING_FACTOR_HEADERCONFIG_JOYSTICK_HLL_ENABLE)
 #define CONFIGURATION_GET_SCALED_VALUE_HEADERCONFIG_JOYSTICK_HLL_ENABLE() ((gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable * CONFIGURATION_SCALING_FACTOR_HEADERCONFIG_JOYSTICK_HLL_ENABLE) + CONFIGURATION_SCALING_OFFSET_HEADERCONFIG_JOYSTICK_HLL_ENABLE)
@@ -66,7 +61,6 @@ extern "C" {
 typedef struct
 {
    float32 f32_max_current; /* Parameter description */
-   float32 f32_threshold_a; /* Parameter description */
 } T_Configuration_ElevatorConfig_Values;
 
 ///Elements in list "HeaderConfig":
@@ -91,7 +85,7 @@ extern const T_osy_dpa_data_pool gt_Configuration_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void configuration_project_id_3519452165(void);
+extern void configuration_project_id_3144642970(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

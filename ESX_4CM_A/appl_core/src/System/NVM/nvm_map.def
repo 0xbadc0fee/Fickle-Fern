@@ -8,7 +8,6 @@
 
 /* Elevator Control Parameters */
 NVM_FIELD(elevatorMaxCurrent, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current, gt_elevatorConfig.f32_max_current)
-NVM_FIELD(elevatorThresA, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_threshold_a, gt_elevatorConfig.f32_threshold_a)
 
 /* Header Control Parameter */
 NVM_FIELD(hllEnable, CONFIGURATION_LIST_INDEX_HEADERCONFIG, gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable, gt_headerConfig.u8_joystick_hll_enable)

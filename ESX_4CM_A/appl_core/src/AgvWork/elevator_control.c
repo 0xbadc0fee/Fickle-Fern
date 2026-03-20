@@ -75,7 +75,7 @@ sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElev
     );
 
     // Ramp initialization
-    s16_error += rampInit(&mt_elevator.t_ramp_state, ELEVATOR_RAMP_RATE, ELEVATOR_MIN_CURRENT_A, ELEVATOR_MAX_CURRENT_A, 0.0F);
+    s16_error += rampInit(&mt_elevator.t_ramp_state, ELEVATOR_RAMP_RATE, ELEVATOR_MIN_CURRENT_A, ELEVATOR_MAX_CURRENT_A, ELEVATOR_SAFE_STATE);
 
     return s16_error;
 }
@@ -102,9 +102,8 @@ sint16 update_elevatorControl(void)
     uint8 u8_valve_fault = FALSE;
     uint8 u8_reset = FALSE;
 
-    float32 f32_speed_req_pct = 0.0F;
-    float32 f32_target_current = 0.0F;
-    float32 f32_output_current = 0.0F;
+    float32 f32_speed_req_pct = ELEVATOR_SAFE_STATE;
+    float32 f32_output_current = ELEVATOR_SAFE_STATE;
     float32 f32_maxCurrent = ELEVATOR_MAX_CURRENT_A;
 
     if((mt_elevator.pu8_onOffCommand == NULL) ||
@@ -115,7 +114,7 @@ sint16 update_elevatorControl(void)
     {
         // IR-6.1 Invalid/faulted Elevator Enable signal => zero speed
         u8_enable_fault = TRUE;
-        f32_speed_req_pct = 0.0F;
+        f32_speed_req_pct = ELEVATOR_SAFE_STATE;
         u8_enable_cmd = ELEVATOR_OFF;
     }
     else
@@ -123,16 +122,16 @@ sint16 update_elevatorControl(void)
         // FR-6.1 Read Elevator Enable button and Elevator Speed Command
         u8_enable_cmd = (*(mt_elevator.pu8_onOffCommand) != FALSE) ? TRUE : FALSE;
         f32_speed_req_pct = (float32)(*(mt_elevator.pu8_requestedSpeed));
+
+        //Publish Checkpoint
+        mt_elevator.pt_chkElevator->f32_checkpoint2 = f32_speed_req_pct;
     }
 
     if(mt_elevator.pt_nvmElevator != NULL)
     {
         f32_maxCurrent = mt_elevator.pt_nvmElevator->f32_max_current;
-        mt_elevator.t_ramp_state.f32_ramp_rate = (f32_maxCurrent - ELEVATOR_MIN_CURRENT_A);
+        mt_elevator.t_ramp_state.f32_max_limit= f32_maxCurrent;
     }
-
-    // Clamp requested speed to 0..100%
-    f32_speed_req_pct = CLAMP_F32(f32_speed_req_pct, 0.0F, 100.0F);
 
     // IR-6.2 Faulted Elevator Control Valve => zero speed
     s16_error += get_outputFaultStatus("FLOW_CONTROL", &u8_valve_fault);
@@ -146,40 +145,22 @@ sint16 update_elevatorControl(void)
     u8_enable_cmd,
     u8_reset);
 
+    //Publish Checkpoint
+    mt_elevator.pt_chkElevator->u8_checkpoint1 = mt_elevator.u8_elevator_enabled;
+
     // FR-6.4 Set elevator speed command to zero when disabled
     if((mt_elevator.u8_elevator_enabled == ELEVATOR_OFF) ||
     (u8_enable_fault == TRUE) ||
-    (u8_valve_fault == TRUE))
+    (u8_valve_fault == TRUE))// IR-6.2 Faulted valve => zero command
     {
-        f32_target_current = 0.0F;
-    }
-    else
-    {
-        // FR-6.7 Scale command to configurable maximum current
-        f32_target_current = f32_speed_req_pct * (f32_maxCurrent * 0.01F);
+        f32_speed_req_pct = ELEVATOR_SAFE_STATE;
     }
 
     // FR-6.7 Bind command within configurable maximum current
-    f32_target_current = CLAMP_F32(f32_target_current, ELEVATOR_MIN_CURRENT_A, f32_maxCurrent);
+    f32_output_current = CLAMP_F32(f32_speed_req_pct, ELEVATOR_MIN_CURRENT_A, f32_maxCurrent);
 
     // FR-6.5 Apply ramping using helper
-    s16_error += rampCalc(f32_target_current, &mt_elevator.t_ramp_state);
-
-    //FR-6.7 Bind command within configurable maximum current
-    f32_output_current = CLAMP_F32(mt_elevator.t_ramp_state.f32_output, ELEVATOR_MIN_CURRENT_A, f32_maxCurrent);
-
-    // IR-6.2 Faulted valve => zero command
-    if(u8_valve_fault == TRUE)
-    {
-        f32_output_current = 0.0F;
-        mt_elevator.t_ramp_state.f32_output = 0.0F;
-    }
-
-    //FR-6.7 Bind the elevator speed command to within maximum current threshold and output
-    if( f32_output_current > mt_elevator.pt_nvmElevator->f32_threshold_a)
-    {
-        f32_output_current =  mt_elevator.pt_nvmElevator->f32_threshold_a;
-    }
+    s16_error += rampCalc(f32_output_current, &mt_elevator.t_ramp_state);
 
     // FR-6.7 Output to speed flow control valve
     if(u8_valve_fault == FALSE)
@@ -187,16 +168,11 @@ sint16 update_elevatorControl(void)
         s16_error += set_outputValue("FLOW_CONTROL", f32_output_current);
     }
 
+    //Publish Checkpoint
+    mt_elevator.pt_chkElevator->f32_checkpoint3 = f32_output_current;
+
     // FR-6.8 Output Elevator On/Off Status to display
     *(mt_elevator.pu8_elevatorStatus) = (mt_elevator.u8_elevator_enabled != FALSE) ? TRUE : FALSE;
-
-    // Checkpoints
-    if(u8_enable_fault == FALSE)
-    {
-        mt_elevator.pt_chkElevator->u8_checkpoint1 = mt_elevator.u8_elevator_enabled;
-        mt_elevator.pt_chkElevator->f32_checkpoint2 = f32_speed_req_pct;
-        mt_elevator.pt_chkElevator->f32_checkpoint3 = f32_output_current;
-    }
 
     return s16_error;
 }

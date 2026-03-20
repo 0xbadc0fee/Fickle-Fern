@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3519452165 mt_Variable;
+static T_osy_non_existing_type_3144642970 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CONFIGURATION_PROJECT_ID_3519452165
+CONFIGURATION_PROJECT_ID_3144642970
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -36,23 +36,20 @@ OSY_DPA_CREATE_STATIC_DP_DEFINITION_INSTANCE_DATA(mt_DpDefinitionInstanceData)
 ///Minimum values
 static const T_Configuration_ElevatorConfig_Values mt_ElevatorConfigMinValues =
 {
-   -3.40282347e+38F,   ///< max_current (Parameter description)
-   -3.40282347e+38F    ///< threshold_a (Parameter description)
+   -3.40282347e+38F    ///< max_current (Parameter description)
 };
 
 ///Maximum values
 static const T_Configuration_ElevatorConfig_Values mt_ElevatorConfigMaxValues =
 {
-   3.40282347e+38F,   ///< max_current (Parameter description)
-   3.40282347e+38F    ///< threshold_a (Parameter description)
+   3.40282347e+38F    ///< max_current (Parameter description)
 };
 
 ///Dataset values
 static const T_Configuration_ElevatorConfig_Values mat_ElevatorConfigDataSetValues [CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS] =
 {
    {
-      1.0F,   ///< max_current (Parameter description)
-      0.0F    ///< threshold_a (Parameter description)
+      1.0F    ///< max_current (Parameter description)
    }
 };
 
@@ -77,8 +74,7 @@ static const T_Configuration_HeaderConfig_Values mt_HeaderConfigMaxValues =
 ///List definitions:
 static const T_osy_dpa_element_definition mat_DataPoolElevatorConfigElements[CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS] =
 {
-   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current, &mt_ElevatorConfigMinValues.f32_max_current, &mt_ElevatorConfigMaxValues.f32_max_current },
-   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_threshold_a, &mt_ElevatorConfigMinValues.f32_threshold_a, &mt_ElevatorConfigMaxValues.f32_threshold_a }
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current, &mt_ElevatorConfigMinValues.f32_max_current, &mt_ElevatorConfigMaxValues.f32_max_current }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolHeaderConfigElements[CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS] =
@@ -101,7 +97,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Configuration",  ///< name of Datapool
    CONFIGURATION_NUMBER_OF_LISTS,
-   0x236a55c6U, ///< CRC of Datapool definition
+   0x16d88f42U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    20000U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],
@@ -109,7 +105,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
 };
 
 ///Create Datapool instance data:
-OSY_DPA_CREATE_STATIC_DP_INSTANCE_DATA_WITH_BUFFER(mt_DpInstanceData, &mt_DataPoolDefinition, 8U)
+OSY_DPA_CREATE_STATIC_DP_INSTANCE_DATA_WITH_BUFFER(mt_DpInstanceData, &mt_DataPoolDefinition, 4U)
 
 const T_osy_dpa_data_pool gt_Configuration_DataPool =
 {
