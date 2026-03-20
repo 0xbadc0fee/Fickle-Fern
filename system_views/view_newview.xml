@@ -228,7 +228,7 @@
                             <value array="false" value="0">
                                 <type>uint8</type>
                             </value>
-                            <value array="false" value="0">
+                            <value array="false" value="1">
                                 <type>uint8</type>
                             </value>
                         </values>

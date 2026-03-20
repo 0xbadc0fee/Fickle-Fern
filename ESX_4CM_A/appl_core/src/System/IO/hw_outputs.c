@@ -36,6 +36,7 @@ T_VehicleOutput tvo_auto_unload =
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
+
     .u8_diagEnabled = FALSE,
     .t_fault=
     {
@@ -641,7 +642,6 @@ T_VehicleOutput tvo_stickbox_open=
     .Name_Description = "STICKBOX_OPEN",
     .u16_hardwareID = X_OUT_OPHSP2A_2,
     .e_outputType = OT_DIGITAL,
-
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,

@@ -42,6 +42,8 @@ typedef struct
    uint8 u8_worklights_status; //!<Work Light Status
    uint8 u8_shaft_drive_status;         //!<Cleaning Chains Shaft Drive Status
 
+   uint8 u8_stick_remover_status; //!<Stick Remover Status
+
 }T_8772_Display;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
