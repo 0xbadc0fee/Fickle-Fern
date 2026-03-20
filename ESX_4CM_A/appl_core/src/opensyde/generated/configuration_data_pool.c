@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3391711938 mt_Variable;
+static T_osy_non_existing_type_697815310 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CONFIGURATION_PROJECT_ID_3391711938
+CONFIGURATION_PROJECT_ID_697815310
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -36,23 +36,20 @@ OSY_DPA_CREATE_STATIC_DP_DEFINITION_INSTANCE_DATA(mt_DpDefinitionInstanceData)
 ///Minimum values
 static const T_Configuration_ElevatorConfig_Values mt_ElevatorConfigMinValues =
 {
-   0U,   ///< minSpeed (Parameter description)
-   0U    ///< maxSpeed (Parameter description)
+   -3.40282347e+38F    ///< max_current (Parameter description)
 };
 
 ///Maximum values
 static const T_Configuration_ElevatorConfig_Values mt_ElevatorConfigMaxValues =
 {
-   255U,   ///< minSpeed (Parameter description)
-   255U    ///< maxSpeed (Parameter description)
+   3.40282347e+38F    ///< max_current (Parameter description)
 };
 
 ///Dataset values
 static const T_Configuration_ElevatorConfig_Values mat_ElevatorConfigDataSetValues [CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS] =
 {
    {
-      1U,   ///< minSpeed (Parameter description)
-      2U    ///< maxSpeed (Parameter description)
+      1800.0F    ///< max_current (Parameter description)
    }
 };
 
@@ -89,8 +86,7 @@ static const T_Configuration_StickBoxConfig_Values mt_StickBoxConfigMaxValues =
 ///List definitions:
 static const T_osy_dpa_element_definition mat_DataPoolElevatorConfigElements[CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS] =
 {
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_minSpeed, &mt_ElevatorConfigMinValues.u8_minSpeed, &mt_ElevatorConfigMaxValues.u8_minSpeed },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_maxSpeed, &mt_ElevatorConfigMinValues.u8_maxSpeed, &mt_ElevatorConfigMaxValues.u8_maxSpeed }
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current, &mt_ElevatorConfigMinValues.f32_max_current, &mt_ElevatorConfigMaxValues.f32_max_current }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolHeaderConfigElements[CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS] =
@@ -107,8 +103,8 @@ static const T_osy_dpa_element_definition mat_DataPoolStickBoxConfigElements[CON
 static const T_osy_dpa_list_definition mat_DataPoolLists[CONFIGURATION_NUMBER_OF_LISTS] =
 {
    { CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Configuration_ElevatorConfig_Values), &mat_DataPoolElevatorConfigElements[0], &gt_Configuration_DataPoolValues.t_ElevatorConfigValues, &mat_ElevatorConfigDataSetTable[0] },
-   { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000064U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, NULL },
-   { CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000069U, sizeof(T_Configuration_StickBoxConfig_Values), &mat_DataPoolStickBoxConfigElements[0], &gt_Configuration_DataPoolValues.t_StickBoxConfigValues, NULL }
+   { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000005U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, NULL },
+   { CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000aU, sizeof(T_Configuration_StickBoxConfig_Values), &mat_DataPoolStickBoxConfigElements[0], &gt_Configuration_DataPoolValues.t_StickBoxConfigValues, NULL }
 };
 
 ///Datapool definition:
@@ -119,7 +115,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Configuration",  ///< name of Datapool
    CONFIGURATION_NUMBER_OF_LISTS,
-   0x7aa22d28U, ///< CRC of Datapool definition
+   0xa5139efdU, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    20000U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],
@@ -127,7 +123,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
 };
 
 ///Create Datapool instance data:
-OSY_DPA_CREATE_STATIC_DP_INSTANCE_DATA_WITH_BUFFER(mt_DpInstanceData, &mt_DataPoolDefinition, 2U)
+OSY_DPA_CREATE_STATIC_DP_INSTANCE_DATA_WITH_BUFFER(mt_DpInstanceData, &mt_DataPoolDefinition, 4U)
 
 const T_osy_dpa_data_pool gt_Configuration_DataPool =
 {

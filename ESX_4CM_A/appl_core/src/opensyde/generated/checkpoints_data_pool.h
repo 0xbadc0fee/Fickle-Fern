@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CHECKPOINTS_PROJECT_ID_4279681348 void checkpoints_project_id_4279681348(void) {}
+#define CHECKPOINTS_PROJECT_ID_1385785120 void checkpoints_project_id_1385785120(void) {}
 
 ///Index of this Datapool
 #define CHECKPOINTS_DATA_POOL_INDEX (0U)
@@ -93,8 +93,8 @@ extern "C" {
 ///Scaling utilities
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_ELEVATORCONTROL_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT1)
 #define CHECKPOINTS_GET_SCALED_VALUE_ELEVATORCONTROL_CHECKPOINT1() ((gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1 * CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT1) + CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT1)
-#define CHECKPOINTS_SET_VALUE_FROM_SCALED_ELEVATORCONTROL_CHECKPOINT2(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.s16_checkpoint2 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT2) / CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT2)
-#define CHECKPOINTS_GET_SCALED_VALUE_ELEVATORCONTROL_CHECKPOINT2() ((gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.s16_checkpoint2 * CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT2) + CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT2)
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_ELEVATORCONTROL_CHECKPOINT2(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint2 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT2) / CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT2)
+#define CHECKPOINTS_GET_SCALED_VALUE_ELEVATORCONTROL_CHECKPOINT2() ((gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint2 * CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT2) + CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT2)
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_ELEVATORCONTROL_CHECKPOINT3(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT3) / CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT3)
 #define CHECKPOINTS_GET_SCALED_VALUE_ELEVATORCONTROL_CHECKPOINT3() ((gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3 * CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT3) + CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT3)
 
@@ -121,7 +121,7 @@ extern "C" {
 typedef struct
 {
    uint8 u8_checkpoint1; /* Variable description */
-   sint16 s16_checkpoint2; /* Variable description */
+   float32 f32_checkpoint2; /* Variable description */
    float32 f32_checkpoint3; /* Variable description */
 } T_Checkpoints_ElevatorControl_Values;
 
@@ -171,7 +171,7 @@ extern const T_osy_dpa_data_pool gt_Checkpoints_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void checkpoints_project_id_4279681348(void);
+extern void checkpoints_project_id_1385785120(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

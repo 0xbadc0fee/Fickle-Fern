@@ -20,11 +20,11 @@
 ///check for correct version of structure definitions
 #if OSY_COM_CONFIG_DEFINITION_VERSION != 0x0003U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_2727223965 mt_Variable;
+static T_osy_non_existing_type_3037382159 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-COMM_J1939_CAN1_PROJECT_ID_2727223965
+COMM_J1939_CAN1_PROJECT_ID_3037382159
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -223,7 +223,7 @@ static const T_osy_com_message_mux_definition mat_MessagesMuxTx[6] =
 static const T_osy_com_message_definition mat_MessagesTx[COMM_J1939_CAN1_NUMBER_OF_TX_MSGS] =
 {
    { 0xc0000feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 50U, 0U, &mat_StatusMuxTxMessages[0], &mat_MessagesMuxTx[0] },  /// TSC1 (Torque/Speed Control 1)
-   { 0x18efa103U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 50U, 3U, &mat_StatusMuxTxMessages[1], &mat_MessagesMuxTx[1] },  /// CAN_Btn_Panel_Trans (Button Panel LED Indicator Controls)
+   { 0x18efa103U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 3U, &mat_StatusMuxTxMessages[1], &mat_MessagesMuxTx[1] },  /// CAN_Btn_Panel_Trans (Button Panel LED Indicator Controls)
    { 0x18ff0003U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 50U, 0U, &mat_StatusMuxTxMessages[4], &mat_MessagesMuxTx[4] },  /// CAN_Display_Trans1 (General UI Machine Feedback 1)
    { 0x18ff0103U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 50U, 0U, &mat_StatusMuxTxMessages[5], &mat_MessagesMuxTx[5] }  /// CAN_Display_Trans2 (General UI Machine Feedback 2)
 };

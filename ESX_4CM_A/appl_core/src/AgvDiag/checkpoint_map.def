@@ -7,9 +7,9 @@
 */
 
 /* Elevator Control checkpoints */
-CNTRL2DP(elevatorCP1, gt_elevatorCheckpoints.u8_chkPoint1,  	 gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1)
-CNTRL2DP(elevatorCP2, gt_elevatorCheckpoints.s16_chkPoint2, 	 gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.s16_checkpoint2)
-CNTRL2DP(elevatorCP3, gt_elevatorCheckpoints.f32_chkPoint3, 	 gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3)
+CNTRL2DP(elevatorCP1, gt_elevatorCheckpoints.u8_checkpoint1, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1)
+CNTRL2DP(elevatorCP2, gt_elevatorCheckpoints.f32_checkpoint2, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint2)
+CNTRL2DP(elevatorCP3, gt_elevatorCheckpoints.f32_checkpoint3, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3)
 
 /* Cleaning Chains Control checkpoints */
 CNTRL2DP(cchainsCP2, gt_cleaningShaftCheckpoints.u8_checkpoint1, gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_checkpoint1)
@@ -19,3 +19,6 @@ CNTRL2DP(fsweepsCP2, gt_frontSweepsCheckpoints.u8_checkpoint1, 	 gt_Checkpoints_
 
 /* Rotary Trap Control checkpoints */
 CNTRL2DP(rtrapCP2, gt_rotaryTrapCheckpoints.u8_checkpoint1, 	 gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.u8_checkpoint1)
+CNTRL2DP(elevatorCP1, gt_elevatorCheckpoints.u8_checkpoint1, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1)
+CNTRL2DP(elevatorCP2, gt_elevatorCheckpoints.f32_checkpoint2, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint2)
+CNTRL2DP(elevatorCP3, gt_elevatorCheckpoints.f32_checkpoint3, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3)

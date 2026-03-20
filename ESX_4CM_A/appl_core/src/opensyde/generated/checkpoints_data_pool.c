@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_4279681348 mt_Variable;
+static T_osy_non_existing_type_1385785120 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CHECKPOINTS_PROJECT_ID_4279681348
+CHECKPOINTS_PROJECT_ID_1385785120
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -37,7 +37,7 @@ OSY_DPA_CREATE_STATIC_DP_DEFINITION_INSTANCE_DATA(mt_DpDefinitionInstanceData)
 static const T_Checkpoints_ElevatorControl_Values mt_ElevatorControlMinValues =
 {
    0U,   ///< checkpoint1 (Variable description)
-   -32768,   ///< checkpoint2 (Variable description)
+   -3.40282347e+38F,   ///< checkpoint2 (Variable description)
    -3.40282347e+38F    ///< checkpoint3 (Variable description)
 };
 
@@ -45,7 +45,7 @@ static const T_Checkpoints_ElevatorControl_Values mt_ElevatorControlMinValues =
 static const T_Checkpoints_ElevatorControl_Values mt_ElevatorControlMaxValues =
 {
    255U,   ///< checkpoint1 (Variable description)
-   32767,   ///< checkpoint2 (Variable description)
+   3.40282347e+38F,   ///< checkpoint2 (Variable description)
    3.40282347e+38F    ///< checkpoint3 (Variable description)
 };
 
@@ -107,7 +107,7 @@ static const T_Checkpoints_GeneralTesting_Values mt_GeneralTestingMaxValues =
 static const T_osy_dpa_element_definition mat_DataPoolElevatorControlElements[CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS] =
 {
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1, &mt_ElevatorControlMinValues.u8_checkpoint1, &mt_ElevatorControlMaxValues.u8_checkpoint1 },
-   { OSY_DPA_ELEMENT_TYPE_SINT16, 0U, 2U, &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.s16_checkpoint2, &mt_ElevatorControlMinValues.s16_checkpoint2, &mt_ElevatorControlMaxValues.s16_checkpoint2 },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint2, &mt_ElevatorControlMinValues.f32_checkpoint2, &mt_ElevatorControlMaxValues.f32_checkpoint2 },
    { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3, &mt_ElevatorControlMinValues.f32_checkpoint3, &mt_ElevatorControlMaxValues.f32_checkpoint3 }
 };
 
@@ -152,7 +152,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Checkpoints",  ///< name of Datapool
    CHECKPOINTS_NUMBER_OF_LISTS,
-   0x5213c4deU, ///< CRC of Datapool definition
+   0xfe567b5fU, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

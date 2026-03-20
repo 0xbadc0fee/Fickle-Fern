@@ -168,20 +168,6 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="1" list="0" element="1"/>
-                                    <source-type>datapool-element</source-type>
-                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
-                                    <invalid-name-placeholder/>
-                                    <hal-channel-name/>
-                                    <scaling use-default="true" factor="1" offset="0">
-                                        <unit/>
-                                    </scaling>
-                                    <display-formatter is-active="false">
-                                        <string/>
-                                    </display-formatter>
-                                    <display-name/>
-                                </data-pool-element>
-                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
                                     <index node="0" data-pool="1" list="1" element="0"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
@@ -216,14 +202,10 @@
                             <data-set-selection value="-1"/>
                             <data-set-selection value="-1"/>
                             <data-set-selection value="-1"/>
-                            <data-set-selection value="-1"/>
                         </data-set-selections>
                         <values>
                             <value array="false" value="7">
-                                <type>uint8</type>
-                            </value>
-                            <value array="false" value="0">
-                                <type>uint8</type>
+                                <type>float32</type>
                             </value>
                             <value array="false" value="0">
                                 <type>uint8</type>
@@ -435,13 +417,6 @@
             </rail-assignment>
             <rail-assignment rail-index="0">
                 <id node="0" data-pool="1" list="0" element="0"/>
-                <threshold array="false" value="25">
-                    <type>uint8</type>
-                </threshold>
-                <transmission-mode>manual</transmission-mode>
-            </rail-assignment>
-            <rail-assignment rail-index="0">
-                <id node="0" data-pool="1" list="0" element="1"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>

@@ -53,8 +53,6 @@ sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u
     pt_btn->u32_deb_ms   = u32_deb_ms_set;
     pt_btn->u8_safe_state = u8_safe_state_set;
 
-    *(pt_btn->pu_btn_state) = FALSE;
-
     pt_btn->u32_hold_ms = 0;
     pt_btn->u8_btn_set = TRUE;
 
