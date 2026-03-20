@@ -134,10 +134,10 @@
                     </com-message>
                 </tx-messages>
                 <rx-messages length="1">
-                    <com-message can-id="201326846" is-extended="true" dlc="8" cycle-time="0" minimum-cycle-time="10" receive-timeout="0">
+                    <com-message can-id="201326846" is-extended="true" dlc="8" cycle-time="50" minimum-cycle-time="10" receive-timeout="160">
                         <name>TSC1</name>
                         <comment>Torque/Speed Control 1</comment>
-                        <tx-method>on-application-event</tx-method>
+                        <tx-method>cyclic</tx-method>
                         <com-signals length="10">
                             <com-signal data-element-index="0" bit-start="35" bit-length="5" multiplexer-value="0">
                                 <byte-order>intel</byte-order>

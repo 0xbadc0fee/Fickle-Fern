@@ -17,6 +17,7 @@
 
 //PROJECT
 #include "input_handler_lib.h"
+#include "SPN_definitions.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
@@ -32,7 +33,7 @@ T_VehicleInput tvi_hyd_oil_temp =
 {
     .Name_Description       = "HYD_OIL_TEMP",
     .u16_hardwareID         = X_IN_IDA5V_7,
-    .e_inputType            = IT_CURRENT,
+    .e_inputType            = IT_VOLTAGE,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
@@ -41,7 +42,7 @@ T_VehicleInput tvi_hyd_oil_temp =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520100,
+        .u32_spn            = SPN_520100,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -65,7 +66,7 @@ T_VehicleInput tvi_relief_press =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520101,
+        .u32_spn            = SPN_520101,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -73,7 +74,7 @@ T_VehicleInput tvi_relief_press =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_head_limit =
@@ -84,12 +85,12 @@ T_VehicleInput tvi_head_limit =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520102,
+        .u32_spn            = SPN_520102,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -97,7 +98,7 @@ T_VehicleInput tvi_head_limit =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 12000,
 };
 
 T_VehicleInput tvi_right_switch =
@@ -113,7 +114,7 @@ T_VehicleInput tvi_right_switch =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520103,
+        .u32_spn            = SPN_520103,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -121,7 +122,7 @@ T_VehicleInput tvi_right_switch =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_left_switch =
@@ -137,7 +138,7 @@ T_VehicleInput tvi_left_switch =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520104,
+        .u32_spn            = SPN_520104,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -145,7 +146,7 @@ T_VehicleInput tvi_left_switch =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_air_restrict =
@@ -161,7 +162,7 @@ T_VehicleInput tvi_air_restrict =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520105,
+        .u32_spn            = SPN_520105,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -185,7 +186,7 @@ T_VehicleInput tvi_fuel_level =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520106,
+        .u32_spn            = SPN_520106,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -209,7 +210,7 @@ T_VehicleInput tvi_traction_valve =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520107,
+        .u32_spn            = SPN_520107,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -217,7 +218,7 @@ T_VehicleInput tvi_traction_valve =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_hyd_fluid_level =
@@ -233,7 +234,7 @@ T_VehicleInput tvi_hyd_fluid_level =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520108,
+        .u32_spn            = SPN_520108,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -241,7 +242,7 @@ T_VehicleInput tvi_hyd_fluid_level =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_wheel_speed =
@@ -257,15 +258,15 @@ T_VehicleInput tvi_wheel_speed =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520109,
+        .u32_spn            = SPN_520109,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
         }
     },
     .u16_dti                = 1000,
-    .s32_diagMin            = 500,
-    .s32_diagMax            = 4500,
+    .s32_diagMin            = 600,
+    .s32_diagMax            = 20000000,
 };
 
 T_VehicleInput tvi_park_brake =
@@ -281,7 +282,7 @@ T_VehicleInput tvi_park_brake =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520110,
+        .u32_spn            = SPN_520110,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -289,7 +290,7 @@ T_VehicleInput tvi_park_brake =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 12000,
 };
 
 T_VehicleInput tvi_fan_speed =
@@ -305,15 +306,15 @@ T_VehicleInput tvi_fan_speed =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520111,
+        .u32_spn            = SPN_520111,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
         }
     },
     .u16_dti                = 1000,
-    .s32_diagMin            = 500,
-    .s32_diagMax            = 4500,
+    .s32_diagMin            = 600,
+    .s32_diagMax            = 20000000,
 };
 
 T_VehicleInput tvi_ignition_switch =
@@ -324,12 +325,12 @@ T_VehicleInput tvi_ignition_switch =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520112,
+        .u32_spn            = SPN_520112,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -337,7 +338,7 @@ T_VehicleInput tvi_ignition_switch =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 12000,
 };
 
 T_VehicleInput tvi_cab_door =
@@ -348,12 +349,12 @@ T_VehicleInput tvi_cab_door =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520113,
+        .u32_spn            = SPN_520113,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -361,7 +362,7 @@ T_VehicleInput tvi_cab_door =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
 
 T_VehicleInput tvi_throttle_up =
@@ -377,7 +378,7 @@ T_VehicleInput tvi_throttle_up =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520114,
+        .u32_spn            = SPN_520114,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -385,7 +386,7 @@ T_VehicleInput tvi_throttle_up =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 5000,
 };
 
 T_VehicleInput tvi_throttle_down =
@@ -401,7 +402,7 @@ T_VehicleInput tvi_throttle_down =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520115,
+        .u32_spn            = SPN_520115,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -409,13 +410,13 @@ T_VehicleInput tvi_throttle_down =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 5000,
 };
 
 T_VehicleInput tvi_head_pressure =
 {
     .Name_Description       = "HEAD_PRESSURE",
-    .u16_hardwareID         = X_IN_IDA5V_7,
+    .u16_hardwareID         = X_IN_IDA35V_7,
     .e_inputType            = IT_DIGITAL,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
@@ -425,7 +426,7 @@ T_VehicleInput tvi_head_pressure =
     {
         .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
-        .u32_spn            = 520116,
+        .u32_spn            = SPN_520116,
         .t_fmi = {
             [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
             [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
@@ -433,9 +434,8 @@ T_VehicleInput tvi_head_pressure =
     },
     .u16_dti                = 1000,
     .s32_diagMin            = 0,
-    .s32_diagMax            = 1,
+    .s32_diagMax            = 19000,
 };
-
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Inputs

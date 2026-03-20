@@ -15,6 +15,25 @@
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
+#define BTN_FAULT 0b11
+
+//LED Indicator Options
+#define RED_ON       (0b01)
+#define RED_FLASH    (0b10)
+#define RED_OFF      (0b00)
+
+#define AMBER_ON     (0b01)<<2
+#define AMBER_FLASH  (0b10)<<2
+#define AMBER_OFF    (0b00)<<2
+
+#define GREEN_ON     (0b01)<<4
+#define GREEN_FLASH  (0b10)<<4
+#define GREEN_OFF    (0b00)<<4
+
+#define BLUE_ON      (0b01)<<6
+#define BLUE_FLASH   (0b10)<<6
+#define BLUE_OFF     (0b00)<<6
+
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /** \brief HMI Device Structure - 8 Button Panel
  *
@@ -24,14 +43,14 @@
 typedef struct{
 
     //variables for keypad button states
-    uint8 u8_b1_state;  //!<Button 1 State (0 = not pressed, 1 = pressed)
-    uint8 u8_b2_state;  //!<Button 2 State (0 = not pressed, 1 = pressed)
-    uint8 u8_b3_state;  //!<Button 3 State (0 = not pressed, 1 = pressed)
-    uint8 u8_b4_state;  //!<Button 4 State (0 = not pressed, 1 = pressed)
-    uint8 u8_b5_state;  //!<Button 5 State (0 = not pressed, 1 = pressed)
-    uint8 u8_b6_state;  //!<Button 6 State (0 = not pressed, 1 = pressed)
-    uint8 u8_b7_state;  //!<Button 7 State (0 = not pressed, 1 = pressed)
-    uint8 u8_b8_state;  //!<Button 8 State (0 = not pressed, 1 = pressed)
+    uint8 u8_b1_state;  //!<Button 1 State (0 = not pressed, 1 = pressed, 3 = fault)
+    uint8 u8_b2_state;  //!<Button 2 State (0 = not pressed, 1 = pressed, 3 = fault)
+    uint8 u8_b3_state;  //!<Button 3 State (0 = not pressed, 1 = pressed, 3 = fault)
+    uint8 u8_b4_state;  //!<Button 4 State (0 = not pressed, 1 = pressed, 3 = fault)
+    uint8 u8_b5_state;  //!<Button 5 State (0 = not pressed, 1 = pressed, 3 = fault)
+    uint8 u8_b6_state;  //!<Button 6 State (0 = not pressed, 1 = pressed, 3 = fault)
+    uint8 u8_b7_state;  //!<Button 7 State (0 = not pressed, 1 = pressed, 3 = fault)
+    uint8 u8_b8_state;  //!<Button 8 State (0 = not pressed, 1 = pressed, 3 = fault)
 
     //placeholders for keypad indicator lights
     uint8 u8_b1_lights; //!<Button 1 LED Configuration - See documentation for mapping

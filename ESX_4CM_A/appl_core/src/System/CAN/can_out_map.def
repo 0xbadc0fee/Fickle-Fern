@@ -7,10 +7,26 @@
 */
 
 /* Elevator Control Outputs */
-CNTRL2DP(elevatorStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkElevatorOn, gt_ui.t_display.u8_elevatorStatus)
+CNTRL2DP(elevatorStatus,   gt_ui.t_display.u8_elevatorStatus, 		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkElevatorOn)
 
 /* Engine Control Outputs */
-CNTRL2DP(elevatorStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_TSC1_EngRqedSpeed_SpeedLimit, gt_engine.u16_rpm_command)
+CNTRL2DP(elevatorStatus,   gt_engine.u16_rpm_command, 				gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_TSC1_EngRqedSpeed_SpeedLimit)
 
 /* Header Control Outputs */
-CNTRL2DP(reliefStatus, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHydOilPressRelief, gt_ui.t_display.u8_relief_switch_status)
+CNTRL2DP(reliefStatus, 	   gt_ui.t_display.u8_relief_switch_status, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHydOilPressRelief)
+
+/* Auger Cart Control Outputs */
+CNTRL2DP(augerStatus, 	   gt_ui.t_display.u8_auger_status,   	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkAugerUnloadOn)
+CNTRL2DP(button2LED, 	   gt_ui.t_buttonPanel.u8_b2_lights, 	 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_02_Auger)
+CNTRL2DP(button6LED, 	   gt_ui.t_buttonPanel.u8_b6_lights, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_06_ManUL)
+
+/* Light Control Outputs */
+CNTRL2DP(lightStatus,      gt_ui.t_buttonPanel.u8_b4_lights,	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_04_Lights)
+CNTRL2DP(headLightStatus,  gt_ui.t_display.u8_headlights_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHeadLtsOn)
+CNTRL2DP(workLightStatus,  gt_ui.t_display.u8_worklights_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisWorkLtsOn)
+/* Cleaning Chains Outputs */
+CNTRL2DP(shaftDriveStatus, gt_ui.t_display.u8_shaft_drive_status, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkShaftDrvsOn)
+
+/*Stick Box */
+CNTRL2DP(button3LED, 	   gt_ui.t_buttonPanel.u8_b3_lights, 	 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP)
+CNTRL2DP(button7LED, 	   gt_ui.t_buttonPanel.u8_b7_lights, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL)

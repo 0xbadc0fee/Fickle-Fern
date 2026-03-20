@@ -84,15 +84,17 @@ sint16 fault_nvm_init(T_FaultNVM* mem, uint32 _spn, uint8 _fmi, uint8 _defaultVa
             {
                 q_runSearch = FALSE;
                 t_hdr.u32_spn = mem->u32_spn;
+                t_hdr.u8_fmi = mem->u8_fmi;
                 t_hdr.u8_dataLength = mem->u8_dataLength;
 
                 t_data.data = _defaultVal;
 
                 x_nvm_write(index, u8_hdrSize, (uint8*)&t_hdr);
                 x_nvm_write(index + u8_hdrSize, u8_dataSize, (uint8*)&t_data);
-            } else
+            }
+            else
             {
-                index++;
+                index += (uint16)(u8_hdrSize + u8_dataSize);
             }
         }
         else

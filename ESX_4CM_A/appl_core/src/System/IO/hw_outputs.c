@@ -13,6 +13,8 @@
 #include "x_out.h"
 #include "output_handler_lib.h"
 
+#include "SPN_definitions.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
@@ -35,7 +37,16 @@ T_VehicleOutput tvo_auto_unload =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520200,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -51,7 +62,16 @@ T_VehicleOutput tvo_manual_unload =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520201,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -67,7 +87,16 @@ T_VehicleOutput tvo_cool_fan_direc =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520202,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -83,7 +112,16 @@ T_VehicleOutput tvo_cool_fan_speed =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520203,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -99,7 +137,16 @@ T_VehicleOutput tvo_flow_control =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520204,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -115,7 +162,16 @@ T_VehicleOutput tvo_starter_relay =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520205,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -124,14 +180,23 @@ T_VehicleOutput tvo_dv_sweep =
 {
     .Name_Description = "DV_SWEEP",
     .u16_hardwareID = X_OUT_OPHSP2A_10,
-    .e_outputType = OT_DIGITAL,
+    .e_outputType = OT_PWM,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520206,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -147,9 +212,20 @@ T_VehicleOutput tvo_head_lift =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520207,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_UB},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_GND},
+            [2] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OL},
+            [3] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OC}
+        }
+    },
 
-    .u16_dti = 0,
+    .u16_dti = 1000,
 };
 
 T_VehicleOutput tvo_head_lower =
@@ -163,10 +239,23 @@ T_VehicleOutput tvo_head_lower =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520208,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_UB},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_GND},
+            [2] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OL},
+            [3] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OC}
+        }
+    },
 
-    .u16_dti = 0,
+    .u16_dti = 1000
 };
+
+
 
 T_VehicleOutput tvo_hitch_extend =
 {
@@ -179,9 +268,20 @@ T_VehicleOutput tvo_hitch_extend =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520209,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_UB},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_GND},
+            [2] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OL},
+            [3] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OC}
+        }
+    },
 
-    .u16_dti = 0,
+    .u16_dti = 1000
 };
 
 T_VehicleOutput tvo_hitch_retract =
@@ -195,14 +295,25 @@ T_VehicleOutput tvo_hitch_retract =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520210,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_UB},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_SHORT_GND},
+            [2] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OL},
+            [3] = {.u8_is_active = FALSE, .u8_fmi_value = e_OUTFAULT_OC}
+        }
+    },
 
-    .u16_dti = 0,
+    .u16_dti = 1000
 };
 
 T_VehicleOutput tvo_taillights =
 {
-    .Name_Description = "TAIL_LIGHTS",
+    .Name_Description = "TAILLIGHTS",
     .u16_hardwareID = X_OUT_OPL2A_2,
     .e_outputType = OT_DIGITAL,
 
@@ -211,7 +322,16 @@ T_VehicleOutput tvo_taillights =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520211,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -227,7 +347,16 @@ T_VehicleOutput tvo_headlights =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520212,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -243,7 +372,16 @@ T_VehicleOutput tvo_worklights =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520213,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -259,7 +397,16 @@ T_VehicleOutput tvo_regen_allow =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520214,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -268,14 +415,23 @@ T_VehicleOutput tvo_power_assist =
 {
     .Name_Description = "POWER_ASSIST",
     .u16_hardwareID = X_OUT_OPHSP4A_4,
-    .e_outputType = OT_PWM,
+    .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520215,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -284,14 +440,23 @@ T_VehicleOutput tvo_traction_valve =
 {
     .Name_Description = "TRACTION_VALVE",
     .u16_hardwareID = X_OUT_OPHSP2A_1,
-    .e_outputType = OT_PWM,
+    .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520216,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -300,14 +465,23 @@ T_VehicleOutput tvo_shift_coil =
 {
     .Name_Description = "SHIFT_COIL",
     .u16_hardwareID = X_OUT_OPHSP2A_12,
-    .e_outputType = OT_PWM,
+    .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520217,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -323,7 +497,16 @@ T_VehicleOutput tvo_backup_alarm =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520218,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -339,7 +522,16 @@ T_VehicleOutput tvo_propel_fwd =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520219,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -355,7 +547,16 @@ T_VehicleOutput tvo_propel_rev =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520220,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -363,7 +564,7 @@ T_VehicleOutput tvo_propel_rev =
 T_VehicleOutput tvo_rotary_trap =
 {
     .Name_Description = "ROTARY_TRAP",
-    .u16_hardwareID = X_OUT_OPHSP2A_6,
+    .u16_hardwareID = X_OUT_OPHSP2A_7,
     .e_outputType = OT_PWM,
 
     .f32_outputValue = 0.0F,
@@ -371,7 +572,16 @@ T_VehicleOutput tvo_rotary_trap =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520221,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -387,14 +597,23 @@ T_VehicleOutput tvo_shaft_pump =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520222,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
 
-T_VehicleOutput tvo_stickbox_close =
+T_VehicleOutput tvo_stickbox_on =
 {
-    .Name_Description = "STICKBOX_CLOSE",
+    .Name_Description = "STICKBOX_ON",
     .u16_hardwareID = X_OUT_OPHSP2A_3,
     .e_outputType = OT_DIGITAL,
 
@@ -403,14 +622,23 @@ T_VehicleOutput tvo_stickbox_close =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520223,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
 
-T_VehicleOutput tvo_stickbox_on=
+T_VehicleOutput tvo_stickbox_open=
 {
-    .Name_Description = "STICKBOX_ON",
+    .Name_Description = "STICKBOX_OPEN",
     .u16_hardwareID = X_OUT_OPHSP2A_2,
     .e_outputType = OT_DIGITAL,
 
@@ -419,7 +647,16 @@ T_VehicleOutput tvo_stickbox_on=
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520224,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -435,7 +672,16 @@ T_VehicleOutput tvo_stick_remover=
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520225,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -451,7 +697,16 @@ T_VehicleOutput tvo_fan_hydro_fwd =
     .mq_outputChanged = TRUE,
 
     .u8_diagEnabled = FALSE,
-    .t_fault = { .u8_dm1_enable = FALSE },
+    .t_fault=
+    {
+        .u8_dm1_enable      = FALSE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520226,
+        .t_fmi = {
+            [0] = {.u8_is_active = FALSE, .u8_fmi_value = 5},
+            [1] = {.u8_is_active = FALSE, .u8_fmi_value = 6}
+        }
+    },
 
     .u16_dti = 0,
 };
@@ -492,7 +747,7 @@ sint16 init_hwOutputs(void)
     s16_return |= add_hwOutput(tvo_propel_rev);
     s16_return |= add_hwOutput(tvo_rotary_trap);
     s16_return |= add_hwOutput(tvo_shaft_pump);
-    s16_return |= add_hwOutput(tvo_stickbox_close);
+    s16_return |= add_hwOutput(tvo_stickbox_open);
     s16_return |= add_hwOutput(tvo_stickbox_on);
     s16_return |= add_hwOutput(tvo_stick_remover);
     s16_return |= add_hwOutput(tvo_fan_hydro_fwd);

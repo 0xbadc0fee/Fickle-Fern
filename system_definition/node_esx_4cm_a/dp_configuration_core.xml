@@ -6,7 +6,7 @@
         <name>Configuration</name>
         <version major="0" minor="0" release="0"/>
         <comment>NVM Datapool to hold Configuration Data</comment>
-        <lists length="2">
+        <lists length="3">
             <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="100">
                 <name>ElevatorConfig</name>
                 <comment/>
@@ -44,14 +44,31 @@
                     </data-set>
                 </data-sets>
             </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="100" nvm-size="1">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="100" nvm-size="5">
                 <name>HeaderConfig</name>
                 <comment/>
                 <data-elements length="1">
                     <data-element factor="1" offset="0" nvm-start-address="100">
                         <name>joystick_hll_enable</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Parameter to set the HLL functionality between footpedals and joystick</comment>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="105" nvm-size="5">
+                <name>StickBoxConfig</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" nvm-start-address="105">
+                        <name>stick_box_installed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit/>

@@ -25,6 +25,9 @@ typedef struct
 {
    //RX Variables
    uint8 u8_elevatorSpeedRequest;       //!<Requested Speed of Elevator
+   uint8 u8_drum_speed_request;       //!<Requested Speed of Front Sweeps
+   uint8 u8_drum_speed_enable;       //!<Requested Front Sweeps enabled
+   uint8 u8_trap_speed_range; //!<Requested Rotary Trap Speed Range
 
    //TX Variables
    uint8 u8_controllerVersionMinor;     //!<Controller Software Version - Minor
@@ -33,6 +36,11 @@ typedef struct
    uint8 u8_elevatorStatus;             //!<Elevator Control On/Off Status
 
    uint8 u8_relief_switch_status;       //!<Header Lift/Lower Relief Switch Status
+   uint8 u8_auger_status;
+
+   uint8 u8_headlights_status; //!<Head Light Status
+   uint8 u8_worklights_status; //!<Work Light Status
+   uint8 u8_shaft_drive_status;         //!<Cleaning Chains Shaft Drive Status
 
 }T_8772_Display;
 

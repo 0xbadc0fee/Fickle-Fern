@@ -19,21 +19,34 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define COMM_J1939_CAN1_PROJECT_ID_2240009122 void comm_j1939_can1_project_id_2240009122(void) {}
+#define COMM_J1939_CAN1_PROJECT_ID_2727223965 void comm_j1939_can1_project_id_2727223965(void) {}
 
 ///Index of Tx messages
 #define COMM_J1939_CAN1_TX_MSG_INDEX_TSC1 (0U)
-#define COMM_J1939_CAN1_TX_MSG_INDEX_CAN_DISPLAY_TRANS1 (1U)
-#define COMM_J1939_CAN1_TX_MSG_INDEX_CAN_DISPLAY_TRANS2 (2U)
-#define COMM_J1939_CAN1_NUMBER_OF_TX_MSGS (3U)
+#define COMM_J1939_CAN1_TX_MSG_INDEX_CAN_BTN_PANEL_TRANS (1U)
+#define COMM_J1939_CAN1_TX_MSG_INDEX_CAN_DISPLAY_TRANS1 (2U)
+#define COMM_J1939_CAN1_TX_MSG_INDEX_CAN_DISPLAY_TRANS2 (3U)
+#define COMM_J1939_CAN1_NUMBER_OF_TX_MSGS (4U)
 
 ///Index of Rx messages
 #define COMM_J1939_CAN1_RX_MSG_INDEX_EEC1 (0U)
 #define COMM_J1939_CAN1_RX_MSG_INDEX_BJM1 (1U)
-#define COMM_J1939_CAN1_RX_MSG_INDEX_DISP_CAN_REC1 (2U)
-#define COMM_J1939_CAN1_RX_MSG_INDEX_DISP_CAN_REC2 (3U)
-#define COMM_J1939_CAN1_RX_MSG_INDEX_CAN_BTN_PANEL_REC (4U)
-#define COMM_J1939_CAN1_NUMBER_OF_RX_MSGS (5U)
+#define COMM_J1939_CAN1_RX_MSG_INDEX_ET1 (2U)
+#define COMM_J1939_CAN1_RX_MSG_INDEX_IC1 (3U)
+#define COMM_J1939_CAN1_RX_MSG_INDEX_DISP_CAN_REC1 (4U)
+#define COMM_J1939_CAN1_RX_MSG_INDEX_DISP_CAN_REC2 (5U)
+#define COMM_J1939_CAN1_RX_MSG_INDEX_CAN_BTN_PANEL_REC (6U)
+#define COMM_J1939_CAN1_NUMBER_OF_RX_MSGS (7U)
+
+///Index of Tx multiplexed messages
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_CAN_BTN_PANEL_TRANS_VALUE_136 (0U)
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_CAN_BTN_PANEL_TRANS_VALUE_176 (1U)
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_CAN_BTN_PANEL_TRANS_VALUE_177 (2U)
+#define COMM_J1939_CAN1_TX_MSG_CAN_BTN_PANEL_TRANS_NUM_MUX_MSGS (3U)
+
+///Index of Rx multiplexed messages
+#define COMM_J1939_CAN1_RX_MSG_MUX_INDEX_CAN_BTN_PANEL_REC_VALUE_32 (0U)
+#define COMM_J1939_CAN1_RX_MSG_CAN_BTN_PANEL_REC_NUM_MUX_MSGS (1U)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -43,7 +56,7 @@ extern const T_osy_com_protocol_configuration gt_comm_j1939_can1_ProtocolConfigu
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void comm_j1939_can1_project_id_2240009122(void);
+extern void comm_j1939_can1_project_id_2727223965(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

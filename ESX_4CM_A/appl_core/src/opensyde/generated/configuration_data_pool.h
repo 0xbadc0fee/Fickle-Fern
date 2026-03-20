@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CONFIGURATION_PROJECT_ID_1484555524 void configuration_project_id_1484555524(void) {}
+#define CONFIGURATION_PROJECT_ID_3391711938 void configuration_project_id_3391711938(void) {}
 
 ///Index of this Datapool
 #define CONFIGURATION_DATA_POOL_INDEX (1U)
@@ -27,7 +27,8 @@ extern "C" {
 ///Index of lists
 #define CONFIGURATION_LIST_INDEX_ELEVATORCONFIG (0U)
 #define CONFIGURATION_LIST_INDEX_HEADERCONFIG (1U)
-#define CONFIGURATION_NUMBER_OF_LISTS (2U)
+#define CONFIGURATION_LIST_INDEX_STICKBOXCONFIG (2U)
+#define CONFIGURATION_NUMBER_OF_LISTS (3U)
 
 ///Index of elements
 #define CONFIGURATION_ELEM_INDEX_ELEVATORCONFIG_MINSPEED (0U)
@@ -37,11 +38,16 @@ extern "C" {
 #define CONFIGURATION_ELEM_INDEX_HEADERCONFIG_JOYSTICK_HLL_ENABLE (0U)
 #define CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS (1U)
 
+#define CONFIGURATION_ELEM_INDEX_STICKBOXCONFIG_STICK_BOX_INSTALLED (0U)
+#define CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS (1U)
+
 ///Index of Datasets
 #define CONFIGURATION_DATA_SET_INDEX_ELEVATORCONFIG_DEFAULT (0U)
 #define CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS (1U)
 
 #define CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS (0U)
+
+#define CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS (0U)
 
 ///Scaling values
 #define CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MINSPEED (1.0F)
@@ -52,6 +58,9 @@ extern "C" {
 #define CONFIGURATION_SCALING_FACTOR_HEADERCONFIG_JOYSTICK_HLL_ENABLE (1.0F)
 #define CONFIGURATION_SCALING_OFFSET_HEADERCONFIG_JOYSTICK_HLL_ENABLE (0.0F)
 
+#define CONFIGURATION_SCALING_FACTOR_STICKBOXCONFIG_STICK_BOX_INSTALLED (1.0F)
+#define CONFIGURATION_SCALING_OFFSET_STICKBOXCONFIG_STICK_BOX_INSTALLED (0.0F)
+
 ///Scaling utilities
 #define CONFIGURATION_SET_VALUE_FROM_SCALED_ELEVATORCONFIG_MINSPEED(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_minSpeed = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MINSPEED) / CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MINSPEED)
 #define CONFIGURATION_GET_SCALED_VALUE_ELEVATORCONFIG_MINSPEED() ((gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_minSpeed * CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MINSPEED) + CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MINSPEED)
@@ -60,6 +69,9 @@ extern "C" {
 
 #define CONFIGURATION_SET_VALUE_FROM_SCALED_HEADERCONFIG_JOYSTICK_HLL_ENABLE(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_HEADERCONFIG_JOYSTICK_HLL_ENABLE) / CONFIGURATION_SCALING_FACTOR_HEADERCONFIG_JOYSTICK_HLL_ENABLE)
 #define CONFIGURATION_GET_SCALED_VALUE_HEADERCONFIG_JOYSTICK_HLL_ENABLE() ((gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable * CONFIGURATION_SCALING_FACTOR_HEADERCONFIG_JOYSTICK_HLL_ENABLE) + CONFIGURATION_SCALING_OFFSET_HEADERCONFIG_JOYSTICK_HLL_ENABLE)
+
+#define CONFIGURATION_SET_VALUE_FROM_SCALED_STICKBOXCONFIG_STICK_BOX_INSTALLED(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_StickBoxConfigValues.u8_stick_box_installed = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_STICKBOXCONFIG_STICK_BOX_INSTALLED) / CONFIGURATION_SCALING_FACTOR_STICKBOXCONFIG_STICK_BOX_INSTALLED)
+#define CONFIGURATION_GET_SCALED_VALUE_STICKBOXCONFIG_STICK_BOX_INSTALLED() ((gt_Configuration_DataPoolValues.t_StickBoxConfigValues.u8_stick_box_installed * CONFIGURATION_SCALING_FACTOR_STICKBOXCONFIG_STICK_BOX_INSTALLED) + CONFIGURATION_SCALING_OFFSET_STICKBOXCONFIG_STICK_BOX_INSTALLED)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 ///Elements in list "ElevatorConfig":
@@ -72,14 +84,21 @@ typedef struct
 ///Elements in list "HeaderConfig":
 typedef struct
 {
-   uint8 u8_joystick_hll_enable; /* Parameter to set the HLL functionality between footpedals and joystick */
+   uint8 u8_joystick_hll_enable; /* Parameter description */
 } T_Configuration_HeaderConfig_Values;
+
+///Elements in list "StickBoxConfig":
+typedef struct
+{
+   uint8 u8_stick_box_installed; /* Parameter description */
+} T_Configuration_StickBoxConfig_Values;
 
 ///Elements of all lists:
 typedef struct
 {
    T_Configuration_ElevatorConfig_Values t_ElevatorConfigValues;
    T_Configuration_HeaderConfig_Values t_HeaderConfigValues;
+   T_Configuration_StickBoxConfig_Values t_StickBoxConfigValues;
 } T_Configuration_DataPoolValues;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
@@ -91,7 +110,7 @@ extern const T_osy_dpa_data_pool gt_Configuration_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void configuration_project_id_1484555524(void);
+extern void configuration_project_id_3391711938(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

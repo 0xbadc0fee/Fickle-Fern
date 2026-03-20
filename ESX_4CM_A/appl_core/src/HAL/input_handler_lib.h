@@ -19,7 +19,7 @@
 #include "alarm_handler_lib.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DEFAULT_DIG_DEBOUNCE    100 //!< .1ms debounce used on digital input signals
+#define DEFAULT_DIG_DEBOUNCE   1000 //!< 1ms debounce used on digital input signals
 #define DEFAULT_DIG_CIRCUIT       0 //!< Pullup/down disabled
 #define DEFAULT_ADCINPUT_FILTER   0 //!< Default ADC input filter value
 #define DEFAULT_ADCINPUT_CIRCUIT  0 //!< Default ADC input circuit value

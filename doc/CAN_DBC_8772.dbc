@@ -1,0 +1,541 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: Button_Panel_8 Joystick_JS6000 Display ESX_4CM_A Engine
+
+
+BO_ 3221225472 VECTOR__INDEPENDENT_SIG_MSG: 0 Vector__XXX
+ SG_ Button_State_09 : 24|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_10 : 26|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_11 : 28|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_12 : 30|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+
+BO_ 2565841155 CAN_Btn_Panel_Trans: 8 ESX_4CM_A
+ SG_ Button_Ind_08_SR m177 : 16|8@1+ (1,0) [0|3] ""  Button_Panel_8
+ SG_ Button_Ind_01_Aux1 m176 : 8|8@1+ (1,0) [0|3] ""  Button_Panel_8
+ SG_ Button_LED_Mux M : 0|8@1+ (1,0) [0|0] ""  Button_Panel_8
+ SG_ Button_Panel_Backlight m136 : 8|1@1+ (1,0) [0|0] ""  Button_Panel_8
+ SG_ Button_Ind_02_Auger m176 : 16|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Button_Ind_03_SB_OP m176 : 24|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Button_Ind_04_Lights m176 : 32|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Button_Ind_05_PA m176 : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Button_Ind_06_ManUL m176 : 48|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ Button_Ind_07_SB_CL m176 : 56|8@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2566889889 CAN_Btn_Panel_Rec: 8 Button_Panel_8
+ SG_ Button_State_01_Aux1 m32 : 8|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_08_SR m32 : 22|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_07_SB_CL m32 : 20|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_06_ManUL m32 : 18|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_05_PA m32 : 16|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_04_Lights m32 : 14|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_03_SB_OP m32 : 12|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_02_Auger m32 : 10|2@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ Button_State_Mux M : 0|8@1+ (1,0) [0|0] ""  ESX_4CM_A
+
+BO_ 2566849565 DISP_CAN_Rec2: 8 Display
+ SG_ AgvHmiSetSpeedLimitMax : 32|1@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ AgvHmiFrontSweepSpeedCmd : 56|8@1+ (1,0) [0|0] ""  ESX_4CM_A
+
+BO_ 2566849053 DISP_CAN_Rec1: 8 Display
+ SG_ AgvHmiSuctionFanSpeedCmd : 16|16@1+ (1,0) [0|10000] ""  ESX_4CM_A
+ SG_ AgvHmiSetSpeedLimiter : 5|1@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ AgvHmiRotaryTrapSpeedCmd : 40|8@1+ (1,0) [0|2] ""  ESX_4CM_A
+ SG_ AgvHmiFrontSweepsEnable : 6|1@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ AgvHmiElevatorSpeedCmd : 8|8@1+ (1,0) [0|100] ""  ESX_4CM_A
+ SG_ AgvHmiCoolingFanManPurge : 3|1@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ AgvHmiClearMachineFaults : 4|1@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ AgvHmiChassisHighSpeed : 0|1@1+ (1,0) [0|0] ""  ESX_4CM_A
+ SG_ AgvHmiCameraReset : 1|1@1+ (1,0) [0|0] ""  ESX_4CM_A
+
+BO_ 2566848515 CAN_Display_Trans1: 8 ESX_4CM_A
+ SG_ AgvChassisHydOilTempDegC : 48|16@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ AgvChassisHydOilLevelLow : 20|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisHydOilPressRelief : 19|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisNeutralState : 18|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisCoolingSen3_OvrTmp : 47|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisCoolingSen2_OvrTmp : 46|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisCoolingSen1_OvrTmp : 45|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisCoolingManPrgErr : 44|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisCoolingFanRevDir : 43|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisSpeedLimiterSet : 41|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvWorkStickRemoverOn : 39|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvWorkAugerUnloadOn : 38|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvWorkShaftDrvsOn : 37|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisWorkLtsOn : 36|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisHeadLtsOn : 35|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisEngineOn : 34|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvWorkElevatorOn : 33|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvWorkSuctionFanOn : 32|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisGroundSpeed10x : 24|8@1+ (1,0) [0|0] ""  Display
+ SG_ AgvChassisSafeNeutralState : 23|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisBrakesEngaged : 22|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisDoorOpenState : 21|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisFuelLevelLow : 17|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisAirFilterServiceRqd : 16|1@1+ (1,0) [0|1] ""  Display
+ SG_ AgvChassisFuelGage255 : 8|8@1+ (1,0) [0|0] ""  Display
+ SG_ AgvChassisAirFilterRestrict255 : 0|8@1+ (1,0) [0|0] ""  Display
+
+BO_ 2566848771 CAN_Display_Trans2: 8 ESX_4CM_A
+ SG_ AgvWorkSuctionFanRpm : 0|16@1- (1,0) [0|0] ""  Display
+ SG_ AgvChassisFuelGagePrcnt : 56|8@1+ (1,0) [0|0] ""  Display
+ SG_ AgvMinorRev : 48|8@1- (1,0) [0|0] ""  Display
+ SG_ AgvMajorRev : 40|8@1- (1,0) [0|0] ""  Display
+ SG_ AgvChassisAirFilterRestrictPrcnt : 32|8@1+ (1,0) [0|0] ""  Display
+ SG_ AgvWorkSuctionFanHPTenths : 24|8@1- (1,0) [0|0] ""  Display
+ SG_ AgvWorkSuctionFanHP : 16|8@1- (1,0) [0|0] ""  Display
+
+BO_ 2566846206 IC1: 8 Engine
+ SG_ EngCoolantFilterDiffPress : 56|8@1+ (0.5,0) [0|125] "kPa"  ESX_4CM_A
+ SG_ EngExhaustGasTemp : 40|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
+ SG_ EngAirFilter1DiffPress : 32|8@1+ (0.05,0) [0|12.5] "kPa"  ESX_4CM_A
+ SG_ EngIntakeManifold1Temp : 16|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
+ SG_ EngIntakeManifold1Press : 8|8@1+ (2,0) [0|500] "kPa"  ESX_4CM_A
+ SG_ EngDslPrtclateFilterIntakePress : 0|8@1+ (0.5,0) [0|125] "kPa"  ESX_4CM_A
+ SG_ EngAirIntakePress : 24|8@1+ (2,0) [0|500] "kPa"  ESX_4CM_A
+
+BO_ 2348810494 TSC1: 8 ESX_4CM_A
+ SG_ MessageCounter : 56|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ ControlPurpose : 35|5@1+ (1,0) [0|31] "" Vector__XXX
+ SG_ TransmissionRate : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ EngRqedTorque_TorqueLimit : 24|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ EngRqedSpeed_SpeedLimit : 8|16@1+ (0.125,0) [0|8031.875] "rpm"  Engine
+ SG_ OverrideCtrlModePriority : 4|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngRqedSpeedCtrlConditions : 2|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ EngOverrideCtrlMode : 0|2@1+ (1,0) [0|3] "" Vector__XXX
+ SG_ MessageChecksum : 60|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ EngineRequestedTorqueHiRes : 40|4@1+ (0.125,0) [0|0.875] "%" Vector__XXX
+
+BO_ 2566844158 ET1: 8 Engine
+ SG_ EngFuelTemp1 : 8|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
+ SG_ EngIntercoolerThermostatOpening : 56|8@1+ (0.4,0) [0|100] "%"  ESX_4CM_A
+ SG_ EngIntercoolerTemp : 48|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
+ SG_ EngTurboOilTemp : 32|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
+ SG_ EngOilTemp1 : 16|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
+ SG_ EngCoolantTemp : 0|8@1+ (0.03125,-273) [-273|-265.03125] "deg C"  ESX_4CM_A
+
+BO_ 2364540158 EEC1: 8 Engine
+ SG_ SrcAddrssOfCtrllngDvcFrEngCntrl : 40|8@1+ (1,0) [0|255] "" Vector__XXX
+ SG_ ActlEngPrcntTrqueHighResolution : 4|4@1+ (0.125,0) [0|0.875] "%" Vector__XXX
+ SG_ EngDemandPercentTorque : 56|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ EngStarterMode : 48|4@1+ (1,0) [0|15] "" Vector__XXX
+ SG_ EngSpeed : 24|16@1+ (0.125,0) [0|8031.875] "rpm"  ESX_4CM_A,Display
+ SG_ ActualEngPercentTorque : 16|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ DriversDemandEngPercentTorque : 8|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ EngTorqueMode : 0|4@1+ (1,0) [0|15] "" Vector__XXX
+
+BO_ 2365445886 BJM1: 8 Joystick_JS6000
+ SG_ Joystick1XAxisDetentPosStatus : 38|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1YAxisDetentPosStatus : 36|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1YAxisPos : 22|10@1+ (0.1,0) [0|102] "%"  ESX_4CM_A
+ SG_ Jystck1YAxsLvrFrwrdPstvPsStatus : 20|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Jystck1YAxsLvrBckNgtvePosStatus : 18|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1YAxisNeutralPosStatus : 16|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1XAxisPos : 6|10@1+ (0.1,0) [0|102] "%"  ESX_4CM_A
+ SG_ Joystick1Button9PressedStatus : 62|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button10PressedStatus : 60|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button11PressedStatus : 58|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button12PressedStatus : 56|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button5PressedStatus : 54|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button6PressedStatus : 52|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button7PressedStatus : 50|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button8PressedStatus : 48|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button1PressedStatus : 46|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button2PressedStatus : 44|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button3PressedStatus : 42|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1Button4PressedStatus : 40|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Jystck1XAxsLvrRghtPstvPosStatus : 4|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Jystck1XAxsLvrLftNgtvePosStatus : 2|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+ SG_ Joystick1XAxisNeutralPosStatus : 0|2@1+ (1,0) [0|3] ""  ESX_4CM_A
+
+
+
+CM_ BO_ 2565841155 "Button Panel LED Indicator Controls";
+CM_ BO_ 2566889889 "Button Panel Button States";
+CM_ BO_ 2566849565 "General UI Machine Parameters 1";
+CM_ BO_ 2566849053 "General UI Machine Parameters 2";
+CM_ BO_ 2566848515 "General UI Machine Feedback 1";
+CM_ BO_ 2566848771 "General UI Machine Feedback 2";
+CM_ BO_ 2566846206 "Intake/Exhaust Conditions 1";
+CM_ SG_ 2566846206 EngCoolantFilterDiffPress "Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter";
+CM_ SG_ 2566846206 EngExhaustGasTemp "Temperature of combustion byproducts leaving the engine.";
+CM_ SG_ 2566846206 EngAirFilter1DiffPress "Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign";
+CM_ SG_ 2566846206 EngIntakeManifold1Temp "Temperature of pre-combustion air found in intake manifold of engine air supply system.";
+CM_ SG_ 2566846206 EngIntakeManifold1Press "The gage pressure measurement of the air intake manifold.";
+CM_ SG_ 2566846206 EngDslPrtclateFilterIntakePress "Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.";
+CM_ SG_ 2566846206 EngAirIntakePress "Absolute air pressure at input port to intake manifold or air box.";
+CM_ BO_ 2348810494 "Torque/Speed Control 1";
+CM_ SG_ 2348810494 MessageCounter "The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time.";
+CM_ SG_ 2348810494 ControlPurpose "State signal which indicates which control mode the sending device is using to generate the TSC1 command.";
+CM_ SG_ 2348810494 TransmissionRate "This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.";
+CM_ SG_ 2348810494 EngRqedTorque_TorqueLimit "Parameter provided to the engine or retarder in the torque/speed control message for controlling or limiting the output torque.";
+CM_ SG_ 2348810494 EngRqedSpeed_SpeedLimit "Parameter provided to the engine from external sources in the torque/speed control message.";
+CM_ SG_ 2348810494 EngRqedSpeedCtrlConditions "This mode tells the engine control system the governor characteristics that are desired during speed control.";
+CM_ SG_ 2348810494 MessageChecksum "The checksum is used to verify the signal path from the transmitting device to the receiving device.";
+CM_ SG_ 2348810494 EngineRequestedTorqueHiRes "This parameter displays an additional torque in percent of the reference engine torque.";
+CM_ BO_ 2566844158 "Engine Temperature 1";
+CM_ SG_ 2566844158 EngFuelTemp1 "Temperature of fuel (or gas) passing through the first fuel control system.";
+CM_ SG_ 2566844158 EngIntercoolerThermostatOpening "The current position of the thermostat used to regulate the temperature of the engine intercooler.";
+CM_ SG_ 2566844158 EngIntercoolerTemp "Temperature of liquid found in the intercooler located after the turbocharger.";
+CM_ SG_ 2566844158 EngTurboOilTemp "Temperature of the turbocharger lubricant.";
+CM_ SG_ 2566844158 EngOilTemp1 "Temperature of the engine lubricant.";
+CM_ SG_ 2566844158 EngCoolantTemp "Temperature of liquid found in engine cooling system.";
+CM_ BO_ 2364540158 "Electronic Engine Controller 1";
+CM_ SG_ 2364540158 SrcAddrssOfCtrllngDvcFrEngCntrl "The source address of the SAE J1939 device currently controlling the engine.";
+CM_ SG_ 2364540158 ActlEngPrcntTrqueHighResolution "This parameter displays an additional torque in percent of the reference engine torque.";
+CM_ SG_ 2364540158 EngDemandPercentTorque "The requested torque output of the engine by all dynamic internal inputs, including smoke control, noise control and low";
+CM_ SG_ 2364540158 EngStarterMode "There are several phases in a starting action and different reasons why a start cannot take place.";
+CM_ SG_ 2364540158 EngSpeed "Actual engine speed which is calculated over a minimum crankshaft angle of 720 degrees divided by the number of cylinders.";
+CM_ SG_ 2364540158 ActualEngPercentTorque "The calculated output torque of the engine.";
+CM_ SG_ 2364540158 DriversDemandEngPercentTorque "The requested torque output of the engine by the driver.";
+CM_ SG_ 2364540158 EngTorqueMode "State signal which indicates which engine torque mode is currently generating, limiting, or controlling the torque.";
+CM_ BO_ 2365445886 "Basic Joystick Message 1";
+CM_ SG_ 2365445886 Joystick1XAxisDetentPosStatus "Reports when the current joystick position is in the detent position for that axis of travel.";
+CM_ SG_ 2365445886 Joystick1YAxisDetentPosStatus "Reports when the current joystick position is in the detent position for that axis of travel.";
+CM_ SG_ 2365445886 Joystick1YAxisPos "The position of the joystick in the relative motion of travel from the neutral position.";
+CM_ SG_ 2365445886 Jystck1YAxsLvrFrwrdPstvPsStatus "Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the";
+CM_ SG_ 2365445886 Jystck1YAxsLvrBckNgtvePosStatus "Reports when the current joystick position is on the negative travel side (back, left, counterclockwise, down) relative to the";
+CM_ SG_ 2365445886 Joystick1YAxisNeutralPosStatus "Reports when the current joystick position is in the neutral position for that axis of travel.";
+CM_ SG_ 2365445886 Joystick1XAxisPos "The position of the joystick in the relative motion of travel from the neutral position.";
+CM_ SG_ 2365445886 Joystick1Button9PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button10PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button11PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button12PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button5PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button6PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button7PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button8PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button1PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button2PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button3PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Joystick1Button4PressedStatus "Reports when the joystick button has been pressed.";
+CM_ SG_ 2365445886 Jystck1XAxsLvrRghtPstvPosStatus "Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the";
+CM_ SG_ 2365445886 Jystck1XAxsLvrLftNgtvePosStatus "Reports when the current joystick position is on the negative travel side (back, left, counterclockwise, down) relative to the";
+CM_ SG_ 2365445886 Joystick1XAxisNeutralPosStatus "Reports when the current joystick position is in the neutral position for that axis of travel.";
+BA_DEF_ SG_  "SigType" ENUM  "Default","Range","RangeSigned","ASCII","Discrete","Control","ReferencePGN","DTC","StringDelimiter","StringLength","StringLengthControl";
+BA_DEF_ SG_  "GenSigStartValue" INT 0 10000;
+BA_DEF_ SG_  "GenSigSendType" ENUM  "Cyclic","OnWrite","reserved","OnChange","reserved","reserved","reserved","NoSigSendType";
+BA_DEF_ SG_  "GenSigILSupport" ENUM  "Yes","No";
+BA_DEF_ SG_  "GenSigEVName" STRING ;
+BA_DEF_ SG_  "SPN" INT 0 524287;
+BA_DEF_ BO_  "GenMsgStartDelayTime" INT 0 100000;
+BA_DEF_ BO_  "GenMsgILSupport" ENUM  "Yes","No";
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 1000;
+BA_DEF_ BO_  "GenMsgRequestable" INT 0 1;
+BA_DEF_ BO_  "GenMsgSendType" ENUM  "cyclic","reserved","cyclicIfActive","reserved","reserved","reserved","reserved","reserved","noMsgSendType";
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG";
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 3600000;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_ BU_  "NmStationAddress" INT 0 255;
+BA_DEF_ BU_  "NmJ1939AAC" INT 0 1;
+BA_DEF_ BU_  "NmJ1939IndustryGroup" INT 0 7;
+BA_DEF_ BU_  "NmJ1939System" INT 0 127;
+BA_DEF_ BU_  "NmJ1939SystemInstance" INT 0 15;
+BA_DEF_ BU_  "NmJ1939Function" INT 0 255;
+BA_DEF_ BU_  "NmJ1939FunctionInstance" INT 0 7;
+BA_DEF_ BU_  "NmJ1939ECUInstance" INT 0 3;
+BA_DEF_ BU_  "NmJ1939ManufacturerCode" INT 0 2047;
+BA_DEF_ BU_  "NmJ1939IdentityNumber" INT 0 2097151;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_  "DatabaseVersion" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "ProtocolType" STRING ;
+BA_DEF_  "SAE_J1939_75_SpecVersion" STRING ;
+BA_DEF_  "SAE_J1939_21_SpecVersion" STRING ;
+BA_DEF_  "SAE_J1939_73_SpecVersion" STRING ;
+BA_DEF_  "SAE_J1939_71_SpecVersion" STRING ;
+BA_DEF_DEF_  "SigType" "Default";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "NoSigSendType";
+BA_DEF_DEF_  "GenSigILSupport" "Yes";
+BA_DEF_DEF_  "GenSigEVName" "Env@Nodename_@Signame";
+BA_DEF_DEF_  "SPN" 0;
+BA_DEF_DEF_  "GenMsgStartDelayTime" 0;
+BA_DEF_DEF_  "GenMsgILSupport" "Yes";
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgRequestable" 1;
+BA_DEF_DEF_  "GenMsgSendType" "noMsgSendType";
+BA_DEF_DEF_  "VFrameFormat" "J1939PG";
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "NmStationAddress" 254;
+BA_DEF_DEF_  "NmJ1939AAC" 0;
+BA_DEF_DEF_  "NmJ1939IndustryGroup" 0;
+BA_DEF_DEF_  "NmJ1939System" 0;
+BA_DEF_DEF_  "NmJ1939SystemInstance" 0;
+BA_DEF_DEF_  "NmJ1939Function" 0;
+BA_DEF_DEF_  "NmJ1939FunctionInstance" 0;
+BA_DEF_DEF_  "NmJ1939ECUInstance" 0;
+BA_DEF_DEF_  "NmJ1939ManufacturerCode" 0;
+BA_DEF_DEF_  "NmJ1939IdentityNumber" 0;
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "DatabaseVersion" "";
+BA_DEF_DEF_  "BusType" "";
+BA_DEF_DEF_  "ProtocolType" "";
+BA_DEF_DEF_  "SAE_J1939_75_SpecVersion" "";
+BA_DEF_DEF_  "SAE_J1939_21_SpecVersion" "";
+BA_DEF_DEF_  "SAE_J1939_73_SpecVersion" "";
+BA_DEF_DEF_  "SAE_J1939_71_SpecVersion" "";
+BA_ "DatabaseVersion" "7.2";
+BA_ "BusType" "CAN";
+BA_ "ProtocolType" "J1939";
+BA_ "SAE_J1939_75_SpecVersion" "2005-10";
+BA_ "SAE_J1939_21_SpecVersion" "2006-10";
+BA_ "SAE_J1939_73_SpecVersion" "2009-09";
+BA_ "SAE_J1939_71_SpecVersion" "2009-09";
+BA_ "VFrameFormat" BO_ 2565841155 3;
+BA_ "SPN" SG_ 2565841155 Button_Ind_08_SR 520656;
+BA_ "SPN" SG_ 2565841155 Button_Ind_01_Aux1 520601;
+BA_ "SPN" SG_ 2565841155 Button_LED_Mux 520600;
+BA_ "SPN" SG_ 2565841155 Button_Panel_Backlight 520609;
+BA_ "VFrameFormat" BO_ 2566889889 3;
+BA_ "SPN" SG_ 2566889889 Button_State_01_Aux1 520661;
+BA_ "SPN" SG_ 2566889889 Button_State_08_SR 520668;
+BA_ "SPN" SG_ 2566889889 Button_State_07_SB_CL 520667;
+BA_ "SPN" SG_ 2566889889 Button_State_06_ManUL 520666;
+BA_ "SPN" SG_ 2566889889 Button_State_05_PA 520665;
+BA_ "SPN" SG_ 2566889889 Button_State_04_Lights 520664;
+BA_ "SPN" SG_ 2566889889 Button_State_03_SB_OP 520663;
+BA_ "SPN" SG_ 2566889889 Button_State_02_Auger 520662;
+BA_ "SPN" SG_ 2566889889 Button_State_Mux 520660;
+BA_ "VFrameFormat" BO_ 2566849565 3;
+BA_ "SPN" SG_ 2566849565 AgvHmiSetSpeedLimitMax 520546;
+BA_ "SPN" SG_ 2566849565 AgvHmiFrontSweepSpeedCmd 520545;
+BA_ "VFrameFormat" BO_ 2566849053 3;
+BA_ "SPN" SG_ 2566849053 AgvHmiSuctionFanSpeedCmd 520543;
+BA_ "SPN" SG_ 2566849053 AgvHmiSetSpeedLimiter 520540;
+BA_ "SPN" SG_ 2566849053 AgvHmiRotaryTrapSpeedCmd 520544;
+BA_ "SPN" SG_ 2566849053 AgvHmiFrontSweepsEnable 520541;
+BA_ "SPN" SG_ 2566849053 AgvHmiElevatorSpeedCmd 520542;
+BA_ "SPN" SG_ 2566849053 AgvHmiCoolingFanManPurge 520538;
+BA_ "SPN" SG_ 2566849053 AgvHmiClearMachineFaults 520539;
+BA_ "SPN" SG_ 2566849053 AgvHmiChassisHighSpeed 520536;
+BA_ "SPN" SG_ 2566849053 AgvHmiCameraReset 520537;
+BA_ "VFrameFormat" BO_ 2566848515 3;
+BA_ "SPN" SG_ 2566848515 AgvChassisHydOilTempDegC 520526;
+BA_ "SPN" SG_ 2566848515 AgvChassisHydOilLevelLow 520507;
+BA_ "SPN" SG_ 2566848515 AgvChassisHydOilPressRelief 520506;
+BA_ "SPN" SG_ 2566848515 AgvChassisNeutralState 520505;
+BA_ "SPN" SG_ 2566848515 AgvChassisCoolingSen3_OvrTmp 520524;
+BA_ "SPN" SG_ 2566848515 AgvChassisCoolingSen2_OvrTmp 520524;
+BA_ "SPN" SG_ 2566848515 AgvChassisCoolingSen1_OvrTmp 520523;
+BA_ "SPN" SG_ 2566848515 AgvChassisCoolingManPrgErr 520522;
+BA_ "SPN" SG_ 2566848515 AgvChassisCoolingFanRevDir 520521;
+BA_ "SPN" SG_ 2566848515 AgvChassisSpeedLimiterSet 520520;
+BA_ "SPN" SG_ 2566848515 AgvWorkStickRemoverOn 520519;
+BA_ "SPN" SG_ 2566848515 AgvWorkAugerUnloadOn 520518;
+BA_ "SPN" SG_ 2566848515 AgvWorkShaftDrvsOn 520517;
+BA_ "SPN" SG_ 2566848515 AgvChassisWorkLtsOn 520516;
+BA_ "SPN" SG_ 2566848515 AgvChassisHeadLtsOn 520515;
+BA_ "SPN" SG_ 2566848515 AgvChassisEngineOn 520514;
+BA_ "SPN" SG_ 2566848515 AgvWorkElevatorOn 520513;
+BA_ "SPN" SG_ 2566848515 AgvWorkSuctionFanOn 520512;
+BA_ "SPN" SG_ 2566848515 AgvChassisGroundSpeed10x 520511;
+BA_ "SPN" SG_ 2566848515 AgvChassisSafeNeutralState 520510;
+BA_ "SPN" SG_ 2566848515 AgvChassisBrakesEngaged 520509;
+BA_ "SPN" SG_ 2566848515 AgvChassisDoorOpenState 520508;
+BA_ "SPN" SG_ 2566848515 AgvChassisFuelLevelLow 520503;
+BA_ "SPN" SG_ 2566848515 AgvChassisAirFilterServiceRqd 520502;
+BA_ "SPN" SG_ 2566848515 AgvChassisFuelGage255 524001;
+BA_ "SPN" SG_ 2566848515 AgvChassisAirFilterRestrict255 524012;
+BA_ "VFrameFormat" BO_ 2566848771 3;
+BA_ "SPN" SG_ 2566848771 AgvWorkSuctionFanRpm 520528;
+BA_ "SPN" SG_ 2566848771 AgvChassisFuelGagePrcnt 520535;
+BA_ "SPN" SG_ 2566848771 AgvMinorRev 520534;
+BA_ "SPN" SG_ 2566848771 AgvMajorRev 520533;
+BA_ "SPN" SG_ 2566848771 AgvChassisAirFilterRestrictPrcnt 520532;
+BA_ "SPN" SG_ 2566848771 AgvWorkSuctionFanHPTenths 520531;
+BA_ "SPN" SG_ 2566848771 AgvWorkSuctionFanHP 520530;
+BA_ "GenMsgSendType" BO_ 2566846206 0;
+BA_ "GenMsgCycleTime" BO_ 2566846206 500;
+BA_ "VFrameFormat" BO_ 2566846206 3;
+BA_ "SigType" SG_ 2566846206 EngCoolantFilterDiffPress 1;
+BA_ "SPN" SG_ 2566846206 EngCoolantFilterDiffPress 112;
+BA_ "SigType" SG_ 2566846206 EngExhaustGasTemp 1;
+BA_ "SPN" SG_ 2566846206 EngExhaustGasTemp 173;
+BA_ "SigType" SG_ 2566846206 EngAirFilter1DiffPress 1;
+BA_ "SPN" SG_ 2566846206 EngAirFilter1DiffPress 107;
+BA_ "SigType" SG_ 2566846206 EngIntakeManifold1Temp 1;
+BA_ "SPN" SG_ 2566846206 EngIntakeManifold1Temp 105;
+BA_ "SigType" SG_ 2566846206 EngIntakeManifold1Press 1;
+BA_ "SPN" SG_ 2566846206 EngIntakeManifold1Press 102;
+BA_ "SigType" SG_ 2566846206 EngDslPrtclateFilterIntakePress 1;
+BA_ "SPN" SG_ 2566846206 EngDslPrtclateFilterIntakePress 81;
+BA_ "SigType" SG_ 2566846206 EngAirIntakePress 1;
+BA_ "SPN" SG_ 2566846206 EngAirIntakePress 106;
+BA_ "GenMsgSendType" BO_ 2348810494 8;
+BA_ "VFrameFormat" BO_ 2348810494 3;
+BA_ "SigType" SG_ 2348810494 MessageCounter 0;
+BA_ "SPN" SG_ 2348810494 MessageCounter 4206;
+BA_ "SigType" SG_ 2348810494 ControlPurpose 0;
+BA_ "SPN" SG_ 2348810494 ControlPurpose 3350;
+BA_ "SigType" SG_ 2348810494 TransmissionRate 0;
+BA_ "SPN" SG_ 2348810494 TransmissionRate 3349;
+BA_ "SigType" SG_ 2348810494 EngRqedTorque_TorqueLimit 1;
+BA_ "SPN" SG_ 2348810494 EngRqedTorque_TorqueLimit 518;
+BA_ "SigType" SG_ 2348810494 EngRqedSpeed_SpeedLimit 1;
+BA_ "SPN" SG_ 2348810494 EngRqedSpeed_SpeedLimit 898;
+BA_ "SigType" SG_ 2348810494 OverrideCtrlModePriority 0;
+BA_ "SPN" SG_ 2348810494 OverrideCtrlModePriority 897;
+BA_ "SigType" SG_ 2348810494 EngRqedSpeedCtrlConditions 0;
+BA_ "SPN" SG_ 2348810494 EngRqedSpeedCtrlConditions 696;
+BA_ "SigType" SG_ 2348810494 EngOverrideCtrlMode 0;
+BA_ "SPN" SG_ 2348810494 EngOverrideCtrlMode 695;
+BA_ "SigType" SG_ 2348810494 MessageChecksum 0;
+BA_ "SPN" SG_ 2348810494 MessageChecksum 4207;
+BA_ "SigType" SG_ 2348810494 EngineRequestedTorqueHiRes 0;
+BA_ "SPN" SG_ 2348810494 EngineRequestedTorqueHiRes 4191;
+BA_ "GenMsgSendType" BO_ 2566844158 0;
+BA_ "GenMsgCycleTime" BO_ 2566844158 1000;
+BA_ "VFrameFormat" BO_ 2566844158 3;
+BA_ "SigType" SG_ 2566844158 EngFuelTemp1 1;
+BA_ "SPN" SG_ 2566844158 EngFuelTemp1 174;
+BA_ "SigType" SG_ 2566844158 EngIntercoolerThermostatOpening 1;
+BA_ "SPN" SG_ 2566844158 EngIntercoolerThermostatOpening 1134;
+BA_ "SigType" SG_ 2566844158 EngIntercoolerTemp 1;
+BA_ "SPN" SG_ 2566844158 EngIntercoolerTemp 52;
+BA_ "SigType" SG_ 2566844158 EngTurboOilTemp 1;
+BA_ "SPN" SG_ 2566844158 EngTurboOilTemp 176;
+BA_ "SigType" SG_ 2566844158 EngOilTemp1 1;
+BA_ "SPN" SG_ 2566844158 EngOilTemp1 175;
+BA_ "SigType" SG_ 2566844158 EngCoolantTemp 1;
+BA_ "SPN" SG_ 2566844158 EngCoolantTemp 1637;
+BA_ "GenMsgSendType" BO_ 2364540158 0;
+BA_ "GenMsgCycleTime" BO_ 2364540158 100;
+BA_ "VFrameFormat" BO_ 2364540158 3;
+BA_ "SigType" SG_ 2364540158 SrcAddrssOfCtrllngDvcFrEngCntrl 1;
+BA_ "SPN" SG_ 2364540158 SrcAddrssOfCtrllngDvcFrEngCntrl 1483;
+BA_ "SigType" SG_ 2364540158 ActlEngPrcntTrqueHighResolution 1;
+BA_ "SPN" SG_ 2364540158 ActlEngPrcntTrqueHighResolution 4154;
+BA_ "SigType" SG_ 2364540158 EngDemandPercentTorque 1;
+BA_ "SPN" SG_ 2364540158 EngDemandPercentTorque 2432;
+BA_ "SigType" SG_ 2364540158 EngStarterMode 4;
+BA_ "SPN" SG_ 2364540158 EngStarterMode 1675;
+BA_ "SigType" SG_ 2364540158 EngSpeed 1;
+BA_ "SPN" SG_ 2364540158 EngSpeed 190;
+BA_ "SigType" SG_ 2364540158 ActualEngPercentTorque 1;
+BA_ "SPN" SG_ 2364540158 ActualEngPercentTorque 513;
+BA_ "SigType" SG_ 2364540158 DriversDemandEngPercentTorque 1;
+BA_ "SPN" SG_ 2364540158 DriversDemandEngPercentTorque 512;
+BA_ "SigType" SG_ 2364540158 EngTorqueMode 4;
+BA_ "SPN" SG_ 2364540158 EngTorqueMode 899;
+BA_ "GenMsgSendType" BO_ 2365445886 0;
+BA_ "GenMsgCycleTime" BO_ 2365445886 100;
+BA_ "VFrameFormat" BO_ 2365445886 3;
+BA_ "SigType" SG_ 2365445886 Joystick1XAxisDetentPosStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1XAxisDetentPosStatus 2680;
+BA_ "SigType" SG_ 2365445886 Joystick1YAxisDetentPosStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1YAxisDetentPosStatus 2681;
+BA_ "SigType" SG_ 2365445886 Joystick1YAxisPos 1;
+BA_ "SPN" SG_ 2365445886 Joystick1YAxisPos 2661;
+BA_ "SigType" SG_ 2365445886 Jystck1YAxsLvrFrwrdPstvPsStatus 4;
+BA_ "SPN" SG_ 2365445886 Jystck1YAxsLvrFrwrdPstvPsStatus 2666;
+BA_ "SigType" SG_ 2365445886 Jystck1YAxsLvrBckNgtvePosStatus 4;
+BA_ "SPN" SG_ 2365445886 Jystck1YAxsLvrBckNgtvePosStatus 2671;
+BA_ "SigType" SG_ 2365445886 Joystick1YAxisNeutralPosStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1YAxisNeutralPosStatus 2676;
+BA_ "SigType" SG_ 2365445886 Joystick1XAxisPos 1;
+BA_ "SPN" SG_ 2365445886 Joystick1XAxisPos 2660;
+BA_ "SigType" SG_ 2365445886 Joystick1Button9PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button9PressedStatus 2693;
+BA_ "SigType" SG_ 2365445886 Joystick1Button10PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button10PressedStatus 2694;
+BA_ "SigType" SG_ 2365445886 Joystick1Button11PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button11PressedStatus 2695;
+BA_ "SigType" SG_ 2365445886 Joystick1Button12PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button12PressedStatus 2696;
+BA_ "SigType" SG_ 2365445886 Joystick1Button5PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button5PressedStatus 2689;
+BA_ "SigType" SG_ 2365445886 Joystick1Button6PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button6PressedStatus 2690;
+BA_ "SigType" SG_ 2365445886 Joystick1Button7PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button7PressedStatus 2691;
+BA_ "SigType" SG_ 2365445886 Joystick1Button8PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button8PressedStatus 2692;
+BA_ "SigType" SG_ 2365445886 Joystick1Button1PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button1PressedStatus 2685;
+BA_ "SigType" SG_ 2365445886 Joystick1Button2PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button2PressedStatus 2686;
+BA_ "SigType" SG_ 2365445886 Joystick1Button3PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button3PressedStatus 2687;
+BA_ "SigType" SG_ 2365445886 Joystick1Button4PressedStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1Button4PressedStatus 2688;
+BA_ "SigType" SG_ 2365445886 Jystck1XAxsLvrRghtPstvPosStatus 4;
+BA_ "SPN" SG_ 2365445886 Jystck1XAxsLvrRghtPstvPosStatus 2665;
+BA_ "SigType" SG_ 2365445886 Jystck1XAxsLvrLftNgtvePosStatus 4;
+BA_ "SPN" SG_ 2365445886 Jystck1XAxsLvrLftNgtvePosStatus 2670;
+BA_ "SigType" SG_ 2365445886 Joystick1XAxisNeutralPosStatus 4;
+BA_ "SPN" SG_ 2365445886 Joystick1XAxisNeutralPosStatus 2675;
+BA_ "NmStationAddress" BU_ Button_Panel_8 161;
+BA_ "NmStationAddress" BU_ Joystick_JS6000 51;
+BA_ "NmStationAddress" BU_ Display 29;
+BA_ "NmStationAddress" BU_ ESX_4CM_A 3;
+BA_ "NmStationAddress" BU_ Engine 0;
+BA_ "NmJ1939IndustryGroup" BU_ Engine 0;
+BA_ "NmJ1939System" BU_ Engine 0;
+BA_ "NmJ1939Function" BU_ Engine 0;
+BA_ "NmJ1939FunctionInstance" BU_ Engine 0;
+VAL_ 2348810494 MessageCounter 14 "Reserved" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "Reserved" 15 "Not Available" ;
+VAL_ 2348810494 ControlPurpose 5 "TemporaryPowerTrainControl" 4 "EngineProtection" 3 "RoadSpeedGovernor" 2 "PTOGovernor" 1 "CruiseControl" 0 "AcceleratorPedal" ;
+VAL_ 2348810494 TransmissionRate 7 "UseStandardRate" 6 "25ms" 5 "50ms" 4 "100ms" 3 "250ms" 2 "500ms" 1 "750ms" 0 "1000ms" ;
+VAL_ 2348810494 OverrideCtrlModePriority 3 "LowPriority" 2 "MdmPrrtyUsdFrPwrtrnCtrlOprtnsWh" 1 "HighPriority" 0 "HghstPrrtyUsdFrSttnsThtRqrImmdt" ;
+VAL_ 2348810494 EngRqedSpeedCtrlConditions 2 "ThsCtrlCndtnHsBnOptmzdTMnmzRpmO" 3 "StbltyOptmzdFrDrvlnEnggdAnd_OrI" 1 "StbltyOptmzdFrDrvlnDsnggdAndNnl" 0 "ThsSpdGvrnrGnSlctnIsAdjstdTPrvd" ;
+VAL_ 2348810494 EngOverrideCtrlMode 3 "Spd_TrqLmtCtrlLmtSpdAnd_OrTrqBs" 2 "TrqCtrlCntrlTrqTInclddDsrdTrqVl" 1 "SpdCtrlGvrnSpdTInclddDsrdSpdVle" 0 "OvrrdDsbldDsblAnyExstngCtrlCmdd" ;
+VAL_ 2348810494 MessageChecksum 15 "Not Available" ;
+VAL_ 2348810494 EngineRequestedTorqueHiRes 15 "Not Available" 14 "Not Available" 13 "Not Available" 12 "Not Available" 11 "Not Available" 10 "Not Available" 9 "Not Available" 8 "Not Available" ;
+VAL_ 2364540158 ActlEngPrcntTrqueHighResolution 8 "1111NotAvailable" 7 "0875" 1 "0125" 0 "0000" ;
+VAL_ 2364540158 EngStarterMode 15 "notAvailable" 14 "error" 12 "starterInhibitedReasonUnknown" 9 "1011Reserved" 8 "strtrInhbtdDueToStarterOvertemp" 7 "strtrInhbtdDToActiveImmobilizer" 6 "strtrInhbtdDTDrvlnEnggdOthrTrns" 5 "strtrInhbtdDTEngNtReadyForStart" 4 "strtrInhbtdDToEngAlreadyRunning" 3 "strtFnshdStrtrNtActvAftrHvngBnA" 2 "starterActiveGearEngaged" 1 "starterActiveGearNotEngaged" 0 "startNotRqed" ;
+VAL_ 2364540158 EngTorqueMode 15 "Not available" 11 "Remote accelerator" 10 "Braking system" 9 "High speed governor" 8 "Torque limiting" 7 "ABS control" 6 "Transmission control" 5 "ASR control" 4 "Road speed governor" 3 "PTO governor" 2 "Cruise control" 1 "Accelerator pedal/operator selec" 0 "Low idle governor/no request (de" ;
+VAL_ 2365445886 Joystick1XAxisDetentPosStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "InDetentPos" 0 "NotInDetentPos" ;
+VAL_ 2365445886 Joystick1YAxisDetentPosStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "InDetentPos" 0 "NotInDetentPos" ;
+VAL_ 2365445886 Jystck1YAxsLvrFrwrdPstvPsStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "OnPositiveSideOfNeutral" 0 "NotOnPositiveSideOfNeutral" ;
+VAL_ 2365445886 Jystck1YAxsLvrBckNgtvePosStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "OnNegativeSideOfNeutral" 0 "NotOnNegativeSideOfNeutral" ;
+VAL_ 2365445886 Joystick1YAxisNeutralPosStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "InNeutralPos" 0 "NotInNeutralPos" ;
+VAL_ 2365445886 Joystick1Button9PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button10PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button11PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button12PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button5PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button6PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button7PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button8PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button1PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button2PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button3PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Joystick1Button4PressedStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "ButtonPressed" 0 "ButtonNotPressed" ;
+VAL_ 2365445886 Jystck1XAxsLvrRghtPstvPosStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "OnPositiveSideOfNeutral" 0 "NotOnPositiveSideOfNeutral" ;
+VAL_ 2365445886 Jystck1XAxsLvrLftNgtvePosStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "OnNegativeSideOfNeutral" 0 "NotOnNegativeSideOfNeutral" ;
+VAL_ 2365445886 Joystick1XAxisNeutralPosStatus 3 "NotAvailable" 2 "ErrorIndicator" 1 "InNeutralPos" 0 "NotInNeutralPos" ;
+

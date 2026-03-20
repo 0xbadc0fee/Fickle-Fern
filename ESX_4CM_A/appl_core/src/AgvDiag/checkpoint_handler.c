@@ -22,6 +22,10 @@
 
 //Include Controls that have checkpoints
 #include "elevator_control.h"
+#include "header_lift_control.h"
+#include "cleaning_chains_control.h"
+#include "front_sweeps_control.h"
+#include "rotary_trap_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
@@ -31,7 +35,11 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_ChkPoints_Elevator gt_elevatorCheckpoints;    //!<structure that holds all AgvWork - Elevator Control Checkpoints
+T_ChkPoints_Elevator gt_elevatorCheckpoints;      //!<structure that holds all AgvWork - Elevator Control Checkpoints
+T_ChkPoints_Header   gt_headerCheckpoints;        //!<structure that holds all AgvWork - Header Control Checkpoints
+T_ChkPoints_CChains  gt_cleaningShaftCheckpoints; //!<Structure that holds Cleaning Chains Checkpoints
+T_ChkPoints_FSweeps  gt_frontSweepsCheckpoints;	  //!<Structure that holds Front Sweeps Checkpoints
+T_ChkPoints_RTrap    gt_rotaryTrapCheckpoints;	  //!<Structure that holds Rotary Traps Checkpoints
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 update_checkpointHandler(void)
@@ -45,7 +53,7 @@ sint16 update_checkpointHandler(void)
     #include "checkpoint_map.def"
     #undef CNTRL2DP
 
-    (void)osy_dph_lock_data_pool(CHECKPOINTS_DATA_POOL_INDEX);
+    (void)osy_dph_unlock_data_pool(CHECKPOINTS_DATA_POOL_INDEX);
 
     return s16_error;
 }

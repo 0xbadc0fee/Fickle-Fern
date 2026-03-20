@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_142415662 mt_Variable;
+static T_osy_non_existing_type_545811431 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-J1939_PROJECT_ID_142415662
+J1939_PROJECT_ID_545811431
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -46,6 +46,16 @@ static const T_J1939_CAN1_TX_Values mt_CAN1_TXMinValues =
    0U,   ///< TSC1_MessageCounter (The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time.)
    0U,   ///< TSC1_OverrideCtrlModePriority ()
    0U,   ///< TSC1_TransmissionRate (This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.)
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_01_Aux1 ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_02_Auger ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_04_Lights ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_05_PA ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_06_ManUL ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_08_SR ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_LED_Mux ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Panel_Backlight ()
    0U,   ///< CAN_Display_Trans1_AgvChassisAirFilterRestrict255 ()
    0U,   ///< CAN_Display_Trans1_AgvChassisAirFilterServiceRqd ()
    0U,   ///< CAN_Display_Trans1_AgvChassisBrakesEngaged ()
@@ -94,6 +104,16 @@ static const T_J1939_CAN1_TX_Values mt_CAN1_TXMaxValues =
    15U,   ///< TSC1_MessageCounter (The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time.)
    3U,   ///< TSC1_OverrideCtrlModePriority ()
    7U,   ///< TSC1_TransmissionRate (This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.)
+   3U,   ///< CAN_Btn_Panel_Trans_Button_Ind_01_Aux1 ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_02_Auger ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_04_Lights ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_05_PA ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_06_ManUL ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL ()
+   3U,   ///< CAN_Btn_Panel_Trans_Button_Ind_08_SR ()
+   255U,   ///< CAN_Btn_Panel_Trans_Button_LED_Mux ()
+   0U,   ///< CAN_Btn_Panel_Trans_Button_Panel_Backlight ()
    0U,   ///< CAN_Display_Trans1_AgvChassisAirFilterRestrict255 ()
    1U,   ///< CAN_Display_Trans1_AgvChassisAirFilterServiceRqd ()
    1U,   ///< CAN_Display_Trans1_AgvChassisBrakesEngaged ()
@@ -143,6 +163,16 @@ static const T_J1939_CAN1_TX_Values mat_CAN1_TXDataSetValues [J1939_CAN1_TX_NUMB
       0U,   ///< TSC1_MessageCounter (The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time.)
       0U,   ///< TSC1_OverrideCtrlModePriority ()
       0U,   ///< TSC1_TransmissionRate (This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.)
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_01_Aux1 ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_02_Auger ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_04_Lights ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_05_PA ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_06_ManUL ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Ind_08_SR ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_LED_Mux ()
+      0U,   ///< CAN_Btn_Panel_Trans_Button_Panel_Backlight ()
       0U,   ///< CAN_Display_Trans1_AgvChassisAirFilterRestrict255 ()
       0U,   ///< CAN_Display_Trans1_AgvChassisAirFilterServiceRqd ()
       0U,   ///< CAN_Display_Trans1_AgvChassisBrakesEngaged ()
@@ -218,6 +248,19 @@ static const T_J1939_CAN1_RX_Values mt_CAN1_RXMinValues =
    0U,   ///< BJM1_Jystck1XAxsLvrRghtPstvPosStatus (Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the)
    0U,   ///< BJM1_Jystck1YAxsLvrBckNgtvePosStatus (Reports when the current joystick position is on the negative travel side (back, left, counterclockwise, down) relative to the)
    0U,   ///< BJM1_Jystck1YAxsLvrFrwrdPstvPsStatus (Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the)
+   0U,   ///< ET1_EngCoolantTemp (Temperature of liquid found in engine cooling system.)
+   0U,   ///< ET1_EngFuelTemp1 (Temperature of fuel (or gas) passing through the first fuel control system.)
+   0U,   ///< ET1_EngIntercoolerTemp (Temperature of liquid found in the intercooler located after the turbocharger.)
+   0U,   ///< ET1_EngIntercoolerThermostatOpening (The current position of the thermostat used to regulate the temperature of the engine intercooler.)
+   0U,   ///< ET1_EngOilTemp1 (Temperature of the engine lubricant.)
+   0U,   ///< ET1_EngTurboOilTemp (Temperature of the turbocharger lubricant.)
+   0U,   ///< IC1_EngAirFilter1DiffPress (Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign)
+   0U,   ///< IC1_EngAirIntakePress (Absolute air pressure at input port to intake manifold or air box.)
+   0U,   ///< IC1_EngCoolantFilterDiffPress (Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter)
+   0U,   ///< IC1_EngDslPrtclateFilterIntakePress (Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.)
+   0U,   ///< IC1_EngExhaustGasTemp (Temperature of combustion byproducts leaving the engine.)
+   0U,   ///< IC1_EngIntakeManifold1Press (The gage pressure measurement of the air intake manifold.)
+   0U,   ///< IC1_EngIntakeManifold1Temp (Temperature of pre-combustion air found in intake manifold of engine air supply system.)
    0U,   ///< DISP_CAN_Rec1_AgvHmiCameraReset ()
    0U,   ///< DISP_CAN_Rec1_AgvHmiChassisHighSpeed ()
    0U,   ///< DISP_CAN_Rec1_AgvHmiClearMachineFaults ()
@@ -229,18 +272,14 @@ static const T_J1939_CAN1_RX_Values mt_CAN1_RXMinValues =
    0U,   ///< DISP_CAN_Rec1_AgvHmiSuctionFanSpeedCmd ()
    0U,   ///< DISP_CAN_Rec2_AgvHmiFrontSweepSpeedCmd ()
    0U,   ///< DISP_CAN_Rec2_AgvHmiSetSpeedLimitMax ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_01 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_02 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_03 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_04 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_05 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_06 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_07 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_08 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_09 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_10 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_11 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_12 ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_01_Aux1 ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_02_Auger ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_03_SB_OP ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_04_Lights ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_05_PA ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_06_ManUL ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_07_SB_CL ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_08_SR ()
    0U    ///< CAN_Btn_Panel_Rec_Button_State_Mux ()
 };
 
@@ -277,6 +316,19 @@ static const T_J1939_CAN1_RX_Values mt_CAN1_RXMaxValues =
    3U,   ///< BJM1_Jystck1XAxsLvrRghtPstvPosStatus (Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the)
    3U,   ///< BJM1_Jystck1YAxsLvrBckNgtvePosStatus (Reports when the current joystick position is on the negative travel side (back, left, counterclockwise, down) relative to the)
    3U,   ///< BJM1_Jystck1YAxsLvrFrwrdPstvPsStatus (Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the)
+   255U,   ///< ET1_EngCoolantTemp (Temperature of liquid found in engine cooling system.)
+   250U,   ///< ET1_EngFuelTemp1 (Temperature of fuel (or gas) passing through the first fuel control system.)
+   250U,   ///< ET1_EngIntercoolerTemp (Temperature of liquid found in the intercooler located after the turbocharger.)
+   250U,   ///< ET1_EngIntercoolerThermostatOpening (The current position of the thermostat used to regulate the temperature of the engine intercooler.)
+   64255U,   ///< ET1_EngOilTemp1 (Temperature of the engine lubricant.)
+   64255U,   ///< ET1_EngTurboOilTemp (Temperature of the turbocharger lubricant.)
+   250U,   ///< IC1_EngAirFilter1DiffPress (Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign)
+   250U,   ///< IC1_EngAirIntakePress (Absolute air pressure at input port to intake manifold or air box.)
+   250U,   ///< IC1_EngCoolantFilterDiffPress (Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter)
+   250U,   ///< IC1_EngDslPrtclateFilterIntakePress (Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.)
+   64255U,   ///< IC1_EngExhaustGasTemp (Temperature of combustion byproducts leaving the engine.)
+   250U,   ///< IC1_EngIntakeManifold1Press (The gage pressure measurement of the air intake manifold.)
+   250U,   ///< IC1_EngIntakeManifold1Temp (Temperature of pre-combustion air found in intake manifold of engine air supply system.)
    0U,   ///< DISP_CAN_Rec1_AgvHmiCameraReset ()
    0U,   ///< DISP_CAN_Rec1_AgvHmiChassisHighSpeed ()
    0U,   ///< DISP_CAN_Rec1_AgvHmiClearMachineFaults ()
@@ -288,19 +340,15 @@ static const T_J1939_CAN1_RX_Values mt_CAN1_RXMaxValues =
    10000U,   ///< DISP_CAN_Rec1_AgvHmiSuctionFanSpeedCmd ()
    0U,   ///< DISP_CAN_Rec2_AgvHmiFrontSweepSpeedCmd ()
    0U,   ///< DISP_CAN_Rec2_AgvHmiSetSpeedLimitMax ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_01 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_02 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_03 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_04 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_05 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_06 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_07 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_08 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_09 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_10 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_11 ()
-   0U,   ///< CAN_Btn_Panel_Rec_Button_State_12 ()
-   0U    ///< CAN_Btn_Panel_Rec_Button_State_Mux ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_01_Aux1 ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_02_Auger ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_03_SB_OP ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_04_Lights ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_05_PA ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_06_ManUL ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_07_SB_CL ()
+   0U,   ///< CAN_Btn_Panel_Rec_Button_State_08_SR ()
+   255U    ///< CAN_Btn_Panel_Rec_Button_State_Mux ()
 };
 
 ///Dataset values
@@ -337,6 +385,19 @@ static const T_J1939_CAN1_RX_Values mat_CAN1_RXDataSetValues [J1939_CAN1_RX_NUMB
       0U,   ///< BJM1_Jystck1XAxsLvrRghtPstvPosStatus (Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the)
       0U,   ///< BJM1_Jystck1YAxsLvrBckNgtvePosStatus (Reports when the current joystick position is on the negative travel side (back, left, counterclockwise, down) relative to the)
       0U,   ///< BJM1_Jystck1YAxsLvrFrwrdPstvPsStatus (Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the)
+      0U,   ///< ET1_EngCoolantTemp (Temperature of liquid found in engine cooling system.)
+      0U,   ///< ET1_EngFuelTemp1 (Temperature of fuel (or gas) passing through the first fuel control system.)
+      0U,   ///< ET1_EngIntercoolerTemp (Temperature of liquid found in the intercooler located after the turbocharger.)
+      0U,   ///< ET1_EngIntercoolerThermostatOpening (The current position of the thermostat used to regulate the temperature of the engine intercooler.)
+      0U,   ///< ET1_EngOilTemp1 (Temperature of the engine lubricant.)
+      0U,   ///< ET1_EngTurboOilTemp (Temperature of the turbocharger lubricant.)
+      0U,   ///< IC1_EngAirFilter1DiffPress (Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign)
+      0U,   ///< IC1_EngAirIntakePress (Absolute air pressure at input port to intake manifold or air box.)
+      0U,   ///< IC1_EngCoolantFilterDiffPress (Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter)
+      0U,   ///< IC1_EngDslPrtclateFilterIntakePress (Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.)
+      0U,   ///< IC1_EngExhaustGasTemp (Temperature of combustion byproducts leaving the engine.)
+      0U,   ///< IC1_EngIntakeManifold1Press (The gage pressure measurement of the air intake manifold.)
+      0U,   ///< IC1_EngIntakeManifold1Temp (Temperature of pre-combustion air found in intake manifold of engine air supply system.)
       0U,   ///< DISP_CAN_Rec1_AgvHmiCameraReset ()
       0U,   ///< DISP_CAN_Rec1_AgvHmiChassisHighSpeed ()
       0U,   ///< DISP_CAN_Rec1_AgvHmiClearMachineFaults ()
@@ -348,18 +409,14 @@ static const T_J1939_CAN1_RX_Values mat_CAN1_RXDataSetValues [J1939_CAN1_RX_NUMB
       0U,   ///< DISP_CAN_Rec1_AgvHmiSuctionFanSpeedCmd ()
       0U,   ///< DISP_CAN_Rec2_AgvHmiFrontSweepSpeedCmd ()
       0U,   ///< DISP_CAN_Rec2_AgvHmiSetSpeedLimitMax ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_01 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_02 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_03 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_04 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_05 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_06 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_07 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_08 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_09 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_10 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_11 ()
-      0U,   ///< CAN_Btn_Panel_Rec_Button_State_12 ()
+      0U,   ///< CAN_Btn_Panel_Rec_Button_State_01_Aux1 ()
+      0U,   ///< CAN_Btn_Panel_Rec_Button_State_02_Auger ()
+      0U,   ///< CAN_Btn_Panel_Rec_Button_State_03_SB_OP ()
+      0U,   ///< CAN_Btn_Panel_Rec_Button_State_04_Lights ()
+      0U,   ///< CAN_Btn_Panel_Rec_Button_State_05_PA ()
+      0U,   ///< CAN_Btn_Panel_Rec_Button_State_06_ManUL ()
+      0U,   ///< CAN_Btn_Panel_Rec_Button_State_07_SB_CL ()
+      0U,   ///< CAN_Btn_Panel_Rec_Button_State_08_SR ()
       0U    ///< CAN_Btn_Panel_Rec_Button_State_Mux ()
    }
 };
@@ -383,6 +440,16 @@ static const T_osy_dpa_element_definition mat_DataPoolCAN1_TXElements[J1939_CAN1
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_MessageCounter, &mt_CAN1_TXMinValues.u8_TSC1_MessageCounter, &mt_CAN1_TXMaxValues.u8_TSC1_MessageCounter },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_OverrideCtrlModePriority, &mt_CAN1_TXMinValues.u8_TSC1_OverrideCtrlModePriority, &mt_CAN1_TXMaxValues.u8_TSC1_OverrideCtrlModePriority },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_TransmissionRate, &mt_CAN1_TXMinValues.u8_TSC1_TransmissionRate, &mt_CAN1_TXMaxValues.u8_TSC1_TransmissionRate },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_01_Aux1, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Ind_01_Aux1, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Ind_01_Aux1 },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_02_Auger, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Ind_02_Auger, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Ind_02_Auger },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_04_Lights, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Ind_04_Lights, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Ind_04_Lights },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_05_PA, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Ind_05_PA, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Ind_05_PA },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_06_ManUL, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Ind_06_ManUL, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Ind_06_ManUL },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_08_SR, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Ind_08_SR, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Ind_08_SR },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_LED_Mux, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_LED_Mux, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_LED_Mux },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Panel_Backlight, &mt_CAN1_TXMinValues.u8_CAN_Btn_Panel_Trans_Button_Panel_Backlight, &mt_CAN1_TXMaxValues.u8_CAN_Btn_Panel_Trans_Button_Panel_Backlight },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisAirFilterRestrict255, &mt_CAN1_TXMinValues.u8_CAN_Display_Trans1_AgvChassisAirFilterRestrict255, &mt_CAN1_TXMaxValues.u8_CAN_Display_Trans1_AgvChassisAirFilterRestrict255 },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisAirFilterServiceRqd, &mt_CAN1_TXMinValues.u8_CAN_Display_Trans1_AgvChassisAirFilterServiceRqd, &mt_CAN1_TXMaxValues.u8_CAN_Display_Trans1_AgvChassisAirFilterServiceRqd },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisBrakesEngaged, &mt_CAN1_TXMinValues.u8_CAN_Display_Trans1_AgvChassisBrakesEngaged, &mt_CAN1_TXMaxValues.u8_CAN_Display_Trans1_AgvChassisBrakesEngaged },
@@ -450,6 +517,19 @@ static const T_osy_dpa_element_definition mat_DataPoolCAN1_RXElements[J1939_CAN1
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Jystck1XAxsLvrRghtPstvPosStatus, &mt_CAN1_RXMinValues.u8_BJM1_Jystck1XAxsLvrRghtPstvPosStatus, &mt_CAN1_RXMaxValues.u8_BJM1_Jystck1XAxsLvrRghtPstvPosStatus },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Jystck1YAxsLvrBckNgtvePosStatus, &mt_CAN1_RXMinValues.u8_BJM1_Jystck1YAxsLvrBckNgtvePosStatus, &mt_CAN1_RXMaxValues.u8_BJM1_Jystck1YAxsLvrBckNgtvePosStatus },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Jystck1YAxsLvrFrwrdPstvPsStatus, &mt_CAN1_RXMinValues.u8_BJM1_Jystck1YAxsLvrFrwrdPstvPsStatus, &mt_CAN1_RXMaxValues.u8_BJM1_Jystck1YAxsLvrFrwrdPstvPsStatus },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_ET1_EngCoolantTemp, &mt_CAN1_RXMinValues.u8_ET1_EngCoolantTemp, &mt_CAN1_RXMaxValues.u8_ET1_EngCoolantTemp },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_ET1_EngFuelTemp1, &mt_CAN1_RXMinValues.u8_ET1_EngFuelTemp1, &mt_CAN1_RXMaxValues.u8_ET1_EngFuelTemp1 },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_ET1_EngIntercoolerTemp, &mt_CAN1_RXMinValues.u8_ET1_EngIntercoolerTemp, &mt_CAN1_RXMaxValues.u8_ET1_EngIntercoolerTemp },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_ET1_EngIntercoolerThermostatOpening, &mt_CAN1_RXMinValues.u8_ET1_EngIntercoolerThermostatOpening, &mt_CAN1_RXMaxValues.u8_ET1_EngIntercoolerThermostatOpening },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_ET1_EngOilTemp1, &mt_CAN1_RXMinValues.u16_ET1_EngOilTemp1, &mt_CAN1_RXMaxValues.u16_ET1_EngOilTemp1 },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_ET1_EngTurboOilTemp, &mt_CAN1_RXMinValues.u16_ET1_EngTurboOilTemp, &mt_CAN1_RXMaxValues.u16_ET1_EngTurboOilTemp },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngAirFilter1DiffPress, &mt_CAN1_RXMinValues.u8_IC1_EngAirFilter1DiffPress, &mt_CAN1_RXMaxValues.u8_IC1_EngAirFilter1DiffPress },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngAirIntakePress, &mt_CAN1_RXMinValues.u8_IC1_EngAirIntakePress, &mt_CAN1_RXMaxValues.u8_IC1_EngAirIntakePress },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngCoolantFilterDiffPress, &mt_CAN1_RXMinValues.u8_IC1_EngCoolantFilterDiffPress, &mt_CAN1_RXMaxValues.u8_IC1_EngCoolantFilterDiffPress },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngDslPrtclateFilterIntakePress, &mt_CAN1_RXMinValues.u8_IC1_EngDslPrtclateFilterIntakePress, &mt_CAN1_RXMaxValues.u8_IC1_EngDslPrtclateFilterIntakePress },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_IC1_EngExhaustGasTemp, &mt_CAN1_RXMinValues.u16_IC1_EngExhaustGasTemp, &mt_CAN1_RXMaxValues.u16_IC1_EngExhaustGasTemp },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngIntakeManifold1Press, &mt_CAN1_RXMinValues.u8_IC1_EngIntakeManifold1Press, &mt_CAN1_RXMaxValues.u8_IC1_EngIntakeManifold1Press },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngIntakeManifold1Temp, &mt_CAN1_RXMinValues.u8_IC1_EngIntakeManifold1Temp, &mt_CAN1_RXMaxValues.u8_IC1_EngIntakeManifold1Temp },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiCameraReset, &mt_CAN1_RXMinValues.u8_DISP_CAN_Rec1_AgvHmiCameraReset, &mt_CAN1_RXMaxValues.u8_DISP_CAN_Rec1_AgvHmiCameraReset },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiChassisHighSpeed, &mt_CAN1_RXMinValues.u8_DISP_CAN_Rec1_AgvHmiChassisHighSpeed, &mt_CAN1_RXMaxValues.u8_DISP_CAN_Rec1_AgvHmiChassisHighSpeed },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiClearMachineFaults, &mt_CAN1_RXMinValues.u8_DISP_CAN_Rec1_AgvHmiClearMachineFaults, &mt_CAN1_RXMaxValues.u8_DISP_CAN_Rec1_AgvHmiClearMachineFaults },
@@ -461,18 +541,14 @@ static const T_osy_dpa_element_definition mat_DataPoolCAN1_RXElements[J1939_CAN1
    { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_DISP_CAN_Rec1_AgvHmiSuctionFanSpeedCmd, &mt_CAN1_RXMinValues.u16_DISP_CAN_Rec1_AgvHmiSuctionFanSpeedCmd, &mt_CAN1_RXMaxValues.u16_DISP_CAN_Rec1_AgvHmiSuctionFanSpeedCmd },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec2_AgvHmiFrontSweepSpeedCmd, &mt_CAN1_RXMinValues.u8_DISP_CAN_Rec2_AgvHmiFrontSweepSpeedCmd, &mt_CAN1_RXMaxValues.u8_DISP_CAN_Rec2_AgvHmiFrontSweepSpeedCmd },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec2_AgvHmiSetSpeedLimitMax, &mt_CAN1_RXMinValues.u8_DISP_CAN_Rec2_AgvHmiSetSpeedLimitMax, &mt_CAN1_RXMaxValues.u8_DISP_CAN_Rec2_AgvHmiSetSpeedLimitMax },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_01, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_01, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_01 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_02, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_02, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_02 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_03, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_03, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_03 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_04, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_04, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_04 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_05, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_05, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_05 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_06, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_06, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_06 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_07, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_07, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_07 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_08, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_08, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_08 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_09, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_09, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_09 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_10, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_10, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_10 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_11, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_11, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_11 },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_12, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_12, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_12 },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_01_Aux1, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_01_Aux1, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_01_Aux1 },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_02_Auger, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_02_Auger, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_02_Auger },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_03_SB_OP, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_03_SB_OP, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_03_SB_OP },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_04_Lights, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_04_Lights, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_04_Lights },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_05_PA, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_05_PA, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_05_PA },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_06_ManUL, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_06_ManUL, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_06_ManUL },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_07_SB_CL, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_07_SB_CL, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_07_SB_CL },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_08_SR, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_08_SR, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_08_SR },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_Mux, &mt_CAN1_RXMinValues.u8_CAN_Btn_Panel_Rec_Button_State_Mux, &mt_CAN1_RXMaxValues.u8_CAN_Btn_Panel_Rec_Button_State_Mux }
 };
 
@@ -497,7 +573,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "J1939",  ///< name of Datapool
    J1939_NUMBER_OF_LISTS,
-   0xeada768bU, ///< CRC of Datapool definition
+   0x101dbd83U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

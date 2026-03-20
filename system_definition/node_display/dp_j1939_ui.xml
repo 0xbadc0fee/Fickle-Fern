@@ -19,7 +19,15 @@
                 </data-elements>
             </list>
             <list>
-                <data-elements length="33">
+                <data-elements length="41">
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
                     <data-element auto_min_max_active="false" interpret_as_string="false"/>
                     <data-element auto_min_max_active="false" interpret_as_string="false"/>
                     <data-element auto_min_max_active="false" interpret_as_string="false"/>

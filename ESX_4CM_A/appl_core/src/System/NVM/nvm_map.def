@@ -12,3 +12,6 @@ NVM_FIELD(elevatorMaxSpeed, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configur
 
 /* Header Control Parameter */
 NVM_FIELD(hllEnable, CONFIGURATION_LIST_INDEX_HEADERCONFIG, gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable, gt_headerConfig.u8_joystick_hll_enable)
+
+/* Stickbox Control Parameter */
+NVM_FIELD(stickBoxInstalled, CONFIGURATION_LIST_INDEX_STICKBOXCONFIG, gt_Configuration_DataPoolValues.t_StickBoxConfigValues.u8_stick_box_installed, gt_stickBConfig.u8_stick_box_installed)

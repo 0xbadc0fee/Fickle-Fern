@@ -6,11 +6,11 @@
         <name>Checkpoints</name>
         <version major="0" minor="0" release="0"/>
         <comment>Datapool to store all checkpoints for dashboard viewing</comment>
-        <lists length="1">
+        <lists length="5">
             <list>
                 <name>ElevatorControl</name>
                 <comment/>
-                <data-elements length="2">
+                <data-elements length="3">
                     <data-element factor="1" offset="0" diag-event-call="false">
                         <name>checkpoint1</name>
                         <type base-type="uint8" is-array="false"/>
@@ -23,10 +23,118 @@
                     </data-element>
                     <data-element factor="1" offset="0" diag-event-call="false">
                         <name>checkpoint2</name>
+                        <type base-type="sint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-32768"/>
+                        <max-value value="32767"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>checkpoint3</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>CleaningChainsControls</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>checkpoint1</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>FrontSweepsControl</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>checkpoint1</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>RotaryTrap</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>checkpoint1</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>GeneralTesting</name>
+                <comment/>
+                <data-elements length="4">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>test1</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>test2</name>
+                        <type base-type="sint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-32768"/>
+                        <max-value value="32767"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>test3</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>test4</name>
+                        <type base-type="uint32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="4294967295"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>

@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_1484555524 mt_Variable;
+static T_osy_non_existing_type_3391711938 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CONFIGURATION_PROJECT_ID_1484555524
+CONFIGURATION_PROJECT_ID_3391711938
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -65,13 +65,25 @@ static const T_osy_dpa_data_set mat_ElevatorConfigDataSetTable[CONFIGURATION_ELE
 ///Minimum values
 static const T_Configuration_HeaderConfig_Values mt_HeaderConfigMinValues =
 {
-   0U    ///< joystick_hll_enable (Parameter to set the HLL functionality between footpedals and joystick)
+   0U    ///< joystick_hll_enable (Parameter description)
 };
 
 ///Maximum values
 static const T_Configuration_HeaderConfig_Values mt_HeaderConfigMaxValues =
 {
-   255U    ///< joystick_hll_enable (Parameter to set the HLL functionality between footpedals and joystick)
+   255U    ///< joystick_hll_enable (Parameter description)
+};
+
+///Minimum values
+static const T_Configuration_StickBoxConfig_Values mt_StickBoxConfigMinValues =
+{
+   0U    ///< stick_box_installed (Parameter description)
+};
+
+///Maximum values
+static const T_Configuration_StickBoxConfig_Values mt_StickBoxConfigMaxValues =
+{
+   255U    ///< stick_box_installed (Parameter description)
 };
 
 ///List definitions:
@@ -86,11 +98,17 @@ static const T_osy_dpa_element_definition mat_DataPoolHeaderConfigElements[CONFI
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable, &mt_HeaderConfigMinValues.u8_joystick_hll_enable, &mt_HeaderConfigMaxValues.u8_joystick_hll_enable }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolStickBoxConfigElements[CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_StickBoxConfigValues.u8_stick_box_installed, &mt_StickBoxConfigMinValues.u8_stick_box_installed, &mt_StickBoxConfigMaxValues.u8_stick_box_installed }
+};
+
 ///list of lists:
 static const T_osy_dpa_list_definition mat_DataPoolLists[CONFIGURATION_NUMBER_OF_LISTS] =
 {
    { CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Configuration_ElevatorConfig_Values), &mat_DataPoolElevatorConfigElements[0], &gt_Configuration_DataPoolValues.t_ElevatorConfigValues, &mat_ElevatorConfigDataSetTable[0] },
-   { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000064U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, NULL }
+   { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000064U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, NULL },
+   { CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000069U, sizeof(T_Configuration_StickBoxConfig_Values), &mat_DataPoolStickBoxConfigElements[0], &gt_Configuration_DataPoolValues.t_StickBoxConfigValues, NULL }
 };
 
 ///Datapool definition:
@@ -101,7 +119,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Configuration",  ///< name of Datapool
    CONFIGURATION_NUMBER_OF_LISTS,
-   0x29a32972U, ///< CRC of Datapool definition
+   0x7aa22d28U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    20000U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

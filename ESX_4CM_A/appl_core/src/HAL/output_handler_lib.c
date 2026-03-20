@@ -62,6 +62,8 @@ sint16 init_outputHandler(void)
     s16_error |= x_msw_set_state(X_MSW_02, X_ON);
     s16_error |= x_msw_set_state(X_MSW_03, X_ON);
 
+    //TODO_STW: Make the return errors distinguishable between diagnostic init error and hardware init error
+
     //Initialize Output Runner List
     // loop through all outputs and initialize
     for (uint8 i = 0; i < u8_numOutputs; i++)
@@ -158,6 +160,10 @@ sint16 update_outputHandler(void)
                     s16_error |= x_out_set_duty_cycle(at_vehicleOutputs[j].u16_hardwareID, (uint32) at_vehicleOutputs[j].f32_outputValue);
                     break;
 
+                case OT_CC:
+                    s16_error |= x_out_set_current_setpoint(at_vehicleOutputs[j].u16_hardwareID, (sint32) at_vehicleOutputs[j].f32_outputValue);
+                    break;
+
 
                 default:
                     break;
@@ -192,39 +198,43 @@ sint16 check_outputFaultStatus(uint8 u8_output)
 
     if (u32_hwOutputFault)
     {
+        at_vehicleOutputs[u8_output].t_fault.u8_fault_status = TRUE;
+
         // SHORT UB+ / OL
         if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_UB) == X_OUT_FAULT_SHORT_UB))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_UB].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[0].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_UB].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[0].u8_is_active = FALSE;
 
         // SHORT TO GND
         if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_GND) == X_OUT_FAULT_SHORT_GND))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_GND].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[1].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_GND].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[1].u8_is_active = FALSE;
 
         // OPEN LOAD
         if (((u32_hwOutputFault & X_OUT_FAULT_OPEN_LOAD) == X_OUT_FAULT_OPEN_LOAD))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[2].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[2].u8_is_active = FALSE;
 
         // OVERCURRENT
         if (((u32_hwOutputFault & X_OUT_FAULT_OVERCURRENT) == X_OUT_FAULT_OVERCURRENT))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OC].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[3].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OC].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[3].u8_is_active = FALSE;
 
         // PWM FAULT
         if (((u32_hwOutputFault & X_OUT_FAULT_DUTY_CYCLE_OOOB) == X_OUT_FAULT_DUTY_CYCLE_OOOB))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_DC_OOB].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[4].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_DC_OOB].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[4].u8_is_active = FALSE;
     }
 
     else if (s16_Error == C_NO_ERR && !u32_hwOutputFault)
     {
+        at_vehicleOutputs[u8_output].t_fault.u8_fault_status = FALSE;
+
         for (uint8 i = 0; i < MAX_NUM_FMI; i++)
             at_vehicleOutputs[u8_output].t_fault.t_fmi[i].u8_is_active = FALSE;
     }
@@ -354,21 +364,20 @@ sint16 add_hwOutput(T_VehicleOutput output)
  */
 sint16 findOutputByName(const char *targetName, uint8 *opu8_Index)
 {
-    sint16 s16_Error = C_RANGE;
 
     for (uint8 i = 0; i < u8_numOutputs; i++)
     {
         if (strcmp(at_vehicleOutputs[i].Name_Description, targetName) == 0)
         {
             *opu8_Index = i;  // Return index of matching item
-            s16_Error = C_NO_ERR;
+            return C_NO_ERR;
         }
     }
     *opu8_Index = 255;  // Not found
-    return s16_Error;
+    return C_RANGE;
 }
 
-/** \brief Clear all active output faults
+/** \brief Clear all active output faults and occurence counters
     Searches the output array for any output that has an active fault and sets
     it to FALSE
 
@@ -379,6 +388,7 @@ sint16 clear_outputFaults(void)
 {
     sint16 s16_error = C_NO_ERR;
 
+    //clear all active status'
     for (uint8 i = 0; i < u8_numOutputs; i++)
     {
         if (at_vehicleOutputs[i].u8_diagEnabled)

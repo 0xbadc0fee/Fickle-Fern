@@ -18,9 +18,14 @@
 #include "output_handler_lib.h"
 #include "input_handler_lib.h"
 #include "osy_com_j1939_dm1.h"
+#include "osy_com_j1939_dm2.h"
 #include "x_can.h"
+
+#include "nvm_handler_lib.h"
+
 //PROJECT
 
+#include "checkpoints_data_pool.h"
 
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
@@ -29,15 +34,12 @@
 void add_J1939dtc(T_FloryFault *_dtc);
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
+T_FaultNVM mat_nvmDtcs[445];
 
-static uint16 u16_num_input_dtcs = 0;
-static uint16 u16_num_output_dtcs = 0;
-static uint16 u16_num_logic_dtcs = 0;
 
+static uint16 u16_num_input_faults = 0;
+static uint16 u16_num_output_faults = 0;
 static uint16 u16_num_dtcs = 0;
-
-static uint8 u8_num_logic_alarms = 0;
-static T_FloryFault mat_logic_alarms[MAX_LOGIC_FAULTS];
 
 static uint8 u8_num_logic_faults = 0;
 static T_FloryFault mat_logic_faults[MAX_LOGIC_FAULTS];
@@ -79,7 +81,7 @@ sint16 init_alarmHandler(void)
         {
             //add fault to DTC runner list
             add_J1939dtc(&at_vehicleOutputs[i].t_fault);
-            u16_num_output_dtcs+=10;
+            u16_num_output_faults++;
         }
     }
 
@@ -91,15 +93,18 @@ sint16 init_alarmHandler(void)
         {
             //add fault to DTC runner list
             add_J1939dtc(&at_vehicleInputs[i].t_fault);
-            u16_num_input_dtcs+=10;
+            u16_num_input_faults++;
         }
     }
 
     //DTCs for Logic Faults
     for(uint8 i=0; i< u8_num_logic_faults; i++)
     {
-        add_J1939dtc(&mat_logic_faults[i]);
-        u16_num_logic_dtcs+=10;
+        if(mat_logic_faults[i].u8_dm1_enable)
+        {
+            //add fault to DTC runner list
+            add_J1939dtc(&mat_logic_faults[i]);
+        }
     }
 
     return s16_error;
@@ -121,56 +126,120 @@ sint16 init_alarmHandler(void)
 sint16 update_alarmHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
+    uint8 u8_alarmFound = FALSE;
 
     osy_com_j1939_dm1_lock_tx(X_CAN_BUS_01, 0);
 
     //Set Lamps
     osy_j1939_set_lamps(mt_dm1_lamps);
 
-    //set is active flags for outputs
-    for(uint16 k = 0; k<u8_num_outputs; k++)
+    for(uint16 faults = 0; faults < u16_num_dtcs; faults++)
     {
-        if(gat_DmDtcs[u16_num_dtcs].u32_Spn == at_vehicleOutputs[k].t_fault.u32_spn)
+
+        if(!u8_alarmFound)
         {
-            for(uint8 p=0; p<MAX_NUM_FMI; p++)
+            //set active flags for output alarms
+            for(uint16 k = 0; k<u8_num_outputs; k++)
             {
-                if(at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p].u8_IsActive = TRUE;
-                else if (!at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p].u8_IsActive = FALSE;
+                if(at_vehicleOutputs[k].t_fault.u8_dm1_enable)
+                {
+                    for(uint8 p=0; p<MAX_NUM_FMI; p++)
+                    {
+                        //check if current dtc being checked
+                        if(gat_DmDtcs[faults].u32_Spn == at_vehicleOutputs[k].t_fault.u32_spn &&
+                           gat_DmDtcs[faults].u8_Fmi  == at_vehicleOutputs[k].t_fault.t_fmi[p].u8_fmi_value &&
+                           at_vehicleOutputs[k].t_fault.t_fmi[p].u8_fmi_value != 0)
+                        {
+                            u8_alarmFound = TRUE;
+                            gat_DmDtcs[faults].u8_IsActive = (at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active) ? TRUE : FALSE;
+
+                            if(at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active && !at_vehicleOutputs[k].t_fault.t_fmi[p].u8_prev_active)
+                            {
+                                if (gat_DmDtcs[faults].u8_OccurrenceCounter < 126)
+                                {
+                                    gat_DmDtcs[faults].u8_OccurrenceCounter++;
+                                    fault_nvm_write(&mat_nvmDtcs[faults], gat_DmDtcs[faults].u8_OccurrenceCounter);
+                                }
+
+                            }
+                            at_vehicleOutputs[k].t_fault.t_fmi[p].u8_prev_active = at_vehicleOutputs[k].t_fault.t_fmi[p].u8_is_active;
+
+                        }
+                    }
+                }
             }
         }
+
+        if(!u8_alarmFound)
+        {
+            //set active flags for output alarms
+            for(uint16 k = 0; k<u8_num_outputs; k++)
+            {
+                if(at_vehicleInputs[k].t_fault.u8_dm1_enable)
+                {
+                    for(uint8 p=0; p<MAX_NUM_FMI; p++)
+                    {
+                        //check if current dtc being checked
+                        if(gat_DmDtcs[faults].u32_Spn == at_vehicleInputs[k].t_fault.u32_spn &&
+                           gat_DmDtcs[faults].u8_Fmi  == at_vehicleInputs[k].t_fault.t_fmi[p].u8_fmi_value &&
+                           at_vehicleInputs[k].t_fault.t_fmi[p].u8_fmi_value != 0)
+                        {
+                            u8_alarmFound = TRUE;
+                            gat_DmDtcs[faults].u8_IsActive = (at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active) ? TRUE : FALSE;
+
+                            if(at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active && !at_vehicleInputs[k].t_fault.t_fmi[p].u8_prev_active)
+                            {
+                                if (gat_DmDtcs[faults].u8_OccurrenceCounter < 126)
+                                {
+                                    gat_DmDtcs[faults].u8_OccurrenceCounter++;
+                                    fault_nvm_write(&mat_nvmDtcs[faults], gat_DmDtcs[faults].u8_OccurrenceCounter);
+                                }
+
+                            }
+                            at_vehicleInputs[k].t_fault.t_fmi[p].u8_prev_active = at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        if(!u8_alarmFound)
+        {
+            //set active flags for logic alarms
+            for(uint16 k = 0; k<u8_num_logic_faults; k++)
+            {
+                for(uint8 p=0; p<MAX_NUM_FMI; p++)
+                {
+                    //check if current dtc being checked
+                    if(gat_DmDtcs[faults].u32_Spn == mat_logic_faults[k].u32_spn &&
+                       gat_DmDtcs[faults].u8_Fmi  == mat_logic_faults[k].t_fmi[p].u8_fmi_value &&
+                       mat_logic_faults[k].t_fmi[p].u8_fmi_value != 0)
+                    {
+                        u8_alarmFound = TRUE;
+                        gat_DmDtcs[faults].u8_IsActive = (mat_logic_faults[k].t_fmi[p].u8_is_active) ? TRUE : FALSE;
+
+                        if(mat_logic_faults[k].t_fmi[p].u8_is_active && !mat_logic_faults[k].t_fmi[p].u8_prev_active)
+                        {
+                            if (gat_DmDtcs[faults].u8_OccurrenceCounter < 126)
+                            {
+                                gat_DmDtcs[faults].u8_OccurrenceCounter++;
+                                fault_nvm_write(&mat_nvmDtcs[faults], gat_DmDtcs[faults].u8_OccurrenceCounter);
+                            }
+
+                        }
+                        mat_logic_faults[k].t_fmi[p].u8_prev_active = mat_logic_faults[k].t_fmi[p].u8_is_active;
+
+                    }
+                }
+            }
+        }
+
+        //reset alarm found flag
+        u8_alarmFound = FALSE;
     }
 
-    //set is active flags for inputs
-    for(uint16 k = 0; k<u8_num_inputs; k++)
-    {
-        if(gat_DmDtcs[u16_num_dtcs].u32_Spn == at_vehicleInputs[k].t_fault.u32_spn)
-        {
-            for(uint8 p=0; p<MAX_NUM_FMI; p++)
-            {
-                if(at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs].u8_IsActive = TRUE;
-                else if (!at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs].u8_IsActive = FALSE;
-            }
-        }
-    }
 
-    //set active flags for logic alarms
-    for(uint8 k = 0; k<u8_num_logic_alarms; k++)
-    {
-        if(gat_DmDtcs[u16_num_dtcs].u32_Spn == mat_logic_alarms[k].u32_spn)
-        {
-            for(uint8 p=0; p<MAX_NUM_FMI; p++)
-            {
-                if(mat_logic_alarms[k].t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs+u16_num_input_dtcs].u8_IsActive = TRUE;
-                else if (!at_vehicleInputs[k].t_fault.t_fmi[p].u8_is_active)
-                    gat_DmDtcs[(k*MAX_NUM_FMI)+p+u16_num_output_dtcs+u16_num_input_dtcs].u8_IsActive = FALSE;
-            }
-        }
-    }
 
     osy_com_j1939_dm1_unlock_tx(X_CAN_BUS_01, 0);
 
@@ -189,31 +258,25 @@ sint16 update_alarmHandler(void)
 */
 void add_J1939dtc(T_FloryFault *_dtc)
 {
+
     for(uint8 i=0; i<MAX_NUM_FMI; i++)
     {
-        gat_DmDtcs[u16_num_dtcs].u32_Spn = _dtc->u32_spn;
-        gat_DmDtcs[u16_num_dtcs].u8_Fmi  = _dtc->t_fmi[i].u8_fmi_value;
-        gat_DmDtcs[u16_num_dtcs].u8_IsActive = _dtc->t_fmi[i].u8_is_active;
-        gat_DmDtcs[u16_num_dtcs].u8_OccurrenceCounter = 0;
-        gat_DmDtcs[u16_num_dtcs].u8_SpnConvMode = 0;
-        u16_num_dtcs++;
+        if(_dtc->t_fmi[i].u8_fmi_value != 0)
+        {
+            fault_nvm_init(&mat_nvmDtcs[u16_num_dtcs], _dtc->u32_spn, _dtc->t_fmi[i].u8_fmi_value, 0);
+
+            gat_DmDtcs[u16_num_dtcs].u32_Spn = _dtc->u32_spn;
+            gat_DmDtcs[u16_num_dtcs].u8_Fmi  = _dtc->t_fmi[i].u8_fmi_value;
+            gat_DmDtcs[u16_num_dtcs].u8_IsActive = _dtc->t_fmi[i].u8_is_active;
+            gat_DmDtcs[u16_num_dtcs].u8_SpnConvMode = 0;
+
+            gat_DmDtcs[u16_num_dtcs].u8_OccurrenceCounter = mat_nvmDtcs[u16_num_dtcs].u8_occurenceCount;
+
+            u16_num_dtcs++;
+        }
     }
 }
 
-
-/*!
-   \brief  Add Logic Fault to List of Logic Alarm
-
-   Add a fault to the DM1 runner list.
-
-   \param[in] _dtc Fault to add to alarm list
-
-*/
-void add_dm1LogicAlarm(T_FloryFault *_dtc)
-{
-    memcpy(&mat_logic_alarms[u8_num_logic_alarms], &_dtc, sizeof(mat_logic_alarms[u8_num_logic_alarms]));
-    u8_num_logic_alarms++;
-}
 
 /*!
    \brief  Add Logic Fault to List of Logic Faults
@@ -223,7 +286,8 @@ void add_dm1LogicAlarm(T_FloryFault *_dtc)
 */
 void add_logicFault(T_FloryFault *_dtc)
 {
-    memcpy(&mat_logic_faults[u8_num_logic_faults], &_dtc, sizeof(mat_logic_alarms[u8_num_logic_faults]));
+
+    mat_logic_faults[u8_num_logic_faults] = *_dtc;
     u8_num_logic_faults++;
 }
 
@@ -293,6 +357,23 @@ sint16 clear_dm1Lamps(void)
     return s16_error;
 }
 
+/*!
+   \brief  Set all J1939 Occurence Counts to 0
+
+*/
+sint16 clear_dm1OccurCounts(void)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    //loop through all DTCs and set NVM and RAM Occurence Counters to 0
+    for(uint16 faults = 0; faults < u16_num_dtcs; faults++)
+    {
+        gat_DmDtcs[faults].u8_OccurrenceCounter = 0;
+        fault_nvm_write(&mat_nvmDtcs[faults], 0);
+    }
+
+    return s16_error;
+}
 
 /*!
    \brief  Set the Fault/Alarm status of a Logic Fault
@@ -332,19 +413,6 @@ sint16 set_logicFaultStatus(uint32 u32_spn, uint16 u16_fmi, uint8 u8_state)
         }
     }
 
-    //Update the alarm list
-    for(uint8 i = 0;i<u8_num_logic_alarms; i++)
-    {
-        if(u32_spn == mat_logic_alarms[i].u32_spn)
-        {
-            for(uint8 k = 0; k<MAX_NUM_FMI; k++)
-            {
-                if(u16_fmi == mat_logic_alarms[i].t_fmi[k].u8_fmi_value)
-                    mat_logic_alarms[i].t_fmi[k].u8_is_active = u8_state;
-            }
-        }
-    }
-
     //return the correct return code
     if(!u8_spn_found)
         s16_error = C_RANGE;
@@ -373,15 +441,9 @@ sint16 clear_logicFaults(void)
         }
     }
 
-    //Update the alarm list
-    for(uint8 i = 0;i<u8_num_logic_alarms; i++)
-    {
-        for(uint8 k = 0; k<MAX_NUM_FMI; k++)
-        {
-            mat_logic_alarms[i].t_fmi[k].u8_is_active = FALSE;
-        }
-    }
-
     return s16_error;
 }
+
+
+
 //EOF

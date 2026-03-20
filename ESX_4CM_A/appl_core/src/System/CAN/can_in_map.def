@@ -7,5 +7,31 @@
 */
 
 /* Elevator Control CAN Parameters */
-DP2CNTRL(elevatorSpeed, gt_ui.t_display.u8_elevatorSpeedRequest, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiElevatorSpeedCmd)
-DP2CNTRL(elevatorOnOff, gt_ui.t_joystick.u8_b1_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button1PressedStatus)
+DP2CNTRL(elevatorSpeed, 	gt_ui.t_display.u8_elevatorSpeedRequest, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiElevatorSpeedCmd)
+DP2CNTRL(elevatorOnOff,     gt_ui.t_joystick.u8_b1_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button1PressedStatus)
+
+/* Header Control CAN Parameters */
+DP2CNTRL(headerLift, 		 gt_ui.t_joystick.u8_b5_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button5PressedStatus)
+DP2CNTRL(headerLower, 		 gt_ui.t_joystick.u8_b6_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button6PressedStatus)
+
+/* Auger Cart Control CAN Parameters */
+DP2CNTRL(augerOnOff,  		 gt_ui.t_buttonPanel.u8_b2_state, 		 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_02_Auger)
+DP2CNTRL(manualOnOff, 		 gt_ui.t_buttonPanel.u8_b6_state, 		 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_06_ManUL)
+
+/* Light Control CAN Parameters */
+DP2CNTRL(lightState, 		 gt_ui.t_buttonPanel.u8_b4_state,        gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_04_Lights)
+
+/*Cleaning Chains Control CAN Parameters */
+DP2CNTRL(shaftDriveOnOff, 	 gt_ui.t_joystick.u8_b2_state, 	     	 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button2PressedStatus)
+
+/*Front Sweeps Control CAN Parameters */
+DP2CNTRL(frontSweepsEnable,  gt_ui.t_display.u8_drum_speed_enable, 	 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiFrontSweepsEnable)
+DP2CNTRL(frontSweepsRequest, gt_ui.t_display.u8_drum_speed_request,  gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec2_AgvHmiFrontSweepSpeedCmd)
+
+/*Rotary Trap Control CAN Parameters */
+DP2CNTRL(rotaryTrapRange, 	 gt_ui.t_display.u8_trap_speed_range, 	 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiRotaryTrapSpeedCmd)
+DP2CNTRL(rotaryTrapIncrease, gt_ui.t_joystick.u8_b3_state, 	         gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button3PressedStatus)
+
+/* Stick Box */
+DP2CNTRL(stickOpen,			 gt_ui.t_buttonPanel.u8_b3_state, 		 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_03_SB_OP)
+DP2CNTRL(stickClose, 		 gt_ui.t_buttonPanel.u8_b7_state, 		 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_07_SB_CL)
