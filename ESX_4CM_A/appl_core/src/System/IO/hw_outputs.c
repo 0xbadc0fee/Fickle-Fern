@@ -611,9 +611,9 @@ T_VehicleOutput tvo_shaft_pump =
     .u16_dti = 0,
 };
 
-T_VehicleOutput tvo_stickbox_close =
+T_VehicleOutput tvo_stickbox_on =
 {
-    .Name_Description = "STICKBOX_CLOSE",
+    .Name_Description = "STICKBOX_ON",
     .u16_hardwareID = X_OUT_OPHSP2A_3,
     .e_outputType = OT_DIGITAL,
 
@@ -636,9 +636,9 @@ T_VehicleOutput tvo_stickbox_close =
     .u16_dti = 0,
 };
 
-T_VehicleOutput tvo_stickbox_on=
+T_VehicleOutput tvo_stickbox_open=
 {
-    .Name_Description = "STICKBOX_ON",
+    .Name_Description = "STICKBOX_OPEN",
     .u16_hardwareID = X_OUT_OPHSP2A_2,
     .e_outputType = OT_DIGITAL,
 
@@ -747,7 +747,7 @@ sint16 init_hwOutputs(void)
     s16_return |= add_hwOutput(tvo_propel_rev);
     s16_return |= add_hwOutput(tvo_rotary_trap);
     s16_return |= add_hwOutput(tvo_shaft_pump);
-    s16_return |= add_hwOutput(tvo_stickbox_close);
+    s16_return |= add_hwOutput(tvo_stickbox_open);
     s16_return |= add_hwOutput(tvo_stickbox_on);
     s16_return |= add_hwOutput(tvo_stick_remover);
     s16_return |= add_hwOutput(tvo_fan_hydro_fwd);

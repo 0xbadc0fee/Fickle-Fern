@@ -14,14 +14,29 @@
             <file-name>CANlog</file-name>
         </logging>
     </settings>
-    <messages cyclic-active="true" length="2">
+    <messages cyclic-active="true" length="5">
         <message has-valid-hash="false" hash="0" ID="417990137" DLC="3" XTD="true" RTR="false" DB1="203" DB2="254" DB3="0" DB4="255" DB5="255" DB6="255" DB7="255" DB8="255" do-cyclic-trigger="false" interval="2000" key-press-offset="0" auto-protocol-support="false">
             <name>REQUEST_DM2</name>
             <key/>
             <database/>
         </message>
-        <message has-valid-hash="true" hash="204985597" ID="217962238" DLC="8" XTD="true" RTR="false" DB1="0" DB2="0" DB3="0" DB4="0" DB5="0" DB6="0" DB7="16" DB8="0" do-cyclic-trigger="true" interval="100" key-press-offset="0" auto-protocol-support="false">
+        <message has-valid-hash="true" hash="204985597" ID="217962238" DLC="8" XTD="true" RTR="false" DB1="0" DB2="0" DB3="0" DB4="0" DB5="16" DB6="0" DB7="0" DB8="0" do-cyclic-trigger="true" interval="100" key-press-offset="0" auto-protocol-support="false">
             <name>BJM1</name>
+            <key/>
+            <database>C:/Users/kyle.boch/Documents/development/Flory/live/FLORY_8772-Controller/doc/CAN_DBC_8772.dbc</database>
+        </message>
+        <message has-valid-hash="true" hash="1904562441" ID="419365405" DLC="8" XTD="true" RTR="false" DB1="64" DB2="0" DB3="0" DB4="0" DB5="0" DB6="0" DB7="0" DB8="0" do-cyclic-trigger="true" interval="50" key-press-offset="0" auto-protocol-support="false">
+            <name>DISP_CAN_Rec1</name>
+            <key/>
+            <database>C:/Users/kyle.boch/Documents/development/Flory/live/FLORY_8772-Controller/doc/CAN_DBC_8772.dbc</database>
+        </message>
+        <message has-valid-hash="true" hash="3173764361" ID="419365917" DLC="8" XTD="true" RTR="false" DB1="0" DB2="0" DB3="0" DB4="0" DB5="0" DB6="0" DB7="0" DB8="50" do-cyclic-trigger="true" interval="50" key-press-offset="0" auto-protocol-support="false">
+            <name>DISP_CAN_Rec2</name>
+            <key/>
+            <database>C:/Users/kyle.boch/Documents/development/Flory/live/FLORY_8772-Controller/doc/CAN_DBC_8772.dbc</database>
+        </message>
+        <message has-valid-hash="true" hash="3698694663" ID="419406241" DLC="8" XTD="true" RTR="false" DB1="32" DB2="0" DB3="0" DB4="0" DB5="0" DB6="0" DB7="0" DB8="0" do-cyclic-trigger="true" interval="10" key-press-offset="0" auto-protocol-support="false">
+            <name>CAN_Btn_Panel_Rec</name>
             <key/>
             <database>C:/Users/kyle.boch/Documents/development/Flory/live/FLORY_8772-Controller/doc/CAN_DBC_8772.dbc</database>
         </message>

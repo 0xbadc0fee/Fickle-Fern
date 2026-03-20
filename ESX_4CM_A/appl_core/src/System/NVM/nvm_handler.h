@@ -22,12 +22,14 @@
 
 #include "elevator_control.h"
 #include "header_lift_control.h"
+#include "stick_box_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 extern T_Config_Elevator gt_elevatorConfig;
 extern T_Config_HeaderControl gt_headerConfig;
+extern T_Config_StickBoxControl gt_stickBConfig; //!<Structure that holds the Stick Box config.
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void);
