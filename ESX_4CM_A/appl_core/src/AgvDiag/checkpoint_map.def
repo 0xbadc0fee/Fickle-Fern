@@ -19,3 +19,14 @@ CNTRL2DP(fsweepsCP2, gt_frontSweepsCheckpoints.u8_checkpoint1, 	 gt_Checkpoints_
 
 /* Rotary Trap Control checkpoints */
 CNTRL2DP(rtrapCP2, gt_rotaryTrapCheckpoints.u8_checkpoint1, 	 gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.u8_checkpoint1)
+
+/* Suction Fan Control checkpoints */
+CNTRL2DP(sFanCP, gt_suctionFanCheckpoints.u8_suctionFanOn, 	 gt_Checkpoints_DataPoolValues.t_SuctionFanControlValues.u8_suctionFanOn)
+CNTRL2DP(sFanPWMCP, gt_suctionFanCheckpoints.u16_pwmStatus, 	 gt_Checkpoints_DataPoolValues.t_SuctionFanControlValues.u16_pwmStatus)
+
+/* Engine Starter Control checkpoints */
+CNTRL2DP(engOffCP, gt_engineStarterCheckpoints.u8_eng_off, 	 gt_Checkpoints_DataPoolValues.t_EngineStarterControlValues.u8_eng_off)
+CNTRL2DP(startKeyCP, gt_engineStarterCheckpoints.u8_start_key, 	 gt_Checkpoints_DataPoolValues.t_EngineStarterControlValues.u8_start_key)
+CNTRL2DP(suctionFanCP, gt_engineStarterCheckpoints.u8_start_suction_fan_off, 	 gt_Checkpoints_DataPoolValues.t_EngineStarterControlValues.u8_start_suction_fan_off)
+CNTRL2DP(shaftDriveCP, gt_engineStarterCheckpoints.u8_start_shaft_drive_off, 	 gt_Checkpoints_DataPoolValues.t_EngineStarterControlValues.u8_start_shaft_drive_off)
+CNTRL2DP(startNeutralCP, gt_engineStarterCheckpoints.u8_start_neutral, 	 gt_Checkpoints_DataPoolValues.t_EngineStarterControlValues.u8_start_neutral)

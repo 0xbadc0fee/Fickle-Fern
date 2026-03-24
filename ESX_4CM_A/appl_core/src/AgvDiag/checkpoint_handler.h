@@ -16,6 +16,8 @@
 #include "cleaning_chains_control.h"
 #include "front_sweeps_control.h"
 #include "rotary_trap_control.h"
+#include "engine_starter_control.h"
+#include "suction_fan_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -27,6 +29,8 @@ extern T_ChkPoints_Header  gt_headerCheckpoints;
 extern T_ChkPoints_CChains gt_cleaningShaftCheckpoints;
 extern T_ChkPoints_FSweeps gt_frontSweepsCheckpoints;
 extern T_ChkPoints_RTrap   gt_rotaryTrapCheckpoints;
+extern T_ChkPoints_EngineStarter gt_engineStarterCheckpoints;
+extern T_ChkPoints_SFan gt_suctionFanCheckpoints;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 update_checkpointHandler(void);

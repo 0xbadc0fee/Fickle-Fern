@@ -48,7 +48,6 @@ typedef struct
 
 }T_ChkPoints_FSweeps;
 
-
 typedef struct
 {
         //Local Control Variables

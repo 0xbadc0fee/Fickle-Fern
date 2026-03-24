@@ -37,6 +37,8 @@
 #include "front_sweeps_control.h"
 #include "rotary_trap_control.h"
 #include "stick_box_control.h"
+#include "engine_starter_control.h"
+#include "suction_fan_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -108,6 +110,8 @@ int main(void)
         s16_Error += init_frontSweepsControl(&gt_ui, &gt_frontSweepsCheckpoints);
         s16_Error += init_rotaryTrapControl(&gt_ui, &gt_rotaryTrapCheckpoints);
         s16_Error += init_stickBControl(&gt_ui, &gt_stickBConfig);
+        s16_Error += init_suctionFanControl(&gt_ui, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
+        s16_Error += init_engineStarterControl(&gt_ui, &gt_engineStarterCheckpoints);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -130,9 +134,6 @@ int main(void)
         update_hwInputs();
         update_canInputs();
 
-        //Run AgvChassis Controls
-        update_lightControl();
-
         //Run AgvWork Controls
         update_elevatorControl();
         update_headerControl();
@@ -142,6 +143,11 @@ int main(void)
         update_frontSweepsControl();
         update_rotaryTrapControl();
         update_stickBControl();
+        update_suctionFanControl();
+
+        //Run AgvChassis Controls
+        update_lightControl();
+        update_engineStarterControl();
 
         //Outputs
         update_faultHandler();

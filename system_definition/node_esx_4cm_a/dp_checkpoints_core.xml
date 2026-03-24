@@ -6,7 +6,7 @@
         <name>Checkpoints</name>
         <version major="0" minor="0" release="0"/>
         <comment>Datapool to store all checkpoints for dashboard viewing</comment>
-        <lists length="5">
+        <lists length="7">
             <list>
                 <name>ElevatorControl</name>
                 <comment/>
@@ -96,6 +96,63 @@
                 <data-sets/>
             </list>
             <list>
+                <name>EngineStarterControl</name>
+                <comment/>
+                <data-elements length="5">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>eng_off</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>start_key</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>start_suction_fan_off</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>start_shaft_drive_off</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>start_neutral</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
                 <name>GeneralTesting</name>
                 <comment/>
                 <data-elements length="4">
@@ -135,6 +192,33 @@
                         <comment>Variable description</comment>
                         <min-value value="0"/>
                         <max-value value="4294967295"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>SuctionFanControl</name>
+                <comment/>
+                <data-elements length="2">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>suctionFanOn</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>pwmStatus</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>

@@ -28,6 +28,7 @@ typedef struct
    uint8 u8_drum_speed_request;       //!<Requested Speed of Front Sweeps
    uint8 u8_drum_speed_enable;       //!<Requested Front Sweeps enabled
    uint8 u8_trap_speed_range; //!<Requested Rotary Trap Speed Range
+   uint16 u16_suction_fan_speed_req_spd; //!<Requested Suction Fan Speed Request
 
    //TX Variables
    uint8 u8_controllerVersionMinor;     //!<Controller Software Version - Minor
@@ -41,6 +42,11 @@ typedef struct
    uint8 u8_headlights_status; //!<Head Light Status
    uint8 u8_worklights_status; //!<Work Light Status
    uint8 u8_shaft_drive_status;         //!<Cleaning Chains Shaft Drive Status
+
+   uint8 u8_suction_fan_enable_status;//!<Suction Fan Enable Status
+   uint16 u16_suction_fan_speed_status_rpm; //!<Suction Fan Speed Status
+
+   uint8 u8_neutral_safe_status; //!<Joystick Neutral Safe Status
 
 }T_8772_Display;
 
