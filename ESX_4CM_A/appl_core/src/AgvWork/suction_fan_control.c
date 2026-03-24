@@ -91,7 +91,7 @@ sint16 init_suctionFanControl(T_UserInterface *_ui, T_Config_SFan *_nvmSuctionFa
     else
     {
         // FR-5.8 Apply ramping using configured increase/decrease times and bounds
-        f32_min_ramp_limit = mt_suction_fan.pt_nvm->f32_fan_inc_time;
+        f32_max_ramp_limit = mt_suction_fan.pt_nvm->f32_fan_inc_time;
         f32_min_ramp_limit = mt_suction_fan.pt_nvm->f32_fan_dec_time;
     }
     s16_error += rampInit(&mt_suction_fan.t_speed_ramp,
