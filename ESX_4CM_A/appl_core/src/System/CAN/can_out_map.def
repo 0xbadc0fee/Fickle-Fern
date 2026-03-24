@@ -24,9 +24,16 @@ CNTRL2DP(button6LED, 	   gt_ui.t_buttonPanel.u8_b6_lights, 	  	gt_J1939_DataPool
 CNTRL2DP(lightStatus,      gt_ui.t_buttonPanel.u8_b4_lights,	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_04_Lights)
 CNTRL2DP(headLightStatus,  gt_ui.t_display.u8_headlights_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHeadLtsOn)
 CNTRL2DP(workLightStatus,  gt_ui.t_display.u8_worklights_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisWorkLtsOn)
+
 /* Cleaning Chains Outputs */
 CNTRL2DP(shaftDriveStatus, gt_ui.t_display.u8_shaft_drive_status, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkShaftDrvsOn)
 
 /*Stick Box */
 CNTRL2DP(button3LED, 	   gt_ui.t_buttonPanel.u8_b3_lights, 	 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP)
 CNTRL2DP(button7LED, 	   gt_ui.t_buttonPanel.u8_b7_lights, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL)
+
+/*Suction Fan */
+
+
+/* Engine Starter */
+CNTRL2DP(neutralState, 	   gt_ui.t_display.u8_neutral_safe_status, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisNeutralState)

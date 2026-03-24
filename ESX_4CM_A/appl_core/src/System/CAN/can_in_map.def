@@ -35,3 +35,9 @@ DP2CNTRL(rotaryTrapIncrease, gt_ui.t_joystick.u8_b3_state, 	         gt_J1939_Da
 /* Stick Box */
 DP2CNTRL(stickOpen,			 gt_ui.t_buttonPanel.u8_b3_state, 		 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_03_SB_OP)
 DP2CNTRL(stickClose, 		 gt_ui.t_buttonPanel.u8_b7_state, 		 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_07_SB_CL)
+
+/*Suction Fan */
+DP2CNTRL(suctionFanOnOff, 		 gt_ui.t_joystick.u8_b4_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button4PressedStatus)
+DP2CNTRL(suctionFanSpeedReq,     gt_ui.t_display.u16_suction_fan_speed_req_spd,  gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_DISP_CAN_Rec1_AgvHmiSuctionFanSpeedCmd)
+ 
+/*Engine */

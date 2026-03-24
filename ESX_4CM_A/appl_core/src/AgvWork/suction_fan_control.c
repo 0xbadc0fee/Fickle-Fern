@@ -53,10 +53,11 @@ sint16 init_suctionFanControl(T_UserInterface *_ui, T_Config_SFan *_nvmSuctionFa
     {
         return C_WARN;
     }
-
+    //populate local copy of RX ui elements
     mt_suction_fan.pu8_enable_cmd      = &_ui->t_joystick.u8_b4_state;
     mt_suction_fan.pu16_speed_req_rpm  = &_ui->t_display.u16_suction_fan_speed_req_spd;
 
+    //populate local copy of TX ui elements
     mt_suction_fan.pu8_enable_status     = &_ui->t_display.u8_suction_fan_enable_status;
     mt_suction_fan.pu16_speed_status_rpm = &_ui->t_display.u16_suction_fan_speed_status_rpm;
 
