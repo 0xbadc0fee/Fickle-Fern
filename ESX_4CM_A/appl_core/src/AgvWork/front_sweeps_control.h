@@ -64,7 +64,10 @@ typedef struct
 
 } T_FrontSweepsControl;
 
-/* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
+/* -- Global Variables ---------------------------------------------------------------------------------------------- */
+
+
+/* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_frontSweepsControl(T_UserInterface *_ui, T_ChkPoints_FSweeps *_chkFrontSweeps);
 sint16 update_frontSweepsControl(void);
 

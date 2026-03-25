@@ -39,6 +39,7 @@
 #include "stick_box_control.h"
 #include "engine_starter_control.h"
 #include "suction_fan_control.h"
+#include "throttle_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -112,6 +113,7 @@ int main(void)
         s16_Error += init_stickBControl(&gt_ui, &gt_stickBConfig);
         s16_Error += init_suctionFanControl(&gt_ui, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
         s16_Error += init_engineStarterControl(&gt_ui, &gt_engineStarterCheckpoints);
+        s16_Error += init_throttleControl(&gt_ui);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -148,6 +150,7 @@ int main(void)
         //Run AgvChassis Controls
         update_lightControl();
         update_engineStarterControl();
+        update_throttleControl();
 
         //Outputs
         update_faultHandler();

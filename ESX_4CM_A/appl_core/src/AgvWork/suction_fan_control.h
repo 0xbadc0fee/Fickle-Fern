@@ -12,23 +12,19 @@
 
 #ifndef APPL_CORE_SRC_AGVWORK_SUCTION_FAN_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_SUCTION_FAN_CONTROL_H_
-//-----------------------------------------------------------------------------
-// Includes
-//-----------------------------------------------------------------------------
+/* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "x_stdtypes.h"
 #include "toggle_button.h"
 #include "moving_avg_filter.h"
 #include "pid_output.h"
 #include "ramp_calc.h"
 
-//-----------------------------------------------------------------------------
-// Defines
-//-----------------------------------------------------------------------------
+/* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define DOOR_OPEN (1u)
 #define DOOR_CLOSED (0u)
 
-#define IGN_ON (1u)
-#define IGN_OFF (0u)
+#define ENG_ON (1u)
+#define ENG_OFF (0u)
 
 #define SUCTION_FAN_ENABLED              (1u)
 #define SUCTION_FAN_DISABLED             (0u)
@@ -39,14 +35,11 @@
 #define SUCTION_FAN_FILTER_BUF_LEN       (10u)
 
 #define SUCTION_FAN_PWM_MIN              (0.0F)
-#define SUCTION_FAN_PWM_MAX              (100005.0F)
+#define SUCTION_FAN_PWM_MAX              (1500.0F)
 
-#define SUCTION_FAN_RAMP_RATE    (25.0F)
+#define SUCTION_FAN_RAMP_RATE    (6000.0F)
 
-//-----------------------------------------------------------------------------
-// Types
-//-----------------------------------------------------------------------------
-
+/* -- Types -------------------------------------------------------------------------------------------------------- */
 /** \brief Checkpoints Structure - Suction Fan Control
  *
  * This structure represents all checkpoints that are relevant
@@ -82,14 +75,14 @@ typedef struct
 
     //Local Control Variables
     uint8   u8_enable_latched;//!<Button Latched
-    uint8   u8_prev_ign_on;//!<Previious IGN On status
-    uint32  u32_ign_start_time_ms;//!<IGN Start time ms
+    uint8   u8_prev_engine_on;//!<Previous Engine On/Off status
+    uint32  u32_eng_start_time_ms;//!<Engine Start time ms
     float32 af32_speed_buf[SUCTION_FAN_FILTER_BUF_LEN];//!<Speed average filter buffer
 
     // Control Blocks
     T_ToggleBtn        t_btn_enable;//!<Button enabled struct
     T_MoveAvgFilter    t_speed_filter;//!<Speed average filter struct
-    T_RampState             t_speed_ramp;//!<Ramp struct
+    T_RampState        t_speed_ramp;//!<Ramp struct
 
     //Control Checkpoints
     T_ChkPoints_SFan *pt_cp_sfan; //!<Suction Fan Control Checkpoints Structure
@@ -102,9 +95,10 @@ typedef struct
 
 } T_SuctionFanControl;
 
-//-----------------------------------------------------------------------------
-// Function Prototypes
-//-----------------------------------------------------------------------------
+/* -- Global Variables ---------------------------------------------------------------------------------------------- */
+
+
+/* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_suctionFanControl(T_UserInterface *_ui, T_Config_SFan *_nvmSuctionFan, T_ChkPoints_SFan *_chkSuctionFan);
 sint16 update_suctionFanControl(void);
 void getSuctionFanStatus(uint8 *pu8_sfan_status);

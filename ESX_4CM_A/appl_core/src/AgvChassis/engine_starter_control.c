@@ -47,7 +47,7 @@ sint16 init_engineStarterControl(T_UserInterface *_ui,T_ChkPoints_EngineStarter 
     }
 
     //populate local copy of RX ui elements
-    mt_engine_starter.pu8_engine_running_status = &_ui->t_engine->u8_engineStatus;
+    mt_engine_starter.pu8_engine_speed = &_ui->t_engine.u8_engineSpeed;
 
     //populate local copy of TX ui elements
     mt_engine_starter.pu8_neutral_safe_status = &_ui->t_display.u8_neutral_safe_status;
@@ -73,13 +73,16 @@ sint16 update_engineStarterControl(void)
     float32 f32_ign_value = 0.0F;
 
     uint8 u8_start_req = FALSE;
-    uint8 u8_engine_off = FALSE;
+    uint8 u8_engine_off = ENGINE_OFF;
     uint8 u8_joystick_neutral = FALSE;
     uint8 u8_suction_fan_enabled = FALSE;
     uint8 u8_shaft_drive_enabled = FALSE;
 
     uint8 u8_neutral_safe = NEUTRAL_SAFE_FALSE;
+
     uint8 u8_engine_start_cmd = ENGINE_START_CMD_OFF;
+
+
 
     // FR-12.1 Read ignition start hardware input
     s16_error += get_inputFaultStatus("IGNITION_START", &u8_ign_fault_status);
@@ -97,17 +100,7 @@ sint16 update_engineStarterControl(void)
     }
 
     // FR-12.1 Read additional inputs from internal control modules
-    if(mt_engine_starter.pu8_engine_running_status != NULL)
-    {
-        u8_engine_off =
-        (*(mt_engine_starter.pu8_engine_running_status) == FALSE) ? TRUE : FALSE;
-    }
-    else
-    {
-        u8_engine_off = FALSE;
-    }
-
-    // FR-12.2 Read Internal Inputs
+    getEngineOffStatus(&u8_engine_off);
     //get_joystickNeutralStatus(&u8_joystick_neutral); //TODO_STW add getter propulsion neutral
     getSuctionFanStatus(&u8_suction_fan_enabled);
     getShaftDriveStatus(&u8_shaft_drive_enabled);
@@ -160,4 +153,46 @@ sint16 update_engineStarterControl(void)
     return s16_error;
 }
 
+/** \brief Get AgChassis - Engine Off Status
+ *
+ *  This function Engine Start Status
+ *
+ *  Primary logic for this function is a getter for the Engine Start Status
+ *
+ * *  \param pu8_engine_start_status Pointer to the Engine start status
+ *
+ *  \return
+ */
+void getEngineStartStatus(uint8 *pu8_engine_start_status)
+{
+    if(mt_engine_starter.u8_engine_start_cmd != NULL && pu8_engine_start_status != NULL)
+    {
+        *pu8_engine_start_status = mt_engine_starter.u8_engine_start_cmd;
+    }
+}
+
+/** \brief Get AgChassis - Engine Off Status
+ *
+ *  This function Engine Start Status
+ *
+ *  Primary logic for this function is a getter for the Engine Off Status
+ *
+ * *  \param pu8_engine_off_status Pointer to the Engine ON/OFF Status
+ *
+ *  \return
+ */
+void getEngineOffStatus(uint8 *pu8_engine_off_status)
+{
+    if(mt_engine_starter.pu8_engine_speed != NULL && pu8_engine_off_status != NULL)
+    {
+        if(mt_engine_starter.pu8_engine_speed < 450)
+        {
+            *pu8_engine_off_status = ENGINE_OFF;
+        }
+        else
+        {
+            *pu8_engine_off_status = ENGINE_ON;
+        }
+    }
+}
 //EOF

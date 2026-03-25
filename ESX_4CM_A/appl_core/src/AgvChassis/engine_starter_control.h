@@ -25,6 +25,9 @@
 #define ENGINE_START_CMD_OFF       (0u)
 #define ENGINE_START_CMD_ON        (1u)
 
+#define ENGINE_OFF       (1u)
+#define ENGINE_ON        (0u)
+
 #define NEUTRAL_SAFE_FALSE         (0u)
 #define NEUTRAL_SAFE_TRUE          (1u)
 
@@ -57,12 +60,13 @@ typedef struct
 typedef struct
 {
         //RX CAN Variables
-        uint8 *pu8_engine_running_status;//!<RX Engine Running Status
+        uint8 *pu8_engine_speed;//!<RX Engine Speed
 
         //TX CAN Variables
         uint8 *pu8_neutral_safe_status;//!<TX Neutral Safe Status
 
         //Local Variables
+        uint8 u8_engine_start_cmd; //!<Engine On/Off Status
 
         //Control Checkpoints
         T_ChkPoints_EngineStarter *pt_chk;//!<Engine Start Checkpoint
@@ -74,5 +78,7 @@ typedef struct
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_engineStarterControl(T_UserInterface *_ui,T_ChkPoints_EngineStarter *_chkEngineStarter);
 sint16 update_engineStarterControl(void);
+void getEngineStartStatus(uint8 *pu8_engine_start_status);
+void getEngineOffStatus(uint8 *pu8_engine_off_status);
 
 #endif /* APPL_CORE_SRC_AGVCHASSIS_ENGINE_STARTER_CONTROL_H_ */

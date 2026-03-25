@@ -27,7 +27,7 @@ typedef struct
         T_JoystickJS6000 t_joystick;    //!<JS6000 Joystick
         T_8ButtonPanel   t_buttonPanel; //!<8 Button UI Panel
         T_8772_Display   t_display;     //!<8772 Display
-        T_Engine * t_engine;
+        T_Engine t_engine;
 }T_UserInterface;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */

@@ -20,6 +20,7 @@
 #include "system.h"
 //PROJECT
 #include "suction_fan_control.h"
+#include "engine_starter_control.h"
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
@@ -66,8 +67,8 @@ sint16 init_suctionFanControl(T_UserInterface *_ui, T_Config_SFan *_nvmSuctionFa
     mt_suction_fan.pt_cp_sfan = _chkSuctionFan;
 
     mt_suction_fan.u8_enable_latched     = SUCTION_FAN_DISABLED;
-    mt_suction_fan.u8_prev_ign_on        = FALSE;
-    mt_suction_fan.u32_ign_start_time_ms = 0u;
+    mt_suction_fan.u8_prev_engine_on        = FALSE;
+    mt_suction_fan.u32_eng_start_time_ms = 0u;
 
     //Initialize toggle button helper
     s16_error += toggleButton_init(&mt_suction_fan.t_btn_enable,
@@ -133,18 +134,16 @@ sint16 update_suctionFanControl(void)
     uint8 u8_enable_reset = FALSE;
 
     uint8 u8_door_fault_status = FALSE;
-    uint8 u8_ign_fault_status = FALSE;
     uint8 u8_speed_fault = FALSE;
     uint8 u8_output_fault = FALSE;
     uint8 u8_btn_reset = FALSE;
 
-    uint8 u8_ign_on = FALSE;
+    uint8 u8_engine_start_status = FALSE;
     uint8 u8_startup_deb_complete = FALSE;
 
     uint32 u32_now_ms = get_system_time_ms();
 
     float32 f32_door_value = DOOR_CLOSED;
-    float32 f32_ign_value = IGN_OFF;
     float32 f32_speed_req_rpm = SUCTION_FAN_SAFE_SPEED_RPM;
     float32 f32_speed_sensor = 0.0F;
     float32 f32_meas_speed_rpm_adj = 0.0F;
@@ -172,26 +171,20 @@ sint16 update_suctionFanControl(void)
         s16_error += get_inputValue("CAB_DOOR", &f32_door_value);
     }
 
-    s16_error += get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
-    if (u8_ign_fault_status == FALSE)
-    {
-        s16_error += get_inputValue("IGNITION_SWITCH", &f32_ign_value);
-    }
+    getEngineStartStatus(&u8_engine_start_status);
 
     //Program Start debounce timing
-    u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
-
-    if ((u8_ign_on == TRUE) && (mt_suction_fan.u8_prev_ign_on == FALSE))
+    if (mt_suction_fan.u8_prev_engine_on == FALSE)
     {
-        mt_suction_fan.u32_ign_start_time_ms = u32_now_ms;
+        mt_suction_fan.u32_eng_start_time_ms = u32_now_ms;
     }
-    else if (u8_ign_on == FALSE)
+    else if (u8_engine_start_status == FALSE)
     {
-        mt_suction_fan.u32_ign_start_time_ms = 0u;
+        mt_suction_fan.u32_eng_start_time_ms = 0u;
     }
 
-    if ((u8_ign_on == TRUE) &&
-    ((u32_now_ms - mt_suction_fan.u32_ign_start_time_ms) >= PROGRAM_START_DEB_MS))
+    if ((u8_engine_start_status == TRUE) &&
+    ((u32_now_ms - mt_suction_fan.u32_eng_start_time_ms) >= PROGRAM_START_DEB_MS))
     {
         u8_startup_deb_complete = TRUE;
     }
@@ -223,8 +216,7 @@ sint16 update_suctionFanControl(void)
     // FR-5.3 Force disable/reset when interlocks are not satisfied
     if ((u8_door_fault_status == TRUE) ||
     (f32_door_value != DOOR_CLOSED) ||
-    (u8_ign_fault_status == TRUE) ||
-    (f32_ign_value == IGN_OFF) ||
+    (u8_engine_start_status == ENG_OFF) ||
     (u8_startup_deb_complete == FALSE) ||
     (u8_speed_fault == TRUE) ||
     (u8_btn_reset == TRUE))
@@ -240,11 +232,7 @@ sint16 update_suctionFanControl(void)
     //FR-5.7 Force suction fan speed to zero when disabled
     if (mt_suction_fan.u8_enable_latched != SUCTION_FAN_ENABLED)
     {
-        mt_suction_fan.t_speed_ramp.f32_output = 0.0F;
-        mt_suction_fan.t_pid_state.f32_prev_error = 0.0F;
-        mt_suction_fan.t_pid_state.f32_error_accum = 0.0F;
-        mt_suction_fan.t_pid_state.u64_last_time = 0u;
-        mt_suction_fan.t_pid_state.f32_output = SUCTION_FAN_SAFE_OUTPUT;
+        f32_speed_req_rpm = SUCTION_FAN_SAFE_OUTPUT;
     }
 
     s16_error += rampCalc(f32_speed_req_rpm, &mt_suction_fan.t_speed_ramp);
@@ -291,7 +279,7 @@ sint16 update_suctionFanControl(void)
         mt_suction_fan.pt_cp_sfan->u16_pwmStatus =f32_pwm_cmd;
     }
 
-    mt_suction_fan.u8_prev_ign_on = u8_ign_on;
+    mt_suction_fan.u8_prev_engine_on = u8_engine_start_status;
 
     return s16_error;
 }

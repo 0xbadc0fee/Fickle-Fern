@@ -9,9 +9,6 @@
 /* Elevator Control Outputs */
 CNTRL2DP(elevatorStatus,   gt_ui.t_display.u8_elevatorStatus, 		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkElevatorOn)
 
-/* Engine Control Outputs */
-CNTRL2DP(elevatorStatus,   gt_engine.u16_rpm_command, 				gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_TSC1_EngRqedSpeed_SpeedLimit)
-
 /* Header Control Outputs */
 CNTRL2DP(reliefStatus, 	   gt_ui.t_display.u8_relief_switch_status, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHydOilPressRelief)
 
@@ -28,12 +25,23 @@ CNTRL2DP(workLightStatus,  gt_ui.t_display.u8_worklights_status,  	gt_J1939_Data
 /* Cleaning Chains Outputs */
 CNTRL2DP(shaftDriveStatus, gt_ui.t_display.u8_shaft_drive_status, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkShaftDrvsOn)
 
-/*Stick Box */
+/*Stick Box Outputs*/
 CNTRL2DP(button3LED, 	   gt_ui.t_buttonPanel.u8_b3_lights, 	 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP)
 CNTRL2DP(button7LED, 	   gt_ui.t_buttonPanel.u8_b7_lights, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL)
 
-/*Suction Fan */
+/*Suction Fan Outputs*/
+CNTRL2DP(suctionFanEnable,  gt_ui.t_display.u8_suction_fan_enable_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkSuctionFanOn)
+CNTRL2DP(suctionFanSpeedRPM,  gt_ui.t_display.u16_suction_fan_speed_status_rpm,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_CAN_Display_Trans2_AgvWorkSuctionFanRpm)
 
-
-/* Engine Starter */
+/* Engine Starter Outputs*/
 CNTRL2DP(neutralState, 	   gt_ui.t_display.u8_neutral_safe_status, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisNeutralState)
+
+/* Throttle Control Outputs */
+CNTRL2DP(engineOverrideCtrlMode, 	   gt_ui.t_engine.u8_eng_ovrrd_ctrl_mode, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngOverrideCtrlMode)
+CNTRL2DP(engineReqSpeedCtrlCond, 	   gt_ui.t_engine.u8_engine_speed_ctrl_req, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngRqedSpeedCtrlConditions)
+CNTRL2DP(engineReqSpeedCtrlCond, 	   gt_ui.t_engine.u8_engine_override_ctrl_pri, 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_OverrideCtrlModePriority)
+CNTRL2DP(engineSpeedLimit, 	   		   gt_ui.t_engine.u16_engine_req_speed, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_TSC1_EngRqedSpeed_SpeedLimit)
+CNTRL2DP(engineTorqLimit, 	           gt_ui.t_engine.u8_eng_req_torq_limit, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngRqedTorque_TorqueLimit)
+CNTRL2DP(engineControlPurp, 	       gt_ui.t_engine.u8_ctrl_purpose, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_ControlPurpose)
+CNTRL2DP(engineTorqHiRes, 	           gt_ui.t_engine.u8_eng_req_torq_hires, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngineRequestedTorqueHiRes)
+
