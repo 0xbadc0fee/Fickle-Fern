@@ -15,6 +15,8 @@
 #include "input_handler_lib.h"
 #include "math.h"
 
+#include "checkpoints_data_pool.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 
@@ -88,7 +90,7 @@ sint16 init_inputHandler(void)
 
             case IT_FREQ:
 
-                s16_initError |= x_in_frequency_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, DEFAULT_DIG_DEBOUNCE);
+                s16_initError |= x_in_frequency_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, 100);
                 if(at_vehicleInputs[i].u8_diagEnabled)
                 {
                     s16_diagError = x_in_frequency_diag (at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].u16_dti, (uint32)at_vehicleInputs[i].s32_diagMin, (uint32)at_vehicleInputs[i].s32_diagMax, 100, 9900);

@@ -15,7 +15,7 @@
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "stwtypes.h"
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "toggle_button.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
@@ -59,7 +59,7 @@ typedef struct
 } T_StickRemoverControl;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_stickRemoverControl(T_UserInterface *_ui);
+sint16 init_stickRemoverControl(T_CANDevices *_can_dev);
 sint16 update_stickRemoverControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_STICK_REMOVER_CONTROL_H_ */

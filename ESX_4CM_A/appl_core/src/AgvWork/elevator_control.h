@@ -13,7 +13,7 @@
 #define APPL_CORE_SRC_AGVWORK_ELEVATOR_CONTROL_H_
 
 #include "stwtypes.h"
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "toggle_button.h"
 #include "ramp_calc.h"
 
@@ -78,7 +78,7 @@ typedef struct
 
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator);
+sint16 init_elevatorControl(T_CANDevices *_can_dev, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator);
 sint16 update_elevatorControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_ELEVATOR_CONTROL_H_ */

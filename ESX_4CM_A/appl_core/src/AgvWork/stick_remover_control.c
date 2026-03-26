@@ -44,19 +44,19 @@ static T_StickRemoverControl mt_stick_remover;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_stickRemoverControl(T_UserInterface *_ui)
+sint16 init_stickRemoverControl(T_CANDevices *_can_dev)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if(_ui == NULL)
+    if(_can_dev == NULL)
     {
         return C_WARN;
     }
 
     // Populate local RX/TX pointers
-    mt_stick_remover.pu8_stick_remover_command    = &_ui->t_buttonPanel.u8_b8_state;
-    mt_stick_remover.pu8_stick_remover_status     = &_ui->t_display.u8_stick_remover_status;
-    mt_stick_remover.pu8_stick_remover_led_status = &_ui->t_buttonPanel.u8_b8_lights;
+    mt_stick_remover.pu8_stick_remover_command    = &_can_dev->t_buttonPanel.u8_b8_state;
+    mt_stick_remover.pu8_stick_remover_status     = &_can_dev->t_display.u8_stick_remover_status;
+    mt_stick_remover.pu8_stick_remover_led_status = &_can_dev->t_buttonPanel.u8_b8_lights;
 
     // Initialize local variables
     mt_stick_remover.u8_stick_remover_latched = STICK_REMOVER_DISABLED;
@@ -134,7 +134,6 @@ sint16 update_stickRemoverControl(void)
         u8_startup_deb_complete = TRUE;
     }
 
-    gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u8_test1 = u8_stick_cmd;
 
     // FR-11.2 Force disabled state and reset when conditions not satisfied
     if((u8_door_fault_status == TRUE) ||

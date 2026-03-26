@@ -42,18 +42,18 @@ static T_FrontSweepsControl mt_front_sweeps;
  *
  *  \return s16_error Error code
  */
-sint16 init_frontSweepsControl(T_UserInterface *_ui, T_ChkPoints_FSweeps *_chkFrontSweeps)
+sint16 init_frontSweepsControl(T_CANDevices *_can_dev, T_ChkPoints_FSweeps *_chkFrontSweeps)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_chkFrontSweeps == NULL))
+    if((_can_dev == NULL) || (_chkFrontSweeps == NULL))
     {
         return C_WARN;
     }
 
     //populate local RX pointers
-    mt_front_sweeps.pu8_drum_speed_request   = &_ui->t_display.u8_drum_speed_request;
-    mt_front_sweeps.pu8_drum_speed_enable   = &_ui->t_display.u8_drum_speed_enable;
+    mt_front_sweeps.pu8_drum_speed_request   = &_can_dev->t_display.u8_drum_speed_request;
+    mt_front_sweeps.pu8_drum_speed_enable   = &_can_dev->t_display.u8_drum_speed_enable;
 
     //populate local copy of checkpoints
     mt_front_sweeps.pt_cp_frontsweeps = _chkFrontSweeps;

@@ -42,18 +42,18 @@ static T_RotaryTrapControl mt_rotary_trap;
  *
  *  \return s16_error Error code
  */
-sint16 init_rotaryTrapControl(T_UserInterface *_ui, T_ChkPoints_RTrap *_chkRotaryTrap)
+sint16 init_rotaryTrapControl(T_CANDevices *_can_dev, T_ChkPoints_RTrap *_chkRotaryTrap)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_chkRotaryTrap == NULL))
+    if((_can_dev == NULL) || (_chkRotaryTrap == NULL))
        {
            return C_WARN;
        }
 
     // Populate local RX pointers
-    mt_rotary_trap.pu8_trap_speed_increase = &_ui->t_joystick.u8_b3_state;
-    mt_rotary_trap.pu8_trap_speed_range = &_ui->t_display.u8_trap_speed_range;
+    mt_rotary_trap.pu8_trap_speed_increase = &_can_dev->t_joystick.u8_b3_state;
+    mt_rotary_trap.pu8_trap_speed_range = &_can_dev->t_display.u8_trap_speed_range;
 
     //populate local copy of checkpoints
     mt_rotary_trap.pt_cp_rotarytrap = _chkRotaryTrap;

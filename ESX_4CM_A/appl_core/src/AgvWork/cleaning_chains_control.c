@@ -45,18 +45,18 @@ static T_CChainsControl mt_cchains;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleaningShaft)
+sint16 init_cChainsControl(T_CANDevices *_can_dev, T_ChkPoints_CChains *_chkCleaningShaft)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_chkCleaningShaft == NULL))
+    if((_can_dev == NULL) || (_chkCleaningShaft == NULL))
     {
         return C_WARN;
     }
 
     //populate local RX/TX pointers
-    mt_cchains.pu8_shaft_drive_command   = &_ui->t_joystick.u8_b2_state;
-    mt_cchains.pu8_shaft_drive_value = &_ui->t_display.u8_shaft_drive_status;
+    mt_cchains.pu8_shaft_drive_command   = &_can_dev->t_joystick.u8_b2_state;
+    mt_cchains.pu8_shaft_drive_value = &_can_dev->t_display.u8_shaft_drive_status;
 
     //populate local copy of checkpoints
     mt_cchains.pt_cp_cchains = _chkCleaningShaft;

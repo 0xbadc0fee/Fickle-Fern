@@ -256,7 +256,7 @@ T_VehicleInput tvi_wheel_speed =
     .u8_diagEnabled         = TRUE,
     .t_fault=
     {
-        .u8_dm1_enable      = FALSE,
+        .u8_dm1_enable      = TRUE,
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520109,
         .t_fmi = {
@@ -265,8 +265,8 @@ T_VehicleInput tvi_wheel_speed =
         }
     },
     .u16_dti                = 1000,
-    .s32_diagMin            = 600,
-    .s32_diagMax            = 20000000,
+    .s32_diagMin            = 500,
+    .s32_diagMax            = 1000000,
 };
 
 T_VehicleInput tvi_park_brake =
@@ -277,7 +277,7 @@ T_VehicleInput tvi_park_brake =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,

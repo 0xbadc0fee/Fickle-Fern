@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CHECKPOINTS_PROJECT_ID_1385785120 void checkpoints_project_id_1385785120(void) {}
+#define CHECKPOINTS_PROJECT_ID_2715577903 void checkpoints_project_id_2715577903(void) {}
 
 ///Index of this Datapool
 #define CHECKPOINTS_DATA_POOL_INDEX (0U)
@@ -30,7 +30,8 @@ extern "C" {
 #define CHECKPOINTS_LIST_INDEX_FRONTSWEEPSCONTROL (2U)
 #define CHECKPOINTS_LIST_INDEX_ROTARYTRAP (3U)
 #define CHECKPOINTS_LIST_INDEX_GENERALTESTING (4U)
-#define CHECKPOINTS_NUMBER_OF_LISTS (5U)
+#define CHECKPOINTS_LIST_INDEX_PROPULSIONCONTROL (5U)
+#define CHECKPOINTS_NUMBER_OF_LISTS (6U)
 
 ///Index of elements
 #define CHECKPOINTS_ELEM_INDEX_ELEVATORCONTROL_CHECKPOINT1 (0U)
@@ -53,6 +54,11 @@ extern "C" {
 #define CHECKPOINTS_ELEM_INDEX_GENERALTESTING_TEST4 (3U)
 #define CHECKPOINTS_GENERALTESTING_NUMBER_OF_ELEMENTS (4U)
 
+#define CHECKPOINTS_ELEM_INDEX_PROPULSIONCONTROL_WHEEL_RPM (0U)
+#define CHECKPOINTS_ELEM_INDEX_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10 (1U)
+#define CHECKPOINTS_ELEM_INDEX_PROPULSIONCONTROL_EDC_ENABLE (2U)
+#define CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_ELEMENTS (3U)
+
 ///Index of Datasets
 #define CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_DATA_SETS (0U)
 
@@ -63,6 +69,8 @@ extern "C" {
 #define CHECKPOINTS_ROTARYTRAP_NUMBER_OF_DATA_SETS (0U)
 
 #define CHECKPOINTS_GENERALTESTING_NUMBER_OF_DATA_SETS (0U)
+
+#define CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_DATA_SETS (0U)
 
 ///Scaling values
 #define CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT1 (1.0F)
@@ -90,6 +98,13 @@ extern "C" {
 #define CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST4 (1.0F)
 #define CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST4 (0.0F)
 
+#define CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_WHEEL_RPM (1.0F)
+#define CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_WHEEL_RPM (0.0F)
+#define CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10 (1.0F)
+#define CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10 (0.0F)
+#define CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_EDC_ENABLE (1.0F)
+#define CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_EDC_ENABLE (0.0F)
+
 ///Scaling utilities
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_ELEVATORCONTROL_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT1)
 #define CHECKPOINTS_GET_SCALED_VALUE_ELEVATORCONTROL_CHECKPOINT1() ((gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1 * CHECKPOINTS_SCALING_FACTOR_ELEVATORCONTROL_CHECKPOINT1) + CHECKPOINTS_SCALING_OFFSET_ELEVATORCONTROL_CHECKPOINT1)
@@ -115,6 +130,13 @@ extern "C" {
 #define CHECKPOINTS_GET_SCALED_VALUE_GENERALTESTING_TEST3() ((gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.f32_test3 * CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST3) + CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST3)
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_GENERALTESTING_TEST4(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u32_test4 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST4) / CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST4)
 #define CHECKPOINTS_GET_SCALED_VALUE_GENERALTESTING_TEST4() ((gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u32_test4 * CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST4) + CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST4)
+
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_PROPULSIONCONTROL_WHEEL_RPM(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.f32_wheel_rpm = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_WHEEL_RPM) / CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_WHEEL_RPM)
+#define CHECKPOINTS_GET_SCALED_VALUE_PROPULSIONCONTROL_WHEEL_RPM() ((gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.f32_wheel_rpm * CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_WHEEL_RPM) + CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_WHEEL_RPM)
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.f32_wheel_speed_mph_x10 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10) / CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10)
+#define CHECKPOINTS_GET_SCALED_VALUE_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10() ((gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.f32_wheel_speed_mph_x10 * CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10) + CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_WHEEL_SPEED_MPH_X10)
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_PROPULSIONCONTROL_EDC_ENABLE(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.u8_edc_enable = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_EDC_ENABLE) / CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_EDC_ENABLE)
+#define CHECKPOINTS_GET_SCALED_VALUE_PROPULSIONCONTROL_EDC_ENABLE() ((gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.u8_edc_enable * CHECKPOINTS_SCALING_FACTOR_PROPULSIONCONTROL_EDC_ENABLE) + CHECKPOINTS_SCALING_OFFSET_PROPULSIONCONTROL_EDC_ENABLE)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 ///Elements in list "ElevatorControl":
@@ -152,6 +174,14 @@ typedef struct
    uint32 u32_test4; /* Variable description */
 } T_Checkpoints_GeneralTesting_Values;
 
+///Elements in list "PropulsionControl":
+typedef struct
+{
+   float32 f32_wheel_rpm; /* Variable description */
+   float32 f32_wheel_speed_mph_x10; /* Variable description */
+   uint8 u8_edc_enable; /* Variable description */
+} T_Checkpoints_PropulsionControl_Values;
+
 ///Elements of all lists:
 typedef struct
 {
@@ -160,6 +190,7 @@ typedef struct
    T_Checkpoints_FrontSweepsControl_Values t_FrontSweepsControlValues;
    T_Checkpoints_RotaryTrap_Values t_RotaryTrapValues;
    T_Checkpoints_GeneralTesting_Values t_GeneralTestingValues;
+   T_Checkpoints_PropulsionControl_Values t_PropulsionControlValues;
 } T_Checkpoints_DataPoolValues;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
@@ -171,7 +202,7 @@ extern const T_osy_dpa_data_pool gt_Checkpoints_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void checkpoints_project_id_1385785120(void);
+extern void checkpoints_project_id_2715577903(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

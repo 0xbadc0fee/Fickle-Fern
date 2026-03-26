@@ -79,7 +79,7 @@ typedef struct
 } T_RotaryTrapControl;
 
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
-sint16 init_rotaryTrapControl(T_UserInterface *_ui, T_ChkPoints_RTrap *_chkRotaryTrap);
+sint16 init_rotaryTrapControl(T_CANDevices *_can_dev, T_ChkPoints_RTrap *_chkRotaryTrap);
 sint16 update_rotaryTrapControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_ROTARY_TRAP_CONTROL_H_ */

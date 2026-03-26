@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_1385785120 mt_Variable;
+static T_osy_non_existing_type_2715577903 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CHECKPOINTS_PROJECT_ID_1385785120
+CHECKPOINTS_PROJECT_ID_2715577903
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -103,6 +103,22 @@ static const T_Checkpoints_GeneralTesting_Values mt_GeneralTestingMaxValues =
    4294967295UL    ///< test4 (Variable description)
 };
 
+///Minimum values
+static const T_Checkpoints_PropulsionControl_Values mt_PropulsionControlMinValues =
+{
+   -3.40282347e+38F,   ///< wheel_rpm (Variable description)
+   -3.40282347e+38F,   ///< wheel_speed_mph_x10 (Variable description)
+   0U    ///< edc_enable (Variable description)
+};
+
+///Maximum values
+static const T_Checkpoints_PropulsionControl_Values mt_PropulsionControlMaxValues =
+{
+   3.40282347e+38F,   ///< wheel_rpm (Variable description)
+   3.40282347e+38F,   ///< wheel_speed_mph_x10 (Variable description)
+   255U    ///< edc_enable (Variable description)
+};
+
 ///List definitions:
 static const T_osy_dpa_element_definition mat_DataPoolElevatorControlElements[CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS] =
 {
@@ -134,6 +150,13 @@ static const T_osy_dpa_element_definition mat_DataPoolGeneralTestingElements[CHE
    { OSY_DPA_ELEMENT_TYPE_UINT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u32_test4, &mt_GeneralTestingMinValues.u32_test4, &mt_GeneralTestingMaxValues.u32_test4 }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolPropulsionControlElements[CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.f32_wheel_rpm, &mt_PropulsionControlMinValues.f32_wheel_rpm, &mt_PropulsionControlMaxValues.f32_wheel_rpm },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.f32_wheel_speed_mph_x10, &mt_PropulsionControlMinValues.f32_wheel_speed_mph_x10, &mt_PropulsionControlMaxValues.f32_wheel_speed_mph_x10 },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.u8_edc_enable, &mt_PropulsionControlMinValues.u8_edc_enable, &mt_PropulsionControlMaxValues.u8_edc_enable }
+};
+
 ///list of lists:
 static const T_osy_dpa_list_definition mat_DataPoolLists[CHECKPOINTS_NUMBER_OF_LISTS] =
 {
@@ -141,7 +164,8 @@ static const T_osy_dpa_list_definition mat_DataPoolLists[CHECKPOINTS_NUMBER_OF_L
    { CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_ELEMENTS, CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_CleaningChainsControls_Values), &mat_DataPoolCleaningChainsControlsElements[0], &gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues, NULL },
    { CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_FrontSweepsControl_Values), &mat_DataPoolFrontSweepsControlElements[0], &gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues, NULL },
    { CHECKPOINTS_ROTARYTRAP_NUMBER_OF_ELEMENTS, CHECKPOINTS_ROTARYTRAP_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_RotaryTrap_Values), &mat_DataPoolRotaryTrapElements[0], &gt_Checkpoints_DataPoolValues.t_RotaryTrapValues, NULL },
-   { CHECKPOINTS_GENERALTESTING_NUMBER_OF_ELEMENTS, CHECKPOINTS_GENERALTESTING_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_GeneralTesting_Values), &mat_DataPoolGeneralTestingElements[0], &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues, NULL }
+   { CHECKPOINTS_GENERALTESTING_NUMBER_OF_ELEMENTS, CHECKPOINTS_GENERALTESTING_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_GeneralTesting_Values), &mat_DataPoolGeneralTestingElements[0], &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues, NULL },
+   { CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_PropulsionControl_Values), &mat_DataPoolPropulsionControlElements[0], &gt_Checkpoints_DataPoolValues.t_PropulsionControlValues, NULL }
 };
 
 ///Datapool definition:
@@ -152,7 +176,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Checkpoints",  ///< name of Datapool
    CHECKPOINTS_NUMBER_OF_LISTS,
-   0xfe567b5fU, ///< CRC of Datapool definition
+   0x93f2f520U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

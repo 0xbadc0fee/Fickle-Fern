@@ -154,5 +154,27 @@ sint16 rampCalc(float32 f32_target, T_RampState *pt_state)
     return s16_error;
 }
 
+/** \brief Set Ramp Helper Rate - Helper Control
+ *
+ *  This function sets the rate of change of the ramp function
+ *
+ *  \param pt_state Ramp State Pointer
+ *  \param _rate    Target Ramp Rate (units / second)
+ *
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
+ *  \retval C_RANGE Requested Ramp outside of acceptable bounds
+ */
+sint16 set_rampRate(T_RampState *pt_state, float32 _rate)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    if(_rate >= 0.01f || _rate <= 100000.0f)
+        pt_state->f32_ramp_rate = _rate;
+    else
+        s16_error = C_RANGE;
+
+    return s16_error;
+}
 
 //EOF

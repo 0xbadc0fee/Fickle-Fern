@@ -22,3 +22,12 @@ CNTRL2DP(rtrapCP2, gt_rotaryTrapCheckpoints.u8_checkpoint1, 	 gt_Checkpoints_Dat
 CNTRL2DP(elevatorCP1, gt_elevatorCheckpoints.u8_checkpoint1, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1)
 CNTRL2DP(elevatorCP2, gt_elevatorCheckpoints.f32_checkpoint2, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint2)
 CNTRL2DP(elevatorCP3, gt_elevatorCheckpoints.f32_checkpoint3, gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3)
+
+
+/* Propulsion Control checkpoints */
+CNTRL2DP(wheelRPM, 	 gt_propCheckpoints.f32_wheel_rpm, 		gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.f32_wheel_rpm)
+CNTRL2DP(wheelSpeed, gt_propCheckpoints.f32_wheel_speed_10, gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.f32_wheel_speed_mph_x10)
+CNTRL2DP(edcEnable,  gt_propCheckpoints.u8_edc_enable, 		gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.u8_edc_enable)
+
+
+

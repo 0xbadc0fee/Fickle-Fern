@@ -16,7 +16,7 @@
 #include "stwtypes.h"
 
 #include "output_handler_lib.h"
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define WORK_ON (1u)
@@ -63,7 +63,7 @@ typedef struct
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_lightControl(T_UserInterface *_ui);
+sint16 init_lightControl(T_CANDevices *_can_dev);
 sint16 update_lightControl(void);
 
 #endif /* APPL_CORE_SRC_AGVCHASSIS_LIGHTING_CONTROL_H_ */

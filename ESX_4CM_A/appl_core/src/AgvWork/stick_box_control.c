@@ -42,20 +42,20 @@ T_StickBControl mt_stick_box;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_stickBControl(T_UserInterface *_ui, T_Config_StickBoxControl *_nvmStickBControl)
+sint16 init_stickBControl(T_CANDevices *_can_dev, T_Config_StickBoxControl *_nvmStickBControl)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if(_ui == NULL || _nvmStickBControl == NULL)
+    if(_can_dev == NULL || _nvmStickBControl == NULL)
     {
         return C_WARN;
     }
 
     //Populate local RX/TX pointers
-    mt_stick_box.pu8_close_button = &_ui->t_buttonPanel.u8_b7_state;
-    mt_stick_box.pu8_open_button = &_ui->t_buttonPanel.u8_b3_state;
-    mt_stick_box.pu8_close_led_status = &_ui->t_buttonPanel.u8_b7_lights;
-    mt_stick_box.pu8_open_led_status = &_ui->t_buttonPanel.u8_b3_lights;
+    mt_stick_box.pu8_close_button = &_can_dev->t_buttonPanel.u8_b7_state;
+    mt_stick_box.pu8_open_button = &_can_dev->t_buttonPanel.u8_b3_state;
+    mt_stick_box.pu8_close_led_status = &_can_dev->t_buttonPanel.u8_b7_lights;
+    mt_stick_box.pu8_open_led_status = &_can_dev->t_buttonPanel.u8_b3_lights;
 
     //Populate local copy of NVM elements
     mt_stick_box.pt_nvm_stick_control = _nvmStickBControl;

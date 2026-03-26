@@ -14,7 +14,7 @@
 #include "stwtypes.h"
 #include <stdbool.h>
 
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "j1939_data_pool.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
@@ -25,7 +25,7 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-extern T_UserInterface gt_ui;
+extern T_CANDevices gt_can_devs;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 

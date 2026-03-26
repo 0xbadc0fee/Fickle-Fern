@@ -19,8 +19,8 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
+#include "can_device_definition.h"
 
-#include "hmi_definition.h"
 #include "ethernet_init.h"
 
 #include "nvm_handler.h"
@@ -38,6 +38,7 @@
 #include "rotary_trap_control.h"
 #include "stick_box_control.h"
 #include "stick_remover_control.h"
+#include "propulsion_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -100,16 +101,17 @@ int main(void)
     //Initialize AgvWork Controls
     if(C_NO_ERR == s16_Error)
     {
-        s16_Error += init_elevatorControl(&gt_ui, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
-        s16_Error += init_headerControl(&gt_ui, &gt_headerCheckpoints, &gt_headerConfig);
-        s16_Error += init_hitchPosControl(&gt_ui, &gt_headerConfig);
-        s16_Error += init_augerControl(&gt_ui);
-        s16_Error += init_lightControl(&gt_ui); //Initialize Light Control
-        s16_Error += init_cChainsControl(&gt_ui, &gt_cleaningShaftCheckpoints);
-        s16_Error += init_frontSweepsControl(&gt_ui, &gt_frontSweepsCheckpoints);
-        s16_Error += init_rotaryTrapControl(&gt_ui, &gt_rotaryTrapCheckpoints);
-        s16_Error += init_stickBControl(&gt_ui, &gt_stickBConfig);
-        s16_Error += init_stickRemoverControl(&gt_ui);
+        s16_Error += init_elevatorControl(&gt_can_devs, &gt_elevatorCheckpoints, &gt_elevatorConfig); //Initialize Elevator Control
+        s16_Error += init_headerControl(&gt_can_devs, &gt_headerCheckpoints, &gt_headerConfig);
+        s16_Error += init_hitchPosControl(&gt_can_devs, &gt_headerConfig);
+        s16_Error += init_augerControl(&gt_can_devs);
+        s16_Error += init_lightControl(&gt_can_devs); //Initialize Light Control
+        s16_Error += init_cChainsControl(&gt_can_devs, &gt_cleaningShaftCheckpoints);
+        s16_Error += init_frontSweepsControl(&gt_can_devs, &gt_frontSweepsCheckpoints);
+        s16_Error += init_rotaryTrapControl(&gt_can_devs, &gt_rotaryTrapCheckpoints);
+        s16_Error += init_stickBControl(&gt_can_devs, &gt_stickBConfig);
+        s16_Error += init_stickRemoverControl(&gt_can_devs);
+        s16_Error += init_propulsionControl(&gt_can_devs, &gt_propCheckpoints);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -145,6 +147,7 @@ int main(void)
         update_rotaryTrapControl();
         update_stickBControl();
         update_stickRemoverControl();
+        update_propulsionControl();
 
         //Outputs
         update_faultHandler();

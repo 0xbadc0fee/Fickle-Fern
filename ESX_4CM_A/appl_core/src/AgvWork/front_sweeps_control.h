@@ -66,7 +66,7 @@ typedef struct
 } T_FrontSweepsControl;
 
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
-sint16 init_frontSweepsControl(T_UserInterface *_ui, T_ChkPoints_FSweeps *_chkFrontSweeps);
+sint16 init_frontSweepsControl(T_CANDevices *_can_devs, T_ChkPoints_FSweeps *_chkFrontSweeps);
 sint16 update_frontSweepsControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_FRONT_SWEEPS_CONTROL_H_ */

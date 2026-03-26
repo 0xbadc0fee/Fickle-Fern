@@ -2,7 +2,7 @@
 <opensyde-dp-ui-definition>
     <file-version>1</file-version>
     <data-pool>
-        <lists length="5">
+        <lists length="6">
             <list>
                 <data-elements length="3">
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>
@@ -28,6 +28,13 @@
             <list>
                 <data-elements length="4">
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="3">
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>
                     <data-element auto_min_max_active="true" interpret_as_string="false"/>

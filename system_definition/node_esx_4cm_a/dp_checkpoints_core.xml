@@ -6,7 +6,7 @@
         <name>Checkpoints</name>
         <version major="0" minor="0" release="0"/>
         <comment>Datapool to store all checkpoints for dashboard viewing</comment>
-        <lists length="5">
+        <lists length="6">
             <list>
                 <name>ElevatorControl</name>
                 <comment/>
@@ -135,6 +135,43 @@
                         <comment>Variable description</comment>
                         <min-value value="0"/>
                         <max-value value="4294967295"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>PropulsionControl</name>
+                <comment/>
+                <data-elements length="3">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>wheel_rpm</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>wheel_speed_mph_x10</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>edc_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>

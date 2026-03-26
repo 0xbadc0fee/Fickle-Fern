@@ -47,21 +47,21 @@ static T_ElevatorControl mt_elevator;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator)
+sint16 init_elevatorControl(T_CANDevices *_can_dev, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_chkElevator == NULL) || (_nvmElevator == NULL))
+    if((_can_dev == NULL) || (_chkElevator == NULL) || (_nvmElevator == NULL))
     {
         return C_WARN;
     }
 
     //populate local copy of RX ui elements
-    mt_elevator.pu8_onOffCommand   = &_ui->t_joystick.u8_b1_state;
-    mt_elevator.pu8_requestedSpeed = &_ui->t_display.u8_elevatorSpeedRequest;
+    mt_elevator.pu8_onOffCommand   = &_can_dev->t_joystick.u8_b1_state;
+    mt_elevator.pu8_requestedSpeed = &_can_dev->t_display.u8_elevatorSpeedRequest;
 
     //populate local copy of TX ui elements
-    mt_elevator.pu8_elevatorStatus = &_ui->t_display.u8_elevatorStatus;
+    mt_elevator.pu8_elevatorStatus = &_can_dev->t_display.u8_elevatorStatus;
 
     //populate local copy of checkpoints
     mt_elevator.pt_chkElevator = _chkElevator;
