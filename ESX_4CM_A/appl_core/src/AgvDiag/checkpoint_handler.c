@@ -28,6 +28,7 @@
 #include "rotary_trap_control.h"
 #include "engine_starter_control.h"
 #include "suction_fan_control.h"
+#include "throttle_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
@@ -44,6 +45,7 @@ T_ChkPoints_FSweeps  gt_frontSweepsCheckpoints;	  //!<Structure that holds Front
 T_ChkPoints_RTrap    gt_rotaryTrapCheckpoints;	  //!<Structure that holds Rotary Traps Checkpoints
 T_ChkPoints_EngineStarter gt_engineStarterCheckpoints; //!<Structure that holds the Engine Starter Checkpoints.
 T_ChkPoints_SFan gt_suctionFanCheckpoints; //!<Structure that holds the Suction Fan Checkpoints.
+T_ChkPoints_Throttle gt_throttleCheckpoints; //!<Structure that holds the Throttle Checkpoints.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 update_checkpointHandler(void)

@@ -113,7 +113,7 @@ int main(void)
         s16_Error += init_stickBControl(&gt_ui, &gt_stickBConfig);
         s16_Error += init_suctionFanControl(&gt_ui, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
         s16_Error += init_engineStarterControl(&gt_ui, &gt_engineStarterCheckpoints);
-        s16_Error += init_throttleControl(&gt_ui);
+        s16_Error += init_throttleControl(&gt_ui, &gt_throttleCheckpoints);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()

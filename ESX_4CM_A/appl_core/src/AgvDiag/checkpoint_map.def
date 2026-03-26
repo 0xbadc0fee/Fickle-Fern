@@ -30,3 +30,8 @@ CNTRL2DP(startKeyCP, gt_engineStarterCheckpoints.u8_start_key, 	 gt_Checkpoints_
 CNTRL2DP(suctionFanCP, gt_engineStarterCheckpoints.u8_start_suction_fan_off, 	 gt_Checkpoints_DataPoolValues.t_EngineStarterControlValues.u8_start_suction_fan_off)
 CNTRL2DP(shaftDriveCP, gt_engineStarterCheckpoints.u8_start_shaft_drive_off, 	 gt_Checkpoints_DataPoolValues.t_EngineStarterControlValues.u8_start_shaft_drive_off)
 CNTRL2DP(startNeutralCP, gt_engineStarterCheckpoints.u8_start_neutral, 	 gt_Checkpoints_DataPoolValues.t_EngineStarterControlValues.u8_start_neutral)
+
+/* Throttle Control checkpoints */
+CNTRL2DP(throttleRMPCP, gt_throttleCheckpoints.u16_chk1_eng_spd, 	 gt_Checkpoints_DataPoolValues.t_ThrottleControlValues.u16_chk1_eng_spd)
+CNTRL2DP(throttleUpCP, gt_throttleCheckpoints.u8_chk2_eng_spd_up_osc, 	 gt_Checkpoints_DataPoolValues.t_ThrottleControlValues.u8_chk2_eng_spd_up_osc)
+CNTRL2DP(throttleDownCP, gt_throttleCheckpoints.u8_chk3_eng_spd_down_osc, 	 gt_Checkpoints_DataPoolValues.t_ThrottleControlValues.u8_chk3_eng_spd_down_osc)

@@ -40,16 +40,16 @@
 #define THROTTLE_6S_DELAY_MS                (6000u)
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
-/** \brief Checkpoints Structure - Suction Fan Control
+/** \brief Checkpoints Structure - Throttle Control
  *
  * This structure represents all checkpoints that are relevant
- * to header control
+ * to throttle control
  */
 typedef struct
 {
-        uint8   u8_chk1;   //!<Checkpoint #1
-        sint16  s16_chk2;  //!<Checkpoint #2
-        float32 f32_chk3;  //!<Checkpoint #3
+        uint16   u16_chk1_eng_spd;   //!<Checkpoint #1 Engine Speed RPM
+        uint8  u8_chk2_eng_spd_up_osc;  //!<Checkpoint #2 Throttle UP
+        uint8 u8_chk3_eng_spd_down_osc;  //!<Checkpoint #3 Throttle Down
 
 }T_ChkPoints_Throttle;
 
@@ -72,6 +72,8 @@ typedef struct
         uint32 u32_last_step_time_ms;
         uint32 u32_engine_state_change_time_ms;
 
+        T_ChkPoints_Throttle* pt_cp_throttle;
+
         T_RampState t_throttle_ramp;
 
 } T_ThrottleControl;
@@ -80,7 +82,7 @@ typedef struct
 
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_throttleControl(T_UserInterface *_ui);
+sint16 init_throttleControl(T_UserInterface *_ui,T_ChkPoints_Throttle *_chk_throttle);
 sint16 update_throttleControl(void);
 
 #endif /* APPL_CORE_SRC_AGVCHASSIS_THROTTLE_CONTROL_H_ */

@@ -43,7 +43,7 @@
 /** \brief Checkpoints Structure - Suction Fan Control
  *
  * This structure represents all checkpoints that are relevant
- * to header control
+ * to suction fan control
  */
 typedef struct
 {

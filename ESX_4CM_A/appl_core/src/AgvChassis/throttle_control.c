@@ -42,7 +42,7 @@ static T_ThrottleControl mt_throttle;
  *
  *  \return s16_error Error code
  */
-sint16 init_throttleControl(T_UserInterface *_ui)
+sint16 init_throttleControl(T_UserInterface *_ui ,T_ChkPoints_Throttle *_chk_throttle)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -77,6 +77,8 @@ sint16 init_throttleControl(T_UserInterface *_ui)
     mt_throttle.u32_last_update_time_ms = 0u;
     mt_throttle.u32_last_step_time_ms = 0u;
     mt_throttle.u32_engine_state_change_time_ms = 0u;
+
+    mt_throttle.pt_cp_throttle = _chk_throttle;
 
     // Ramp init
     s16_error += rampInit(&mt_throttle.t_throttle_ramp,
@@ -194,6 +196,10 @@ sint16 update_throttleControl(void)
                 {
                     mt_throttle.u32_last_step_time_ms = u32_now_ms;
 
+
+                    mt_throttle.pt_cp_throttle->u8_chk2_eng_spd_up_osc = u8_up_cmd;
+                    mt_throttle.pt_cp_throttle->u8_chk3_eng_spd_down_osc = u8_down_cmd;
+
                     if(u8_up_cmd && !u8_down_cmd)
                     {
                         mt_throttle.f32_target_req_rpm += THROTTLE_UP_ENGINE_SPEED_RPM;
@@ -239,6 +245,7 @@ sint16 update_throttleControl(void)
 
     // Output
     *(mt_throttle.pu16_engine_req_speed) = f32_final_req_rpm;
+    mt_throttle.pt_cp_throttle->u16_chk1_eng_spd = f32_final_req_rpm;
     mt_throttle.u8_prev_engine_off = u8_engine_off;
 
     return s16_error;
