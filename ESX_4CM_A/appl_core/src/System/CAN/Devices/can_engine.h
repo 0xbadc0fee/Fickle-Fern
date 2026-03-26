@@ -21,7 +21,7 @@ typedef struct
 {
         //RX Values
         uint8 u8_engineStatus;          //!<On/Off Status of the Engine
-        uint8 u8_engineSpeed;           //!<Speed (RPM) of the Engine
+        uint16 u16_engineSpeed;           //!<Speed (RPM) of the Engine
         sint16 s16_engineCoolantTemp;   //!<Engine Coolant Temperature
         sint16 s16_engineIntakeTemp;    //!<Engine Intake Manifold Temperature
 

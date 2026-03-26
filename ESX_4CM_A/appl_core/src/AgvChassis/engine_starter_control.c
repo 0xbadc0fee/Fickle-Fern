@@ -47,7 +47,7 @@ sint16 init_engineStarterControl(T_UserInterface *_ui,T_ChkPoints_EngineStarter 
     }
 
     //populate local copy of RX ui elements
-    mt_engine_starter.pu8_engine_speed = &_ui->t_engine.u8_engineSpeed;
+    mt_engine_starter.pu16_engine_speed = &_ui->t_engine.u16_engineSpeed;
 
     //populate local copy of TX ui elements
     mt_engine_starter.pu8_neutral_safe_status = &_ui->t_display.u8_neutral_safe_status;
@@ -165,7 +165,7 @@ sint16 update_engineStarterControl(void)
  */
 void getEngineStartStatus(uint8 *pu8_engine_start_status)
 {
-    if(mt_engine_starter.u8_engine_start_cmd != NULL && pu8_engine_start_status != NULL)
+    if(pu8_engine_start_status != NULL)
     {
         *pu8_engine_start_status = mt_engine_starter.u8_engine_start_cmd;
     }
@@ -183,9 +183,9 @@ void getEngineStartStatus(uint8 *pu8_engine_start_status)
  */
 void getEngineOffStatus(uint8 *pu8_engine_off_status)
 {
-    if(mt_engine_starter.pu8_engine_speed != NULL && pu8_engine_off_status != NULL)
+    if((mt_engine_starter.pu16_engine_speed != NULL) && (pu8_engine_off_status != NULL))
     {
-        if(mt_engine_starter.pu8_engine_speed < 450)
+        if(*(mt_engine_starter.pu16_engine_speed) < 450u)
         {
             *pu8_engine_off_status = ENGINE_OFF;
         }

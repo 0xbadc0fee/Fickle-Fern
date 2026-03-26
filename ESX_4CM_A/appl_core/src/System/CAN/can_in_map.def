@@ -41,4 +41,4 @@ DP2CNTRL(suctionFanOnOff, 		 gt_ui.t_joystick.u8_b4_state, 			 gt_J1939_DataPool
 DP2CNTRL(suctionFanSpeedReq,     gt_ui.t_display.u16_suction_fan_speed_req_spd,  gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_DISP_CAN_Rec1_AgvHmiSuctionFanSpeedCmd)
  
 /*Engine */
-DP2CNTRL(engineSpeed,     gt_ui.t_engine.u8_engineSpeed,  gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_EEC1_EngSpeed)
+DP2CNTRL(engineSpeed,     gt_ui.t_engine.u16_engineSpeed,  gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_EEC1_EngSpeed)

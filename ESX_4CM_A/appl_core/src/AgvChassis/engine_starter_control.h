@@ -60,7 +60,7 @@ typedef struct
 typedef struct
 {
         //RX CAN Variables
-        uint8 *pu8_engine_speed;//!<RX Engine Speed
+        uint16 *pu16_engine_speed;//!<RX Engine Speed
 
         //TX CAN Variables
         uint8 *pu8_neutral_safe_status;//!<TX Neutral Safe Status
