@@ -155,6 +155,7 @@ typedef struct
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_chkProp);
 sint16 update_propulsionControl(void);
+sint16 get_wheelSpeed(float32 *_wheelSpeed);
 
 #endif /* APPL_CORE_SRC_AGVCHASSIS_PROPULSION_CONTROL_H_ */
 

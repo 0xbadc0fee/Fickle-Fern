@@ -83,11 +83,11 @@
                 <comment/>
                 <data-elements length="1">
                     <data-element factor="1" offset="0" diag-event-call="false">
-                        <name>checkpoint1</name>
-                        <type base-type="uint8" is-array="false"/>
+                        <name>trap_target_cmd</name>
+                        <type base-type="float32" is-array="false"/>
                         <comment>Variable description</comment>
-                        <min-value value="0"/>
-                        <max-value value="255"/>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>

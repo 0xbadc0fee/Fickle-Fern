@@ -443,5 +443,14 @@ sint16 output_edcValves(void)
     return s16_error;
 }
 
+sint16 get_wheelSpeed(float32 *_wheelSpeed)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    *(_wheelSpeed) = mt_prop_control.f32_wheel_speed_mph;
+
+    return s16_error;
+}
+
 
 //EOF

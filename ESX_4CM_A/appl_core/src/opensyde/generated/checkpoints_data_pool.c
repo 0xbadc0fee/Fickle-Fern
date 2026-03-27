@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_2715577903 mt_Variable;
+static T_osy_non_existing_type_818838114 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CHECKPOINTS_PROJECT_ID_2715577903
+CHECKPOINTS_PROJECT_ID_818838114
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -76,13 +76,13 @@ static const T_Checkpoints_FrontSweepsControl_Values mt_FrontSweepsControlMaxVal
 ///Minimum values
 static const T_Checkpoints_RotaryTrap_Values mt_RotaryTrapMinValues =
 {
-   0U    ///< checkpoint1 (Variable description)
+   -3.40282347e+38F    ///< trap_target_cmd (Variable description)
 };
 
 ///Maximum values
 static const T_Checkpoints_RotaryTrap_Values mt_RotaryTrapMaxValues =
 {
-   255U    ///< checkpoint1 (Variable description)
+   3.40282347e+38F    ///< trap_target_cmd (Variable description)
 };
 
 ///Minimum values
@@ -139,7 +139,7 @@ static const T_osy_dpa_element_definition mat_DataPoolFrontSweepsControlElements
 
 static const T_osy_dpa_element_definition mat_DataPoolRotaryTrapElements[CHECKPOINTS_ROTARYTRAP_NUMBER_OF_ELEMENTS] =
 {
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.u8_checkpoint1, &mt_RotaryTrapMinValues.u8_checkpoint1, &mt_RotaryTrapMaxValues.u8_checkpoint1 }
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.f32_trap_target_cmd, &mt_RotaryTrapMinValues.f32_trap_target_cmd, &mt_RotaryTrapMaxValues.f32_trap_target_cmd }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolGeneralTestingElements[CHECKPOINTS_GENERALTESTING_NUMBER_OF_ELEMENTS] =
@@ -176,7 +176,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Checkpoints",  ///< name of Datapool
    CHECKPOINTS_NUMBER_OF_LISTS,
-   0x93f2f520U, ///< CRC of Datapool definition
+   0x9c979596U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CHECKPOINTS_PROJECT_ID_2715577903 void checkpoints_project_id_2715577903(void) {}
+#define CHECKPOINTS_PROJECT_ID_818838114 void checkpoints_project_id_818838114(void) {}
 
 ///Index of this Datapool
 #define CHECKPOINTS_DATA_POOL_INDEX (0U)
@@ -45,7 +45,7 @@ extern "C" {
 #define CHECKPOINTS_ELEM_INDEX_FRONTSWEEPSCONTROL_CHECKPOINT1 (0U)
 #define CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_ELEMENTS (1U)
 
-#define CHECKPOINTS_ELEM_INDEX_ROTARYTRAP_CHECKPOINT1 (0U)
+#define CHECKPOINTS_ELEM_INDEX_ROTARYTRAP_TRAP_TARGET_CMD (0U)
 #define CHECKPOINTS_ROTARYTRAP_NUMBER_OF_ELEMENTS (1U)
 
 #define CHECKPOINTS_ELEM_INDEX_GENERALTESTING_TEST1 (0U)
@@ -86,8 +86,8 @@ extern "C" {
 #define CHECKPOINTS_SCALING_FACTOR_FRONTSWEEPSCONTROL_CHECKPOINT1 (1.0F)
 #define CHECKPOINTS_SCALING_OFFSET_FRONTSWEEPSCONTROL_CHECKPOINT1 (0.0F)
 
-#define CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_CHECKPOINT1 (1.0F)
-#define CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_CHECKPOINT1 (0.0F)
+#define CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_TRAP_TARGET_CMD (1.0F)
+#define CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_TRAP_TARGET_CMD (0.0F)
 
 #define CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST1 (1.0F)
 #define CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST1 (0.0F)
@@ -119,8 +119,8 @@ extern "C" {
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_FRONTSWEEPSCONTROL_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_FRONTSWEEPSCONTROL_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_FRONTSWEEPSCONTROL_CHECKPOINT1)
 #define CHECKPOINTS_GET_SCALED_VALUE_FRONTSWEEPSCONTROL_CHECKPOINT1() ((gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues.u8_checkpoint1 * CHECKPOINTS_SCALING_FACTOR_FRONTSWEEPSCONTROL_CHECKPOINT1) + CHECKPOINTS_SCALING_OFFSET_FRONTSWEEPSCONTROL_CHECKPOINT1)
 
-#define CHECKPOINTS_SET_VALUE_FROM_SCALED_ROTARYTRAP_CHECKPOINT1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.u8_checkpoint1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_CHECKPOINT1) / CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_CHECKPOINT1)
-#define CHECKPOINTS_GET_SCALED_VALUE_ROTARYTRAP_CHECKPOINT1() ((gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.u8_checkpoint1 * CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_CHECKPOINT1) + CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_CHECKPOINT1)
+#define CHECKPOINTS_SET_VALUE_FROM_SCALED_ROTARYTRAP_TRAP_TARGET_CMD(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.f32_trap_target_cmd = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_TRAP_TARGET_CMD) / CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_TRAP_TARGET_CMD)
+#define CHECKPOINTS_GET_SCALED_VALUE_ROTARYTRAP_TRAP_TARGET_CMD() ((gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.f32_trap_target_cmd * CHECKPOINTS_SCALING_FACTOR_ROTARYTRAP_TRAP_TARGET_CMD) + CHECKPOINTS_SCALING_OFFSET_ROTARYTRAP_TRAP_TARGET_CMD)
 
 #define CHECKPOINTS_SET_VALUE_FROM_SCALED_GENERALTESTING_TEST1(SCALED_VALUE) (gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u8_test1 = (SCALED_VALUE - CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST1) / CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST1)
 #define CHECKPOINTS_GET_SCALED_VALUE_GENERALTESTING_TEST1() ((gt_Checkpoints_DataPoolValues.t_GeneralTestingValues.u8_test1 * CHECKPOINTS_SCALING_FACTOR_GENERALTESTING_TEST1) + CHECKPOINTS_SCALING_OFFSET_GENERALTESTING_TEST1)
@@ -162,7 +162,7 @@ typedef struct
 ///Elements in list "RotaryTrap":
 typedef struct
 {
-   uint8 u8_checkpoint1; /* Variable description */
+   float32 f32_trap_target_cmd; /* Variable description */
 } T_Checkpoints_RotaryTrap_Values;
 
 ///Elements in list "GeneralTesting":
@@ -202,7 +202,7 @@ extern const T_osy_dpa_data_pool gt_Checkpoints_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void checkpoints_project_id_2715577903(void);
+extern void checkpoints_project_id_818838114(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

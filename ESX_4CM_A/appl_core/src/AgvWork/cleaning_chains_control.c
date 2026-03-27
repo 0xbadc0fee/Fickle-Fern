@@ -112,6 +112,7 @@ sint16 update_cChainsControl(void)
     if(mt_cchains.pu8_shaft_drive_command != NULL)
     {
         u8_shaft_cmd = ((*mt_cchains.pu8_shaft_drive_command) == 1u);
+        u8_btn_reset = FALSE;
     }
     else
     {
