@@ -23,6 +23,7 @@
 #include "elevator_control.h"
 #include "header_lift_control.h"
 #include "stick_box_control.h"
+#include "power_assist_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
@@ -37,6 +38,7 @@
 T_Config_Elevator gt_elevatorConfig;    //!<Structure that holds all agVWork - Elevator Control NVM Config
 T_Config_HeaderControl gt_headerConfig;    //!<Structure that holds the Joystick HLL config.
 T_Config_StickBoxControl gt_stickBConfig; //!<Structure that holds the Stick Box config.
+T_Config_PowerAssistControl gt_paConfig;
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void)

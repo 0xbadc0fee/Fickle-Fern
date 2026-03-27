@@ -14,3 +14,7 @@ NVM_FIELD(hllEnable, CONFIGURATION_LIST_INDEX_HEADERCONFIG, gt_Configuration_Dat
 
 /* Stickbox Control Parameter */
 NVM_FIELD(stickBoxInstalled, CONFIGURATION_LIST_INDEX_STICKBOXCONFIG, gt_Configuration_DataPoolValues.t_StickBoxConfigValues.u8_stick_box_installed, gt_stickBConfig.u8_stick_box_installed)
+
+/* PA Control Parameter */
+NVM_FIELD(paInstalled, CONFIGURATION_LIST_INDEX_POWERASSISTCONFIG, gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed, gt_paConfig.u8_power_assist_installed)
+

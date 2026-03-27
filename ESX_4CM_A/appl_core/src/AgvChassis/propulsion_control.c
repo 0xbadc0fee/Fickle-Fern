@@ -452,5 +452,13 @@ sint16 get_wheelSpeed(float32 *_wheelSpeed)
     return s16_error;
 }
 
+sint16 get_gearSelection(uint8 *_gear_selection)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    *(_gear_selection) = mt_prop_control.u8_active_gear;
+
+    return s16_error;
+}
 
 //EOF

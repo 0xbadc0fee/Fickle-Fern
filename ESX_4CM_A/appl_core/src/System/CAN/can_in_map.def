@@ -47,5 +47,5 @@ DP2CNTRL(joystickPos, 		 gt_can_devs.t_joystick.u16_yPos, 	   		    gt_J1939_Dat
 DP2CNTRL(joystickPos2, 		 gt_can_devs.t_joystick.u8_fwd_status, 	   		gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Jystck1YAxsLvrFrwrdPstvPsStatus)
 DP2CNTRL(joystickPos3, 		 gt_can_devs.t_joystick.u8_rev_status, 	   		gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Jystck1YAxsLvrBckNgtvePosStatus)
 
-
-
+/* Propulsion Control */
+DP2CNTRL(paEnable, 	 	 	 gt_can_devs.t_buttonPanel.u8_b5_state, 	    gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_CAN_Btn_Panel_Rec_Button_State_05_PA)

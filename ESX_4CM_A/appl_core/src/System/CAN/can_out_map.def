@@ -41,4 +41,5 @@ CNTRL2DP(wheelSpeed,   	   gt_can_devs.t_display.u8_wheel_speed_10, 	  gt_J1939_
 CNTRL2DP(slSet, 	       gt_can_devs.t_display.u8_speed_limit_set,	  gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisSpeedLimiterSet)
 CNTRL2DP(neutralState, 	   gt_can_devs.t_display.u8_neutral_state,		  gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisNeutralState)
 
-
+/* Power Assist */
+CNTRL2DP(paEnable,   	   gt_can_devs.t_buttonPanel.u8_b5_lights, 	      gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_05_PA)

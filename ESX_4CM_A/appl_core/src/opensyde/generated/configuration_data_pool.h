@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CONFIGURATION_PROJECT_ID_697815310 void configuration_project_id_697815310(void) {}
+#define CONFIGURATION_PROJECT_ID_2409142487 void configuration_project_id_2409142487(void) {}
 
 ///Index of this Datapool
 #define CONFIGURATION_DATA_POOL_INDEX (1U)
@@ -28,7 +28,8 @@ extern "C" {
 #define CONFIGURATION_LIST_INDEX_ELEVATORCONFIG (0U)
 #define CONFIGURATION_LIST_INDEX_HEADERCONFIG (1U)
 #define CONFIGURATION_LIST_INDEX_STICKBOXCONFIG (2U)
-#define CONFIGURATION_NUMBER_OF_LISTS (3U)
+#define CONFIGURATION_LIST_INDEX_POWERASSISTCONFIG (3U)
+#define CONFIGURATION_NUMBER_OF_LISTS (4U)
 
 ///Index of elements
 #define CONFIGURATION_ELEM_INDEX_ELEVATORCONFIG_MAX_CURRENT (0U)
@@ -40,6 +41,9 @@ extern "C" {
 #define CONFIGURATION_ELEM_INDEX_STICKBOXCONFIG_STICK_BOX_INSTALLED (0U)
 #define CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS (1U)
 
+#define CONFIGURATION_ELEM_INDEX_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED (0U)
+#define CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_ELEMENTS (1U)
+
 ///Index of Datasets
 #define CONFIGURATION_DATA_SET_INDEX_ELEVATORCONFIG_DEFAULT (0U)
 #define CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS (1U)
@@ -47,6 +51,8 @@ extern "C" {
 #define CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS (0U)
 
 #define CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS (0U)
+
+#define CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS (0U)
 
 ///Scaling values
 #define CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT (1.0F)
@@ -58,6 +64,9 @@ extern "C" {
 #define CONFIGURATION_SCALING_FACTOR_STICKBOXCONFIG_STICK_BOX_INSTALLED (1.0F)
 #define CONFIGURATION_SCALING_OFFSET_STICKBOXCONFIG_STICK_BOX_INSTALLED (0.0F)
 
+#define CONFIGURATION_SCALING_FACTOR_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED (1.0F)
+#define CONFIGURATION_SCALING_OFFSET_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED (0.0F)
+
 ///Scaling utilities
 #define CONFIGURATION_SET_VALUE_FROM_SCALED_ELEVATORCONFIG_MAX_CURRENT(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MAX_CURRENT) / CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT)
 #define CONFIGURATION_GET_SCALED_VALUE_ELEVATORCONFIG_MAX_CURRENT() ((gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current * CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT) + CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MAX_CURRENT)
@@ -67,6 +76,9 @@ extern "C" {
 
 #define CONFIGURATION_SET_VALUE_FROM_SCALED_STICKBOXCONFIG_STICK_BOX_INSTALLED(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_StickBoxConfigValues.u8_stick_box_installed = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_STICKBOXCONFIG_STICK_BOX_INSTALLED) / CONFIGURATION_SCALING_FACTOR_STICKBOXCONFIG_STICK_BOX_INSTALLED)
 #define CONFIGURATION_GET_SCALED_VALUE_STICKBOXCONFIG_STICK_BOX_INSTALLED() ((gt_Configuration_DataPoolValues.t_StickBoxConfigValues.u8_stick_box_installed * CONFIGURATION_SCALING_FACTOR_STICKBOXCONFIG_STICK_BOX_INSTALLED) + CONFIGURATION_SCALING_OFFSET_STICKBOXCONFIG_STICK_BOX_INSTALLED)
+
+#define CONFIGURATION_SET_VALUE_FROM_SCALED_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED) / CONFIGURATION_SCALING_FACTOR_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED)
+#define CONFIGURATION_GET_SCALED_VALUE_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED() ((gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed * CONFIGURATION_SCALING_FACTOR_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED) + CONFIGURATION_SCALING_OFFSET_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 ///Elements in list "ElevatorConfig":
@@ -87,12 +99,19 @@ typedef struct
    uint8 u8_stick_box_installed; /* Parameter description */
 } T_Configuration_StickBoxConfig_Values;
 
+///Elements in list "PowerAssistConfig":
+typedef struct
+{
+   uint8 u8_power_assist_installed; /* Parameter description */
+} T_Configuration_PowerAssistConfig_Values;
+
 ///Elements of all lists:
 typedef struct
 {
    T_Configuration_ElevatorConfig_Values t_ElevatorConfigValues;
    T_Configuration_HeaderConfig_Values t_HeaderConfigValues;
    T_Configuration_StickBoxConfig_Values t_StickBoxConfigValues;
+   T_Configuration_PowerAssistConfig_Values t_PowerAssistConfigValues;
 } T_Configuration_DataPoolValues;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
@@ -104,7 +123,7 @@ extern const T_osy_dpa_data_pool gt_Configuration_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void configuration_project_id_697815310(void);
+extern void configuration_project_id_2409142487(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

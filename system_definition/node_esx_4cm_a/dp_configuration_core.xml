@@ -6,7 +6,7 @@
         <name>Configuration</name>
         <version major="0" minor="0" release="0"/>
         <comment>NVM Datapool to hold Configuration Data</comment>
-        <lists length="3">
+        <lists length="4">
             <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="5">
                 <name>ElevatorConfig</name>
                 <comment/>
@@ -55,6 +55,23 @@
                 <data-elements length="1">
                     <data-element factor="1" offset="0" nvm-start-address="10">
                         <name>stick_box_installed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="15" nvm-size="100">
+                <name>PowerAssistConfig</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" nvm-start-address="15">
+                        <name>power_assist_installed</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>

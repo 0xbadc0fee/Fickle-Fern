@@ -112,6 +112,7 @@ int main(void)
         s16_Error += init_stickBControl(&gt_can_devs, &gt_stickBConfig);
         s16_Error += init_stickRemoverControl(&gt_can_devs);
         s16_Error += init_propulsionControl(&gt_can_devs, &gt_propCheckpoints);
+        s16_Error += init_powerAssistControl(&gt_can_devs, &gt_paConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -136,6 +137,7 @@ int main(void)
 
         //Run AgvChassis Controls
         update_lightControl();
+        update_powerAssistControl();
 
         //Run AgvWork Controls
         update_elevatorControl();
