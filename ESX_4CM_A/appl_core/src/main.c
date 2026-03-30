@@ -19,7 +19,6 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
-
 #include "hmi_definition.h"
 #include "ethernet_init.h"
 
@@ -27,7 +26,6 @@
 #include "fault_handler.h"
 #include "can_handler.h"
 #include "checkpoint_handler.h"
-
 
 #include "hitch_position_control.h"
 #include "header_lift_control.h"
@@ -37,6 +35,7 @@
 #include "front_sweeps_control.h"
 #include "rotary_trap_control.h"
 #include "stick_box_control.h"
+#include "cooling_fan_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -108,6 +107,7 @@ int main(void)
         s16_Error += init_frontSweepsControl(&gt_ui, &gt_frontSweepsCheckpoints);
         s16_Error += init_rotaryTrapControl(&gt_ui, &gt_rotaryTrapCheckpoints);
         s16_Error += init_stickBControl(&gt_ui, &gt_stickBConfig);
+        s16_Error +=init_coolingFanControl(&gt_ui, &gt_coolingFanCheckpoints);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -142,6 +142,7 @@ int main(void)
         update_frontSweepsControl();
         update_rotaryTrapControl();
         update_stickBControl();
+        update_CoolingFanControl();
 
         //Outputs
         update_faultHandler();

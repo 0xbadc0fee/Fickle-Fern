@@ -42,11 +42,11 @@ static T_RotaryTrapControl mt_rotary_trap;
  *
  *  \return s16_error Error code
  */
-sint16 init_rotaryTrapControl(T_UserInterface *_ui, T_ChkPoints_RTrap *_chkRotaryTrap)
+sint16 init_rotaryTrapControl(T_UserInterface *_ui, T_ChkPoints_RTrap *_chk_rotary_trap)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_chkRotaryTrap == NULL))
+    if(_ui == NULL)
        {
            return C_WARN;
        }
@@ -56,7 +56,7 @@ sint16 init_rotaryTrapControl(T_UserInterface *_ui, T_ChkPoints_RTrap *_chkRotar
     mt_rotary_trap.pu8_trap_speed_range = &_ui->t_display.u8_trap_speed_range;
 
     //populate local copy of checkpoints
-    mt_rotary_trap.pt_cp_rotarytrap = _chkRotaryTrap;
+    mt_rotary_trap.pt_cp_rotarytrap = _chk_rotary_trap;
 
     s16_error += rampInit(&mt_rotary_trap.t_trap_ramp,
     ROTARY_TRAP_RAMP_RATE,
@@ -154,7 +154,6 @@ sint16 update_rotaryTrapControl(void)
             f32_target_cmd_pct = CLAMP_F32(f32_wheel_speed_mph,
             f32_range_min,
             f32_range_max);
-
         }
         else
         {

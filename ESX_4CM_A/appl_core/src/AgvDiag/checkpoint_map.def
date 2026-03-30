@@ -19,3 +19,8 @@ CNTRL2DP(fsweepsCP2, gt_frontSweepsCheckpoints.u8_checkpoint1, 	 gt_Checkpoints_
 
 /* Rotary Trap Control checkpoints */
 CNTRL2DP(rtrapCP2, gt_rotaryTrapCheckpoints.u8_checkpoint1, 	 gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.u8_checkpoint1)
+
+
+/* Cooling Fan Control Parameters */
+CNTRL2DP(coolLeadNum, gt_coolingFanCheckpoints.u8_leadsensornumber, 	 gt_Checkpoints_DataPoolValues.t_CoolingFanControlsValues.u8_leadsensornumber)
+CNTRL2DP(rtrapCP2, gt_coolingFanCheckpoints.f32_cooling_demand_pct, 	 gt_Checkpoints_DataPoolValues.t_CoolingFanControlsValues.f32_cooling_demand_pct)

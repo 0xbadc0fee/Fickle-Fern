@@ -30,3 +30,11 @@ CNTRL2DP(shaftDriveStatus, gt_ui.t_display.u8_shaft_drive_status, 	gt_J1939_Data
 /*Stick Box */
 CNTRL2DP(button3LED, 	   gt_ui.t_buttonPanel.u8_b3_lights, 	 	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP)
 CNTRL2DP(button7LED, 	   gt_ui.t_buttonPanel.u8_b7_lights, 	  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL)
+
+/* Cooling Fan Control CAN Parameters */
+CNTRL2DP(coolFanRevDir,  gt_ui.t_display.u8_cooling_fan_reverse_ind,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisCoolingFanRevDir)
+CNTRL2DP(coolManPrgErr,  gt_ui.t_display.u8_cooling_system_fault,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisCoolingManPrgErr)
+CNTRL2DP(coolSen3OvrTemp,  gt_ui.t_display.u8_hyd_oil_overtemp,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisCoolingSen3_OvrTmp)
+CNTRL2DP(coolSen2OvrTemp,  gt_ui.t_display.u8_intake_manifold_overtemp,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisCoolingSen2_OvrTmp)
+CNTRL2DP(coolSen1OvrTemp,  gt_ui.t_display.u8_engine_coolant_overtemp,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisCoolingSen1_OvrTmp)
+CNTRL2DP(hydOilTempDegC,  gt_ui.t_display.u16_hyd_oil_temp_degC,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_CAN_Display_Trans1_AgvChassisHydOilTempDegC)

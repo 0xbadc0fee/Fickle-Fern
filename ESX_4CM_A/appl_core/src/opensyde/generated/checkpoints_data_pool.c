@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_4279681348 mt_Variable;
+static T_osy_non_existing_type_3116622108 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CHECKPOINTS_PROJECT_ID_4279681348
+CHECKPOINTS_PROJECT_ID_3116622108
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -47,6 +47,20 @@ static const T_Checkpoints_ElevatorControl_Values mt_ElevatorControlMaxValues =
    255U,   ///< checkpoint1 (Variable description)
    32767,   ///< checkpoint2 (Variable description)
    3.40282347e+38F    ///< checkpoint3 (Variable description)
+};
+
+///Minimum values
+static const T_Checkpoints_CoolingFanControls_Values mt_CoolingFanControlsMinValues =
+{
+   0U,   ///< leadsensornumber (Variable description)
+   -3.40282347e+38F    ///< cooling_demand_pct (Variable description)
+};
+
+///Maximum values
+static const T_Checkpoints_CoolingFanControls_Values mt_CoolingFanControlsMaxValues =
+{
+   255U,   ///< leadsensornumber (Variable description)
+   3.40282347e+38F    ///< cooling_demand_pct (Variable description)
 };
 
 ///Minimum values
@@ -111,6 +125,12 @@ static const T_osy_dpa_element_definition mat_DataPoolElevatorControlElements[CH
    { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3, &mt_ElevatorControlMinValues.f32_checkpoint3, &mt_ElevatorControlMaxValues.f32_checkpoint3 }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolCoolingFanControlsElements[CHECKPOINTS_COOLINGFANCONTROLS_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_CoolingFanControlsValues.u8_leadsensornumber, &mt_CoolingFanControlsMinValues.u8_leadsensornumber, &mt_CoolingFanControlsMaxValues.u8_leadsensornumber },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_CoolingFanControlsValues.f32_cooling_demand_pct, &mt_CoolingFanControlsMinValues.f32_cooling_demand_pct, &mt_CoolingFanControlsMaxValues.f32_cooling_demand_pct }
+};
+
 static const T_osy_dpa_element_definition mat_DataPoolCleaningChainsControlsElements[CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_ELEMENTS] =
 {
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_checkpoint1, &mt_CleaningChainsControlsMinValues.u8_checkpoint1, &mt_CleaningChainsControlsMaxValues.u8_checkpoint1 }
@@ -138,6 +158,7 @@ static const T_osy_dpa_element_definition mat_DataPoolGeneralTestingElements[CHE
 static const T_osy_dpa_list_definition mat_DataPoolLists[CHECKPOINTS_NUMBER_OF_LISTS] =
 {
    { CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_ElevatorControl_Values), &mat_DataPoolElevatorControlElements[0], &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues, NULL },
+   { CHECKPOINTS_COOLINGFANCONTROLS_NUMBER_OF_ELEMENTS, CHECKPOINTS_COOLINGFANCONTROLS_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_CoolingFanControls_Values), &mat_DataPoolCoolingFanControlsElements[0], &gt_Checkpoints_DataPoolValues.t_CoolingFanControlsValues, NULL },
    { CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_ELEMENTS, CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_CleaningChainsControls_Values), &mat_DataPoolCleaningChainsControlsElements[0], &gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues, NULL },
    { CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_FrontSweepsControl_Values), &mat_DataPoolFrontSweepsControlElements[0], &gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues, NULL },
    { CHECKPOINTS_ROTARYTRAP_NUMBER_OF_ELEMENTS, CHECKPOINTS_ROTARYTRAP_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_RotaryTrap_Values), &mat_DataPoolRotaryTrapElements[0], &gt_Checkpoints_DataPoolValues.t_RotaryTrapValues, NULL },
@@ -152,7 +173,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Checkpoints",  ///< name of Datapool
    CHECKPOINTS_NUMBER_OF_LISTS,
-   0x5213c4deU, ///< CRC of Datapool definition
+   0xf84819f2U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

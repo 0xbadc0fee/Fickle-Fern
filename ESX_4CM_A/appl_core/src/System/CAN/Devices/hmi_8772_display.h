@@ -29,6 +29,8 @@ typedef struct
    uint8 u8_drum_speed_enable;       //!<Requested Front Sweeps enabled
    uint8 u8_trap_speed_range; //!<Requested Rotary Trap Speed Range
 
+   uint8 u8_manual_purge_req;
+
    //TX Variables
    uint8 u8_controllerVersionMinor;     //!<Controller Software Version - Minor
    uint8 u8_controllerVersionMajor;     //!<Controller Software Version - Major
@@ -41,6 +43,13 @@ typedef struct
    uint8 u8_headlights_status; //!<Head Light Status
    uint8 u8_worklights_status; //!<Work Light Status
    uint8 u8_shaft_drive_status;         //!<Cleaning Chains Shaft Drive Status
+
+   uint8 u8_cooling_fan_reverse_ind;
+   uint8 u8_cooling_system_fault;
+   uint8 u8_hyd_oil_overtemp;
+   uint8 u8_intake_manifold_overtemp;
+   uint8 u8_engine_coolant_overtemp;
+   uint16 u16_hyd_oil_temp_degC;
 
 }T_8772_Display;
 

@@ -24,6 +24,9 @@ typedef struct
     uint8 u8_engineSpeed;           //!<Speed (RPM) of the Engine
     sint16 s16_engineCoolantTemp;   //!<Engine Coolant Temperature
     sint16 s16_engineIntakeTemp;    //!<Engine Intake Manifold Temperature
+    float32 f32_engine_coolant_temp_degC;
+    float32 f32_intake_manifold_temp_degC;
+    float32 f32_hyd_oil_temp_degC;
 
     //TX
     uint16 u16_rpm_command;          //!<Throttle command for engine
