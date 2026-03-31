@@ -310,12 +310,9 @@ sint16 init_coolingFanControl(T_UserInterface *_ui, T_ChkPoints_CoolingFan *_chk
     mt_cooling_fan.u8_manual_purge_latched = FALSE;
     mt_cooling_fan.u8_cooling_fault = FALSE;
 
-    mt_cooling_fan.u32_last_update_time_ms = 0u;
     mt_cooling_fan.u32_forward_run_start_ms = 0u;
-    mt_cooling_fan.u32_cleanout_start_ms = 0u;
     mt_cooling_fan.u32_ign_on_start_ms = 0u;
     mt_cooling_fan.u32_rev_state_start_ms = 0u;
-
     mt_cooling_fan.e_rev_state = CF_REV_IDLE_FORWARD;
 
     s16_error += rampInit(&mt_cooling_fan.t_speed_ramp,
@@ -382,14 +379,6 @@ sint16 update_CoolingFanControl(void)
 
     uint32 u32_now_ms = get_system_time_ms();
 
-    if(mt_cooling_fan.u32_last_update_time_ms == 0u)
-    {
-        mt_cooling_fan.u32_last_update_time_ms = u32_now_ms;
-        mt_cooling_fan.u32_forward_run_start_ms = u32_now_ms;
-    }
-
-    mt_cooling_fan.u32_last_update_time_ms = u32_now_ms;
-
     get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault);
     if(u8_ign_fault == FALSE)
     {
@@ -435,18 +424,20 @@ sint16 update_CoolingFanControl(void)
         &f32_t3_pwm);
 
         f32_temp_min_pwm = f32_t1_pwm;
+        mt_cooling_fan.pt_cp_cooling->u8_leadsensornumber = 1;
 
         if(f32_t2_pwm < f32_temp_min_pwm)
         {
             f32_temp_min_pwm = f32_t2_pwm;
+            mt_cooling_fan.pt_cp_cooling->u8_leadsensornumber = 2;
         }
 
         if(f32_t3_pwm < f32_temp_min_pwm)
         {
             f32_temp_min_pwm = f32_t3_pwm;
+            mt_cooling_fan.pt_cp_cooling->u8_leadsensornumber = 3;
         }
 
-        mt_cooling_fan.pt_cp_cooling->u8_leadsensornumber = f32_temp_min_pwm;
         f32_speed_cmd_target_pwm_in1 = CLAMP_F32(f32_temp_min_pwm,
         COOLING_FAN_PWM_LOW_LIMIT,
         COOLING_FAN_PWM_HIGH_LIMIT);

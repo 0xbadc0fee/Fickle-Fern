@@ -81,14 +81,14 @@
  */
 typedef enum
 {
-    CF_REV_IDLE_FORWARD = 0u,//!<
-    CF_REV_RAMP_DOWN_TO_REV,//!<
-    CF_REV_STOP_BEFORE_REV,//!<
-    CF_REV_RAMP_UP_REV,//!<
-    CF_REV_RUN_REV,//!<
-    CF_REV_RAMP_DOWN_TO_FWD,//!<
-    CF_REV_STOP_BEFORE_FWD,//!<
-    CF_REV_RAMP_UP_FWD//!<
+    CF_REV_IDLE_FORWARD = 0u,//!<Fan moving forward at X speed
+    CF_REV_RAMP_DOWN_TO_REV,//!<Fan slows down to 0 over 2.5s
+    CF_REV_STOP_BEFORE_REV,//!<Fan stays stopped for 1.5s
+    CF_REV_RAMP_UP_REV,//!<Fan ramps to target speed Y over 2.5s in reverse
+    CF_REV_RUN_REV,//!< Fan stays at target speed Y for 10 seconds
+    CF_REV_RAMP_DOWN_TO_FWD,//!<Fan slows down to 0 over 2.5s
+    CF_REV_STOP_BEFORE_FWD,//!<Fan stays stopped for 1.5s
+    CF_REV_RAMP_UP_FWD//!<Fan ramps to target speed X over 2.5s in forward
 } E_CoolingFanRevState;
 
 /** \brief Checkpoints Structure - Cooling Fan Control
@@ -98,8 +98,8 @@ typedef enum
  */
 typedef struct
 {
-        uint8 u8_leadsensornumber; //!<Checkpoint
-        float32 f32_cooling_demand_pct;//!<Checkpoint
+        uint8 u8_leadsensornumber; //!<Lead Sensor Number Checkpoint
+        float32 f32_cooling_demand_pct;//!<Cooling Demand Percentage Checkpoint
 
 }T_ChkPoints_CoolingFan;
 
@@ -117,23 +117,23 @@ typedef struct
 {
         uint32 u32_ign_start_time_ms;    //!<OS Start MS timer
         uint8 u8_prev_ign_on; //!<Previous IGN ON state
-        uint8   u8_cleanout_active;//!<
-        uint8   u8_fan_direction;//!<
-        uint8   u8_manual_purge_latched;//!<
-        uint8   u8_cooling_fault;//!<
+        uint8   u8_cleanout_active;//!<Cleanout Active
+        uint8   u8_fan_direction;//!<Fan Direction
+        uint8   u8_manual_purge_latched;//!<Manual Purge Latched
+        uint8   u8_cooling_fault;//!<Cooling Demand Fault
 
         //TX CAN Variables
-        uint16   *pu16_disp_hyd_oil_temp_degC;//!<
-        uint8   *pu8_disp_fan_reverse_ind;//!<
-        uint8   *pu8_disp_cooling_system_fault;//!<
-        uint8   *pu8_disp_hyd_oil_overtemp;//!<
-        uint8   *pu8_disp_intake_overtemp;//!<
-        uint8   *pu8_disp_coolant_overtemp;//!<
+        uint16   *pu16_disp_hyd_oil_temp_degC;//!<Hydraulic Oil Temperature Degree C
+        uint8   *pu8_disp_fan_reverse_ind;//!<Fan Reverse
+        uint8   *pu8_disp_cooling_system_fault;//!<Cooling System Fault
+        uint8   *pu8_disp_hyd_oil_overtemp;//!<Hydraulic Oil Temperature Over Temperature
+        uint8   *pu8_disp_intake_overtemp;//!<Intake Over Temperature
+        uint8   *pu8_disp_coolant_overtemp;//!<Engine Coolant Over Temperature
 
         //RX CAN Variables
-        float32 *pf32_engine_coolant_temp_degC;//!<
-        float32 *pf32_intake_manifold_temp_degC;//!<
-        uint8 *pu8_manual_purge_req;//!<
+        float32 *pf32_engine_coolant_temp_degC;//!<Engine Coolant Temperature RX
+        float32 *pf32_intake_manifold_temp_degC;//!<Intake Manifold Temperature RX
+        uint8 *pu8_manual_purge_req;//!<Manual Purge Request RX
 
         //Local Control Variables
         uint32  u32_last_update_time_ms;//!<
@@ -143,14 +143,14 @@ typedef struct
         uint32  u32_rev_state_start_ms;//!<
         float32 f32_dir_cmd_target_pct;//!<
 
-        E_CoolingFanRevState e_rev_state;//!<
+        E_CoolingFanRevState e_rev_state;//!<Fan Reversal States
 
         //Control Checkpoints
         T_ChkPoints_CoolingFan *pt_cp_cooling; //!<Cooling Fan Control Checkpoints Structure
         //Ramp variables
-        T_RampState          t_speed_ramp;//!<
-        T_RampState          t_dir_ramp;//!<
-        T_MoveAvgFilter  t_hyd_oil_temp_filt;//!<
+        T_RampState          t_speed_ramp;//!<Fan Speed Ramp Config
+        T_RampState          t_dir_ramp;//!<Fan Reversal Direction Config
+        T_MoveAvgFilter  t_hyd_oil_temp_filt;//!<Hydraulic Oil Temperature Filter Config
         float32 f32_hyd_buff[COOLING_FAN_HYD_BUF_LEN];//!<
 
 }T_CoolingFanControl;
