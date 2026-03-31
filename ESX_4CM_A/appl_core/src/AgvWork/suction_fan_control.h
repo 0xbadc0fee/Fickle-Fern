@@ -1,12 +1,13 @@
 //-----------------------------------------------------------------------------
 /*! \file       suction_fan_control.h
-    \brief      <description>
+    \brief      The Suction Fan Control Module shall regulate the PWM-controlled
+    fan output using operator speed requests and current suction fan RPM.
 
     project     Flory_8772-4CM
     copyright   STW Technic (c) 2026
     license     use only under terms of contract / confidential
 
-    created     Feb 24, 2026 STW Technic
+    created     Feb 24, 2026 Tiffany Gohnert
 */
 //-----------------------------------------------------------------------------
 

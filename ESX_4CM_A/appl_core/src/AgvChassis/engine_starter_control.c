@@ -1,6 +1,9 @@
 //-----------------------------------------------------------------------------
 /*! \file       engine_starter_control.c
-    \brief      <description>
+    \brief      The Engine Starter Control Module shall control the engine start
+    operation based on operator ignition input and validated system permissive conditions.
+    The module shall inhibit engine start-up under unsafe conditions and transmit engine
+    and neutral safety status to the operator display.
 
     project     FloryTemplate_4CM
     copyright   STW Technic (c) 2026
@@ -81,8 +84,6 @@ sint16 update_engineStarterControl(void)
     uint8 u8_neutral_safe = NEUTRAL_SAFE_FALSE;
 
     uint8 u8_engine_start_cmd = ENGINE_START_CMD_OFF;
-
-
 
     // FR-12.1 Read ignition start hardware input
     s16_error += get_inputFaultStatus("IGNITION_START", &u8_ign_fault_status);

@@ -12,7 +12,6 @@
     created     Jan 6, 2026 Tiffany.Gohnert
  */
 
-
 //-- Includes ------------------------------------------------------------------------------------------------------
 //STD
 #include <stdint.h>
@@ -127,7 +126,6 @@ sint16 update_throttleControl(void)
     // Init timing
     if(mt_throttle.u32_last_update_time_ms == 0u)
     {
-        mt_throttle.u32_last_update_time_ms = u32_now_ms;
         mt_throttle.u32_last_step_time_ms = u32_now_ms;
         mt_throttle.u32_engine_state_change_time_ms = u32_now_ms;
     }
@@ -196,7 +194,6 @@ sint16 update_throttleControl(void)
                 {
                     mt_throttle.u32_last_step_time_ms = u32_now_ms;
 
-
                     mt_throttle.pt_cp_throttle->u8_chk2_eng_spd_up_osc = u8_up_cmd;
                     mt_throttle.pt_cp_throttle->u8_chk3_eng_spd_down_osc = u8_down_cmd;
 
@@ -236,20 +233,15 @@ sint16 update_throttleControl(void)
     (u32_engine_state_elapsed_ms >= THROTTLE_6S_DELAY_MS))
     {
         *(mt_throttle.pu8_eng_ovrrd_ctrl_mode) = TRUE;
-
     }
     else{
         *(mt_throttle.pu8_eng_ovrrd_ctrl_mode) = FALSE;
     }
 
-
     // Output
     *(mt_throttle.pu16_engine_req_speed) = f32_final_req_rpm;
     mt_throttle.pt_cp_throttle->u16_chk1_eng_spd = f32_final_req_rpm;
     mt_throttle.u8_prev_engine_off = u8_engine_off;
-
-    return s16_error;
-
 
     return s16_error;
 }

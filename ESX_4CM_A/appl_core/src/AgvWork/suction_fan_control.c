@@ -1,12 +1,13 @@
 //-----------------------------------------------------------------------------
 /*! \file       suction_fan_control.c
-    \brief      <description>
+    \brief      The Suction Fan Control Module shall regulate the PWM-controlled fan
+    output using operator speed requests and current suction fan RPM.
 
     project     Flory_8772-4CM
     copyright   STW Technic (c) 2026
     license     use only under terms of contract / confidential
 
-    created     Feb 24, 2026 STW Technic
+    created     Feb 24, 2026 Tiffany Gohnert
  */
 //-----------------------------------------------------------------------------
 // -- Includes ------------------------------------------------------------------------------------------------------
@@ -193,7 +194,7 @@ sint16 update_suctionFanControl(void)
     s16_error += get_inputFaultStatus("SUCTION_FAN_SPEED", &u8_speed_fault);
     if (u8_speed_fault == TRUE)
     {
-        f32_meas_speed_rpm_adj = 0.0F;
+        f32_meas_speed_rpm_adj = SUCTION_FAN_SAFE_OUTPUT;
     }
     else
     {
@@ -256,13 +257,10 @@ sint16 update_suctionFanControl(void)
 
     //Inhibit on logic/output fault
     s16_error += get_outputFaultStatus("FAN_HYDRO_FWD", &u8_output_fault);
-    if ((u8_enable_reset == TRUE) || (u8_output_fault == TRUE))
+    if (u8_output_fault == FALSE)
     {
-        mt_suction_fan.u8_enable_latched = SUCTION_FAN_DISABLED;
-        f32_pwm_cmd = SUCTION_FAN_SAFE_OUTPUT;
+        s16_error += set_outputValue("FAN_HYDRO_FWD", f32_pwm_cmd);
     }
-
-    s16_error += set_outputValue("FAN_HYDRO_FWD", f32_pwm_cmd);
 
     //FR-5.6 Update CAN/display status
     if ((mt_suction_fan.pu8_enable_status != NULL) &&
@@ -284,7 +282,7 @@ sint16 update_suctionFanControl(void)
     return s16_error;
 }
 
-/** \brief Get AgvWork - Shaft Drive Status
+/** \brief Get AgvWork - Suction Fan Status
  *
  *  This function
  *
