@@ -136,12 +136,12 @@ typedef struct
         uint8 *pu8_manual_purge_req;//!<Manual Purge Request RX
 
         //Local Control Variables
-        uint32  u32_last_update_time_ms;//!<
-        uint32  u32_forward_run_start_ms;//!<
-        uint32  u32_cleanout_start_ms;//!<
-        uint32  u32_ign_on_start_ms;//!<
-        uint32  u32_rev_state_start_ms;//!<
-        float32 f32_dir_cmd_target_pct;//!<
+       // uint32  u32_last_update_time_ms;//!<
+        uint32  u32_forward_run_start_ms;//!<Fan Forward Timer
+        //uint32  u32_cleanout_start_ms;//!<
+        uint32  u32_ign_on_start_ms;//!<Program Start Timer
+        uint32  u32_rev_state_start_ms;//!<Fan Reverse Timer
+        float32 f32_dir_cmd_target_pct;//!<Fan Reverse Speed Target
 
         E_CoolingFanRevState e_rev_state;//!<Fan Reversal States
 
