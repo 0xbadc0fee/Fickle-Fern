@@ -136,9 +136,7 @@ typedef struct
         uint8 *pu8_manual_purge_req;//!<Manual Purge Request RX
 
         //Local Control Variables
-       // uint32  u32_last_update_time_ms;//!<
         uint32  u32_forward_run_start_ms;//!<Fan Forward Timer
-        //uint32  u32_cleanout_start_ms;//!<
         uint32  u32_ign_on_start_ms;//!<Program Start Timer
         uint32  u32_rev_state_start_ms;//!<Fan Reverse Timer
         float32 f32_dir_cmd_target_pct;//!<Fan Reverse Speed Target
@@ -151,7 +149,7 @@ typedef struct
         T_RampState          t_speed_ramp;//!<Fan Speed Ramp Config
         T_RampState          t_dir_ramp;//!<Fan Reversal Direction Config
         T_MoveAvgFilter  t_hyd_oil_temp_filt;//!<Hydraulic Oil Temperature Filter Config
-        float32 f32_hyd_buff[COOLING_FAN_HYD_BUF_LEN];//!<
+        float32 f32_hyd_buff[COOLING_FAN_HYD_BUF_LEN];//!<Moving Average Buffer
 
 }T_CoolingFanControl;
 
