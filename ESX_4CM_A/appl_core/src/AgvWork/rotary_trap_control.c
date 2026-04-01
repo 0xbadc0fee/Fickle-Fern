@@ -27,7 +27,6 @@
 #include "hw_outputs.h"
 #include "propulsion_control.h"
 
-#include "checkpoints_data_pool.h"
 
 // -- Defines ------------------------------------------------------------------------------------------------------
 

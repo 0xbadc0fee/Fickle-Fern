@@ -22,8 +22,6 @@
 #include "power_assist_control.h"
 #include "propulsion_control.h"
 
-#include "checkpoints_data_pool.h"
-
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
 /* -- Types -------------------------------------------------------------------------------------------------------- */

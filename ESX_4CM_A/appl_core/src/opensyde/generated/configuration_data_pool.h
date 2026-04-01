@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define CONFIGURATION_PROJECT_ID_2409142487 void configuration_project_id_2409142487(void) {}
+#define CONFIGURATION_PROJECT_ID_2506549816 void configuration_project_id_2506549816(void) {}
 
 ///Index of this Datapool
 #define CONFIGURATION_DATA_POOL_INDEX (1U)
@@ -29,7 +29,8 @@ extern "C" {
 #define CONFIGURATION_LIST_INDEX_HEADERCONFIG (1U)
 #define CONFIGURATION_LIST_INDEX_STICKBOXCONFIG (2U)
 #define CONFIGURATION_LIST_INDEX_POWERASSISTCONFIG (3U)
-#define CONFIGURATION_NUMBER_OF_LISTS (4U)
+#define CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG (4U)
+#define CONFIGURATION_NUMBER_OF_LISTS (5U)
 
 ///Index of elements
 #define CONFIGURATION_ELEM_INDEX_ELEVATORCONFIG_MAX_CURRENT (0U)
@@ -44,6 +45,11 @@ extern "C" {
 #define CONFIGURATION_ELEM_INDEX_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED (0U)
 #define CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_ELEMENTS (1U)
 
+#define CONFIGURATION_ELEM_INDEX_SUCTIONFANCONFIG_SF_DRIVE_RATIO (0U)
+#define CONFIGURATION_ELEM_INDEX_SUCTIONFANCONFIG_SF_INC_TIME (1U)
+#define CONFIGURATION_ELEM_INDEX_SUCTIONFANCONFIG_SF_DEC_TIME (2U)
+#define CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS (3U)
+
 ///Index of Datasets
 #define CONFIGURATION_DATA_SET_INDEX_ELEVATORCONFIG_DEFAULT (0U)
 #define CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS (1U)
@@ -53,6 +59,8 @@ extern "C" {
 #define CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS (0U)
 
 #define CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS (0U)
+
+#define CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_DATA_SETS (0U)
 
 ///Scaling values
 #define CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT (1.0F)
@@ -67,6 +75,13 @@ extern "C" {
 #define CONFIGURATION_SCALING_FACTOR_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED (1.0F)
 #define CONFIGURATION_SCALING_OFFSET_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED (0.0F)
 
+#define CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_DRIVE_RATIO (1.0F)
+#define CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_DRIVE_RATIO (0.0F)
+#define CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_INC_TIME (1.0F)
+#define CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_INC_TIME (0.0F)
+#define CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_DEC_TIME (1.0F)
+#define CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_DEC_TIME (0.0F)
+
 ///Scaling utilities
 #define CONFIGURATION_SET_VALUE_FROM_SCALED_ELEVATORCONFIG_MAX_CURRENT(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MAX_CURRENT) / CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT)
 #define CONFIGURATION_GET_SCALED_VALUE_ELEVATORCONFIG_MAX_CURRENT() ((gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current * CONFIGURATION_SCALING_FACTOR_ELEVATORCONFIG_MAX_CURRENT) + CONFIGURATION_SCALING_OFFSET_ELEVATORCONFIG_MAX_CURRENT)
@@ -79,6 +94,13 @@ extern "C" {
 
 #define CONFIGURATION_SET_VALUE_FROM_SCALED_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED) / CONFIGURATION_SCALING_FACTOR_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED)
 #define CONFIGURATION_GET_SCALED_VALUE_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED() ((gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed * CONFIGURATION_SCALING_FACTOR_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED) + CONFIGURATION_SCALING_OFFSET_POWERASSISTCONFIG_POWER_ASSIST_INSTALLED)
+
+#define CONFIGURATION_SET_VALUE_FROM_SCALED_SUCTIONFANCONFIG_SF_DRIVE_RATIO(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.f32_sf_drive_ratio = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_DRIVE_RATIO) / CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_DRIVE_RATIO)
+#define CONFIGURATION_GET_SCALED_VALUE_SUCTIONFANCONFIG_SF_DRIVE_RATIO() ((gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.f32_sf_drive_ratio * CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_DRIVE_RATIO) + CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_DRIVE_RATIO)
+#define CONFIGURATION_SET_VALUE_FROM_SCALED_SUCTIONFANCONFIG_SF_INC_TIME(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_inc_time = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_INC_TIME) / CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_INC_TIME)
+#define CONFIGURATION_GET_SCALED_VALUE_SUCTIONFANCONFIG_SF_INC_TIME() ((gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_inc_time * CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_INC_TIME) + CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_INC_TIME)
+#define CONFIGURATION_SET_VALUE_FROM_SCALED_SUCTIONFANCONFIG_SF_DEC_TIME(SCALED_VALUE) (gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_dec_time = (SCALED_VALUE - CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_DEC_TIME) / CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_DEC_TIME)
+#define CONFIGURATION_GET_SCALED_VALUE_SUCTIONFANCONFIG_SF_DEC_TIME() ((gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_dec_time * CONFIGURATION_SCALING_FACTOR_SUCTIONFANCONFIG_SF_DEC_TIME) + CONFIGURATION_SCALING_OFFSET_SUCTIONFANCONFIG_SF_DEC_TIME)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 ///Elements in list "ElevatorConfig":
@@ -105,6 +127,14 @@ typedef struct
    uint8 u8_power_assist_installed; /* Parameter description */
 } T_Configuration_PowerAssistConfig_Values;
 
+///Elements in list "SuctionFanConfig":
+typedef struct
+{
+   float32 f32_sf_drive_ratio; /* Parameter description */
+   uint8 u8_sf_inc_time; /* Parameter description */
+   uint8 u8_sf_dec_time; /* Parameter description */
+} T_Configuration_SuctionFanConfig_Values;
+
 ///Elements of all lists:
 typedef struct
 {
@@ -112,6 +142,7 @@ typedef struct
    T_Configuration_HeaderConfig_Values t_HeaderConfigValues;
    T_Configuration_StickBoxConfig_Values t_StickBoxConfigValues;
    T_Configuration_PowerAssistConfig_Values t_PowerAssistConfigValues;
+   T_Configuration_SuctionFanConfig_Values t_SuctionFanConfigValues;
 } T_Configuration_DataPoolValues;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
@@ -123,7 +154,7 @@ extern const T_osy_dpa_data_pool gt_Configuration_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void configuration_project_id_2409142487(void);
+extern void configuration_project_id_2506549816(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

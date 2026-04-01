@@ -6,7 +6,7 @@
         <name>Configuration</name>
         <version major="0" minor="0" release="0"/>
         <comment>NVM Datapool to hold Configuration Data</comment>
-        <lists length="4">
+        <lists length="5">
             <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="5">
                 <name>ElevatorConfig</name>
                 <comment/>
@@ -72,6 +72,43 @@
                 <data-elements length="1">
                     <data-element factor="1" offset="0" nvm-start-address="15">
                         <name>power_assist_installed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="115" nvm-size="20">
+                <name>SuctionFanConfig</name>
+                <comment/>
+                <data-elements length="3">
+                    <data-element factor="1" offset="0" nvm-start-address="115">
+                        <name>sf_drive_ratio</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" nvm-start-address="119">
+                        <name>sf_inc_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" nvm-start-address="120">
+                        <name>sf_dec_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>

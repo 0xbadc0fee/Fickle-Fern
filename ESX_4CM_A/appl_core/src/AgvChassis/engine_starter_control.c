@@ -27,8 +27,6 @@
 #include "hw_outputs.h"
 #include "can_engine.h"
 
-#include "checkpoints_data_pool.h"
-
 // -- Function Prototypes --------------------------------------------------------------------------------------
 void check_engineStatus(void);
 

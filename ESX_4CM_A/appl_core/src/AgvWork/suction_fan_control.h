@@ -1,12 +1,13 @@
 //-----------------------------------------------------------------------------
 /*! \file       suction_fan_control.h
-    \brief      <description>
+    \brief      The Suction Fan Control Module shall regulate the PWM-controlled
+    fan output using operator speed requests and current suction fan RPM.
 
     project     Flory_8772-4CM
     copyright   STW Technic (c) 2026
     license     use only under terms of contract / confidential
 
-    created     Feb 24, 2026 STW Technic
+    created     Feb 24, 2026 Tiffany Gohnert
 */
 //-----------------------------------------------------------------------------
 
@@ -34,10 +35,15 @@
 
 #define SUCTION_FAN_FILTER_BUF_LEN       (10u)
 
-#define SUCTION_FAN_PWM_MIN              (0.0F)
-#define SUCTION_FAN_PWM_MAX              (1500.0F)
+#define SUCTION_FAN_CMD_MIN              (0.0F)
+#define SUCTION_FAN_CMD_MAX              (1000.0F)
 
-#define SUCTION_FAN_RAMP_RATE    (6000.0F)
+#define SUCTION_FAN_PWM_MIN              (0.0F)
+#define SUCTION_FAN_PWM_MAX              (10000.0F)
+
+#define SUCTION_FAN_RAMP_RATE            (50.0F)
+
+#define SF_PPR                           (46.0F)
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /** \brief Checkpoints Structure - Suction Fan Control
@@ -78,6 +84,10 @@ typedef struct
     uint8   u8_prev_engine_on;//!<Previous Engine On/Off status
     uint32  u32_eng_start_time_ms;//!<Engine Start time ms
     float32 af32_speed_buf[SUCTION_FAN_FILTER_BUF_LEN];//!<Speed average filter buffer
+
+    float32 f32_fan_frequency;
+    float32 f32_shaft_rpm;
+    float32 f32_prev_req_rpm;
 
     // Control Blocks
     T_ToggleBtn        t_btn_enable;//!<Button enabled struct

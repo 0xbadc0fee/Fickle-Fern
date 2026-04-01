@@ -23,8 +23,6 @@
 #include "hw_outputs.h"
 #include "stick_remover_control.h"
 
-#include "checkpoints_data_pool.h"
-
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
 

@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_2409142487 mt_Variable;
+static T_osy_non_existing_type_2506549816 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CONFIGURATION_PROJECT_ID_2409142487
+CONFIGURATION_PROJECT_ID_2506549816
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -95,6 +95,22 @@ static const T_Configuration_PowerAssistConfig_Values mt_PowerAssistConfigMaxVal
    255U    ///< power_assist_installed (Parameter description)
 };
 
+///Minimum values
+static const T_Configuration_SuctionFanConfig_Values mt_SuctionFanConfigMinValues =
+{
+   -3.40282347e+38F,   ///< sf_drive_ratio (Parameter description)
+   0U,   ///< sf_inc_time (Parameter description)
+   0U    ///< sf_dec_time (Parameter description)
+};
+
+///Maximum values
+static const T_Configuration_SuctionFanConfig_Values mt_SuctionFanConfigMaxValues =
+{
+   3.40282347e+38F,   ///< sf_drive_ratio (Parameter description)
+   255U,   ///< sf_inc_time (Parameter description)
+   255U    ///< sf_dec_time (Parameter description)
+};
+
 ///List definitions:
 static const T_osy_dpa_element_definition mat_DataPoolElevatorConfigElements[CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS] =
 {
@@ -116,13 +132,21 @@ static const T_osy_dpa_element_definition mat_DataPoolPowerAssistConfigElements[
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed, &mt_PowerAssistConfigMinValues.u8_power_assist_installed, &mt_PowerAssistConfigMaxValues.u8_power_assist_installed }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolSuctionFanConfigElements[CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.f32_sf_drive_ratio, &mt_SuctionFanConfigMinValues.f32_sf_drive_ratio, &mt_SuctionFanConfigMaxValues.f32_sf_drive_ratio },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_inc_time, &mt_SuctionFanConfigMinValues.u8_sf_inc_time, &mt_SuctionFanConfigMaxValues.u8_sf_inc_time },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_dec_time, &mt_SuctionFanConfigMinValues.u8_sf_dec_time, &mt_SuctionFanConfigMaxValues.u8_sf_dec_time }
+};
+
 ///list of lists:
 static const T_osy_dpa_list_definition mat_DataPoolLists[CONFIGURATION_NUMBER_OF_LISTS] =
 {
    { CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Configuration_ElevatorConfig_Values), &mat_DataPoolElevatorConfigElements[0], &gt_Configuration_DataPoolValues.t_ElevatorConfigValues, &mat_ElevatorConfigDataSetTable[0] },
    { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000005U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, NULL },
    { CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000aU, sizeof(T_Configuration_StickBoxConfig_Values), &mat_DataPoolStickBoxConfigElements[0], &gt_Configuration_DataPoolValues.t_StickBoxConfigValues, NULL },
-   { CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000fU, sizeof(T_Configuration_PowerAssistConfig_Values), &mat_DataPoolPowerAssistConfigElements[0], &gt_Configuration_DataPoolValues.t_PowerAssistConfigValues, NULL }
+   { CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000fU, sizeof(T_Configuration_PowerAssistConfig_Values), &mat_DataPoolPowerAssistConfigElements[0], &gt_Configuration_DataPoolValues.t_PowerAssistConfigValues, NULL },
+   { CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000073U, sizeof(T_Configuration_SuctionFanConfig_Values), &mat_DataPoolSuctionFanConfigElements[0], &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues, NULL }
 };
 
 ///Datapool definition:
@@ -133,7 +157,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Configuration",  ///< name of Datapool
    CONFIGURATION_NUMBER_OF_LISTS,
-   0x5ab6aebU, ///< CRC of Datapool definition
+   0x26a8230dU, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    20000U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],
@@ -141,7 +165,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
 };
 
 ///Create Datapool instance data:
-OSY_DPA_CREATE_STATIC_DP_INSTANCE_DATA_WITH_BUFFER(mt_DpInstanceData, &mt_DataPoolDefinition, 4U)
+OSY_DPA_CREATE_STATIC_DP_INSTANCE_DATA_WITH_BUFFER(mt_DpInstanceData, &mt_DataPoolDefinition, 6U)
 
 const T_osy_dpa_data_pool gt_Configuration_DataPool =
 {

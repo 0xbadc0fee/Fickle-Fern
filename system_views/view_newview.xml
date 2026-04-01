@@ -174,13 +174,13 @@
                     <label show-caption="true" show-unit="true">
                         <base>
                             <box>
-                                <position x="830" y="262"/>
+                                <position x="696" y="96"/>
                                 <size width="150" height="84"/>
                                 <zorder value="7"/>
                             </box>
                             <data-pool-elements>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="5" element="1"/>
+                                    <index node="0" data-pool="0" list="7" element="1"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -205,7 +205,7 @@
                         <base>
                             <box>
                                 <position x="715" y="365"/>
-                                <size width="981" height="293"/>
+                                <size width="981" height="425"/>
                                 <zorder value="3"/>
                             </box>
                             <data-pool-elements>
@@ -580,101 +580,101 @@
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="4" element="0"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
-                <transmission-mode>manual</transmission-mode>
+                <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="4" element="1"/>
                 <threshold array="false" value="6553">
                     <type>sint16</type>
                 </threshold>
-                <transmission-mode>manual</transmission-mode>
+                <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="4" element="2"/>
-                <threshold array="false" value="6.8056469e+37">
-                    <type>float32</type>
-                </threshold>
-                <transmission-mode>manual</transmission-mode>
-            </rail-assignment>
-            <rail-assignment rail-index="1">
-                <id node="0" data-pool="0" list="4" element="3"/>
-                <threshold array="false" value="429496729">
-                    <type>uint32</type>
-                </threshold>
-                <transmission-mode>manual</transmission-mode>
-            </rail-assignment>
-            <rail-assignment rail-index="1">
-                <id node="0" data-pool="0" list="5" element="1"/>
                 <threshold array="false" value="6.8056469e+37">
                     <type>float32</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
+                <id node="0" data-pool="0" list="4" element="3"/>
+                <threshold array="false" value="429496729">
+                    <type>uint32</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="5" element="2"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="6" element="0"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="6" element="1"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="6" element="2"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="6" element="3"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="6" element="4"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="6" element="5"/>
                 <threshold array="false" value="6553">
                     <type>uint16</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="6" element="6"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
-            <rail-assignment rail-index="1">
+            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="6" element="7"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="7" element="1"/>
+                <threshold array="false" value="6553">
+                    <type>uint16</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>

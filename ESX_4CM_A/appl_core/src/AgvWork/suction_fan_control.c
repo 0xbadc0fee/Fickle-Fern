@@ -1,12 +1,13 @@
 //-----------------------------------------------------------------------------
 /*! \file       suction_fan_control.c
-    \brief      <description>
+    \brief      The Suction Fan Control Module shall regulate the PWM-controlled fan
+    output using operator speed requests and current suction fan RPM.
 
     project     Flory_8772-4CM
     copyright   STW Technic (c) 2026
     license     use only under terms of contract / confidential
 
-    created     Feb 24, 2026 STW Technic
+    created     Feb 24, 2026 Tiffany Gohnert
  */
 //-----------------------------------------------------------------------------
 // -- Includes ------------------------------------------------------------------------------------------------------
@@ -24,10 +25,13 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
+#include "checkpoints_data_pool.h"
+
 // -- Defines ------------------------------------------------------------------------------------------------------
 #define PROGRAM_START_DEB_MS (3000u) //3 seconds
 // -- Types --------------------------------------------------------------------------------------------------------
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
+sint16 calc_sfSpeed(void);
 // -- Module Global Variables --------------------------------------------------------------------------------------
 static T_SuctionFanControl mt_suction_fan;
 
@@ -47,8 +51,6 @@ static T_SuctionFanControl mt_suction_fan;
 sint16 init_suctionFanControl(T_CANDevices *_can_devs, T_Config_SFan *_nvmSuctionFan, T_ChkPoints_SFan *_chkSuctionFan)
 {
     sint16 s16_error = C_NO_ERR;
-    float32 f32_min_ramp_limit = 0.0F;
-    float32 f32_max_ramp_limit= 0.0F;
 
     if((_can_devs == NULL) || (_nvmSuctionFan == NULL) || (_chkSuctionFan == NULL))
     {
@@ -67,40 +69,27 @@ sint16 init_suctionFanControl(T_CANDevices *_can_devs, T_Config_SFan *_nvmSuctio
     mt_suction_fan.pt_cp_sfan = _chkSuctionFan;
 
     mt_suction_fan.u8_enable_latched     = SUCTION_FAN_DISABLED;
-    mt_suction_fan.u8_prev_engine_on        = FALSE;
-    mt_suction_fan.u32_eng_start_time_ms = 0u;
 
     //Initialize toggle button helper
     s16_error += toggleButton_init(&mt_suction_fan.t_btn_enable,
-    &mt_suction_fan.u8_enable_latched,
-    250u,
-    SUCTION_FAN_DISABLED);
+                                   &mt_suction_fan.u8_enable_latched,
+                                   250u,
+                                   SUCTION_FAN_DISABLED);
 
     //Initialize Moving Average Filter helper
-    s16_error += movingFltInit(&mt_suction_fan.t_speed_filter,
-    mt_suction_fan.af32_speed_buf,
-    SUCTION_FAN_FILTER_BUF_LEN,
-    SUCTION_FAN_SAFE_OUTPUT,
-    5u,
-    100u);
+    movingFltInit(&mt_suction_fan.t_speed_filter,
+                  mt_suction_fan.af32_speed_buf,
+                  sizeof(mt_suction_fan.af32_speed_buf)/sizeof(float32),
+                  SUCTION_FAN_SAFE_OUTPUT,
+                  sizeof(mt_suction_fan.af32_speed_buf)/sizeof(float32),
+                  50);
 
     //Initialize Ramp helper
-    if(mt_suction_fan.pt_nvm == NULL)
-    {
-        f32_max_ramp_limit = SUCTION_FAN_PWM_MAX;
-        f32_min_ramp_limit = SUCTION_FAN_PWM_MIN;
-    }
-    else
-    {
-        // FR-5.8 Apply ramping using configured increase/decrease times and bounds
-        f32_max_ramp_limit = mt_suction_fan.pt_nvm->f32_fan_inc_time;
-        f32_min_ramp_limit = mt_suction_fan.pt_nvm->f32_fan_dec_time;
-    }
     s16_error += rampInit(&mt_suction_fan.t_speed_ramp,
-    SUCTION_FAN_RAMP_RATE,
-    f32_min_ramp_limit,
-    f32_max_ramp_limit,
-    SUCTION_FAN_SAFE_SPEED_RPM);
+                           SUCTION_FAN_RAMP_RATE,
+                           SUCTION_FAN_CMD_MIN,
+                           SUCTION_FAN_CMD_MAX,
+                           SUCTION_FAN_SAFE_SPEED_RPM);
 
     //PID init
     mt_suction_fan.t_pid_state.f32_prev_error = 0.0F;
@@ -108,12 +97,12 @@ sint16 init_suctionFanControl(T_CANDevices *_can_devs, T_Config_SFan *_nvmSuctio
     mt_suction_fan.t_pid_state.f32_output = SUCTION_FAN_SAFE_OUTPUT;
     mt_suction_fan.t_pid_state.u64_last_time = 0u;
 
-    // PID output is PWM duty cycle percent
-    mt_suction_fan.t_pid_coeff.f32_kp = 500.0F;
-    mt_suction_fan.t_pid_coeff.f32_ki = 5.0F;
+    // PID output is PWM duty cycle percent (0-10000)
+    mt_suction_fan.t_pid_coeff.f32_kp = 5.0F;
+    mt_suction_fan.t_pid_coeff.f32_ki = 2.0F;
     mt_suction_fan.t_pid_coeff.f32_kd = 0.0F;
-    mt_suction_fan.t_pid_coeff.s32_min_output = -1000;
-    mt_suction_fan.t_pid_coeff.s32_max_output = 1000;
+    mt_suction_fan.t_pid_coeff.s32_min_output = 0;
+    mt_suction_fan.t_pid_coeff.s32_max_output = 10000;
 
     return s16_error;
 }
@@ -143,11 +132,8 @@ sint16 update_suctionFanControl(void)
 
     uint8 u8_startup_deb_complete = FALSE;
 
-
     float32 f32_door_value = DOOR_CLOSED;
     float32 f32_speed_req_rpm = SUCTION_FAN_SAFE_SPEED_RPM;
-    float32 f32_speed_sensor = 0.0F;
-    float32 f32_meas_speed_rpm_adj = 0.0F;
     float32 f32_pwm_cmd = SUCTION_FAN_SAFE_OUTPUT;
 
     //Validate required pointers
@@ -182,27 +168,14 @@ sint16 update_suctionFanControl(void)
     }
 
     // FR-5.4 Read speed input and convert frequency to RPM
-    s16_error += get_inputFaultStatus("SUCTION_FAN_SPEED", &u8_speed_fault);
+    s16_error += get_inputFaultStatus("FAN_SPEED", &u8_speed_fault);
     if (u8_speed_fault == TRUE)
     {
-        f32_meas_speed_rpm_adj = 0.0F;
+        mt_suction_fan.f32_shaft_rpm = SUCTION_FAN_SAFE_OUTPUT;
     }
     else
     {
-        s16_error += get_inputValue("SUCTION_FAN_SPEED", &f32_speed_sensor);
-
-        //FR-5.5 Apply average filter and drive ratio
-        s16_error += movingAdvFlt(&mt_suction_fan.t_speed_filter, f32_speed_sensor);
-
-        if (mt_suction_fan.pt_nvm != NULL)
-        {
-            f32_meas_speed_rpm_adj =
-            mt_suction_fan.t_speed_filter.f32_out * mt_suction_fan.pt_nvm->f32_drive_ratio;
-        }
-        else
-        {
-            f32_meas_speed_rpm_adj = mt_suction_fan.t_speed_filter.f32_out;
-        }
+        s16_error += calc_sfSpeed();
     }
 
     // FR-5.3 Force disable/reset when interlocks are not satisfied
@@ -217,9 +190,7 @@ sint16 update_suctionFanControl(void)
     }
 
     // FR-5.2 Apply latching and reset logic to enable command
-    s16_error += toggleButton(&mt_suction_fan.t_btn_enable,
-    u8_enable_cmd,
-    u8_enable_reset);
+    s16_error += toggleButton(&mt_suction_fan.t_btn_enable, u8_enable_cmd, u8_enable_reset);
 
     //FR-5.7 Force suction fan speed to zero when disabled
     if (mt_suction_fan.u8_enable_latched != SUCTION_FAN_ENABLED)
@@ -227,54 +198,90 @@ sint16 update_suctionFanControl(void)
         f32_speed_req_rpm = SUCTION_FAN_SAFE_OUTPUT;
     }
 
+    //set ramp rate based on if target is higher or lower than current target
+    if(f32_speed_req_rpm > mt_suction_fan.f32_prev_req_rpm)
+    {
+        set_rampRate(&mt_suction_fan.t_speed_ramp, mt_suction_fan.pt_nvm->f32_fan_inc_time);
+    }
+    else if (f32_speed_req_rpm <= mt_suction_fan.f32_prev_req_rpm)
+    {
+        set_rampRate(&mt_suction_fan.t_speed_ramp, mt_suction_fan.pt_nvm->f32_fan_dec_time);
+    }
+
+
     s16_error += rampCalc(f32_speed_req_rpm, &mt_suction_fan.t_speed_ramp);
 
     // FR-5.9 Closed-loop PID control
     if ((u8_btn_reset == FALSE) &&
-    (mt_suction_fan.u8_enable_latched == SUCTION_FAN_ENABLED))
+        (mt_suction_fan.u8_enable_latched == SUCTION_FAN_ENABLED)&&
+        (u8_speed_fault == FALSE))
     {
         s16_error += PidOutput(mt_suction_fan.t_speed_ramp.f32_output,
-        f32_meas_speed_rpm_adj,
-        &mt_suction_fan.t_pid_state,
-        &mt_suction_fan.t_pid_coeff);
+                               mt_suction_fan.f32_shaft_rpm,
+                               &mt_suction_fan.t_pid_state,
+                               &mt_suction_fan.t_pid_coeff);
 
-        // FR-5.10 Convert final command into bounded proportional PWM output
-        f32_pwm_cmd = CLAMP_F32(mt_suction_fan.t_pid_state.f32_output, SUCTION_FAN_PWM_MIN,SUCTION_FAN_PWM_MAX);
+        f32_pwm_cmd = mt_suction_fan.t_pid_state.f32_output;
     }
+    else if ((mt_suction_fan.u8_enable_latched == SUCTION_FAN_ENABLED)&&
+            (u8_speed_fault == TRUE))
+    {
+        //open loop control?
+        //f32_pwm_cmd = mt_suction_fan.t_speed_ramp.f32_output * 100.0f;
+        f32_pwm_cmd = SUCTION_FAN_SAFE_OUTPUT;
+    }
+
     else
     {
         f32_pwm_cmd = SUCTION_FAN_SAFE_OUTPUT;
     }
 
+
     //Inhibit on logic/output fault
     s16_error += get_outputFaultStatus("FAN_HYDRO_FWD", &u8_output_fault);
-    if ((u8_enable_reset == TRUE) || (u8_output_fault == TRUE))
+    if (u8_output_fault == FALSE)
     {
-        mt_suction_fan.u8_enable_latched = SUCTION_FAN_DISABLED;
-        f32_pwm_cmd = SUCTION_FAN_SAFE_OUTPUT;
+        s16_error += set_outputValue("FAN_HYDRO_FWD", f32_pwm_cmd);
     }
-
-    s16_error += set_outputValue("FAN_HYDRO_FWD", f32_pwm_cmd);
 
     //FR-5.6 Update CAN/display status
     if ((mt_suction_fan.pu8_enable_status != NULL) &&
     (mt_suction_fan.pu16_speed_status_rpm != NULL))
     {
         *(mt_suction_fan.pu8_enable_status) = mt_suction_fan.u8_enable_latched;
-        *(mt_suction_fan.pu16_speed_status_rpm) = (uint16)f32_meas_speed_rpm_adj;
+        *(mt_suction_fan.pu16_speed_status_rpm) = (uint16)mt_suction_fan.f32_shaft_rpm;
     }
 
     // Checkpoints
     if (mt_suction_fan.pt_cp_sfan != NULL)
     {
         mt_suction_fan.pt_cp_sfan->u8_suctionFanOn =  mt_suction_fan.u8_enable_latched;
-        mt_suction_fan.pt_cp_sfan->u16_pwmStatus =f32_pwm_cmd;
+        mt_suction_fan.pt_cp_sfan->u16_pwmStatus = (uint16)f32_pwm_cmd;
     }
+
+    mt_suction_fan.f32_prev_req_rpm = f32_speed_req_rpm;
 
     return s16_error;
 }
 
-/** \brief Get AgvWork - Shaft Drive Status
+sint16 calc_sfSpeed(void)
+{
+    sint16 s16_error = C_NO_ERR;
+    float32 f32_mRPM = 0.0;
+
+    s16_error += get_inputValue("FAN_SPEED", &mt_suction_fan.f32_fan_frequency);
+
+    f32_mRPM = (mt_suction_fan.f32_fan_frequency/1000.0f) * 60.0f / SF_PPR;
+
+    s16_error += movingAdvFlt(&mt_suction_fan.t_speed_filter, f32_mRPM);
+
+    mt_suction_fan.f32_shaft_rpm = mt_suction_fan.t_speed_filter.f32_out / mt_suction_fan.pt_nvm->f32_drive_ratio;
+
+    return s16_error;
+}
+
+
+/** \brief Get AgvWork - Suction Fan Status
  *
  *  This function
  *

@@ -28,7 +28,6 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
-#include "checkpoints_data_pool.h"
 
 // -- Defines ------------------------------------------------------------------------------------------------------
 

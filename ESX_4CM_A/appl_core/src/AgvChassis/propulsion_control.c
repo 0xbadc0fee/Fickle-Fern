@@ -21,7 +21,6 @@
 
 #include "system.h"
 #include "can_device_definition.h"
-#include "checkpoints_data_pool.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
@@ -70,9 +69,6 @@ sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_c
     mt_prop_control.pu8_neutral_state   = &_can_dev->t_display.u8_neutral_state;
     mt_prop_control.pu8_wheel_speed_10  = &_can_dev->t_display.u8_wheel_speed_10;
     mt_prop_control.pu8_speed_limit_set = &_can_dev->t_display.u8_speed_limit_set;
-
-    //populate local copy of engine elements
-    //mt_prop_control.pu8_engine_status = &_can_dev->t_engine.u8_engineStatus;
 
     //populate local copy of NVM elements
     mt_prop_control.pt_chkProp = _chkProp;
@@ -406,8 +402,6 @@ sint16 check_edcInterlocks(uint8 *u8_edc_enable)
     {
         *u8_edc_enable = FALSE;
     }
-
-    gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.u8_edc_enable = *u8_edc_enable;
 
     return s16_error;
 }

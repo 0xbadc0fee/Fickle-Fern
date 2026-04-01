@@ -18,3 +18,7 @@ NVM_FIELD(stickBoxInstalled, CONFIGURATION_LIST_INDEX_STICKBOXCONFIG, gt_Configu
 /* PA Control Parameter */
 NVM_FIELD(paInstalled, CONFIGURATION_LIST_INDEX_POWERASSISTCONFIG, gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed, gt_paConfig.u8_power_assist_installed)
 
+/* Suction Fan Parameters */
+NVM_FIELD(sfDR, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.f32_sf_drive_ratio, gt_suctionFanConfig.f32_drive_ratio)
+NVM_FIELD(sfIncTime, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_inc_time, gt_suctionFanConfig.f32_fan_inc_time)
+NVM_FIELD(sfDecTime, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_dec_time, gt_suctionFanConfig.f32_fan_dec_time)
