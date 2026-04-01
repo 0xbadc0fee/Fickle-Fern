@@ -188,11 +188,6 @@ sint16 update_throttleControl(void)
         mt_throttle.f32_target_req_rpm = THROTTLE_DEFAULT_START_RPM;
     }
 
-    else if((mt_throttle.u8_engine_status == ENGINE_OFF) || (u8_up_fault == TRUE) || (u8_down_fault == TRUE))
-    {
-        mt_throttle.f32_target_req_rpm = THROTTLE_REQ_RPM_ZERO;
-    }
-
     //FR-14.1/3 - check for DECREASE command
     else if (mt_throttle.u8_throttle_cmd == THROTTLE_DECREASE)
     {
@@ -254,7 +249,6 @@ sint16 update_throttleControl(void)
     {
         *(mt_throttle.pu8_eng_ovrrd_ctrl_mode) = FALSE;
     }
-
 
     // Output
     *(mt_throttle.pu16_engine_req_speed) = (uint16)(mt_throttle.f32_target_req_rpm / 0.125f);
