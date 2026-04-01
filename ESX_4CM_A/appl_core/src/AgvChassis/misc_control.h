@@ -22,6 +22,7 @@
 #include "stwtypes.h"
 //PROJECT
 #include "hmi_definition.h"
+#include "moving_avg_filter.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define MISC_SAFE_PERCENT                     (0.0F)
@@ -29,14 +30,25 @@
 #define FILTER_MINDER_RAW_MIN                 (0.0F)
 #define FILTER_MINDER_RAW_MAX                 (100.0F)
 #define FILTER_MINDER_RESTRICTION_MAX_PCT     (80.0F)
-
+#define FILTER_MINDER_FAULT_THRESHOLD         (4.0F)
+#define FILTER_MINDER_SAFE_STATE                    (0.0F)
+#define FILTER_MINDER_BUF_LEN                       (8u)
+#define FILTER_MINDER_FILTER_SAFE_OUTPUT            (0.0F)
+#define FILTER_MINDER_FILTER_SAMPLE_NO              (7u)
+#define FILTER_MINDER_FILTER_SAMPLE_MS              (100u)
 // Fuel
-#define FUEL_RAW_MIN                       (1000.0F)
-#define FUEL_RAW_MAX                       (9000.0F)
-#define FUEL_FAULT_THRESHOLD               (625.0F)
-#define FUEL_LOW_SETPOINT                  (700.0F)   // 7.00% in 0.01% units
+#define FUEL_RAW_MIN                       (0.0F)
+#define FUEL_RAW_MAX                       (5000.0F)
+
+
+#define FUEL_FAULT_THRESHOLD               (6.25F)
+#define FUEL_LOW_SETPOINT                  (7.0F)   // 7.00% in 0.01% units
 #define FUEL_LOW_DELAY_MS                  (5000u)
-#define FUEL_SAFE_STATE                     (0.0F)
+#define FUEL_SAFE_STATE                    (0.0F)
+#define FUEL_BUF_LEN                       (8u)
+#define FUEL_FILTER_SAFE_OUTPUT            (0.0F)
+#define FUEL_FILTER_SAMPLE_NO              (7u)
+#define FUEL_FILTER_SAMPLE_MS              (100u)
 
 // Scaling
 #define PERCENT_SCALE                      (100.0F)
@@ -67,8 +79,8 @@ typedef struct
  */
 typedef struct
 {
-    uint8 u16_fuel_high_deadband; //!<Configuration parameter for
-    uint8 u16_filter_rstn_max; //!<Configuration parameter for
+        uint16 u16_fuel_high_deadband; //!<Configuration parameter for Fuel Level deadband
+        uint16 u16_filter_rstn_max; //!<Configuration parameter for
 
 }T_Config_MiscrControl;
 
@@ -100,18 +112,21 @@ typedef struct
         uint8   *pu8_sw_major_revision;
         uint8   *pu8_sw_minor_revision;
 
-        uint8   *pu8_clear_machine_faults_cmd;
         //RX CAN Variables
-          uint8   *pu8_clear_machine_faults_cmd;
+        uint8   *pu8_clear_machine_faults_cmd;
         //Local Control Variables
-          float32  f32_last_fuel_gauge_pct;
-            float32 f32_last_fuel_gauge;
-            T_LowPassFilter t_fuel_level_lpf;
-            uint32 u32_low_fuel_timer_start_ms;
-            uint8 u8_low_fuel_timer_active;
+        float32  f32_last_fuel_gauge_pct;
+        float32 f32_last_fuel_gauge;
+        T_MoveAvgFilter t_fuel_level_flt;
+        float32 f32_fuel_level_buf[FUEL_BUF_LEN];//!<Moving Average Buffer
 
-          //NVM Configuration Parameters
-          T_Config_MiscrControl *pt_nvm_misc_control;      //!<Header Control Configuration Structure
+        T_MoveAvgFilter t_minder_flt;
+         float32 f32_minder_buf[FILTER_MINDER_BUF_LEN];//!<Moving Average Buffer
+        uint32 u32_low_fuel_timer_start_ms;
+        uint8 u8_low_fuel_timer_active;
+
+        //NVM Configuration Parameters
+        T_Config_MiscrControl *pt_nvm_misc_control;      //!<Header Control Configuration Structure
 
         //Control Checkpoints
         T_ChkPoints_Mis *pt_cp_misc; //!<Miscellaneous Control Checkpoints Structure
