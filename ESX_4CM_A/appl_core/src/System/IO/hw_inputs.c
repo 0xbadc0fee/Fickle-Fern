@@ -37,7 +37,7 @@ T_VehicleInput tvi_hyd_oil_temp =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -61,7 +61,7 @@ T_VehicleInput tvi_relief_press =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -109,7 +109,7 @@ T_VehicleInput tvi_right_switch =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -133,7 +133,7 @@ T_VehicleInput tvi_left_switch =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -157,7 +157,7 @@ T_VehicleInput tvi_air_restrict =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -181,7 +181,7 @@ T_VehicleInput tvi_fuel_level =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -205,7 +205,7 @@ T_VehicleInput tvi_traction_valve =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -229,7 +229,7 @@ T_VehicleInput tvi_hyd_fluid_level =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -253,10 +253,10 @@ T_VehicleInput tvi_wheel_speed =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
-        .u8_dm1_enable      = TRUE,
+        .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520109,
         .t_fmi = {
@@ -301,7 +301,7 @@ T_VehicleInput tvi_fan_speed =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -344,7 +344,8 @@ T_VehicleInput tvi_ignition_switch =
 T_VehicleInput tvi_cab_door =
 {
     .Name_Description       = "CAB_DOOR",
-    .u16_hardwareID         = X_IN_IDA35V_2,
+    //.u16_hardwareID         = X_IN_IDA35V_2,
+    .u16_hardwareID         = X_IN_IDA5V_5,
     .e_inputType            = IT_DIGITAL,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
@@ -368,12 +369,13 @@ T_VehicleInput tvi_cab_door =
 T_VehicleInput tvi_throttle_up =
 {
     .Name_Description       = "THROTTLE_UP",
-    .u16_hardwareID         = X_IN_IDA5V_5,
+    //.u16_hardwareID         = X_IN_IDA5V_5,
+    .u16_hardwareID         = X_IN_IDA35V_2,
     .e_inputType            = IT_DIGITAL,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -392,12 +394,13 @@ T_VehicleInput tvi_throttle_up =
 T_VehicleInput tvi_throttle_down =
 {
     .Name_Description       = "THROTTLE_DOWN",
-    .u16_hardwareID         = X_IN_IDA5V_6,
+    //.u16_hardwareID         = X_IN_IDA5V_6,
+    .u16_hardwareID         = X_IN_IDA35V_7,
     .e_inputType            = IT_DIGITAL,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -416,12 +419,13 @@ T_VehicleInput tvi_throttle_down =
 T_VehicleInput tvi_head_pressure =
 {
     .Name_Description       = "HEAD_PRESSURE",
-    .u16_hardwareID         = X_IN_IDA35V_7,
+    //.u16_hardwareID         = X_IN_IDA35V_7,
+    .u16_hardwareID         = X_IN_IDA5V_6,
     .e_inputType            = IT_DIGITAL,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,

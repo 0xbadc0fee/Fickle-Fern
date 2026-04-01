@@ -79,6 +79,6 @@ typedef struct
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_cChainsControl(T_CANDevices *_can_dev, T_ChkPoints_CChains *_chkCleaningShaft);
 sint16 update_cChainsControl(void);
-void getShaftDriveStatus(uint8 *pu8_shaft_drive_status);
+void get_shaftDriveStatus(uint8 *pu8_shaft_drive_status);
 
 #endif /* APPL_CORE_SRC_AGVWORK_CLEANING_CHAINS_CONTROL_H_ */

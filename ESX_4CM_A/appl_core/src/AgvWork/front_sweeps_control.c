@@ -97,7 +97,7 @@ sint16 update_frontSweepsControl(void)
         f32_req = (float32)(*(mt_front_sweeps.pu8_drum_speed_request))* 100.0f;
     }
 
-    getShaftDriveStatus(&u8_shaft_drive);
+    get_shaftDriveStatus(&u8_shaft_drive);
 
     // FR-3.4 Sweep Target Speed to zero when Shaft Drive Enable or Drum V-Sweep Enable is disabled.
     if((u8_enable == TRUE) && (u8_shaft_drive == TRUE))

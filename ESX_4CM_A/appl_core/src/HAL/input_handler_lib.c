@@ -62,27 +62,27 @@ sint16 init_inputHandler(void)
             //TODO_STW: Make the diagnostic min and max NON configurable but auto detected based off Type and hardware id.
             //TODO_STW: Make the return errors distinguishable between diagnostic init error and hardware init error
             case IT_VOLTAGE:
-                s16_initError |= x_in_voltage_init( at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT,  DEFAULT_ADCINPUT_FILTER);
+                s16_initError = x_in_voltage_init( at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT,  DEFAULT_ADCINPUT_FILTER);
 
-                if(at_vehicleInputs[i].u8_diagEnabled)
+                if(at_vehicleInputs[i].u8_diagEnabled && s16_initError == C_NO_ERR)
                 {
                     s16_diagError = x_in_voltage_diag (at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].u16_dti, at_vehicleInputs[i].s32_diagMin, at_vehicleInputs[i].s32_diagMax);
                 }
                 break;
 
             case IT_CURRENT:
-                s16_initError |= x_in_current_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT, DEFAULT_ADCINPUT_FILTER);
+                s16_initError = x_in_current_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT, DEFAULT_ADCINPUT_FILTER);
 
-                if(at_vehicleInputs[i].u8_diagEnabled)
+                if(at_vehicleInputs[i].u8_diagEnabled && s16_initError == C_NO_ERR)
                 {
                     s16_diagError = x_in_current_diag (at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].u16_dti, at_vehicleInputs[i].s32_diagMin, at_vehicleInputs[i].s32_diagMax);
                 }
                 break;
 
             case IT_DIGITAL:
-                s16_initError |= x_in_digital_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, DEFAULT_DIG_DEBOUNCE);
+                s16_initError = x_in_digital_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, 10000);
 
-                if(at_vehicleInputs[i].u8_diagEnabled)
+                if(at_vehicleInputs[i].u8_diagEnabled && s16_initError == C_NO_ERR)
                 {
                     s16_diagError = x_in_digital_diag (at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].u16_dti, at_vehicleInputs[i].s32_diagMin, at_vehicleInputs[i].s32_diagMax);
                 }
@@ -90,8 +90,8 @@ sint16 init_inputHandler(void)
 
             case IT_FREQ:
 
-                s16_initError |= x_in_frequency_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, 100);
-                if(at_vehicleInputs[i].u8_diagEnabled)
+                s16_initError = x_in_frequency_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, 100);
+                if(at_vehicleInputs[i].u8_diagEnabled && s16_initError == C_NO_ERR)
                 {
                     s16_diagError = x_in_frequency_diag (at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].u16_dti, (uint32)at_vehicleInputs[i].s32_diagMin, (uint32)at_vehicleInputs[i].s32_diagMax, 100, 9900);
                 }
@@ -132,7 +132,8 @@ sint16 update_inputHandler(void)
     for (uint8 j = 0; j < u8_numInputs; j++)
     {
         //check for any input faults
-        check_inputFaultStatus(j);
+        if(at_vehicleInputs[j].u8_diagEnabled)
+            check_inputFaultStatus(j);
 
         switch (at_vehicleInputs[j].e_inputType)
         {
@@ -152,7 +153,7 @@ sint16 update_inputHandler(void)
 
             case IT_DIGITAL:
             {
-                s16_error = x_in_get_digital_raw(at_vehicleInputs[j].u16_hardwareID, &u8_temp);
+                s16_error = x_in_get_digital_debounced(at_vehicleInputs[j].u16_hardwareID, &u8_temp);
                 at_vehicleInputs[j].f32_inputValue = (C_NO_ERR == s16_error) ? (float32)u8_temp : at_vehicleInputs[j].f32_prevInputValue;
                 break;
             }
@@ -196,7 +197,6 @@ sint16 check_inputFaultStatus(uint8 u8_input)
 
     if (u32_hwInputFault)
     {
-
         at_vehicleInputs[u8_input].t_fault.u8_fault_status = TRUE;
 
         // SHORT UB+ / OL

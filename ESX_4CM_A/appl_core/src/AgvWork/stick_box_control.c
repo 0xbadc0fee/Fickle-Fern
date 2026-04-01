@@ -239,13 +239,10 @@ sint16 update_stickBControl(void)
         }
     }
 
-
-
     *(mt_stick_box.pu8_open_led_status) =
     (mt_stick_box.u8_closed_cmd == STICK_BOX_CMD_ON) ? 0x01u : //RED SOILD
     (mt_stick_box.u8_open_cmd == STICK_BOX_CMD_ON) ? 0x10u :  //GREEN SOLID
     0x00u;
-
 
     mt_stick_box.u8_prev_ign_on = u8_ign_on;
 

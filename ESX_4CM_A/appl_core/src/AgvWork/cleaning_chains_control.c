@@ -174,6 +174,8 @@ sint16 update_cChainsControl(void)
     return s16_error;
 
 }
+
+
 /** \brief Get AgvWork - Shaft Drive Status
  *
  *  This function
@@ -184,11 +186,11 @@ sint16 update_cChainsControl(void)
  *
  *  \return boolean
  */
-void getShaftDriveStatus(uint8 *pu8_shaft_drive_status)
+void get_shaftDriveStatus(uint8 *pu8_shaft_drive_status)
 {
-    if(mt_cchains.pu8_shaft_drive_value != NULL && pu8_shaft_drive_status != NULL)
+    if(pu8_shaft_drive_status != NULL)
     {
-        *pu8_shaft_drive_status = *mt_cchains.pu8_shaft_drive_value;
+        *pu8_shaft_drive_status = mt_cchains.u8_shaft_drive_latched;
     }
 }
 

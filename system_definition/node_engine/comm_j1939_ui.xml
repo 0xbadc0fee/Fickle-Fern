@@ -29,13 +29,13 @@
                     </com-message>
                     <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
                         <com-signals length="7">
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
+                            <com-signal color-index="5"/>
+                            <com-signal color-index="59"/>
+                            <com-signal color-index="9"/>
+                            <com-signal color-index="3"/>
+                            <com-signal color-index="22"/>
+                            <com-signal color-index="12"/>
+                            <com-signal color-index="16"/>
                         </com-signals>
                     </com-message>
                 </tx-messages>

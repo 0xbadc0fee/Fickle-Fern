@@ -20,11 +20,11 @@
 ///check for correct version of structure definitions
 #if OSY_COM_CONFIG_DEFINITION_VERSION != 0x0003U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3037382159 mt_Variable;
+static T_osy_non_existing_type_2564849202 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-COMM_J1939_CAN1_PROJECT_ID_3037382159
+COMM_J1939_CAN1_PROJECT_ID_2564849202
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -242,7 +242,7 @@ static const T_osy_com_message_mux_definition mat_MessagesMuxRx[7] =
 
 static const T_osy_com_message_definition mat_MessagesRx[COMM_J1939_CAN1_NUMBER_OF_RX_MSGS] =
 {
-   { 0xcf004feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 310U, 0U, &mat_StatusMuxRxMessages[0], &mat_MessagesMuxRx[0] },  /// EEC1 (Electronic Engine Controller 1)
+   { 0xcf004feU, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[0], &mat_MessagesMuxRx[0] },  /// EEC1 (Electronic Engine Controller 1)
    { 0xcfdd6feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 310U, 0U, &mat_StatusMuxRxMessages[1], &mat_MessagesMuxRx[1] },  /// BJM1 (Basic Joystick Message 1)
    { 0x18feeefeU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 3010U, 0U, &mat_StatusMuxRxMessages[2], &mat_MessagesMuxRx[2] },  /// ET1 (Engine Temperature 1)
    { 0x18fef6feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 1510U, 0U, &mat_StatusMuxRxMessages[3], &mat_MessagesMuxRx[3] },  /// IC1 (Intake/Exhaust Conditions 1)

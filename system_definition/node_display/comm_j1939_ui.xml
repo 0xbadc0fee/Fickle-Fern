@@ -26,7 +26,7 @@
                     </com-message>
                 </tx-messages>
                 <rx-messages length="3">
-                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
+                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="true">
                         <com-signals length="8">
                             <com-signal color-index="21"/>
                             <com-signal color-index="56"/>

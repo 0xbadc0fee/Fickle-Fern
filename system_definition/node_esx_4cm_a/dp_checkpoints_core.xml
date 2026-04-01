@@ -6,7 +6,7 @@
         <name>Checkpoints</name>
         <version major="0" minor="0" release="0"/>
         <comment>Datapool to store all checkpoints for dashboard viewing</comment>
-        <lists length="6">
+        <lists length="8">
             <list>
                 <name>ElevatorControl</name>
                 <comment/>
@@ -172,6 +172,120 @@
                         <comment>Variable description</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>EngineControl</name>
+                <comment/>
+                <data-elements length="8">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>eng_status</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>start_key</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>start_suction_fan_off</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>start_shaft_drive_off</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>start_neutral</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>chk1_eng_spd</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>chk2_eng_spd_up_osc</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>chk3_eng_spd_down_osc</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>SuctionFanControl</name>
+                <comment/>
+                <data-elements length="2">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>suction_fan_on</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>pwm_status</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>

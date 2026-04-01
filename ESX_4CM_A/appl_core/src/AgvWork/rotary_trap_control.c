@@ -97,7 +97,7 @@ sint16 update_rotaryTrapControl(void)
     }
 
     // FR-4.1 Shaft Drive
-    getShaftDriveStatus(&u8_shaft_drive);
+    get_shaftDriveStatus(&u8_shaft_drive);
 
     // FR-4.2 Trap Speed Increase
     u8_trap_speed_increase = (*(mt_rotary_trap.pu8_trap_speed_increase) != FALSE) ? TRUE : FALSE;

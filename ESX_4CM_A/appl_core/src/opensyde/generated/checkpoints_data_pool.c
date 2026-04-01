@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_818838114 mt_Variable;
+static T_osy_non_existing_type_3022031903 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CHECKPOINTS_PROJECT_ID_818838114
+CHECKPOINTS_PROJECT_ID_3022031903
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -119,6 +119,46 @@ static const T_Checkpoints_PropulsionControl_Values mt_PropulsionControlMaxValue
    255U    ///< edc_enable (Variable description)
 };
 
+///Minimum values
+static const T_Checkpoints_EngineControl_Values mt_EngineControlMinValues =
+{
+   0U,   ///< eng_status (Variable description)
+   0U,   ///< start_key (Variable description)
+   0U,   ///< start_suction_fan_off (Variable description)
+   0U,   ///< start_shaft_drive_off (Variable description)
+   0U,   ///< start_neutral (Variable description)
+   0U,   ///< chk1_eng_spd (Variable description)
+   0U,   ///< chk2_eng_spd_up_osc (Variable description)
+   0U    ///< chk3_eng_spd_down_osc (Variable description)
+};
+
+///Maximum values
+static const T_Checkpoints_EngineControl_Values mt_EngineControlMaxValues =
+{
+   255U,   ///< eng_status (Variable description)
+   255U,   ///< start_key (Variable description)
+   255U,   ///< start_suction_fan_off (Variable description)
+   255U,   ///< start_shaft_drive_off (Variable description)
+   255U,   ///< start_neutral (Variable description)
+   65535U,   ///< chk1_eng_spd (Variable description)
+   255U,   ///< chk2_eng_spd_up_osc (Variable description)
+   255U    ///< chk3_eng_spd_down_osc (Variable description)
+};
+
+///Minimum values
+static const T_Checkpoints_SuctionFanControl_Values mt_SuctionFanControlMinValues =
+{
+   0U,   ///< suction_fan_on (Variable description)
+   0U    ///< pwm_status (Variable description)
+};
+
+///Maximum values
+static const T_Checkpoints_SuctionFanControl_Values mt_SuctionFanControlMaxValues =
+{
+   255U,   ///< suction_fan_on (Variable description)
+   65535U    ///< pwm_status (Variable description)
+};
+
 ///List definitions:
 static const T_osy_dpa_element_definition mat_DataPoolElevatorControlElements[CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS] =
 {
@@ -157,6 +197,24 @@ static const T_osy_dpa_element_definition mat_DataPoolPropulsionControlElements[
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_PropulsionControlValues.u8_edc_enable, &mt_PropulsionControlMinValues.u8_edc_enable, &mt_PropulsionControlMaxValues.u8_edc_enable }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolEngineControlElements[CHECKPOINTS_ENGINECONTROL_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_eng_status, &mt_EngineControlMinValues.u8_eng_status, &mt_EngineControlMaxValues.u8_eng_status },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_start_key, &mt_EngineControlMinValues.u8_start_key, &mt_EngineControlMaxValues.u8_start_key },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_start_suction_fan_off, &mt_EngineControlMinValues.u8_start_suction_fan_off, &mt_EngineControlMaxValues.u8_start_suction_fan_off },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_start_shaft_drive_off, &mt_EngineControlMinValues.u8_start_shaft_drive_off, &mt_EngineControlMaxValues.u8_start_shaft_drive_off },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_start_neutral, &mt_EngineControlMinValues.u8_start_neutral, &mt_EngineControlMaxValues.u8_start_neutral },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Checkpoints_DataPoolValues.t_EngineControlValues.u16_chk1_eng_spd, &mt_EngineControlMinValues.u16_chk1_eng_spd, &mt_EngineControlMaxValues.u16_chk1_eng_spd },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_chk2_eng_spd_up_osc, &mt_EngineControlMinValues.u8_chk2_eng_spd_up_osc, &mt_EngineControlMaxValues.u8_chk2_eng_spd_up_osc },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_chk3_eng_spd_down_osc, &mt_EngineControlMinValues.u8_chk3_eng_spd_down_osc, &mt_EngineControlMaxValues.u8_chk3_eng_spd_down_osc }
+};
+
+static const T_osy_dpa_element_definition mat_DataPoolSuctionFanControlElements[CHECKPOINTS_SUCTIONFANCONTROL_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_SuctionFanControlValues.u8_suction_fan_on, &mt_SuctionFanControlMinValues.u8_suction_fan_on, &mt_SuctionFanControlMaxValues.u8_suction_fan_on },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Checkpoints_DataPoolValues.t_SuctionFanControlValues.u16_pwm_status, &mt_SuctionFanControlMinValues.u16_pwm_status, &mt_SuctionFanControlMaxValues.u16_pwm_status }
+};
+
 ///list of lists:
 static const T_osy_dpa_list_definition mat_DataPoolLists[CHECKPOINTS_NUMBER_OF_LISTS] =
 {
@@ -165,7 +223,9 @@ static const T_osy_dpa_list_definition mat_DataPoolLists[CHECKPOINTS_NUMBER_OF_L
    { CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_FrontSweepsControl_Values), &mat_DataPoolFrontSweepsControlElements[0], &gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues, NULL },
    { CHECKPOINTS_ROTARYTRAP_NUMBER_OF_ELEMENTS, CHECKPOINTS_ROTARYTRAP_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_RotaryTrap_Values), &mat_DataPoolRotaryTrapElements[0], &gt_Checkpoints_DataPoolValues.t_RotaryTrapValues, NULL },
    { CHECKPOINTS_GENERALTESTING_NUMBER_OF_ELEMENTS, CHECKPOINTS_GENERALTESTING_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_GeneralTesting_Values), &mat_DataPoolGeneralTestingElements[0], &gt_Checkpoints_DataPoolValues.t_GeneralTestingValues, NULL },
-   { CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_PropulsionControl_Values), &mat_DataPoolPropulsionControlElements[0], &gt_Checkpoints_DataPoolValues.t_PropulsionControlValues, NULL }
+   { CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_PROPULSIONCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_PropulsionControl_Values), &mat_DataPoolPropulsionControlElements[0], &gt_Checkpoints_DataPoolValues.t_PropulsionControlValues, NULL },
+   { CHECKPOINTS_ENGINECONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_ENGINECONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_EngineControl_Values), &mat_DataPoolEngineControlElements[0], &gt_Checkpoints_DataPoolValues.t_EngineControlValues, NULL },
+   { CHECKPOINTS_SUCTIONFANCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_SUCTIONFANCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_SuctionFanControl_Values), &mat_DataPoolSuctionFanControlElements[0], &gt_Checkpoints_DataPoolValues.t_SuctionFanControlValues, NULL }
 };
 
 ///Datapool definition:
@@ -176,7 +236,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Checkpoints",  ///< name of Datapool
    CHECKPOINTS_NUMBER_OF_LISTS,
-   0x9c979596U, ///< CRC of Datapool definition
+   0x4da30d07U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

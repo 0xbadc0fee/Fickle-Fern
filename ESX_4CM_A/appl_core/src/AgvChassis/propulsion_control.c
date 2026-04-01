@@ -461,4 +461,13 @@ sint16 get_gearSelection(uint8 *_gear_selection)
     return s16_error;
 }
 
+sint16 get_joystickNeutralStatus(uint8 *_neutral_status)
+{
+    sint16 s16_error = 0;
+
+    *(_neutral_status) = mt_prop_control.u8_neutral_ind;
+
+    return s16_error;
+}
+
 //EOF
