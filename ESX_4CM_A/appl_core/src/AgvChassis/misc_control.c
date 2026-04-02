@@ -35,54 +35,99 @@ sint16 update_fuelLevel(void);
 static T_MiscControl mt_misc;
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
-//-----------------------------------------------------------------------------
-// FR-23.1, FR-23.2, FR-23.3
-// IR-23.1
-//-----------------------------------------------------------------------------
+
+/** \brief Update Filter Minder AgvChassis - Miscellaneous Control
+ *
+ *  This function updates the filter minder the AgvChassis - Miscellaneous Control Logic.
+ *
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
+ */
 sint16 update_filterMinder(void)
 {
     sint16 s16_error = C_NO_ERR;
-    uint8 u8_fault = FALSE;
+
+    uint8 u8_minder_flt = FALSE;
+    uint8 u8_service_filter_on = FALSE;
+
     float32 f32_raw = 0.0F;
-    float32 f32_gauge = 0.0F;
+    float32 f32_adv_filter_out = 0.0F;
+    float32 f32_filter_pct = 0.0F;
 
-    get_inputFaultStatus("AIR_FILTER_RESTRICTION", &u8_fault);
+    float32 f32_filter_gauge = 0u;
+    uint32 u32_now_ms = 0u;
 
-    if(u8_fault == FALSE)
+    s16_error += get_inputFaultStatus("AIR_FILTER_RESTRICTION", &u8_minder_flt);
+
+    if(u8_minder_flt == FALSE)
     {
-        get_inputValue("AIR_FILTER_RESTRICTION", &f32_raw);
+        s16_error += get_inputValue("AIR_FILTER_RESTRICTION", &f32_raw);
 
-               if(f32_raw <= FILTER_MINDER_FAULT_THRESHOLD)
-               {
-                   // IR-23.2, IR-23.3 Safe state
-                   f32_gauge = 0.0F;
-                   s16_error += C_WARN;
-               }
-               else
-               {
+        if(f32_raw <= FILTER_MINDER_FAULT_THRESHOLD)
+        {
+            s16_error += C_WARN;
+        }
+        else
+        {
+            // Convert raw input to restriction percent (0..100)
+            f32_filter_pct = ((PERCENT_SCALE * f32_raw) / FILTER_MINDER_RAW_MAX);
+            f32_filter_pct = CLAMP(f32_filter_pct, 0.0F, 100.0F);
 
-                   //moving avg filter
-                   movingAdvFlt(&mt_misc.t_minder_flt, f32_gauge);
-                  f32_gauge = mt_misc.t_minder_flt.f32_out;
+            // Filter restriction percent
+            movingAdvFlt(&mt_misc.t_minder_flt, f32_filter_pct);
+            f32_adv_filter_out = CLAMP(mt_misc.t_minder_flt.f32_out, 0.0F, 100.0F);
 
-               }
+            // If filtered output is greater than stored max for 1000 ms, reset stored max to default (0)
+            u32_now_ms = get_system_time_ms();
 
+            if(f32_adv_filter_out > mt_misc.pt_nvm_misc_control->u16_filter_rstn_max)
+            {
+                if(mt_misc.u8_filter_max_reset_timer_active == FALSE)
+                {
+                    mt_misc.u8_filter_max_reset_timer_active = TRUE;
+                    mt_misc.u32_filter_max_reset_timer_start_ms = u32_now_ms;
+                }
+                else if((u32_now_ms - mt_misc.u32_filter_max_reset_timer_start_ms) >= 1000u)
+                {
+                    // Write DEFAULT  = 0
+                    mt_misc.pt_nvm_misc_control->u16_filter_rstn_max = 0u;
+                }
+            }
+            else
+            {
+                mt_misc.u8_filter_max_reset_timer_active = FALSE;
+                mt_misc.u32_filter_max_reset_timer_start_ms = 0u;
+            }
 
+            // Service on at 100%
+            u8_service_filter_on =
+            (f32_adv_filter_out >= 100u) ? TRUE : FALSE;
 
-        f32_gauge =  ((PERCENT_SCALE * f32_raw) / FILTER_MINDER_RAW_MAX);
-
-        f32_gauge = CLAMP(f32_gauge, 0.0F, PERCENT_SCALE);
+            // Gauge output
+            if(u8_service_filter_on != FALSE)
+            {
+                f32_filter_gauge = 255u;
+            }
+            else
+            {
+                f32_filter_gauge = (uint8)((f32_adv_filter_out * 255.0F) / PERCENT_SCALE);
+            }
+        }
     }
     else
     {
         s16_error += C_WARN;
     }
 
-    *(mt_misc.pf32_filter_minder_gauge_pct) = f32_gauge;
-    *(mt_misc.pf32_filter_restriction_pct) =
-    CLAMP((f32_gauge * 100.0F) / FILTER_MINDER_RESTRICTION_MAX_PCT, 0.0F, 100.0F);
-    *(mt_misc.pu8_service_filter_status) =
-    (f32_gauge >= FILTER_MINDER_RESTRICTION_MAX_PCT) ? TRUE : FALSE;
+    // Outputs
+    *(mt_misc.pf32_filter_restriction_pct) = f32_adv_filter_out;
+    *(mt_misc.pf32_filter_minder_gauge_pct) =f32_filter_gauge;
+    *(mt_misc.pu8_service_filter_status) = u8_service_filter_on;
+
+    //Checkpoints
+    mt_misc.pt_cp_misc->f32_filter_restriction_pct = f32_adv_filter_out;
+    mt_misc.pt_cp_misc->f32_filter_minder_gauge_pct= f32_filter_gauge;
+    mt_misc.pt_cp_misc->u8_service_filter_status = u8_service_filter_on;
 
     return s16_error;
 }
@@ -90,7 +135,6 @@ sint16 update_filterMinder(void)
 /** \brief Update Fuel Level AgvChassis - Miscellaneous Control
  *
  *  This function updates the fuel level the AgvChassis - Miscellaneous Control Logic.
- *  FR-23.4, FR-23.5, FR-23.6, FR-23.7 IR-23.2, IR-23.3
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -100,7 +144,7 @@ sint16 update_fuelLevel(void)
     sint16 s16_error = C_NO_ERR;
 
     uint8 u8_fuel_flt = FALSE;
-    float32 f32_raw = 0.0F;
+    float32 f32_raw_fuel_level = 0.0F;
     float32 f32_sensor = 0.0F;
     float32 f32_gauge = mt_misc.f32_last_fuel_gauge;
     uint8 u8_low = FALSE;
@@ -110,9 +154,14 @@ sint16 update_fuelLevel(void)
 
     if(u8_fuel_flt == FALSE)
     {
-        s16_error += get_inputValue("FUEL_LEVEL", &f32_raw);
+        s16_error += get_inputValue("FUEL_LEVEL", &f32_raw_fuel_level);
 
-        if(f32_raw <= FUEL_FAULT_THRESHOLD)
+        // FR-23.4 Read fuel level sensor input and convert to normalized percentage output
+        f32_sensor =  ((PERCENT_SCALE * f32_raw_fuel_level) / FUEL_RAW_MAX);
+
+        f32_sensor = CLAMP(f32_sensor, 0.0F, PERCENT_SCALE);
+
+        if(f32_sensor <= FUEL_FAULT_THRESHOLD)
         {
             // IR-23.2, IR-23.3 Safe state
             f32_sensor = 0.0F;
@@ -125,11 +174,6 @@ sint16 update_fuelLevel(void)
         }
         else
         {
-            // FR-23.4 Read fuel level sensor input and convert to normalized percentage output
-            f32_sensor =  ((PERCENT_SCALE * f32_raw) / FUEL_RAW_MAX);
-
-            f32_sensor = CLAMP(f32_sensor, 0.0F, PERCENT_SCALE);
-
             // FR-23.5 Apply configurable Fuel High Deadband
             if((f32_sensor < mt_misc.f32_last_fuel_gauge) ||
             (f32_sensor >= (mt_misc.f32_last_fuel_gauge + mt_misc.pt_nvm_misc_control->u16_fuel_high_deadband)))
@@ -172,13 +216,16 @@ sint16 update_fuelLevel(void)
 
     // FR-23.7 Transmit outputs to display via CAN
     *(mt_misc.pf32_fuel_level_sensor_pct) = f32_sensor;
-    *(mt_misc.pf32_fuel_level_gauge_pct)  =  f32_gauge;
+    *(mt_misc.pf32_fuel_level_gauge_pct)  = (f32_gauge * 255.0F) / PERCENT_SCALE;
     *(mt_misc.pu8_low_fuel_status)        = u8_low;
 
+    //Checkpoints
+    mt_misc.pt_cp_misc->f32_fuel_level_sensor_pct = f32_sensor;
+    mt_misc.pt_cp_misc->f32_fuel_level_gauge_pct= (f32_gauge * 255.0F) / PERCENT_SCALE;
+
     return s16_error;
-
-
 }
+
 /** \brief Initialize AgvChassis - Miscellaneous Control
  *
  *  This function initializes the AgvChassis - Miscellaneous Control Logic.
@@ -215,7 +262,6 @@ sint16 init_miscControl(T_UserInterface *_ui, T_ChkPoints_Mis *_chk_misc,T_Confi
 
         mt_misc.pu8_clear_machine_faults_cmd     = &_ui->t_display.u8_clear_machine_faults_cmd;
      */
-    mt_misc.f32_last_fuel_gauge_pct          = MISC_SAFE_PERCENT;
 
     s16_error += movingFltInit(&mt_misc.t_fuel_level_flt,
     mt_misc.f32_fuel_level_buf,
@@ -224,6 +270,15 @@ sint16 init_miscControl(T_UserInterface *_ui, T_ChkPoints_Mis *_chk_misc,T_Confi
     FUEL_FILTER_SAMPLE_NO,
     FUEL_FILTER_SAMPLE_MS);
 
+    s16_error += movingFltInit(&mt_misc.t_minder_flt,
+    mt_misc.f32_minder_buf,
+    FILTER_MINDER_BUF_LEN,
+    FILTER_MINDER_FILTER_SAFE_OUTPUT,
+    FILTER_MINDER_FILTER_SAMPLE_NO,
+    FILTER_MINDER_FILTER_SAMPLE_MS);
+
+    mt_misc.u8_filter_max_reset_timer_active = FALSE;
+    mt_misc.u8_low_fuel_timer_active = FALSE;
     //Populate local copy of nvm variables
     mt_misc.pt_nvm_misc_control= _nvm_misc_control;
 
@@ -279,6 +334,7 @@ sint16 update_miscControl(void)
         *(mt_misc.pu8_door_open_status) = FALSE;
         s16_error += C_WARN;
     }
+    mt_misc.pt_cp_misc->u8_door_open_status = (*(mt_misc.pu8_door_open_status));
 
     // FR-23.10 Read Hydraulic Fluid Level Switch input and output indicator to display
     get_inputFaultStatus("HYD_FLUID_LEVEL", &u8_in_fault);
@@ -292,6 +348,7 @@ sint16 update_miscControl(void)
         *(mt_misc.pu8_low_hydraulic_fluid_indicator) = FALSE;
         s16_error += C_WARN;
     }
+    mt_misc.pt_cp_misc->u8_low_hydraulic_fluid_indicator = (*(mt_misc.pu8_low_hydraulic_fluid_indicator));
 
     // FR-23.11 Read Brakes Engaged input and output it to the REGEN Allow Relay hardware and to the display
     get_inputFaultStatus("PARK_BRAKE", &u8_in_fault);
@@ -311,10 +368,14 @@ sint16 update_miscControl(void)
         *(mt_misc.pu8_display_brakes_engaged) = FALSE;
         s16_error += C_WARN;
     }
+    mt_misc.pt_cp_misc->u8_display_brakes_engaged = (*(mt_misc.pu8_display_brakes_engaged));
 
     // FR-23.12 Transmit current Major and Minor Software Revision to display
     *(mt_misc.pu8_sw_major_revision) = MISC_SW_MAJOR_REV;
     *(mt_misc.pu8_sw_minor_revision) = MISC_SW_MINOR_REV;
+
+    mt_misc.pt_cp_misc->u8_sw_major_revision = MISC_SW_MAJOR_REV;
+    mt_misc.pt_cp_misc->u8_sw_minor_revision = MISC_SW_MINOR_REV;
 
     // FR-23.13 Read Clear Machine Faults Command from display and clear associated faults
     if(*(mt_misc.pu8_clear_machine_faults_cmd) != FALSE)

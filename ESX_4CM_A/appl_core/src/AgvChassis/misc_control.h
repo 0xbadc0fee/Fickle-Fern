@@ -25,24 +25,20 @@
 #include "moving_avg_filter.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define MISC_SAFE_PERCENT                     (0.0F)
-
 #define FILTER_MINDER_RAW_MIN                 (0.0F)
-#define FILTER_MINDER_RAW_MAX                 (100.0F)
-#define FILTER_MINDER_RESTRICTION_MAX_PCT     (80.0F)
+#define FILTER_MINDER_RAW_MAX                 (5000.0F)
 #define FILTER_MINDER_FAULT_THRESHOLD         (4.0F)
 #define FILTER_MINDER_SAFE_STATE                    (0.0F)
 #define FILTER_MINDER_BUF_LEN                       (8u)
 #define FILTER_MINDER_FILTER_SAFE_OUTPUT            (0.0F)
-#define FILTER_MINDER_FILTER_SAMPLE_NO              (7u)
-#define FILTER_MINDER_FILTER_SAMPLE_MS              (100u)
+#define FILTER_MINDER_FILTER_SAMPLE_NO              (5u)
+#define FILTER_MINDER_FILTER_SAMPLE_MS              (250u)
 // Fuel
 #define FUEL_RAW_MIN                       (0.0F)
 #define FUEL_RAW_MAX                       (5000.0F)
 
-
 #define FUEL_FAULT_THRESHOLD               (6.25F)
-#define FUEL_LOW_SETPOINT                  (7.0F)   // 7.00% in 0.01% units
+#define FUEL_LOW_SETPOINT                  (7.0F)
 #define FUEL_LOW_DELAY_MS                  (5000u)
 #define FUEL_SAFE_STATE                    (0.0F)
 #define FUEL_BUF_LEN                       (8u)
@@ -68,8 +64,16 @@
 typedef struct
 {
         uint8 u8_chk1; //!<Checkpoint
-        float32 f32_chk2;//!< Checkpoint
-
+        float32 f32_fuel_level_sensor_pct;//!< Checkpoint
+        float32 f32_fuel_level_gauge_pct; //!<Checkpoint
+        float32 f32_filter_restriction_pct;//!<Checkpoint
+        float32 f32_filter_minder_gauge_pct;//!<Checkpoint
+        uint8 u8_service_filter_status;//!<Checkpoint
+        uint8 u8_door_open_status;//!<Checkpoint
+        uint8 u8_low_hydraulic_fluid_indicator;//!<Checkpoint
+        uint8 u8_display_brakes_engaged;//!<Checkpoint
+        uint8 u8_sw_major_revision;//!<Checkpoint
+        uint8 u8_sw_minor_revision;//!<Checkpoint
 }T_ChkPoints_Mis;
 
 /** \brief Configuration Structure - Miscellaneous Control
@@ -80,7 +84,7 @@ typedef struct
 typedef struct
 {
         uint16 u16_fuel_high_deadband; //!<Configuration parameter for Fuel Level deadband
-        uint16 u16_filter_rstn_max; //!<Configuration parameter for
+        uint16 u16_filter_rstn_max; //!<Configuration parameter for Filter Minder
 
 }T_Config_MiscrControl;
 
@@ -96,7 +100,6 @@ typedef struct
 typedef struct
 {
         //TX CAN Variables
-        // CAN outputs
         float32 *pf32_filter_minder_gauge_pct;
         float32 *pf32_filter_restriction_pct;
         uint8   *pu8_service_filter_status;
@@ -114,16 +117,20 @@ typedef struct
 
         //RX CAN Variables
         uint8   *pu8_clear_machine_faults_cmd;
+
         //Local Control Variables
-        float32  f32_last_fuel_gauge_pct;
         float32 f32_last_fuel_gauge;
+
+        //Local Filter Variables
         T_MoveAvgFilter t_fuel_level_flt;
         float32 f32_fuel_level_buf[FUEL_BUF_LEN];//!<Moving Average Buffer
-
-        T_MoveAvgFilter t_minder_flt;
-         float32 f32_minder_buf[FILTER_MINDER_BUF_LEN];//!<Moving Average Buffer
         uint32 u32_low_fuel_timer_start_ms;
         uint8 u8_low_fuel_timer_active;
+
+        T_MoveAvgFilter t_minder_flt;
+        float32 f32_minder_buf[FILTER_MINDER_BUF_LEN];//!<Moving Average Buffer
+        uint8 u8_filter_max_reset_timer_active;
+        uint32 u32_filter_max_reset_timer_start_ms;
 
         //NVM Configuration Parameters
         T_Config_MiscrControl *pt_nvm_misc_control;      //!<Header Control Configuration Structure
