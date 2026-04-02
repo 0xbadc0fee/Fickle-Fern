@@ -26,8 +26,8 @@
                     <data-element auto_min_max_active="false" interpret_as_string="false"/>
                     <data-element auto_min_max_active="false" interpret_as_string="false"/>
                     <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
                     <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
                 </data-elements>
             </list>
             <list>

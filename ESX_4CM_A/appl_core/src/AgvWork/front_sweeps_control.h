@@ -44,7 +44,7 @@
  */
 typedef struct
 {
-        uint8 u8_checkpoint1; //!< CP DV IN
+        uint8 u8_speed_cmd; //!< CP DV IN
 
 }T_ChkPoints_FSweeps;
 

@@ -110,7 +110,7 @@ sint16 update_frontSweepsControl(void)
     }
 
     //Publish checkpoints
-    mt_front_sweeps.pt_cp_frontsweeps->u8_checkpoint1 = *(mt_front_sweeps.pu8_drum_speed_request);
+    mt_front_sweeps.pt_cp_frontsweeps->u8_speed_cmd = *(mt_front_sweeps.pu8_drum_speed_request);
 
     // FR-3.5 Ramp toward target
     s16_error += rampCalc(f32_target_cmd_pct, &mt_front_sweeps.t_sweeps_ramp);

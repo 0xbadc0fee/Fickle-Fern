@@ -7,46 +7,46 @@
 */
 
 /* Elevator Control Outputs */
-CNTRL2DP(elevatorStatus,   		 gt_can_devs.t_display.u8_elevatorStatus, 	  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkElevatorOn)
+CNTRL2DP(elevatorStatus,   		 gt_can_devs.t_display.u8_elevatorStatus, 	  			 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_ELEV_Status)
 
 /* Header Control Outputs */
-CNTRL2DP(reliefStatus, 	   	     gt_can_devs.t_display.u8_relief_switch_status, 		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHydOilPressRelief)
+CNTRL2DP(reliefStatus, 	   	     gt_can_devs.t_display.u8_relief_switch_status, 		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_HC_ReliefPressure)
 
 /* Auger Cart Control Outputs */
-CNTRL2DP(augerStatus, 	   		 gt_can_devs.t_display.u8_auger_status,   	  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkAugerUnloadOn)
-CNTRL2DP(button2LED, 	   		 gt_can_devs.t_buttonPanel.u8_b2_lights, 	 	  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_02_Auger)
-CNTRL2DP(button6LED, 	   		 gt_can_devs.t_buttonPanel.u8_b6_lights, 	  	  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_06_ManUL)
+CNTRL2DP(augerStatus, 	   		 gt_can_devs.t_display.u8_auger_status,   	  			 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_AUGER_Status)
+CNTRL2DP(button2LED, 	   		 gt_can_devs.t_buttonPanel.u8_b2_lights, 	 	  		 gt_J1939_DataPoolValues.t_CAN2_TXValues.u8_E31_LIGHTS_BTN02_IND_AutoUL)
+CNTRL2DP(button6LED, 	   		 gt_can_devs.t_buttonPanel.u8_b6_lights, 	  	  		 gt_J1939_DataPoolValues.t_CAN2_TXValues.u8_E31_LIGHTS_BTN06_IND_ManUL)
 
 /* Light Control Outputs */
-CNTRL2DP(lightStatus,      		 gt_can_devs.t_buttonPanel.u8_b4_lights,	  	  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_04_Lights)
-CNTRL2DP(headLightStatus,  		 gt_can_devs.t_display.u8_headlights_status,    		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHeadLtsOn)
-CNTRL2DP(workLightStatus,  		 gt_can_devs.t_display.u8_worklights_status,    		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisWorkLtsOn)
+CNTRL2DP(lightStatus,      		 gt_can_devs.t_buttonPanel.u8_b4_lights,	  	  		 gt_J1939_DataPoolValues.t_CAN2_TXValues.u8_E31_LIGHTS_BTN04_IND_Lights)
+CNTRL2DP(headLightStatus,  		 gt_can_devs.t_display.u8_headlights_status,    	     gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_LIGHTS_HDLTStatus)
+CNTRL2DP(workLightStatus,  		 gt_can_devs.t_display.u8_worklights_status,    		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_LIGHTS_WORKStatus)
 
 /* Cleaning Chains Outputs */
-CNTRL2DP(shaftDriveStatus, 		 gt_can_devs.t_display.u8_shaft_drive_status,   	 	 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkShaftDrvsOn)
+CNTRL2DP(shaftDriveStatus, 		 gt_can_devs.t_display.u8_shaft_drive_status,   	 	 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_SHAFT_Status)
 
 /*Stick Box Outputs*/
-CNTRL2DP(button3LED, 	   		 gt_can_devs.t_buttonPanel.u8_b3_lights, 	 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_03_SB_OP)
-CNTRL2DP(button7LED, 	   		 gt_can_devs.t_buttonPanel.u8_b7_lights, 	  	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_07_SB_CL)
+CNTRL2DP(button3LED, 	   		 gt_can_devs.t_buttonPanel.u8_b3_lights, 	 	  		 gt_J1939_DataPoolValues.t_CAN2_TXValues.u8_E31_LIGHTS_BTN03_IND_SB_OP)
+CNTRL2DP(button7LED, 	   		 gt_can_devs.t_buttonPanel.u8_b7_lights, 	  	  		 gt_J1939_DataPoolValues.t_CAN2_TXValues.u8_E31_LIGHTS_BTN07_IND_SB_CL)
 
 /*Suction Fan Outputs*/
-CNTRL2DP(suctionFanEnable,   	 gt_can_devs.t_display.u8_suction_fan_enable_status,  	 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkSuctionFanOn)
-CNTRL2DP(suctionFanSpeedRPM,  	 gt_can_devs.t_display.u16_suction_fan_speed_status_rpm, gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_CAN_Display_Trans2_AgvWorkSuctionFanRpm)
+CNTRL2DP(suctionFanEnable,   	 gt_can_devs.t_display.u8_suction_fan_enable_status,  	 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_SF_Status)
+CNTRL2DP(suctionFanSpeedRPM,  	 gt_can_devs.t_display.u16_suction_fan_speed_status_rpm, gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_DISP_FDBK2_SF_RPM)
 
 /* Stick Remover CAN Parameters */
-CNTRL2DP(stickRemStatus,   		 gt_can_devs.t_display.u8_stick_remover_status, 		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvWorkStickRemoverOn)
-CNTRL2DP(button8LED, 	   		 gt_can_devs.t_buttonPanel.u8_b8_lights,		  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_08_SR)
+CNTRL2DP(stickRemStatus,   		 gt_can_devs.t_display.u8_stick_remover_status, 		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_SR_Status)
+CNTRL2DP(button8LED, 	   		 gt_can_devs.t_buttonPanel.u8_b8_lights,		  		 gt_J1939_DataPoolValues.t_CAN2_TXValues.u8_E31_LIGHTS_BTN08_IND_SR)
 
 /* Propulsion */
-CNTRL2DP(wheelSpeed,   	   		 gt_can_devs.t_display.u8_wheel_speed_10, 	  			 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisGroundSpeed10x)
-CNTRL2DP(slSet, 	       		 gt_can_devs.t_display.u8_speed_limit_set,	  			 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisSpeedLimiterSet)
-CNTRL2DP(neutralState, 	   		 gt_can_devs.t_display.u8_neutral_state,		  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisNeutralState)
+CNTRL2DP(wheelSpeed,   	   		 gt_can_devs.t_display.u8_wheel_speed_10, 	  			 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_PROP_SpeedX10)
+CNTRL2DP(slSet, 	       		 gt_can_devs.t_display.u8_speed_limit_set,	  			 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_PROP_SpeedLimitStatus)
+CNTRL2DP(neutralState, 	   		 gt_can_devs.t_display.u8_neutral_state,		  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_JS_NeutralState)
 
 /* Power Assist */
-CNTRL2DP(paEnable,   	   		 gt_can_devs.t_buttonPanel.u8_b5_lights, 	      		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Btn_Panel_Trans_Button_Ind_05_PA)
+CNTRL2DP(paEnable,   	   		 gt_can_devs.t_buttonPanel.u8_b5_lights, 	      		 gt_J1939_DataPoolValues.t_CAN2_TXValues.u8_E31_LIGHTS_BTN05_IND_PA)
 
 /* Engine Starter Outputs*/
-CNTRL2DP(neutralState, 	   		 gt_can_devs.t_display.u8_neutral_safe_status, 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisSafeNeutralState)
+CNTRL2DP(neutralState, 	   		 gt_can_devs.t_display.u8_neutral_safe_status, 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_PROP_NeutralSafeInd)
 
 /* Throttle Control Outputs */
 CNTRL2DP(engineOverrideCtrlMode, gt_can_devs.t_engine.u8_eng_ovrrd_ctrl_mode, 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngOverrideCtrlMode)
@@ -56,4 +56,14 @@ CNTRL2DP(engineSpeedLimit, 	   	 gt_can_devs.t_engine.u16_engine_req_speed, 	  	
 CNTRL2DP(engineTorqLimit, 	     gt_can_devs.t_engine.u8_eng_req_torq_limit, 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngRqedTorque_TorqueLimit)
 CNTRL2DP(engineControlPurp, 	 gt_can_devs.t_engine.u8_ctrl_purpose, 	  				 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_ControlPurpose)
 CNTRL2DP(engineTorqHiRes, 	     gt_can_devs.t_engine.u8_eng_req_torq_hires, 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngineRequestedTorqueHiRes)
+
+/* Cooling Fan Control CAN Parameters */
+CNTRL2DP(coolFanRevDir, 		 gt_can_devs.t_display.u8_cooling_fan_reverse_ind,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_CF_DIR)
+CNTRL2DP(coolManPrgErr,  		 gt_can_devs.t_display.u8_cooling_system_fault,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_CF_ManualStatus)
+CNTRL2DP(coolSen3OvrTemp, 		 gt_can_devs.t_display.u8_hyd_oil_overtemp,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_CF_Sen3OvrTmp)
+CNTRL2DP(coolSen2OvrTemp, 		 gt_can_devs.t_display.u8_intake_manifold_overtemp,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_CD_Sen2OvrTmp)
+CNTRL2DP(coolSen1OvrTemp, 		 gt_can_devs.t_display.u8_engine_coolant_overtemp,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_CF_Sen1OvrTmp)
+CNTRL2DP(hydOilTempDegC, 		 gt_can_devs.t_display.u16_hyd_oil_temp_degC,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_DISP_FDBK1_HYDOIL_Temp)
+
+
 

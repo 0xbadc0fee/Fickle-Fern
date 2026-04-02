@@ -44,11 +44,16 @@ const T_osy_dpd_data * osy_dpd_get_init_config(void)
                        OSY_INIT_DPD_NUMBER_OF_PARALLEL_CONNECTIONS, OSY_INIT_DPD_NUMBER_OF_PARALLEL_CONNECTIONS,
                        OSY_INIT_DPD_BUF_SIZE_INSTANCE,
                        OSY_INIT_DPD_CAN_ROUTING_FIFO_SIZE_RX, OSY_INIT_DPD_CAN_FIFO_SIZE_TX)
+   OSY_DPD_CAN_CHANNEL(ht_CanInitConfiguration1, OSY_INIT_DPD_BUS_NUMBER_CAN_CHANNEL_1,
+                       OSY_INIT_DPD_NUMBER_OF_PARALLEL_CONNECTIONS, OSY_INIT_DPD_NUMBER_OF_PARALLEL_CONNECTIONS,
+                       OSY_INIT_DPD_BUF_SIZE_INSTANCE,
+                       OSY_INIT_DPD_CAN_ROUTING_FIFO_SIZE_RX, OSY_INIT_DPD_CAN_FIFO_SIZE_TX)
 
    static const T_osy_udc_global_cantp_init_configuration * const
       hapt_CanInitConfigurations[OSY_INIT_DPD_NUMBER_OF_CAN_CHANNELS] =
    {
-      &ht_CanInitConfiguration0
+      &ht_CanInitConfiguration0,
+      &ht_CanInitConfiguration1
    };
 
 
@@ -119,7 +124,8 @@ const T_osy_com_protocol_configuration * const * osy_com_get_protocol_configs(vo
    static const T_osy_com_protocol_configuration * const
       hapt_CommConfigurations[OSY_INIT_COM_NUM_PROTOCOL_CONFIGURATIONS] =
    {
-      &gt_comm_j1939_can1_ProtocolConfiguration
+      &gt_comm_j1939_can1_ProtocolConfiguration,
+      &gt_comm_j1939_can2_ProtocolConfiguration
    };
 
    return &hapt_CommConfigurations[0];

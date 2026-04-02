@@ -6,13 +6,13 @@
         <name>Checkpoints</name>
         <version major="0" minor="0" release="0"/>
         <comment>Datapool to store all checkpoints for dashboard viewing</comment>
-        <lists length="8">
+        <lists length="9">
             <list>
                 <name>ElevatorControl</name>
                 <comment/>
                 <data-elements length="3">
                     <data-element factor="1" offset="0" diag-event-call="false">
-                        <name>checkpoint1</name>
+                        <name>status</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="0"/>
@@ -22,7 +22,7 @@
                         <data-set-values/>
                     </data-element>
                     <data-element factor="1" offset="0" diag-event-call="false">
-                        <name>checkpoint2</name>
+                        <name>speed_cmd</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="-3.4028235e+38"/>
@@ -32,7 +32,7 @@
                         <data-set-values/>
                     </data-element>
                     <data-element factor="1" offset="0" diag-event-call="false">
-                        <name>checkpoint3</name>
+                        <name>output</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="-3.4028235e+38"/>
@@ -49,7 +49,7 @@
                 <comment/>
                 <data-elements length="1">
                     <data-element factor="1" offset="0" diag-event-call="false">
-                        <name>checkpoint1</name>
+                        <name>status</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="0"/>
@@ -66,7 +66,7 @@
                 <comment/>
                 <data-elements length="1">
                     <data-element factor="1" offset="0" diag-event-call="false">
-                        <name>checkpoint1</name>
+                        <name>speed_cmd</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="0"/>
@@ -286,6 +286,33 @@
                         <comment>Variable description</comment>
                         <min-value value="0"/>
                         <max-value value="65535"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>CoolingFanControl</name>
+                <comment/>
+                <data-elements length="2">
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>lead_sensor_id</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" diag-event-call="false">
+                        <name>cooling_demand_pct</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>

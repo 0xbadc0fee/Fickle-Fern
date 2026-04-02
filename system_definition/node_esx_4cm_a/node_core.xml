@@ -17,7 +17,7 @@
                 <communication-interface interface-number="1" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
                     <type>can</type>
                     <communication-protocol/>
-                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                    <bus connected="true" interface-connected="true" bus-index="1"/>
                 </communication-interface>
                 <communication-interface interface-number="2" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
                     <type>can</type>

@@ -53,7 +53,7 @@ sint16 init_engineStarterControl(T_CANDevices *_can_devs, T_ChkPoints_EngineStar
     }
 
     //populate local copy of RX ui elements
-    mt_engine.pu16_engine_speed = &_can_devs->t_engine.u16_engineSpeed;
+    mt_engine.pu16_engine_speed = &_can_devs->t_engine.u16_engine_speed;
 
     //populate local copy of TX ui elements
     mt_engine.pu8_neutral_safe_status = &_can_devs->t_display.u8_neutral_safe_status;

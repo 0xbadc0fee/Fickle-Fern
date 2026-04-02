@@ -33,9 +33,9 @@
 /** \brief Checkpoints Structure - Elevator Control */
 typedef struct
 {
-        uint8 u8_checkpoint1;                    //!<Checkpoint #1
-        float32 f32_checkpoint2;                    //!<Checkpoint #2
-        float32 f32_checkpoint3;                         //!<Checkpoint #3
+        uint8 u8_status;                    //!<Checkpoint #1
+        float32 f32_speed_cmd;                    //!<Checkpoint #2
+        float32 f32_output;                         //!<Checkpoint #3
 }T_ChkPoints_Elevator;
 
 

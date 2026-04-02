@@ -34,6 +34,8 @@ typedef struct
    uint8 u8_max_speed_set;
    uint8 u8_gear_select;
 
+   uint8 u8_manual_purge_req;
+
    //TX Variables
    uint8 u8_controllerVersionMinor;     //!<Controller Software Version - Minor
    uint8 u8_controllerVersionMajor;     //!<Controller Software Version - Major
@@ -57,6 +59,13 @@ typedef struct
    uint16 u16_suction_fan_speed_status_rpm; //!<Suction Fan Speed Status
 
    uint8 u8_neutral_safe_status; //!<Joystick Neutral Safe Status
+
+   uint8 u8_cooling_fan_reverse_ind;
+   uint8 u8_cooling_system_fault;
+   uint8 u8_hyd_oil_overtemp;
+   uint8 u8_intake_manifold_overtemp;
+   uint8 u8_engine_coolant_overtemp;
+   uint16 u16_hyd_oil_temp_degC;
 
 }T_8772_Display;
 

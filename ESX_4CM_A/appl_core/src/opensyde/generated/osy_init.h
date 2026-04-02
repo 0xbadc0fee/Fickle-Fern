@@ -19,6 +19,7 @@
 #include "j1939_data_pool.h"
 //Header files exporting comm stack configuration and status:
 #include "comm_j1939_can1.h"
+#include "comm_j1939_can2.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,7 +27,8 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define OSY_INIT_DPD_BUS_NUMBER_CAN_CHANNEL_0       0U
-#define OSY_INIT_DPD_NUMBER_OF_CAN_CHANNELS         1U
+#define OSY_INIT_DPD_BUS_NUMBER_CAN_CHANNEL_1       1U
+#define OSY_INIT_DPD_NUMBER_OF_CAN_CHANNELS         2U
 #define OSY_INIT_DPD_NUMBER_OF_ETHERNET_CHANNELS    0U
 
 #define OSY_INIT_DPD_NUMBER_OF_PARALLEL_CONNECTIONS 1U
@@ -37,7 +39,7 @@ extern "C" {
 
 #define OSY_INIT_DPH_NUM_DATA_POOLS                 3U
 
-#define OSY_INIT_COM_NUM_PROTOCOL_CONFIGURATIONS    1U
+#define OSY_INIT_COM_NUM_PROTOCOL_CONFIGURATIONS    2U
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 

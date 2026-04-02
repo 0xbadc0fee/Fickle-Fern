@@ -6,40 +6,40 @@
         <com-message-containers length="4">
             <com-message-container com-protocol-usage-flag="true">
                 <tx-messages length="1">
-                    <com-message can-id="419406241" is-extended="true" dlc="8" cycle-time="10" minimum-cycle-time="10" receive-timeout="0">
-                        <name>CAN_Btn_Panel_Rec</name>
+                    <com-message can-id="419406241" is-extended="true" dlc="8" cycle-time="0" minimum-cycle-time="10" receive-timeout="0">
+                        <name>E1_BTN_STATUS</name>
                         <comment>Button Panel Button States</comment>
-                        <tx-method>cyclic</tx-method>
+                        <tx-method>on-application-event</tx-method>
                         <com-signals length="9">
-                            <com-signal data-element-index="0" bit-start="8" bit-length="2" multiplexer-value="32">
+                            <com-signal data-element-index="0" bit-start="18" bit-length="2" multiplexer-value="32">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>multiplexed</multiplexer-type>
+                                <j1939-suspect-parameter spn="520666"/>
+                            </com-signal>
+                            <com-signal data-element-index="1" bit-start="8" bit-length="2" multiplexer-value="32">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="520661"/>
                             </com-signal>
-                            <com-signal data-element-index="1" bit-start="10" bit-length="2" multiplexer-value="32">
+                            <com-signal data-element-index="2" bit-start="10" bit-length="2" multiplexer-value="32">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="520662"/>
                             </com-signal>
-                            <com-signal data-element-index="2" bit-start="12" bit-length="2" multiplexer-value="32">
+                            <com-signal data-element-index="3" bit-start="12" bit-length="2" multiplexer-value="32">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="520663"/>
                             </com-signal>
-                            <com-signal data-element-index="3" bit-start="14" bit-length="2" multiplexer-value="32">
+                            <com-signal data-element-index="4" bit-start="14" bit-length="2" multiplexer-value="32">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="520664"/>
                             </com-signal>
-                            <com-signal data-element-index="4" bit-start="16" bit-length="2" multiplexer-value="32">
+                            <com-signal data-element-index="5" bit-start="16" bit-length="2" multiplexer-value="32">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="520665"/>
-                            </com-signal>
-                            <com-signal data-element-index="5" bit-start="18" bit-length="2" multiplexer-value="32">
-                                <byte-order>intel</byte-order>
-                                <multiplexer-type>multiplexed</multiplexer-type>
-                                <j1939-suspect-parameter spn="520666"/>
                             </com-signal>
                             <com-signal data-element-index="6" bit-start="20" bit-length="2" multiplexer-value="32">
                                 <byte-order>intel</byte-order>
@@ -61,7 +61,7 @@
                 </tx-messages>
                 <rx-messages length="1">
                     <com-message can-id="418357507" is-extended="true" dlc="8" cycle-time="100" minimum-cycle-time="10" receive-timeout="310">
-                        <name>CAN_Btn_Panel_Trans</name>
+                        <name>E31_LIGHTS</name>
                         <comment>Button Panel LED Indicator Controls</comment>
                         <tx-method>cyclic</tx-method>
                         <com-signals length="10">
@@ -105,15 +105,15 @@
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="520656"/>
                             </com-signal>
-                            <com-signal data-element-index="8" bit-start="0" bit-length="8" multiplexer-value="0">
-                                <byte-order>intel</byte-order>
-                                <multiplexer-type>multiplexer</multiplexer-type>
-                                <j1939-suspect-parameter spn="520600"/>
-                            </com-signal>
-                            <com-signal data-element-index="9" bit-start="8" bit-length="1" multiplexer-value="136">
+                            <com-signal data-element-index="8" bit-start="8" bit-length="1" multiplexer-value="136">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="520609"/>
+                            </com-signal>
+                            <com-signal data-element-index="9" bit-start="0" bit-length="8" multiplexer-value="0">
+                                <byte-order>intel</byte-order>
+                                <multiplexer-type>multiplexer</multiplexer-type>
+                                <j1939-suspect-parameter spn="520600"/>
                             </com-signal>
                         </com-signals>
                     </com-message>

@@ -23,12 +23,12 @@
 #include "elevator_control.h"
 #include "header_lift_control.h"
 #include "stick_box_control.h"
+
 #include "power_assist_control.h"
 #include "suction_fan_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
-
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define NUM_OSY_NVM_DATAPOOLS (1u)
@@ -41,7 +41,6 @@ T_Config_HeaderControl gt_headerConfig;    //!<Structure that holds the Joystick
 T_Config_StickBoxControl gt_stickBConfig; //!<Structure that holds the Stick Box config.
 T_Config_PowerAssistControl gt_paConfig;
 T_Config_SFan gt_suctionFanConfig; //!<Structure that holds the Suction Fan config.
-
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void)
 {

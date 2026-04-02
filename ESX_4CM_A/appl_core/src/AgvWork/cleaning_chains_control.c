@@ -68,12 +68,10 @@ sint16 init_cChainsControl(T_CANDevices *_can_dev, T_ChkPoints_CChains *_chkClea
     mt_cchains.u8_shaft_drive_latched = SHAFT_DRIVE_OFF;
 
     //Initialize toggle button helper
-    s16_error += toggleButton_init(
-    &mt_cchains.t_btn_shaft,
-    &mt_cchains.u8_shaft_drive_latched,
-    250u,
-    SHAFT_DRIVE_OFF
-    );
+    s16_error += toggleButton_init( &mt_cchains.t_btn_shaft,
+                                    &mt_cchains.u8_shaft_drive_latched,
+                                    250u,
+                                    SHAFT_DRIVE_OFF);
 
     return s16_error;
 }
@@ -167,7 +165,7 @@ sint16 update_cChainsControl(void)
     set_outputValue("SHAFT_PUMP", (float32)(*mt_cchains.pu8_shaft_drive_value));
 
     //Publish checkpoints
-    mt_cchains.pt_cp_cchains->u8_checkpoint1 = *mt_cchains.pu8_shaft_drive_value;
+    mt_cchains.pt_cp_cchains->u8_status = *mt_cchains.pu8_shaft_drive_value;
 
     mt_cchains.u8_prev_ign_on = u8_ign_on;
 

@@ -38,7 +38,7 @@
  */
 typedef struct
 {
-        uint8 u8_checkpoint1; //!<Shaft Drive Btn Checkpoint
+        uint8 u8_status; //!<Shaft Drive Btn Checkpoint
 
 }T_ChkPoints_CChains;
 

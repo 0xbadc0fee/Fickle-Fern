@@ -20,15 +20,12 @@
 #include "hw_outputs.h"
 
 #include "can_device_definition.h"
-
 #include "ethernet_init.h"
 
 #include "nvm_handler.h"
 #include "fault_handler.h"
 #include "can_handler.h"
 #include "checkpoint_handler.h"
-
-
 #include "hitch_position_control.h"
 #include "header_lift_control.h"
 #include "auger_cart_control.h"
@@ -42,6 +39,7 @@
 #include "engine_starter_control.h"
 #include "suction_fan_control.h"
 #include "throttle_control.h"
+#include "cooling_fan_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -119,6 +117,7 @@ int main(void)
         s16_Error += init_suctionFanControl   (&gt_can_devs, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
         s16_Error += init_engineStarterControl(&gt_can_devs, &gt_engineStarterCheckpoints);
         s16_Error += init_throttleControl     (&gt_can_devs, &gt_throttleCheckpoints);
+        s16_Error +=init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -147,6 +146,7 @@ int main(void)
         update_propulsionControl();
         update_engineStarterControl();
         update_throttleControl();
+        update_CoolingFanControl();
 
         //Run AgvWork Controls
         update_elevatorControl();
@@ -159,6 +159,7 @@ int main(void)
         update_stickBControl();
         update_stickRemoverControl();
         update_suctionFanControl();
+
 
         //Outputs
         update_faultHandler();

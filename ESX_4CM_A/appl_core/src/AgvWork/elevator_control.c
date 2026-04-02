@@ -133,7 +133,7 @@ sint16 update_elevatorControl(void)
         f32_speed_req_pct = (float32)(*(mt_elevator.pu8_requestedSpeed));
 
         //Publish Checkpoint
-        mt_elevator.pt_chkElevator->f32_checkpoint2 = f32_speed_req_pct;
+        mt_elevator.pt_chkElevator->f32_speed_cmd = f32_speed_req_pct;
     }
 
     if(mt_elevator.pt_nvmElevator != NULL)
@@ -153,7 +153,7 @@ sint16 update_elevatorControl(void)
     s16_error += toggleButton(&mt_elevator.t_btn_enable, u8_enable_cmd, u8_reset);
 
     //Publish Checkpoint
-    mt_elevator.pt_chkElevator->u8_checkpoint1 = mt_elevator.u8_elevator_enabled;
+    mt_elevator.pt_chkElevator->u8_status = mt_elevator.u8_elevator_enabled;
 
     // FR-6.4 Set elevator speed command to zero when disabled
     if((mt_elevator.u8_elevator_enabled == ELEVATOR_OFF) ||
@@ -174,7 +174,7 @@ sint16 update_elevatorControl(void)
     }
 
     //Publish Checkpoint
-    mt_elevator.pt_chkElevator->f32_checkpoint3 = mt_elevator.t_ramp_state.f32_output;
+    mt_elevator.pt_chkElevator->f32_output = mt_elevator.t_ramp_state.f32_output;
 
     // FR-6.8 Output Elevator On/Off Status to display
     *(mt_elevator.pu8_elevatorStatus) = (mt_elevator.u8_elevator_enabled != FALSE) ? TRUE : FALSE;

@@ -7,15 +7,15 @@
 */
 
 /* Elevator Control checkpoints */
-CNTRL2DP(elevatorCP1, 	 gt_elevatorCheckpoints.u8_checkpoint1,  				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_checkpoint1)
-CNTRL2DP(elevatorCP2, 	 gt_elevatorCheckpoints.f32_checkpoint2, 				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint2)
-CNTRL2DP(elevatorCP3, 	 gt_elevatorCheckpoints.f32_checkpoint3, 				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_checkpoint3)
+CNTRL2DP(elevatorCP1, 	 gt_elevatorCheckpoints.u8_status,  				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_status)
+CNTRL2DP(elevatorCP2, 	 gt_elevatorCheckpoints.f32_speed_cmd, 				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_speed_cmd)
+CNTRL2DP(elevatorCP3, 	 gt_elevatorCheckpoints.f32_output, 				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_output)
 
 /* Cleaning Chains Control checkpoints */
-CNTRL2DP(cchainsCP2,  	 gt_cleaningShaftCheckpoints.u8_checkpoint1, 		    gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_checkpoint1)
+CNTRL2DP(cchainsCP2,  	 gt_cleaningShaftCheckpoints.u8_status, 		    gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_status)
 
 /* Front Sweeps Control checkpoints */
-CNTRL2DP(fsweepsCP2,  	 gt_frontSweepsCheckpoints.u8_checkpoint1, 	 			gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues.u8_checkpoint1)
+CNTRL2DP(fsweepsCP2,  	 gt_frontSweepsCheckpoints.u8_speed_cmd, 	 			gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues.u8_speed_cmd)
 
 /* Rotary Trap Control checkpoints */
 CNTRL2DP(rtrapCP2, 		 gt_rotaryTrapCheckpoints.f32_trap_target_cmd, 	 		gt_Checkpoints_DataPoolValues.t_RotaryTrapValues.f32_trap_target_cmd)
@@ -40,3 +40,7 @@ CNTRL2DP(startNeutralCP, gt_engineStarterCheckpoints.u8_js_neutral, 	 	   	gt_Ch
 CNTRL2DP(throttleRMPCP,  gt_throttleCheckpoints.u16_chk1_eng_spd, 	 	 		gt_Checkpoints_DataPoolValues.t_EngineControlValues.u16_chk1_eng_spd)
 CNTRL2DP(throttleUpCP,   gt_throttleCheckpoints.u8_chk2_eng_spd_up_osc,   		gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_chk2_eng_spd_up_osc)
 CNTRL2DP(throttleDownCP, gt_throttleCheckpoints.u8_chk3_eng_spd_down_osc, 		gt_Checkpoints_DataPoolValues.t_EngineControlValues.u8_chk3_eng_spd_down_osc)
+
+/* Cooling Fan Control Parameters */
+CNTRL2DP(coolLeadNum, 	gt_coolingFanCheckpoints.u8_leadsensornumber, 	 		gt_Checkpoints_DataPoolValues.t_CoolingFanControlValues.u8_lead_sensor_id)
+CNTRL2DP(rtrapCP2, 		gt_coolingFanCheckpoints.f32_cooling_demand_pct, 	 	gt_Checkpoints_DataPoolValues.t_CoolingFanControlValues.f32_cooling_demand_pct)

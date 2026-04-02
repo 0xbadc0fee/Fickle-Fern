@@ -30,6 +30,7 @@
 #include "engine_starter_control.h"
 #include "suction_fan_control.h"
 #include "throttle_control.h"
+#include "cooling_fan_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
@@ -48,6 +49,7 @@ T_ChkPoints_Propulsion gt_propCheckpoints;        //!<Structure that holds Propu
 T_ChkPoints_EngineStarter gt_engineStarterCheckpoints; //!<Structure that holds the Engine Starter Checkpoints.
 T_ChkPoints_SFan gt_suctionFanCheckpoints; //!<Structure that holds the Suction Fan Checkpoints.
 T_ChkPoints_Throttle gt_throttleCheckpoints; //!<Structure that holds the Throttle Checkpoints.
+T_ChkPoints_CoolingFan gt_coolingFanCheckpoints; //!<Structure that holds the Cooling Fan Checkpoints
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 update_checkpointHandler(void)

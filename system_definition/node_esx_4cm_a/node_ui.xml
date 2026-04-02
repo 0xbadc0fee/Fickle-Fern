@@ -11,15 +11,21 @@
             <data-pool>dp_j1939_ui.xml</data-pool>
         </data-pools>
         <box>
-            <position x="312" y="160"/>
+            <position x="418" y="410"/>
             <size width="165" height="110"/>
             <zorder value="1"/>
         </box>
         <busconnections>
             <connection type="can" busnumber="0">
                 <interaction-points>
-                    <interaction-point x="393" y="274.49000000000001"/>
-                    <interaction-point x="391.96351055216832" y="322"/>
+                    <interaction-point x="502" y="405.5"/>
+                    <interaction-point x="502" y="320"/>
+                </interaction-points>
+            </connection>
+            <connection type="can" busnumber="1">
+                <interaction-points>
+                    <interaction-point x="501" y="524.49000000000001"/>
+                    <interaction-point x="501" y="601"/>
                 </interaction-points>
             </connection>
         </busconnections>
