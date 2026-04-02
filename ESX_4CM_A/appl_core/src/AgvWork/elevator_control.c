@@ -74,15 +74,17 @@ sint16 init_elevatorControl(T_CANDevices *_can_dev, T_ChkPoints_Elevator *_chkEl
 
 
     // Initialize toggle button helper
-    s16_error += toggleButton_init(
-    &mt_elevator.t_btn_enable,
-    &mt_elevator.u8_elevator_enabled,
-    250,
-    ELEVATOR_OFF
-    );
+    s16_error += toggleButton_init( &mt_elevator.t_btn_enable,
+                                    &mt_elevator.u8_elevator_enabled,
+                                    250,
+                                    ELEVATOR_OFF);
 
     // Ramp initialization
-    s16_error += rampInit(&mt_elevator.t_ramp_state, ELEVATOR_RAMP_RATE, ELEVATOR_MIN_CURRENT_MA, ELEVATOR_MAX_CURRENT_MA, ELEVATOR_SAFE_STATE);
+    s16_error += rampInit(&mt_elevator.t_ramp_state,
+                          ELEVATOR_RAMP_RATE,
+                          ELEVATOR_MIN_CURRENT_MA,
+                          ELEVATOR_MAX_CURRENT_MA,
+                          ELEVATOR_SAFE_STATE);
 
     return s16_error;
 }
@@ -161,7 +163,7 @@ sint16 update_elevatorControl(void)
         f32_speed_req_pct = ELEVATOR_SAFE_STATE;
     }
 
-    f32_output_current = (f32_speed_req_pct * ((ELEVATOR_MAX_CURRENT_MA - ELEVATOR_MIN_CURRENT_MA)/100.0F)) + ELEVATOR_MIN_CURRENT_MA;
+    f32_output_current = (f32_speed_req_pct * ((f32_maxCurrent - ELEVATOR_MIN_CURRENT_MA)/100.0F)) + ELEVATOR_MIN_CURRENT_MA;
     // FR-6.5/7 Apply ramping using helper and clamp output to min and max
     s16_error += rampCalc(f32_output_current, &mt_elevator.t_ramp_state);
 
