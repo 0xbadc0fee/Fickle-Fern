@@ -100,8 +100,7 @@ sint16 update_filterMinder(void)
             }
 
             // Service on at 100%
-            u8_service_filter_on =
-            (f32_adv_filter_out >= 100u) ? TRUE : FALSE;
+            u8_service_filter_on = (f32_adv_filter_out >= PERCENT_SCALE) ? TRUE : FALSE;
 
             // Gauge output
             if(u8_service_filter_on != FALSE)
@@ -125,9 +124,9 @@ sint16 update_filterMinder(void)
     *(mt_misc.pu8_service_filter_status) = u8_service_filter_on;
 
     //Checkpoints
-    mt_misc.pt_cp_misc->f32_filter_restriction_pct = f32_adv_filter_out;
-    mt_misc.pt_cp_misc->f32_filter_minder_gauge_pct= f32_filter_gauge;
-    mt_misc.pt_cp_misc->u8_service_filter_status = u8_service_filter_on;
+    mt_misc.pt_cp_misc->f32_chk_filter_rest_pct = f32_adv_filter_out;
+    mt_misc.pt_cp_misc->f32_chk_minder_gauge_pct= f32_filter_gauge;
+    mt_misc.pt_cp_misc->u8_chk_service_filter_status = u8_service_filter_on;
 
     return s16_error;
 }
@@ -215,13 +214,13 @@ sint16 update_fuelLevel(void)
     }
 
     // FR-23.7 Transmit outputs to display via CAN
-    *(mt_misc.pf32_fuel_level_sensor_pct) = f32_sensor;
-    *(mt_misc.pf32_fuel_level_gauge_pct)  = (f32_gauge * 255.0F) / PERCENT_SCALE;
+    *(mt_misc.pf32_fuel_level_sensor) = (f32_sensor * 255.0F) / PERCENT_SCALE;;
+    *(mt_misc.pf32_fuel_level_gauge_pct)  = f32_gauge;
     *(mt_misc.pu8_low_fuel_status)        = u8_low;
 
     //Checkpoints
-    mt_misc.pt_cp_misc->f32_fuel_level_sensor_pct = f32_sensor;
-    mt_misc.pt_cp_misc->f32_fuel_level_gauge_pct= (f32_gauge * 255.0F) / PERCENT_SCALE;
+    mt_misc.pt_cp_misc->f32_chk_fuel_level_sensor = (f32_sensor * 255.0F) / PERCENT_SCALE;
+    mt_misc.pt_cp_misc->f32_chk_fuel_level_gauge_pct= f32_gauge;
 
     return s16_error;
 }
@@ -244,24 +243,24 @@ sint16 init_miscControl(T_UserInterface *_ui, T_ChkPoints_Mis *_chk_misc,T_Confi
     {
         return C_WARN;
     }
-    /*
+
         mt_misc.pf32_filter_minder_gauge_pct     = &_ui->t_display.f32_filter_minder_gauge_pct;
         mt_misc.pf32_filter_restriction_pct      = &_ui->t_display.f32_filter_restriction_pct;
         mt_misc.pu8_service_filter_status        = &_ui->t_display.u8_service_filter_status;
 
-        mt_misc.pf32_fuel_level_sensor_pct       = &_ui->t_display.f32_fuel_level_sensor_pct;
+        mt_misc.pf32_fuel_level_sensor       = &_ui->t_display.f32_fuel_level_sensor;
         mt_misc.pf32_fuel_level_gauge_pct        = &_ui->t_display.f32_fuel_level_gauge_pct;
         mt_misc.pu8_low_fuel_status              = &_ui->t_display.u8_low_fuel_status;
 
         mt_misc.pu8_door_open_status             = &_ui->t_display.u8_door_open_status;
         mt_misc.pu8_low_hydraulic_fluid_indicator= &_ui->t_display.u8_low_hydraulic_fluid_indicator;
-        mt_misc.pu8_display_brakes_engaged       = &_ui->t_display.u8_brakes_engaged_status;
+        mt_misc.pu8_brakes_engaged       = &_ui->t_display.u8_brakes_engaged_status;
 
         mt_misc.pu8_sw_major_revision            = &_ui->t_display.u8_software_major_revision;
         mt_misc.pu8_sw_minor_revision            = &_ui->t_display.u8_software_minor_revision;
 
         mt_misc.pu8_clear_machine_faults_cmd     = &_ui->t_display.u8_clear_machine_faults_cmd;
-     */
+
 
     s16_error += movingFltInit(&mt_misc.t_fuel_level_flt,
     mt_misc.f32_fuel_level_buf,
@@ -310,7 +309,7 @@ sint16 update_miscControl(void)
 
     if((mt_misc.pu8_door_open_status == NULL) ||
     (mt_misc.pu8_low_hydraulic_fluid_indicator == NULL) ||
-    (mt_misc.pu8_display_brakes_engaged == NULL) ||
+    (mt_misc.pu8_brakes_engaged == NULL) ||
     (mt_misc.pu8_sw_major_revision == NULL) ||
     (mt_misc.pu8_sw_minor_revision == NULL) ||
     (mt_misc.pu8_clear_machine_faults_cmd == NULL))
@@ -334,7 +333,7 @@ sint16 update_miscControl(void)
         *(mt_misc.pu8_door_open_status) = FALSE;
         s16_error += C_WARN;
     }
-    mt_misc.pt_cp_misc->u8_door_open_status = (*(mt_misc.pu8_door_open_status));
+    mt_misc.pt_cp_misc->u8_chk_door_open_status = (*(mt_misc.pu8_door_open_status));
 
     // FR-23.10 Read Hydraulic Fluid Level Switch input and output indicator to display
     get_inputFaultStatus("HYD_FLUID_LEVEL", &u8_in_fault);
@@ -348,7 +347,7 @@ sint16 update_miscControl(void)
         *(mt_misc.pu8_low_hydraulic_fluid_indicator) = FALSE;
         s16_error += C_WARN;
     }
-    mt_misc.pt_cp_misc->u8_low_hydraulic_fluid_indicator = (*(mt_misc.pu8_low_hydraulic_fluid_indicator));
+    mt_misc.pt_cp_misc->u8_chk_low_hyd_fluid_indicator = (*(mt_misc.pu8_low_hydraulic_fluid_indicator));
 
     // FR-23.11 Read Brakes Engaged input and output it to the REGEN Allow Relay hardware and to the display
     get_inputFaultStatus("PARK_BRAKE", &u8_in_fault);
@@ -361,21 +360,21 @@ sint16 update_miscControl(void)
         f32_value = (f32_value != FALSE) ? TRUE : FALSE;
 
         set_outputValue("REGEN_ALLOW_RELAY", f32_value);
-        *(mt_misc.pu8_display_brakes_engaged) = f32_value;
+        *(mt_misc.pu8_brakes_engaged) = f32_value;
     }
     else
     {
-        *(mt_misc.pu8_display_brakes_engaged) = FALSE;
+        *(mt_misc.pu8_brakes_engaged) = FALSE;
         s16_error += C_WARN;
     }
-    mt_misc.pt_cp_misc->u8_display_brakes_engaged = (*(mt_misc.pu8_display_brakes_engaged));
+    mt_misc.pt_cp_misc->u8_chk_brakes_engaged = (*(mt_misc.pu8_brakes_engaged));
 
     // FR-23.12 Transmit current Major and Minor Software Revision to display
     *(mt_misc.pu8_sw_major_revision) = MISC_SW_MAJOR_REV;
     *(mt_misc.pu8_sw_minor_revision) = MISC_SW_MINOR_REV;
 
-    mt_misc.pt_cp_misc->u8_sw_major_revision = MISC_SW_MAJOR_REV;
-    mt_misc.pt_cp_misc->u8_sw_minor_revision = MISC_SW_MINOR_REV;
+    mt_misc.pt_cp_misc->u8_chk_sw_major_revision = MISC_SW_MAJOR_REV;
+    mt_misc.pt_cp_misc->u8_chk_sw_minor_revision = MISC_SW_MINOR_REV;
 
     // FR-23.13 Read Clear Machine Faults Command from display and clear associated faults
     if(*(mt_misc.pu8_clear_machine_faults_cmd) != FALSE)

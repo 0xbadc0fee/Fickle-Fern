@@ -27,6 +27,7 @@
 #include "front_sweeps_control.h"
 #include "rotary_trap_control.h"
 #include "cooling_fan_control.h"
+#include "misc_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
@@ -36,12 +37,13 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_ChkPoints_Elevator gt_elevatorCheckpoints;      //!<structure that holds all AgvWork - Elevator Control Checkpoints
-T_ChkPoints_Header   gt_headerCheckpoints;        //!<structure that holds all AgvWork - Header Control Checkpoints
+T_ChkPoints_Elevator gt_elevatorCheckpoints;      //!<Structure that holds all AgvWork - Elevator Control Checkpoints
+T_ChkPoints_Header   gt_headerCheckpoints;        //!<Structure that holds all AgvWork - Header Control Checkpoints
 T_ChkPoints_CChains  gt_cleaningShaftCheckpoints; //!<Structure that holds Cleaning Chains Checkpoints
 T_ChkPoints_FSweeps  gt_frontSweepsCheckpoints;	  //!<Structure that holds Front Sweeps Checkpoints
 T_ChkPoints_RTrap    gt_rotaryTrapCheckpoints;	  //!<Structure that holds Rotary Traps Checkpoints
 T_ChkPoints_CoolingFan gt_coolingFanCheckpoints; //!<Structure that holds the Cooling Fan Checkpoints
+T_ChkPoints_Mis gt_miscCheckpoints;              //!<Structure that holds theMiscellaneous Checkpoints
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 sint16 update_checkpointHandler(void)

@@ -38,3 +38,6 @@ DP2CNTRL(stickClose, 		 gt_ui.t_buttonPanel.u8_b7_state, 		 gt_J1939_DataPoolVal
 
 /* Cooling Fan Control CAN Parameters */
 DP2CNTRL(coolManPurge, 	gt_ui.t_display.u8_manual_purge_req, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiCoolingFanManPurge)
+
+/* MISC Control CAN Parameters */
+DP2CNTRL(clearMacFaults, 	gt_ui.t_display.u8_clear_machine_faults_cmd, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiClearMachineFaults)

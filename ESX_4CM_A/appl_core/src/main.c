@@ -36,6 +36,7 @@
 #include "rotary_trap_control.h"
 #include "stick_box_control.h"
 #include "cooling_fan_control.h"
+#include "misc_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -107,7 +108,8 @@ int main(void)
         s16_Error += init_frontSweepsControl(&gt_ui, &gt_frontSweepsCheckpoints);
         s16_Error += init_rotaryTrapControl(&gt_ui, &gt_rotaryTrapCheckpoints);
         s16_Error += init_stickBControl(&gt_ui, &gt_stickBConfig);
-        s16_Error +=init_coolingFanControl(&gt_ui, &gt_coolingFanCheckpoints);
+        s16_Error +=init_coolingFanControl(&gt_ui, &gt_coolingFanCheckpoints);;
+        s16_Error +=init_miscControl(&gt_ui, &gt_miscCheckpoints, &gt_miscConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -132,6 +134,7 @@ int main(void)
 
         //Run AgvChassis Controls
         update_lightControl();
+        update_miscControl();
 
         //Run AgvWork Controls
         update_elevatorControl();

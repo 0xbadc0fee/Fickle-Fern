@@ -38,3 +38,18 @@ CNTRL2DP(coolSen3OvrTemp,  gt_ui.t_display.u8_hyd_oil_overtemp,  	gt_J1939_DataP
 CNTRL2DP(coolSen2OvrTemp,  gt_ui.t_display.u8_intake_manifold_overtemp,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisCoolingSen2_OvrTmp)
 CNTRL2DP(coolSen1OvrTemp,  gt_ui.t_display.u8_engine_coolant_overtemp,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisCoolingSen1_OvrTmp)
 CNTRL2DP(hydOilTempDegC,  gt_ui.t_display.u16_hyd_oil_temp_degC,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_CAN_Display_Trans1_AgvChassisHydOilTempDegC)
+
+/* MISC Control CAN Parameters */
+CNTRL2DP(airFilterRest,  gt_ui.t_display.f32_filter_minder_gauge_pct,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisAirFilterRestrict255)
+CNTRL2DP(airFilterRestP,  gt_ui.t_display.f32_filter_restriction_pct,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans2_AgvChassisAirFilterRestrictPrcn)
+CNTRL2DP(airFilterServ,  gt_ui.t_display.u8_service_filter_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisAirFilterServiceRqd)
+CNTRL2DP(fuelGage,  gt_ui.t_display.f32_fuel_level_sensor,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisFuelGage255)
+CNTRL2DP(fuelGageP,  gt_ui.t_display.f32_fuel_level_gauge_pct,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans2_AgvChassisFuelGagePrcnt) 
+CNTRL2DP(fuelLevelLow,  gt_ui.t_display.u8_low_fuel_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisFuelLevelLow)
+CNTRL2DP(doorOpenState,  gt_ui.t_display.u8_door_open_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisDoorOpenState)
+CNTRL2DP(hydOilLow,  gt_ui.t_display.u8_low_hydraulic_fluid_indicator,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHydOilLevelLow)
+CNTRL2DP(brakesEngaged,  gt_ui.t_display.u8_brakes_engaged_status,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisBrakesEngaged)
+CNTRL2DP(majorRev,  gt_ui.t_display.u8_software_major_revision,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans2_AgvMajorRev)
+CNTRL2DP(minorRev,  gt_ui.t_display.u8_software_minor_revision,  	gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans2_AgvMinorRev)
+
+

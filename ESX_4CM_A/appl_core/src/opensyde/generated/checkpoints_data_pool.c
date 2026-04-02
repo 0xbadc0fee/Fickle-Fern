@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3116622108 mt_Variable;
+static T_osy_non_existing_type_1800828000 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CHECKPOINTS_PROJECT_ID_3116622108
+CHECKPOINTS_PROJECT_ID_1800828000
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -61,6 +61,36 @@ static const T_Checkpoints_CoolingFanControls_Values mt_CoolingFanControlsMaxVal
 {
    255U,   ///< leadsensornumber (Variable description)
    3.40282347e+38F    ///< cooling_demand_pct (Variable description)
+};
+
+///Minimum values
+static const T_Checkpoints_MiscControls_Values mt_MiscControlsMinValues =
+{
+   -3.40282347e+38F,   ///< chk_fuel_level_sensor (Variable description)
+   -3.40282347e+38F,   ///< chk_fuel_level_gauge_pct (Variable description)
+   -3.40282347e+38F,   ///< chk_filter_rest_pct (Variable description)
+   -3.40282347e+38F,   ///< chk_minder_gauge_pct (Variable description)
+   0U,   ///< chk_service_filter_status (Variable description)
+   0U,   ///< chk_door_open_status (Variable description)
+   0U,   ///< chk_low_hyd_fluid_indicator (Variable description)
+   0U,   ///< chk_brakes_engaged (Variable description)
+   0U,   ///< chk_sw_major_revision (Variable description)
+   0U    ///< chk_sw_minor_revision (Variable description)
+};
+
+///Maximum values
+static const T_Checkpoints_MiscControls_Values mt_MiscControlsMaxValues =
+{
+   3.40282347e+38F,   ///< chk_fuel_level_sensor (Variable description)
+   3.40282347e+38F,   ///< chk_fuel_level_gauge_pct (Variable description)
+   3.40282347e+38F,   ///< chk_filter_rest_pct (Variable description)
+   3.40282347e+38F,   ///< chk_minder_gauge_pct (Variable description)
+   255U,   ///< chk_service_filter_status (Variable description)
+   255U,   ///< chk_door_open_status (Variable description)
+   255U,   ///< chk_low_hyd_fluid_indicator (Variable description)
+   255U,   ///< chk_brakes_engaged (Variable description)
+   255U,   ///< chk_sw_major_revision (Variable description)
+   255U    ///< chk_sw_minor_revision (Variable description)
 };
 
 ///Minimum values
@@ -131,6 +161,20 @@ static const T_osy_dpa_element_definition mat_DataPoolCoolingFanControlsElements
    { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_CoolingFanControlsValues.f32_cooling_demand_pct, &mt_CoolingFanControlsMinValues.f32_cooling_demand_pct, &mt_CoolingFanControlsMaxValues.f32_cooling_demand_pct }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolMiscControlsElements[CHECKPOINTS_MISCCONTROLS_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.f32_chk_fuel_level_sensor, &mt_MiscControlsMinValues.f32_chk_fuel_level_sensor, &mt_MiscControlsMaxValues.f32_chk_fuel_level_sensor },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.f32_chk_fuel_level_gauge_pct, &mt_MiscControlsMinValues.f32_chk_fuel_level_gauge_pct, &mt_MiscControlsMaxValues.f32_chk_fuel_level_gauge_pct },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.f32_chk_filter_rest_pct, &mt_MiscControlsMinValues.f32_chk_filter_rest_pct, &mt_MiscControlsMaxValues.f32_chk_filter_rest_pct },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.f32_chk_minder_gauge_pct, &mt_MiscControlsMinValues.f32_chk_minder_gauge_pct, &mt_MiscControlsMaxValues.f32_chk_minder_gauge_pct },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_service_filter_status, &mt_MiscControlsMinValues.u8_chk_service_filter_status, &mt_MiscControlsMaxValues.u8_chk_service_filter_status },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_door_open_status, &mt_MiscControlsMinValues.u8_chk_door_open_status, &mt_MiscControlsMaxValues.u8_chk_door_open_status },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_low_hyd_fluid_indicator, &mt_MiscControlsMinValues.u8_chk_low_hyd_fluid_indicator, &mt_MiscControlsMaxValues.u8_chk_low_hyd_fluid_indicator },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_brakes_engaged, &mt_MiscControlsMinValues.u8_chk_brakes_engaged, &mt_MiscControlsMaxValues.u8_chk_brakes_engaged },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_sw_major_revision, &mt_MiscControlsMinValues.u8_chk_sw_major_revision, &mt_MiscControlsMaxValues.u8_chk_sw_major_revision },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_sw_minor_revision, &mt_MiscControlsMinValues.u8_chk_sw_minor_revision, &mt_MiscControlsMaxValues.u8_chk_sw_minor_revision }
+};
+
 static const T_osy_dpa_element_definition mat_DataPoolCleaningChainsControlsElements[CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_ELEMENTS] =
 {
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_checkpoint1, &mt_CleaningChainsControlsMinValues.u8_checkpoint1, &mt_CleaningChainsControlsMaxValues.u8_checkpoint1 }
@@ -159,6 +203,7 @@ static const T_osy_dpa_list_definition mat_DataPoolLists[CHECKPOINTS_NUMBER_OF_L
 {
    { CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_ELEVATORCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_ElevatorControl_Values), &mat_DataPoolElevatorControlElements[0], &gt_Checkpoints_DataPoolValues.t_ElevatorControlValues, NULL },
    { CHECKPOINTS_COOLINGFANCONTROLS_NUMBER_OF_ELEMENTS, CHECKPOINTS_COOLINGFANCONTROLS_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_CoolingFanControls_Values), &mat_DataPoolCoolingFanControlsElements[0], &gt_Checkpoints_DataPoolValues.t_CoolingFanControlsValues, NULL },
+   { CHECKPOINTS_MISCCONTROLS_NUMBER_OF_ELEMENTS, CHECKPOINTS_MISCCONTROLS_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_MiscControls_Values), &mat_DataPoolMiscControlsElements[0], &gt_Checkpoints_DataPoolValues.t_MiscControlsValues, NULL },
    { CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_ELEMENTS, CHECKPOINTS_CLEANINGCHAINSCONTROLS_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_CleaningChainsControls_Values), &mat_DataPoolCleaningChainsControlsElements[0], &gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues, NULL },
    { CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_ELEMENTS, CHECKPOINTS_FRONTSWEEPSCONTROL_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_FrontSweepsControl_Values), &mat_DataPoolFrontSweepsControlElements[0], &gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues, NULL },
    { CHECKPOINTS_ROTARYTRAP_NUMBER_OF_ELEMENTS, CHECKPOINTS_ROTARYTRAP_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Checkpoints_RotaryTrap_Values), &mat_DataPoolRotaryTrapElements[0], &gt_Checkpoints_DataPoolValues.t_RotaryTrapValues, NULL },
@@ -173,7 +218,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Checkpoints",  ///< name of Datapool
    CHECKPOINTS_NUMBER_OF_LISTS,
-   0xf84819f2U, ///< CRC of Datapool definition
+   0x7f396a5fU, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

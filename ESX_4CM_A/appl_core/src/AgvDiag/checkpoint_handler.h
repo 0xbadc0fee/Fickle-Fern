@@ -17,6 +17,7 @@
 #include "front_sweeps_control.h"
 #include "rotary_trap_control.h"
 #include "cooling_fan_control.h"
+#include "misc_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -29,6 +30,7 @@ extern T_ChkPoints_CChains gt_cleaningShaftCheckpoints;
 extern T_ChkPoints_FSweeps gt_frontSweepsCheckpoints;
 extern T_ChkPoints_RTrap   gt_rotaryTrapCheckpoints;
 extern T_ChkPoints_CoolingFan gt_coolingFanCheckpoints;
+extern T_ChkPoints_Mis gt_miscCheckpoints;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 update_checkpointHandler(void);

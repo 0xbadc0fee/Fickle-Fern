@@ -44,12 +44,26 @@ typedef struct
    uint8 u8_worklights_status; //!<Work Light Status
    uint8 u8_shaft_drive_status;         //!<Cleaning Chains Shaft Drive Status
 
-   uint8 u8_cooling_fan_reverse_ind;
-   uint8 u8_cooling_system_fault;
-   uint8 u8_hyd_oil_overtemp;
-   uint8 u8_intake_manifold_overtemp;
-   uint8 u8_engine_coolant_overtemp;
-   uint16 u16_hyd_oil_temp_degC;
+   uint8 u8_cooling_fan_reverse_ind;//!<
+   uint8 u8_cooling_system_fault;//!<
+   uint8 u8_hyd_oil_overtemp;//!<
+   uint8 u8_intake_manifold_overtemp;//!<
+   uint8 u8_engine_coolant_overtemp;//!<
+   uint16 u16_hyd_oil_temp_degC;//!<
+
+   float32 f32_filter_minder_gauge_pct;//!<
+   float32 f32_filter_restriction_pct;//!<
+   uint8 u8_service_filter_status;//!<
+   float32 f32_fuel_level_sensor;//!<
+   float32 f32_fuel_level_gauge_pct;//!<
+   uint8 u8_low_fuel_status;//!<
+   uint8 u8_door_open_status;//!<
+   uint8 u8_low_hydraulic_fluid_indicator;//!<
+   uint8 u8_brakes_engaged_status;//!<
+   uint8 u8_software_major_revision;//!<
+   uint8 u8_software_minor_revision;//!<
+   uint8 u8_clear_machine_faults_cmd;//!<
+
 
 }T_8772_Display;
 

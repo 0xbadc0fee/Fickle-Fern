@@ -63,17 +63,16 @@
  */
 typedef struct
 {
-        uint8 u8_chk1; //!<Checkpoint
-        float32 f32_fuel_level_sensor_pct;//!< Checkpoint
-        float32 f32_fuel_level_gauge_pct; //!<Checkpoint
-        float32 f32_filter_restriction_pct;//!<Checkpoint
-        float32 f32_filter_minder_gauge_pct;//!<Checkpoint
-        uint8 u8_service_filter_status;//!<Checkpoint
-        uint8 u8_door_open_status;//!<Checkpoint
-        uint8 u8_low_hydraulic_fluid_indicator;//!<Checkpoint
-        uint8 u8_display_brakes_engaged;//!<Checkpoint
-        uint8 u8_sw_major_revision;//!<Checkpoint
-        uint8 u8_sw_minor_revision;//!<Checkpoint
+        float32 f32_chk_fuel_level_sensor;//!< Checkpoint
+        float32 f32_chk_fuel_level_gauge_pct; //!<Checkpoint
+        float32 f32_chk_filter_rest_pct;//!<Checkpoint
+        float32 f32_chk_minder_gauge_pct;//!<Checkpoint
+        uint8 u8_chk_service_filter_status;//!<Checkpoint
+        uint8 u8_chk_door_open_status;//!<Checkpoint
+        uint8 u8_chk_low_hyd_fluid_indicator;//!<Checkpoint
+        uint8 u8_chk_brakes_engaged;//!<Checkpoint
+        uint8 u8_chk_sw_major_revision;//!<Checkpoint
+        uint8 u8_chk_sw_minor_revision;//!<Checkpoint
 }T_ChkPoints_Mis;
 
 /** \brief Configuration Structure - Miscellaneous Control
@@ -104,13 +103,13 @@ typedef struct
         float32 *pf32_filter_restriction_pct;
         uint8   *pu8_service_filter_status;
 
-        float32 *pf32_fuel_level_sensor_pct;
+        float32 *pf32_fuel_level_sensor;
         float32 *pf32_fuel_level_gauge_pct;
         uint8   *pu8_low_fuel_status;
 
         uint8   *pu8_door_open_status;
         uint8   *pu8_low_hydraulic_fluid_indicator;
-        uint8   *pu8_display_brakes_engaged;
+        uint8   *pu8_brakes_engaged;
 
         uint8   *pu8_sw_major_revision;
         uint8   *pu8_sw_minor_revision;
