@@ -51,10 +51,10 @@ typedef struct
    uint8 u8_engine_coolant_overtemp;//!<
    uint16 u16_hyd_oil_temp_degC;//!<
 
-   float32 f32_filter_minder_gauge_pct;//!<
+   uint8 u8_filter_minder_gauge;//!<
    float32 f32_filter_restriction_pct;//!<
    uint8 u8_service_filter_status;//!<
-   float32 f32_fuel_level_sensor;//!<
+   uint8 u8_fuel_level_sensor;//!<
    float32 f32_fuel_level_gauge_pct;//!<
    uint8 u8_low_fuel_status;//!<
    uint8 u8_door_open_status;//!<

@@ -38,7 +38,7 @@ static T_MiscControl mt_misc;
 
 /** \brief Update Filter Minder AgvChassis - Miscellaneous Control
  *
- *  This function updates the filter minder the AgvChassis - Miscellaneous Control Logic.
+ *  This function updates the filter minder in AgvChassis - Miscellaneous Control Logic.
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -54,7 +54,7 @@ sint16 update_filterMinder(void)
     float32 f32_adv_filter_out = 0.0F;
     float32 f32_filter_pct = 0.0F;
 
-    float32 f32_filter_gauge = 0u;
+    uint8 u8_filter_gauge = 0u;
     uint32 u32_now_ms = 0u;
 
     s16_error += get_inputFaultStatus("AIR_FILTER_RESTRICTION", &u8_minder_flt);
@@ -82,12 +82,12 @@ sint16 update_filterMinder(void)
 
             if(f32_adv_filter_out > mt_misc.pt_nvm_misc_control->u16_filter_rstn_max)
             {
-                if(mt_misc.u8_filter_max_reset_timer_active == FALSE)
+                if(mt_misc.u8_minder_timer_active == FALSE)
                 {
-                    mt_misc.u8_filter_max_reset_timer_active = TRUE;
-                    mt_misc.u32_filter_max_reset_timer_start_ms = u32_now_ms;
+                    mt_misc.u8_minder_timer_active = TRUE;
+                    mt_misc.u32_minder_timer_start_ms = u32_now_ms;
                 }
-                else if((u32_now_ms - mt_misc.u32_filter_max_reset_timer_start_ms) >= 1000u)
+                else if((u32_now_ms - mt_misc.u32_minder_timer_start_ms) >= 1000u)
                 {
                     // Write DEFAULT  = 0
                     mt_misc.pt_nvm_misc_control->u16_filter_rstn_max = 0u;
@@ -95,8 +95,8 @@ sint16 update_filterMinder(void)
             }
             else
             {
-                mt_misc.u8_filter_max_reset_timer_active = FALSE;
-                mt_misc.u32_filter_max_reset_timer_start_ms = 0u;
+                mt_misc.u8_minder_timer_active = FALSE;
+                mt_misc.u32_minder_timer_start_ms = 0u;
             }
 
             // Service on at 100%
@@ -105,11 +105,11 @@ sint16 update_filterMinder(void)
             // Gauge output
             if(u8_service_filter_on != FALSE)
             {
-                f32_filter_gauge = 255u;
+                u8_filter_gauge = 255u;
             }
             else
             {
-                f32_filter_gauge = (uint8)((f32_adv_filter_out * 255.0F) / PERCENT_SCALE);
+                u8_filter_gauge = (uint8)((f32_adv_filter_out * 255.0F) / PERCENT_SCALE);
             }
         }
     }
@@ -120,12 +120,12 @@ sint16 update_filterMinder(void)
 
     // Outputs
     *(mt_misc.pf32_filter_restriction_pct) = f32_adv_filter_out;
-    *(mt_misc.pf32_filter_minder_gauge_pct) =f32_filter_gauge;
+    *(mt_misc.pu8_filter_minder_gauge) = u8_filter_gauge;
     *(mt_misc.pu8_service_filter_status) = u8_service_filter_on;
 
     //Checkpoints
     mt_misc.pt_cp_misc->f32_chk_filter_rest_pct = f32_adv_filter_out;
-    mt_misc.pt_cp_misc->f32_chk_minder_gauge_pct= f32_filter_gauge;
+    mt_misc.pt_cp_misc->f32_chk_minder_gauge_pct= u8_filter_gauge;
     mt_misc.pt_cp_misc->u8_chk_service_filter_status = u8_service_filter_on;
 
     return s16_error;
@@ -133,7 +133,7 @@ sint16 update_filterMinder(void)
 
 /** \brief Update Fuel Level AgvChassis - Miscellaneous Control
  *
- *  This function updates the fuel level the AgvChassis - Miscellaneous Control Logic.
+ *  This function updates the fuel level in AgvChassis - Miscellaneous Control Logic.
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -214,12 +214,12 @@ sint16 update_fuelLevel(void)
     }
 
     // FR-23.7 Transmit outputs to display via CAN
-    *(mt_misc.pf32_fuel_level_sensor) = (f32_sensor * 255.0F) / PERCENT_SCALE;;
+    *(mt_misc.pu8_fuel_level_sensor) = (uint8)((f32_sensor * 255.0F) / PERCENT_SCALE);
     *(mt_misc.pf32_fuel_level_gauge_pct)  = f32_gauge;
     *(mt_misc.pu8_low_fuel_status)        = u8_low;
 
     //Checkpoints
-    mt_misc.pt_cp_misc->f32_chk_fuel_level_sensor = (f32_sensor * 255.0F) / PERCENT_SCALE;
+    mt_misc.pt_cp_misc->f32_chk_fuel_level_sensor =  (*(mt_misc.pu8_fuel_level_sensor));
     mt_misc.pt_cp_misc->f32_chk_fuel_level_gauge_pct= f32_gauge;
 
     return s16_error;
@@ -230,7 +230,8 @@ sint16 update_fuelLevel(void)
  *  This function initializes the AgvChassis - Miscellaneous Control Logic.
  *
  *  \param _ui Pointer to the project's UI Structure
- *  \param _chkCooling Fan Pointer to the global Miscellaneous Control Checkpoints Structure
+ *  \param _chk_misc Fan Pointer to the global Miscellaneous Control Checkpoints Structure
+ *  \param _nvm_misc_control Fan Pointer to the global Miscellaneous Control NVM Structure
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -244,22 +245,22 @@ sint16 init_miscControl(T_UserInterface *_ui, T_ChkPoints_Mis *_chk_misc,T_Confi
         return C_WARN;
     }
 
-        mt_misc.pf32_filter_minder_gauge_pct     = &_ui->t_display.f32_filter_minder_gauge_pct;
-        mt_misc.pf32_filter_restriction_pct      = &_ui->t_display.f32_filter_restriction_pct;
-        mt_misc.pu8_service_filter_status        = &_ui->t_display.u8_service_filter_status;
+    mt_misc.pu8_filter_minder_gauge          = &_ui->t_display.u8_filter_minder_gauge;
+    mt_misc.pf32_filter_restriction_pct      = &_ui->t_display.f32_filter_restriction_pct;
+    mt_misc.pu8_service_filter_status        = &_ui->t_display.u8_service_filter_status;
 
-        mt_misc.pf32_fuel_level_sensor       = &_ui->t_display.f32_fuel_level_sensor;
-        mt_misc.pf32_fuel_level_gauge_pct        = &_ui->t_display.f32_fuel_level_gauge_pct;
-        mt_misc.pu8_low_fuel_status              = &_ui->t_display.u8_low_fuel_status;
+    mt_misc.pu8_fuel_level_sensor            = &_ui->t_display.u8_fuel_level_sensor;
+    mt_misc.pf32_fuel_level_gauge_pct        = &_ui->t_display.f32_fuel_level_gauge_pct;
+    mt_misc.pu8_low_fuel_status              = &_ui->t_display.u8_low_fuel_status;
 
-        mt_misc.pu8_door_open_status             = &_ui->t_display.u8_door_open_status;
-        mt_misc.pu8_low_hydraulic_fluid_indicator= &_ui->t_display.u8_low_hydraulic_fluid_indicator;
-        mt_misc.pu8_brakes_engaged       = &_ui->t_display.u8_brakes_engaged_status;
+    mt_misc.pu8_door_open_status             = &_ui->t_display.u8_door_open_status;
+    mt_misc.pu8_low_hydraulic_fluid_indicator = &_ui->t_display.u8_low_hydraulic_fluid_indicator;
+    mt_misc.pu8_brakes_engaged                = &_ui->t_display.u8_brakes_engaged_status;
 
-        mt_misc.pu8_sw_major_revision            = &_ui->t_display.u8_software_major_revision;
-        mt_misc.pu8_sw_minor_revision            = &_ui->t_display.u8_software_minor_revision;
+    mt_misc.pu8_sw_major_revision            = &_ui->t_display.u8_software_major_revision;
+    mt_misc.pu8_sw_minor_revision            = &_ui->t_display.u8_software_minor_revision;
 
-        mt_misc.pu8_clear_machine_faults_cmd     = &_ui->t_display.u8_clear_machine_faults_cmd;
+    mt_misc.pu8_clear_machine_faults_cmd     = &_ui->t_display.u8_clear_machine_faults_cmd;
 
 
     s16_error += movingFltInit(&mt_misc.t_fuel_level_flt,
@@ -276,8 +277,9 @@ sint16 init_miscControl(T_UserInterface *_ui, T_ChkPoints_Mis *_chk_misc,T_Confi
     FILTER_MINDER_FILTER_SAMPLE_NO,
     FILTER_MINDER_FILTER_SAMPLE_MS);
 
-    mt_misc.u8_filter_max_reset_timer_active = FALSE;
+    mt_misc.u8_minder_timer_active = FALSE;
     mt_misc.u8_low_fuel_timer_active = FALSE;
+
     //Populate local copy of nvm variables
     mt_misc.pt_nvm_misc_control= _nvm_misc_control;
 

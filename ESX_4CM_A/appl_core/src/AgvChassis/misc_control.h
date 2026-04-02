@@ -63,16 +63,16 @@
  */
 typedef struct
 {
-        float32 f32_chk_fuel_level_sensor;//!< Checkpoint
-        float32 f32_chk_fuel_level_gauge_pct; //!<Checkpoint
-        float32 f32_chk_filter_rest_pct;//!<Checkpoint
-        float32 f32_chk_minder_gauge_pct;//!<Checkpoint
-        uint8 u8_chk_service_filter_status;//!<Checkpoint
-        uint8 u8_chk_door_open_status;//!<Checkpoint
-        uint8 u8_chk_low_hyd_fluid_indicator;//!<Checkpoint
-        uint8 u8_chk_brakes_engaged;//!<Checkpoint
-        uint8 u8_chk_sw_major_revision;//!<Checkpoint
-        uint8 u8_chk_sw_minor_revision;//!<Checkpoint
+        float32 f32_chk_fuel_level_sensor;//!< Checkpoint Fuel Level Sensor
+        float32 f32_chk_fuel_level_gauge_pct; //!<Checkpoint Fuel Level Gauge
+        float32 f32_chk_filter_rest_pct;//!<Checkpoint Filter Rest Percent
+        float32 f32_chk_minder_gauge_pct;//!<Checkpoint Minder Gauge
+        uint8 u8_chk_service_filter_status;//!<Checkpoint Service Filter Status
+        uint8 u8_chk_door_open_status;//!<Checkpoint Door Open Status
+        uint8 u8_chk_low_hyd_fluid_indicator;//!<Checkpoint Hydraulic Fluid Low Indicator
+        uint8 u8_chk_brakes_engaged;//!<Checkpoint Brakes Engaged
+        uint8 u8_chk_sw_major_revision;//!<Checkpoint SW Major Revision
+        uint8 u8_chk_sw_minor_revision;//!<Checkpoint SW Minor Revision
 }T_ChkPoints_Mis;
 
 /** \brief Configuration Structure - Miscellaneous Control
@@ -99,37 +99,37 @@ typedef struct
 typedef struct
 {
         //TX CAN Variables
-        float32 *pf32_filter_minder_gauge_pct;
-        float32 *pf32_filter_restriction_pct;
-        uint8   *pu8_service_filter_status;
+        uint8 *pu8_filter_minder_gauge;  //!<Filter Minder Gauge 255
+        float32 *pf32_filter_restriction_pct;//!<Filter Restriction Percentage
+        uint8   *pu8_service_filter_status;//!<Service Filter Status
 
-        float32 *pf32_fuel_level_sensor;
-        float32 *pf32_fuel_level_gauge_pct;
-        uint8   *pu8_low_fuel_status;
+        uint8 *pu8_fuel_level_sensor;//!<Fuel Level Sensor 255
+        float32 *pf32_fuel_level_gauge_pct;//!<TX Fuel Level Gauge Percent
+        uint8   *pu8_low_fuel_status;//!<TX Low Fuel Status
 
-        uint8   *pu8_door_open_status;
-        uint8   *pu8_low_hydraulic_fluid_indicator;
-        uint8   *pu8_brakes_engaged;
+        uint8   *pu8_door_open_status;//!<TX Door Open Status
+        uint8   *pu8_low_hydraulic_fluid_indicator;//!<TX Low Hydrualic Fluid Indicator
+        uint8   *pu8_brakes_engaged;//!<TX Brakes Engaged
 
-        uint8   *pu8_sw_major_revision;
-        uint8   *pu8_sw_minor_revision;
+        uint8   *pu8_sw_major_revision;//!<TX Software Major Revision
+        uint8   *pu8_sw_minor_revision;//!<TX Software Minor Revision
 
         //RX CAN Variables
-        uint8   *pu8_clear_machine_faults_cmd;
+        uint8   *pu8_clear_machine_faults_cmd;//!<RX Clear Machine Faults
 
         //Local Control Variables
-        float32 f32_last_fuel_gauge;
+        float32 f32_last_fuel_gauge;//!<Last Fuel Gauge
 
         //Local Filter Variables
-        T_MoveAvgFilter t_fuel_level_flt;
+        T_MoveAvgFilter t_fuel_level_flt;//!<Moving Average Filter Fuel Level
         float32 f32_fuel_level_buf[FUEL_BUF_LEN];//!<Moving Average Buffer
-        uint32 u32_low_fuel_timer_start_ms;
-        uint8 u8_low_fuel_timer_active;
+        uint32 u32_low_fuel_timer_start_ms;//!< Low Fuel timer
+        uint8 u8_low_fuel_timer_active;//!< Low fuel timer active
 
-        T_MoveAvgFilter t_minder_flt;
+        T_MoveAvgFilter t_minder_flt; //!<Moving Average Filter Filter Minder
         float32 f32_minder_buf[FILTER_MINDER_BUF_LEN];//!<Moving Average Buffer
-        uint8 u8_filter_max_reset_timer_active;
-        uint32 u32_filter_max_reset_timer_start_ms;
+        uint8 u8_minder_timer_active;//!<Filter Minder Timer Active
+        uint32 u32_minder_timer_start_ms;//!<Filter Minder timer
 
         //NVM Configuration Parameters
         T_Config_MiscrControl *pt_nvm_misc_control;      //!<Header Control Configuration Structure
