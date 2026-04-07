@@ -50,10 +50,23 @@ typedef struct
    uint8 u8_shaft_drive_status;         //!<Cleaning Chains Shaft Drive Status
 
    uint8 u8_stick_remover_status; //!<Stick Remover Status
-
    uint8 u8_speed_limit_set;
    uint8 u8_neutral_state;
    uint8 u8_wheel_speed_10;
+
+   uint8 u8_filter_minder_gauge;//!<
+   float32 f32_filter_restriction_pct;//!<
+   uint8 u8_service_filter_status;//!<
+   uint8 u8_fuel_level_sensor;//!<
+   float32 f32_fuel_level_gauge_pct;//!<
+   uint8 u8_low_fuel_status;//!<
+   uint8 u8_door_open_status;//!<
+   uint8 u8_low_hydraulic_fluid_indicator;//!<
+   uint8 u8_brakes_engaged_status;//!<
+   uint8 u8_software_major_revision;//!<
+   uint8 u8_software_minor_revision;//!<
+   uint8 u8_clear_machine_faults_cmd;//!<
+
 
    uint8 u8_suction_fan_enable_status;//!<Suction Fan Enable Status
    uint16 u16_suction_fan_speed_status_rpm; //!<Suction Fan Speed Status

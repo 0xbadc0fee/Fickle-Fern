@@ -144,6 +144,7 @@ typedef struct
 
         //Control Checkpoints
         T_ChkPoints_CoolingFan *pt_cp_cooling; //!<Cooling Fan Control Checkpoints Structure
+
         //Ramp variables
         T_RampState          t_speed_ramp;//!<Fan Speed Ramp Config
         T_RampState          t_dir_ramp;//!<Fan Reversal Direction Config

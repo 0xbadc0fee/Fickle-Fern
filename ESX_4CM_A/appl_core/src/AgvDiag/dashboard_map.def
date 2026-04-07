@@ -7,12 +7,12 @@
 */
 
 /* Elevator Control checkpoints */
-CNTRL2DP(elevatorCP1, 	 gt_elevatorCheckpoints.u8_status,  				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_status)
-CNTRL2DP(elevatorCP2, 	 gt_elevatorCheckpoints.f32_speed_cmd, 				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_speed_cmd)
-CNTRL2DP(elevatorCP3, 	 gt_elevatorCheckpoints.f32_output, 				gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_output)
+CNTRL2DP(elevatorCP1, 	 gt_elevatorCheckpoints.u8_status,  					gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.u8_status)
+CNTRL2DP(elevatorCP2, 	 gt_elevatorCheckpoints.f32_speed_cmd, 					gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_speed_cmd)
+CNTRL2DP(elevatorCP3, 	 gt_elevatorCheckpoints.f32_output, 					gt_Checkpoints_DataPoolValues.t_ElevatorControlValues.f32_output)
 
 /* Cleaning Chains Control checkpoints */
-CNTRL2DP(cchainsCP2,  	 gt_cleaningShaftCheckpoints.u8_status, 		    gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_status)
+CNTRL2DP(cchainsCP2,  	 gt_cleaningShaftCheckpoints.u8_status, 		    	gt_Checkpoints_DataPoolValues.t_CleaningChainsControlsValues.u8_status)
 
 /* Front Sweeps Control checkpoints */
 CNTRL2DP(fsweepsCP2,  	 gt_frontSweepsCheckpoints.u8_speed_cmd, 	 			gt_Checkpoints_DataPoolValues.t_FrontSweepsControlValues.u8_speed_cmd)
@@ -44,3 +44,15 @@ CNTRL2DP(throttleDownCP, gt_throttleCheckpoints.u8_chk3_eng_spd_down_osc, 		gt_C
 /* Cooling Fan Control Parameters */
 CNTRL2DP(coolLeadNum, 	gt_coolingFanCheckpoints.u8_leadsensornumber, 	 		gt_Checkpoints_DataPoolValues.t_CoolingFanControlValues.u8_lead_sensor_id)
 CNTRL2DP(rtrapCP2, 		gt_coolingFanCheckpoints.f32_cooling_demand_pct, 	 	gt_Checkpoints_DataPoolValues.t_CoolingFanControlValues.f32_cooling_demand_pct)
+
+/* MISC Control Parameters */
+CNTRL2DP(fuelLevSen, 	gt_miscCheckpoints.f32_chk_fuel_level_sensor, 	 		gt_Checkpoints_DataPoolValues.t_MiscControlsValues.f32_chk_fuel_level_sensor)
+CNTRL2DP(fuelLevGagP, 	gt_miscCheckpoints.f32_chk_fuel_level_gauge_pct, 		gt_Checkpoints_DataPoolValues.t_MiscControlsValues.f32_chk_fuel_level_gauge_pct)
+CNTRL2DP(filterRestP, 	gt_miscCheckpoints.f32_chk_filter_rest_pct, 	   		gt_Checkpoints_DataPoolValues.t_MiscControlsValues.f32_chk_filter_rest_pct)
+CNTRL2DP(minderGagP, 	gt_miscCheckpoints.f32_chk_minder_gauge_pct, 	   		gt_Checkpoints_DataPoolValues.t_MiscControlsValues.f32_chk_minder_gauge_pct)
+CNTRL2DP(filterStatus,  gt_miscCheckpoints.u8_chk_service_filter_status,   		gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_service_filter_status)
+CNTRL2DP(doorOpenStat,  gt_miscCheckpoints.u8_chk_door_open_status, 	   		gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_door_open_status)
+CNTRL2DP(HydoilLow,     gt_miscCheckpoints.u8_chk_low_hyd_fluid_indicator, 	 	gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_low_hyd_fluid_indicator)
+CNTRL2DP(brakesEngaged, gt_miscCheckpoints.u8_chk_brakes_engaged, 	 			gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_brakes_engaged)
+CNTRL2DP(swMajor, 	    gt_miscCheckpoints.u8_chk_sw_major_revision, 	 		gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_sw_major_revision)
+CNTRL2DP(swMinor, 		gt_miscCheckpoints.u8_chk_sw_minor_revision, 	 		gt_Checkpoints_DataPoolValues.t_MiscControlsValues.u8_chk_sw_minor_revision)

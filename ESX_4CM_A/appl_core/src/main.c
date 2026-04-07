@@ -40,6 +40,7 @@
 #include "suction_fan_control.h"
 #include "throttle_control.h"
 #include "cooling_fan_control.h"
+#include "misc_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -118,6 +119,7 @@ int main(void)
         s16_Error += init_engineStarterControl(&gt_can_devs, &gt_engineStarterCheckpoints);
         s16_Error += init_throttleControl     (&gt_can_devs, &gt_throttleCheckpoints);
         s16_Error +=init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
+        s16_Error +=init_miscControl		  (&gt_can_devs, &gt_miscCheckpoints, &gt_miscConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -147,6 +149,7 @@ int main(void)
         update_engineStarterControl();
         update_throttleControl();
         update_CoolingFanControl();
+        update_miscControl();
 
         //Run AgvWork Controls
         update_elevatorControl();

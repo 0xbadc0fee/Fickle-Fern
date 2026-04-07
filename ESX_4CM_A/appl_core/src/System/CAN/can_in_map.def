@@ -51,13 +51,16 @@ DP2CNTRL(joystickPos3, 		 gt_can_devs.t_joystick.u8_rev_status, 	   		gt_J1939_D
 DP2CNTRL(paEnable, 	 	 	 gt_can_devs.t_buttonPanel.u8_b5_state, 	    gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_E1_BTN_STATUS_BTN05_PA)
 
 /*Suction Fan */
-DP2CNTRL(suctionFanOnOff, 	 gt_can_devs.t_joystick.u8_b4_state, 			 	   gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_BTN4_SF)
-DP2CNTRL(suctionFanSpeedReq, gt_can_devs.t_display.u16_suction_fan_speed_req_spd,  gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_DISP_CMD1_SF_SpeedCmd)
+DP2CNTRL(suctionFanOnOff, 	 gt_can_devs.t_joystick.u8_b4_state, 			gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_BTN4_SF)
+DP2CNTRL(suctionFanSpeedReq, gt_can_devs.t_display.u16_sf_speed_req,  		gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_DISP_CMD1_SF_SpeedCmd)
  
 /*Engine */
-DP2CNTRL(engineSpeed,    	 gt_can_devs.t_engine.u16_engine_speed,  			   gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_EEC1_EngSpeed)
-DP2CNTRL(intakeTemp,    	 gt_can_devs.t_engine.u8_intake_temp,  			       gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngIntakeManifold1Temp)
-DP2CNTRL(coolantTemp,    	 gt_can_devs.t_engine.u8_coolant_temp,  			   gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_ET1_EngCoolantTemp)
+DP2CNTRL(engineSpeed,    	 gt_can_devs.t_engine.u16_engine_speed,  		gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_EEC1_EngSpeed)
+DP2CNTRL(intakeTemp,    	 gt_can_devs.t_engine.u8_intake_temp,  			gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngIntakeManifold1Temp)
+DP2CNTRL(coolantTemp,    	 gt_can_devs.t_engine.u8_coolant_temp,  		gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_ET1_EngCoolantTemp)
 
 /* Cooling Fan Control CAN Parameters */
-DP2CNTRL(coolManPurge, 		 gt_can_devs.t_display.u8_manual_purge_req, 	gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_CF_ManualCmd)
+DP2CNTRL(coolManPurge, 		gt_can_devs.t_display.u8_manual_purge_req, 		gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_CF_ManualCmd)
+
+/* MISC Control CAN Parameters */
+DP2CNTRL(clearMacFaults, 	gt_can_devs.t_display.u8_clear_faults_cmd,     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiClearMachineFaults)
