@@ -64,8 +64,8 @@ typedef struct
  */
 typedef struct
 {
-    float32 f32_fan_dec_time;//!<Configuration parameter for Suction Fan Decrease Time Ramp
-    float32 f32_fan_inc_time;//!<Configuration parameter for Suction Fan Increase Time Ramp
+    uint8   u8_fan_dec_time;//!<Configuration parameter for Suction Fan Decrease Time Ramp
+    uint8   u8_fan_inc_time;//!<Configuration parameter for Suction Fan Increase Time Ramp
     float32 f32_drive_ratio;//!<Configuration parameter for Suction Fan Drive Ratio
 } T_Config_SFan;
 

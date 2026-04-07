@@ -6,12 +6,12 @@
         <name>Configuration</name>
         <version major="0" minor="0" release="0"/>
         <comment>NVM Datapool to hold Configuration Data</comment>
-        <lists length="5">
+        <lists length="6">
             <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="5">
                 <name>ElevatorConfig</name>
                 <comment/>
                 <data-elements length="1">
-                    <data-element factor="1" offset="0" nvm-start-address="0">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="0">
                         <name>max_current</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -36,7 +36,7 @@
                 <name>HeaderConfig</name>
                 <comment/>
                 <data-elements length="1">
-                    <data-element factor="1" offset="0" nvm-start-address="5">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="5">
                         <name>joystick_hll_enable</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -53,7 +53,7 @@
                 <name>StickBoxConfig</name>
                 <comment/>
                 <data-elements length="1">
-                    <data-element factor="1" offset="0" nvm-start-address="10">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="10">
                         <name>stick_box_installed</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -66,11 +66,11 @@
                 </data-elements>
                 <data-sets/>
             </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="15" nvm-size="100">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="15" nvm-size="5">
                 <name>PowerAssistConfig</name>
                 <comment/>
                 <data-elements length="1">
-                    <data-element factor="1" offset="0" nvm-start-address="15">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="15">
                         <name>power_assist_installed</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -83,11 +83,11 @@
                 </data-elements>
                 <data-sets/>
             </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="115" nvm-size="20">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="20" nvm-size="20">
                 <name>SuctionFanConfig</name>
                 <comment/>
                 <data-elements length="3">
-                    <data-element factor="1" offset="0" nvm-start-address="115">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="20">
                         <name>sf_drive_ratio</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -97,7 +97,7 @@
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" nvm-start-address="119">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="24">
                         <name>sf_inc_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -107,8 +107,35 @@
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" nvm-start-address="120">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="25">
                         <name>sf_dec_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="40" nvm-size="10">
+                <name>MiscConfig</name>
+                <comment/>
+                <data-elements length="2">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="40">
+                        <name>fuel_high_deadband</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="42">
+                        <name>filter_rstn_max</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>

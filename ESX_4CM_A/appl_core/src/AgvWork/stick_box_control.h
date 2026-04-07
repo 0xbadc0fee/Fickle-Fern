@@ -35,7 +35,6 @@
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
-
 /** \brief Configuration Structure - Stick Box Control
  *
  * This structure represents all NVM configuration variables

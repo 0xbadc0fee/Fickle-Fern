@@ -25,7 +25,7 @@
 #include "nvm_handler.h"
 #include "fault_handler.h"
 #include "can_handler.h"
-#include "checkpoint_handler.h"
+#include "dashboard_handler.h"
 #include "hitch_position_control.h"
 #include "header_lift_control.h"
 #include "auger_cart_control.h"
@@ -95,8 +95,9 @@ int main(void)
     s16_Error += init_hwInputs();       // Initialize HW Inputs
     s16_Error += init_hwOutputs();      // Initialize HW Outputs
     s16_Error += init_nvmParameters();  // Initialize NVM Objects
+    s16_Error += init_dashHandler();    // Initialize Dashboard Objects
 
-    s16_Error += init_faultHandler();  // Initialize Fault / Alarm (DM1) Handler
+    s16_Error += init_faultHandler();   // Initialize Fault / Alarm (DM1) Handler
 
 
 
@@ -118,8 +119,8 @@ int main(void)
         s16_Error += init_suctionFanControl   (&gt_can_devs, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
         s16_Error += init_engineStarterControl(&gt_can_devs, &gt_engineStarterCheckpoints);
         s16_Error += init_throttleControl     (&gt_can_devs, &gt_throttleCheckpoints);
-        s16_Error +=init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
-        s16_Error +=init_miscControl		  (&gt_can_devs, &gt_miscCheckpoints, &gt_miscConfig);
+        //s16_Error +=init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
+        //s16_Error +=init_miscControl		  (&gt_can_devs, &gt_miscCheckpoints, &gt_miscConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -148,8 +149,8 @@ int main(void)
         update_propulsionControl();
         update_engineStarterControl();
         update_throttleControl();
-        update_CoolingFanControl();
-        update_miscControl();
+        //update_CoolingFanControl();
+        //update_miscControl();
 
         //Run AgvWork Controls
         update_elevatorControl();
@@ -166,7 +167,7 @@ int main(void)
 
         //Outputs
         update_faultHandler();
-        update_checkpointHandler();
+        update_dashHandler();
         update_canOutputs();
         update_hwOutputs();
 

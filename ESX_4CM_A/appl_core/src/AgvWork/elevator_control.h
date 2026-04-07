@@ -42,6 +42,8 @@ typedef struct
 typedef struct
 {
         float32 f32_max_current;
+        uint8 u8_vl3512_enable;
+        uint8 u8_vl3514_enable;
 }T_Config_Elevator;
 
 typedef struct

@@ -104,7 +104,7 @@
                     <zorder value="2"/>
                     <interaction-points>
                         <interaction-point x="95" y="170.5"/>
-                        <interaction-point x="171" y="322"/>
+                        <interaction-point x="196" y="320"/>
                     </interaction-points>
                 </line>
             </connection>
@@ -124,7 +124,7 @@
                             </box>
                             <data-pool-elements>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="5" element="2"/>
+                                    <index node="0" data-pool="0" list="6" element="2"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -152,7 +152,7 @@
                             </box>
                             <data-pool-elements>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="3" element="0"/>
+                                    <index node="0" data-pool="0" list="4" element="0"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -180,13 +180,13 @@
                             </box>
                             <data-pool-elements>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="7" element="1"/>
+                                    <index node="0" data-pool="0" list="8" element="1"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
                                     <hal-channel-name/>
                                     <scaling use-default="true" factor="1" offset="0">
-                                        <unit/>
+                                        <unit>%</unit>
                                     </scaling>
                                     <display-formatter is-active="false">
                                         <string/>
@@ -387,7 +387,7 @@
                             </box>
                             <data-pool-elements>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="0"/>
+                                    <index node="0" data-pool="0" list="7" element="0"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -401,7 +401,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="1"/>
+                                    <index node="0" data-pool="0" list="7" element="1"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -415,7 +415,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="2"/>
+                                    <index node="0" data-pool="0" list="7" element="2"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -429,7 +429,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="3"/>
+                                    <index node="0" data-pool="0" list="7" element="3"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -443,7 +443,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="4"/>
+                                    <index node="0" data-pool="0" list="7" element="4"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -457,7 +457,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="5"/>
+                                    <index node="0" data-pool="0" list="7" element="5"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -471,7 +471,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="6"/>
+                                    <index node="0" data-pool="0" list="7" element="6"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -485,7 +485,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="7"/>
+                                    <index node="0" data-pool="0" list="7" element="7"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -499,7 +499,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="4" element="0"/>
+                                    <index node="0" data-pool="0" list="5" element="0"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -513,7 +513,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="4" element="1"/>
+                                    <index node="0" data-pool="0" list="5" element="1"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -527,7 +527,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="4" element="2"/>
+                                    <index node="0" data-pool="0" list="5" element="2"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -541,7 +541,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="4" element="3"/>
+                                    <index node="0" data-pool="0" list="5" element="3"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -574,13 +574,6 @@
         </dashboards>
         <rail-assignments>
             <rail-assignment rail-index="1">
-                <id node="0" data-pool="0" list="3" element="0"/>
-                <threshold array="false" value="25">
-                    <type>uint8</type>
-                </threshold>
-                <transmission-mode>cyclic</transmission-mode>
-            </rail-assignment>
-            <rail-assignment rail-index="0">
                 <id node="0" data-pool="0" list="4" element="0"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
@@ -588,44 +581,30 @@
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="4" element="1"/>
+                <id node="0" data-pool="0" list="5" element="0"/>
+                <threshold array="false" value="25">
+                    <type>uint8</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="0">
+                <id node="0" data-pool="0" list="5" element="1"/>
                 <threshold array="false" value="6553">
                     <type>sint16</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="4" element="2"/>
+                <id node="0" data-pool="0" list="5" element="2"/>
                 <threshold array="false" value="6.8056469e+37">
                     <type>float32</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="4" element="3"/>
+                <id node="0" data-pool="0" list="5" element="3"/>
                 <threshold array="false" value="429496729">
                     <type>uint32</type>
-                </threshold>
-                <transmission-mode>cyclic</transmission-mode>
-            </rail-assignment>
-            <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="5" element="2"/>
-                <threshold array="false" value="25">
-                    <type>uint8</type>
-                </threshold>
-                <transmission-mode>cyclic</transmission-mode>
-            </rail-assignment>
-            <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="6" element="0"/>
-                <threshold array="false" value="25">
-                    <type>uint8</type>
-                </threshold>
-                <transmission-mode>cyclic</transmission-mode>
-            </rail-assignment>
-            <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="6" element="1"/>
-                <threshold array="false" value="25">
-                    <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
@@ -637,42 +616,63 @@
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="6" element="3"/>
+                <id node="0" data-pool="0" list="7" element="0"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="6" element="4"/>
+                <id node="0" data-pool="0" list="7" element="1"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="6" element="5"/>
+                <id node="0" data-pool="0" list="7" element="2"/>
+                <threshold array="false" value="25">
+                    <type>uint8</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="0">
+                <id node="0" data-pool="0" list="7" element="3"/>
+                <threshold array="false" value="25">
+                    <type>uint8</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="0">
+                <id node="0" data-pool="0" list="7" element="4"/>
+                <threshold array="false" value="25">
+                    <type>uint8</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="0">
+                <id node="0" data-pool="0" list="7" element="5"/>
                 <threshold array="false" value="6553">
                     <type>uint16</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="6" element="6"/>
+                <id node="0" data-pool="0" list="7" element="6"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="6" element="7"/>
+                <id node="0" data-pool="0" list="7" element="7"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="1">
-                <id node="0" data-pool="0" list="7" element="1"/>
+                <id node="0" data-pool="0" list="8" element="1"/>
                 <threshold array="false" value="6553">
                     <type>uint16</type>
                 </threshold>

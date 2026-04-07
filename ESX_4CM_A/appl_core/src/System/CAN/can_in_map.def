@@ -63,4 +63,4 @@ DP2CNTRL(coolantTemp,    	 gt_can_devs.t_engine.u8_coolant_temp,  		gt_J1939_Dat
 DP2CNTRL(coolManPurge, 		gt_can_devs.t_display.u8_manual_purge_req, 		gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_CF_ManualCmd)
 
 /* MISC Control CAN Parameters */
-DP2CNTRL(clearMacFaults, 	gt_can_devs.t_display.u8_clear_faults_cmd,     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiClearMachineFaults)
+DP2CNTRL(clearMacFaults, 	gt_can_devs.t_display.u8_clear_faults_cmd,     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_MISC_ClearFaults)

@@ -128,21 +128,21 @@ sint16 update_throttleControl(void)
     if(u8_down_cmd)
     {
         mt_throttle.u8_throttle_cmd = THROTTLE_DECREASE;
-        mt_throttle.pt_cp_throttle->u8_chk3_eng_spd_down_osc = TRUE;
-        mt_throttle.pt_cp_throttle->u8_chk2_eng_spd_up_osc = FALSE;
+        mt_throttle.pt_cp_throttle->u8_eng_spd_down_osc = TRUE;
+        mt_throttle.pt_cp_throttle->u8_eng_spd_up_osc = FALSE;
     }
     else if(u8_up_cmd)
     {
         mt_throttle.u8_throttle_cmd = THROTTLE_INCREASE;
-        mt_throttle.pt_cp_throttle->u8_chk3_eng_spd_down_osc = FALSE;
-        mt_throttle.pt_cp_throttle->u8_chk2_eng_spd_up_osc = TRUE;
+        mt_throttle.pt_cp_throttle->u8_eng_spd_down_osc = FALSE;
+        mt_throttle.pt_cp_throttle->u8_eng_spd_up_osc = TRUE;
     }
 
     else
     {
         mt_throttle.u8_throttle_cmd = THROTTLE_MAINTAIN;
-        mt_throttle.pt_cp_throttle->u8_chk3_eng_spd_down_osc = FALSE;
-        mt_throttle.pt_cp_throttle->u8_chk2_eng_spd_up_osc = FALSE;
+        mt_throttle.pt_cp_throttle->u8_eng_spd_down_osc = FALSE;
+        mt_throttle.pt_cp_throttle->u8_eng_spd_up_osc = FALSE;
     }
 
     //register change time
@@ -251,7 +251,7 @@ sint16 update_throttleControl(void)
 
     // Output
     *(mt_throttle.pu16_engine_req_speed) = (uint16)(mt_throttle.f32_target_req_rpm / 0.125f);
-    mt_throttle.pt_cp_throttle->u16_chk1_eng_spd = (uint16)(f32_final_req_rpm/0.125f);
+    mt_throttle.pt_cp_throttle->u16_eng_spd = (uint16)(f32_final_req_rpm/0.125f);
 
     mt_throttle.u8_prev_engine_status = mt_throttle.u8_engine_status;
     mt_throttle.u8_prev_throttle_cmd = mt_throttle.u8_throttle_cmd;

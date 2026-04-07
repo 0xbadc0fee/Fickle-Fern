@@ -5,122 +5,122 @@
         <lists length="8">
             <list>
                 <data-elements length="43">
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
                 </data-elements>
             </list>
             <list>
                 <data-elements length="32">
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
                 </data-elements>
             </list>
             <list>
                 <data-elements length="10">
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="true"/>
                 </data-elements>
             </list>
             <list>
                 <data-elements length="19">
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
-                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="true"/>
                 </data-elements>
             </list>
             <list>

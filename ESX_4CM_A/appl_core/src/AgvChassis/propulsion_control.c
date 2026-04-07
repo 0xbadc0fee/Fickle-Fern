@@ -360,6 +360,9 @@ sint16 ramp_targetSpeedCommand(E_RampTypes _rampType)
 
 sint16 calc_wheelSpeed(void)
 {
+
+    //TODO_STW: Dashboard Config Wheel Diameter
+
     sint16 s16_error = C_NO_ERR;
     float32 f32_rpm = 0.0;
 

@@ -66,16 +66,16 @@ CNTRL2DP(coolSen1OvrTemp, 		 gt_can_devs.t_display.u8_engine_coolant_overtemp,  
 CNTRL2DP(hydOilTempDegC, 		 gt_can_devs.t_display.u16_hyd_oil_temp_degC,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_DISP_FDBK1_HYDOIL_Temp)
 
 /* MISC Control CAN Parameters */
-CNTRL2DP(airFilterRest,  		gt_can_devs.t_display.u8_filter_minder_gauge,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisAirFilterRestrict255)
-CNTRL2DP(airFilterRestP,  		gt_can_devs.t_display.f32_filter_restriction_pct,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans2_AgvChassisAirFilterRestrictPrcn)
-CNTRL2DP(airFilterServ,  		gt_can_devs.t_display.u8_service_filter_status,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisAirFilterServiceRqd)
-CNTRL2DP(fuelGage,  			gt_can_devs.t_display.u8_fuel_level_sensor,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisFuelGage255)
-CNTRL2DP(fuelGageP,  			gt_can_devs.t_display.f32_fuel_level_gauge_pct,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans2_AgvChassisFuelGagePrcnt) 
-CNTRL2DP(fuelLevelLow,  		gt_can_devs.t_display.u8_low_fuel_status,  				gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisFuelLevelLow)
-CNTRL2DP(doorOpenState,  		gt_can_devs.t_display.u8_door_open_status,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisDoorOpenState)
-CNTRL2DP(hydOilLow,  			gt_can_devs.t_display.u8_low_hydraulic_fluid_indicator, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisHydOilLevelLow)
-CNTRL2DP(brakesEngaged,  		gt_can_devs.t_display.u8_brakes_engaged_status,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans1_AgvChassisBrakesEngaged)
-CNTRL2DP(majorRev,  			gt_can_devs.t_display.u8_software_major_revision,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans2_AgvMajorRev)
-CNTRL2DP(minorRev,  			gt_can_devs.t_display.u8_software_minor_revision,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_CAN_Display_Trans2_AgvMinorRev)
+CNTRL2DP(airFilterRest,  		gt_can_devs.t_display.u8_filter_minder_gauge,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_AIRFILT_Restriction)
+CNTRL2DP(airFilterRestP,  		gt_can_devs.t_display.f32_filter_restriction_pct,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK2_AirFilterRestrictPrcnt)
+CNTRL2DP(airFilterServ,  		gt_can_devs.t_display.u8_service_filter_status,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_AIRFILT_ServiceRqd)
+CNTRL2DP(fuelGage,  			gt_can_devs.t_display.u8_fuel_level_sensor,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_FUEL_FuelGage2)
+CNTRL2DP(fuelGageP,  			gt_can_devs.t_display.f32_fuel_level_gauge_pct,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK2_FuelGagePrcnt) 
+CNTRL2DP(fuelLevelLow,  		gt_can_devs.t_display.u8_low_fuel_status,  				gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_FUEL_LevelLow)
+CNTRL2DP(doorOpenState,  		gt_can_devs.t_display.u8_door_open_status,  			gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_MISC_DoorStatus)
+CNTRL2DP(hydOilLow,  			gt_can_devs.t_display.u8_low_hydraulic_fluid_indicator, gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_HYDOIL_LevelLow)
+CNTRL2DP(brakesEngaged,  		gt_can_devs.t_display.u8_brakes_engaged_status,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK1_MISC_BrakeStatus)
+CNTRL2DP(majorRev,  			gt_can_devs.t_display.u8_software_major_revision,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK2_SW_MajorRev)
+CNTRL2DP(minorRev,  			gt_can_devs.t_display.u8_software_minor_revision,  		gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_DISP_FDBK2_SW_MinorRev)
 
 

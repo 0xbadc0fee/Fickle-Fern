@@ -3,18 +3,18 @@
     <file-version>1</file-version>
     <data-pool related-application-index="2" is-safety="false" scope-is-private="true" definition-crc-version="2">
         <type>diag</type>
-        <name>Checkpoints</name>
+        <name>Dashboard</name>
         <version major="0" minor="0" release="0"/>
-        <comment>Datapool to store all checkpoints for dashboard viewing</comment>
-        <lists length="10">
+        <comment>Datapool to store all checkpoints and parameters for dashboard viewing/altering</comment>
+        <lists length="13">
             <list>
                 <name>ElevatorControl</name>
                 <comment/>
-                <data-elements length="3">
+                <data-elements length="5">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>status</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Elevator Enable/Disable Status</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit/>
@@ -24,7 +24,7 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>speed_cmd</name>
                         <type base-type="float32" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Elevator Speed Control Command</comment>
                         <min-value value="-3.4028235e+38"/>
                         <max-value value="3.4028235e+38"/>
                         <unit/>
@@ -34,11 +34,31 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>output</name>
                         <type base-type="float32" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Elevator Speed Control Output</comment>
                         <min-value value="-3.4028235e+38"/>
                         <max-value value="3.4028235e+38"/>
                         <unit/>
                         <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_vl3512_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter - Enable VL3512 Current Limit</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_vl3514_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter - Enable VL3514 Current Limit</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-write</access>
                         <data-set-values/>
                     </data-element>
                 </data-elements>
@@ -51,7 +71,8 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>status</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Cleaning Chains Enable/Disable Status
+</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit/>
@@ -62,13 +83,41 @@
                 <data-sets/>
             </list>
             <list>
-                <name>FrontSweepsControl</name>
+                <name>HeaderControl</name>
                 <comment/>
                 <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_js_hll</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>FrontSweepsControl</name>
+                <comment/>
+                <data-elements length="2">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>speed_cmd</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - VSweeps Speed Command
+</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>p_sweeps_installed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter - VSweeps Option Installed</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit/>
@@ -149,7 +198,7 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>wheel_rpm</name>
                         <type base-type="float32" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Wheel Motor RPM</comment>
                         <min-value value="-3.4028235e+38"/>
                         <max-value value="3.4028235e+38"/>
                         <unit/>
@@ -159,7 +208,7 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>wheel_speed_mph_x10</name>
                         <type base-type="float32" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Wheel Speed MPH</comment>
                         <min-value value="-3.4028235e+38"/>
                         <max-value value="3.4028235e+38"/>
                         <unit/>
@@ -169,7 +218,7 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>edc_enable</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - EDC Enable/Disabled Status</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit/>
@@ -189,7 +238,7 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
                         <name>p_max_fwd_current</name>
                         <type base-type="uint16" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Parameter - Max FWD Current</comment>
                         <min-value value="0"/>
                         <max-value value="16500"/>
                         <unit>mA</unit>
@@ -199,7 +248,7 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
                         <name>p_min_fwd_current</name>
                         <type base-type="uint16" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Parameter - Min FWD Current</comment>
                         <min-value value="0"/>
                         <max-value value="768"/>
                         <unit>mA</unit>
@@ -209,7 +258,7 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
                         <name>p_max_rev_current</name>
                         <type base-type="uint16" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Parameter - Max REV Current</comment>
                         <min-value value="0"/>
                         <max-value value="16500"/>
                         <unit>mA</unit>
@@ -219,7 +268,7 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
                         <name>p_min_rev_current</name>
                         <type base-type="uint16" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Parameter - Min REV Current</comment>
                         <min-value value="0"/>
                         <max-value value="768"/>
                         <unit>mA</unit>
@@ -229,7 +278,7 @@
                     <data-element factor="1" offset="6" interpret_as_string="false" diag-event-call="true">
                         <name>p_ramp_down_time</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Parameter - Prop Ramp Down Time</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit>s</unit>
@@ -239,7 +288,7 @@
                     <data-element factor="1" offset="6" interpret_as_string="false" diag-event-call="true">
                         <name>p_ramp_up_time</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Parameter - Prop Ramp Up Time</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit>s</unit>
@@ -339,11 +388,11 @@
             <list>
                 <name>SuctionFanControl</name>
                 <comment/>
-                <data-elements length="2">
+                <data-elements length="5">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>suction_fan_on</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Suction Fan Enable/Disable Status</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit/>
@@ -353,11 +402,42 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>pwm_status</name>
                         <type base-type="uint16" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checpoint - Suction Fan Output Value</comment>
                         <min-value value="0"/>
                         <max-value value="65535"/>
-                        <unit/>
+                        <unit>%</unit>
                         <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_sf_inctime</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter - Suction Fan Ramp Up Time
+</comment>
+                        <min-value value="4"/>
+                        <max-value value="8"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_sf_dectime</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter - Suction Fan Ramp Down Time</comment>
+                        <min-value value="4"/>
+                        <max-value value="8"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_sf_ratio</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Parameter - Suction Fan Drive Ratio</comment>
+                        <min-value value="0"/>
+                        <max-value value="500"/>
+                        <unit/>
+                        <access>read-write</access>
                         <data-set-values/>
                     </data-element>
                 </data-elements>
@@ -366,11 +446,11 @@
             <list>
                 <name>CoolingFanControl</name>
                 <comment/>
-                <data-elements length="2">
+                <data-elements length="4">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>lead_sensor_id</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Lead Cooling Drive Sensor ID</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit/>
@@ -380,11 +460,31 @@
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>cooling_demand_pct</name>
                         <type base-type="float32" is-array="false"/>
-                        <comment>Variable description</comment>
+                        <comment>Checkpoint - Cooling Demand</comment>
                         <min-value value="-3.4028235e+38"/>
                         <max-value value="3.4028235e+38"/>
-                        <unit/>
+                        <unit>%</unit>
                         <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_purge_cycle_time</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter - Purge Cycle Time</comment>
+                        <min-value value="60"/>
+                        <max-value value="1200"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_purge_active_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter - Purge Active Time</comment>
+                        <min-value value="1"/>
+                        <max-value value="30"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
                         <data-set-values/>
                     </data-element>
                 </data-elements>
@@ -393,7 +493,7 @@
             <list>
                 <name>MiscControl</name>
                 <comment/>
-                <data-elements length="12">
+                <data-elements length="14">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>fuel_level_gauge_pct</name>
                         <type base-type="float32" is-array="false"/>
@@ -511,6 +611,60 @@
                         <min-value value="0"/>
                         <max-value value="100"/>
                         <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_fuel_full_voltage</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="5000"/>
+                        <unit>mV</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_hyd_oil_cal</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>StickBoxControl</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_stick_box_installed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter - Stick Box Enable/Disable</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>PowerAssistControl</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_pa_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter - PA Enable/Disable</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>

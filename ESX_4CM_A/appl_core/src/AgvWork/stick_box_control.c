@@ -40,7 +40,8 @@ T_StickBControl mt_stick_box;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_stickBControl(T_CANDevices *_can_dev, T_Config_StickBoxControl *_nvmStickBControl)
+sint16 init_stickBControl(T_CANDevices                *_can_dev,
+                          T_Config_StickBoxControl    *_nvmStickBControl)
 {
     sint16 s16_error = C_NO_ERR;
 

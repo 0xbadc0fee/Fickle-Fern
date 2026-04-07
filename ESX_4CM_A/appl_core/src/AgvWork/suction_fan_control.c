@@ -25,7 +25,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
-#include "checkpoints_data_pool.h"
+#include "dashboard_data_pool.h"
 
 // -- Defines ------------------------------------------------------------------------------------------------------
 #define PROGRAM_START_DEB_MS (3000u) //3 seconds
@@ -48,7 +48,9 @@ static T_SuctionFanControl mt_suction_fan;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_suctionFanControl(T_CANDevices *_can_devs, T_Config_SFan *_nvmSuctionFan, T_ChkPoints_SFan *_chkSuctionFan)
+sint16 init_suctionFanControl(T_CANDevices     *_can_devs,
+                              T_Config_SFan    *_nvmSuctionFan,
+                              T_ChkPoints_SFan *_chkSuctionFan)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -58,7 +60,7 @@ sint16 init_suctionFanControl(T_CANDevices *_can_devs, T_Config_SFan *_nvmSuctio
     }
     //populate local copy of RX ui elements
     mt_suction_fan.pu8_enable_cmd      = &_can_devs->t_joystick.u8_b4_state;
-    mt_suction_fan.pu16_speed_req_rpm  = &_can_devs->t_display.u16_suction_fan_speed_req_spd;
+    mt_suction_fan.pu16_speed_req_rpm  = &_can_devs->t_display.u16_sf_speed_req;
 
     //populate local copy of TX ui elements
     mt_suction_fan.pu8_enable_status     = &_can_devs->t_display.u8_suction_fan_enable_status;
@@ -201,11 +203,11 @@ sint16 update_suctionFanControl(void)
     //set ramp rate based on if target is higher or lower than current target
     if(f32_speed_req_rpm > mt_suction_fan.f32_prev_req_rpm)
     {
-        set_rampRate(&mt_suction_fan.t_speed_ramp, mt_suction_fan.pt_nvm->f32_fan_inc_time);
+        set_rampRate(&mt_suction_fan.t_speed_ramp, (float32)mt_suction_fan.pt_nvm->u8_fan_inc_time);
     }
     else if (f32_speed_req_rpm <= mt_suction_fan.f32_prev_req_rpm)
     {
-        set_rampRate(&mt_suction_fan.t_speed_ramp, mt_suction_fan.pt_nvm->f32_fan_dec_time);
+        set_rampRate(&mt_suction_fan.t_speed_ramp, (float32)mt_suction_fan.pt_nvm->u8_fan_dec_time);
     }
 
 

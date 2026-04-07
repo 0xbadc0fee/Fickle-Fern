@@ -63,16 +63,16 @@
  */
 typedef struct
 {
-        float32 f32_chk_fuel_level_sensor;//!< Checkpoint Fuel Level Sensor
-        float32 f32_chk_fuel_level_gauge_pct; //!<Checkpoint Fuel Level Gauge
-        float32 f32_chk_filter_rest_pct;//!<Checkpoint Filter Rest Percent
-        float32 f32_chk_minder_gauge_pct;//!<Checkpoint Minder Gauge
-        uint8 u8_chk_service_filter_status;//!<Checkpoint Service Filter Status
-        uint8 u8_chk_door_open_status;//!<Checkpoint Door Open Status
-        uint8 u8_chk_low_hyd_fluid_indicator;//!<Checkpoint Hydraulic Fluid Low Indicator
-        uint8 u8_chk_brakes_engaged;//!<Checkpoint Brakes Engaged
-        uint8 u8_chk_sw_major_revision;//!<Checkpoint SW Major Revision
-        uint8 u8_chk_sw_minor_revision;//!<Checkpoint SW Minor Revision
+        float32 f32_fuel_level_sensor;//!< Checkpoint Fuel Level Sensor
+        float32 f32_fuel_level_gauge_pct; //!<Checkpoint Fuel Level Gauge
+        float32 f32_filter_rest_pct;//!<Checkpoint Filter Rest Percent
+        float32 f32_minder_gauge_pct;//!<Checkpoint Minder Gauge
+        uint8 u8_service_filter_status;//!<Checkpoint Service Filter Status
+        uint8 u8_door_open_status;//!<Checkpoint Door Open Status
+        uint8 u8_low_hyd_fluid_indicator;//!<Checkpoint Hydraulic Fluid Low Indicator
+        uint8 u8_brakes_engaged;//!<Checkpoint Brakes Engaged
+        uint8 u8_sw_major_revision;//!<Checkpoint SW Major Revision
+        uint8 u8_sw_minor_revision;//!<Checkpoint SW Minor Revision
 }T_ChkPoints_Mis;
 
 /** \brief Configuration Structure - Miscellaneous Control
@@ -83,7 +83,7 @@ typedef struct
 typedef struct
 {
         uint16 u16_fuel_high_deadband; //!<Configuration parameter for Fuel Level deadband
-        uint16 u16_filter_rstn_max; //!<Configuration parameter for Filter Minder
+        uint8  u8_filter_rstn_max; //!<Configuration parameter for Filter Minder
 
 }T_Config_MiscrControl;
 
@@ -115,7 +115,7 @@ typedef struct
         uint8   *pu8_sw_minor_revision;//!<TX Software Minor Revision
 
         //RX CAN Variables
-        uint8   *pu8_clear_machine_faults_cmd;//!<RX Clear Machine Faults
+        uint8   *pu8_clear_faults_cmd;//!<RX Clear Machine Faults
 
         //Local Control Variables
         float32 f32_last_fuel_gauge;//!<Last Fuel Gauge

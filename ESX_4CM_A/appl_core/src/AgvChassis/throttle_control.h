@@ -50,9 +50,9 @@
  */
 typedef struct
 {
-        uint16   u16_chk1_eng_spd;   //!<Checkpoint #1 Engine Speed RPM
-        uint8  u8_chk2_eng_spd_up_osc;  //!<Checkpoint #2 Throttle UP
-        uint8 u8_chk3_eng_spd_down_osc;  //!<Checkpoint #3 Throttle Down
+        uint16 u16_eng_spd;         //!<Checkpoint #1 Engine Speed RPM
+        uint8  u8_eng_spd_up_osc;   //!<Checkpoint #2 Throttle UP
+        uint8  u8_eng_spd_down_osc; //!<Checkpoint #3 Throttle Down
 
 }T_ChkPoints_Throttle;
 

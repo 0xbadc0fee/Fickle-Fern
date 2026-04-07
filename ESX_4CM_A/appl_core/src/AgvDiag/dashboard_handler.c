@@ -18,7 +18,7 @@
 
 //Include OSY Diagnostic Datapool headers
 #include "osy_dph_data_pool_protector.h"
-#include "checkpoints_data_pool.h"
+#include "dashboard_data_pool.h"
 
 //Include Controls that have checkpoints
 #include "elevator_control.h"
@@ -32,6 +32,8 @@
 #include "throttle_control.h"
 #include "cooling_fan_control.h"
 #include "misc_control.h"
+
+#include "nvm_handler.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
@@ -54,18 +56,34 @@ T_ChkPoints_CoolingFan gt_coolingFanCheckpoints; //!<Structure that holds the Co
 T_ChkPoints_Mis gt_miscCheckpoints;              //!<Structure that holds theMiscellaneous Checkpoints
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
-sint16 update_checkpointHandler(void)
+sint16 init_dashHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
 
-    (void)osy_dph_lock_data_pool(CHECKPOINTS_DATA_POOL_INDEX);
+    (void)osy_dph_lock_data_pool(DASHBOARD_DATA_POOL_INDEX);
+
+    //Expand out the Checkpoint Mapping File
+    #define CNTRL2DP(name, CNTRL_VALUE, DPL_VALUE) VAR_ASSIGN((CNTRL_VALUE), (DPL_VALUE));
+    #include "dashboard_map.def"
+    #undef CNTRL2DP
+
+    (void)osy_dph_unlock_data_pool(DASHBOARD_DATA_POOL_INDEX);
+
+    return s16_error;
+}
+
+sint16 update_dashHandler(void)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    (void)osy_dph_lock_data_pool(DASHBOARD_DATA_POOL_INDEX);
 
     //Expand out the Checkpoint Mapping File
     #define CNTRL2DP(name, CNTRL_VALUE, DPL_VALUE) VAR_ASSIGN((DPL_VALUE), (CNTRL_VALUE));
-    #include "checkpoint_map.def"
+    #include "dashboard_map.def"
     #undef CNTRL2DP
 
-    (void)osy_dph_unlock_data_pool(CHECKPOINTS_DATA_POOL_INDEX);
+    (void)osy_dph_unlock_data_pool(DASHBOARD_DATA_POOL_INDEX);
 
     return s16_error;
 }

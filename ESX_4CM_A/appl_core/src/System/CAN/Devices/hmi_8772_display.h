@@ -28,7 +28,7 @@ typedef struct
    uint8 u8_drum_speed_request;       //!<Requested Speed of Front Sweeps
    uint8 u8_drum_speed_enable;       //!<Requested Front Sweeps enabled
    uint8 u8_trap_speed_range; //!<Requested Rotary Trap Speed Range
-   uint16 u16_suction_fan_speed_req_spd; //!<Requested Suction Fan Speed Request
+   uint16 u16_sf_speed_req; //!<Requested Suction Fan Speed Request
 
    uint8 u8_speed_limit_enable;
    uint8 u8_max_speed_set;
@@ -65,7 +65,7 @@ typedef struct
    uint8 u8_brakes_engaged_status;//!<
    uint8 u8_software_major_revision;//!<
    uint8 u8_software_minor_revision;//!<
-   uint8 u8_clear_machine_faults_cmd;//!<
+   uint8 u8_clear_faults_cmd;//!<
 
 
    uint8 u8_suction_fan_enable_status;//!<Suction Fan Enable Status
