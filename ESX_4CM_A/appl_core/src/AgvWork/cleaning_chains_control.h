@@ -1,15 +1,24 @@
-/*! \file       cleaning_chains_control.h
-    \brief      The Cleaning Chain Control Module shall read the operator Shaft Drive Enable
-    command which will be used by the rest of the Control Systems to establish the operational
-    status of all three cleaning chains.
-
-    \implementation
-    project     Flory_8772_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 7, 2026 Tiffany.Gohnert
-    \endimplementation
+//-----------------------------------------------------------------------------
+/**
+ * \file     cleaning_chains_control.h
+ * \brief    AgvWork - Cleaning Chains Control
+ *
+ * This module manages the operational status of the three cleaning chains.
+ * It processes the Operator Shaft Drive Enable command to establish state
+ * synchronization across the broader control system.
+ *
+ * \project   FloryTemplate_4CM
+ * \copyright STW Technic (c) 2026
+ * \license   use only under terms of contract / confidential
+ *
+ * \created   Jan 6, 2026 STW Technic
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup CleaningChainsControl Cleaning Chains Control
+ * @{
+ *
+ * @{
  */
 #ifndef APPL_CORE_SRC_AGVWORK_CLEANING_CHAINS_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_CLEANING_CHAINS_CONTROL_H_
@@ -21,20 +30,23 @@
 #include "toggle_button.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DOOR_OPEN (1u)
-#define DOOR_CLOSED (0u)
+#define DOOR_OPEN                      (1u)       /**< Door is in the OPEN position */
+#define DOOR_CLOSED                    (0u)       /**< Door is in the CLOSED position */
 
-#define IGN_ON (1u)
-#define IGN_OFF (0u)
+#define IGN_ON                         (1u)       /**< Vehicle Ignition is ACTIVE */
+#define IGN_OFF                        (0u)       /**< Vehicle Ignition is INACTIVE */
 
-#define SHAFT_DRIVE_ON (1u)
-#define SHAFT_DRIVE_OFF (0u)
+#define SHAFT_DRIVE_ON                 (1u)       /**< Cleaning Shaft drive is ENABLED */
+#define SHAFT_DRIVE_OFF                (0u)       /**< Cleaning Shaft drive is DISABLED */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Checkpoints Structure - Cleaning Chains Control
+/**
+ * @struct T_ChkPoints_CChains
+ * @brief Checkpoints Structure - Cleaning Chains Control
  *
- * This structure represents all checkpoints that are relevant
- * to shaft drive control
+ * Encapsulates the state-tracking checkpoints for the cleaning chain
+ * drive logic. These members are utilized to validate the sequencing
+ * of the Shaft Drive Enable command and associated interlocks.
  */
 typedef struct
 {
@@ -43,14 +55,15 @@ typedef struct
 }T_ChkPoints_CChains;
 
 
-/** \brief Control Structure - Cleaning Chains Control
+/** * @struct T_CChainsControl
+ * \brief Control Structure - Cleaning Chains Control
  *
- * This structure represents all variables and pointers that
- * are utilized and tracked for cleaning chains control that need to
- * persist through cyclic calls (static).
+ * Encapsulates all persistent state variables and pointers required for
+ * the Cleaning Chains control logic. This context is maintained across
+ * cyclic execution to facilitate state transitions and drive monitoring.
  *
- * This structure does not include any variables that are considered
- * temporary.
+ * \note This structure is reserved for persistent data only;
+ * transient/temporary variables are excluded.
  */
 typedef struct
 {

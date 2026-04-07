@@ -1,9 +1,26 @@
-//----------------------------------------------------------------------------------------------------------------------
-/*!
-   \file
-   \brief ESX-4CM-A Template (appl_core)
-*/
-//----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/* Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Jan 6, 2026 STW Technic
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       main.c
+ * \brief      ESX-4CM-A Template (appl_core)
+ *
+ * \addtogroup Main Main Entry Point
+ * @{
+ * \addtogroup Main Main Entry Point
+ *
+ * This module serves as the primary entry point for the ESX-4CM-A application.
+ * It manages the hardware abstraction layer initialization, schedules the
+ * cyclic task execution, and coordinates the startup sequences for the
+ * AgvChassis, AgvHMI, and AgvWork sub-systems.
+ *
+ * @{
+ */
+//-----------------------------------------------------------------------------
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "x_stdtypes.h"

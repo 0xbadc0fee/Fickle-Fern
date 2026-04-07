@@ -1,15 +1,20 @@
 //-----------------------------------------------------------------------------
-/*! \file       pid_output.h
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 STW Technic
+/* Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   March 6, 2026 STW Technic
  */
 //-----------------------------------------------------------------------------
-
+/**
+ * \file       pid_output.h
+ * \brief      Interface for PID Calculation Module.
+ *
+ * \addtogroup AgvHelper
+ * @{
+ * \addtogroup PidOutput PID Output
+ * @{
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVHELPER_PID_OUTPUT_H_
 #define APPL_CORE_SRC_AGVHELPER_PID_OUTPUT_H_
 
@@ -22,11 +27,17 @@
 #include "hmi_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Clamp F32 Macro
+#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Restricts a 32-bit floating point value to a specified range [lo, hi].
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Structure containing PID coefficients (Kp, Ki, Kd, Max/Min output).*/
+/**
+ * @struct T_PID_coeff
+ * \brief Structure containing PID coefficients and output constraints
+ *
+ * This structure defines the tuning parameters and physical limits
+ * for a PID control loop, including gains and saturation bounds.
+ */
 typedef struct
 {
         float32 s32_max_output;
@@ -36,7 +47,14 @@ typedef struct
         float32 f32_ki;
 } T_PID_coeff;
 
-/** \brief Structure containing all relevant PID information for each PID loop*/
+/**
+ * @struct T_PID_state
+ * \brief Structure containing persistent state information for a PID loop
+ *
+ * This structure maintains the historical data and error accumulation
+ * required to calculate the derivative and integral terms across
+ * consecutive control cycles.
+ */
 typedef struct
 {
         float32 f32_prev_error;

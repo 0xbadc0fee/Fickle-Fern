@@ -1,12 +1,23 @@
 //-----------------------------------------------------------------------------
-/*! \file       stick_box_control.c
-    \brief      <description>
-
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 24, 2026 STW Technic
+/* Project:   Flory_8772-4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Feb 24, 2026 kyle.boch
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       stick_box_control.c
+ * \brief      AgvWork - Stick Box Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup StickBoxControl Stick Box Control
+ *
+ * The Stick Box Control Module manages the activation of Stick Box Relays
+ * located on an attached tow-behind cart. It ensures proper signal
+ * synchronization between the tractor and the cart hardware.
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -24,7 +35,7 @@
 #include "checkpoints_data_pool.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
+#define PROGRAM_START_DEB_MS      (3000u) /**< Program start debounce time [ms] */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
@@ -32,15 +43,18 @@ T_StickBControl mt_stick_box;
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** \brief Initialize AgvWork - Stick Box Control
+/**
+ * \brief Initialize AgvWork - Stick Box Control
  *
- *  This function initializes the AgvWork - Stick Box Control Logic.
+ * This function initializes the Stick Box Control logic, mapping the
+ * operator interface and the non-volatile configuration parameters
+ * for the attached cart relays.
  *
- *  \param _ui Pointer to the project's UI Structure
- *  \param _chkElevator Pointer to the global Stick Box Control Checkpoints Structure
+ * \param[in,out] _ui                Pointer to the project's UI Structure
+ * \param[in]     _nvmStickBControl  Pointer to the NVM Configuration Structure
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return sint16 Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_stickBControl(T_UserInterface *_ui, T_Config_StickBoxControl *_nvmStickBControl)
 {
@@ -77,15 +91,15 @@ sint16 init_stickBControl(T_UserInterface *_ui, T_Config_StickBoxControl *_nvmSt
     return s16_error;
 }
 
-/** \brief Update AgvWork - Stick Box Control
+/**
+ * \brief Update AgvWork - Stick Box Control
  *
- *  This function contains the cyclical logic for AgvWork - Stick Box Control.
+ * This function executes the cyclical logic for the Stick Box Control
+ * system. It manages the activation and deactivation of the Stick Box
+ * Relays on an attached tow-behind cart based on system inputs.
  *
- *  The Stick Box Control Module shall control activation of the Stick Box Relays on an attached tow-behind cart.
- *
- *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return sint16 Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 update_stickBControl(void)
 {

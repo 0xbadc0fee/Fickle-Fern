@@ -1,14 +1,18 @@
+//-----------------------------------------------------------------------------
 /*! \file       auger_cart_control.h
-    \brief     The Auger Cart Control Module shall universally control all unloading operations of a variety of
-   possible attached cart configurations and do so in an operator safe manner.
+ *
+ *   \brief      The Auger Cart Control Module shall universally control all unloading operations of a variety of
+ *              possible attached cart configurations and do so in an operator safe manner.
+ *
+ * \project   FloryTemplate_4CM
+ * \copyright STW Technic (c) 2026
+ * \license   use only under terms of contract / confidential
 
-    \implementation
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
+    \addtogroup AgvWork
+    @{
+    \addtogroup AugerCartControl Auger Cart Control
+    @{
 
-    created     Feb 24, 2026 tiffany.gohnert
-    \endimplementation
  */
 #ifndef APPL_CORE_SRC_AGVWORK_AUGER_CART_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_AUGER_CART_CONTROL_H_
@@ -22,27 +26,23 @@
 #include "hitch_position_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DOOR_OPEN (1u)
-#define DOOR_CLOSED (0u)
-
-#define IGN_ON (1u)
-#define IGN_OFF (0u)
-
-#define AUGER_ENABLED (1u)
-#define AUGER_DISABLED (0u)
+#define DOOR_OPEN                      (1u)       /**< Door is in the OPEN position */
+#define DOOR_CLOSED                    (0u)       /**< Door is in the CLOSED position */
+#define IGN_ON                         (1u)       /**< Vehicle Ignition is ACTIVE */
+#define IGN_OFF                        (0u)       /**< Vehicle Ignition is INACTIVE */
+#define AUGER_ENABLED                  (1u)       /**< Auger drive is ENABLED for operation */
+#define AUGER_DISABLED                 (0u)       /**< Auger drive is DISABLED/LOCKED */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
-
-/** \brief Control Structure - Auger Cart Control
+/**
+ * @struct T_AugerControl
+ * @brief Persistent state and control data for the Auger Cart.
  *
- * This structure represents all variables and pointers that
- * are utilized and tracked for auger cart control that need to
- * persist through cyclic calls (static).
- *
- * This structure does not include any variables that are considered
- * temporary.
+ * Encapsulates all pointers and variables required to maintain state across
+ * cyclic execution. This structure is reserved for persistent data;
+ * transient/temporary variables should be managed locally.
  */
 typedef struct
 {
@@ -70,7 +70,6 @@ typedef struct
 
 }T_AugerControl;
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_augerControl(T_UserInterface *_ui);

@@ -1,13 +1,37 @@
 //-----------------------------------------------------------------------------
-/*! \file       lights_control.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
+/* * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Jan 6, 2026 STW Technic
  */
+//-----------------------------------------------------------------------------
+/**
+ * \file       lights_control.c
+ * \brief      AgvChassis - Lights Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup LightsControl Lights Control
+ *
+ * The Lights Control Module manages the activation and state of the machine's
+ * lighting systems, including work lights, road lights, and auxiliary
+ * illumination based on operator inputs and system conditions.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
+ */
+//-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -23,19 +47,20 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_LightControl mt_lighting;
+static T_LightControl mt_lighting;/**< Global persistent state for Lights Control. */
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** \brief Initialize AgvChassis - Lighting Control
+/**
+ * \brief Initialize AgvChassis - Lighting Control
  *
- *  This function initializes the AgvChassis - Lighting Control Logic.
+ * This function initializes the Lighting Control logic, establishing the
+ * link to the operator interface for manual and automatic light management.
  *
- *  \param _ui Pointer to the project's UI Structure
- *  \param _chkElevator Pointer to the global Lights Checkpoints Structure
+ * \param[in,out] _ui  Pointer to the project's UI Structure
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return sint16 Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_lightControl(T_UserInterface *_ui)
 {
@@ -64,16 +89,15 @@ sint16 init_lightControl(T_UserInterface *_ui)
     return s16_error;
 }
 
-/** \brief Update AgvChassis - Lighting Control
+/**
+ * \brief Update AgvChassis - Lighting Control
  *
- *  This function contains the cyclical logic for AgvChassis - Lighting Control.
+ * This function executes the cyclical logic for the Lighting Control system.
+ * It manages all combinations of external headlights and worklights based
+ * on operator requests and integrated safety interlocks.
  *
- * The Lighting Control Module shall control all required combinations of external headlights and worklights.
- *
- *  Additional interlocks are utilized throughout the logic.
- *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return sint16 Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 update_lightControl(void)
 {

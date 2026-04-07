@@ -1,13 +1,21 @@
 //-----------------------------------------------------------------------------
-/*! \file       elevator_control.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
-*/
+/**
+ * \file     elevator_control.c
+ * \brief    AgvWork - Elevator Control
+ *
+ * This module manages the vertical lift and positioning logic for the
+ * elevator system. It ensures synchronized movement and safety monitoring
+ * during material transport and unloading operations.
+ *
+ * \created   Jan 6, 2026 STW Technic
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup ElevatorControl Elevator Control
+ * @{
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -23,8 +31,6 @@
 #include "fault_handler.h"
 #include "system.h"
 
-
-
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
@@ -33,15 +39,18 @@ static T_ElevatorControl mt_elevator;
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** \brief Initialize AgvWork - Elevator Control
+/** * \brief Initializes the Elevator Control logic.
  *
- *  This function initializes the AgvWork - Elevator Control Logic.
+ * Configures the initial state for the AgvWork elevator module and binds
+ * required User Interface, Checkpoint tracking, and Non-Volatile Memory (NVM)
+ * configuration resources.
  *
- *  \param _ui Pointer to the project's UI Structure
- *  \param _chkElevator Pointer to the global Elevator Checkpoints Structure
+ * \param[in,out] _ui           Pointer to the project's User Interface structure.
+ * \param[in,out] _chkElevator  Pointer to the global Elevator Checkpoints structure.
+ * \param[in,out] _nvmElevator  Pointer to the Elevator NVM Configuration structure.
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return Execution status.
+ * \retval C_NO_ERR Initialization successful.
  */
 sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator)
 {
@@ -66,18 +75,18 @@ sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElev
 
 }
 
-/** \brief Update AgvWork - Elevator Control
+/**
+ * \brief Cyclic update for AgvWork - Elevator Control.
  *
- *  This function contains the cyclical logic for AgvWork - Elevator Control.
+ * Manages the speed and positioning of the elevator drive based on
+ * incoming CAN commands from the display and operator joystick.
  *
- *  Primary logic for this function is to set the speed of the elevator drive (cleaning shafts)
- *  based on CAN commands from the display and joystick.
+ * This function evaluates various hardware and software interlocks
+ * to ensure synchronized movement and safe operation during material
+ * transport.
  *
- *  Additional interlocks are utilized throughout the logic.
- *
- *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return Execution status.
+ * \retval C_NO_ERR Function executed properly without errors.
  */
 sint16 update_elevatorControl(void)
 {

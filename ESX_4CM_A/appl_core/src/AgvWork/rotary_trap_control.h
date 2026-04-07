@@ -1,14 +1,18 @@
 //-----------------------------------------------------------------------------
-/*! \file       rotary_trap_control.h
-    \brief      The Rotary Trap Control Module shall read the operator request
-    commands and convert the Rotary Trap Speed to a proportional PWM output to
-    control the speed of the windrow feed.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/* Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Jan 6, 2026 Tiffany.Gohnert
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       rotary_trap_control.h
+ * \brief      Interface for Rotary Trap Control Module.
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup RotaryTrapControl Rotary Trap Control
+ * @{
  */
 //-----------------------------------------------------------------------------
 

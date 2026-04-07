@@ -1,15 +1,25 @@
-/*! \file       elevator_control.h.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Jan 7, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file     elevator_control.c
+ * \brief    AgvWork - Elevator Control
+ *
+ * This module manages the vertical lift and positioning logic for the
+ * elevator system. It ensures synchronized movement and safety monitoring
+ * during material transport and unloading operations.
+ *
+ * \project   FloryTemplate_4CM
+ * \copyright STW Technic (c) 2026
+ * \license   use only under terms of contract / confidential
+ *
+ * \created   Jan 6, 2026 STW Technic
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup ElevatorControl Elevator Control
+ * @{
+ *
+ * @{
+ */
 #ifndef APPL_CORE_SRC_AGVWORK_ELEVATOR_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_ELEVATOR_CONTROL_H_
 
@@ -24,10 +34,13 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Checkpoints Structure - Elevator Control
+/**
+ * @struct T_ChkPoints_Elevator
+ * \brief Checkpoints Structure - Elevator Control
  *
- * This structure represents all checkpoints that are relevant
- * to elevator control
+ * Encapsulates the state-tracking checkpoints required for Elevator
+ * control logic. These members are utilized to validate operational
+ * sequences, safety interlocks, and positioning status.
  */
 typedef struct
 {
@@ -37,11 +50,13 @@ typedef struct
 
 }T_ChkPoints_Elevator;
 
-
-/** \brief Configuration Structure - Elevator Control
+/**
+ * @struct T_Config_Elevator
+ * \brief Configuration Structure - Elevator Control
  *
- * This structure represents all NVM configuration variables
- * that are relevant to elevator control
+ * Encapsulates all non-volatile memory (NVM) configuration variables
+ * relevant to the elevator control system. These parameters define
+ * calibrated limits, drive settings, and operational thresholds.
  */
 typedef struct
 {
@@ -50,14 +65,16 @@ typedef struct
 
 }T_Config_Elevator;
 
-/** \brief Control Structure - Elevator Control
+/**
+ * @struct T_ElevatorControl
+ * \brief Control Structure - Elevator Control
  *
- * This structure represents all variables and pointers that
- * are utilized and tracked for elevator control that need to
- * persist through cyclic calls (static).
+ * Encapsulates all persistent state variables and pointers required for
+ * the Elevator control logic. This context is maintained across cyclic
+ * execution to facilitate vertical positioning and drive monitoring.
  *
- * This structure does not include any variables that are considered
- * temporary.
+ * \note This structure is reserved for persistent data only;
+ * transient/temporary variables are excluded.
  */
 typedef struct
 {
@@ -88,8 +105,6 @@ typedef struct
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_elevatorControl(T_UserInterface *_ui, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator);
 sint16 update_elevatorControl(void);
-
-
 
 #endif /* APPL_CORE_SRC_AGVWORK_ELEVATOR_CONTROL_H_ */
 

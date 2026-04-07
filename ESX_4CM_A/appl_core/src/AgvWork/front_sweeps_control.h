@@ -1,14 +1,18 @@
 //-----------------------------------------------------------------------------
-/*! \file       front_sweeps_control.h
-    \brief      The Front Sweeps Control Module shall read the operator Drum V-Sweep
-    commands and convert the requested Drum V-Sweep Speed to a PWM output to control
-    how far the product is thrown into the throat of the pick-up belt.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Mar 6, 2026 Tiffany.Gohnert
+/* * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Mar 6, 2026 Tiffany.Gohnert
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       front_sweeps_control.h
+ * \brief      Interface for Front Sweeps Control Module.
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup FrontSweepsControl Front Sweeps Control
+ * @{
  */
 //-----------------------------------------------------------------------------
 
@@ -24,23 +28,28 @@
 #include "ramp_calc.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define FRONT_SWEEPS_DISABLED           (0.0F)
-#define FRONT_SWEEPS_PWM_SAFE_STATE     (0.0F)
 
-#define FRONT_SWEEPS_MIN (0.0F)
-#define FRONT_SWEEPS_MAX (10000.0F)
+#define FRONT_SWEEPS_DISABLED              (0.0F)     /**< Command value for disabled state */
+#define FRONT_SWEEPS_PWM_SAFE_STATE        (0.0F)     /**< Default PWM safety output (0%) */
 
-#define FRONT_SWEEPS_PWM_THRESHOLD_CURRENT (4000.0F)
-#define FRONT_SWEEPS_PWM_END_CURRENT (18000.0F)
+#define FRONT_SWEEPS_MIN                   (0.0F)     /**< Minimum operational speed command */
+#define FRONT_SWEEPS_MAX                   (10000.0F) /**< Maximum operational speed command */
 
-#define FRONT_SWEEPS_RAMP_RATE (1000.0F)
+#define FRONT_SWEEPS_PWM_THRESHOLD_CURRENT (4000.0F)  /**< Starting current threshold [mA] */
+#define FRONT_SWEEPS_PWM_END_CURRENT       (18000.0F) /**< Maximum allowable current [mA] */
+
+#define FRONT_SWEEPS_RAMP_RATE             (1000.0F)  /**< Speed adjustment ramp rate [units/sec] */
+
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 
-/** \brief Checkpoints Structure - Front Sweeps Control
+/**
+ * @struct T_ChkPoints_FSweeps
+ * \brief Checkpoints Structure - Front Sweeps Control
  *
- * This structure represents all checkpoints that are relevant
- * to shaft drive control
+ * Encapsulates the state-tracking checkpoints required for the Front Sweeps
+ * control logic. These members are utilized to validate the sequencing of
+ * Drum V-Sweep commands and safety interlocks.
  */
 typedef struct
 {
@@ -48,7 +57,14 @@ typedef struct
 
 }T_ChkPoints_FSweeps;
 
-
+/**
+ * @struct T_FrontSweepsControl
+ * \brief Configuration Structure - Front Sweeps Control
+ *
+ * Encapsulates the non-volatile memory (NVM) configuration variables for
+ * the Front Sweeps module. Defines PWM thresholds, operational limits,
+ * and trajectory parameters for the Drum V-Sweep system.
+ */
 typedef struct
 {
         //Local Control Variables

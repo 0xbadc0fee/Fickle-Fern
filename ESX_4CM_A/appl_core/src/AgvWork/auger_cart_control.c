@@ -1,14 +1,29 @@
-//-----------------------------------------------------------------------------
-/*! \file       auger_cart_control.c
-    \brief      The Auger Cart Control Module shall universally control all unloading operations of a variety of
-    possible attached cart configurations and do so in an operator safe manner.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
+/**
+ * \file       auger_cart_control.c
+ * \brief      AgvWork - Auger Cart Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup AugerCartControl Auger Cart Control
+ *
+ * The Auger Cart Control Module shall universally control all unloading
+ * operations of a variety of possible attached cart configurations and do so in an operator safe manner.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
+
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -22,24 +37,24 @@
 #include "auger_cart_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-
-#define PROGRAM_START_DEB_MS (3000u) //3 seconds
+#define PROGRAM_START_DEB_MS (3000u)/**< Program start sequence debounce time [ms] */
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_AugerControl mt_augerc;
+static T_AugerControl mt_augerc; /**< Global persistent state for Auger Cart Control. */
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** \brief Initialize AgvWork - Auger Cart Control
+/** * \brief Initializes the Auger Cart Control logic.
  *
- *  This function initializes the AgvWork - Auger Cart Control Logic.
+ * Sets the initial state for the Auger Cart AgvWork module and links
+ * the required user interface resources.
  *
- *  \param _ui Pointer to the project's UI Structure
+ * \param[in,out] _ui Pointer to the global User Interface structure.
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return Status of the initialization process.
+ * \retval C_NO_ERR Initialization successful.
  */
 sint16 init_augerControl(T_UserInterface *_ui)
 {
@@ -86,18 +101,15 @@ sint16 init_augerControl(T_UserInterface *_ui)
     return s16_error;
 }
 
-/** \brief Update AgvWork - Auger Cart Control
+/**
+ * \brief Main cyclic update for Auger Cart Control logic.
  *
- *  This function contains the cyclical logic for AgvWork - Auger Cart Control.
+ * Manages unloading operations for all supported cart configurations.
+ * This function handles the high-level control state machine, ensuring
+ * operator safety through integrated hardware and software interlocks.
  *
- *   The Auger Cart Control Module shall universally control all unloading operations of a variety of
- *   possible attached cart configurations and do so in an operator safe manner.
- *
- *  Additional interlocks are utilized throughout the logic.
- *
- *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return Execution status.
+ * \retval C_NO_ERR Logic executed successfully without errors.
  */
 sint16 update_augerControl(void)
 {
@@ -192,8 +204,6 @@ sint16 update_augerControl(void)
     //FR-9.1-2 Apply latching and reset logic to Auger and Manual Unload. Force to safe state if fault.
     s16_error = toggleButton(&mt_augerc.t_btn_auto, u8_aug_cmd, u8_aug_btn_reset);
     s16_error += toggleButton(&mt_augerc.t_btn_manual, u8_man_cmd, u8_man_btn_reset);
-
-
 
     //FR-9.3 The control module shall enforce mutual exclusivity to the Auger Unload Enable and Manual Unload commands giving preference to Manual Unload Enable in case of a conflict.
     if((mt_augerc.u8_manual_latched == AUGER_ENABLED) && (mt_augerc.u8_auto_latched == AUGER_ENABLED))

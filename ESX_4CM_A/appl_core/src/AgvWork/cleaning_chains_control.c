@@ -1,16 +1,39 @@
 //-----------------------------------------------------------------------------
-/*! \file       cleaning_chains_control.c
-    \brief      The Cleaning Chain Control Module shall read the operator Shaft
-    Drive Enable command which will be used by the rest of the Control Systems to
-    establish the operational status of all three cleaning chains.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
+/**
+ * \file     cleaning_chains_control.c
+ * \brief    AgvWork - Cleaning Chains Control
+ *
+ * \project   FloryTemplate_4CM
+ * \copyright STW Technic (c) 2026
+ * \license   use only under terms of contract / confidential
+ *
+ * \created   Jan 6, 2026 STW Technic
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup CleaningChainsControl Cleaning Chains Control
+ * @{
+ *
+ * This module manages the operational status of the three cleaning chains.
+ * It processes the Operator Shaft Drive Enable command to establish state
+ * synchronization across the broader control system.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
+
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include <stdint.h>
@@ -26,7 +49,7 @@
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
-#define PROGRAM_START_DEB_MS (3000u) //3 seconds
+#define PROGRAM_START_DEB_MS (3000u) /**< Program start sequence debounce time [ms] */
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
@@ -35,15 +58,16 @@ static T_CChainsControl mt_cchains;
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** \brief Initialize AgvWork - Cleaning Chains Control
+/** * \brief Initializes the Cleaning Chains Control logic.
  *
- *  This function initializes the AgvWork - Cleaning Chains Control Logic.
+ * Configures the initial state for the AgvWork cleaning chain module and
+ * binds the required User Interface and Checkpoint tracking resources.
  *
- *  \param _ui Pointer to the project's UI Structure
- *  \param _chkElevator Pointer to the global Cleaning Chains Checkpoints Structure
+ * \param[in,out] _ui                Pointer to the project's User Interface structure.
+ * \param[in,out] _chkCleaningShaft  Pointer to the global Cleaning Chains Checkpoints structure.
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return Execution status.
+ * \retval C_NO_ERR Initialization successful.
  */
 sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleaningShaft)
 {
@@ -78,18 +102,16 @@ sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleani
     return s16_error;
 }
 
-/** \brief Update AgvWork - Clean Chains Control
+/**
+ * \brief Cyclic update for AgvWork - Cleaning Chains Control.
  *
- *  This function contains the cyclically logic for AgvWork - Cleaning Chains Control.
+ * Manages the speed of the cleaning chain drives (cleaning shafts) based
+ * on incoming CAN messages from the operator joystick.
+ * * Safety interlocks and operational status checks are evaluated throughout
+ * the logic to ensure reliable operation of all three cleaning chains.
  *
- *  Primary logic for this function is to set the speed of the cleaning chains drive (cleaning shafts)
- *  based on CAN commands from the joystick.
- *
- *  Additional interlocks are utilized throughout the logic.
- *
- *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return Execution status.
+ * \retval C_NO_ERR Function executed properly without errors.
  */
 sint16 update_cChainsControl(void)
 {

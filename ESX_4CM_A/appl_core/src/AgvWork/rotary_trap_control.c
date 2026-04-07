@@ -1,14 +1,35 @@
 //-----------------------------------------------------------------------------
-/*! \file       rotary_trap_control.c
-    \brief      The Rotary Trap Control Module shall read the operator request
-    commands and convert the Rotary Trap Speed to a proportional PWM output to
-    control the speed of the windrow feed.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/* * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Jan 6, 2026 Tiffany.Gohnert
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       rotary_trap_control.c
+ * \brief      AgvWork - Rotary Trap Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup RotaryTrapControl Rotary Trap Control
+ *
+ * The Rotary Trap Control Module processes operator requests to regulate the
+ * speed of the windrow feed. It converts commanded Rotary Trap speed into
+ * proportional PWM outputs for precise hydraulic control.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 // -- Includes ------------------------------------------------------------------------------------------------------
@@ -32,7 +53,7 @@
 // -- Types --------------------------------------------------------------------------------------------------------
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
 // -- Module Global Variables --------------------------------------------------------------------------------------
-static T_RotaryTrapControl mt_rotary_trap;
+static T_RotaryTrapControl mt_rotary_trap;/**< Global persistent state for Rotary Trap Control. */
 
 // -- Implementation  ----------------------------------------------------------------------------------------------
 

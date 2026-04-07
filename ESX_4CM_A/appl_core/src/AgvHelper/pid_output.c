@@ -1,12 +1,35 @@
 //-----------------------------------------------------------------------------
-/*! \file       pid_output.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 STW Technic
+/* Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   March 6, 2026 STW Technic
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       pid_output.c
+ * \brief      AgvHelper - PID Output
+ *
+ * \addtogroup AgvHelper
+ * @{
+ * \addtogroup PidOutput PID Output
+ *
+ * The PID Calculation Module determines a bounded actuator command by
+ * summing proportional, integral, and derivative responses to the
+ * difference between setpoint and measured feedback each control cycle.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -28,17 +51,21 @@
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** \brief PID Output AgvHelper - Helper Control
+/**
+ * \brief Calculate PID Output
  *
- *  This function calculates what the PID output should be for a given set of parameters and feedback.
+ * This function calculates the bounded control effort for a PID loop by
+ * processing the error between the desired setpoint (command) and actual
+ * measurement (feedback). It updates the persistent state of the controller,
+ * including integral accumulation and error history.
  *
- *  \param f32_command PID Command
- *  \param f32_feedback PID Feedback
- *  \param t_pid_state PID State
- *  \param _t_PID_coeff PID coefficient
+ * \param[in]     f32_command  Desired target setpoint
+ * \param[in]     f32_feedback Current measured system feedback
+ * \param[in,out] t_pid_state  Pointer to persistent state (error/time history)
+ * \param[in]     t_PID_coeff  Pointer to loop coefficients and output limits
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return sint16 Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 PidOutput(float32 f32_command, float32 f32_feedback,T_PID_state *t_pid_state, T_PID_coeff *t_PID_coeff)
 {

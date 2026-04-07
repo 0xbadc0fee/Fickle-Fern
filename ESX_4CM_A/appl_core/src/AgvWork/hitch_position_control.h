@@ -1,15 +1,21 @@
-/*! \file       hitch_position_control.h
-    \brief      <description>
-
-
-    \implementation
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 24, 2026 tiffany.gohnert
-    \endimplementation
-*/
+//-----------------------------------------------------------------------------
+/* Project:   Flory_8772-4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Feb 24, 2026 tiffany.gohnert
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       hitch_position_control.h
+ * \brief      Interface for Hitch Position Control Module.
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup HitchPositionControl Hitch Position Control
+ * @{
+ */
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVWORK_HITCH_POSITION_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_HITCH_POSITION_CONTROL_H_
