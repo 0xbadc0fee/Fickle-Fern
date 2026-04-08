@@ -31,9 +31,9 @@ The following assumptions are utilized throughout this application:
 
 ### Design Pattern
 The system follows a **cyclic execution model**:
-- `init_*()` → Module initialization
-- `update_*()` → Periodic execution (typically 10 ms loop)
----
+
+* `init_*()` → Module initialization
+* `update_*()` → Periodic execution (typically 10 ms loop)
 
 ### Project Structure
 

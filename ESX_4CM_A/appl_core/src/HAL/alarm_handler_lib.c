@@ -1,10 +1,4 @@
 //-----------------------------------------------------------------------------
-/* Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Jan 6, 2026 STW Technic
- */
-//-----------------------------------------------------------------------------
 /**
  * \file       alarm_handler_lib.c
  * \brief      System - Alarm Handler Library
@@ -271,15 +265,13 @@ sint16 update_alarmHandler(void)
     return s16_error;
 }
 
-
-/*!
-   \brief  Add a Fault to list of all J1939 DTCs
-
-    Take a passed Machine Fault and add it to the J1939 DTC runner list
-
-   \param    T_FloryFault   Flory Defined Fault Structure
-
-*/
+/**
+ * \brief Adds a Fault to the list of all J1939 DTCs.
+ *
+ * Takes a passed Machine Fault and adds it to the J1939 DTC runner list.
+ *
+ * \param[in] _dtc  Pointer to the Flory Defined Fault Structure.
+ */
 void add_J1939dtc(T_FloryFault *_dtc)
 {
 
@@ -467,7 +459,5 @@ sint16 clear_logicFaults(void)
 
     return s16_error;
 }
-
-
 
 //EOF

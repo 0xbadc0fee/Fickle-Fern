@@ -1,25 +1,43 @@
-/*! \file       joystick_handler.h.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Jan 7, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       joystick_handler.h
+ * \brief      AgvHMI - Joystick Handler Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup JoystickHandler Joystick Handler
+ *
+ * The Joystick Handler module manages the processing of joystick inputs.
+ * It translates raw analog or CAN signals into normalized axis values,
+ * handles deadbands, filtering, and maps joystick button presses to
+ * actionable system commands for machine movement and implement control.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 7, 2026 kyle.boch
+ *
+ * @{
+ */
 #ifndef APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 #define APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "stwtypes.h"
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define JS_BUTTON_PRESSED 0b01
-#define JS_BUTTON_FAULT   0b11
+#define JS_BUTTON_PRESSED 0b01 //!< Joystick button pressed state
+#define JS_BUTTON_FAULT   0b11 //!< Joystick button fault state indicator
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-/** \brief HMI Device Structure - JS6000 Joystick
+/**
+ * \struct T_JoystickJS6000
+ * \brief HMI Device Structure - JS6000 Joystick
  *
  * This structure represents all used variables that are transmitted to and
  * received from a JS6000 Joystick

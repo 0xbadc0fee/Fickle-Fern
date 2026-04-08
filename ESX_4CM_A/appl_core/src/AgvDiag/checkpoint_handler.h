@@ -1,12 +1,18 @@
-/*! \file       checkpoint_handler.h.h
-    \brief      <description>
-
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Jan 7, 2026 kyle.boch
-*/
+//-----------------------------------------------------------------------------
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Jan 6, 2026 STW Technic
+ *
+ * \file       checkpoint_handler.h
+ * \brief      Interface for Checkpoint Handler.
+ *
+ * \addtogroup AgvDiag
+ * @{
+ * \addtogroup CheckpointHandler Checkpoint Handler
+ * @{
+ */
 #ifndef APPL_CORE_SRC_AGVDIAG_CHECKPOINT_HANDLER_H_
 #define APPL_CORE_SRC_AGVDIAG_CHECKPOINT_HANDLER_H_
 

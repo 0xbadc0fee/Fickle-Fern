@@ -1,15 +1,18 @@
-/*! \file       hw_outputs.h.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 4, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Feb 4, 2026 STW Technic
+ *
+ * \file       hw_outputs.h
+ * \brief      Interface for Hardware Outputs Module.
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup HwOutputs Hardware Outputs
+ * @{
+ */
 #ifndef APPL_CORE_SRC_SYSTEM_IO_HW_OUTPUTS_H_
 #define APPL_CORE_SRC_SYSTEM_IO_HW_OUTPUTS_H_
 

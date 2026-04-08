@@ -1,12 +1,18 @@
-/*! \file       hw_inputs.h.h
-    \brief      <description>
-
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Jan 6, 2026 kyle.boch
-*/
+//-----------------------------------------------------------------------------
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2025
+ * License:   use only under terms of contract / confidential
+ * Created:   Dec 9, 2025 kyle.boch
+ *
+ * \file       hw_inputs.h
+ * \brief      Interface for Hardware Inputs Module.
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup HwInputs Hardware Inputs
+ * @{
+ */
 #ifndef APPL_CORE_SRC_SYSTEM_IO_HW_INPUTS_H_
 #define APPL_CORE_SRC_SYSTEM_IO_HW_INPUTS_H_
 

@@ -1,22 +1,41 @@
-/*! \file       hmi_8772_display.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 4, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       hmi_8772_display.h
+ * \brief      AgvHMI - HMI 8772 Display Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup Hmi8772Display HMI 8772 Display
+ *
+ * The HMI 8772 Display module handles communication and data synchronization
+ * between the main controller and the 8772 Human Machine Interface. It processes
+ * incoming user inputs, button commands, and settings, while transmitting
+ * machine status, telemetry, and fault data to the screen for the operator.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 4, 2026 kyle.boch
+ *
+ * @{
+ */
 #ifndef APPL_CORE_SRC_AGVHMI_DEVICES_HMI_8772_DISPLAY_H_
 #define APPL_CORE_SRC_AGVHMI_DEVICES_HMI_8772_DISPLAY_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-/** \brief HMI Device Structure - 8772 Display
+
+/**
+ * \struct T_8772_Display
+ * \brief HMI Device Structure - 8772 Display
  *
  * This structure represents all variables that are transmitted and
  * received from an 8772 Display.

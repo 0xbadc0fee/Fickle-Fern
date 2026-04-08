@@ -1,11 +1,10 @@
 //-----------------------------------------------------------------------------
-/* Project:   FloryTemplate_4CM
+/*
+ * Project:   FloryTemplate_4CM
  * Copyright: STW Technic (c) 2026
  * License:   use only under terms of contract / confidential
  * Created:   March 6, 2026 STW Technic
- */
-//-----------------------------------------------------------------------------
-/**
+ *
  * \file       pid_output.h
  * \brief      Interface for PID Calculation Module.
  *
@@ -14,7 +13,6 @@
  * \addtogroup PidOutput PID Output
  * @{
  */
-//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVHELPER_PID_OUTPUT_H_
 #define APPL_CORE_SRC_AGVHELPER_PID_OUTPUT_H_
 

@@ -1,14 +1,18 @@
 //-----------------------------------------------------------------------------
-/*! \file       toggle_button.h
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 STW Technic
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   March 6, 2026 STW Technic
+ *
+ * \file       toggle_button.h
+ * \brief      Interface for Toggle Button Module.
+ *
+ * \addtogroup AgvHelper
+ * @{
+ * \addtogroup ToggleButton Toggle Button
+ * @{
  */
-//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVHELPER_TOGGLE_BUTTON_H_
 #define APPL_CORE_SRC_AGVHELPER_TOGGLE_BUTTON_H_
@@ -25,8 +29,10 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-
-/** \brief Structure containing all relevant Toggle Button Parameters*/
+/**
+ * \struct T_ToggleBtn
+ * \brief  Structure containing all relevant Toggle Button Parameters.
+ */
 typedef struct
 {
         //Output Variable

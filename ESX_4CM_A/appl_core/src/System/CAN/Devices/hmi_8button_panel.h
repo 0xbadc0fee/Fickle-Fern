@@ -1,41 +1,59 @@
-/*! \file       hmi_8button_panel.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Jan 7, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       hmi_8button_panel.h
+ * \brief      AgvHMI - HMI 8-Button Panel Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup Hmi8ButtonPanel HMI 8-Button Panel
+ *
+ * The HMI 8-Button Panel module processes incoming CAN messages and
+ * physical inputs from the 8-button operator panel. It translates raw
+ * button presses, releases, and holds into actionable system commands
+ * and handles the illumination status (LED feedback) for the panel.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 7, 2026 kyle.boch
+ *
+ * @{
+ */
 #ifndef APPL_CORE_SRC_AGVHMI_HMI_8BUTTON_PANEL_H_
 #define APPL_CORE_SRC_AGVHMI_HMI_8BUTTON_PANEL_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define BTN_FAULT 0b11
+#define BTN_FAULT 0b11 //!< Button fault state indicator
 
 //LED Indicator Options
-#define RED_ON       (0b01)
-#define RED_FLASH    (0b10)
-#define RED_OFF      (0b00)
+#define RED_ON       (0b01)      //!< Red LED Solid On
+#define RED_FLASH    (0b10)      //!< Red LED Flashing
+#define RED_OFF      (0b00)      //!< Red LED Off
 
-#define AMBER_ON     (0b01)<<2
-#define AMBER_FLASH  (0b10)<<2
-#define AMBER_OFF    (0b00)<<2
+#define AMBER_ON     (0b01)<<2   //!< Amber LED Solid On
+#define AMBER_FLASH  (0b10)<<2   //!< Amber LED Flashing
+#define AMBER_OFF    (0b00)<<2   //!< Amber LED Off
 
-#define GREEN_ON     (0b01)<<4
-#define GREEN_FLASH  (0b10)<<4
-#define GREEN_OFF    (0b00)<<4
+#define GREEN_ON     (0b01)<<4   //!< Green LED Solid On
+#define GREEN_FLASH  (0b10)<<4   //!< Green LED Flashing
+#define GREEN_OFF    (0b00)<<4   //!< Green LED Off
 
-#define BLUE_ON      (0b01)<<6
-#define BLUE_FLASH   (0b10)<<6
-#define BLUE_OFF     (0b00)<<6
-
+#define BLUE_ON      (0b01)<<6   //!< Blue LED Solid On
+#define BLUE_FLASH   (0b10)<<6   //!< Blue LED Flashing
+#define BLUE_OFF     (0b00)<<6   //!< Blue LED Off
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-/** \brief HMI Device Structure - 8 Button Panel
+
+/**
+ * \struct T_8ButtonPanel
+ * \brief HMI Device Structure - 8 Button Panel
  *
  * This structure represents all variables that are transmitted to and
  * received from an 8 button Keypad UI Element

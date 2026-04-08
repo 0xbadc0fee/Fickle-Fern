@@ -1,15 +1,18 @@
-/*! \file       fault_handler.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     Flory_8772-4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 20, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/*
+ * Project:   Flory_8772-4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Feb 20, 2026 kyle.boch
+ *
+ * \file       fault_handler.h
+ * \brief      Interface for Fault Handler.
+ *
+ * \addtogroup AgvDiag
+ * @{
+ * \addtogroup FaultHandler Fault Handler
+ * @{
+ */
 #ifndef APPL_CORE_SRC_AGVDIAG_FAULT_HANDLER_H_
 #define APPL_CORE_SRC_AGVDIAG_FAULT_HANDLER_H_
 

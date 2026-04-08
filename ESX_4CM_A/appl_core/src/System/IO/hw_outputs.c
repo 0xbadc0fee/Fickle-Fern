@@ -1,14 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       hw_outputs.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 4, 2026 STW Technic
+/**
+ * \file       hw_outputs.c
+ * \brief      System - Hardware Outputs Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup HwOutputs Hardware Outputs
+ *
+ * The Hardware Outputs module manages the physical pin assignments and
+ * direct hardware-level configuration for the controller's outputs.
+ * It serves as the low-level interface connecting the logical output
+ * handlers to the physical hardware pins on the device.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 4, 2026 STW Technic
+ *
+ * @{
  */
-//-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "x_out.h"
 #include "output_handler_lib.h"
@@ -25,7 +42,12 @@
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 // Define vehicle specific inputs
-
+/**
+ * \brief  Vehicle Output object for the Auto Unload function.
+ *
+ * This structure manages the configuration, current state, and diagnostic
+ * parameters for the automated unloading hardware output.
+ */
 T_VehicleOutput tvo_auto_unload =
 {
     .Name_Description = "AUTO_UNLOAD",
@@ -51,6 +73,12 @@ T_VehicleOutput tvo_auto_unload =
     .u16_dti = 0,
 };
 
+/**
+ * \brief  Vehicle Output object for the Manual Unload function.
+ *
+ * This structure manages the configuration, current state, and diagnostic
+ * parameters for the manual unloading hardware output.
+ */
 T_VehicleOutput tvo_manual_unload =
 {
     .Name_Description = "MANUAL_UNLOAD",

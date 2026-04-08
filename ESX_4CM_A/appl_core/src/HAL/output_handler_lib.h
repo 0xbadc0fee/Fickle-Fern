@@ -1,15 +1,18 @@
-/*! \file       output_handler_lib.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 4, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Feb 4, 2026 kyle.boch
+ *
+ * \file       output_handler_lib.h
+ * \brief      Interface for Output Handler Library.
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup OutputHandler Output Handler
+ * @{
+ */
 #ifndef APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_
 #define APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_
 
@@ -26,7 +29,7 @@
 
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DEFAULT_PWM_CC_FREQ 100000u                  //!< Default PWM CC Frequency if not otherwise set
+#define DEFAULT_PWM_CC_FREQ 100000u                 //!< Default PWM CC Frequency if not otherwise set
 #define DEFAULT_CC_FILTER   20u                     //!< Default 10mS Filter if not otherwise set
 #define DEFAULT_CC_DITHER   500u                    //!< Default dither is 5%% if not otherwise set
 
@@ -44,7 +47,10 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/*! \brief List of all Output Types **/
+/**
+ * \enum E_OutputTypes
+ * \brief List of all Output Types.
+ */
 typedef enum {
     OT_NONE = 0,
     OT_DIGITAL,      //!< output is digital type
@@ -52,7 +58,10 @@ typedef enum {
     OT_CC            //!< output is type current controlled
 } E_OutputTypes;
 
-/*! \brief List of all Possible Output Faults **/
+/**
+ * \enum E_OutputFaults
+ * \brief List of all Possible Output Faults.
+ */
 typedef enum {
 
     e_OUTFAULT_NO_FAULT,        //!<No Fault Present
@@ -64,9 +73,10 @@ typedef enum {
     e_NUM_OUTFAULTS            //!<Total Number of possible output faults
 } E_OutputFaults;
 
-
-
-/*! \brief Struct for a Vehicle Output Object **/
+/**
+ * \struct T_VehicleOutput
+ * \brief Struct for a Vehicle Output Object.
+ */
 typedef struct {
     //-----------------------------INIT PARAMS--------------------------------//
     char *Name_Description;          //!< Named Description of Hardware Output
@@ -82,6 +92,7 @@ typedef struct {
     uint16 u16_dti;                  //!< Fault Test Interval
 
 } T_VehicleOutput;
+
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 extern T_VehicleOutput at_vehicleOutputs[X_OUT_COUNT];
 

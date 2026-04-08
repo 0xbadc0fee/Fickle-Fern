@@ -1,15 +1,18 @@
-/*! \file       system.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 6, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Feb 6, 2026 kyle.boch
+ *
+ * \file       system.h
+ * \brief      Interface for System Module.
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup STW_4CM_HAL STW_4CM_HAL
+ * @{
+ */
 #ifndef APPL_CORE_SRC_HAL_STW_4CM_HAL_SYSTEM_H_
 #define APPL_CORE_SRC_HAL_STW_4CM_HAL_SYSTEM_H_
 

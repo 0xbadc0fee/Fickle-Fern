@@ -1,11 +1,10 @@
 //-----------------------------------------------------------------------------
-/* Project:   FloryTemplate_4CM
+/*
+ * Project:   FloryTemplate_4CM
  * Copyright: STW Technic (c) 2026
  * License:   use only under terms of contract / confidential
  * Created:   March 6, 2026 STW Technic
- */
-//-----------------------------------------------------------------------------
-/**
+ *
  * \file       moving_avg_filter.h
  * \brief      Interface for Moving Average Filter Module.
  *
@@ -14,7 +13,6 @@
  * \addtogroup MovingAvgFilter Moving Average Filter
  * @{
  */
-//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVHELPER_MOVING_ADV_FILTER_H_
 #define APPL_CORE_SRC_AGVHELPER_MOVING_ADV_FILTER_H_
 

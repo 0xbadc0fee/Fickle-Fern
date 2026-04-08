@@ -1,13 +1,12 @@
 //-----------------------------------------------------------------------------
-/* * Project:   FloryTemplate_4CM
+/*
+ * Project:   FloryTemplate_4CM
  * Copyright: STW Technic (c) 2026
  * License:   use only under terms of contract / confidential
  * Created:   Jan 6, 2026 STW Technic
- */
-//-----------------------------------------------------------------------------
-/**
- * \file       lights_control.h
- * \brief      Interface for Lights Control Module.
+ *
+ * \file       lighting_control.h
+ * \brief      Interface for Lights Control.
  *
  * \addtogroup AgvChassis
  * @{

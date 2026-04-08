@@ -1,10 +1,18 @@
-//----------------------------------------------------------------------------------------------------------------------
-/*!
-   \file
-   \brief      CAN initialization
-   \copyright  Copyright (c) Sensor-Technik Wiedemann GmbH. All rights reserved.
-*/
-//----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Jan 7, 2026 STW Technic
+ *
+ * \file       can_device_interface.h
+ * \brief      Interface for CAN Device Interface Module.
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup CanDeviceInterface CAN Device Interface
+ * @{
+ */
 
 #ifndef CAN_INIT_H
 #define CAN_INIT_H
@@ -25,7 +33,7 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-extern T_UserInterface gt_ui;
+extern T_UserInterface gt_ui; //!< Global instance of the User Interface structure.
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 

@@ -1,11 +1,10 @@
 //-----------------------------------------------------------------------------
-/* Project:   FloryTemplate_4CM
+/*
+ * Project:   FloryTemplate_4CM
  * Copyright: STW Technic (c) 2026
  * License:   use only under terms of contract / confidential
  * Created:   Jan 6, 2026 STW Technic
- */
-//-----------------------------------------------------------------------------
-/**
+ *
  * \file       alarm_handler_lib.h
  * \brief      Interface for Alarm Handler Library.
  *

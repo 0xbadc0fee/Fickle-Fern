@@ -1,14 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       can_device_interface.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 7, 2026 STW Technic
-*/
-//-----------------------------------------------------------------------------
+/**
+ * \file       can_device_interface.c
+ * \brief      AgvComms - CAN Device Interface Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup CanDeviceInterface CAN Device Interface
+ *
+ * The CAN Device Interface module provides a standardized layer for
+ * managing communications with various CAN-based peripherals and
+ * subsystems. It handles message routing, TX/RX data processing,
+ * network abstraction, and general CAN bus management.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 7, 2026 STW Technic
+ *
+ * @{
+ */
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include <stdbool.h>
@@ -32,10 +49,10 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static bool maq_CanAvailable[X_CAN_COUNT];
+static bool     maq_CanAvailable[X_CAN_COUNT]; //!< Array tracking availability status for each CAN bus
 
-T_UserInterface gt_ui;
-T_Engine gt_engine;
+T_UserInterface gt_ui;                         //!< Global instance of the User Interface structure
+T_Engine        gt_engine;                     //!< Global instance of the Engine parameters structure
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize CAN Interfaces

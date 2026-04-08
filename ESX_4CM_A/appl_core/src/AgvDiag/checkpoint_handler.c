@@ -1,14 +1,36 @@
 //-----------------------------------------------------------------------------
-/*! \file       checkpoint_handler.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
-*/
+/* Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Jan 6, 2026 STW Technic
+ */
 //-----------------------------------------------------------------------------
+/**
+ * \file       checkpoint_handler.c
+ * \brief      AgvChassis - Checkpoint Handler
+ *
+ * \addtogroup AgvDiag
+ * @{
+ * \addtogroup CheckpointHandler Checkpoint Handler
+ *
+ * The Checkpoint Handler manages the recording and verification of system
+ * checkpoints, ensuring data persistence and state recovery across
+ * mission cycles or system restarts.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
+ */
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW
@@ -42,6 +64,16 @@ T_ChkPoints_FSweeps  gt_frontSweepsCheckpoints;	  //!<Structure that holds Front
 T_ChkPoints_RTrap    gt_rotaryTrapCheckpoints;	  //!<Structure that holds Rotary Traps Checkpoints
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
+/**
+ * \brief Updates the Checkpoint Handler state machine.
+ *
+ * This function processes the current system state, evaluates if a new
+ * checkpoint needs to be written to non-volatile memory, and handles
+ * the validation of existing checkpoint integrity.
+ *
+ * \return sint16
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 update_checkpointHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -57,8 +89,5 @@ sint16 update_checkpointHandler(void)
 
     return s16_error;
 }
-
-
-
 
 //EOF

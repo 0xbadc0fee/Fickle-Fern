@@ -1,11 +1,10 @@
 //-----------------------------------------------------------------------------
-/* Project:   FloryTemplate_4CM
+/*
+ * Project:   FloryTemplate_4CM
  * Copyright: STW Technic (c) 2026
  * License:   use only under terms of contract / confidential
  * Created:   March 6, 2026 STW Technic
- */
-//-----------------------------------------------------------------------------
-/**
+ *
  * \file       lowpass_filter.h
  * \brief      Interface for Low Pass Filter Module.
  *
@@ -14,7 +13,6 @@
  * \addtogroup LowPassFilter Low Pass Filter
  * @{
  */
-//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVHELPER_LOWPASS_FILTER_H_
 #define APPL_CORE_SRC_AGVHELPER_LOWPASS_FILTER_H_

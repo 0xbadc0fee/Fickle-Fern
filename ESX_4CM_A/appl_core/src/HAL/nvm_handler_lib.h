@@ -1,15 +1,18 @@
-/*! \file       nvm_handler_lib.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 5, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Feb 5, 2026 STW Technic
+ *
+ * \file       nvm_handler_lib.h
+ * \brief      Interface for NVM Handler Library.
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup NvmHandler NVM Handler
+ * @{
+ */
 #ifndef APPL_CORE_SRC_HAL_NVM_HANDLER_LIB_H_
 #define APPL_CORE_SRC_HAL_NVM_HANDLER_LIB_H_
 
@@ -29,7 +32,10 @@
 #define NVM_FAULTS_START_ADDR    30000  //!<Start address index of the Faults Block in EEPROM
 #define NVM_FAULTS_SIZE           1000  //!<Size of the Faults Block in EEPROM
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-/*! \brief Struct for a Fault NVM Object Header**/
+/**
+ * \struct T_HeaderNVM
+ * \brief  Struct for a Fault NVM Object Header.
+ */
 typedef struct
 {
     uint32 u32_spn;         //!<SPN of Data to be stored
@@ -37,13 +43,19 @@ typedef struct
     uint8  u8_dataLength;   //!<Length of Data to be stored
 } T_HeaderNVM;
 
-/*! \brief Struct for a Fault NVM Object Data**/
+/**
+ * \struct T_DataNVM
+ * \brief  Struct for a Fault NVM Object Data.
+ */
 typedef struct
 {
     uint8 data;             //!<Stored Data
 } T_DataNVM;
 
-/*! \brief Struct for a Fault NVM Object **/
+/**
+ * \struct T_FaultNVM
+ * \brief  Struct for a Fault NVM Object.
+ */
 typedef struct
 {
     uint32 u32_spn;             //!<SPN of Object

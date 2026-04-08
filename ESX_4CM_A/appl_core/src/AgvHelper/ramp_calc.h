@@ -1,14 +1,18 @@
 //-----------------------------------------------------------------------------
-/*! \file       ramp_calc.h
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 STW Technic
+/*
+ * Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   March 6, 2026 STW Technic
+ *
+ * \file       ramp_calc.h
+ * \brief      Interface for Ramp Calculation Module.
+ *
+ * \addtogroup AgvHelper
+ * @{
+ * \addtogroup RampCalc Ramp Calculation
+ * @{
  */
-//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVHELPER_RAMP_CALC_H_
 #define APPL_CORE_SRC_AGVHELPER_RAMP_CALC_H_
@@ -22,11 +26,14 @@
 #include "hmi_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Clamp F32 Macro
+#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x)))  //!<Restricts a 32-bit floating point value to a specified range [lo, hi].
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Structure containing all relevant RAMP output information*/
+/**
+ * \struct T_RampState
+ * \brief  Structure containing all relevant RAMP output information.
+ */
 typedef struct
 {
         float32 f32_output;  //!<Current Ramped Output

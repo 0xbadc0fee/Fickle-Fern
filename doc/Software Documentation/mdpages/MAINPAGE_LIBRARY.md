@@ -3,7 +3,6 @@
 Simple overview of use/purpose.
 
 The Flory 8772 control software is an embedded application developed for STW ESX controllers.  
-It provides control of propulsion, engine systems, hydraulic subsystems, and auxiliary machine functions using a modular, function-based architecture.
 
 ---
 

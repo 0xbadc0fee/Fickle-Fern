@@ -1,15 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       hw_inputs.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2025
-    license     use only under terms of contract / confidential
-
-    created     Dec 9, 2025 kyle.boch
+/**
+ * \file       hw_inputs.c
+ * \brief      System - Hardware Inputs Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup HwInputs Hardware Inputs
+ *
+ * The Hardware Inputs module manages the physical pin assignments and
+ * direct hardware-level reading for the controller's inputs. It serves
+ * as the low-level interface connecting physical sensors, switches,
+ * and signals to the logical input handlers within the system.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2025
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Dec 9, 2025 kyle.boch
+ *
+ * @{
  */
-//-----------------------------------------------------------------------------
-
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW

@@ -1,14 +1,32 @@
 //-----------------------------------------------------------------------------
-/*! \file       nvm_handler.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 7, 2026 STW Technic
-*/
-//-----------------------------------------------------------------------------
+/**
+ * \file       nvm_handler.c
+ * \brief      AgvCore - NVM Handler Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup NvmHandler NVM Handler
+ *
+ * The NVM Handler module manages the application-specific reading, writing,
+ * and storage mapping of non-volatile memory parameters. It interfaces
+ * with the underlying NVM library to ensure machine settings, states,
+ * and fault data are properly formatted and safely preserved across
+ * power cycles.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 7, 2026 STW Technic
+ *
+ * @{
+ */
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW
@@ -39,6 +57,17 @@ T_Config_HeaderControl gt_headerConfig;    //!<Structure that holds the Joystick
 T_Config_StickBoxControl gt_stickBConfig; //!<Structure that holds the Stick Box config.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
+
+/**
+ * \brief      Initializes the Non-Volatile Memory (NVM) parameters.
+ *
+ * \details    This function handles the startup initialization of machine
+ * configuration variables, loading them from NVM storage into RAM.
+ * If the stored data is invalid or uninitialized, it applies
+ * default fallback parameters.
+ *
+ *  \return s16_error Error Code
+ */
 sint16 init_nvmParameters(void)
 {
 
@@ -61,7 +90,7 @@ sint16 init_nvmParameters(void)
  *  If the RAM/Control copy is different than the OSY, write the corresponding OSY List
  *  to NVM.
  *
- * @return
+ *  \return s16_error Error Code
  */
 sint16 write_nvmParameters(void)
 {
@@ -96,7 +125,7 @@ sint16 write_nvmParameters(void)
  * It is assumed that every nvm list defined in openSYDE has a corresponding default
  * list defined.
  *
- * @return
+ *  \return s16_error Error Code
  */
 sint16 reset_nvmParameters(void)
 {
