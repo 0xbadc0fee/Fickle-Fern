@@ -60,7 +60,7 @@ sint16 init_inputHandler(void)
             //TODO_STW: Make the diagnostic min and max NON configurable but auto detected based off Type and hardware id.
             //TODO_STW: Make the return errors distinguishable between diagnostic init error and hardware init error
             case IT_VOLTAGE:
-                s16_initError |= x_in_voltage_init( at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT,  DEFAULT_ADCINPUT_FILTER);
+                s16_initError |= x_in_voltage_init( at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].e_circuit,  DEFAULT_ADCINPUT_FILTER);
 
                 if(at_vehicleInputs[i].u8_diagEnabled)
                 {
@@ -69,7 +69,7 @@ sint16 init_inputHandler(void)
                 break;
 
             case IT_CURRENT:
-                s16_initError |= x_in_current_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT, DEFAULT_ADCINPUT_FILTER);
+                s16_initError |= x_in_current_init(at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].e_circuit, DEFAULT_ADCINPUT_FILTER);
 
                 if(at_vehicleInputs[i].u8_diagEnabled)
                 {
@@ -78,7 +78,7 @@ sint16 init_inputHandler(void)
                 break;
 
             case IT_DIGITAL:
-                s16_initError |= x_in_digital_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, DEFAULT_DIG_DEBOUNCE);
+                s16_initError |= x_in_digital_init(at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].e_circuit, X_IN_LOGIC_POSITIVE, at_vehicleInputs[i].u16_debounce);
 
                 if(at_vehicleInputs[i].u8_diagEnabled)
                 {
@@ -88,7 +88,7 @@ sint16 init_inputHandler(void)
 
             case IT_FREQ:
 
-                s16_initError |= x_in_frequency_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, DEFAULT_DIG_DEBOUNCE);
+                s16_initError |= x_in_frequency_init(at_vehicleInputs[i].u16_hardwareID,  at_vehicleInputs[i].e_circuit, X_IN_LOGIC_POSITIVE, at_vehicleInputs[i].u16_debounce);
                 if(at_vehicleInputs[i].u8_diagEnabled)
                 {
                     s16_diagError = x_in_frequency_diag (at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].u16_dti, (uint32)at_vehicleInputs[i].s32_diagMin, (uint32)at_vehicleInputs[i].s32_diagMax, 100, 9900);

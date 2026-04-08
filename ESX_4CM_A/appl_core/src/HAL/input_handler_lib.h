@@ -25,6 +25,12 @@
 #define DEFAULT_ADCINPUT_CIRCUIT  0 //!< Default ADC input circuit value
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
+/*! \brief List of all Circut Inputs **/
+typedef enum {
+    INPUT_CIRCUIT_NONE = 0,
+    INPUT_CIRCUIT_PULLUP,
+    INPUT_CURCUIT_PULLDOWN
+} E_InputCircuit;
 
 /*! \brief List of all Input Types **/
 typedef enum {
@@ -61,6 +67,8 @@ typedef struct {
     float32 f32_inputValue;         //!< Most recent Input Value
     float32 f32_prevInputValue;     //!< Previously captured input value
     uint8 mq_inputChanged;          //!< Input Changed Status
+    E_InputCircuit e_circuit;       //!< Pull configuration
+    uint16 u16_debounce;            //!< Debounce (ms)
     //-----------------------------DIAG PARAMS-------------------------------//
     uint8 u8_diagEnabled;           //!<Enable - Disable Toggle for Input Diagnostics / Alarm
     T_FloryFault t_fault;           //!<Fault Information
