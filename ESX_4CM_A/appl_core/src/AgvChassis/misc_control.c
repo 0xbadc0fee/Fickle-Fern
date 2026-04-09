@@ -9,7 +9,6 @@
  * @{
  */
 
-/* \cond INTERNAL */
 /**
  * @par Project
  * FloryTemplate_4CM
@@ -23,14 +22,7 @@
  * @par Created
  * March 6, 2026 Tiffany.Gohnert
  */
-/* \endcond */
 //-----------------------------------------------------------------------------
-
-/* -- Implementation Code -- */
-
-/** @} */ // End MiscControl
-/** @} */ // End AgvWork
-
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include <stdint.h>
