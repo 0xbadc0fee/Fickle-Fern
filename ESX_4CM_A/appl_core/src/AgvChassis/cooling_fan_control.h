@@ -32,6 +32,7 @@
 #define CF_PWM_LOW_LIMIT          (4000.0F)
 #define CF_PWM_HIGH_LIMIT         (10000.0F)
 #define CF_SAFE_PWM               (8700.0F)
+#define CF_MIN_COOL_DEMAND        (0.0F)
 #define CF_MAX_COOL_DEMAND        (100.0F)
 
 #define CF_AUTO_CLEANOUT_DELAY_MS (600000u)
@@ -53,13 +54,11 @@
 #define CF_HYD_FILTER_SAMPLE_NO   (5u)
 #define CF_HYD_FILTER_SAMPLE_MS   (100u)
 
-#define CF_FWD_RUN_RAMP           (40.0F)
-
+#define CF_FWD_RUN_RAMP           (400.0F)
 #define CF_RAMP_DOWN_TIME         (2500.0F)
 #define CF_RAMP_UP_TIME           (2500.0F)
 #define CF_STOPPED_TIME           (1500.0F)
 #define CF_REV_RUN_TIME           (10000.0F)
-
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /** \brief Checkpoints Structure - Cooling Fan Control
@@ -166,6 +165,6 @@ typedef struct
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_chkCoolingFan);
-sint16 update_CoolingFanControl(void);
+sint16 update_coolingFanControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_COOLING_FAN_CONTROL_H_ */

@@ -25,6 +25,8 @@
 #include "propulsion_control.h"
 #include "engine_starter_control.h"
 
+#include "dashboard_data_pool.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
@@ -80,8 +82,11 @@ sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_
     mt_cf.u8_cleanout_active = FALSE;
     mt_cf.u8_sequence_fault = FALSE;
 
+    mt_cf.f32_dir_cmd = CF_DIR_FORWARD;
+    mt_cf.f32_speed_cmd = CF_PWM_HIGH_LIMIT;
+
     mt_cf.e_fanstate = CF_STATE_RUN_FWD;
-    mt_cf.e_prev_fanstate = CF_STATE_RUN_FWD;
+    mt_cf.e_prev_fanstate = CF_STATE_STOPPED;
 
     s16_error += rampInit(&mt_cf.t_speed_ramp,
                            CF_FWD_RUN_RAMP,
@@ -112,7 +117,7 @@ sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 update_CoolingFanControl(void)
+sint16 update_coolingFanControl(void)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -130,8 +135,10 @@ sint16 update_CoolingFanControl(void)
     get_engineRuntime(&u32_engine_runtime);
 
     //if engine has only been running for <3.5 seconds or output fault - default fan to safe state
-    if((u8_engine_status == ENGINE_RUNNING && u32_engine_runtime <= 3500)||
-       (u8_dir_output_fault || u8_speed_output_fault))
+    if((u8_engine_status == ENGINE_OFF     ||
+        u32_engine_runtime <= 3500)        ||
+        u8_dir_output_fault                ||
+        u8_speed_output_fault)
     {
         set_fanSafeState();
     }
@@ -139,11 +146,14 @@ sint16 update_CoolingFanControl(void)
     {
         //Calculate Cooling Demand
         calc_coolingDemand();
+
+        //Update Reversal State Machine
+        update_coolingFanReversal();
+
     }
+    gt_Dashboard_DataPoolValues.t_GeneralTestingValues.u8_test1 = (uint8)mt_cf.e_fanstate;
 
 
-    //Update Reversal State Machine
-    update_coolingFanReversal();
 
     //ramp speed output
     rampCalc(mt_cf.f32_speed_cmd, &mt_cf.t_speed_ramp);
@@ -151,6 +161,8 @@ sint16 update_CoolingFanControl(void)
     // Hardware outputs
     set_outputValue("COOL_FAN_SPEED",      mt_cf.t_speed_ramp.f32_output);
     set_outputValue("COOL_FAN_DIRECTION",  mt_cf.f32_dir_cmd);
+
+    gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_test3 = mt_cf.t_speed_ramp.f32_output;
 
     // FR-7.15 CAN/display outputs
     *(mt_cf.pu16_disp_hyd_oil_temp_degC)   = mt_cf.f32_hydoil_temp;
@@ -163,7 +175,7 @@ sint16 update_CoolingFanControl(void)
     return s16_error;
 }
 
-void calc_coolingDemand()
+void calc_coolingDemand(void)
 {
     sint16 s16_error = C_NO_ERR;
     uint8 u8_hydoil_fault = 0;
@@ -178,9 +190,10 @@ void calc_coolingDemand()
     {
         get_inputValue("HYD_OIL_TEMP", &mt_cf.f32_hydoil_temp);
     }
+
+
     s16_error += movingAdvFlt(&mt_cf.t_hyd_oil_temp_filt, mt_cf.f32_hydoil_temp);
     mt_cf.f32_hydoil_temp = mt_cf.t_hyd_oil_temp_filt.f32_out;
-
 
     if((mt_cf.f32_hydoil_temp  > CF_FAULT_TEMP)||
        (mt_cf.f32_coolant_temp > CF_FAULT_TEMP)||
@@ -194,15 +207,15 @@ void calc_coolingDemand()
         mt_cf.f32_coolant_cmd = ((mt_cf.f32_coolant_temp - CF_COOLANT_MIN_C) * (CF_MAX_COOL_DEMAND)) /
                                  (CF_COOLANT_MAX_C - CF_COOLANT_MIN_C);
 
-        mt_cf.f32_intake_cmd = ((mt_cf.f32_coolant_temp - CF_INTAKE_MIN_C) * (CF_MAX_COOL_DEMAND)) /
+        mt_cf.f32_intake_cmd = ((mt_cf.f32_intake_temp - CF_INTAKE_MIN_C) * (CF_MAX_COOL_DEMAND)) /
                                 (CF_INTAKE_MAX_C - CF_INTAKE_MIN_C);
 
-        mt_cf.f32_hydoil_cmd = ((mt_cf.f32_coolant_temp - CF_HYDOIL_MIN_C) * (CF_MAX_COOL_DEMAND)) /
+        mt_cf.f32_hydoil_cmd = ((mt_cf.f32_hydoil_temp - CF_HYDOIL_MIN_C) * (CF_MAX_COOL_DEMAND)) /
                                 (CF_HYDOIL_MAX_C - CF_HYDOIL_MIN_C);
 
-
         //calculate the highest cooling demand from the 3 termperatures
-        calc_maxDemand (mt_cf.f32_hydoil_cmd, mt_cf.f32_intake_cmd, mt_cf.f32_hydoil_cmd, &mt_cf.f32_cooling_demand);
+        calc_maxDemand (mt_cf.f32_hydoil_cmd, mt_cf.f32_intake_cmd, mt_cf.f32_coolant_cmd, &mt_cf.f32_cooling_demand);
+        mt_cf.f32_cooling_demand = CLAMP_F32(mt_cf.f32_cooling_demand, CF_MIN_COOL_DEMAND, CF_MAX_COOL_DEMAND);
         mt_cf.pt_cp_cooling->f32_cooling_demand_pct = mt_cf.f32_cooling_demand;
 
     }
@@ -311,12 +324,14 @@ void update_coolingFanReversal()
             if(mt_cf.e_prev_fanstate == CF_STATE_RUN_FWD ||
                mt_cf.e_prev_fanstate == CF_STATE_RUN_REV )
             {
+                mt_cf.u32_ramp_down_starttime = u32_now_ms;
+
                 //Calculate the required ramp rate given the target speed
-                f32_ramp_rate = mt_cf.f32_speed_cmd / (CF_RAMP_DOWN_TIME/1000.0F);
+                f32_ramp_rate = (CF_PWM_HIGH_LIMIT - mt_cf.f32_speed_cmd) / (CF_RAMP_DOWN_TIME/1000.0F);
                 set_rampRate(&mt_cf.t_speed_ramp, f32_ramp_rate);
 
                 //set the target speed command to 0
-                mt_cf.f32_speed_cmd = 0;
+                mt_cf.f32_speed_cmd = CF_PWM_HIGH_LIMIT;
 
                 mt_cf.e_prev_fanstate = mt_cf.e_fanstate;
             }
@@ -334,6 +349,8 @@ void update_coolingFanReversal()
 
             if(mt_cf.e_prev_fanstate == CF_STATE_RAMP_DOWN)
             {
+                mt_cf.u32_stop_starttime = u32_now_ms;
+
                 //Switch the direction command of the fan when stopped.
                 mt_cf.f32_dir_cmd = (mt_cf.f32_dir_cmd == CF_DIR_FORWARD)? CF_DIR_REVERSE: CF_DIR_FORWARD;
                 mt_cf.e_prev_fanstate = mt_cf.e_fanstate;
@@ -356,7 +373,7 @@ void update_coolingFanReversal()
                                        CF_MAX_COOL_DEMAND) + CF_PWM_HIGH_LIMIT;
 
                 //Calculate the required ramp rate given the target speed
-                f32_ramp_rate = mt_cf.f32_speed_cmd / (CF_RAMP_UP_TIME/1000.0F);
+                f32_ramp_rate = (CF_PWM_HIGH_LIMIT - mt_cf.f32_speed_cmd) / (CF_RAMP_UP_TIME/1000.0F);
                 set_rampRate(&mt_cf.t_speed_ramp, f32_ramp_rate);
 
                 mt_cf.e_prev_fanstate = mt_cf.e_fanstate;
@@ -387,7 +404,7 @@ void update_coolingFanReversal()
 
             //TODO_STW: Check if CF_REV_RUN_TIME needs to be replaced with NVM Parameter
             //reverse for 10 seconds then ramp back down
-            if((u32_now_ms - mt_cf.u32_ramp_up_starttime) > CF_REV_RUN_TIME)
+            if((u32_now_ms - mt_cf.u32_rev_run_starttime) > CF_REV_RUN_TIME)
                 mt_cf.e_fanstate = CF_STATE_RAMP_DOWN;
 
             break;
