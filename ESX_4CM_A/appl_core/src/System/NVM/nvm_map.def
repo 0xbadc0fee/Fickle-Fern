@@ -7,11 +7,22 @@
 */
 
 /* Elevator Control Parameters */
-NVM_FIELD(elevatorMinSpeed, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_minSpeed, gt_elevatorConfig.u8_minSpeed)
-NVM_FIELD(elevatorMaxSpeed, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_maxSpeed, gt_elevatorConfig.u8_maxSpeed)
+NVM_FIELD(elevatorMaxCurrent, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current, gt_elevatorConfig.f32_max_current)
 
 /* Header Control Parameter */
 NVM_FIELD(hllEnable, CONFIGURATION_LIST_INDEX_HEADERCONFIG, gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable, gt_headerConfig.u8_joystick_hll_enable)
 
 /* Stickbox Control Parameter */
 NVM_FIELD(stickBoxInstalled, CONFIGURATION_LIST_INDEX_STICKBOXCONFIG, gt_Configuration_DataPoolValues.t_StickBoxConfigValues.u8_stick_box_installed, gt_stickBConfig.u8_stick_box_installed)
+
+/* PA Control Parameter */
+NVM_FIELD(paInstalled, CONFIGURATION_LIST_INDEX_POWERASSISTCONFIG, gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed, gt_paConfig.u8_power_assist_installed)
+
+/* Suction Fan Parameters */
+NVM_FIELD(sfDR, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.f32_sf_drive_ratio, gt_suctionFanConfig.f32_drive_ratio)
+NVM_FIELD(sfIncTime, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_inc_time, gt_suctionFanConfig.u8_fan_inc_time)
+NVM_FIELD(sfDecTime, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_dec_time, gt_suctionFanConfig.u8_fan_dec_time)
+
+/* MISC Control Parameter */
+NVM_FIELD(fuelHighDdb, CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_fuel_high_deadband, gt_miscConfig.u16_fuel_high_deadband)
+NVM_FIELD(filterRSTNMax, CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u8_filter_rstn_max, gt_miscConfig.u8_filter_rstn_max)

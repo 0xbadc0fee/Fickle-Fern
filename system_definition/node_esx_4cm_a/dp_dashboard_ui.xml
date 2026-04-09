@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-dp-ui-definition>
+    <file-version>1</file-version>
+    <data-pool>
+        <lists length="13">
+            <list>
+                <data-elements length="5">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="1">
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="1">
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="2">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="1">
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="4">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="10">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="8">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="5">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="4">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="14">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="1">
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="1">
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+        </lists>
+    </data-pool>
+</opensyde-dp-ui-definition>

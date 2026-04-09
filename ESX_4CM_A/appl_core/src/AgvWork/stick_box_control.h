@@ -14,7 +14,7 @@
 #define APPL_CORE_SRC_AGVWORK_STICK_BOX_CONTROL_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "stwtypes.h"
 #include "toggle_button.h"
 
@@ -34,7 +34,6 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-
 
 /** \brief Configuration Structure - Stick Box Control
  *
@@ -84,7 +83,7 @@ typedef struct
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_stickBControl(T_UserInterface *_ui, T_Config_StickBoxControl *_nvmStickBControl);
+sint16 init_stickBControl(T_CANDevices *_can_dev, T_Config_StickBoxControl *_nvmStickBControl);
 sint16 update_stickBControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_STICK_BOX_CONTROL_H_ */
