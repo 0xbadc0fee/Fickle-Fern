@@ -56,22 +56,22 @@ static T_AugerControl mt_augerc; /**< Global persistent state for Auger Cart Con
  * \return Status of the initialization process.
  * \retval C_NO_ERR Initialization successful.
  */
-sint16 init_augerControl(T_UserInterface *_ui)
+sint16 init_augerControl(T_CANDevices *_can_dev)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL))
+    if((_can_dev == NULL))
     {
         return C_WARN;
     }
 
     //populate local RX/TX pointers
-    mt_augerc.pu8_auto_command       = &_ui->t_buttonPanel.u8_b2_state;
-    mt_augerc.pu8_manual_command      = &_ui->t_buttonPanel.u8_b6_state;
+    mt_augerc.pu8_auto_command       = &_can_dev->t_buttonPanel.u8_b2_state;
+    mt_augerc.pu8_manual_command      = &_can_dev->t_buttonPanel.u8_b6_state;
 
-    mt_augerc.pu8_auto_enable_status  = &_ui->t_display.u8_auger_status;
-    mt_augerc.pu8_auto_status_indic   = &_ui->t_buttonPanel.u8_b2_lights;
-    mt_augerc.pu8_manual_status_indic = &_ui->t_buttonPanel.u8_b6_lights;
+    mt_augerc.pu8_auto_enable_status  = &_can_dev->t_display.u8_auger_status;
+    mt_augerc.pu8_auto_status_indic   = &_can_dev->t_buttonPanel.u8_b2_lights;
+    mt_augerc.pu8_manual_status_indic = &_can_dev->t_buttonPanel.u8_b6_lights;
 
     //Initialize local variables
     mt_augerc.u8_safe_state = AUGER_DISABLED; //IR-9.2 Disabled safe state

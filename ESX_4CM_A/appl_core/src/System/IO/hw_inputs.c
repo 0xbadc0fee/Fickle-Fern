@@ -53,7 +53,7 @@ T_VehicleInput tvi_hyd_oil_temp =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -77,7 +77,7 @@ T_VehicleInput tvi_relief_press =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -125,7 +125,7 @@ T_VehicleInput tvi_right_switch =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -149,7 +149,7 @@ T_VehicleInput tvi_left_switch =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -173,7 +173,7 @@ T_VehicleInput tvi_air_restrict =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -197,7 +197,7 @@ T_VehicleInput tvi_fuel_level =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -221,7 +221,7 @@ T_VehicleInput tvi_traction_valve =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -245,7 +245,7 @@ T_VehicleInput tvi_hyd_fluid_level =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -269,7 +269,7 @@ T_VehicleInput tvi_wheel_speed =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -281,8 +281,8 @@ T_VehicleInput tvi_wheel_speed =
         }
     },
     .u16_dti                = 1000,
-    .s32_diagMin            = 600,
-    .s32_diagMax            = 20000000,
+    .s32_diagMin            = 500,
+    .s32_diagMax            = 1000000,
 };
 
 T_VehicleInput tvi_park_brake =
@@ -293,7 +293,7 @@ T_VehicleInput tvi_park_brake =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -317,7 +317,7 @@ T_VehicleInput tvi_fan_speed =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -389,7 +389,7 @@ T_VehicleInput tvi_throttle_up =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -413,7 +413,7 @@ T_VehicleInput tvi_throttle_down =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,
@@ -437,7 +437,7 @@ T_VehicleInput tvi_head_pressure =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
         .u8_dm1_enable      = FALSE,

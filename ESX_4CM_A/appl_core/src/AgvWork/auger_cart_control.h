@@ -18,7 +18,7 @@
 #define APPL_CORE_SRC_AGVWORK_AUGER_CART_CONTROL_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "system.h"
 #include "stwtypes.h"
 
@@ -72,7 +72,7 @@ typedef struct
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_augerControl(T_UserInterface *_ui);
+sint16 init_augerControl(T_CANDevices *_can_dev);
 sint16 update_augerControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_AUGER_CART_CONTROL_H_ */

@@ -1,43 +1,29 @@
-//-----------------------------------------------------------------------------
-/**
- * \file       joystick_handler.h
- * \brief      AgvHMI - Joystick Handler Module
- *
- * \addtogroup System
- * @{
- * \addtogroup JoystickHandler Joystick Handler
- *
- * The Joystick Handler module manages the processing of joystick inputs.
- * It translates raw analog or CAN signals into normalized axis values,
- * handles deadbands, filtering, and maps joystick button presses to
- * actionable system commands for machine movement and implement control.
- *
- * @par Project
- * FloryTemplate_4CM
- *
- * @par Copyright
- * STW Technic (c) 2026
- *
- * @par License
- * Use only under terms of contract / confidential
- *
- * @par Created
- * Jan 7, 2026 kyle.boch
- *
- * @{
- */
+/*! \file       joystick_handler.h.h
+    \brief      <description>
+
+
+   	\implementation
+   	project     FloryTemplate_4CM
+   	copyright   STW Technic (c) 2026
+   	license     use only under terms of contract / confidential
+
+   	created     Jan 7, 2026 kyle.boch
+   	\endimplementation
+*/
 #ifndef APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 #define APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "stwtypes.h"
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define JS_BUTTON_PRESSED 0b01 //!< Joystick button pressed state
-#define JS_BUTTON_FAULT   0b11 //!< Joystick button fault state indicator
+#define JS_BUTTON_PRESSED 0b01
+#define JS_BUTTON_FAULT   0b11
+
+#define JS_MAX_Y_POS     10000
+#define JS_MIN_Y_POS     -10000
+#define JS_NEUTRAL_POS       0
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-/**
- * \struct T_JoystickJS6000
- * \brief HMI Device Structure - JS6000 Joystick
+/** \brief HMI Device Structure - JS6000 Joystick
  *
  * This structure represents all used variables that are transmitted to and
  * received from a JS6000 Joystick
@@ -46,7 +32,9 @@ typedef struct{
 
     uint8 u8_joystickActive;
 
-    sint16 s16_yPos;        //!<Y Position of Joystick (Forward - Reverse Direction)
+    uint16 u16_yPos;        //!<Y Position of Joystick (0-100%)
+    uint8  u8_fwd_status;    //!<Forward Status(Y Pos) of Joystick
+    uint8  u8_rev_status;   //!<Reverse Status (YPos) of Joystick
     uint8  u8_b1_state;     //!<Button 1 State (0 = not pressed, 1 = pressed)
     uint8  u8_b2_state;     //!<Button 2 State (0 = not pressed, 1 = pressed)
     uint8  u8_b3_state;     //!<Button 3 State (0 = not pressed, 1 = pressed)

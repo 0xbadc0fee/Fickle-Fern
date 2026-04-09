@@ -1,18 +1,14 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   March 6, 2026 STW Technic
- *
- * \file       lowpass_filter.h
- * \brief      Interface for Low Pass Filter Module.
- *
- * \addtogroup AgvHelper
- * @{
- * \addtogroup LowPassFilter Low Pass Filter
- * @{
+/*! \file       lowpass_filter.h
+    \brief      <description>
+
+    project     FloryTemplate_4CM
+    copyright   STW Technic (c) 2026
+    license     use only under terms of contract / confidential
+
+    created     March 6, 2026 STW Technic
  */
+//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVHELPER_LOWPASS_FILTER_H_
 #define APPL_CORE_SRC_AGVHELPER_LOWPASS_FILTER_H_
@@ -23,21 +19,14 @@
 //STW
 #include "stwtypes.h"
 //PROJECT
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Restricts a 32-bit floating point value to a specified range [lo, hi].
+#define CLAMP(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Clamp F32 Macro
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/**
- * @struct T_LowPassFilter
- * \brief Structure containing all relevant Low Pass Filter output information
- *
- * This structure maintains the state and parameters for a single-pole
- * low pass filter instance, allowing for persistent filtering across
- * execution cycles.
- */
+/** \brief Structure containing all relevant Low Pass Filter output information*/
 typedef struct
 {
         float32 f32_output; //!<Previous filtered output

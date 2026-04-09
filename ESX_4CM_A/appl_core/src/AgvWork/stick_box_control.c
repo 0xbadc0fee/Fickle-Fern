@@ -32,8 +32,6 @@
 #include "hw_outputs.h"
 #include "stick_box_control.h"
 
-#include "checkpoints_data_pool.h"
-
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define PROGRAM_START_DEB_MS      (3000u) /**< Program start debounce time [ms] */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
@@ -56,20 +54,21 @@ T_StickBControl mt_stick_box;
  * \return sint16 Error Code
  * \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_stickBControl(T_UserInterface *_ui, T_Config_StickBoxControl *_nvmStickBControl)
+sint16 init_stickBControl(T_CANDevices                *_can_dev,
+                          T_Config_StickBoxControl    *_nvmStickBControl)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if(_ui == NULL || _nvmStickBControl == NULL)
+    if(_can_dev == NULL || _nvmStickBControl == NULL)
     {
         return C_WARN;
     }
 
     //Populate local RX/TX pointers
-    mt_stick_box.pu8_close_button = &_ui->t_buttonPanel.u8_b7_state;
-    mt_stick_box.pu8_open_button = &_ui->t_buttonPanel.u8_b3_state;
-    mt_stick_box.pu8_close_led_status = &_ui->t_buttonPanel.u8_b7_lights;
-    mt_stick_box.pu8_open_led_status = &_ui->t_buttonPanel.u8_b3_lights;
+    mt_stick_box.pu8_close_button = &_can_dev->t_buttonPanel.u8_b7_state;
+    mt_stick_box.pu8_open_button = &_can_dev->t_buttonPanel.u8_b3_state;
+    mt_stick_box.pu8_close_led_status = &_can_dev->t_buttonPanel.u8_b7_lights;
+    mt_stick_box.pu8_open_led_status = &_can_dev->t_buttonPanel.u8_b3_lights;
 
     //Populate local copy of NVM elements
     mt_stick_box.pt_nvm_stick_control = _nvmStickBControl;
@@ -253,13 +252,10 @@ sint16 update_stickBControl(void)
         }
     }
 
-
-
     *(mt_stick_box.pu8_open_led_status) =
     (mt_stick_box.u8_closed_cmd == STICK_BOX_CMD_ON) ? 0x01u : //RED SOILD
     (mt_stick_box.u8_open_cmd == STICK_BOX_CMD_ON) ? 0x10u :  //GREEN SOLID
     0x00u;
-
 
     mt_stick_box.u8_prev_ign_on = u8_ign_on;
 

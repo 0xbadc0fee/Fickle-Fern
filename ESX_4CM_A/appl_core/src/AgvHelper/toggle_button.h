@@ -23,7 +23,7 @@
 //STW
 #include "stwtypes.h"
 //PROJECT
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -52,6 +52,6 @@ typedef struct
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 toggleButton_init(T_ToggleBtn *pt_btn, uint8 *pu8_btn_state_set, uint32 u32_deb_ms_set, uint8 u8_safe_state_set);
-sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint8 u8_faulted);
+sint16 toggleButton(T_ToggleBtn *pt_btn, uint8 u8_raw_btn, uint8 u8_reset);
 
 #endif /* APPL_CORE_SRC_AGVHELPER_TOGGLE_BUTTON_H_ */

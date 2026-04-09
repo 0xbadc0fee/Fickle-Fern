@@ -11,10 +11,10 @@
                 <name>CAN1_TX</name>
                 <comment/>
                 <data-elements length="9">
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_01_Aux1</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BNT06_ManUL</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Auger Manual Unload - Button 06 State</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -23,10 +23,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_02_Auger</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN01_Aux1</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Auxillary 1 - Button 01 State</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -35,10 +35,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_03_SB_OP</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN02_AutoUL</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Auger Auto Unload - Button 02 State</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -47,10 +47,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_04_Lights</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN03_SB_OP</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Stick Box Open - Button 03 State</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -59,10 +59,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_05_PA</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN04_Lights</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Light Selector - Button 04 State</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -71,10 +71,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_06_ManUL</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN05_PA</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Power Assist Enable - Button 05 State</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -83,10 +83,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_07_SB_CL</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN07_SB_CL</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Stick Box Close - Button 07 State</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -95,10 +95,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_08_SR</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN08_SR</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Stick Remover - Button 08 State</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -107,8 +107,8 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_State_Mux</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>MUX</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -131,22 +131,10 @@
                 <name>CAN1_RX</name>
                 <comment/>
                 <data-elements length="10">
-                    <data-element factor="1" offset="0">
-                        <name>Button_Ind_01_Aux1</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN01_IND_Aux1</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="3"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_Ind_02_Auger</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Auxillary - Button 1 LED Control</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -155,10 +143,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_Ind_03_SB_OP</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN02_IND_AutoUL</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Auger Auto Unload - Button 2 LED Control</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -167,10 +155,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_Ind_04_Lights</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN03_IND_SB_OP</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Stick Box Open - Button 3 LED Control</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -179,10 +167,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_Ind_05_PA</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN04_IND_Lights</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Light Selector - Button 4 LED Control</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -191,10 +179,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_Ind_06_ManUL</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN05_IND_PA</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Power Assist Enable - Button 5 LED Control</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -203,10 +191,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_Ind_07_SB_CL</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN06_IND_ManUL</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Auger Manual Unload - Button 6 LED Control</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -215,36 +203,48 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_Ind_08_SR</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN07_IND_SB_CL</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Stick Box Close - Button 7 LED Control</comment>
                         <min-value value="0"/>
-                        <max-value value="3"/>
+                        <max-value value="0"/>
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_LED_Mux</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN08_IND_SR</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Stick Remover - Button 8 LED Control</comment>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>BTN_BACKLIGHT</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Backlight Control</comment>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>E1_IND_MUX</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
                         <max-value value="255"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>Button_Panel_Backlight</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>

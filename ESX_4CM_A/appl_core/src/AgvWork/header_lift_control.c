@@ -63,16 +63,16 @@ T_HeaderControl mt_hdr_control;/**<Global persistent state for Header Lift Contr
  * \return sint16 Error Code
  * \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_headerControl(T_UserInterface *_ui, T_ChkPoints_Header *_chkPoints, T_Config_HeaderControl *_nvmHeaderControl)
+sint16 init_headerControl(T_CANDevices *_can_dev, T_ChkPoints_Header *_chkPoints, T_Config_HeaderControl *_nvmHeaderControl)
 {
     sint16 s16_error = C_NO_ERR;
 
     //populate local copy of TX ui elements
-    mt_hdr_control.pu8_relief_swich = &_ui->t_display.u8_relief_switch_status;
+    mt_hdr_control.pu8_relief_swich = &_can_dev->t_display.u8_relief_switch_status;
 
     //populate local copy of RX ui elements
-    mt_hdr_control.pu8_joy_lift_header = &_ui->t_joystick.u8_b5_state;
-    mt_hdr_control.pu8_joy_lower_header = &_ui->t_joystick.u8_b6_state;
+    mt_hdr_control.pu8_joy_lift_header = &_can_dev->t_joystick.u8_b5_state;
+    mt_hdr_control.pu8_joy_lower_header = &_can_dev->t_joystick.u8_b6_state;
 
     //populate local copy of NVM elements
     mt_hdr_control.pt_nvm_hdr_control = _nvmHeaderControl;

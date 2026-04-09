@@ -46,7 +46,8 @@
 #include "cleaning_chains_control.h"
 #include "hw_inputs.h"
 #include "hw_outputs.h"
-//#include "propulsion_control.h" //TODO_STW Connect to Propulsion
+#include "propulsion_control.h"
+
 
 // -- Defines ------------------------------------------------------------------------------------------------------
 
@@ -63,18 +64,18 @@ static T_RotaryTrapControl mt_rotary_trap;/**< Global persistent state for Rotar
  *
  *  \return s16_error Error code
  */
-sint16 init_rotaryTrapControl(T_UserInterface *_ui, T_ChkPoints_RTrap *_chkRotaryTrap)
+sint16 init_rotaryTrapControl(T_CANDevices *_can_dev, T_ChkPoints_RTrap *_chkRotaryTrap)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_chkRotaryTrap == NULL))
+    if((_can_dev == NULL) || (_chkRotaryTrap == NULL))
        {
            return C_WARN;
        }
 
     // Populate local RX pointers
-    mt_rotary_trap.pu8_trap_speed_increase = &_ui->t_joystick.u8_b3_state;
-    mt_rotary_trap.pu8_trap_speed_range = &_ui->t_display.u8_trap_speed_range;
+    mt_rotary_trap.pu8_trap_speed_increase = &_can_dev->t_joystick.u8_b3_state;
+    mt_rotary_trap.pu8_trap_speed_range = &_can_dev->t_display.u8_trap_speed_range;
 
     //populate local copy of checkpoints
     mt_rotary_trap.pt_cp_rotarytrap = _chkRotaryTrap;
@@ -104,7 +105,6 @@ sint16 update_rotaryTrapControl(void)
     float32 f32_wheel_speed_mph = 0.0F;
     float32 f32_target_cmd_pct = ROTARY_TRAP_DISABLED;
     float32 f32_final_cmd_pct = ROTARY_TRAP_DISABLED;
-    float32 f32_pwm_output_pct = ROTARY_TRAP_PWM_SAFE_STATE;
     float32 f32_range_min = ROTARY_TRAP_LOW_MIN;
     float32 f32_range_max = ROTARY_TRAP_LOW_MAX;
 
@@ -117,40 +117,43 @@ sint16 update_rotaryTrapControl(void)
     }
 
     // FR-4.1 Shaft Drive
-    getShaftDriveStatus(&u8_shaft_drive);
+    get_shaftDriveStatus(&u8_shaft_drive);
 
     // FR-4.2 Trap Speed Increase
     u8_trap_speed_increase = (*(mt_rotary_trap.pu8_trap_speed_increase) != FALSE) ? TRUE : FALSE;
 
     // FR-4.3 Wheel Speed
-    //getWheelSpeedMph(&f32_wheel_speed_mph); //TODO_STW Connect to Propulsion
+    get_wheelSpeed(&f32_wheel_speed_mph);
 
     // FR-4.4 Range
     u8_range = *(mt_rotary_trap.pu8_trap_speed_range);
 
     // Select range (IR-4.2 fallback = no change)
-    if(u8_range == ROTARY_TRAP_RANGE_LOW)
+    switch(u8_range)
     {
-        f32_range_min = ROTARY_TRAP_LOW_MIN;
-        f32_range_max = ROTARY_TRAP_LOW_MAX;
-    }
-    else if(u8_range == ROTARY_TRAP_RANGE_MED)
-    {
-        f32_range_min = ROTARY_TRAP_MED_MIN;
-        f32_range_max = ROTARY_TRAP_MED_MAX;
-    }
-    else if(u8_range == ROTARY_TRAP_RANGE_MAX)
-    {
-        f32_range_min = ROTARY_TRAP_MAX_MIN;
-        f32_range_max = ROTARY_TRAP_MAX_MAX;
-    }
-    else
-    {
-        // IR-4.2 no change
-        f32_target_cmd_pct = mt_rotary_trap.t_trap_ramp.f32_output;
-        s16_error += C_WARN;
+        case ROTARY_TRAP_RANGE_LOW:
+            f32_range_min = ROTARY_TRAP_LOW_MIN;
+            f32_range_max = ROTARY_TRAP_LOW_MAX;
+            break;
+
+        case ROTARY_TRAP_RANGE_MED:
+            f32_range_min = ROTARY_TRAP_MED_MIN;
+            f32_range_max = ROTARY_TRAP_MED_MAX;
+            break;
+
+        case ROTARY_TRAP_RANGE_MAX:
+            f32_range_min = ROTARY_TRAP_MAX_MIN;
+            f32_range_max = ROTARY_TRAP_MAX_MAX;
+            break;
+
+        default:
+            f32_target_cmd_pct = mt_rotary_trap.t_trap_ramp.f32_output;
+            s16_error += C_WARN;
+            break;
+
     }
 
+    //set the trap speed ramping object limits
     mt_rotary_trap.t_trap_ramp.f32_min_limit = f32_range_min;
     mt_rotary_trap.t_trap_ramp.f32_max_limit = f32_range_max;
 
@@ -172,10 +175,8 @@ sint16 update_rotaryTrapControl(void)
         // Normal scaling path
         else if(f32_wheel_speed_mph >= 0)
         {
-            f32_target_cmd_pct = CLAMP_F32(f32_wheel_speed_mph,
-            f32_range_min,
-            f32_range_max);
-
+            f32_wheel_speed_mph = CLAMP_F32(f32_wheel_speed_mph, MIN_FIELD_GS, MAX_FIELD_GS);
+            f32_target_cmd_pct = (((f32_range_max - f32_range_min) / MAX_FIELD_GS)*f32_wheel_speed_mph) + f32_range_min;
         }
         else
         {
@@ -187,23 +188,12 @@ sint16 update_rotaryTrapControl(void)
     }
 
     //Publish checkpoints
-    mt_rotary_trap.pt_cp_rotarytrap->u8_checkpoint1 = f32_target_cmd_pct;
+    mt_rotary_trap.pt_cp_rotarytrap->f32_trap_target_cmd = f32_target_cmd_pct;
+
 
     // FR-4.8 Ramp
     s16_error += rampCalc(f32_target_cmd_pct, &mt_rotary_trap.t_trap_ramp);
     f32_final_cmd_pct = mt_rotary_trap.t_trap_ramp.f32_output;
-
-    // FR-4.9 PWM conversion
-    if(f32_final_cmd_pct <= 0.0F)
-    {
-        f32_pwm_output_pct = ROTARY_TRAP_PWM_SAFE_STATE;
-    }
-    else
-    {
-        f32_pwm_output_pct = ROTARY_TRAP_PWM_THRESHOLD_CURRENT +
-        ((f32_final_cmd_pct * 0.01F) *
-        (ROTARY_TRAP_PWM_END_CURRENT - ROTARY_TRAP_PWM_THRESHOLD_CURRENT));
-    }
 
     // IR-4.3 Output fault
     if((get_outputFaultStatus("ROTARY_TRAP", &u8_output_fault) != C_NO_ERR) ||
@@ -213,7 +203,7 @@ sint16 update_rotaryTrapControl(void)
         return C_WARN;
     }
 
-    s16_error += set_outputValue("ROTARY_TRAP", f32_pwm_output_pct);
+    s16_error += set_outputValue("ROTARY_TRAP", f32_final_cmd_pct);
 
     return s16_error;
 }

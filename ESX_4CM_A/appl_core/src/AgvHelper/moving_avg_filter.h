@@ -1,18 +1,14 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   March 6, 2026 STW Technic
- *
- * \file       moving_avg_filter.h
- * \brief      Interface for Moving Average Filter Module.
- *
- * \addtogroup AgvHelper
- * @{
- * \addtogroup MovingAvgFilter Moving Average Filter
- * @{
+/*! \file       moving_avg_filter.h
+    \brief      <description>
+
+    project     FloryTemplate_4CM
+    copyright   STW Technic (c) 2026
+    license     use only under terms of contract / confidential
+
+    created     March 6, 2026 STW Technic
  */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVHELPER_MOVING_ADV_FILTER_H_
 #define APPL_CORE_SRC_AGVHELPER_MOVING_ADV_FILTER_H_
 
@@ -22,21 +18,14 @@
 //STW
 #include "stwtypes.h"
 //PROJECT
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Restricts a 32-bit floating point value to a specified range [lo, hi].
+#define CLAMP(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Clamp F32 Macro
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/**
- * @struct T_MoveAvgFilter
- * \brief Structure containing all relevant Moving Average Parameters
- *
- * This structure manages a circular buffer and timing logic to calculate
- * a running average. It supports configurable sample rates and window sizes,
- * with built-in fault handling to force a safe state.
- */
+/** \brief Structure containing all relevant Moving Average Parameters*/
 typedef struct
 {
         float32 * pf32_buf; //!<Caller buffer

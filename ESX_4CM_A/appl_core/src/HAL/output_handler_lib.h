@@ -41,7 +41,7 @@
 #define DEFAULT_PID_P             6000              //!< Default proportional gain in 0.001 KP
 #define DEFAULT_PID_I             40                //!< Default integral time Ti in ms
 #define DEFAULT_PID_D             3                 //!< Default derivative time Td in ms
-#define DEFAULT_PID_SAMPLETIME    20                //!< Default PID loop sample time in ms
+#define DEFAULT_PID_SAMPLETIME    10                //!< Default PID loop sample time in ms
 #define DEFAULT_PID_DUTYCYCLE_MIN 0                 //!< Default PID minimum dutycycle in 0.01%
 #define DEFAULT_PID_DUTYCYCLE_MAX 10000             //!< Default PID maximum dutycyle in 0.01%
 

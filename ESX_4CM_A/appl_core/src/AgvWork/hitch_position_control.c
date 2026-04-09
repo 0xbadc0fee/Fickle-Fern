@@ -63,18 +63,18 @@ static T_HitchPosControl mt_hp_control;/**< Global persistent state for Hitch Po
  * \return sint16 Error Code
  * \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_hitchPosControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHitchPosControl)
+sint16 init_hitchPosControl(T_CANDevices *_can_devs, T_Config_HeaderControl *_nvmHitchPosControl)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_nvmHitchPosControl == NULL))
+    if((_can_devs == NULL) || (_nvmHitchPosControl == NULL))
     {
         return C_WARN;
     }
 
     //populate local copy of RX ui elements
-    mt_hp_control.pu8_joy_hitch_in = &_ui->t_joystick.u8_b5_state;
-    mt_hp_control.pu8_joy_hitch_out = &_ui->t_joystick.u8_b6_state;
+    mt_hp_control.pu8_joy_hitch_in = &_can_devs->t_joystick.u8_b5_state;
+    mt_hp_control.pu8_joy_hitch_out = &_can_devs->t_joystick.u8_b6_state;
 
     //populate local copy of NVM elements
     mt_hp_control.pt_nvm_hp_control = _nvmHitchPosControl;

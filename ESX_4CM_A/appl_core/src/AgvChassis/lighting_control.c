@@ -62,22 +62,22 @@ static T_LightControl mt_lighting;/**< Global persistent state for Lights Contro
  * \return sint16 Error Code
  * \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_lightControl(T_UserInterface *_ui)
+sint16 init_lightControl(T_CANDevices *_can_devs)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if(_ui == NULL)
+    if(_can_devs == NULL)
     {
         return C_WARN;
     }
 
     //populate local copy of TX ui elements
-    mt_lighting.pu8_lgt_select_mode = &_ui->t_buttonPanel.u8_b4_lights;
-    mt_lighting.pu8_head_status = &_ui->t_display.u8_headlights_status;
-    mt_lighting.pu8_work_status = &_ui->t_display.u8_worklights_status;
+    mt_lighting.pu8_lgt_select_mode = &_can_devs->t_buttonPanel.u8_b4_lights;
+    mt_lighting.pu8_head_status = &_can_devs->t_display.u8_headlights_status;
+    mt_lighting.pu8_work_status = &_can_devs->t_display.u8_worklights_status;
 
     //FR 16.1 Populate local RX pointers from Display
-    mt_lighting.pu8_light_value = &_ui->t_buttonPanel.u8_b4_state;
+    mt_lighting.pu8_light_value = &_can_devs->t_buttonPanel.u8_b4_state;
 
     //Initialize local variables FR-16.2 Default State OFF
     mt_lighting.u8_work_status = WORK_OFF;

@@ -38,10 +38,10 @@
 //STW
 #include "stwerrors.h"
 #include "stwtypes.h"
-#include "../HAL/STW_4CM_HAL/system.h"
 //PROJECT
 #include "lowpass_filter.h"
 #include "math.h"
+#include "system.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */

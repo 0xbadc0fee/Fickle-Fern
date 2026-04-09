@@ -62,18 +62,18 @@ static T_FrontSweepsControl mt_front_sweeps; /**<Global persistent state for Fro
  * \return sint16 Error Code
  * \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_frontSweepsControl(T_UserInterface *_ui, T_ChkPoints_FSweeps *_chkFrontSweeps)
+sint16 init_frontSweepsControl(T_CANDevices *_can_dev, T_ChkPoints_FSweeps *_chkFrontSweeps)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_chkFrontSweeps == NULL))
+    if((_can_dev == NULL) || (_chkFrontSweeps == NULL))
     {
         return C_WARN;
     }
 
     //populate local RX pointers
-    mt_front_sweeps.pu8_drum_speed_request   = &_ui->t_display.u8_drum_speed_request;
-    mt_front_sweeps.pu8_drum_speed_enable   = &_ui->t_display.u8_drum_speed_enable;
+    mt_front_sweeps.pu8_drum_speed_request   = &_can_dev->t_display.u8_drum_speed_request;
+    mt_front_sweeps.pu8_drum_speed_enable   = &_can_dev->t_display.u8_drum_speed_enable;
 
     //populate local copy of checkpoints
     mt_front_sweeps.pt_cp_frontsweeps = _chkFrontSweeps;
@@ -123,7 +123,7 @@ sint16 update_frontSweepsControl(void)
         f32_req = (float32)(*(mt_front_sweeps.pu8_drum_speed_request))* 100.0f;
     }
 
-    getShaftDriveStatus(&u8_shaft_drive);
+    get_shaftDriveStatus(&u8_shaft_drive);
 
     // FR-3.4 Sweep Target Speed to zero when Shaft Drive Enable or Drum V-Sweep Enable is disabled.
     if((u8_enable == TRUE) && (u8_shaft_drive == TRUE))
@@ -136,7 +136,7 @@ sint16 update_frontSweepsControl(void)
     }
 
     //Publish checkpoints
-    mt_front_sweeps.pt_cp_frontsweeps->u8_checkpoint1 = *(mt_front_sweeps.pu8_drum_speed_request);
+    mt_front_sweeps.pt_cp_frontsweeps->u8_speed_cmd = *(mt_front_sweeps.pu8_drum_speed_request);
 
     // FR-3.5 Ramp toward target
     s16_error += rampCalc(f32_target_cmd_pct, &mt_front_sweeps.t_sweeps_ramp);

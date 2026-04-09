@@ -69,18 +69,18 @@ static T_CChainsControl mt_cchains;
  * \return Execution status.
  * \retval C_NO_ERR Initialization successful.
  */
-sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleaningShaft)
+sint16 init_cChainsControl(T_CANDevices *_can_dev, T_ChkPoints_CChains *_chkCleaningShaft)
 {
     sint16 s16_error = C_NO_ERR;
 
-    if((_ui == NULL) || (_chkCleaningShaft == NULL))
+    if((_can_dev == NULL) || (_chkCleaningShaft == NULL))
     {
         return C_WARN;
     }
 
     //populate local RX/TX pointers
-    mt_cchains.pu8_shaft_drive_command   = &_ui->t_joystick.u8_b2_state;
-    mt_cchains.pu8_shaft_drive_value = &_ui->t_display.u8_shaft_drive_status;
+    mt_cchains.pu8_shaft_drive_command   = &_can_dev->t_joystick.u8_b2_state;
+    mt_cchains.pu8_shaft_drive_value = &_can_dev->t_display.u8_shaft_drive_status;
 
     //populate local copy of checkpoints
     mt_cchains.pt_cp_cchains = _chkCleaningShaft;
@@ -92,12 +92,10 @@ sint16 init_cChainsControl(T_UserInterface *_ui, T_ChkPoints_CChains *_chkCleani
     mt_cchains.u8_shaft_drive_latched = SHAFT_DRIVE_OFF;
 
     //Initialize toggle button helper
-    s16_error += toggleButton_init(
-    &mt_cchains.t_btn_shaft,
-    &mt_cchains.u8_shaft_drive_latched,
-    250u,
-    SHAFT_DRIVE_OFF
-    );
+    s16_error += toggleButton_init( &mt_cchains.t_btn_shaft,
+                                    &mt_cchains.u8_shaft_drive_latched,
+                                    250u,
+                                    SHAFT_DRIVE_OFF);
 
     return s16_error;
 }
@@ -134,6 +132,7 @@ sint16 update_cChainsControl(void)
     if(mt_cchains.pu8_shaft_drive_command != NULL)
     {
         u8_shaft_cmd = ((*mt_cchains.pu8_shaft_drive_command) == 1u);
+        u8_btn_reset = FALSE;
     }
     else
     {
@@ -188,13 +187,15 @@ sint16 update_cChainsControl(void)
     set_outputValue("SHAFT_PUMP", (float32)(*mt_cchains.pu8_shaft_drive_value));
 
     //Publish checkpoints
-    mt_cchains.pt_cp_cchains->u8_checkpoint1 = *mt_cchains.pu8_shaft_drive_value;
+    mt_cchains.pt_cp_cchains->u8_status = *mt_cchains.pu8_shaft_drive_value;
 
     mt_cchains.u8_prev_ign_on = u8_ign_on;
 
     return s16_error;
 
 }
+
+
 /** \brief Get AgvWork - Shaft Drive Status
  *
  *  This function
@@ -205,11 +206,11 @@ sint16 update_cChainsControl(void)
  *
  *  \return boolean
  */
-void getShaftDriveStatus(uint8 *pu8_shaft_drive_status)
+void get_shaftDriveStatus(uint8 *pu8_shaft_drive_status)
 {
-    if(mt_cchains.pu8_shaft_drive_value != NULL && pu8_shaft_drive_status != NULL)
+    if(pu8_shaft_drive_status != NULL)
     {
-        *pu8_shaft_drive_status = *mt_cchains.pu8_shaft_drive_value;
+        *pu8_shaft_drive_status = mt_cchains.u8_shaft_drive_latched;
     }
 }
 
