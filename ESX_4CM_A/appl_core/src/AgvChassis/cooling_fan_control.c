@@ -25,7 +25,6 @@
 #include "propulsion_control.h"
 #include "engine_starter_control.h"
 
-#include "dashboard_data_pool.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
@@ -151,9 +150,6 @@ sint16 update_coolingFanControl(void)
         update_coolingFanReversal();
 
     }
-    gt_Dashboard_DataPoolValues.t_GeneralTestingValues.u8_test1 = (uint8)mt_cf.e_fanstate;
-
-
 
     //ramp speed output
     rampCalc(mt_cf.f32_speed_cmd, &mt_cf.t_speed_ramp);
@@ -161,8 +157,6 @@ sint16 update_coolingFanControl(void)
     // Hardware outputs
     set_outputValue("COOL_FAN_SPEED",      mt_cf.t_speed_ramp.f32_output);
     set_outputValue("COOL_FAN_DIRECTION",  mt_cf.f32_dir_cmd);
-
-    gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_test3 = mt_cf.t_speed_ramp.f32_output;
 
     // FR-7.15 CAN/display outputs
     *(mt_cf.pu16_disp_hyd_oil_temp_degC)   = mt_cf.f32_hydoil_temp;
