@@ -25,21 +25,25 @@
 #include "moving_avg_filter.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define FILTER_MINDER_RAW_MIN                 (0.0F)
-#define FILTER_MINDER_RAW_MAX                 (5000.0F)
-#define FILTER_MINDER_FAULT_THRESHOLD         (4.0F)
+#define FM_RAW_MIN                 (500.0F)
+#define FM_RAW_MAX                 (4500.0F)
+#define FM_SERVICE_THRESH          (85.0F)
+#define FM_FAULT_THRESH            (5.0F)
+
 #define FILTER_MINDER_SAFE_STATE                    (0.0F)
 #define FILTER_MINDER_BUF_LEN                       (8u)
 #define FILTER_MINDER_FILTER_SAFE_OUTPUT            (0.0F)
 #define FILTER_MINDER_FILTER_SAMPLE_NO              (5u)
 #define FILTER_MINDER_FILTER_SAMPLE_MS              (250u)
 // Fuel
-#define FUEL_RAW_MIN                       (0.0F)
-#define FUEL_RAW_MAX                       (5000.0F)
+#define FUEL_RAW_MIN                       (500.0F)
+#define FUEL_RAW_MAX                       (4500.0F)
+#define FUEL_LOW_DELAY_MS                  (1000u)
+#define FUEL_LOW_SETPOINT                  (7.0F)
 
 #define FUEL_FAULT_THRESHOLD               (6.25F)
-#define FUEL_LOW_SETPOINT                  (7.0F)
-#define FUEL_LOW_DELAY_MS                  (5000u)
+
+
 #define FUEL_SAFE_STATE                    (0.0F)
 #define FUEL_BUF_LEN                       (8u)
 #define FUEL_FILTER_SAFE_OUTPUT            (0.0F)
@@ -119,6 +123,7 @@ typedef struct
 
         //Local Control Variables
         float32 f32_last_fuel_gauge;//!<Last Fuel Gauge
+        uint8 u8_prev_clear_cmd;
 
         //Local Filter Variables
         T_MoveAvgFilter t_fuel_level_flt;//!<Moving Average Filter Fuel Level

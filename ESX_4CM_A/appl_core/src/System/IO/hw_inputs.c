@@ -104,7 +104,8 @@ T_VehicleInput tvi_head_limit =
 T_VehicleInput tvi_right_switch =
 {
     .Name_Description       = "RIGHT_SWITCH",
-    .u16_hardwareID         = X_IN_IDA35V_3,
+    //.u16_hardwareID         = X_IN_IDA35V_3,
+    .u16_hardwareID         = X_IN_IDA5V_2,
     .e_inputType            = IT_DIGITAL,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
@@ -128,7 +129,8 @@ T_VehicleInput tvi_right_switch =
 T_VehicleInput tvi_left_switch =
 {
     .Name_Description       = "LEFT_SWITCH",
-    .u16_hardwareID         = X_IN_IDA35V_4,
+    //.u16_hardwareID         = X_IN_IDA35V_4,
+    .u16_hardwareID         = X_IN_IDA5V_1,
     .e_inputType            = IT_DIGITAL,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
@@ -152,7 +154,8 @@ T_VehicleInput tvi_left_switch =
 T_VehicleInput tvi_air_restrict =
 {
     .Name_Description       = "AIR_RESTRICT",
-    .u16_hardwareID         = X_IN_IDA5V_1,
+    //.u16_hardwareID         = X_IN_IDA5V_1,
+    .u16_hardwareID         = X_IN_IDA35V_4,
     .e_inputType            = IT_VOLTAGE,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
@@ -176,7 +179,8 @@ T_VehicleInput tvi_air_restrict =
 T_VehicleInput tvi_fuel_level =
 {
     .Name_Description       = "FUEL_LEVEL",
-    .u16_hardwareID         = X_IN_IDA5V_2,
+    //.u16_hardwareID         = X_IN_IDA5V_2,
+    .u16_hardwareID         = X_IN_IDA35V_3,
     .e_inputType            = IT_VOLTAGE,
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,

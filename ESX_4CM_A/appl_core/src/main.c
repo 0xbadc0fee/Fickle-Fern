@@ -119,8 +119,8 @@ int main(void)
         s16_Error += init_suctionFanControl   (&gt_can_devs, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
         s16_Error += init_engineStarterControl(&gt_can_devs, &gt_engineStarterCheckpoints);
         s16_Error += init_throttleControl     (&gt_can_devs, &gt_throttleCheckpoints);
-        //s16_Error +=init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
-        //s16_Error +=init_miscControl		  (&gt_can_devs, &gt_miscCheckpoints, &gt_miscConfig);
+        s16_Error += init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
+        s16_Error += init_miscControl		  (&gt_can_devs, &gt_miscCheckpoints, &gt_miscConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -149,8 +149,8 @@ int main(void)
         update_propulsionControl();
         update_engineStarterControl();
         update_throttleControl();
-        //update_CoolingFanControl();
-        //update_miscControl();
+        update_coolingFanControl();
+        update_miscControl();
 
         //Run AgvWork Controls
         update_elevatorControl();
