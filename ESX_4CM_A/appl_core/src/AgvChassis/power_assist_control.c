@@ -1,13 +1,30 @@
 //-----------------------------------------------------------------------------
-/*! \file       power_assist_control.c
-    \brief      <description>
-
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 24, 2026 t.gohn
-*/
+/**
+ * \file       power_assist_control.c
+ * \brief      AgvChassis - Power Assist Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup PowerAssistControl Power Assist Control
+ *
+ * The Power Assist Control Module manages auxiliary power systems, such as
+ * steering or traction assist, optimizing power distribution based on operator
+ * inputs and machine load conditions.
+ *
+ * @par Project
+ * Flory_8772-4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 24, 2026 t.gohn
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -23,11 +40,13 @@
 #include "propulsion_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
+#define PROGRAM_START_DEB_MS      (3000u) //!< Program start debounce time in milliseconds (3 seconds)
+
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_PowerAssistControl mt_power_assist;
+static T_PowerAssistControl mt_power_assist;//!< Module-local instance of the power assist control state structure.
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /** \brief Initialize AgvWork - Power Assist Control

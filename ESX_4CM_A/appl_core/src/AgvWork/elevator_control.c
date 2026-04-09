@@ -1,12 +1,30 @@
 //-----------------------------------------------------------------------------
-/*! \file       elevator_control.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
+/**
+ * \file       elevator_control.c
+ * \brief      AgvWork - Elevator Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup ElevatorControl Elevator Control
+ *
+ * This module manages the operation of the vehicle's elevator system. It
+ * processes operator inputs to control elevator engagement, speed adjustments,
+ * and ensures safe operation through integrated interlock logic and state
+ * monitoring.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -25,8 +43,6 @@
 #include "hw_outputs.h"
 #include "fault_handler.h"
 #include "system.h"
-
-
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */

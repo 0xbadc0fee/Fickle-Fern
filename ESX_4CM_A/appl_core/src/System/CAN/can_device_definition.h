@@ -1,15 +1,24 @@
-/*! \file      can_device_definition.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Jan 7, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       can_device_definition.h
+ * \brief      System - CAN Device Network Definitions
+ *
+ * \addtogroup System
+ * @{
+ * \defgroup CanDeviceDefinition CAN Device Definition
+ * \brief This header defines the network configuration, source addresses,
+ * and hardware abstraction layers for all CAN-based peripherals in the system.
+ * @{
+ *
+ * \implementation
+ * project     FloryTemplate_4CM
+ * copyright   STW Technic (c) 2026
+ * license     use only under terms of contract / confidential
+ *
+ * created     Jan 7, 2026 kyle.boch
+ * \endimplementation
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_CAN_CANDEV_DEF_H_
 #define APPL_CORE_SRC_CAN_CANDEV_DEF_H_
 
@@ -21,7 +30,14 @@
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Structure to contain all CAN UI Elements for the 8772 **/
+/**
+ * \struct T_CANDevices
+ * \brief System - CAN UI and Engine Device Container
+ *
+ * This structure aggregates all CAN-based hardware interface structures
+ * utilized by the 8772 Harvester application, including user interface
+ * peripherals and the primary engine controller.
+ */
 typedef struct
 {
         //UI Devices

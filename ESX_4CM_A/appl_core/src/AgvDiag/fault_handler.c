@@ -1,10 +1,4 @@
 //-----------------------------------------------------------------------------
-/* * Project:   Flory_8772-4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Feb 20, 2026 kyle.boch
- */
-//-----------------------------------------------------------------------------
 /**
  * \file       fault_handler.c
  * \brief      AgvDiag - Fault Handler
@@ -36,20 +30,22 @@
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW
-//PROJECT
 #include "stwtypes.h"
 #include "stwerrors.h"
+//PROJECT
 #include "fault_handler.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-
 /* -- Types -------------------------------------------------------------------------------------------------------- */
-
-
-
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
-
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
+
+/**
+ * \brief Logic fault definition for the Elevator system.
+ * This structure defines the J1939 diagnostic parameters (SPN/FMI) for
+ * elevator-related logic faults, specifically handling current/voltage
+ * monitoring via FMI 5 and 6.
+ */
 T_FloryFault elevatorLogicFault1 =
 {
     .u8_dm1_enable = TRUE,
@@ -62,6 +58,17 @@ T_FloryFault elevatorLogicFault1 =
 };
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
+
+/**
+ * \brief Initializes the system fault handling and alarm management.
+ *
+ * This function registers logic-based faults (such as elevator faults) into the
+ * global fault list and initializes the J1939 DM1 alarm handler for
+ * diagnostic reporting.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 init_faultHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -75,6 +82,15 @@ sint16 init_faultHandler(void)
     return s16_error;
 }
 
+/**
+ * \brief Updates the active state of diagnostic alarms and faults.
+ *
+ * This function cyclically updates the DM1 alarm handler to process
+ * active diagnostic trouble codes (DTCs) and maintain J1939 communication status.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 update_faultHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -85,8 +101,16 @@ sint16 update_faultHandler(void)
     return s16_error;
 }
 
-
-
+/**
+ * \brief Resets all active faults and diagnostic counters across the machine.
+ *
+ * This function performs a comprehensive clear of all input, output, and
+ * logic-based faults. Additionally, it resets the J1939 DM1 occurrence
+ * counters and clears active dashboard lamps.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 clear_machineFaults(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -100,9 +124,5 @@ sint16 clear_machineFaults(void)
 
     return s16_error;
 }
-
-
-
-
 
 //EOF

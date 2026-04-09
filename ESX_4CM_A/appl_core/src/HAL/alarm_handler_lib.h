@@ -1,16 +1,29 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Jan 6, 2026 STW Technic
- *
+/**
  * \file       alarm_handler_lib.h
- * \brief      Interface for Alarm Handler Library.
+ * \brief      HAL - Alarm Handler Library
  *
  * \addtogroup HAL
  * @{
  * \addtogroup AlarmHandler Alarm Handler
+ *
+ * The Alarm Handler Library manages the detection, prioritization, and
+ * reporting of system-wide faults. It maintains an active alarm list and
+ * coordinates diagnostic information for the operator display and
+ * logging systems.
+  *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
  * @{
  */
 //-----------------------------------------------------------------------------
@@ -22,10 +35,13 @@
 #include "osy_app_j1939.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define MAX_LOGIC_FAULTS 200
-#define MAX_NUM_FMI 10
+#define MAX_LOGIC_FAULTS                (200u)      //!< Maximum number of tracked logic faults in the system
+#define MAX_NUM_FMI                     (10u)       //!< Maximum number of FMIs allowed per Suspect Parameter Number (SPN)
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-/*! \brief List of all DM1 Lamp Types **/
+/**
+ * \enum E_LampID
+ * \brief List of all J1939 DM1 Lamp Types and flash states.
+ */
 typedef enum {
     e_AMBER_WARN = 0,
     e_AMBER_FLASH,
@@ -38,6 +54,12 @@ typedef enum {
     e_OSY_NUM_LAMPS
 } E_LampID;
 
+/**
+ * \struct T_FMI
+ * \brief Failure Mode Identifier (FMI) status tracking.
+ * * This structure tracks the individual active states and history
+ * of a specific FMI associated with an SPN.
+ */
 typedef struct
 {
     uint8 u8_is_active;
@@ -45,6 +67,12 @@ typedef struct
     uint8 u8_fmi_value;
 }T_FMI;
 
+/**
+ * \struct T_FloryFault
+ * \brief Global Fault Definition Structure.
+ * * This structure contains all necessary J1939 parameters to report
+ * a fault via DM1, including the SPN and a list of possible FMIs.
+ */
 typedef struct
 {
     uint8  u8_dm1_enable;
@@ -52,7 +80,6 @@ typedef struct
     uint32 u32_spn;
     T_FMI  t_fmi[MAX_NUM_FMI];
 }T_FloryFault;
-
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 

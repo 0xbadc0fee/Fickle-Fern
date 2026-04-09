@@ -1,15 +1,24 @@
-/*! \file       joystick_handler.h.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Jan 7, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       joystick_handler.h
+ * \brief      System - Joystick Handler Interface
+ *
+ * \addtogroup System
+ * @{
+ * \defgroup JoystickHandler Joystick Handler
+ * \brief This module provides the interface for processing CAN-based joystick
+ * inputs, including button mapping and axis normalization for machine control.
+ * @{
+ *
+ * \implementation
+ * project     FloryTemplate_4CM
+ * copyright   STW Technic (c) 2026
+ * license     use only under terms of contract / confidential
+ *
+ * created     Jan 7, 2026 kyle.boch
+ * \endimplementation
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 #define APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 

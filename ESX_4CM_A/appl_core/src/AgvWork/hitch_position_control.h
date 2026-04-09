@@ -1,21 +1,31 @@
 //-----------------------------------------------------------------------------
-/* Project:   Flory_8772-4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Feb 24, 2026 tiffany.gohnert
- */
-//-----------------------------------------------------------------------------
 /**
  * \file       hitch_position_control.h
- * \brief      Interface for Hitch Position Control Module.
+ * \brief      AgvWork - Hitch Position Control
  *
  * \addtogroup AgvWork
  * @{
  * \addtogroup HitchPositionControl Hitch Position Control
+ *
+ * The Hitch Position Control Module manages the machine's "hitch" movement.
+ * It processes operator Hitch "IN" and Hitch "OUT" commands to regulate
+ * position and hydraulic engagement.
+ *
+ * @{
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
  * @{
  */
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVWORK_HITCH_POSITION_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_HITCH_POSITION_CONTROL_H_

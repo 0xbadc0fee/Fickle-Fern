@@ -1,17 +1,27 @@
 //-----------------------------------------------------------------------------
-/* * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Mar 6, 2026 Tiffany.Gohnert
- */
-//-----------------------------------------------------------------------------
 /**
  * \file       front_sweeps_control.h
- * \brief      Interface for Front Sweeps Control Module.
+ * \brief      AgvWork - Front Sweeps Control
  *
  * \addtogroup AgvWork
  * @{
  * \addtogroup FrontSweepsControl Front Sweeps Control
+ * This module manages the Front Sweeps control logic. It processes operator
+ * Drum V-Sweep commands to regulate PWM outputs, controlling the speed
+ * and trajectory of product delivery into the pick-up belt throat.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
  * @{
  */
 //-----------------------------------------------------------------------------

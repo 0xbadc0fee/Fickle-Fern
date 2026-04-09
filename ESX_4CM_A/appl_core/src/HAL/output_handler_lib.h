@@ -1,18 +1,32 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Feb 4, 2026 kyle.boch
- *
- * \file       output_handler_lib.h
- * \brief      Interface for Output Handler Library.
+/**
+ * \file       output_handler_lib.H
+ * \brief      HAL - Output Handler Library
  *
  * \addtogroup HAL
  * @{
  * \addtogroup OutputHandler Output Handler
+ *
+ * The Output Handler Library provides a standardized interface for managing
+ * and commanding hardware outputs. It handles state translation, safety
+ * limit enforcement, and diagnostic monitoring for physical actuators
+ * and signals across the system.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 4, 2026 STW Technic
+ *
  * @{
  */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_
 #define APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_
 

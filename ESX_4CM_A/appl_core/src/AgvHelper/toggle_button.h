@@ -1,19 +1,31 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   March 6, 2026 STW Technic
- *
+/**
  * \file       toggle_button.h
- * \brief      Interface for Toggle Button Module.
+ * \brief      AgvHelper - Toggle Button Logic
  *
  * \addtogroup AgvHelper
  * @{
  * \addtogroup ToggleButton Toggle Button
+ *
+ * This module provides a software utility for managing button states. It
+ * handles state transitions, debouncing logic, and toggle functionality
+ * (latching/momentary) to ensure reliable operator input processing.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * March 6, 2026 STW Technic
+ *
  * @{
  */
-
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVHELPER_TOGGLE_BUTTON_H_
 #define APPL_CORE_SRC_AGVHELPER_TOGGLE_BUTTON_H_
 

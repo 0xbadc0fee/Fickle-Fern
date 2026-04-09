@@ -1,10 +1,4 @@
 //-----------------------------------------------------------------------------
-/* Project:   Flory_8772-4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Feb 24, 2026 kyle.boch
- */
-//-----------------------------------------------------------------------------
 /**
  * \file       stick_box_control.c
  * \brief      AgvWork - Stick Box Control
@@ -17,8 +11,21 @@
  * located on an attached tow-behind cart. It ensures proper signal
  * synchronization between the tractor and the cart hardware.
  *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
  * @{
  */
+//-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -33,11 +40,11 @@
 #include "stick_box_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define PROGRAM_START_DEB_MS      (3000u) /**< Program start debounce time [ms] */
+#define PROGRAM_START_DEB_MS      (3000u) //!< Program start debounce time [ms]
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_StickBControl mt_stick_box;
+T_StickBControl mt_stick_box; //!< Module-local instance of the stick box control state structure.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 

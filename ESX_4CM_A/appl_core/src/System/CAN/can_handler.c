@@ -1,13 +1,21 @@
 //-----------------------------------------------------------------------------
-/*! \file       can_device_interface.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 7, 2026 STW Technic
-*/
+/**
+ * \file       can_device_interface.c
+ * \brief      System - CAN Device Interface Implementation
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup CanDeviceInterface
+ * @{
+ *
+ * \implementation
+ * project     FloryTemplate_4CM
+ * copyright   STW Technic (c) 2026
+ * license     use only under terms of contract / confidential
+ *
+ * created     Jan 7, 2026 STW Technic
+ * \endimplementation
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -32,14 +40,14 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static bool maq_CanAvailable[X_CAN_COUNT];
+static bool maq_CanAvailable[X_CAN_COUNT]; //!< Availability status array for each physical CAN bus
 
-T_CANDevices gt_can_devs;
+T_CANDevices gt_can_devs; //!< Global instance of the CAN Devices structure.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize CAN Interfaces
  *
- *  This funciton looks at all can interface settings described in openSYDE project and initializes
+ *  This function looks at all can interface settings described in openSYDE project and initializes
  *  said interfaces.
  *
  *  \return s16_error Error Code

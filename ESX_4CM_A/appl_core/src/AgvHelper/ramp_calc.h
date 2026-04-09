@@ -1,19 +1,30 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   March 6, 2026 STW Technic
- *
+/**
  * \file       ramp_calc.h
- * \brief      Interface for Ramp Calculation Module.
+ * \brief      AgvHelper - Ramp Calculation Utility
  *
  * \addtogroup AgvHelper
  * @{
  * \addtogroup RampCalc Ramp Calculation
+ *
+ * The Ramp Value Calculation Module shall be used to control how
+ * quickly an actuator command is allowed to change over a specified time.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * March 6, 2026 STW Technic
+ *
  * @{
  */
-
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVHELPER_RAMP_CALC_H_
 #define APPL_CORE_SRC_AGVHELPER_RAMP_CALC_H_
 
@@ -37,8 +48,7 @@
 typedef struct
 {
         float32 f32_output;  //!<Current Ramped Output
-        uint32 u32_last_time_ms;
-
+        uint32 u32_last_time_ms;//!< Timestamp of the last calculation cycle in milliseconds
         float32 f32_ramp_rate; //!<Ramp Rate[unit/s]
         float32 f32_min_limit; //!<MIN Output Limit
         float32 f32_max_limit; //!<MAX Output Limit

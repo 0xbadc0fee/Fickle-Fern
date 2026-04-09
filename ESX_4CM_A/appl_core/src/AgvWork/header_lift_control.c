@@ -1,10 +1,4 @@
 //-----------------------------------------------------------------------------
-/* Project:   Flory_8772-4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Feb 24, 2026 kyle.boch
- */
-//-----------------------------------------------------------------------------
 /**
  * \file       header_lift_control.c
  * \brief      AgvWork - Header Lift Control

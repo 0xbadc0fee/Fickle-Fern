@@ -1,13 +1,28 @@
 //-----------------------------------------------------------------------------
-/*! \file       input_handler_lib.h
-    \brief      <description>
+/**
+ * \file       input_handler_lib.h
+ * \brief      HAL - Input Handler Library Implementation
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup InputHandlerLib
+ * @{
+ */
 
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2025
-   	license     use only under terms of contract / confidential
-
-   	created     Dec 8, 2025 kyle.boch
-*/
+/**
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2025
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Dec 8, 2025 STW Technic
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_
 #define APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_
 

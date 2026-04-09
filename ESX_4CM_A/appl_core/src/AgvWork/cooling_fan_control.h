@@ -1,13 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       cooling_fan_control.h
-    \brief      The Cooling Fan Control Module controls two output valves (Speed Control Valve
-    and Fan Direction Valve) to control the fan speed and direction.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       cooling_fan_control.h
+ * \brief      AgvWork - Cooling Fan Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup CoolingFanControl Cooling Fan Control
+ *
+ * The Cooling Fan Control Module controls two output valves (Speed Control Valve
+ * and Fan Direction Valve) to manage fan speed and direction based on system
+ * temperature requirements and operator commands.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 Tiffany.Gohnert
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVWORK_COOLING_FAN_CONTROL_H_
@@ -26,52 +42,49 @@
 #include "moving_avg_filter.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define COOLING_FAN_FORWARD                    (0u)
-#define COOLING_FAN_REVERSE                    (1u)
 
-#define COOLING_FAN_PWM_LOW_LIMIT              (4000.0F)
-#define COOLING_FAN_PWM_HIGH_LIMIT             (10000.0F)
+#define COOLING_FAN_FORWARD                 (0u)        //!< Indicator for forward fan direction
+#define COOLING_FAN_REVERSE                 (1u)        //!< Indicator for reverse fan direction
+#define COOLING_FAN_DIR_FORWARD_CMD_PCT     (0.0F)      //!< Percentage command for forward direction
+#define COOLING_FAN_DIR_REVERSE_CMD_PCT     (100.0F)    //!< Percentage command for reverse direction
 
-#define COOLING_FAN_PWM                        (10000.0F)
-#define COOLING_FAN_PWM_OFF                    (0.0F)
-#define COOLING_FAN_FAULT_SAFE_PWM             (8700.0F)
+#define COOLING_FAN_PWM_LOW_LIMIT           (4000.0F)   //!< Minimum PWM output limit for the fan
+#define COOLING_FAN_PWM_HIGH_LIMIT          (10000.0F)  //!< Maximum PWM output limit for the fan
+#define COOLING_FAN_PWM                     (10000.0F)  //!< Default operational PWM output
+#define COOLING_FAN_PWM_OFF                 (0.0F)      //!< PWM output to turn the fan off
+#define COOLING_FAN_FAULT_SAFE_PWM          (8700.0F)   //!< Safe-state PWM output during a fault
 
-#define COOLING_FAN_DIR_FORWARD_CMD_PCT        (0.0F)
-#define COOLING_FAN_DIR_REVERSE_CMD_PCT        (100.0F)
+#define COOLING_FAN_SPEED_RAMP_RATE         (1000.0F)   //!< Ramping rate for fan speed changes
+#define COOLING_FAN_DIR_RAMP_RATE           (100.0F)    //!< Ramping rate for fan directional changes
+#define COOLING_FAN_RAMP_UP_MS              (2500u)     //!< Duration for fan ramp-up (milliseconds)
+#define COOLING_FAN_RAMP_DOWN_MS            (2500u)     //!< Duration for fan ramp-down (milliseconds)
+#define COOLING_FAN_DIR_STOP_DELAY_MS       (1500u)     //!< Delay before fan stops during direction change
 
-#define COOLING_FAN_MACHINE_IN_MOTION_RPM      (1.0F)
-#define COOLING_FAN_PURGE_ACTIVE_MS            (10000u)
-#define COOLING_FAN_AUTO_CLEANOUT_DELAY_MS     (600000u)
+#define COOLING_FAN_MACHINE_IN_MOTION_RPM   (1.0F)      //!< Minimum RPM threshold to consider machine in motion
+#define COOLING_FAN_PURGE_ACTIVE_MS         (10000u)    //!< Duration the active purge cycle runs (milliseconds)
+#define COOLING_FAN_AUTO_CLEANOUT_DELAY_MS  (600000u)   //!< Interval between automatic cleanout cycles (milliseconds)
+#define COOLING_FAN_REVERSE_RUN_MS          (10000u)    //!< Duration to run the fan in reverse (milliseconds)
 
-#define COOLING_FAN_SPEED_RAMP_RATE            (1000.0F)
-#define COOLING_FAN_DIR_RAMP_RATE              (100.0F)
+#define COOLING_FAN_MAX_TEMP_DEGC           (200.0F)    //!< Absolute maximum temperature limit
+#define COOLING_FAN_T1_MIN_C                (92.0F)     //!< Temp 1 (e.g., Engine Coolant) minimum target
+#define COOLING_FAN_T1_MAX_C                (98.0F)     //!< Temp 1 maximum target
+#define COOLING_FAN_T1_OVERTEMP_C           (190.0F)    //!< Temp 1 over-temperature fault threshold
 
-#define COOLING_FAN_MAX_TEMP_DEGC              (200.0F)
+#define COOLING_FAN_T2_MIN_C                (38.0F)     //!< Temp 2 (e.g., Hydraulic Oil) minimum target
+#define COOLING_FAN_T2_MAX_C                (65.0F)     //!< Temp 2 maximum target
+#define COOLING_FAN_T2_OVERTEMP_C           (123.0F)    //!< Temp 2 over-temperature fault threshold
 
-#define COOLING_FAN_T1_MIN_C                   (92.0F)
-#define COOLING_FAN_T1_MAX_C                   (98.0F)
-#define COOLING_FAN_T1_OVERTEMP_C              (190.0F)
+#define COOLING_FAN_T3_MIN_C                (45.0F)     //!< Temp 3 minimum target
+#define COOLING_FAN_T3_MAX_C                (85.0F)     //!< Temp 3 maximum target
+#define COOLING_FAN_T3_OVERTEMP_C           (96.0F)     //!< Temp 3 over-temperature fault threshold (TODO_STW: 88?)
 
-#define COOLING_FAN_T2_MIN_C                   (38.0F)
-#define COOLING_FAN_T2_MAX_C                   (65.0F)
-#define COOLING_FAN_T2_OVERTEMP_C              (123.0F)
+#define COOLING_FAN_HYD_BUF_LEN             (8u)        //!< Buffer length for hydraulic temperature filtering
+#define COOLING_FAN_HYD_FILTER_SAFE_OUTPUT  (0.0F)      //!< Safe output value for the hydraulic filter
+#define COOLING_FAN_HYD_FILTER_SAMPLE_NO    (5u)        //!< Number of samples for hydraulic temperature filtering
+#define COOLING_FAN_HYD_FILTER_SAMPLE_MS    (100u)      //!< Sampling interval for hydraulic temperature filter (ms)
 
-#define COOLING_FAN_T3_MIN_C                   (45.0F)
-#define COOLING_FAN_T3_MAX_C                   (85.0F)
-#define COOLING_FAN_T3_OVERTEMP_C              (96.0F) //88?
-
-#define COOLING_FAN_HYD_BUF_LEN     (8u)
-#define COOLING_FAN_HYD_FILTER_SAFE_OUTPUT (0.0F)
-#define COOLING_FAN_HYD_FILTER_SAMPLE_NO   (5u)
-#define COOLING_FAN_HYD_FILTER_SAMPLE_MS   (100u)
-
-#define COOLING_FAN_RAMP_UP_MS                 (2500u)
-#define COOLING_FAN_RAMP_DOWN_MS               (2500u)
-#define COOLING_FAN_REVERSE_RUN_MS             (10000u)
-#define COOLING_FAN_DIR_STOP_DELAY_MS          (1500u)
-
-#define IGN_ON (1u)
-#define IGN_OFF (0u)
+#define IGN_ON                              (1u)        //!< Ignition is in the ON state
+#define IGN_OFF                             (0u)        //!< Ignition is in the OFF state
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /** \brief Checkpoints Structure - Cooling Fan Control

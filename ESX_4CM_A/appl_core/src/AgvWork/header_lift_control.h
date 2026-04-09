@@ -1,17 +1,30 @@
 //-----------------------------------------------------------------------------
-/* * Project:   Flory_8772-4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Feb 24, 2026 kyle.boch
- */
-//-----------------------------------------------------------------------------
 /**
  * \file       header_lift_control.h
- * \brief      Interface for Header Lift Control Module.
+ * \brief      AgvWork - Header Lift Control
  *
  * \addtogroup AgvWork
  * @{
  * \addtogroup HeaderLiftControl Header Lift Control
+ *
+ * The Header Lift Control Module shall control the lifting and lowering of
+ * the machine "header" through the use of hydraulic control valves and
+ * hardware or CAN switch inputs.
+ *
+ * @{
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
  * @{
  */
 //-----------------------------------------------------------------------------

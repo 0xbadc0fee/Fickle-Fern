@@ -1,10 +1,22 @@
-//----------------------------------------------------------------------------------------------------------------------
-/*!
-   \file
-   \brief      CAN initialization
-   \copyright  Copyright (c) Sensor-Technik Wiedemann GmbH. All rights reserved.
-*/
-//----------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+/**
+ * \file       can_device_interface.h
+ * \brief      System - CAN Device Interface Implementation
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup CanDeviceInterface
+ * @{
+ *
+ * \implementation
+ * project     FloryTemplate_4CM
+ * copyright   STW Technic (c) 2026
+ * license     use only under terms of contract / confidential
+ *
+ * created     Jan 7, 2026 STW Technic
+ * \endimplementation
+ */
+//-----------------------------------------------------------------------------
 
 #ifndef CAN_INIT_H
 #define CAN_INIT_H

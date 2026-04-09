@@ -1,14 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       propulsion_control.c
-    \brief      <description>
-
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Mar 13, 2026 STW Technic
-*/
-//-----------------------------------------------------------------------------
+/**
+ * \file       propulsion_control.c
+ * \brief      AgvChassis - Propulsion Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup PropulsionControl Propulsion Control
+ *
+ * The Propulsion Control Module manages the core movement and drive systems
+ * of the machine. It processes operator inputs to safely control vehicle speed,
+ * direction, and acceleration, while monitoring drive train parameters and
+ * handling motion-related safety interlocks.
+ *
+ * @par Project
+ * Flory_8772-4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Mar 13, 2026 STW Technic
+ *
+ * @{
+ */
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW
@@ -36,8 +53,7 @@ sint16 check_joystickInterlocks(void);
 sint16 calc_joystickSpeedCommand(void);
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_PropulsionControl mt_prop_control;
-
+T_PropulsionControl mt_prop_control; //!< Instance of the propulsion control state structure.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -182,6 +198,18 @@ sint16 update_propulsionControl(void)
 
 }
 
+/**
+ * \brief Evaluates safety interlocks to determine if joystick speed commands can be enabled.
+ *
+ *  This function checks multiple safety parameters before allowing machine movement:
+ * - Cab Door state (must be closed)
+ * - Cab Door sensor fault status (must not be faulted)
+ * - Parking Brake sensor fault status (must not be faulted)
+ * - Joystick Y-axis position (must not be in a fault state)
+ *
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
+ */
 sint16 check_joystickInterlocks(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -203,6 +231,16 @@ sint16 check_joystickInterlocks(void)
     return s16_error;
 }
 
+/**
+ * \brief Translates raw joystick movement into a target speed and direction.
+ *
+ * This function takes the operator's joystick input, applies any active speed limits
+ * or cruise control rules, calculates the appropriate output speed, and determines
+ * if the machine should be in forward, reverse, or neutral.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 calc_joystickSpeedCommand(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -235,7 +273,6 @@ sint16 calc_joystickSpeedCommand(void)
     else
         mt_prop_control.f32_raw_output = 9000.0;
 
-
     //FR-13.8 Joystick State Calculation
     if(*(mt_prop_control.pu8_joy_fwd) && mt_prop_control.u16_joystick_command >= NEUTRAL_DEADBAND)
         mt_prop_control.u8_joystick_state = E_JOYSTICK_FWD;
@@ -267,6 +304,16 @@ sint16 calc_joystickSpeedCommand(void)
     return s16_error;
 }
 
+/**
+ * \brief Evaluates cruise control limits and caps the speed command if active.
+ *
+ * This function manages the cruise control state. When cruise control is activated,
+ * it latches the current joystick speed as the maximum limit and prevents the
+ * operator's command from exceeding that saved speed.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 check_ccLimits(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -299,6 +346,16 @@ sint16 check_ccLimits(void)
 
 }
 
+/**
+ * \brief Determines the appropriate speed ramp profile based on joystick movement.
+ *
+ * This function compares the current joystick position and directional state against
+ * the previous cycle to decide if the machine should apply an acceleration,
+ * deceleration, or direction-change ramp.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 calc_rampType(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -322,6 +379,19 @@ sint16 calc_rampType(void)
     return s16_error;;
 }
 
+
+/**
+ * \brief Applies the selected ramp profile to smooth the target speed command.
+ *
+ * This function sets the appropriate ramping rate (acceleration, deceleration,
+ * max deceleration, or direction change) based on the calculated ramp type,
+ * and then computes the smoothed speed output to prevent sudden, jerky movements.
+ *
+ * \param [in] _rampType The specific ramp profile to apply to the speed command.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 ramp_targetSpeedCommand(E_RampTypes _rampType)
 {
     sint16 s16_error = C_NO_ERR;
@@ -347,17 +417,24 @@ sint16 ramp_targetSpeedCommand(E_RampTypes _rampType)
         default:
             set_rampRate(&mt_prop_control.t_js_command, ACCEL_RATE);
             break;
-
     }
 
     rampCalc(mt_prop_control.f32_raw_output, &mt_prop_control.t_js_command);
     mt_prop_control.f32_ramped_output = mt_prop_control.t_js_command.f32_output;
 
     return s16_error;
-
 }
 
-
+/**
+ * \brief Calculates the vehicle's wheel speed based on sensor frequency.
+ *
+ * This function reads the raw wheel speed sensor frequency, converts it to RPM,
+ * applies a moving average filter to smooth the reading, and computes the
+ * final ground speed in miles per hour (MPH) using the wheel diameter and gear ratio.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 calc_wheelSpeed(void)
 {
 
@@ -378,6 +455,18 @@ sint16 calc_wheelSpeed(void)
     return s16_error;
 }
 
+/**
+ * \brief Evaluates safety interlocks to determine if the EDC valves can be enabled.
+ *
+ * This function checks the engine status, startup delay, parking brake state,
+ * and propel valve fault statuses. If all conditions are safe and the engine
+ * is running, it sets the enable flag to TRUE; otherwise, it is set to FALSE.
+ *
+ * \param [out] u8_edc_enable Pointer to store the evaluated EDC enable flag.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 check_edcInterlocks(uint8 *u8_edc_enable)
 {
     sint16 s16_error = C_NO_ERR;
@@ -409,6 +498,16 @@ sint16 check_edcInterlocks(uint8 *u8_edc_enable)
     return s16_error;
 }
 
+/**
+ * \brief Outputs the commanded speed to the appropriate EDC propel valves.
+ *
+ * This function routes the calculated, ramped output signal to either the forward
+ * or reverse propel valve based on the current joystick state. It ensures that
+ * the inactive direction (or both in neutral/default states) is commanded to zero.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 output_edcValves(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -440,6 +539,14 @@ sint16 output_edcValves(void)
     return s16_error;
 }
 
+/**
+ * \brief Retrieves the current calculated wheel speed.
+ *
+ * \param [out] _wheelSpeed Pointer to store the current wheel speed in MPH.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 get_wheelSpeed(float32 *_wheelSpeed)
 {
     sint16 s16_error = C_NO_ERR;
@@ -449,6 +556,14 @@ sint16 get_wheelSpeed(float32 *_wheelSpeed)
     return s16_error;
 }
 
+/**
+ * \brief Retrieves the currently active gear selection.
+ *
+ * \param [out] _gear_selection Pointer to store the active gear state.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 get_gearSelection(uint8 *_gear_selection)
 {
     sint16 s16_error = C_NO_ERR;
@@ -458,6 +573,14 @@ sint16 get_gearSelection(uint8 *_gear_selection)
     return s16_error;
 }
 
+/**
+ * \brief Retrieves the neutral status indicator of the joystick.
+ *
+ * \param [out] _neutral_status Pointer to store the joystick neutral status flag.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 get_joystickNeutralStatus(uint8 *_neutral_status)
 {
     sint16 s16_error = 0;

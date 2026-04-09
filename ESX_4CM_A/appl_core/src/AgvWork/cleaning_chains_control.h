@@ -3,10 +3,6 @@
  * \file     cleaning_chains_control.h
  * \brief    AgvWork - Cleaning Chains Control
  *
- * This module manages the operational status of the three cleaning chains.
- * It processes the Operator Shaft Drive Enable command to establish state
- * synchronization across the broader control system.
- *
  * \project   FloryTemplate_4CM
  * \copyright STW Technic (c) 2026
  * \license   use only under terms of contract / confidential
@@ -18,8 +14,25 @@
  * \addtogroup CleaningChainsControl Cleaning Chains Control
  * @{
  *
+ * This module manages the operational status of the three cleaning chains.
+ * It processes the Operator Shaft Drive Enable command to establish state
+ * synchronization across the broader control system.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
  * @{
  */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVWORK_CLEANING_CHAINS_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_CLEANING_CHAINS_CONTROL_H_
 

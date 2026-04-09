@@ -1,12 +1,36 @@
 //-----------------------------------------------------------------------------
-/*! \file       moving_avg_filter.h
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 STW Technic
+/* Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   March 6, 2026 STW Technic
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       moving_avg_filter.h
+ * \brief      AgvHelper - Moving Average Filter
+ *
+ * \addtogroup AgvHelper
+ * @{
+ * \addtogroup MovingAvgFilter Moving Average Filter
+ *
+ * The Moving Average Filter Module produces a smoothed output by averaging
+ * values within a configurable sample window. It ensures system stability
+ * by forcing a safe output when required parameters or input values are
+ * detected as invalid.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVHELPER_MOVING_ADV_FILTER_H_

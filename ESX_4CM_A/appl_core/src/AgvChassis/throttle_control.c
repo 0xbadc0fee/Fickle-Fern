@@ -1,18 +1,32 @@
 //-----------------------------------------------------------------------------
-/*! \file       throttle_control.c
-    \brief      The Throttle Control Module shall govern the vehicle's engine speed,
-    measured as crankshaft rpm, by calculating new “Engine Requested Speed” values
-    based on hardware input received from the operator and output via CAN based J1939
-    speed control messages.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       throttle_control.c
+ * \brief      AgvChassis - Throttle Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup ThrottleControl Throttle Control
+ *
+ * The Throttle Control Module shall govern the vehicle's engine speed,
+ * measured as crankshaft rpm, by calculating new "Engine Requested Speed" values
+ * based on hardware input received from the operator and output via CAN based J1939
+ * speed control messages.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 Tiffany.Gohnert
+ *
+ * @{
  */
-
-
+//-----------------------------------------------------------------------------
 //-- Includes ------------------------------------------------------------------------------------------------------
 //STD
 #include <stdint.h>
@@ -28,13 +42,11 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
-
 // -- Defines ------------------------------------------------------------------------------------------------------
-
 // -- Types --------------------------------------------------------------------------------------------------------
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
 // -- Module Global Variables --------------------------------------------------------------------------------------
-static T_ThrottleControl mt_throttle;
+static T_ThrottleControl mt_throttle; //!< Module-local instance of the throttle control state structure.
 // -- Implementation  ----------------------------------------------------------------------------------------------
 
 /** \brief Initialize Throttle Control
@@ -255,11 +267,6 @@ sint16 update_throttleControl(void)
 
     mt_throttle.u8_prev_engine_status = mt_throttle.u8_engine_status;
     mt_throttle.u8_prev_throttle_cmd = mt_throttle.u8_throttle_cmd;
-
-
-
-    return s16_error;
-
 
     return s16_error;
 }

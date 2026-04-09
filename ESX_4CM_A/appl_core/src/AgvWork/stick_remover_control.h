@@ -1,14 +1,28 @@
-/*! \file       stick_remover_control.h
-    \brief      The Stick Remover Control Module shall control ON/OFF operation
-    of the optional, cart installed Stick Remover conveyor chain.
-
-    \implementation
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Mar 12, 2026 t.gohn
-    \endimplementation
+//-----------------------------------------------------------------------------
+/**
+ * \file       stick_remover_control.h
+ * \brief      AgvWork - Stick Remover Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup StickRemoverControl Stick Remover Control
+ *
+ * The Stick Remover Control Module shall control ON/OFF operation
+ * of the optional, cart installed Stick Remover conveyor chain.
+ *
+ * @par Project
+ * Flory_8772-4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Mar 12, 2026 t.gohn
+ *
+ * @{
  */
 #ifndef APPL_CORE_SRC_AGVWORK_STICK_REMOVER_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_STICK_REMOVER_CONTROL_H_

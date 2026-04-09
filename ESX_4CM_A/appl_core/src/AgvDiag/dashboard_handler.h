@@ -1,16 +1,29 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Jan 6, 2026 STW Technic
- *
+/**
  * \file       checkpoint_handler.h
- * \brief      Interface for Checkpoint Handler.
+ * \brief      AgvChassis - Checkpoint Handler
  *
  * \addtogroup AgvDiag
  * @{
  * \addtogroup CheckpointHandler Checkpoint Handler
+ *
+ * This module is responsible for managing system "checkpoints"—critical state
+ * variables and diagnostic data that need to be monitored or persisted.
+ * It provides a centralized interface for updating, tracking, and validating
+ * the operational health of various machine modules.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
  * @{
  */
 #ifndef APPL_CORE_SRC_AGVDIAG_CHECKPOINT_HANDLER_H_
@@ -30,21 +43,19 @@
 #include "misc_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-
-
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-extern T_ChkPoints_Elevator gt_elevatorCheckpoints;
-extern T_ChkPoints_Header  gt_headerCheckpoints;
-extern T_ChkPoints_CChains gt_cleaningShaftCheckpoints;
-extern T_ChkPoints_FSweeps gt_frontSweepsCheckpoints;
-extern T_ChkPoints_RTrap   gt_rotaryTrapCheckpoints;
-extern T_ChkPoints_Propulsion gt_propCheckpoints;
-extern T_ChkPoints_EngineStarter gt_engineStarterCheckpoints;
-extern T_ChkPoints_SFan gt_suctionFanCheckpoints;
-extern T_ChkPoints_Throttle gt_throttleCheckpoints;
-extern T_ChkPoints_CoolingFan gt_coolingFanCheckpoints;
-extern T_ChkPoints_Mis gt_miscCheckpoints;
+extern T_ChkPoints_Elevator      gt_elevatorCheckpoints;          //!< Global checkpoints for Elevator Control
+extern T_ChkPoints_Header        gt_headerCheckpoints;            //!< Global checkpoints for Header Control
+extern T_ChkPoints_CChains       gt_cleaningShaftCheckpoints;     //!< Global checkpoints for Cleaning Chains/Shaft
+extern T_ChkPoints_FSweeps       gt_frontSweepsCheckpoints;       //!< Global checkpoints for Front Sweeps
+extern T_ChkPoints_RTrap         gt_rotaryTrapCheckpoints;        //!< Global checkpoints for Rotary Trap
+extern T_ChkPoints_Propulsion    gt_propCheckpoints;              //!< Global checkpoints for Propulsion Control
+extern T_ChkPoints_EngineStarter gt_engineStarterCheckpoints;     //!< Global checkpoints for Engine Starter
+extern T_ChkPoints_SFan          gt_suctionFanCheckpoints;        //!< Global checkpoints for Suction Fan
+extern T_ChkPoints_Throttle      gt_throttleCheckpoints;          //!< Global checkpoints for Throttle Control
+extern T_ChkPoints_CoolingFan    gt_coolingFanCheckpoints;        //!< Global checkpoints for Cooling Fan
+extern T_ChkPoints_Mis           gt_miscCheckpoints;              //!< Global checkpoints for Miscellaneous functions
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_dashHandler(void);

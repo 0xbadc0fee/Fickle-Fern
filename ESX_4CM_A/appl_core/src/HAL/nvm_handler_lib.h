@@ -1,18 +1,32 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Feb 5, 2026 STW Technic
- *
- * \file       nvm_handler_lib.h
- * \brief      Interface for NVM Handler Library.
+/**
+ * \file       nvm_handler_lib.c
+ * \brief      HAL - NVM Handler Library
  *
  * \addtogroup HAL
  * @{
  * \addtogroup NvmHandler NVM Handler
+ *
+ * The NVM Handler Library manages reading from and writing to the
+ * Non-Volatile Memory. It provides a standardized interface for safe
+ * data storage, ensuring the persistence of critical configurations
+ * and operational state data across system power cycles.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 5, 2026 STW Technic
+ *
  * @{
  */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_HAL_NVM_HANDLER_LIB_H_
 #define APPL_CORE_SRC_HAL_NVM_HANDLER_LIB_H_
 

@@ -1,18 +1,32 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Feb 6, 2026 kyle.boch
- *
+/**
  * \file       system.h
- * \brief      Interface for System Module.
+ * \brief      AgvCore - System Module
  *
  * \addtogroup HAL
  * @{
  * \addtogroup STW_4CM_HAL STW_4CM_HAL
+ *
+ * The System module serves as the central coordination hub for the
+ * controller. It handles core initialization sequences, manages the
+ * high-level state machine, and oversees routine top-level operations
+ * required for the machine's primary functionality.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 6, 2026 kyle.boch
+ *
  * @{
  */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_HAL_STW_4CM_HAL_SYSTEM_H_
 #define APPL_CORE_SRC_HAL_STW_4CM_HAL_SYSTEM_H_
 

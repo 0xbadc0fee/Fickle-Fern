@@ -1,14 +1,30 @@
 //-----------------------------------------------------------------------------
-/*! \file       engine_starter_control.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       engine_starter_control.c
+ * \brief      AgvChassis - Engine Starter Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup EngineStarterControl Engine Starter Control
+ *
+ * The Engine Starter Control Module manages the engine starting sequence,
+ * crank timing, and safety interlock logic based on operator inputs and
+ * system conditions.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 Tiffany.Gohnert
+ *
+ * @{
  */
-//-----------------------------------------------------------------------------
 // -- Includes ------------------------------------------------------------------------------------------------------
 //STD
 #include <stdint.h>
@@ -31,7 +47,7 @@
 void check_engineStatus(void);
 
 // -- Module Global Variables --------------------------------------------------------------------------------------
-static T_EngineControl mt_engine;
+static T_EngineControl mt_engine; /**< Internal state instance for managing engine control operations. */
 
 // -- Implementation ------------------------------------------------------------------------------------------------
 

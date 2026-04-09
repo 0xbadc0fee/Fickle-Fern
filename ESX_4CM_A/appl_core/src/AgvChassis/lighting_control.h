@@ -1,16 +1,28 @@
 //-----------------------------------------------------------------------------
-/*
- * Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Jan 6, 2026 STW Technic
- *
- * \file       lighting_control.h
- * \brief      Interface for Lights Control.
+/**
+ * \file       lights_control.h
+ * \brief      AgvChassis - Lights Control
  *
  * \addtogroup AgvChassis
  * @{
  * \addtogroup LightsControl Lights Control
+ *
+ * The Lights Control Module manages the activation and state of the machine's
+ * lighting systems, including work lights, road lights, and auxiliary
+ * illumination based on operator inputs and system conditions.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
  * @{
  */
 //-----------------------------------------------------------------------------
@@ -38,7 +50,7 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /**
- * @struct T_LightControl
+ * \struct T_LightControl
  * \brief Control Structure - Lighting Control
  *
  * Encapsulates the persistent state variables and interface pointers
@@ -54,7 +66,7 @@ typedef struct
         uint8 u8_work_status;    //!<Lighting Work Status
         uint8 u8_head_status;    //!<Lighting Head Status
         uint8 u8_tail_status;    //!<Lighting Tail Status
-        uint8 u8_light_mode; //!<Light Mode Setting Current
+        uint8 u8_light_mode;     //!<Light Mode Setting Current
         uint8 u8_prev_light_btn; //<!Previous Light button State
 
         //TX CAN Variables

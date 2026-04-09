@@ -1,13 +1,28 @@
 //-----------------------------------------------------------------------------
-/*! \file       stick_remover_control.c
-    \brief      The Stick Remover Control Module shall control ON/OFF operation
-                of the optional, cart installed Stick Remover conveyor chain.
-
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Mar 12, 2026 t.gohn
+/**
+ * \file       stick_remover_control.c
+ * \brief      AgvWork - Stick Remover Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup StickRemoverControl Stick Remover Control
+ *
+ * The Stick Remover Control Module shall control ON/OFF operation
+ * of the optional, cart installed Stick Remover conveyor chain.
+ *
+ * @par Project
+ * Flory_8772-4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Mar 12, 2026 t.gohn
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -24,12 +39,11 @@
 #include "stick_remover_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
-
+#define PROGRAM_START_DEB_MS      (3000u) //!< Startup debounce delay in milliseconds (3 seconds)
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_StickRemoverControl mt_stick_remover;
+static T_StickRemoverControl mt_stick_remover; //!<  Module-local instance of the stick remover control state structure.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 

@@ -27,10 +27,10 @@
  *
  * @{
  */
+//-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW
-
 //PROJECT
 #include "nvm_handler.h"
 
@@ -50,7 +50,7 @@
 #include "SPN_definitions.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define NUM_OSY_NVM_DATAPOOLS (1u)
+#define NUM_OSY_NVM_DATAPOOLS (1u) //!< Total number of independent NVM datapools defined in the system
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
@@ -58,7 +58,7 @@
 T_Config_Elevator gt_elevatorConfig;    //!<Structure that holds all agVWork - Elevator Control NVM Config
 T_Config_HeaderControl gt_headerConfig;    //!<Structure that holds the Joystick HLL config.
 T_Config_StickBoxControl gt_stickBConfig; //!<Structure that holds the Stick Box config.
-T_Config_PowerAssistControl gt_paConfig;
+T_Config_PowerAssistControl gt_paConfig; //!<Structure that holds the Power Assist config.
 T_Config_SFan gt_suctionFanConfig; //!<Structure that holds the Suction Fan config.
 T_Config_MiscrControl gt_miscConfig; //!<Structure that holds the MISC config.
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */

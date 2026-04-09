@@ -1,19 +1,29 @@
-//-----------------------------------------------------------------------------
-/*! \file       auger_cart_control.h
+/**
+ * \file       auger_cart_control.h
+ * \brief      AgvWork - Auger Cart Control
  *
- *   \brief      The Auger Cart Control Module shall universally control all unloading operations of a variety of
- *              possible attached cart configurations and do so in an operator safe manner.
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup AugerCartControl Auger Cart Control
  *
- * \project   FloryTemplate_4CM
- * \copyright STW Technic (c) 2026
- * \license   use only under terms of contract / confidential
-
-    \addtogroup AgvWork
-    @{
-    \addtogroup AugerCartControl Auger Cart Control
-    @{
-
+ * The Auger Cart Control Module shall universally control all unloading
+ * operations of a variety of possible attached cart configurations and do so in an operator safe manner.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVWORK_AUGER_CART_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_AUGER_CART_CONTROL_H_
 
@@ -37,8 +47,8 @@
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
 /**
- * @struct T_AugerControl
- * @brief Persistent state and control data for the Auger Cart.
+ * \struct T_AugerControl
+ * \brief Persistent state and control data for the Auger Cart.
  *
  * Encapsulates all pointers and variables required to maintain state across
  * cyclic execution. This structure is reserved for persistent data;

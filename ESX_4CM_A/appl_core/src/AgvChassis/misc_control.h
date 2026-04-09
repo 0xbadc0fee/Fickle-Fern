@@ -1,14 +1,35 @@
 //-----------------------------------------------------------------------------
-/*! \file       misc_control.h
-    \brief      The Miscellaneous Control Module shall provide supporting logic for
-    auxiliary features within the 8772 Harvester application.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 Tiffany.Gohnert
+/**
+ * \file       misc_control.h
+ * \brief      AgvWork - Miscellaneous Control Implementation
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup MiscControl
+ * @{
  */
+
+/* \cond INTERNAL */
+/**
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * March 6, 2026 Tiffany.Gohnert
+ */
+/* \endcond */
+//-----------------------------------------------------------------------------
+
+/* -- Implementation Code -- */
+
+/** @} */ // End MiscControl
+/** @} */ // End AgvWork
 
 #ifndef APPL_CORE_SRC_AGVCHASSIS_MISC_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_MISC_CONTROL_H_
@@ -25,38 +46,36 @@
 #include "moving_avg_filter.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define FILTER_MINDER_RAW_MIN                 (0.0F)
-#define FILTER_MINDER_RAW_MAX                 (5000.0F)
-#define FILTER_MINDER_FAULT_THRESHOLD         (4.0F)
-#define FILTER_MINDER_SAFE_STATE                    (0.0F)
-#define FILTER_MINDER_BUF_LEN                       (8u)
-#define FILTER_MINDER_FILTER_SAFE_OUTPUT            (0.0F)
-#define FILTER_MINDER_FILTER_SAMPLE_NO              (5u)
-#define FILTER_MINDER_FILTER_SAMPLE_MS              (250u)
-// Fuel
-#define FUEL_RAW_MIN                       (0.0F)
-#define FUEL_RAW_MAX                       (5000.0F)
+#define FILTER_MINDER_RAW_MIN               (0.0F)     //!< Minimum raw value for filter minder sensor
+#define FILTER_MINDER_RAW_MAX               (5000.0F)  //!< Maximum raw value for filter minder sensor
+#define FILTER_MINDER_FAULT_THRESHOLD       (4.0F)     //!< Threshold value to trigger a filter minder fault
+#define FILTER_MINDER_SAFE_STATE            (0.0F)     //!< Safe fallback state for the filter minder
+#define FILTER_MINDER_BUF_LEN               (8u)       //!< Buffer length for the filter moving average
+#define FILTER_MINDER_FILTER_SAFE_OUTPUT    (0.0F)     //!< Safe output value for the filter function
+#define FILTER_MINDER_FILTER_SAMPLE_NO      (5u)       //!< Number of samples required for the filter
+#define FILTER_MINDER_FILTER_SAMPLE_MS      (250u)     //!< Sampling interval in milliseconds
 
-#define FUEL_FAULT_THRESHOLD               (6.25F)
-#define FUEL_LOW_SETPOINT                  (7.0F)
-#define FUEL_LOW_DELAY_MS                  (5000u)
-#define FUEL_SAFE_STATE                    (0.0F)
-#define FUEL_BUF_LEN                       (8u)
-#define FUEL_FILTER_SAFE_OUTPUT            (0.0F)
-#define FUEL_FILTER_SAMPLE_NO              (7u)
-#define FUEL_FILTER_SAMPLE_MS              (100u)
+#define FUEL_RAW_MIN                        (0.0F)     //!< Minimum raw value for fuel level sensor
+#define FUEL_RAW_MAX                        (5000.0F)  //!< Maximum raw value for fuel level sensor
+#define FUEL_FAULT_THRESHOLD                (6.25F)    //!< Threshold value to trigger a fuel sensor fault
+#define FUEL_LOW_SETPOINT                   (7.0F)     //!< Value at which low fuel warning is triggered
+#define FUEL_LOW_DELAY_MS                   (5000u)    //!< Delay in ms before triggering low fuel warning
+#define FUEL_SAFE_STATE                     (0.0F)     //!< Safe fallback state for fuel level
+#define FUEL_BUF_LEN                        (8u)       //!< Buffer length for the fuel filter moving average
+#define FUEL_FILTER_SAFE_OUTPUT             (0.0F)     //!< Safe output value for the fuel filter function
+#define FUEL_FILTER_SAMPLE_NO               (7u)       //!< Number of samples required for the fuel filter
+#define FUEL_FILTER_SAMPLE_MS               (100u)     //!< Sampling interval in milliseconds
 
-// Scaling
-#define PERCENT_SCALE                      (100.0F)
-#define PERCENT_SCALE_01PCT                (10000.0F)
+#define PERCENT_SCALE                       (100.0F)   //!< Standard multiplier for percentage scaling
+#define PERCENT_SCALE_01PCT                 (10000.0F) //!< Multiplier for percentage scaling with 0.01% resolution
 
-// SW Version
-#define MISC_SW_MAJOR_REV                  (1u)
-#define MISC_SW_MINOR_REV                  (0u)
+#define MISC_SW_MAJOR_REV                   (1u)       //!< Major software revision number
+#define MISC_SW_MINOR_REV                   (0u)       //!< Minor software revision number
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-
-/** \brief Checkpoints Structure - Miscellaneous Control
+/**
+ * \struct ChkPoints_Mis
+ * \brief Checkpoints Structure - Miscellaneous Control
  *
  * This structure represents all checkpoints that are relevant
  * to Miscellaneous Control
@@ -75,7 +94,9 @@ typedef struct
         uint8 u8_sw_minor_revision;//!<Checkpoint SW Minor Revision
 }T_ChkPoints_Mis;
 
-/** \brief Configuration Structure - Miscellaneous Control
+/**
+ * \struct Config_MiscrControl
+ * \brief Configuration Structure - Miscellaneous Control
  *
  * This structure represents all NVM configuration variables
  * that are relevant to Miscellaneous Control
@@ -87,7 +108,9 @@ typedef struct
 
 }T_Config_MiscrControl;
 
-/** \brief Control Structure - Miscellaneous Control
+/**
+ * \struct MiscControl
+ * \brief Control Structure - Miscellaneous Control
  *
  * This structure represents all variables and pointers that
  * are utilized and tracked for Miscellaneous Control that need to

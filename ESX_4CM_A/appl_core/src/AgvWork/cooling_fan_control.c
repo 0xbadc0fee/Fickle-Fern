@@ -1,13 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       cooling_fan_control.c
-    \brief      The Cooling Fan Control Module controls two output valves (Speed Control Valve
-    and Fan Direction Valve) to control the fan speed and direction.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       cooling_fan_control.c
+ * \brief      AgvWork - Cooling Fan Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup CoolingFanControl Cooling Fan Control
+ *
+ * The Cooling Fan Control Module controls two output valves (Speed Control Valve
+ * and Fan Direction Valve) to manage fan speed and direction based on system
+ * temperature requirements and operator commands.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 Tiffany.Gohnert
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -24,7 +40,7 @@
 #include "hw_outputs.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define PROGRAM_START_DEB_MS (3500u) //3.5 seconds
+#define PROGRAM_START_DEB_MS (3500u) ///!< Startup debounce delay in milliseconds (3.5 seconds)
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 void coolingFanTempToPwm(float32 f32_temp_input,
@@ -33,10 +49,9 @@ float32 f32_temp_max_c,
 float32 *pf32_pwm_cmd);
 void update_coolingFanReversal(float32 f32_dir_cmd_target_pct);
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_CoolingFanControl mt_cooling_fan;
+static T_CoolingFanControl mt_cooling_fan;  //!<Module-local instance of the cooling fan control state structure.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
-
 
 /** \brief Initialize AgvWork - coolingFanTempToPwm Cooling Fan Control
  *

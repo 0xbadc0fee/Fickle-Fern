@@ -1,10 +1,4 @@
 //-----------------------------------------------------------------------------
-/* Project:   FloryTemplate_4CM
- * Copyright: STW Technic (c) 2026
- * License:   use only under terms of contract / confidential
- * Created:   Jan 6, 2026 STW Technic
- */
-//-----------------------------------------------------------------------------
 /**
  * \file       lights_control.c
  * \brief      AgvChassis - Lights Control
@@ -47,7 +41,7 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_LightControl mt_lighting;/**< Global persistent state for Lights Control. */
+static T_LightControl mt_lighting; /**< Global persistent state for Lights Control. */
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
