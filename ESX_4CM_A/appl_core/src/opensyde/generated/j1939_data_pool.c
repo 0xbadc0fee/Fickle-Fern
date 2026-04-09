@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_1637727564 mt_Variable;
+static T_osy_non_existing_type_807578185 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-J1939_PROJECT_ID_1637727564
+J1939_PROJECT_ID_807578185
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -233,7 +233,7 @@ static const T_J1939_CAN1_RX_Values mt_CAN1_RXMaxValues =
    15U,   ///< EEC1_EngStarterMode (There are several phases in a starting action and different reasons why a start cannot take place.)
    15U,   ///< EEC1_EngTorqueMode (State signal which indicates which engine torque mode is currently generating, limiting, or controlling the torque.)
    255U,   ///< EEC1_SrcAddrssOfCtrllngDvcFrEngCntrl (The source address of the SAE J1939 device currently controlling the engine.)
-   255U,   ///< ET1_EngCoolantTemp (Temperature of liquid found in engine cooling system.)
+   250U,   ///< ET1_EngCoolantTemp (Temperature of liquid found in engine cooling system.)
    250U,   ///< ET1_EngFuelTemp1 (Temperature of fuel (or gas) passing through the first fuel control system.)
    250U,   ///< ET1_EngIntercoolerTemp (Temperature of liquid found in the intercooler located after the turbocharger.)
    250U,   ///< ET1_EngIntercoolerThermostatOpening (The current position of the thermostat used to regulate the temperature of the engine intercooler.)

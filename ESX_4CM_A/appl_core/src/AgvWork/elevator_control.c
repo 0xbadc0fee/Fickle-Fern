@@ -47,7 +47,9 @@ static T_ElevatorControl mt_elevator;
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_elevatorControl(T_CANDevices *_can_dev, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator)
+sint16 init_elevatorControl(T_CANDevices         *_can_dev,
+                            T_ChkPoints_Elevator *_chkElevator,
+                            T_Config_Elevator    *_nvmElevator)
 {
     sint16 s16_error = C_NO_ERR;
 
