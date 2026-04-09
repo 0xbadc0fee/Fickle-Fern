@@ -49,6 +49,9 @@
 
 #define ROTARY_TRAP_RAMP_RATE (10.0F)
 
+#define MAX_FIELD_GS            (8.0F)
+#define MIN_FIELD_GS             (0.0F)
+
 // -- Types --------------------------------------------------------------------------------------------------------
 
 /** \brief Checkpoints Structure - Rotary Trap Control
@@ -58,7 +61,7 @@
  */
 typedef struct
 {
-        uint8 u8_checkpoint1; //!< CP TR IN
+        float32 f32_trap_target_cmd; //!< CP TR IN
 
 }T_ChkPoints_RTrap;
 
@@ -79,7 +82,7 @@ typedef struct
 } T_RotaryTrapControl;
 
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
-sint16 init_rotaryTrapControl(T_UserInterface *_ui, T_ChkPoints_RTrap *_chkRotaryTrap);
+sint16 init_rotaryTrapControl(T_CANDevices *_can_dev, T_ChkPoints_RTrap *_chkRotaryTrap);
 sint16 update_rotaryTrapControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_ROTARY_TRAP_CONTROL_H_ */

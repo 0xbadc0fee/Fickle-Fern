@@ -11,10 +11,10 @@
                 <name>CAN1_TX</name>
                 <comment/>
                 <data-elements length="11">
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiCameraReset</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>CF_ManualCmd</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Momentary Input - Manual Fan Reversal Command</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -23,56 +23,32 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiChassisHighSpeed</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>ELEV_SpeedCmd</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiClearMachineFaults</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiCoolingFanManPurge</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiElevatorSpeedCmd</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Elevator Speed Command</comment>
                         <min-value value="0"/>
                         <max-value value="100"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>FS_EnableCmd</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Toggled Input - Enable/Disable Front Sweeps</comment>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiFrontSweepsEnable</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>MISC_CameraReset</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -83,22 +59,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiRotaryTrapSpeedCmd</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>MISC_ClearFaults</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="2"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiSetSpeedLimiter</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Momentary Input - Clear Machine Faults</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -107,34 +71,70 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiSuctionFanSpeedCmd</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>PROP_GearSelect</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Toggled Input -Toggle High/Low Gear</comment>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>PROP_SetSpeedLimit</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Toggled Input - Enable/Disable 47.5% Max Joystick Position</comment>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>RT_SpeedCmd</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Rotary Trap Speed Command</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SF_SpeedCmd</name>
                         <type base-type="uint16" is-array="false"/>
-                        <comment/>
+                        <comment>Suction Fan Speed Command</comment>
                         <min-value value="0"/>
                         <max-value value="10000"/>
-                        <unit/>
+                        <unit>RPM</unit>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiFrontSweepSpeedCmd</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>FS_SpeedCmd</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Front Sweeps Speed Command</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
-                        <unit/>
+                        <unit>%</unit>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvHmiSetSpeedLimitMax</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>PROP_SetCCMax</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Momentary Input - Enable/Disable CC and Set CC Max Speed</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>
@@ -155,7 +155,7 @@
                 <name>CAN1_RX</name>
                 <comment/>
                 <data-elements length="41">
-                    <data-element factor="0.125" offset="0">
+                    <data-element factor="0.125" offset="0" interpret_as_string="false">
                         <name>ActlEngPrcntTrqueHighResolution</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>This parameter displays an additional torque in percent of the reference engine torque.</comment>
@@ -167,7 +167,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-125">
+                    <data-element factor="1" offset="-125" interpret_as_string="false">
                         <name>ActualEngPercentTorque</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The calculated output torque of the engine.</comment>
@@ -179,7 +179,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-125">
+                    <data-element factor="1" offset="-125" interpret_as_string="false">
                         <name>DriversDemandEngPercentTorque</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The requested torque output of the engine by the driver.</comment>
@@ -191,7 +191,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-125">
+                    <data-element factor="1" offset="-125" interpret_as_string="false">
                         <name>EngDemandPercentTorque</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The requested torque output of the engine by all dynamic internal inputs, including smoke control, noise control and low</comment>
@@ -203,7 +203,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.125" offset="0">
+                    <data-element factor="0.125" offset="0" interpret_as_string="false">
                         <name>EngSpeed</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Actual engine speed which is calculated over a minimum crankshaft angle of 720 degrees divided by the number of cylinders.</comment>
@@ -215,7 +215,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
+                    <data-element factor="1" offset="0" interpret_as_string="false">
                         <name>EngStarterMode</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>There are several phases in a starting action and different reasons why a start cannot take place.</comment>
@@ -227,7 +227,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
+                    <data-element factor="1" offset="0" interpret_as_string="false">
                         <name>EngTorqueMode</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>State signal which indicates which engine torque mode is currently generating, limiting, or controlling the torque.</comment>
@@ -239,7 +239,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
+                    <data-element factor="1" offset="0" interpret_as_string="false">
                         <name>SrcAddrssOfCtrllngDvcFrEngCntrl</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The source address of the SAE J1939 device currently controlling the engine.</comment>
@@ -251,22 +251,22 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisAirFilterRestrict255</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>AIRFILT_Restriction</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>0-255 Value (0-100%)</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
-                        <unit/>
+                        <unit>UINT8</unit>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisAirFilterServiceRqd</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>AIRFILT_ServiceRqd</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Air Filter Service Required Indicator</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -275,10 +275,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisBrakesEngaged</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>AUGER_Status</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Auger Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -287,10 +287,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisCoolingFanRevDir</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SHAFT_Status</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Cleaning Chains / Shaft Drive On/Off Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -299,10 +299,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisCoolingManPrgErr</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>CD_Sen2OvrTmp</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Cooling Fan - Sensor 2 Overtemp Indicator</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -311,10 +311,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisCoolingSen1_OvrTmp</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>CF_DIR</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Cooling Fan - Fan Direction</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -323,10 +323,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisCoolingSen2_OvrTmp</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>CF_ManualStatus</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Cooling Fan - Manual Reverse Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -335,10 +335,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisCoolingSen3_OvrTmp</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>CF_Sen1OvrTmp</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Cooling Fan - Sensor 1 Overtemp Indicator</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -347,10 +347,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisDoorOpenState</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>CF_Sen3OvrTmp</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Cooling Fan - Sensor 3 Overtemp Indicator</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -359,10 +359,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisEngineOn</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>ELEV_Status</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Elevator On/Off Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -371,22 +371,34 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisFuelGage255</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>ENGINE_Status</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Taillights On/Off Status</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>FUEL_FuelGage2</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>0-255 Value (0-100%)</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
-                        <unit/>
+                        <unit>UINT8</unit>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisFuelLevelLow</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>FUEL_LevelLow</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Fuel Level Low Indicator</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -395,22 +407,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisGroundSpeed10x</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>HC_ReliefPressure</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisHeadLtsOn</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Header Relief Pressure Switch Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -419,10 +419,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisHydOilLevelLow</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>HYDOIL_LevelLow</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Hydraulic Oil Level Low Indicator</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -431,34 +431,22 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisHydOilPressRelief</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="1"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisHydOilTempDegC</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>HYDOIL_Temp</name>
                         <type base-type="uint16" is-array="false"/>
-                        <comment/>
+                        <comment>Hydraulic Oil Temperature - degrees C</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
-                        <unit/>
+                        <unit>degrees C</unit>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisNeutralState</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>JS_NeutralState</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Joystick Neutral Position Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -467,10 +455,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisSafeNeutralState</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>LIGHTS_HDLTStatus</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Headlights On/Off Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -479,10 +467,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisSpeedLimiterSet</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>LIGHTS_WORKStatus</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Worklights On/Off Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -491,10 +479,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisWorkLtsOn</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>MISC_BrakeStatus</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Brake On/Off Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -503,10 +491,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvWorkAugerUnloadOn</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>MISC_DoorStatus</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Door Open/Closed Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -515,10 +503,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvWorkElevatorOn</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>PROP_NeutralSafeInd</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Machine in Neutral and Safe State (Engine Start Safe) Indicator</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -527,10 +515,10 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvWorkShaftDrvsOn</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>PROP_SpeedLimitStatus</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Max Joystick Position (47.5%) Status</comment>
                         <min-value value="0"/>
                         <max-value value="1"/>
                         <unit/>
@@ -539,80 +527,68 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvWorkStickRemoverOn</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>PROP_SpeedX10</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="1"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvWorkSuctionFanOn</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="1"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisAirFilterRestrictPrcn</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment>Original name (from import source): AgvChassisAirFilterRestrictPrcnt</comment>
+                        <comment>Ground Speed (x10)</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
+                        <unit>MPH x 10</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SF_Status</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Suction Fan On/Off Status</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvChassisFuelGagePrcnt</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SR_Status</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Stick Remover Status</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>AirFilterRestrictPrcnt</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Air Restriction Gauge Percent</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
-                        <unit/>
+                        <unit>%</unit>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvMajorRev</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>FuelGagePrcnt</name>
                         <type base-type="uint8" is-array="false"/>
-                        <comment/>
+                        <comment>Fuel Gauge Level (Percent)</comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
-                        <unit/>
+                        <unit>%</unit>
                         <access>read-write</access>
                         <data-set-values>
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvMinorRev</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="0"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvWorkSuctionFanHP</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SF_HP</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -623,8 +599,8 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvWorkSuctionFanHPTenths</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SF_HPTenths</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -635,10 +611,34 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0">
-                        <name>AgvWorkSuctionFanRpm</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SF_RPM</name>
                         <type base-type="uint16" is-array="false"/>
-                        <comment/>
+                        <comment>Suction Fan Speed (RPM)</comment>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit>RPM</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SW_MajorRev</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Software Version - Major</comment>
+                        <min-value value="0"/>
+                        <max-value value="0"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false">
+                        <name>SW_MinorRev</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Software Version - Minor </comment>
                         <min-value value="0"/>
                         <max-value value="0"/>
                         <unit/>

@@ -15,7 +15,7 @@
 #define APPL_CORE_SRC_AGVWORK_HITCH_POSITION_CONTROL_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "header_lift_control.h"
 #include "stwtypes.h"
 
@@ -54,7 +54,7 @@ typedef struct
 
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_hitchPosControl(T_UserInterface *_ui, T_Config_HeaderControl *_nvmHeaderControl);
+sint16 init_hitchPosControl(T_CANDevices *_can_dev, T_Config_HeaderControl *_nvmHeaderControl);
 sint16 update_hitchPosControl(void);
 void get_hitchPosStatus(uint8 * pu8_hitchON);
 

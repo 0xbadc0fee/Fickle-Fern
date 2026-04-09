@@ -14,7 +14,7 @@
 #define APPL_CORE_SRC_AGVWORK_HEADER_LIFT_CONTROL_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "stwtypes.h"
 
 #include "hw_inputs.h"
@@ -82,7 +82,7 @@ typedef struct
 
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_headerControl(T_UserInterface *_ui, T_ChkPoints_Header *_chkPoints, T_Config_HeaderControl *_nvmHeaderControl);
+sint16 init_headerControl(T_CANDevices *_can_dev, T_ChkPoints_Header *_chkPoints, T_Config_HeaderControl *_nvmHeaderControl);
 sint16 update_headerControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_HEADER_LIFT_CONTROL_H_ */

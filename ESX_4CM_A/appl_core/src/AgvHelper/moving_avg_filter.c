@@ -18,8 +18,7 @@
 #include "stwtypes.h"
 //PROJECT
 #include "moving_avg_filter.h"
-
-#include "../HAL/STW_4CM_HAL/system.h"
+#include "system.h"
 #include "math.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */

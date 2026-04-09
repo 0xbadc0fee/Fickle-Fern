@@ -25,7 +25,7 @@
 
 //PROJECT
 
-#include "checkpoints_data_pool.h"
+#include "dashboard_data_pool.h"
 
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */

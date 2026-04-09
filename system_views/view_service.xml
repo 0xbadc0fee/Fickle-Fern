@@ -1,0 +1,2078 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-view-definition>
+    <file-version>1</file-version>
+    <opensyde-system-view darkmode="false" device-config-selected-bit-rate="125">
+        <name>Service</name>
+        <service-mode active="false">
+            <availability setup="false" update="false" dashboard="false"/>
+        </service-mode>
+        <device-config-mode>all-connected-interfaces</device-config-mode>
+        <update-rates fast="100" medium="500" slow="1000"/>
+        <active-nodes>
+            <active-node state="true"/>
+            <active-node state="false"/>
+            <active-node state="false"/>
+            <active-node state="false"/>
+            <active-node state="false"/>
+        </active-nodes>
+        <node-update-information>
+            <node-specific-update-information position="0">
+                <data-block-paths>
+                    <data-block-path>ESX_4CM_A/boot_core/result/boot_core.hex</data-block-path>
+                    <data-block-path>ESX_4CM_A/safety_core/result/safety_core.hex</data-block-path>
+                    <data-block-path>ESX_4CM_A/appl_core/result/appl_core.hex</data-block-path>
+                </data-block-paths>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files>
+                    <skip-update-of-file state="false"/>
+                    <skip-update-of-file state="false"/>
+                    <skip-update-of-file state="false"/>
+                </skip-update-of-files>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="1">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="2">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="3">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="4">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+        </node-update-information>
+        <pc connected="true" bus-index="0">
+            <dll-path type="0"></dll-path>
+            <box>
+                <position x="20" y="20"/>
+                <size width="150" height="150"/>
+                <zorder value="1.7976931348623157e+308"/>
+            </box>
+            <connection>
+                <line>
+                    <color r="155" g="155" b="170" a="255"/>
+                    <width pixels="3"/>
+                    <zorder value="2"/>
+                    <interaction-points>
+                        <interaction-point x="95" y="170.5"/>
+                        <interaction-point x="196" y="320"/>
+                    </interaction-points>
+                </line>
+            </connection>
+        </pc>
+        <dashboards>
+            <dashboard active="true" tab-index="0" tab-type="scene">
+                <name>Filter Minder</name>
+                <comment>Dashboard for control and reading of Air Restriction Filter</comment>
+                <charts/>
+                <labels/>
+                <params/>
+                <pie-charts/>
+                <spin-boxes>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="599.7419354838712" y="550.41935483870952"/>
+                                <size width="220" height="51"/>
+                                <zorder value="6"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="601.58064516129025" y="701.0967741935483"/>
+                                <size width="220" height="51"/>
+                                <zorder value="10"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="200.97849462365588" y="549.27956989247286"/>
+                                <size width="220" height="51"/>
+                                <zorder value="12"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="201.16129032258061" y="700.29032258064512"/>
+                                <size width="220" height="51"/>
+                                <zorder value="13"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                </spin-boxes>
+                <sliders/>
+                <progress-bars>
+                    <progress-bar show-min-max="false" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="548.29032258064512" y="300.70967741935488"/>
+                                <size width="338" height="65"/>
+                                <zorder value="4"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="10" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="true">
+                                        <string>%.2f</string>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                        </base>
+                        <type>type1</type>
+                        <alignment>bottom</alignment>
+                    </progress-bar>
+                    <progress-bar show-min-max="false" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="152.48387096774195" y="301.0322580645161"/>
+                                <size width="338" height="65"/>
+                                <zorder value="17"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="10" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="true">
+                                        <string>%.2f</string>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                        </base>
+                        <type>type1</type>
+                        <alignment>bottom</alignment>
+                    </progress-bar>
+                </progress-bars>
+                <tables/>
+                <toggles/>
+                <text-elements>
+                    <text-element>
+                        <box>
+                            <position x="307.36842105263156" y="45.105263157894754"/>
+                            <size width="435" height="56"/>
+                            <zorder value="2"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Filter Minder Parameters</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="637.19354838709683" y="242.0322580645161"/>
+                            <size width="138" height="32"/>
+                            <zorder value="7"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Filter Restriction</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="598.35483870967755" y="510.48387096774195"/>
+                            <size width="251" height="56"/>
+                            <zorder value="8"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Filter Sensor Low Calibration</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="598.70967741935488" y="663.38709677419365"/>
+                            <size width="251" height="32"/>
+                            <zorder value="9"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Filter Sensor High Calibration</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="684.45161290322585" y="263.0645161290322"/>
+                            <size width="70" height="32"/>
+                            <zorder value="11"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>[%]</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="197.25806451612902" y="510.78494623655922"/>
+                            <size width="251" height="32"/>
+                            <zorder value="14"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Filter Sensor Fault Percentage</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="197.04301075268882" y="664.65591397849448"/>
+                            <size width="251" height="32"/>
+                            <zorder value="15"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Filter Sensor High Deadband</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="235.16129032258061" y="241.70967741935476"/>
+                            <size width="161.29032258064512" height="32"/>
+                            <zorder value="16"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>X3E1 Pin Voltage</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="279.61290322580646" y="264.67741935483855"/>
+                            <size width="70" height="32"/>
+                            <zorder value="18"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>[mV]</text-content>
+                    </text-element>
+                </text-elements>
+                <boundaries>
+                    <boundary>
+                        <box>
+                            <position x="20.31578947368422" y="20.315789473684212"/>
+                            <size width="997" height="100"/>
+                            <zorder value="1"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="20.31578947368422" y="20.315789473684212"/>
+                            <size width="997" height="799"/>
+                            <zorder value="0"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                </boundaries>
+                <images/>
+                <line-arrows/>
+            </dashboard>
+            <dashboard active="true" tab-index="1" tab-type="scene">
+                <name>Speedometer</name>
+                <comment/>
+                <charts/>
+                <labels/>
+                <params/>
+                <pie-charts/>
+                <spin-boxes>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="464" y="701"/>
+                                <size width="200" height="60"/>
+                                <zorder value="9"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="6" element="3"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit>in</unit>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>float32</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                </spin-boxes>
+                <sliders/>
+                <progress-bars/>
+                <tables/>
+                <toggles/>
+                <text-elements>
+                    <text-element>
+                        <box>
+                            <position x="285" y="38"/>
+                            <size width="435" height="56"/>
+                            <zorder value="3"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Speedometer Parameters</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="156" y="159"/>
+                            <size width="732" height="104"/>
+                            <zorder value="5"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>If a customer replaces the rear tires with non-standard tiires, or complains of speedometer inaccuracy, the speedometer may need to be recalibrated.  
+
+Follow the procedure below to recalibrate.</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="167" y="329"/>
+                            <size width="554" height="32"/>
+                            <zorder value="6"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>1. Measure the rear tire's rolling radius (the Y dimension below)</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="163" y="559"/>
+                            <size width="554" height="56"/>
+                            <zorder value="7"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>2. Multiply this value by 2 to get the Rolling Diameter.  This value will be less than X above.</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="165" y="621"/>
+                            <size width="554" height="56"/>
+                            <zorder value="8"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>3. Enter the Rolling Diamater into the box below.  The value must be entered with 2 decimal places</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="308" y="703"/>
+                            <size width="201" height="49"/>
+                            <zorder value="10"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Rear Tire Rolling Diamater</text-content>
+                    </text-element>
+                </text-elements>
+                <boundaries>
+                    <boundary>
+                        <box>
+                            <position x="20" y="20"/>
+                            <size width="997" height="799"/>
+                            <zorder value="1"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="21" y="20"/>
+                            <size width="997" height="100"/>
+                            <zorder value="2"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                </boundaries>
+                <images>
+                    <image>
+                        <box>
+                            <position x="419" y="379"/>
+                            <size width="200" height="165"/>
+                            <zorder value="4"/>
+                        </box>
+                        <image-data>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</image-data>
+                        <image-format></image-format>
+                    </image>
+                </images>
+                <line-arrows/>
+            </dashboard>
+            <dashboard active="true" tab-index="2" tab-type="scene">
+                <name>Hydrostat</name>
+                <comment/>
+                <charts/>
+                <labels/>
+                <params/>
+                <pie-charts/>
+                <spin-boxes/>
+                <sliders/>
+                <progress-bars>
+                    <progress-bar show-min-max="true" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="1468" y="147"/>
+                                <size width="100" height="214"/>
+                                <zorder value="11"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde2</display-style>
+                        </base>
+                        <type>type2</type>
+                        <alignment>left</alignment>
+                    </progress-bar>
+                    <progress-bar show-min-max="false" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="1139" y="165"/>
+                                <size width="100" height="193"/>
+                                <zorder value="12"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde2</display-style>
+                        </base>
+                        <type>type2</type>
+                        <alignment>left</alignment>
+                    </progress-bar>
+                </progress-bars>
+                <tables/>
+                <toggles/>
+                <text-elements>
+                    <text-element>
+                        <box>
+                            <position x="285" y="38"/>
+                            <size width="435" height="56"/>
+                            <zorder value="3"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Hydrostat Parameters</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="156" y="159"/>
+                            <size width="732" height="104"/>
+                            <zorder value="5"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>If a customer replaces the rear tires with non-standard tiires, or complains of speedometer inaccuracy, the speedometer may need to be recalibrated.  
+
+Follow the procedure below to recalibrate.</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="308" y="703"/>
+                            <size width="201" height="49"/>
+                            <zorder value="10"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Rear Tire Rolling Diamater</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="165" y="621"/>
+                            <size width="554" height="56"/>
+                            <zorder value="8"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>3. Enter the Rolling Diamater into the box below.  The value must be entered with 2 decimal places</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="163" y="559"/>
+                            <size width="554" height="56"/>
+                            <zorder value="7"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>2. Multiply this value by 2 to get the Rolling Diameter.  This value will be less than X above.</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="167" y="329"/>
+                            <size width="554" height="32"/>
+                            <zorder value="6"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>1. Measure the rear tire's rolling radius (the Y dimension below)</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1100.1612903225805" y="110.70967741935476"/>
+                            <size width="161.28125" height="32"/>
+                            <zorder value="13"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>X3K4 Pin Current</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1077.1612903225805" y="529.70967741935453"/>
+                            <size width="161.28125" height="32"/>
+                            <zorder value="15"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>(EDC Pin A)</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1362.1612903225805" y="541.70967741935453"/>
+                            <size width="70.838709677419502" height="32"/>
+                            <zorder value="16"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>[mA]</text-content>
+                    </text-element>
+                </text-elements>
+                <boundaries>
+                    <boundary>
+                        <box>
+                            <position x="21" y="20"/>
+                            <size width="997" height="100"/>
+                            <zorder value="2"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="1222" y="736"/>
+                            <size width="997" height="799"/>
+                            <zorder value="1"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                </boundaries>
+                <images/>
+                <line-arrows/>
+            </dashboard>
+            <dashboard active="true" tab-index="3" tab-type="scene">
+                <name>Suction Fan</name>
+                <comment/>
+                <charts/>
+                <labels/>
+                <params/>
+                <pie-charts/>
+                <spin-boxes>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="201.66270514997166" y="698.9637804187887"/>
+                                <size width="220" height="51"/>
+                                <zorder value="11"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="8" element="2"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit>s</unit>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="4">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="4">
+                            <type>uint64</type>
+                        </content>
+                    </spin-box>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="605.84550084889634" y="696.97453310696096"/>
+                                <size width="220" height="51"/>
+                                <zorder value="12"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="8" element="3"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit>s</unit>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="4">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="4">
+                            <type>uint64</type>
+                        </content>
+                    </spin-box>
+                </spin-boxes>
+                <sliders/>
+                <progress-bars>
+                    <progress-bar show-min-max="false" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="285.16808149405779" y="252.71646859083194"/>
+                                <size width="455.83191850594221" height="65"/>
+                                <zorder value="17"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="10" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="true">
+                                        <string>%.2f</string>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                        </base>
+                        <type>type1</type>
+                        <alignment>bottom</alignment>
+                    </progress-bar>
+                </progress-bars>
+                <tables/>
+                <toggles/>
+                <text-elements>
+                    <text-element>
+                        <box>
+                            <position x="408.84550084889634" y="188.39388794567054"/>
+                            <size width="206.15449915110361" height="56"/>
+                            <zorder value="15"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Fan Commanded Speed</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="197.94227504244481" y="661.46915676287506"/>
+                            <size width="251" height="32"/>
+                            <zorder value="13"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Fan Ramp Up Time</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="485.2971137521223" y="210.36162988115439"/>
+                            <size width="70" height="32"/>
+                            <zorder value="17"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>[%]</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="601.72722127900465" y="661.34012450481032"/>
+                            <size width="251" height="32"/>
+                            <zorder value="14"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Fan Ramp Down Time</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="285" y="41.789473684210535"/>
+                            <size width="566.0526315789474" height="104"/>
+                            <zorder value="3"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Suction Fan Speed Outputs</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="125.94227504244463" y="425.46915676287517"/>
+                            <size width="791.05772495755537" height="149.53084323712483"/>
+                            <zorder value="18"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Adjust the parameters below only if the customer requires some customization with the sunction fan ramp-up time.
+
+For example, if the customer wants the suction fan to come up to speed faster, adjust these values to a faster time (a smaller value). </text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="306" y="600.46915676287517"/>
+                            <size width="371.9375" height="32"/>
+                            <zorder value="19"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Adjustment range limited to 4 - 8 seconds</text-content>
+                    </text-element>
+                </text-elements>
+                <boundaries>
+                    <boundary>
+                        <box>
+                            <position x="20" y="20"/>
+                            <size width="985" height="838"/>
+                            <zorder value="1"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="21" y="20"/>
+                            <size width="983" height="100"/>
+                            <zorder value="2"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                </boundaries>
+                <images/>
+                <line-arrows>
+                    <line-arrow>
+                        <line>
+                            <color r="0" g="0" b="0" a="255"/>
+                            <width pixels="2"/>
+                            <zorder value="20"/>
+                            <interaction-points>
+                                <interaction-point x="81" y="357"/>
+                                <interaction-point x="959" y="357"/>
+                            </interaction-points>
+                        </line>
+                        <start-arrow-head-type>none</start-arrow-head-type>
+                        <end-arrow-head-type>none</end-arrow-head-type>
+                        <line-type>solid</line-type>
+                        <dark-color r="177" g="177" b="177" a="255"/>
+                    </line-arrow>
+                </line-arrows>
+            </dashboard>
+            <dashboard active="true" tab-index="4" tab-type="scene">
+                <name>Sensor Calibration</name>
+                <comment/>
+                <charts/>
+                <labels>
+                    <label show-caption="false" show-unit="true">
+                        <base>
+                            <box>
+                                <position x="1199" y="683"/>
+                                <size width="150" height="84"/>
+                                <zorder value="23"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde2</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>transparent</type>
+                    </label>
+                </labels>
+                <params/>
+                <pie-charts/>
+                <spin-boxes>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="361" y="388.9637804187887"/>
+                                <size width="256.66270514997166" height="51"/>
+                                <zorder value="4"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="4">
+                                        <type>uint16</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="1600" y="700.9637804187887"/>
+                                <size width="256.66270514997166" height="51"/>
+                                <zorder value="17"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="4">
+                                        <type>uint16</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                </spin-boxes>
+                <sliders/>
+                <progress-bars/>
+                <tables/>
+                <toggles/>
+                <text-elements>
+                    <text-element>
+                        <box>
+                            <position x="285" y="41.789473684210535"/>
+                            <size width="566.046875" height="56"/>
+                            <zorder value="3"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Fuel Level Sensor Calibration</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="228.94227504244463" y="274.46915676287517"/>
+                            <size width="791.046875" height="56"/>
+                            <zorder value="11"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>1. Ensure Fuel Tank is as full as possible.
+2. Adjust value below "Up" in 100mV increments until the tank shows Full.</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="393.94227504244481" y="351.46915676287506"/>
+                            <size width="251" height="32"/>
+                            <zorder value="6"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Fuel Gauge Full Setpoint</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="46.942275042444635" y="152.46915676287517"/>
+                            <size width="948.05772495755537" height="80"/>
+                            <zorder value="12"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Do not adjust this parameter unless the Fuel Level Gauge is not showing FULL when the tank is actually full.  If the Fuel Gauge does not show full when the tank is actually full, follow the procedure below.</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="141.94227504244463" y="581.46915676287517"/>
+                            <size width="791.046875" height="80"/>
+                            <zorder value="13"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Note:  If this value is set too high the fuel gauge will show full for an extended amount of time until the tank gets low enough.  This value should be set such that the system barely recognizes the tank is full.</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1070.9422750424446" y="152.46915676287517"/>
+                            <size width="948.046875" height="80"/>
+                            <zorder value="20"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>IMPORTANT:
+For best results, perform this calibration when the engine has NOT been run for at least 30 minutes and is at ambient temperature.  The engine should NOT be running during this procedure</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1137" y="41.789473684210535"/>
+                            <size width="803.046875" height="104"/>
+                            <zorder value="16"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Hydraulic Oil Temperature Sensor Calibration</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1134.9422750424446" y="282.46915676287517"/>
+                            <size width="791.046875" height="272"/>
+                            <zorder value="19"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>1. Use a laser thermometer to measure the temeprature of the bottom tank of the hydraulic oil cooler. Write down this temperature for reference.
+
+2. Observe the System Oil Temperature below.
+
+3. If the temperature in Step 2 is the same as the temperature recoreded in Step 1, there is no calibration requirement.
+
+4.  If the temperature is Step 2 differs from the recorded temperature in Step 1,  adjust the Oil Temperature Calibration Point Up or Down in increments of 10 until the Step 1 and Step 2 values match.</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1188.9422750424449" y="650.46915676287529"/>
+                            <size width="251" height="32"/>
+                            <zorder value="18"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>System Oil Temperature</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1600.9422750424444" y="647.46915676287506"/>
+                            <size width="299.05772495755514" height="56"/>
+                            <zorder value="22"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Oil Temperature Calibration Point</text-content>
+                    </text-element>
+                </text-elements>
+                <boundaries>
+                    <boundary>
+                        <box>
+                            <position x="21" y="20"/>
+                            <size width="983" height="100"/>
+                            <zorder value="2"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="20" y="20"/>
+                            <size width="984" height="838"/>
+                            <zorder value="1"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="1045" y="20"/>
+                            <size width="983" height="100"/>
+                            <zorder value="15"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="1045" y="20"/>
+                            <size width="984" height="838"/>
+                            <zorder value="14"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                </boundaries>
+                <images/>
+                <line-arrows/>
+            </dashboard>
+            <dashboard active="true" tab-index="5" tab-type="scene">
+                <name>Machine Options</name>
+                <comment/>
+                <charts/>
+                <labels/>
+                <params/>
+                <pie-charts/>
+                <spin-boxes/>
+                <sliders/>
+                <progress-bars/>
+                <tables/>
+                <toggles>
+                    <toggle state="true">
+                        <base>
+                            <box>
+                                <position x="505" y="306.91566265060237"/>
+                                <size width="118.00000000000007" height="71.084337349397657"/>
+                                <zorder value="9"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="11" element="0"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                    </toggle>
+                    <toggle state="false">
+                        <base>
+                            <box>
+                                <position x="509" y="522.91566265060237"/>
+                                <size width="118.00000000000007" height="71.084337349397657"/>
+                                <zorder value="13"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="12" element="0"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                    </toggle>
+                    <toggle state="false">
+                        <base>
+                            <box>
+                                <position x="511" y="618.91566265060237"/>
+                                <size width="118.00000000000007" height="71.084337349397657"/>
+                                <zorder value="14"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde2</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>disabled</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                    </toggle>
+                    <toggle state="false">
+                        <base>
+                            <box>
+                                <position x="514" y="720.91566265060237"/>
+                                <size width="118.00000000000007" height="71.084337349397657"/>
+                                <zorder value="18"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="2" element="0"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                    </toggle>
+                </toggles>
+                <text-elements>
+                    <text-element>
+                        <box>
+                            <position x="343" y="41.78947368421052"/>
+                            <size width="566.046875" height="56"/>
+                            <zorder value="3"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Machine Options</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="303.94227504244463" y="301.46915676287517"/>
+                            <size width="178.046875" height="56"/>
+                            <zorder value="10"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Stick Box (Momentary) Enable</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="307.94227504244463" y="527.46915676287517"/>
+                            <size width="178.046875" height="32"/>
+                            <zorder value="11"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Power Assist Enable</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="300.94227504244463" y="627.46915676287517"/>
+                            <size width="178.046875" height="32"/>
+                            <zorder value="12"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Front Sweeps Enable</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="91.942275042444635" y="457.46915676287517"/>
+                            <size width="948.046875" height="32"/>
+                            <zorder value="15"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Front Sweeps and Power Assist Cart System are optional features that must be activated below. </text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="54.942275042444635" y="153.46915676287517"/>
+                            <size width="948.046875" height="128"/>
+                            <zorder value="16"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>As standard equipment, the Stick Box Buttons in the cab are momentary-on switches.  This is to operate the stick box actuator correctly on a cart with a stick remover.
+
+If the customer does not have a cart with a stick remover, the "Close" stick box button in the cab will act as a toggle on\off switch (able to be utilized by a different function if required).</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="303.94227504244463" y="729.46915676287517"/>
+                            <size width="178.046875" height="32"/>
+                            <zorder value="17"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Joystick HLL Control</text-content>
+                    </text-element>
+                </text-elements>
+                <boundaries>
+                    <boundary>
+                        <box>
+                            <position x="21" y="20"/>
+                            <size width="983" height="100"/>
+                            <zorder value="2"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="20" y="20"/>
+                            <size width="984" height="838"/>
+                            <zorder value="1"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                </boundaries>
+                <images/>
+                <line-arrows/>
+            </dashboard>
+            <dashboard active="true" tab-index="6" tab-type="scene">
+                <name>Elevator Flow Control</name>
+                <comment/>
+                <charts/>
+                <labels/>
+                <params/>
+                <pie-charts/>
+                <spin-boxes/>
+                <sliders/>
+                <progress-bars/>
+                <tables/>
+                <toggles>
+                    <toggle state="false">
+                        <base>
+                            <box>
+                                <position x="245" y="531.91566265060237"/>
+                                <size width="118.00000000000007" height="71.084337349397657"/>
+                                <zorder value="1"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="0" element="3"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                    </toggle>
+                    <toggle state="false">
+                        <base>
+                            <box>
+                                <position x="480" y="530.91566265060237"/>
+                                <size width="118.00000000000007" height="71.084337349397657"/>
+                                <zorder value="3"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="0" element="4"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="0">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                    </toggle>
+                </toggles>
+                <text-elements>
+                    <text-element>
+                        <box>
+                            <position x="230.94227504244463" y="456.46915676287517"/>
+                            <size width="178.046875" height="56"/>
+                            <zorder value="2"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>VL3512 (PEFC12-20-12)</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="464.94227504244463" y="455.46915676287517"/>
+                            <size width="178.046875" height="56"/>
+                            <zorder value="4"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>VL3514 
+(PEFC12-30-R15)</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="236" y="47.78947368421052"/>
+                            <size width="566.046875" height="56"/>
+                            <zorder value="5"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Elevator Flow Control Selection</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="1166.9422750424446" y="513.46915676287517"/>
+                            <size width="948.046875" height="32"/>
+                            <zorder value="6"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Flory 8700 SN1255-1301 utilized </text-content>
+                    </text-element>
+                </text-elements>
+                <boundaries>
+                    <boundary>
+                        <box>
+                            <position x="20" y="20"/>
+                            <size width="984" height="838"/>
+                            <zorder value="-3"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="20" y="20"/>
+                            <size width="983" height="100"/>
+                            <zorder value="-1"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                </boundaries>
+                <images/>
+                <line-arrows/>
+            </dashboard>
+            <dashboard active="true" tab-index="7" tab-type="scene">
+                <name>Cooling Fan </name>
+                <comment/>
+                <charts/>
+                <labels/>
+                <params/>
+                <pie-charts/>
+                <spin-boxes>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="201.66270514997166" y="698.9637804187887"/>
+                                <size width="220" height="51"/>
+                                <zorder value="4"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="60">
+                                        <type>uint16</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                    <spin-box show-unit="true">
+                        <base>
+                            <box>
+                                <position x="605.84550084889634" y="696.97453310696096"/>
+                                <size width="220" height="51"/>
+                                <zorder value="5"/>
+                            </box>
+                            <data-pool-elements/>
+                            <display-style>opensyde</display-style>
+                            <write-mode>manual</write-mode>
+                            <write>
+                                <connect-init-handling auto-write-on-connect="false">
+                                    <mode>read-server-value</mode>
+                                    <value array="false" value="4">
+                                        <type>uint8</type>
+                                    </value>
+                                </connect-init-handling>
+                            </write>
+                        </base>
+                        <type>type2</type>
+                        <content array="false" value="0">
+                            <type>float64</type>
+                        </content>
+                    </spin-box>
+                </spin-boxes>
+                <sliders/>
+                <progress-bars>
+                    <progress-bar show-min-max="false" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="285.16808149405779" y="252.71646859083194"/>
+                                <size width="455.83191850594221" height="65"/>
+                                <zorder value="10"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="10" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="true">
+                                        <string>%.2f</string>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde2</display-style>
+                        </base>
+                        <type>type1</type>
+                        <alignment>bottom</alignment>
+                    </progress-bar>
+                </progress-bars>
+                <tables/>
+                <toggles/>
+                <text-elements>
+                    <text-element>
+                        <box>
+                            <position x="485.2971137521223" y="210.36162988115439"/>
+                            <size width="70" height="32"/>
+                            <zorder value="9"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>[%]</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="307" y="42.789473684210535"/>
+                            <size width="566.046875" height="56"/>
+                            <zorder value="3"/>
+                        </box>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="255" g="255" b="255" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Cooling Fan Reversal</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="199" y="754.46915676287517"/>
+                            <size width="398.9375" height="27"/>
+                            <zorder value="12"/>
+                        </box>
+                        <font-style>Segoe UI,-1,14,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Adjustment range limited to 60-1200 seconds</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="125.94227504244463" y="425.46915676287517"/>
+                            <size width="791.05772495755537" height="149.53084323712483"/>
+                            <zorder value="11"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Adjust the parameters below only if the customer requires some customization with the sunction fan ramp-up time.
+
+For example, if the customer wants the suction fan to come up to speed faster, adjust these values to a faster time (a smaller value). </text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="601.72722127900465" y="661.34012450481032"/>
+                            <size width="251" height="32"/>
+                            <zorder value="7"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Purge Cycle Active Time</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="408.84550084889634" y="188.39388794567054"/>
+                            <size width="206.15449915110361" height="56"/>
+                            <zorder value="8"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Fan Commanded Speed</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="197.94227504244481" y="661.46915676287506"/>
+                            <size width="251" height="32"/>
+                            <zorder value="6"/>
+                        </box>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Purge Cycle Repeat Time</text-content>
+                    </text-element>
+                    <text-element>
+                        <box>
+                            <position x="605" y="750.46915676287517"/>
+                            <size width="398.9375" height="27"/>
+                            <zorder value="14"/>
+                        </box>
+                        <font-style>Segoe UI,-1,14,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-color>
+                            <bright r="91" g="91" b="91" a="255"/>
+                            <dark r="255" g="255" b="255" a="255"/>
+                        </font-color>
+                        <text-content>Adjustment range limited to 1-30 seconds</text-content>
+                    </text-element>
+                </text-elements>
+                <boundaries>
+                    <boundary>
+                        <box>
+                            <position x="20" y="20"/>
+                            <size width="985" height="838"/>
+                            <zorder value="1"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="250" g="250" b="250" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                    <boundary>
+                        <box>
+                            <position x="21" y="20"/>
+                            <size width="983" height="100"/>
+                            <zorder value="2"/>
+                        </box>
+                        <border-color>
+                            <bright r="0" g="0" b="0" a="255"/>
+                            <dark r="27" g="27" b="68" a="255"/>
+                        </border-color>
+                        <border-width pixels="2"/>
+                        <background-color>
+                            <bright r="212" g="42" b="45" a="255"/>
+                            <dark r="177" g="177" b="177" a="255"/>
+                        </background-color>
+                    </boundary>
+                </boundaries>
+                <images/>
+                <line-arrows>
+                    <line-arrow>
+                        <line>
+                            <color r="0" g="0" b="0" a="255"/>
+                            <width pixels="2"/>
+                            <zorder value="13"/>
+                            <interaction-points>
+                                <interaction-point x="81" y="357"/>
+                                <interaction-point x="959" y="357"/>
+                            </interaction-points>
+                        </line>
+                        <start-arrow-head-type>none</start-arrow-head-type>
+                        <end-arrow-head-type>none</end-arrow-head-type>
+                        <line-type>solid</line-type>
+                        <dark-color r="177" g="177" b="177" a="255"/>
+                    </line-arrow>
+                </line-arrows>
+            </dashboard>
+        </dashboards>
+        <rail-assignments>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="10" element="1"/>
+                <threshold array="false" value="inf">
+                    <type>float32</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+        </rail-assignments>
+    </opensyde-system-view>
+</opensyde-view-definition>

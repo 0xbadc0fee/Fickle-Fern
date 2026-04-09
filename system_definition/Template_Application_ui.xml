@@ -8,37 +8,63 @@
         <node>node_engine/node_ui.xml</node>
         <node>node_display/node_ui.xml</node>
     </nodes>
-    <buses length="1">
+    <buses length="2">
         <bus>
             <line>
                 <color r="206" g="206" b="217" a="255"/>
                 <width pixels="6"/>
                 <zorder value="3"/>
                 <interaction-points>
-                    <interaction-point x="171" y="322"/>
-                    <interaction-point x="1029" y="322"/>
+                    <interaction-point x="196" y="320"/>
+                    <interaction-point x="1054" y="320"/>
+                </interaction-points>
+            </line>
+            <color-middle-line r="255" g="255" b="255" a="255"/>
+        </bus>
+        <bus>
+            <line>
+                <color r="206" g="206" b="217" a="255"/>
+                <width pixels="6"/>
+                <zorder value="9"/>
+                <interaction-points>
+                    <interaction-point x="196" y="601"/>
+                    <interaction-point x="1030" y="601"/>
                 </interaction-points>
             </line>
             <color-middle-line r="255" g="255" b="255" a="255"/>
         </bus>
     </buses>
-    <bus-text-elements length="1">
+    <bus-text-elements length="2">
         <bus-text-element bus-index="0">
             <box>
-                <position x="176" y="342"/>
-                <size width="48.8125" height="30"/>
+                <position x="129" y="302"/>
+                <size width="109.8125" height="30"/>
                 <zorder value="2"/>
             </box>
-            <font-style>Segoe UI,-1,16,5,50,0,0,0,0,0</font-style>
+            <font-style>Segoe UI,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
             <font-color>
                 <bright r="57" g="57" b="109" a="255"/>
                 <dark r="255" g="255" b="255" a="255"/>
             </font-color>
-            <text-content>CAN1</text-content>
+            <text-content>CAN_A</text-content>
+        </bus-text-element>
+        <bus-text-element bus-index="1">
+            <box>
+                <position x="131" y="587"/>
+                <size width="76" height="30"/>
+                <zorder value="8"/>
+            </box>
+            <font-style>Segoe UI,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+            <font-color>
+                <bright r="57" g="57" b="109" a="255"/>
+                <dark r="255" g="255" b="255" a="255"/>
+            </font-color>
+            <text-content>CAN_B</text-content>
         </bus-text-element>
     </bus-text-elements>
     <text-elements/>
     <boundaries/>
     <images/>
     <line-arrows/>
+    <last-known-halc-crcs/>
 </opensyde-system-ui-definition>

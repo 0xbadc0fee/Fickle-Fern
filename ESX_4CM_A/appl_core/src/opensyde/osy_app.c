@@ -9,6 +9,7 @@
 #include "x_stdtypes.h"
 #include "osy_dpa_application_event_handler_if.h"
 #include "osy_init.h"
+#include "nvm_handler.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -25,6 +26,8 @@
 //-----------------------------------------------------------------------------
 void osy_app_write_event(const uint8 ou8_DataPoolIndex, const uint16 ou16_ListIndex, const uint16 ou16_ElementIndex)
 {
+    //potentially call the write_nvm function here?
+    write_nvmParameters();
 }
 
 //-----------------------------------------------------------------------------

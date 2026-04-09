@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-dp-ui-definition>
+    <file-version>1</file-version>
+    <data-pool>
+        <lists length="7">
+            <list>
+                <data-elements length="1">
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="4">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="6">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="2">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="2">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="2">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="2">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+        </lists>
+    </data-pool>
+</opensyde-dp-ui-definition>

@@ -134,7 +134,7 @@
                     </com-message>
                 </tx-messages>
                 <rx-messages length="1">
-                    <com-message can-id="201326846" is-extended="true" dlc="8" cycle-time="50" minimum-cycle-time="10" receive-timeout="160">
+                    <com-message can-id="201326846" is-extended="true" dlc="8" cycle-time="100" minimum-cycle-time="10" receive-timeout="310">
                         <name>TSC1</name>
                         <comment>Torque/Speed Control 1</comment>
                         <tx-method>cyclic</tx-method>

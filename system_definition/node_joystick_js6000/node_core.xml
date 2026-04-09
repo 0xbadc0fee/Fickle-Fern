@@ -3,7 +3,7 @@
     <file-version>1</file-version>
     <node datapool-auto-nvm-start-address="true">
         <type>3rd Party</type>
-        <properties>
+        <properties x-app-support="false">
             <name>Joystick_JS6000</name>
             <comment/>
             <diagnostic-server>none</diagnostic-server>
@@ -12,7 +12,7 @@
                 <communication-interface interface-number="0" node-id="1" update-available="false" routing-available="false" diagnosis-available="false">
                     <type>can</type>
                     <communication-protocol/>
-                    <bus connected="true" interface-connected="true" bus-index="0"/>
+                    <bus connected="true" interface-connected="true" bus-index="1"/>
                 </communication-interface>
                 <communication-interface interface-number="1" node-id="0" update-available="false" routing-available="false" diagnosis-available="false">
                     <type>can</type>

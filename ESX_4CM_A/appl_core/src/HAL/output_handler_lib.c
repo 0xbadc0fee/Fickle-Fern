@@ -161,7 +161,7 @@ sint16 update_outputHandler(void)
                     break;
 
                 case OT_CC:
-                    s16_error |= x_out_set_current_setpoint(at_vehicleOutputs[j].u16_hardwareID, (sint32) at_vehicleOutputs[j].f32_outputValue);
+                    s16_error |= x_out_set_current_setpoint(at_vehicleOutputs[j].u16_hardwareID, (sint32)(at_vehicleOutputs[j].f32_outputValue*1000.0f));
                     break;
 
 
@@ -281,6 +281,18 @@ sint16 get_outputFaultStatus(const char *targetName, uint8 *opu8_status)
 // Setter Functions ------------------------------------------------------------------------
 /*! \brief Set output value by name
     Searches for an output by name and sets its value
+
+    Digital
+    -------
+    Value > 0 = Output ON, Value = 0 = Output Off
+
+    PWM
+    -------
+    Value in m% - 0-10000 = 0%DC -> 100%DC
+
+    CC
+    -------
+    Value in mA
 
     \param[in] targetName Name of the output to find
     \param[in] value New output value to set

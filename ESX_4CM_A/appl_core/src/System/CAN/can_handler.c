@@ -25,7 +25,7 @@
 #include "j1939_data_pool.h"
 #include "can_handler.h"
 
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "can_engine.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
@@ -34,8 +34,7 @@
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
 static bool maq_CanAvailable[X_CAN_COUNT];
 
-T_UserInterface gt_ui;
-T_Engine gt_engine;
+T_CANDevices gt_can_devs;
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize CAN Interfaces
