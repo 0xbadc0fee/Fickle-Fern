@@ -21,6 +21,7 @@
 #include "hw_outputs.h"
 #include "power_assist_control.h"
 #include "propulsion_control.h"
+#include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
@@ -99,12 +100,9 @@ sint16 update_powerAssistControl(void)
        uint8 u8_traction_output_fault = FALSE;
 
        uint8 u8_trac_switch_fault = FALSE;
-       uint8 u8_ign_fault_status = FALSE;
+       uint32 u32_engine_runtime = 0;
 
        float32 f32_trac_switch_cmd = 0.0F;
-       float32 f32_ign_value = 0.0F;
-
-       uint32 u32_now_ms = get_system_time_ms();
 
        if(mt_power_assist.pt_nvm_pa_control == NULL)
        {
@@ -133,29 +131,14 @@ sint16 update_powerAssistControl(void)
        get_inputValue("TRACTION_VALVE", &f32_trac_switch_cmd);
 
        //Read ignition / program-start timing inputs
-       get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
-       get_inputValue("IGNITION_SWITCH", &f32_ign_value);
-
-       //FR-15.3 Program start debounce timing
-       u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != 0.0F)) ? TRUE : FALSE;
-
-       if((u8_ign_on == TRUE) && (mt_power_assist.u8_prev_ign_on == FALSE))
-       {
-           mt_power_assist.u32_ign_start_time_ms = u32_now_ms;
-       }
-
-       if(u8_ign_on == FALSE)
-       {
-           mt_power_assist.u32_ign_start_time_ms = 0u;
-       }
+       get_engineRuntime(&u32_engine_runtime);
 
        get_outputFaultStatus("TRACTION_VALVE", &u8_traction_output_fault);
        get_outputFaultStatus("POWER_ASSIST", &u8_power_assist_output_fault);
 
        //FR-15.3 Force disabled state and reset when conditions are not satisfied
        if((u8_high_gear_enabled == HIGH_GEAR_ENABLED) ||
-          (u8_ign_fault_status == TRUE) ||
-          ((u32_now_ms - mt_power_assist.u32_ign_start_time_ms) < PROGRAM_START_DEB_MS))
+          (u32_engine_runtime < PROGRAM_START_DEB_MS))
        {
            u8_reset = TRUE;
        }

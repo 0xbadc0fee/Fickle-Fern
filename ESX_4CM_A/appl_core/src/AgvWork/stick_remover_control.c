@@ -22,6 +22,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 #include "stick_remover_control.h"
+#include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
@@ -90,15 +91,10 @@ sint16 update_stickRemoverControl(void)
     uint8 u8_stick_cmd = STICK_REMOVER_DISABLED;
 
     uint8 u8_door_fault_status = FALSE;
-    uint8 u8_ign_fault_status = FALSE;
     uint8 u8_output_fault_status = FALSE;
-    uint8 u8_ign_on = FALSE;
-    uint8 u8_startup_deb_complete = FALSE;
-
     float32 f32_door_value = DOOR_CLOSED;
-    float32 f32_ign_value = IGN_OFF;
 
-    uint32 u32_now_ms = get_system_time_ms();
+    uint32 u32_engine_runtime = 0;
 
     if(mt_stick_remover.pu8_stick_remover_command != NULL)
     {
@@ -110,35 +106,13 @@ sint16 update_stickRemoverControl(void)
     get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
     get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
-    get_inputValue("IGNITION_SWITCH", &f32_ign_value);
-
-    // Determine ignition ON status
-    u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
-
-    // Program start debounce timing
-    if((u8_ign_on == TRUE) && (mt_stick_remover.u8_prev_ign_on == FALSE))
-    {
-        mt_stick_remover.u32_ign_start_time_ms = u32_now_ms;
-    }
-    else if(u8_ign_on == FALSE)
-    {
-        mt_stick_remover.u32_ign_start_time_ms = 0u;
-    }
-
-    if((u8_ign_on == TRUE) &&
-    ((u32_now_ms - mt_stick_remover.u32_ign_start_time_ms) >= PROGRAM_START_DEB_MS))
-    {
-        u8_startup_deb_complete = TRUE;
-    }
+    get_engineRuntime(&u32_engine_runtime);
 
 
     // FR-11.2 Force disabled state and reset when conditions not satisfied
     if((u8_door_fault_status == TRUE) ||
     (f32_door_value != DOOR_CLOSED) ||
-    (u8_ign_fault_status == TRUE) ||
-    (u8_ign_on == FALSE) ||
-    (u8_startup_deb_complete == FALSE))
+    (u32_engine_runtime < PROGRAM_START_DEB_MS))
     {
         u8_reset = TRUE;
     }
@@ -172,8 +146,6 @@ sint16 update_stickRemoverControl(void)
         *(mt_stick_remover.pu8_stick_remover_status) = mt_stick_remover.u8_stick_remover_latched;
     }
 
-
-    mt_stick_remover.u8_prev_ign_on = u8_ign_on;
 
     return s16_error;
 }

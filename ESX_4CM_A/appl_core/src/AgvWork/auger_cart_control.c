@@ -20,6 +20,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 #include "auger_cart_control.h"
+#include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
@@ -112,16 +113,12 @@ sint16 update_augerControl(void)
     uint8 u8_hitch_on = FALSE;
 
     uint8 u8_door_fault_status = FALSE;
-    uint8 u8_ign_fault_status = FALSE;
     uint8 u8_aug_output_fault = FALSE;
     uint8 u8_man_output_fault = FALSE;
-    uint8 u8_ign_on = FALSE;
-    uint8 u8_startup_deb_complete = FALSE;
+
+    uint32 u32_engine_runtime = 0;
 
     float32 f32_door_value = DOOR_CLOSED;
-    float32 f32_ign_value = IGN_OFF;
-
-    uint32 u32_now_ms = get_system_time_ms();
 
     // Read commands safely
     if(mt_augerc.pu8_auto_command != NULL && *(mt_augerc.pu8_auto_command) != BTN_FAULT)
@@ -146,26 +143,9 @@ sint16 update_augerControl(void)
     get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
     get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
-    get_inputValue("IGNITION_SWITCH", &f32_ign_value);
+    //Read ignition / program-start timing inputs
+    get_engineRuntime(&u32_engine_runtime);
 
-    // Program start debounce timing
-    u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
-
-    if((u8_ign_on == TRUE) && (mt_augerc.u8_prev_ign_on == FALSE))
-    {
-        mt_augerc.u32_ign_start_time_ms = u32_now_ms;
-    }
-    else if(u8_ign_on == FALSE)
-    {
-        mt_augerc.u32_ign_start_time_ms = 0u;
-    }
-
-    if((u8_ign_on == TRUE) &&
-    ((u32_now_ms - mt_augerc.u32_ign_start_time_ms) >= PROGRAM_START_DEB_MS))
-    {
-        u8_startup_deb_complete = TRUE;
-    }
 
     //FR-9.4 The control module shall prohibit enabling the Auger Unload Enable and Manual Unload Enable commands if either the Hitch “IN” command or Hitch “OUT” commands are active.
     get_hitchPosStatus(&u8_hitch_on);
@@ -173,9 +153,7 @@ sint16 update_augerControl(void)
     //FR-9.2 Disable Auger Cart and reset when conditions not satisfied
     if((u8_door_fault_status == TRUE) ||
     (f32_door_value != DOOR_CLOSED) ||
-    (u8_ign_fault_status == TRUE) ||
-    (f32_ign_value == IGN_OFF) ||
-    (u8_startup_deb_complete == FALSE) ||
+    (u32_engine_runtime >= PROGRAM_START_DEB_MS) ||
     (u8_hitch_on == TRUE))
     {
         u8_common_reset = TRUE;
@@ -252,8 +230,6 @@ sint16 update_augerControl(void)
     {
         *(mt_augerc.pu8_auto_enable_status) = mt_augerc.u8_auto_latched;
     }
-
-    mt_augerc.u8_prev_ign_on = u8_ign_on;
 
     return s16_error;
 }

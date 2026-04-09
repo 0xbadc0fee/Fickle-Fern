@@ -19,12 +19,20 @@
 #include "alarm_handler_lib.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DEFAULT_DIG_DEBOUNCE   1000 //!< 1ms debounce used on digital input signals
-#define DEFAULT_DIG_CIRCUIT       0 //!< Pullup/down disabled
+#define DEFAULT_DIG_DEBOUNCE   1000     //!< 1ms debounce used on digital input signals
+#define DEFAULT_FREQ_DEBOUNCE   100 //!< 100uS debounce used on frequency input signals
 #define DEFAULT_ADCINPUT_FILTER   0 //!< Default ADC input filter value
-#define DEFAULT_ADCINPUT_CIRCUIT  0 //!< Default ADC input circuit value
+#define C_INPUT_INIT_HW_FAIL   (-20)    //!< Hardware Failure Init
+#define C_INPUT_INIT_DIAG_FAIL (-21)    //!< Diagnostic Failure Init
+#define C_INPUT_INIT_BOTH_FAIL (-22)    //!< Hardware and Diagnostic Failure Init
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
+/*! \brief List of all Circut Inputs **/
+typedef enum {
+    INPUT_CIRCUIT_NONE = 0,
+    INPUT_CIRCUIT_PULLUP,
+    INPUT_CURCUIT_PULLDOWN
+} E_InputCircuit;
 
 /*! \brief List of all Input Types **/
 typedef enum {
@@ -61,6 +69,8 @@ typedef struct {
     float32 f32_inputValue;         //!< Most recent Input Value
     float32 f32_prevInputValue;     //!< Previously captured input value
     uint8 mq_inputChanged;          //!< Input Changed Status
+    E_InputCircuit e_circuit;       //!< Pull configuration
+    uint16 u16_debounce;            //!< Debounce (ms)
     //-----------------------------DIAG PARAMS-------------------------------//
     uint8 u8_diagEnabled;           //!<Enable - Disable Toggle for Input Diagnostics / Alarm
     T_FloryFault t_fault;           //!<Fault Information

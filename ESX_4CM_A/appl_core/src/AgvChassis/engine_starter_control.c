@@ -193,7 +193,10 @@ void get_engineRuntime(uint32 *pu32_engine_runtime)
 {
     if(pu32_engine_runtime != NULL)
     {
-        *pu32_engine_runtime = get_system_time_ms() - mt_engine.u32_engine_start_time;
+        if(mt_engine.u8_engine_status != ENGINE_RUNNING)
+            *pu32_engine_runtime = get_system_time_ms() - mt_engine.u32_engine_start_time;
+        else
+            *pu32_engine_runtime = 0;
     }
 }
 

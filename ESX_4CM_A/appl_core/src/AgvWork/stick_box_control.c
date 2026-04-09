@@ -20,6 +20,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 #include "stick_box_control.h"
+#include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
@@ -93,17 +94,12 @@ sint16 update_stickBControl(void)
     uint8 u8_open_btn = FALSE;
     uint8 u8_aux_close_reset = FALSE;
     uint8 u8_door_fault_status = FALSE;
-    uint8 u8_ign_fault_status = FALSE;
     uint8 u8_open_output_fault = FALSE;
     uint8 u8_on_output_fault = FALSE;
-    uint8 u8_ign_on = FALSE;
-
-    uint8 u8_startup_deb_complete = FALSE;
 
     float32 f32_door_value = DOOR_CLOSED;
-    float32 f32_ign_value = IGN_OFF;
 
-    uint32 u32_now_ms = get_system_time_ms();
+    uint32 u32_engine_runtime = 0;
 
     // IR-10.1 Read button values safely
     if(mt_stick_box.pu8_close_button != NULL)
@@ -129,31 +125,11 @@ sint16 update_stickBControl(void)
     get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
     get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
-    get_inputValue("IGNITION_SWITCH", &f32_ign_value);
-
-    // Determine ignition ON status
-    u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
-
-    // Program start debounce timing
-    if((u8_ign_on == TRUE) && (mt_stick_box.u8_prev_ign_on == FALSE))
-    {
-        mt_stick_box.u32_ign_start_time_ms = u32_now_ms;
-    }
-    else if(u8_ign_on == FALSE)
-    {
-        mt_stick_box.u32_ign_start_time_ms = 0u;
-    }
-
-    // FR-10.6 Auxiliary Mode close overwritten FALSE when door open or startup < 3 sec
-    if((u8_ign_on == TRUE) &&
-    ((u32_now_ms - mt_stick_box.u32_ign_start_time_ms) >= PROGRAM_START_DEB_MS))
-    {
-        u8_startup_deb_complete = TRUE;
-    }
-
     get_outputFaultStatus("STICKBOX_ON", &u8_on_output_fault);
     get_outputFaultStatus("STICKBOX_OPEN", &u8_open_output_fault);
+
+    // Determine ignition ON status
+    get_engineRuntime(&u32_engine_runtime);
 
     // FR-10.2 Default output commands disabled on boot/update before logic
     mt_stick_box.u8_open_cmd = STICK_BOX_CMD_OFF;
@@ -173,7 +149,7 @@ sint16 update_stickBControl(void)
         if((u8_door_fault_status == TRUE) ||
         (u8_on_output_fault == TRUE) ||
         (f32_door_value != DOOR_CLOSED) ||
-        (u8_startup_deb_complete == FALSE))
+        (u32_engine_runtime < PROGRAM_START_DEB_MS))
         {
             u8_aux_close_reset = TRUE;
         }
@@ -242,8 +218,6 @@ sint16 update_stickBControl(void)
     (mt_stick_box.u8_closed_cmd == STICK_BOX_CMD_ON) ? 0x01u : //RED SOILD
     (mt_stick_box.u8_open_cmd == STICK_BOX_CMD_ON) ? 0x10u :  //GREEN SOLID
     0x00u;
-
-    mt_stick_box.u8_prev_ign_on = u8_ign_on;
 
     return s16_error;
 
