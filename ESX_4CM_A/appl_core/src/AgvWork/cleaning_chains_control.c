@@ -23,6 +23,7 @@
 #include "cleaning_chains_control.h"
 #include "hw_inputs.h"
 #include "hw_outputs.h"
+#include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
@@ -96,16 +97,12 @@ sint16 update_cChainsControl(void)
     uint8 u8_reset = FALSE;
     uint8 u8_btn_reset = FALSE;
     uint8 u8_door_fault_status = FALSE;
-    uint8 u8_ign_fault_status = FALSE;
     uint8 u8_shaft_output_fault = FALSE;
 
     float32 f32_door_value = DOOR_CLOSED;
-    float32 f32_ign_value = IGN_OFF;
     uint8 u8_shaft_cmd = FALSE;
+    uint32 u32_engine_runtime = 0;
 
-    uint8 u8_ign_on = FALSE;
-    uint8 u8_startup_deb_complete = FALSE;
-    uint32 u32_now_ms = get_system_time_ms();
 
     if(mt_cchains.pu8_shaft_drive_command != NULL)
     {
@@ -121,35 +118,15 @@ sint16 update_cChainsControl(void)
     get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
     get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
-    get_inputValue("IGNITION_SWITCH", &f32_ign_value);
+    get_outputFaultStatus("SHAFT_PUMP", &u8_shaft_output_fault);
 
     //FR-8.2 Program Start debounce timing
-    u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
-
-    if((u8_ign_on == TRUE) && (mt_cchains.u8_prev_ign_on == FALSE))
-    {
-        mt_cchains.u32_ign_start_time_ms = u32_now_ms;
-    }
-    else if(u8_ign_on == FALSE)
-    {
-        mt_cchains.u32_ign_start_time_ms = 0u;
-    }
-
-    if((u8_ign_on == TRUE) &&
-    ((u32_now_ms - mt_cchains.u32_ign_start_time_ms) >= PROGRAM_START_DEB_MS))
-    {
-        u8_startup_deb_complete = TRUE;
-    }
-
-    get_outputFaultStatus("SHAFT_PUMP", &u8_shaft_output_fault);
+    get_engineRuntime(&u32_engine_runtime);
 
     //FR-8.2 / IR-8.2 Disable Shaft Drive and reset when conditions not satisfied
     if((u8_door_fault_status == TRUE) ||
     (f32_door_value != DOOR_CLOSED) ||
-    (u8_ign_fault_status == TRUE) ||
-    (f32_ign_value == IGN_OFF) ||
-    (u8_startup_deb_complete == FALSE)||
+    (u32_engine_runtime < PROGRAM_START_DEB_MS)||
     (u8_shaft_output_fault == TRUE) ||
     (u8_btn_reset == TRUE))
     {
@@ -166,8 +143,6 @@ sint16 update_cChainsControl(void)
 
     //Publish checkpoints
     mt_cchains.pt_cp_cchains->u8_status = *mt_cchains.pu8_shaft_drive_value;
-
-    mt_cchains.u8_prev_ign_on = u8_ign_on;
 
     return s16_error;
 
