@@ -51,22 +51,19 @@
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/**
- * \brief Initialize Moving Average Filter
+/** \brief Moving Average Filter Init AgvHelper - Helper Control
  *
- * This function initializes the moving average filter structure, assigning the
- * provided buffer memory and configuring the sampling window parameters. It
- * resets all internal accumulators and sets the initial output to the safe state.
+ *  The Moving Average Filter Module Init initialized movingAdvFlt.
  *
- * \param[out] pt_mv_adv_flt          Pointer to the filter state structure
- * \param[in]  pf32_buffer            Pointer to the caller-allocated memory for samples
- * \param[in]  u16_buf_len            Capacity of the provided buffer
- * \param[in]  f32_safe_output        Initial/Default value for safe state
- * \param[in]  u16_sample_no_set      Target number of samples for the averaging window
- * \param[in]  u16_sample_time_ms_set Interval between samples in milliseconds [ms]
+ *  \param pt_mvAdvFlt Average Filter Pointer
+ *  \param pf32_buffer Buffer
+ *  \param u16_buf_len Buffer Length
+ *  \param f32_safe_output Safe Output
+ *  \param u16_sample_no_set Number Set
+ *  \param u16_sample_time_ms_set Sample Time in Milliseconds
  *
- * \return sint16 Error Code
- * \retval C_NO_ERR Function Executed Properly
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt, float32 * const pf32_buffer, uint16 u16_buf_len, float32 f32_safe_output, uint16 u16_sample_no_set, uint16 u16_sample_time_ms_set)
 {
@@ -100,19 +97,15 @@ sint16 movingFltInit(T_MoveAvgFilter * const pt_mv_adv_flt, float32 * const pf32
     return s16_error;
 }
 
-/**
- * \brief Execute Moving Average Filter logic
+/** \brief Moving Average Filter AgvHelper - Helper Control
  *
- * This function calculates a smoothed output by maintaining a running sum of
- * values within a configurable sample window. If the fault flag is active or
- * parameters are invalid, the filter forces the output to the pre-defined
- * safe state.
+ *  The Moving Average Filter Module produces a smoothed output by averaging values within a configurable sample window and forces a safe output when required parameters or values are invalid.
  *
- * \param[in,out] pt_mv_adv_flt  Pointer to the moving average filter state
- * \param[in]     f32_new_value  The latest raw input value to be filtered
+ *  \param pt_mv_adv_flt Average Filter Pointer
+ *  \param f32_new_value New Value
  *
- * \return sint16 Error Code
- * \retval C_NO_ERR Function Executed Properly
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 movingAdvFlt(T_MoveAvgFilter * const pt_mv_adv_flt, float32 f32_new_value)
 {

@@ -26,6 +26,7 @@
  * @{
  */
 //-----------------------------------------------------------------------------
+
 #ifndef APPL_CORE_SRC_AGVHELPER_TOGGLE_BUTTON_H_
 #define APPL_CORE_SRC_AGVHELPER_TOGGLE_BUTTON_H_
 
@@ -41,10 +42,10 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
+
 /**
  * \struct T_ToggleBtn
- * \brief  Structure containing all relevant Toggle Button Parameters.
- */
+ * \brief Structure containing all relevant Toggle Button Parameters*/
 typedef struct
 {
         //Output Variable

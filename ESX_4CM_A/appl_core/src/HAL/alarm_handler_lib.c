@@ -1,54 +1,35 @@
 //-----------------------------------------------------------------------------
-/**
- * \file       alarm_handler_lib.c
- * \brief      HAL - Alarm Handler Library
- *
- * \addtogroup HAL
- * @{
- * \addtogroup AlarmHandler Alarm Handler
- *
- * The Alarm Handler Library manages the detection, prioritization, and
- * reporting of system-wide faults. It maintains an active alarm list and
- * coordinates diagnostic information for the operator display and
- * logging systems.
-  *
- * @par Project
- * FloryTemplate_4CM
- *
- * @par Copyright
- * STW Technic (c) 2026
- *
- * @par License
- * Use only under terms of contract / confidential
- *
- * @par Created
- * Jan 6, 2026 STW Technic
- *
- * @{
- */
+/*! \file       alarm_handler_lib.c
+    \brief      <description>
+
+    project     FloryTemplate_4CM
+    copyright   STW Technic (c) 2026
+    license     use only under terms of contract / confidential
+
+    created     Jan 6, 2026 STW Technic
+*/
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
+//STW
 #include "stwtypes.h"
 #include "stwerrors.h"
-//STW
-#include "alarm_handler_lib.h"
 #include "output_handler_lib.h"
 #include "input_handler_lib.h"
 #include "osy_com_j1939_dm1.h"
 #include "osy_com_j1939_dm2.h"
 #include "x_can.h"
 #include "nvm_handler_lib.h"
-
 //PROJECT
-#include "dashboard_data_pool.h"
+#include "alarm_handler_lib.h"
+
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 void add_J1939dtc(T_FloryFault *_dtc);
 
-/* -- Module Global Variables ------------------------------------------------------------------------------------- */
+/* -- Module Global Variables -------------------------------------------------------------------------------------- */
 T_FaultNVM mat_nvmDtcs[445];//!< NVM persistent storage array for Diagnostic Trouble Codes
 
 static uint16 u16_num_input_faults = 0;           //!< Total count of active hardware input faults
@@ -62,6 +43,7 @@ static uint8 u8_num_outputs = 0;                  //!< Number of hardware output
 static uint8 u8_num_inputs = 0;                   //!< Number of hardware inputs currently initialized
 
 static T_osy_com_j1939_dm_lamp_status mt_dm1_lamps;  //!< Local instance of the J1939 DM1 lamp status structure.
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /*!
@@ -216,7 +198,6 @@ sint16 update_alarmHandler(void)
             }
         }
 
-
         if(!u8_alarmFound)
         {
             //set active flags for logic alarms
@@ -252,21 +233,20 @@ sint16 update_alarmHandler(void)
         u8_alarmFound = FALSE;
     }
 
-
-
     osy_com_j1939_dm1_unlock_tx(X_CAN_BUS_01, 0);
-
 
     return s16_error;
 }
 
-/**
- * \brief Adds a Fault to the list of all J1939 DTCs.
- *
- * Takes a passed Machine Fault and adds it to the J1939 DTC runner list.
- *
- * \param[in] _dtc  Pointer to the Flory Defined Fault Structure.
- */
+
+/*!
+   \brief  Add a Fault to list of all J1939 DTCs
+
+    Take a passed Machine Fault and add it to the J1939 DTC runner list
+
+   \param    T_FloryFault   Flory Defined Fault Structure
+
+*/
 void add_J1939dtc(T_FloryFault *_dtc)
 {
 

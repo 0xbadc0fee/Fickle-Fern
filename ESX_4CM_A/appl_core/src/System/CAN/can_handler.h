@@ -1,11 +1,12 @@
 //-----------------------------------------------------------------------------
 /**
- * \file       can_device_interface.h
- * \brief      System - CAN Device Interface Implementation
+ * \file       can_handler.h
+ * \brief      System - CAN Device Interface
  *
  * \addtogroup System
  * @{
- * \addtogroup CanDeviceInterface
+ * \defgroup CanDeviceInterface CAN Device Interface
+ * \brief Interface layer for CAN device communication and management.
  * @{
  *
  * \implementation
@@ -17,7 +18,6 @@
  * \endimplementation
  */
 //-----------------------------------------------------------------------------
-
 #ifndef CAN_INIT_H
 #define CAN_INIT_H
 
@@ -37,14 +37,12 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-extern T_CANDevices gt_can_devs;
+extern T_CANDevices gt_can_devs; //!< External reference to the global structure managing all CAN devices
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-
 sint16 init_canInterfaces(void);
 sint16 update_canInputs(void);
 sint16 update_canOutputs(void);
-
 bool can_get_availability_state(const uint16 ou16_Channel);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */

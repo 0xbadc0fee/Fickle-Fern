@@ -7,9 +7,8 @@
  * @{
  * \addtogroup EngineStarterControl Engine Starter Control
  *
- * The Engine Starter Control Module manages the engine starting sequence,
- * crank timing, and safety interlock logic based on operator inputs and
- * system conditions.
+ * This module manages the operation of the vehicle's engine starter motor,
+ * cranking sequence, and associated safety interlocks.
  *
  * @par Project
  * FloryTemplate_4CM
@@ -21,13 +20,15 @@
  * Use only under terms of contract / confidential
  *
  * @par Created
- * Jan 6, 2026 Tiffany.Gohnert
+ * Jan 6, 2026 STW Technic
  *
  * @{
  */
+//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVCHASSIS_ENGINE_STARTER_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_ENGINE_STARTER_CONTROL_H_
+
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -38,14 +39,12 @@
 #include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define NEUTRAL_SAFE_FALSE         (0u) /**< Indicates the machine is not in a safe neutral state */
-#define NEUTRAL_SAFE_TRUE          (1u) /**< Indicates the machine is in a safe neutral state */
+#define NEUTRAL_SAFE_FALSE         (0u)  //!< Neutral safety condition not met (False)
+#define NEUTRAL_SAFE_TRUE          (1u)  //!< Neutral safety condition met (True)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/**
- * \struct ChkPoints_EngineStarter
- * \brief Checkpoints Structure - Engine Starter Control
+/** \brief Checkpoints Structure - Engine Starter Control
  *
  * This structure represents all checkpoints that are relevant
  * to shaft drive control
@@ -59,9 +58,7 @@ typedef struct
         uint8 u8_js_neutral;         //!<Joystick Neutral Indicator
 } T_ChkPoints_EngineStarter;
 
-/**
- * \struct EngineControl
- * \brief Control Structure - Engine Starter Control
+/** \brief Control Structure - Engine Starter Control
  *
  * This structure represents all variables and pointers that
  * are utilized and tracked for engine starter control that need to
@@ -72,20 +69,22 @@ typedef struct
  */
 typedef struct
 {
-        // RX CAN Variables
-        uint16 *pu16_engine_speed;         //!< RX Engine Speed
+        //RX CAN Variables
+        uint16 *pu16_engine_speed;//!<RX Engine Speed
 
-        // TX CAN Variables
-        uint8 *pu8_neutral_safe_status;    //!< TX Neutral Safe Status
+        //TX CAN Variables
+        uint8 *pu8_neutral_safe_status;//!<TX Neutral Safe Status
 
-        // Local Variables
-        uint8 u8_engine_start_cmd;         //!< Engine Start Command
-        uint32 u32_engine_start_time;      //!< Engine Start Time
-        uint8 u8_engine_status;            //!< Current Engine Status
-        uint8 u8_prev_engine_status;       //!< Previous Engine Status
+        //Local Variables
+        uint8 u8_engine_start_cmd; //!<Engine Start Command
 
-        // Control Checkpoints
-        T_ChkPoints_EngineStarter *pt_chk; //!< Engine Start Checkpoint
+        uint32 u32_engine_start_time;   //!<Engine Start Time
+        uint8 u8_engine_status;
+        uint8 u8_prev_engine_status;
+
+
+        //Control Checkpoints
+        T_ChkPoints_EngineStarter *pt_chk;//!<Engine Start Checkpoint
 
 } T_EngineControl;
 

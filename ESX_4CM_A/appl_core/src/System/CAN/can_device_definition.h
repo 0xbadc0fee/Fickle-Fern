@@ -30,14 +30,7 @@
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/**
- * \struct T_CANDevices
- * \brief System - CAN UI and Engine Device Container
- *
- * This structure aggregates all CAN-based hardware interface structures
- * utilized by the 8772 Harvester application, including user interface
- * peripherals and the primary engine controller.
- */
+/** \brief Structure to contain all CAN UI Elements for the 8772 **/
 typedef struct
 {
         //UI Devices

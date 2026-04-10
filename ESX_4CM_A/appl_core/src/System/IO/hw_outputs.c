@@ -43,16 +43,11 @@
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 // Define vehicle specific inputs
-/**
- * \brief  Vehicle Output object for the Auto Unload function.
- *
- * This structure manages the configuration, current state, and diagnostic
- * parameters for the automated unloading hardware output.
- */
+
 T_VehicleOutput tvo_auto_unload =
 {
     .Name_Description = "AUTO_UNLOAD",
-    .u16_hardwareID = X_OUT_OPHSP2A_13,
+    .u16_hardwareID = X_OUT_OPL2A_1,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -75,12 +70,6 @@ T_VehicleOutput tvo_auto_unload =
     .u16_dti = 0,
 };
 
-/**
- * \brief  Vehicle Output object for the Manual Unload function.
- *
- * This structure manages the configuration, current state, and diagnostic
- * parameters for the manual unloading hardware output.
- */
 T_VehicleOutput tvo_manual_unload =
 {
     .Name_Description = "MANUAL_UNLOAD",
@@ -184,7 +173,7 @@ T_VehicleOutput tvo_flow_control =
 T_VehicleOutput tvo_starter_relay =
 {
     .Name_Description = "STARTER_RELAY",
-    .u16_hardwareID = X_OUT_OPHSP4A_1,
+    .u16_hardwareID = X_OUT_OPL2A_2,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -344,7 +333,7 @@ T_VehicleOutput tvo_hitch_retract =
 T_VehicleOutput tvo_taillights =
 {
     .Name_Description = "TAILLIGHTS",
-    .u16_hardwareID = X_OUT_OPL2A_2,
+    .u16_hardwareID = X_OUT_OPHSP4A_1,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,
@@ -693,7 +682,7 @@ T_VehicleOutput tvo_stickbox_open=
 T_VehicleOutput tvo_stick_remover=
 {
     .Name_Description = "STICK_REMOVER",
-    .u16_hardwareID = X_OUT_OPL2A_1,
+    .u16_hardwareID = X_OUT_OPHSP2A_13,
     .e_outputType = OT_DIGITAL,
 
     .f32_outputValue = 0.0F,

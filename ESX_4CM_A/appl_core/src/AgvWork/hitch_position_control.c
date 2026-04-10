@@ -51,7 +51,7 @@ static T_HitchPosControl mt_hp_control;/**< Global persistent state for Hitch Po
  * This function initializes the Hitch Position Control logic, linking the
  * operator interface and the non-volatile configuration parameters.
  *
- * \param[in,out] _ui                 Pointer to the project's UI Structure
+ * \param[in,out] _can_devs                Pointer to the project's UI Structure
  * \param[in]     _nvmHitchPosControl Pointer to the NVM Configuration Structure
  *
  * \return sint16 Error Code

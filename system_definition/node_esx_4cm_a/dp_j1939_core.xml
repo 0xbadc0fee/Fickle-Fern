@@ -635,12 +635,12 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.03125" offset="-273" interpret_as_string="false">
+                    <data-element factor="1" offset="-40" interpret_as_string="false">
                         <name>EngCoolantTemp</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Temperature of liquid found in engine cooling system.</comment>
                         <min-value value="0"/>
-                        <max-value value="255"/>
+                        <max-value value="250"/>
                         <unit>deg C</unit>
                         <access>read-write</access>
                         <data-set-values>

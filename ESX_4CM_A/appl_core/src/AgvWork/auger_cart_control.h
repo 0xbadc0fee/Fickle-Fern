@@ -36,12 +36,12 @@
 #include "hitch_position_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DOOR_OPEN                      (1u)       /**< Door is in the OPEN position */
-#define DOOR_CLOSED                    (0u)       /**< Door is in the CLOSED position */
-#define IGN_ON                         (1u)       /**< Vehicle Ignition is ACTIVE */
-#define IGN_OFF                        (0u)       /**< Vehicle Ignition is INACTIVE */
-#define AUGER_ENABLED                  (1u)       /**< Auger drive is ENABLED for operation */
-#define AUGER_DISABLED                 (0u)       /**< Auger drive is DISABLED/LOCKED */
+#define DOOR_OPEN                      (1u)       //!< Door is in the OPEN position
+#define DOOR_CLOSED                    (0u)       //!< Door is in the CLOSED position
+#define IGN_ON                         (1u)       //!< Vehicle Ignition is ACTIVE
+#define IGN_OFF                        (0u)       //!< Vehicle Ignition is INACTIVE
+#define AUGER_ENABLED                  (1u)       //!< Auger drive is ENABLED for operation
+#define AUGER_DISABLED                 (0u)       //!< Auger drive is DISABLED/LOCKED
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
@@ -79,8 +79,8 @@ typedef struct
 
 
 }T_AugerControl;
-/* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
+/* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_augerControl(T_CANDevices *_can_dev);
 sint16 update_augerControl(void);

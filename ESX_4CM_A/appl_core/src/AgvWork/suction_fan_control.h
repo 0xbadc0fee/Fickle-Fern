@@ -36,7 +36,6 @@
 #include "ramp_calc.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-
 #define DOOR_OPEN                       (1u)        //!< Indicator for door in OPEN state
 #define DOOR_CLOSED                     (0u)        //!< Indicator for door in CLOSED state
 #define ENG_ON                          (1u)        //!< Indicator for Engine ON state
@@ -65,8 +64,8 @@
  */
 typedef struct
 {
-        uint8   u8_suctionFanOn;                      //!< Checkpoint #1: Suction fan active status
-        sint16  u16_pwmStatus;                        //!< Checkpoint #2: Current PWM duty cycle status
+    uint8   u8_suctionFanOn;   //!<Checkpoint #1
+    sint16  u16_pwmStatus;  //!<Checkpoint #2
 }T_ChkPoints_SFan;
 
 /**
@@ -78,9 +77,9 @@ typedef struct
  */
 typedef struct
 {
-        uint8   u8_fan_dec_time;//!<Configuration parameter for Suction Fan Decrease Time Ramp
-        uint8   u8_fan_inc_time;//!<Configuration parameter for Suction Fan Increase Time Ramp
-        float32 f32_drive_ratio;//!<Configuration parameter for Suction Fan Drive Ratio
+    uint8   u8_fan_dec_time;//!<Configuration parameter for Suction Fan Decrease Time Ramp
+    uint8   u8_fan_inc_time;//!<Configuration parameter for Suction Fan Increase Time Ramp
+    float32 f32_drive_ratio;//!<Configuration parameter for Suction Fan Drive Ratio
 } T_Config_SFan;
 
 /**
@@ -93,38 +92,37 @@ typedef struct
  */
 typedef struct
 {
-        // RX CAN Variables
-        uint8  *pu8_enable_cmd;                       //!< RX Suction Fan On/Off command (From Joystick/Panel)
-        uint16 *pu16_speed_req_rpm;                   //!< RX Speed requested RPM (From Display)
+        //RX CAN Variables
+    uint8   *pu8_enable_cmd;//!<RX Suction Fan On/Off command
+    uint16 *pu16_speed_req_rpm;//!<RX Speed required RPM
 
-        // TX CAN Variables
-        uint8  *pu8_enable_status;                    //!< TX Suction Fan enable status (To Display)
-        uint16 *pu16_speed_status_rpm;                //!< TX Suction Fan RPM status (To Display)
+    //TX CAN Variables
+    uint8   *pu8_enable_status;//!<TX Suction Fan enable status
+    uint16 *pu16_speed_status_rpm;//!<TX Suction Fan RPM status
 
-        // Local Control Variables
-        uint8   u8_enable_latched;                    //!< Current latched state of the fan enable button
-        uint8   u8_prev_engine_on;                    //!< Previous Engine On/Off status for transition detection
-        uint32  u32_eng_start_time_ms;                //!< System time captured on Engine Start transition
-        float32 af32_speed_buf[SUCTION_FAN_FILTER_BUF_LEN]; //!< Speed average filter buffer
+    //Local Control Variables
+    uint8   u8_enable_latched;//!<Button Latched
+    uint8   u8_prev_engine_on;//!<Previous Engine On/Off status
+    uint32  u32_eng_start_time_ms;//!<Engine Start time ms
+    float32 af32_speed_buf[SUCTION_FAN_FILTER_BUF_LEN];//!<Speed average filter buffer
 
-        float32 f32_fan_frequency;                    //!< Raw frequency measured from the fan speed sensor
-        float32 f32_shaft_rpm;                        //!< Calculated shaft RPM after scaling
-        float32 f32_prev_req_rpm;                     //!< Previous RPM request used for ramp detection
+    float32 f32_fan_frequency;
+    float32 f32_shaft_rpm;
+    float32 f32_prev_req_rpm;
 
-        // Control Blocks
-        T_ToggleBtn      t_btn_enable;                //!< Button state management structure
-        T_MoveAvgFilter  t_speed_filter;              //!< Moving average filter state for speed feedback
-        T_RampState      t_speed_ramp;                //!< Linear ramp state for RPM setpoint transitions
+    // Control Blocks
+    T_ToggleBtn        t_btn_enable;//!<Button enabled struct
+    T_MoveAvgFilter    t_speed_filter;//!<Speed average filter struct
+    T_RampState        t_speed_ramp;//!<Ramp struct
 
-        // Control Checkpoints
-        T_ChkPoints_SFan *pt_cp_sfan;                 //!< Pointer to Suction Fan control checkpoints structure
+    //Control Checkpoints
+    T_ChkPoints_SFan *pt_cp_sfan; //!<Suction Fan Control Checkpoints Structure
+    //NVM Configuration Parameters
+    T_Config_SFan *pt_nvm;//!<NVM Structure
 
-        // NVM Configuration Parameters
-        T_Config_SFan    *pt_nvm;                     //!< Pointer to Suction Fan NVM configuration structure
-
-        // PID Parameters
-        T_PID_state      t_pid_state;                 //!< Internal state of the Fan speed PID controller
-        T_PID_coeff      t_pid_coeff;                 //!< Operational coefficients for the PID controller
+    //PID Parameters
+    T_PID_state        t_pid_state;//!<PID Structure
+    T_PID_coeff t_pid_coeff;//!<PID Coefficient Structure
 
 } T_SuctionFanControl;
 

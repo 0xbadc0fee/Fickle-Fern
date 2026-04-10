@@ -1,11 +1,11 @@
 //-----------------------------------------------------------------------------
 /**
- * \file       checkpoint_handler.c
- * \brief      AgvChassis - Checkpoint Handler
+ * \file       dashboard_handler.c
+ * \brief      AgvChassis - Dashboard Handler
  *
  * \addtogroup AgvDiag
  * @{
- * \addtogroup CheckpointHandler Checkpoint Handler
+ * \addtogroup DashboardHandler Dashboard Handler
  *
  * This module is responsible for managing system "checkpoints"—critical state
  * variables and diagnostic data that need to be monitored or persisted.
@@ -26,7 +26,6 @@
  *
  * @{
  */
-//-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW
@@ -74,7 +73,6 @@ T_ChkPoints_CoolingFan gt_coolingFanCheckpoints; //!<Structure that holds the Co
 T_ChkPoints_Mis gt_miscCheckpoints;              //!<Structure that holds theMiscellaneous Checkpoints
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
-
 /**
  * \brief Initializes control variables from the dashboard data pool.
  *

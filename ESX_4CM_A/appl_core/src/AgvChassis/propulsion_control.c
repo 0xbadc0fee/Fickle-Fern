@@ -61,7 +61,7 @@ T_PropulsionControl mt_prop_control; //!< Instance of the propulsion control sta
  *
  *  This function initializes the AgvChassis - Propulsion Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
+ *  \param _can_dev Pointer to the project's UI Structure
  *  \param _chkPropulsion Pointer to the global Propulsion Checkpoints Structure
  *  \param _nvmPropControl Pointer to the global Propulsion NVM Structure
  *
@@ -273,6 +273,7 @@ sint16 calc_joystickSpeedCommand(void)
     else
         mt_prop_control.f32_raw_output = 9000.0;
 
+
     //FR-13.8 Joystick State Calculation
     if(*(mt_prop_control.pu8_joy_fwd) && mt_prop_control.u16_joystick_command >= NEUTRAL_DEADBAND)
         mt_prop_control.u8_joystick_state = E_JOYSTICK_FWD;
@@ -379,7 +380,6 @@ sint16 calc_rampType(void)
     return s16_error;;
 }
 
-
 /**
  * \brief Applies the selected ramp profile to smooth the target speed command.
  *
@@ -417,12 +417,14 @@ sint16 ramp_targetSpeedCommand(E_RampTypes _rampType)
         default:
             set_rampRate(&mt_prop_control.t_js_command, ACCEL_RATE);
             break;
+
     }
 
     rampCalc(mt_prop_control.f32_raw_output, &mt_prop_control.t_js_command);
     mt_prop_control.f32_ramped_output = mt_prop_control.t_js_command.f32_output;
 
     return s16_error;
+
 }
 
 /**

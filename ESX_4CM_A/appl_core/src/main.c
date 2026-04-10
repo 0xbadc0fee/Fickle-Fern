@@ -64,27 +64,29 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
+
+/** \brief Global application metadata structure for system identification */
 const X_MEM_APPLICATION_INFO T_x_sys_application_information gt_ApplicationInformation =
 {
-   .acn_Magic              = X_SYS_INFO_APPL_MAGIC,
-   .u8_StructVersion       = X_SYS_STRUCT_VERSION,
-   .acn_Devicename         = X_SYS_DEVICE_NAME,
-   .acn_Date               = __DATE__,
-   .acn_Time               = __TIME__,
-   .acn_ApplicationName    = "ESX-4CM-A FLORY 8772",
-   .acn_ApplicationVersion = "V2.00r2",
-   .u8_LenAdditionalInfo   = OSY_FL_LEN_ADDITIONAL_INFO,
-   .acn_AdditionalInfo     = " "
+    .acn_Magic              = X_SYS_INFO_APPL_MAGIC,
+    .u8_StructVersion       = X_SYS_STRUCT_VERSION,
+    .acn_Devicename         = X_SYS_DEVICE_NAME,
+    .acn_Date               = __DATE__,
+    .acn_Time               = __TIME__,
+    .acn_ApplicationName    = "ESX-4CM-A FLORY 8772",
+    .acn_ApplicationVersion = "V2.00r2",
+    .u8_LenAdditionalInfo   = OSY_FL_LEN_ADDITIONAL_INFO,
+    .acn_AdditionalInfo     = " "
 };
 
 // Definition of application heap
-MEM_APPL_STATIC_HEAP_INT_DSPR uint8 gau8_DPR_HEAP[1024 * 50];
-MEM_APPL_STATIC_HEAP_EMEM_SRAM uint8 gau8_EMEM_HEAP[1024 * 50];
+MEM_APPL_STATIC_HEAP_INT_DSPR uint8 gau8_DPR_HEAP[1024 * 50];   //!< Internal DSPR static heap memory allocation
+MEM_APPL_STATIC_HEAP_EMEM_SRAM uint8 gau8_EMEM_HEAP[1024 * 50]; //!< External SRAM static heap memory allocation
 
 // Global variables for main task configuration
 const uint32 gu32_TaskTimerTick_us = 500u;              // Scheduler tick in microseconds, range 500 - 1000000
 const uint32 gu32_TaskMainMemClass = X_OS_HEAP_ID_FAST; // Memory class used by this task (target specific:
-                                                        // X_OS_HEAP_ID_FAST,X_OS_HEAP_ID_SRAM)
+// X_OS_HEAP_ID_FAST,X_OS_HEAP_ID_SRAM)
 const uint32 gu32_TaskMainStackSize = 5000u;            // Task stack size in byte (8..FFFFFFF8)
 const uint8 gu8_CpuCacheDisable = 0u;                   // Disable/enable CPU cache (default: enabled)
 
@@ -116,8 +118,6 @@ int main(void)
 
     s16_Error += init_faultHandler();   // Initialize Fault / Alarm (DM1) Handler
 
-
-
     //Initialize AgvWork Controls
     if(C_NO_ERR == s16_Error)
     {
@@ -136,8 +136,8 @@ int main(void)
         s16_Error += init_suctionFanControl   (&gt_can_devs, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
         s16_Error += init_engineStarterControl(&gt_can_devs, &gt_engineStarterCheckpoints);
         s16_Error += init_throttleControl     (&gt_can_devs, &gt_throttleCheckpoints);
-        //s16_Error +=init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
-        //s16_Error +=init_miscControl		  (&gt_can_devs, &gt_miscCheckpoints, &gt_miscConfig);
+        s16_Error += init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
+        s16_Error += init_miscControl		  (&gt_can_devs, &gt_miscCheckpoints, &gt_miscConfig);
     }
 
     // Call this to avoid deadlock in case other cores want to use x_icc_barrier_wait_for()
@@ -145,7 +145,7 @@ int main(void)
     s16_Return = x_icc_barrier_wait_for(X_ICC_BARRIER_ID_MAX, X_ICC_BARRIER_TIMEOUT_NOWAIT);
     if (s16_Return != C_BUSY)
     {
-      s16_Error += s16_Return;
+        s16_Error += s16_Return;
     }
 
     system_keep_alive(TRUE);
@@ -166,8 +166,8 @@ int main(void)
         update_propulsionControl();
         update_engineStarterControl();
         update_throttleControl();
-        //update_CoolingFanControl();
-        //update_miscControl();
+        update_coolingFanControl();
+        update_miscControl();
 
         //Run AgvWork Controls
         update_elevatorControl();
@@ -180,7 +180,6 @@ int main(void)
         update_stickBControl();
         update_stickRemoverControl();
         update_suctionFanControl();
-
 
         //Outputs
         update_faultHandler();
@@ -197,14 +196,8 @@ int main(void)
             //Shutdown Sequence
             //write_nvmParameters();
         }
-
-
-
     }
     while (u8_ResetRequest == FALSE);
 
-
-
-   return 0;
+    return 0;
 }
-

@@ -1,11 +1,12 @@
 //-----------------------------------------------------------------------------
 /**
- * \file       can_device_interface.c
- * \brief      System - CAN Device Interface Implementation
+ * \file       can_handler.c
+ * \brief      System - CAN Device Interface
  *
  * \addtogroup System
  * @{
- * \addtogroup CanDeviceInterface
+ * \defgroup CanDeviceInterface CAN Device Interface
+ * \brief Interface layer for CAN device communication and management.
  * @{
  *
  * \implementation
@@ -40,14 +41,13 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static bool maq_CanAvailable[X_CAN_COUNT]; //!< Availability status array for each physical CAN bus
-
-T_CANDevices gt_can_devs; //!< Global instance of the CAN Devices structure.
+static bool maq_CanAvailable[X_CAN_COUNT]; //!< Internal array tracking the availability status of each CAN bus
+T_CANDevices gt_can_devs; //!< Global structure managing all CAN devices
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize CAN Interfaces
  *
- *  This function looks at all can interface settings described in openSYDE project and initializes
+ *  This funciton looks at all can interface settings described in openSYDE project and initializes
  *  said interfaces.
  *
  *  \return s16_error Error Code

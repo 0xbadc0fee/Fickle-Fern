@@ -33,7 +33,6 @@
  * @{
  */
 //-----------------------------------------------------------------------------
-
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include <stdint.h>
@@ -46,6 +45,7 @@
 #include "cleaning_chains_control.h"
 #include "hw_inputs.h"
 #include "hw_outputs.h"
+#include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
@@ -54,20 +54,19 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_CChainsControl mt_cchains;
+static T_CChainsControl mt_cchains; /**< Internal module state for Cleaning Chains Control */
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** * \brief Initializes the Cleaning Chains Control logic.
+/** \brief Initialize AgvWork - Cleaning Chains Control
  *
- * Configures the initial state for the AgvWork cleaning chain module and
- * binds the required User Interface and Checkpoint tracking resources.
+ * This function initializes the AgvWork - Cleaning Chains Control Logic.
  *
- * \param[in,out] _ui                Pointer to the project's User Interface structure.
- * \param[in,out] _chkCleaningShaft  Pointer to the global Cleaning Chains Checkpoints structure.
+ * \param _can_dev Pointer to the CAN devices structure
+ * \param _chkCleaningShaft Pointer to the global Cleaning Chains Checkpoints Structure
  *
- * \return Execution status.
- * \retval C_NO_ERR Initialization successful.
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_cChainsControl(T_CANDevices *_can_dev, T_ChkPoints_CChains *_chkCleaningShaft)
 {
@@ -100,16 +99,18 @@ sint16 init_cChainsControl(T_CANDevices *_can_dev, T_ChkPoints_CChains *_chkClea
     return s16_error;
 }
 
-/**
- * \brief Cyclic update for AgvWork - Cleaning Chains Control.
+/** \brief Update AgvWork - Clean Chains Control
  *
- * Manages the speed of the cleaning chain drives (cleaning shafts) based
- * on incoming CAN messages from the operator joystick.
- * * Safety interlocks and operational status checks are evaluated throughout
- * the logic to ensure reliable operation of all three cleaning chains.
+ *  This function contains the cyclically logic for AgvWork - Cleaning Chains Control.
  *
- * \return Execution status.
- * \retval C_NO_ERR Function executed properly without errors.
+ *  Primary logic for this function is to set the speed of the cleaning chains drive (cleaning shafts)
+ *  based on CAN commands from the joystick.
+ *
+ *  Additional interlocks are utilized throughout the logic.
+ *
+ *
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 update_cChainsControl(void)
 {
@@ -118,16 +119,12 @@ sint16 update_cChainsControl(void)
     uint8 u8_reset = FALSE;
     uint8 u8_btn_reset = FALSE;
     uint8 u8_door_fault_status = FALSE;
-    uint8 u8_ign_fault_status = FALSE;
     uint8 u8_shaft_output_fault = FALSE;
 
     float32 f32_door_value = DOOR_CLOSED;
-    float32 f32_ign_value = IGN_OFF;
     uint8 u8_shaft_cmd = FALSE;
+    uint32 u32_engine_runtime = 0;
 
-    uint8 u8_ign_on = FALSE;
-    uint8 u8_startup_deb_complete = FALSE;
-    uint32 u32_now_ms = get_system_time_ms();
 
     if(mt_cchains.pu8_shaft_drive_command != NULL)
     {
@@ -143,35 +140,15 @@ sint16 update_cChainsControl(void)
     get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
     get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
-    get_inputValue("IGNITION_SWITCH", &f32_ign_value);
+    get_outputFaultStatus("SHAFT_PUMP", &u8_shaft_output_fault);
 
     //FR-8.2 Program Start debounce timing
-    u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
-
-    if((u8_ign_on == TRUE) && (mt_cchains.u8_prev_ign_on == FALSE))
-    {
-        mt_cchains.u32_ign_start_time_ms = u32_now_ms;
-    }
-    else if(u8_ign_on == FALSE)
-    {
-        mt_cchains.u32_ign_start_time_ms = 0u;
-    }
-
-    if((u8_ign_on == TRUE) &&
-    ((u32_now_ms - mt_cchains.u32_ign_start_time_ms) >= PROGRAM_START_DEB_MS))
-    {
-        u8_startup_deb_complete = TRUE;
-    }
-
-    get_outputFaultStatus("SHAFT_PUMP", &u8_shaft_output_fault);
+    get_engineRuntime(&u32_engine_runtime);
 
     //FR-8.2 / IR-8.2 Disable Shaft Drive and reset when conditions not satisfied
     if((u8_door_fault_status == TRUE) ||
     (f32_door_value != DOOR_CLOSED) ||
-    (u8_ign_fault_status == TRUE) ||
-    (f32_ign_value == IGN_OFF) ||
-    (u8_startup_deb_complete == FALSE)||
+    (u32_engine_runtime < PROGRAM_START_DEB_MS)||
     (u8_shaft_output_fault == TRUE) ||
     (u8_btn_reset == TRUE))
     {
@@ -189,12 +166,9 @@ sint16 update_cChainsControl(void)
     //Publish checkpoints
     mt_cchains.pt_cp_cchains->u8_status = *mt_cchains.pu8_shaft_drive_value;
 
-    mt_cchains.u8_prev_ign_on = u8_ign_on;
-
     return s16_error;
 
 }
-
 
 /** \brief Get AgvWork - Shaft Drive Status
  *

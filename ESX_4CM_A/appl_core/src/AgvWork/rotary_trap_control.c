@@ -54,9 +54,13 @@ static T_RotaryTrapControl mt_rotary_trap;/**< Global persistent state for Rotar
 
 /** \brief Initialize Rotary Trap Control
  *
- *  \param _ui Pointer to UI structure
+ * This function initializes the Rotary Trap Control Logic.
  *
- *  \return s16_error Error code
+ * \param _can_dev Pointer to the CAN devices structure
+ * \param _chkRotaryTrap Pointer to the global Rotary Trap Checkpoints structure
+ *
+ * \return s16_error Error code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_rotaryTrapControl(T_CANDevices *_can_dev, T_ChkPoints_RTrap *_chkRotaryTrap)
 {
@@ -202,4 +206,3 @@ sint16 update_rotaryTrapControl(void)
     return s16_error;
 }
 //EOF
-

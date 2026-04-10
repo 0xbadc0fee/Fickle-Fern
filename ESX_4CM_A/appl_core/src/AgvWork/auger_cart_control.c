@@ -34,6 +34,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 #include "auger_cart_control.h"
+#include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define PROGRAM_START_DEB_MS (3000u)/**< Program start sequence debounce time [ms] */
@@ -45,15 +46,14 @@ static T_AugerControl mt_augerc; /**< Global persistent state for Auger Cart Con
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** * \brief Initializes the Auger Cart Control logic.
+/** \brief Initialize AgvWork - Auger Cart Control
  *
- * Sets the initial state for the Auger Cart AgvWork module and links
- * the required user interface resources.
+ *  This function initializes the AgvWork - Auger Cart Control Logic.
  *
- * \param[in,out] _ui Pointer to the global User Interface structure.
+ *  \param _can_dev Pointer to the project's UI Structure
  *
- * \return Status of the initialization process.
- * \retval C_NO_ERR Initialization successful.
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_augerControl(T_CANDevices *_can_dev)
 {
@@ -100,15 +100,18 @@ sint16 init_augerControl(T_CANDevices *_can_dev)
     return s16_error;
 }
 
-/**
- * \brief Main cyclic update for Auger Cart Control logic.
+/** \brief Update AgvWork - Auger Cart Control
  *
- * Manages unloading operations for all supported cart configurations.
- * This function handles the high-level control state machine, ensuring
- * operator safety through integrated hardware and software interlocks.
+ *  This function contains the cyclical logic for AgvWork - Auger Cart Control.
  *
- * \return Execution status.
- * \retval C_NO_ERR Logic executed successfully without errors.
+ *   The Auger Cart Control Module shall universally control all unloading operations of a variety of
+ *   possible attached cart configurations and do so in an operator safe manner.
+ *
+ *  Additional interlocks are utilized throughout the logic.
+ *
+ *
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 update_augerControl(void)
 {
@@ -123,16 +126,12 @@ sint16 update_augerControl(void)
     uint8 u8_hitch_on = FALSE;
 
     uint8 u8_door_fault_status = FALSE;
-    uint8 u8_ign_fault_status = FALSE;
     uint8 u8_aug_output_fault = FALSE;
     uint8 u8_man_output_fault = FALSE;
-    uint8 u8_ign_on = FALSE;
-    uint8 u8_startup_deb_complete = FALSE;
+
+    uint32 u32_engine_runtime = 0;
 
     float32 f32_door_value = DOOR_CLOSED;
-    float32 f32_ign_value = IGN_OFF;
-
-    uint32 u32_now_ms = get_system_time_ms();
 
     // Read commands safely
     if(mt_augerc.pu8_auto_command != NULL && *(mt_augerc.pu8_auto_command) != BTN_FAULT)
@@ -157,26 +156,9 @@ sint16 update_augerControl(void)
     get_inputFaultStatus("CAB_DOOR", &u8_door_fault_status);
     get_inputValue("CAB_DOOR", &f32_door_value);
 
-    get_inputFaultStatus("IGNITION_SWITCH", &u8_ign_fault_status);
-    get_inputValue("IGNITION_SWITCH", &f32_ign_value);
+    //Read ignition / program-start timing inputs
+    get_engineRuntime(&u32_engine_runtime);
 
-    // Program start debounce timing
-    u8_ign_on = ((u8_ign_fault_status == FALSE) && (f32_ign_value != IGN_OFF)) ? TRUE : FALSE;
-
-    if((u8_ign_on == TRUE) && (mt_augerc.u8_prev_ign_on == FALSE))
-    {
-        mt_augerc.u32_ign_start_time_ms = u32_now_ms;
-    }
-    else if(u8_ign_on == FALSE)
-    {
-        mt_augerc.u32_ign_start_time_ms = 0u;
-    }
-
-    if((u8_ign_on == TRUE) &&
-    ((u32_now_ms - mt_augerc.u32_ign_start_time_ms) >= PROGRAM_START_DEB_MS))
-    {
-        u8_startup_deb_complete = TRUE;
-    }
 
     //FR-9.4 The control module shall prohibit enabling the Auger Unload Enable and Manual Unload Enable commands if either the Hitch “IN” command or Hitch “OUT” commands are active.
     get_hitchPosStatus(&u8_hitch_on);
@@ -184,9 +166,7 @@ sint16 update_augerControl(void)
     //FR-9.2 Disable Auger Cart and reset when conditions not satisfied
     if((u8_door_fault_status == TRUE) ||
     (f32_door_value != DOOR_CLOSED) ||
-    (u8_ign_fault_status == TRUE) ||
-    (f32_ign_value == IGN_OFF) ||
-    (u8_startup_deb_complete == FALSE) ||
+    (u32_engine_runtime >= PROGRAM_START_DEB_MS) ||
     (u8_hitch_on == TRUE))
     {
         u8_common_reset = TRUE;
@@ -203,6 +183,8 @@ sint16 update_augerControl(void)
     //FR-9.1-2 Apply latching and reset logic to Auger and Manual Unload. Force to safe state if fault.
     s16_error = toggleButton(&mt_augerc.t_btn_auto, u8_aug_cmd, u8_aug_btn_reset);
     s16_error += toggleButton(&mt_augerc.t_btn_manual, u8_man_cmd, u8_man_btn_reset);
+
+
 
     //FR-9.3 The control module shall enforce mutual exclusivity to the Auger Unload Enable and Manual Unload commands giving preference to Manual Unload Enable in case of a conflict.
     if((mt_augerc.u8_manual_latched == AUGER_ENABLED) && (mt_augerc.u8_auto_latched == AUGER_ENABLED))
@@ -261,8 +243,6 @@ sint16 update_augerControl(void)
     {
         *(mt_augerc.pu8_auto_enable_status) = mt_augerc.u8_auto_latched;
     }
-
-    mt_augerc.u8_prev_ign_on = u8_ign_on;
 
     return s16_error;
 }

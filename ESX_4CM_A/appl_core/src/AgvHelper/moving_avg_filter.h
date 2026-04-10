@@ -49,7 +49,9 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Structure containing all relevant Moving Average Parameters*/
+/**
+ * \struct T_MoveAvgFilter
+ * \brief Structure containing all relevant Moving Average Parameters*/
 typedef struct
 {
         float32 * pf32_buf; //!<Caller buffer
@@ -62,8 +64,8 @@ typedef struct
         uint8 u8_faulted; //!<1 = Faulted and forced safe
 
         //Config values
-        uint16 u16_sample_time_ms;
-        uint16 u16_sample_no;
+        uint16 u16_sample_time_ms;              //!< Sample time in milliseconds
+        uint16 u16_sample_no;                   //!< Number of samples
         float32 f32_safe_state; //!<Safe State
 
 }T_MoveAvgFilter;

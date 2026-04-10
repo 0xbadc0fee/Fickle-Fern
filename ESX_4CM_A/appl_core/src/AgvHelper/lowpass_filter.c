@@ -25,6 +25,7 @@
  *
  * @{
  */
+//-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include "x_stdtypes.h"
@@ -41,21 +42,19 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/**
- * \brief Initialize Low Pass Filter
+/** \brief Initialize Low Pass Filter
  *
- * This function initializes the low pass filter instance by setting
- * the filtering coefficient, the safe state value, and resetting
- * the persistent output to the specified safe state.
+ *  Initializes the previous filtered output value.
  *
- * \param[out] pt_filter           Pointer to the filter structure to initialize
- * \param[in]  f32_alpha_set       Filter coefficient [0.0 to 1.0]
- * \param[in]  f32_safe_state_set  Default value for initialization and safe state
+ *  \param pt_filter Pointer to filter structure
+ *  \param f32_alpha_set Filter Coefficient
+ *  \param f32_safe_state_set Safe State
  *
- * \return sint16 Error Code
- * \retval C_NO_ERR Function Executed Properly
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 lowpassFilter_init(T_LowPassFilter *pt_filter, float32 f32_alpha_set, float32 f32_safe_state_set)
 {
@@ -73,19 +72,16 @@ sint16 lowpassFilter_init(T_LowPassFilter *pt_filter, float32 f32_alpha_set, flo
     return s16_error;
 }
 
-/**
- * \brief Execute Low Pass Filter logic
+/** \brief Low Pass Filter AgvHelper - Helper Control
  *
- * This function calculates the filtered output by combining the new input
- * with the previous state using the filter coefficient. If the faulted flag
- * is active, the filter output is forced to the pre-defined safe state.
+ *  The Low Pass Filter Module produces a smoothed output by combining the new input value with the previous filtered value using a single filtering coefficient.
  *
- * \param[in,out] pt_filter   Pointer to the filter state structure
- * \param[in]     f32_input   The new raw input value to be filtered
- * \param[in]     u8_faulted  Flag indicating if the input source is in a fault state
+ *  \param pt_filter Struct previous filtered output
+ *  \param f32_input New raw input value
+ *  \param u8_faulted Fault flag
  *
- * \return sint16 Error Code
- * \retval C_NO_ERR Function Executed Properly
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 lowpassFilter(T_LowPassFilter *pt_filter, float32 f32_input, uint8 u8_faulted)
 {

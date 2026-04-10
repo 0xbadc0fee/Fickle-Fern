@@ -26,7 +26,6 @@
  *
  * @{
  */
-//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVCHASSIS_PROPULSION_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_PROPULSION_CONTROL_H_
 
@@ -100,10 +99,10 @@ typedef enum
  */
 typedef struct
 {
-        float32 f32_wheel_rpm;                    //!<Wheel RPM Checkpoint
-        float32 f32_wheel_speed_10;               //!<Wheel Speed MPH x 10 Checkpoint
+    float32 f32_wheel_rpm;                    //!<Wheel RPM Checkpoint
+    float32 f32_wheel_speed_10;               //!<Wheel Speed MPH x 10 Checkpoint
 
-        uint8 u8_edc_enable;                      //!<EDC Enable/Disable Status Checkpoint
+    uint8 u8_edc_enable;                      //!<EDC Enable/Disable Status Checkpoint
 
 }T_ChkPoints_Propulsion;
 
@@ -120,63 +119,61 @@ typedef struct
  */
 typedef struct
 {
-        //Local Control Variables
-        T_ToggleBtn t_active_gear;              //!<Active Gear Toggle Button
-        uint8 u8_active_gear;                   //!<Active Gear Variable
+    //Local Control Variables
+    T_ToggleBtn t_active_gear;              //!<Active Gear Toggle Button
+    uint8 u8_active_gear;                   //!<Active Gear Variable
 
-        T_ToggleBtn t_speed_limit_enable;       //!<Speed Limit Enable Toggle Button
-        uint8 u8_speed_limit_enable;            //!<Speed Limit Enable Variable
+    T_ToggleBtn t_speed_limit_enable;       //!<Speed Limit Enable Toggle Button
+    uint8 u8_speed_limit_enable;            //!<Speed Limit Enable Variable
 
-        T_ToggleBtn t_cc_enable;                //!< Cruise Control Enable Toggle Button
-        uint8 u8_cc_enable;                    //!< Cruise Control Enable Variable
+    T_ToggleBtn t_cc_enable;                //!< Cruise Control Enable Toggle Button
+    uint8 u8_cc_enable;                    //!< Cruise Control Enable Variable
 
-        T_RampState t_js_command;               //!<Ramping Object for Joystick Command
-        E_RampTypes e_rampType;
+    T_RampState t_js_command;               //!<Ramping Object for Joystick Command
+    E_RampTypes e_rampType;
 
-        T_MoveAvgFilter t_filter_wheel_speed;   //!<Moving Average Filter for Wheel Speed
-        float32 af32_ws_buf[20];                //!<Moving Average Filter Buffer
+    T_MoveAvgFilter t_filter_wheel_speed;   //!<Moving Average Filter for Wheel Speed
+    float32 af32_ws_buf[20];                //!<Moving Average Filter Buffer
 
-        float32 f32_wheel_frequency;             //!<Wheel speed in mHz
-        float32 f32_wheel_speed_mph;            //!<Wheel Speed in MPH
+    float32 f32_wheel_frequency;             //!<Wheel speed in mHz
+    float32 f32_wheel_speed_mph;            //!<Wheel Speed in MPH
 
-        uint8 u8_edc_enable;                    //!<True/False variable when EDC drive is enabled or disabled
-        uint8 u8_reverse_ind;                   //!<True/False variable when Joystick is detected to be in Reverse
+    uint8 u8_edc_enable;                    //!<True/False variable when EDC drive is enabled or disabled
+    uint8 u8_reverse_ind;                   //!<True/False variable when Joystick is detected to be in Reverse
 
-        uint8   u8_joystick_state;                //!< Current joystick state
-        uint8   u8_prev_joystick_state;           //!< Previous joystick state
-        uint8   u8_speed_ramp_type;               //!< Tracker for what type of accel/deccel ramp will be used
-        uint8   u8_neutral_ind;                   //!< Joystick neutral state indicator
+    uint8 u8_joystick_state;                //!<Current state or position of the joystick
+    uint8 u8_prev_joystick_state;           //!<Previous state of the joystick, used for transition detection
+    uint8 u8_speed_ramp_type;                //!<Tracker for what type of accel/deccel ramp will be used
+    uint8 u8_neutral_ind;
 
-        uint8 u8_speed_enable;
-        sint16  s16_yPos;                       //!<Local Variable for Joystick Y Position
-        uint16  u16_joystick_command;
-        uint16  u16_prev_joystick_command;
-        float32 f32_raw_output;                 //!<Raw/ unramped output value
-        float32 f32_ramped_output;              //!<Ramped output value to valves
+    uint8 u8_speed_enable;                  //!< Flag indicating whether speed control is enabled
+    sint16  s16_yPos;                       //!<Local Variable for Joystick Y Position
+    uint16  u16_joystick_command;
+    uint16  u16_prev_joystick_command;
+    float32 f32_raw_output;                 //!<Raw/ unramped output value
+    float32 f32_ramped_output;              //!<Ramped output value to valves
 
-        uint8  u8_cc_active;                      //!<Cruise Control active flag */
-        uint16 u16_cc_max_speed;                  //!<Cruise Control maximum speed limit */
+    uint8  u8_cc_active;                      //!<Cruise Control active flag */
+    uint16 u16_cc_max_speed;                  //!<Cruise Control maximum speed limit */
 
-        //TX CAN Variables
-        uint8 *pu8_neutral_state;               //!<Pointer to the Neutral State to Display
-        uint8 *pu8_wheel_speed_10;              //!<Wheel Speed (MPH x 10) to Display
-        uint8 *pu8_speed_limit_set;             //!<Pointer to Speed Limit Set indicator
+    //TX CAN Variables
+    uint8 *pu8_neutral_state;               //!<Pointer to the Neutral State to Display
+    uint8 *pu8_wheel_speed_10;              //!<Wheel Speed (MPH x 10) to Display
+    uint8 *pu8_speed_limit_set;
 
-        //RX CAN Variables
-        uint8  *pu8_gear_selector;              //!< Local variable to hold the gear selector command from Display
-        uint16 *pu16_joy_y_pos;                 //!< Pointer to Joystick Y Position
-        uint8  *pu8_joy_fwd;                    //!< Pointer to Joystick Forward indicator
-        uint8  *pu8_joy_rev;                    //!< Pointer to Joystick Reverse indicator
-        uint8  *pu8_speed_limit_enable;         //!< Pointer to Speed Limit Enable Button from Display
-        uint8  *pu8_max_speed_set;              //!< Pointer to Max Speed Set Button from Display
+    //RX CAN Variables
+    uint8  *pu8_gear_selector;              //!<Local variable to hold the gear selector command from Display
+    uint16 *pu16_joy_y_pos;                 //!<Pointer to Joystick Y Position
+    uint8  *pu8_joy_fwd;                    //!< Pointer to Joystick Forward indicator
+    uint8  *pu8_joy_rev;                    //!< Pointer to Joystick Reverse indicator
+    uint8  *pu8_speed_limit_enable;         //!<Pointer to Speed Limit Enable Button from Display
+    uint8  *pu8_max_speed_set;              //!<Pointer to Max Speed Set Button from Display
 
-        //Engine Variable Pointer
-        uint8  *pu8_engine_status;              //!< Pointer to Engine Status
+    //Engine Variable Pointer
+    uint8  *pu8_engine_status;              //!< Pointer to Engine Status
 
-        //Control Checkpoints
-        T_ChkPoints_Propulsion *pt_chkProp;     //!<Propulsion Control Checkpoints Structure
-
-
+    //Control Checkpoints
+    T_ChkPoints_Propulsion *pt_chkProp;     //!<Propulsion Control Checkpoints Structure
 }T_PropulsionControl;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */

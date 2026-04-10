@@ -25,10 +25,19 @@
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
+/** \brief Safely assigns a source value to a target variable */
 #define VAR_ASSIGN(tar_value, src_value) do { (tar_value) = (src_value); } while (0)
 
+/** \brief Generates a bitmask for a given NVM list ID */
 #define NVM_LIST_BIT(list_id)     (1UL << (list_id))
 
+/** \brief Synchronizes a control value to a datapath value and updates the dirty mask if changed
+ *
+ * \param list_id The ID of the NVM list (used to set the dirty bit)
+ * \param dp_lvalue The target datapath/NVM variable to update
+ * \param ctrl_rvalue The source control variable
+ * \param dirty_mask_lvalue The bitmask variable to update if a change occurs
+ */
 #define NVM_SYNC_ITEM(list_id, dp_lvalue, ctrl_rvalue, dirty_mask_lvalue) \
     do {                                                                  \
         if ((dp_lvalue) != (ctrl_rvalue))                                 \
@@ -37,8 +46,6 @@
             (dirty_mask_lvalue) |= NVM_LIST_BIT((list_id));               \
         }                                                                 \
     } while (0)
-
-
 
 //SPN Table
 

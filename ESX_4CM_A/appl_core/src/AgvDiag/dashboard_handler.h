@@ -1,31 +1,12 @@
-//-----------------------------------------------------------------------------
-/**
- * \file       checkpoint_handler.h
- * \brief      AgvChassis - Checkpoint Handler
- *
- * \addtogroup AgvDiag
- * @{
- * \addtogroup CheckpointHandler Checkpoint Handler
- *
- * This module is responsible for managing system "checkpoints"—critical state
- * variables and diagnostic data that need to be monitored or persisted.
- * It provides a centralized interface for updating, tracking, and validating
- * the operational health of various machine modules.
- *
- * @par Project
- * FloryTemplate_4CM
- *
- * @par Copyright
- * STW Technic (c) 2026
- *
- * @par License
- * Use only under terms of contract / confidential
- *
- * @par Created
- * Jan 6, 2026 STW Technic
- *
- * @{
- */
+/*! \file       checkpoint_handler.h.h
+    \brief      <description>
+
+   	project     FloryTemplate_4CM
+   	copyright   STW Technic (c) 2026
+   	license     use only under terms of contract / confidential
+
+   	created     Jan 7, 2026 kyle.boch
+*/
 #ifndef APPL_CORE_SRC_AGVDIAG_CHECKPOINT_HANDLER_H_
 #define APPL_CORE_SRC_AGVDIAG_CHECKPOINT_HANDLER_H_
 

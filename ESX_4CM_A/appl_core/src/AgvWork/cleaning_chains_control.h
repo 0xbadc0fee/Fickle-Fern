@@ -43,19 +43,19 @@
 #include "toggle_button.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DOOR_OPEN                      (1u)       /**< Door is in the OPEN position */
-#define DOOR_CLOSED                    (0u)       /**< Door is in the CLOSED position */
+#define DOOR_OPEN                      (1u)       //!< Door is in the OPEN position
+#define DOOR_CLOSED                    (0u)       //!< Door is in the CLOSED position
 
-#define IGN_ON                         (1u)       /**< Vehicle Ignition is ACTIVE */
-#define IGN_OFF                        (0u)       /**< Vehicle Ignition is INACTIVE */
+#define IGN_ON                         (1u)       //!< Vehicle Ignition is ACTIVE
+#define IGN_OFF                        (0u)       //!< Vehicle Ignition is INACTIVE
 
-#define SHAFT_DRIVE_ON                 (1u)       /**< Cleaning Shaft drive is ENABLED */
-#define SHAFT_DRIVE_OFF                (0u)       /**< Cleaning Shaft drive is DISABLED */
+#define SHAFT_DRIVE_ON                 (1u)       //!< Cleaning Shaft drive is ENABLED
+#define SHAFT_DRIVE_OFF                (0u)       //!< Cleaning Shaft drive is DISABLED
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /**
- * @struct T_ChkPoints_CChains
- * @brief Checkpoints Structure - Cleaning Chains Control
+ * \struct T_ChkPoints_CChains
+ * \brief Checkpoints Structure - Cleaning Chains Control
  *
  * Encapsulates the state-tracking checkpoints for the cleaning chain
  * drive logic. These members are utilized to validate the sequencing
@@ -67,8 +67,8 @@ typedef struct
 
 }T_ChkPoints_CChains;
 
-
-/** * @struct T_CChainsControl
+/**
+ * \struct T_CChainsControl
  * \brief Control Structure - Cleaning Chains Control
  *
  * Encapsulates all persistent state variables and pointers required for
@@ -96,7 +96,6 @@ typedef struct
         T_ChkPoints_CChains *pt_cp_cchains; //!<Cleaning Chains Control Checkpoints Structure
 
         T_ToggleBtn t_btn_shaft;   //!<Toggle Button Control
-
 
 }T_CChainsControl;
 

@@ -26,7 +26,6 @@
  * @{
  */
 //-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include <stdint.h>
@@ -41,7 +40,7 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_LightControl mt_lighting; /**< Global persistent state for Lights Control. */
+static T_LightControl mt_lighting;  //!< Global persistent state for Lights Control.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -51,7 +50,7 @@ static T_LightControl mt_lighting; /**< Global persistent state for Lights Contr
  * This function initializes the Lighting Control logic, establishing the
  * link to the operator interface for manual and automatic light management.
  *
- * \param[in,out] _ui  Pointer to the project's UI Structure
+ * \param[in,out] _can_devs  Pointer to the project's UI Structure
  *
  * \return sint16 Error Code
  * \retval C_NO_ERR Function Executed Properly
@@ -83,15 +82,16 @@ sint16 init_lightControl(T_CANDevices *_can_devs)
     return s16_error;
 }
 
-/**
- * \brief Update AgvChassis - Lighting Control
+/** \brief Update AgvChassis - Lighting Control
  *
- * This function executes the cyclical logic for the Lighting Control system.
- * It manages all combinations of external headlights and worklights based
- * on operator requests and integrated safety interlocks.
+ *  This function contains the cyclical logic for AgvChassis - Lighting Control.
  *
- * \return sint16 Error Code
- * \retval C_NO_ERR Function Executed Properly
+ * The Lighting Control Module shall control all required combinations of external headlights and worklights.
+ *
+ *  Additional interlocks are utilized throughout the logic.
+ *
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 update_lightControl(void)
 {

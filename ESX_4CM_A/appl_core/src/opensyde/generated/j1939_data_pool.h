@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define J1939_PROJECT_ID_1637727564 void j1939_project_id_1637727564(void) {}
+#define J1939_PROJECT_ID_807578185 void j1939_project_id_807578185(void) {}
 
 ///Index of this Datapool
 #define J1939_DATA_POOL_INDEX (2U)
@@ -281,8 +281,8 @@ extern "C" {
 #define J1939_SCALING_OFFSET_CAN1_RX_EEC1_ENGTORQUEMODE (0.0F)
 #define J1939_SCALING_FACTOR_CAN1_RX_EEC1_SRCADDRSSOFCTRLLNGDVCFRENGCNTRL (1.0F)
 #define J1939_SCALING_OFFSET_CAN1_RX_EEC1_SRCADDRSSOFCTRLLNGDVCFRENGCNTRL (0.0F)
-#define J1939_SCALING_FACTOR_CAN1_RX_ET1_ENGCOOLANTTEMP (0.03125F)
-#define J1939_SCALING_OFFSET_CAN1_RX_ET1_ENGCOOLANTTEMP (-273.0F)
+#define J1939_SCALING_FACTOR_CAN1_RX_ET1_ENGCOOLANTTEMP (1.0F)
+#define J1939_SCALING_OFFSET_CAN1_RX_ET1_ENGCOOLANTTEMP (-40.0F)
 #define J1939_SCALING_FACTOR_CAN1_RX_ET1_ENGFUELTEMP1 (1.0F)
 #define J1939_SCALING_OFFSET_CAN1_RX_ET1_ENGFUELTEMP1 (-40.0F)
 #define J1939_SCALING_FACTOR_CAN1_RX_ET1_ENGINTERCOOLERTEMP (1.0F)
@@ -746,7 +746,7 @@ extern const T_osy_dpa_data_pool gt_J1939_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void j1939_project_id_1637727564(void);
+extern void j1939_project_id_807578185(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

@@ -50,7 +50,7 @@ T_HeaderControl mt_hdr_control;/**<Global persistent state for Header Lift Contr
  * This function initializes the Header Lift Control Logic, linking the
  * required UI interface and persistent checkpoint/configuration memory.
  *
- * \param[in,out] _ui                 Pointer to the project's UI Structure
+ * \param[in,out] _can_dev                 Pointer to the project's UI Structure
  * \param[in,out] _chkPoints          Pointer to the global Header Checkpoints Structure
  * \param[in]     _nvmHeaderControl   Pointer to the NVM Configuration Structure
  *
@@ -81,15 +81,16 @@ sint16 init_headerControl(T_CANDevices *_can_dev, T_ChkPoints_Header *_chkPoints
     return s16_error;
 }
 
-/**
- * \brief Update AgvWork - Header Lift Control
+/** \brief Update AgvWork - Header Lift Control
  *
- * This function executes the cyclical logic for the Header Lift system.
- * It manages the lifting and lowering of the header based on operator
- * commands and safety interlocks.
+ *  This function contains the cyclical logic for AgvWork - Header Lift Control.
  *
- * \return sint16 Error Code
- * \retval C_NO_ERR Function Executed Properly
+ *  Primary logic for this function is to lift of lower the header based on operator commands
+ *  This logic tackles functionality descibed in FR1.X of the Functional Requirements
+ *
+ *
+ *  \return s16_error Error Code
+ *  \retval C_NO_ERR Function Executed Properly
  */
 sint16 update_headerControl(void)
 {
@@ -188,17 +189,11 @@ sint16 update_headerControl(void)
         u8_lift_output = FALSE;
     }
 
-
-
-
     //set the hardware output
     set_outputValue("HEAD_LOWER_COIL", (float32)u8_lower_output);
     set_outputValue("HEAD_LIFT_COIL", (float32)u8_lift_output);
 
-
     return s16_error;
-
 }
-
 
 //EOF

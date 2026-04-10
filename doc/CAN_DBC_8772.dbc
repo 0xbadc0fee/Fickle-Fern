@@ -153,10 +153,10 @@ BO_ 2348810494 TSC1: 8 ESX_4CM_A
 BO_ 2566844158 ET1: 8 Engine
  SG_ EngFuelTemp1 : 8|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
  SG_ EngIntercoolerThermostatOpening : 56|8@1+ (0.4,0) [0|100] "%"  ESX_4CM_A
- SG_ EngIntercoolerTemp : 48|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
- SG_ EngTurboOilTemp : 32|16@1+ (0.03125,-273) [4294967023|1734.96875] "deg C"  ESX_4CM_A
- SG_ EngOilTemp1 : 16|16@1+ (0.03125,-273) [4294967023|1734.96875] "deg C"  ESX_4CM_A
- SG_ EngCoolantTemp : 0|8@1+ (0.03125,-273) [4294967023|-265.03125] "deg C"  ESX_4CM_A
+ SG_ EngIntercoolerTemp : 48|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
+ SG_ EngTurboOilTemp : 32|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
+ SG_ EngOilTemp1 : 16|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
+ SG_ EngCoolantTemp : 0|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
 
 BO_ 2364540158 EEC1: 8 Engine
  SG_ SrcAddrssOfCtrllngDvcFrEngCntrl : 40|8@1+ (1,0) [0|255] "" Vector__XXX

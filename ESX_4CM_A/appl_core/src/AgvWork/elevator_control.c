@@ -48,7 +48,7 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_ElevatorControl mt_elevator;
+static T_ElevatorControl mt_elevator; //!< Internal module state for Elevator Control
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -56,14 +56,16 @@ static T_ElevatorControl mt_elevator;
  *
  *  This function initializes the AgvWork - Elevator Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
+ *  \param _can_dev Pointer to the project's UI Structure
  *  \param _chkElevator Pointer to the global Elevator Checkpoints Structure
  *  \param _nvmElevator Pointer to the global Elevator NVM Structure
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_elevatorControl(T_CANDevices *_can_dev, T_ChkPoints_Elevator *_chkElevator, T_Config_Elevator *_nvmElevator)
+sint16 init_elevatorControl(T_CANDevices         *_can_dev,
+                            T_ChkPoints_Elevator *_chkElevator,
+                            T_Config_Elevator    *_nvmElevator)
 {
     sint16 s16_error = C_NO_ERR;
 

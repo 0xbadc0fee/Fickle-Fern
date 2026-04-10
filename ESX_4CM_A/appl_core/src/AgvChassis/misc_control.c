@@ -1,9 +1,9 @@
 //-----------------------------------------------------------------------------
 /**
  * \file       misc_control.c
- * \brief      AgvWork - Miscellaneous Control Implementation
+ * \brief      AgvChassis - Miscellaneous Control Implementation
  *
- * \addtogroup AgvWork
+ * \addtogroup AgvChassis
  * @{
  * \addtogroup MiscControl
  * @{
@@ -37,6 +37,8 @@
 #include "hw_outputs.h"
 #include "fault_handler.h"
 
+#include "dashboard_data_pool.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
@@ -59,93 +61,82 @@ static T_MiscControl mt_misc; //!< Internal state instance for miscellaneous con
 sint16 update_filterMinder(void)
 {
     //TODO_STW: Dashboard Config High Deadband
-    //TODO_STW: Dashboard Config Fault Percentage
-    //TODO_STW: Dashboard Config Low Calibration
-    //TODO_STW: Dashboard Config High Calibration
-    //TODO_STW: Dashboard Display Filter Percentage
     //TODO_STW: Dashboard Pin Voltage
 
     sint16 s16_error = C_NO_ERR;
 
     uint8 u8_minder_flt = FALSE;
     uint8 u8_service_filter_on = FALSE;
+    uint8 u8_fault_active = FALSE;
 
     float32 f32_raw = 0.0F;
-    float32 f32_adv_filter_out = 0.0F;
     float32 f32_filter_pct = 0.0F;
 
-    uint8 u8_filter_gauge = 0u;
-    uint32 u32_now_ms = 0u;
+    uint32 u32_now_ms = get_system_time_ms();
 
-    s16_error += get_inputFaultStatus("AIR_FILTER_RESTRICTION", &u8_minder_flt);
 
-    if(u8_minder_flt == FALSE)
-    {
-        s16_error += get_inputValue("AIR_FILTER_RESTRICTION", &f32_raw);
+    s16_error += get_inputFaultStatus("AIR_RESTRICT", &u8_minder_flt);
 
-        if(f32_raw <= FILTER_MINDER_FAULT_THRESHOLD)
-        {
-            s16_error += C_WARN;
-        }
-        else
-        {
-            // Convert raw input to restriction percent (0..100)
-            f32_filter_pct = ((PERCENT_SCALE * f32_raw) / FILTER_MINDER_RAW_MAX);
-            f32_filter_pct = CLAMP(f32_filter_pct, 0.0F, 100.0F);
-
-            // Filter restriction percent
-            movingAdvFlt(&mt_misc.t_minder_flt, f32_filter_pct);
-            f32_adv_filter_out = CLAMP(mt_misc.t_minder_flt.f32_out, 0.0F, 100.0F);
-
-            // If filtered output is greater than stored max for 1000 ms, reset stored max to default (0)
-            u32_now_ms = get_system_time_ms();
-
-            if(f32_adv_filter_out > mt_misc.pt_nvm_misc_control->u8_filter_rstn_max)
-            {
-                if(mt_misc.u8_minder_timer_active == FALSE)
-                {
-                    mt_misc.u8_minder_timer_active = TRUE;
-                    mt_misc.u32_minder_timer_start_ms = u32_now_ms;
-                }
-                else if((u32_now_ms - mt_misc.u32_minder_timer_start_ms) >= 1000u)
-                {
-                    // Write DEFAULT  = 0
-                    mt_misc.pt_nvm_misc_control->u8_filter_rstn_max = 0u;
-                }
-            }
-            else
-            {
-                mt_misc.u8_minder_timer_active = FALSE;
-                mt_misc.u32_minder_timer_start_ms = 0u;
-            }
-
-            // Service on at 100%
-            u8_service_filter_on = (f32_adv_filter_out >= PERCENT_SCALE) ? TRUE : FALSE;
-
-            // Gauge output
-            if(u8_service_filter_on != FALSE)
-            {
-                u8_filter_gauge = 255u;
-            }
-            else
-            {
-                u8_filter_gauge = (uint8)((f32_adv_filter_out * 255.0F) / PERCENT_SCALE);
-            }
-        }
-    }
-    else
+    if(u8_minder_flt)
     {
         s16_error += C_WARN;
     }
+    else
+    {
+        s16_error += get_inputValue("AIR_RESTRICT", &f32_raw);
+
+
+        //TODO_STW:Dashboard Config - Filter Sensor Fault Percentage
+        //TODO_STW:Dashboard Config - Filter Sensor High Deadband
+        //TODO_STW:Dashboard Config - Filter Sensor Low Calibration
+        //TODO_STW:Dashboard Config - Filter Sensor High Calibration
+
+
+        // Convert raw input to restriction percent (0..100)
+        f32_filter_pct = ((100.0f / (FM_RAW_MAX-FM_RAW_MIN)) * f32_raw) -
+                         ((100.0f*FM_RAW_MIN)/(FM_RAW_MAX-FM_RAW_MIN));
+        f32_filter_pct = CLAMP(f32_filter_pct, 0.0F, 100.0F);
+
+        // Filter restriction percent
+        movingAdvFlt(&mt_misc.t_minder_flt, f32_filter_pct);
+
+        gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_test3 = f32_raw;
+        gt_Dashboard_DataPoolValues.t_GeneralTestingValues.s16_test2 = (sint16)mt_misc.t_minder_flt.f32_out;
+
+        // If filtered output is greater than stored max for 1000 ms, reset stored max to filter value
+        if(mt_misc.t_minder_flt.f32_out > mt_misc.pt_nvm_misc_control->u8_filter_rstn_max)
+        {
+            if(mt_misc.u8_minder_timer_active == FALSE)
+            {
+                mt_misc.u8_minder_timer_active = TRUE;
+                mt_misc.u32_minder_timer_start_ms = u32_now_ms;
+            }
+            else if((u32_now_ms - mt_misc.u32_minder_timer_start_ms) >= 1000u)
+            {
+                mt_misc.pt_nvm_misc_control->u8_filter_rstn_max = mt_misc.t_minder_flt.f32_out;
+                //write_nvmParameters();
+            }
+        }
+        else
+        {
+            mt_misc.u8_minder_timer_active = FALSE;
+            mt_misc.u32_minder_timer_start_ms = 0u;
+        }
+
+        // Service on if max is greater than threshold
+        u8_service_filter_on = (mt_misc.pt_nvm_misc_control->u8_filter_rstn_max >= FM_SERVICE_THRESH) ? TRUE : FALSE;
+
+        //needed?
+        u8_fault_active = (mt_misc.t_minder_flt.f32_out <= FM_FAULT_THRESH) ? TRUE : FALSE;
+    }
 
     // Outputs
-    *(mt_misc.pf32_filter_restriction_pct) = f32_adv_filter_out;
-    *(mt_misc.pu8_filter_minder_gauge) = u8_filter_gauge;
+    *(mt_misc.pf32_filter_restriction_pct) = mt_misc.pt_nvm_misc_control->u8_filter_rstn_max;
     *(mt_misc.pu8_service_filter_status) = u8_service_filter_on;
 
     //Checkpoints
-    mt_misc.pt_cp_misc->f32_filter_rest_pct = f32_adv_filter_out;
-    mt_misc.pt_cp_misc->f32_minder_gauge_pct= u8_filter_gauge;
+    mt_misc.pt_cp_misc->f32_filter_rest_pct = mt_misc.pt_nvm_misc_control->u8_filter_rstn_max;
+    mt_misc.pt_cp_misc->f32_minder_gauge_pct= mt_misc.t_minder_flt.f32_out;
     mt_misc.pt_cp_misc->u8_service_filter_status = u8_service_filter_on;
 
     return s16_error;
@@ -164,83 +155,59 @@ sint16 update_fuelLevel(void)
 
     uint8 u8_fuel_flt = FALSE;
     float32 f32_raw_fuel_level = 0.0F;
-    float32 f32_sensor = 0.0F;
-    float32 f32_gauge = mt_misc.f32_last_fuel_gauge;
+    float32 f32_fuel_pct = 0.0;
     uint8 u8_low = FALSE;
-    uint32 u32_time_now_ms = 0u;
+    uint32 u32_now_ms = get_system_time_ms();
 
     s16_error += get_inputFaultStatus("FUEL_LEVEL", &u8_fuel_flt);
 
-    if(u8_fuel_flt == FALSE)
-    {
-        s16_error += get_inputValue("FUEL_LEVEL", &f32_raw_fuel_level);
-
-        // FR-23.4 Read fuel level sensor input and convert to normalized percentage output
-        f32_sensor =  ((PERCENT_SCALE * f32_raw_fuel_level) / FUEL_RAW_MAX);
-
-        f32_sensor = CLAMP(f32_sensor, 0.0F, PERCENT_SCALE);
-
-        if(f32_sensor <= FUEL_FAULT_THRESHOLD)
-        {
-            // IR-23.2, IR-23.3 Safe state
-            f32_sensor = 0.0F;
-            f32_gauge = 0.0F;
-            mt_misc.f32_last_fuel_gauge = 0.0F;
-            mt_misc.u8_low_fuel_timer_active = FALSE;
-            mt_misc.u32_low_fuel_timer_start_ms = 0u;
-            u8_low = FALSE;
-            s16_error += C_WARN;
-        }
-        else
-        {
-            // FR-23.5 Apply configurable Fuel High Deadband
-            if((f32_sensor < mt_misc.f32_last_fuel_gauge) ||
-            (f32_sensor >= (mt_misc.f32_last_fuel_gauge + mt_misc.pt_nvm_misc_control->u16_fuel_high_deadband)))
-            {
-                f32_gauge = f32_sensor;
-            }
-
-            //moving avg filter
-            movingAdvFlt(&mt_misc.t_fuel_level_flt, f32_gauge);
-            f32_gauge = mt_misc.t_fuel_level_flt.f32_out;
-
-            mt_misc.f32_last_fuel_gauge = f32_gauge;
-
-            // FR-23.6 Compare Fuel Gauge to Low Fuel Set Point and require 5 seconds
-            u32_time_now_ms = get_system_time_ms();
-
-            if(f32_gauge <= FUEL_LOW_SETPOINT)
-            {
-                if(mt_misc.u8_low_fuel_timer_active == FALSE)
-                {
-                    mt_misc.u8_low_fuel_timer_active = TRUE;
-                    mt_misc.u32_low_fuel_timer_start_ms = u32_time_now_ms;
-                }
-                else if((u32_time_now_ms - mt_misc.u32_low_fuel_timer_start_ms) >= FUEL_LOW_DELAY_MS)
-                {
-                    u8_low = TRUE;
-                }
-            }
-            else
-            {
-                mt_misc.u8_low_fuel_timer_active = FALSE;
-                mt_misc.u32_low_fuel_timer_start_ms = 0u;
-            }
-        }
-    }
-    else
+    if(u8_fuel_flt)
     {
         s16_error += C_WARN;
     }
+    else
+    {
+        s16_error += get_inputValue("FUEL_LEVEL", &f32_raw_fuel_level);
+
+        //TODO_STW:Dashboard Config - Fuel Gauge High Voltage
+
+        // FR-23.4 Read fuel level sensor input and convert to normalized percentage output
+        f32_fuel_pct = ((100.0f / (FUEL_RAW_MAX-FUEL_RAW_MIN)) * f32_raw_fuel_level) -
+                         ((100.0f*FUEL_RAW_MIN)/(FUEL_RAW_MAX-FUEL_RAW_MIN));
+
+        f32_fuel_pct = CLAMP(f32_fuel_pct, 0.0F, 100.0F);
+
+        // fuel level average percent
+        movingAdvFlt(&mt_misc.t_fuel_level_flt, f32_fuel_pct);
+
+        // If filtered output is less than low level for 1000 ms, trigger fuel low indicator
+        if(mt_misc.t_fuel_level_flt.f32_out < FUEL_LOW_SETPOINT)
+        {
+            if(mt_misc.u8_low_fuel_timer_active == FALSE)
+            {
+                mt_misc.u8_low_fuel_timer_active = TRUE;
+                mt_misc.u32_low_fuel_timer_start_ms = u32_now_ms;
+            }
+            else if((u32_now_ms - mt_misc.u32_low_fuel_timer_start_ms) >= FUEL_LOW_DELAY_MS)
+            {
+                u8_low = TRUE;
+            }
+        }
+        else
+        {
+            mt_misc.u8_low_fuel_timer_active = FALSE;
+            mt_misc.u32_low_fuel_timer_start_ms = 0u;
+        }
+    }
 
     // FR-23.7 Transmit outputs to display via CAN
-    *(mt_misc.pu8_fuel_level_sensor) = (uint8)((f32_sensor * 255.0F) / PERCENT_SCALE);
-    *(mt_misc.pf32_fuel_level_gauge_pct)  = f32_gauge;
+    *(mt_misc.pu8_fuel_level_sensor) = (uint8)((mt_misc.t_fuel_level_flt.f32_out * 255.0F) / 100.0f);
+    *(mt_misc.pf32_fuel_level_gauge_pct)  = mt_misc.t_fuel_level_flt.f32_out;
     *(mt_misc.pu8_low_fuel_status)        = u8_low;
 
     //Checkpoints
     mt_misc.pt_cp_misc->f32_fuel_level_sensor =  (*(mt_misc.pu8_fuel_level_sensor));
-    mt_misc.pt_cp_misc->f32_fuel_level_gauge_pct= f32_gauge;
+    mt_misc.pt_cp_misc->f32_fuel_level_gauge_pct= mt_misc.t_fuel_level_flt.f32_out;
 
     return s16_error;
 }
@@ -284,18 +251,18 @@ sint16 init_miscControl(T_CANDevices *_can_devs, T_ChkPoints_Mis *_chk_misc,T_Co
 
 
     s16_error += movingFltInit(&mt_misc.t_fuel_level_flt,
-    mt_misc.f32_fuel_level_buf,
-    FUEL_BUF_LEN,
-    FUEL_FILTER_SAFE_OUTPUT,
-    FUEL_FILTER_SAMPLE_NO,
-    FUEL_FILTER_SAMPLE_MS);
+                                mt_misc.f32_fuel_level_buf,
+                                FUEL_BUF_LEN,
+                                FUEL_FILTER_SAFE_OUTPUT,
+                                FUEL_FILTER_SAMPLE_NO,
+                                FUEL_FILTER_SAMPLE_MS);
 
     s16_error += movingFltInit(&mt_misc.t_minder_flt,
-    mt_misc.f32_minder_buf,
-    FILTER_MINDER_BUF_LEN,
-    FILTER_MINDER_FILTER_SAFE_OUTPUT,
-    FILTER_MINDER_FILTER_SAMPLE_NO,
-    FILTER_MINDER_FILTER_SAMPLE_MS);
+                                mt_misc.f32_minder_buf,
+                                FILTER_MINDER_BUF_LEN,
+                                FILTER_MINDER_FILTER_SAFE_OUTPUT,
+                                FILTER_MINDER_FILTER_SAMPLE_NO,
+                                FILTER_MINDER_FILTER_SAMPLE_MS);
 
     mt_misc.u8_minder_timer_active = FALSE;
     mt_misc.u8_low_fuel_timer_active = FALSE;
@@ -340,7 +307,6 @@ sint16 update_miscControl(void)
     }
 
     s16_error += update_filterMinder() ;
-
     s16_error += update_fuelLevel();
 
     // FR-23.9 Transmit Door Open Status to display
@@ -355,7 +321,8 @@ sint16 update_miscControl(void)
         *(mt_misc.pu8_door_open_status) = FALSE;
         s16_error += C_WARN;
     }
-    mt_misc.pt_cp_misc->u8_door_open_status = (*(mt_misc.pu8_door_open_status));
+    mt_misc.pt_cp_misc->u8_door_open_status = *(mt_misc.pu8_door_open_status);
+
 
     // FR-23.10 Read Hydraulic Fluid Level Switch input and output indicator to display
     get_inputFaultStatus("HYD_FLUID_LEVEL", &u8_in_fault);
@@ -371,9 +338,10 @@ sint16 update_miscControl(void)
     }
     mt_misc.pt_cp_misc->u8_low_hyd_fluid_indicator = (*(mt_misc.pu8_low_hydraulic_fluid_indicator));
 
+
     // FR-23.11 Read Brakes Engaged input and output it to the REGEN Allow Relay hardware and to the display
     get_inputFaultStatus("PARK_BRAKE", &u8_in_fault);
-    get_outputFaultStatus("REGEN_ALLOW_RELAY", &u8_out_fault);
+    get_outputFaultStatus("REGEN_ALLOW", &u8_out_fault);
 
     if((u8_in_fault == FALSE) && (u8_out_fault == FALSE))
     {
@@ -381,7 +349,7 @@ sint16 update_miscControl(void)
 
         f32_value = (f32_value != FALSE) ? TRUE : FALSE;
 
-        set_outputValue("REGEN_ALLOW_RELAY", f32_value);
+        set_outputValue("REGEN_ALLOW", f32_value);
         *(mt_misc.pu8_brakes_engaged) = f32_value;
     }
     else
@@ -399,10 +367,13 @@ sint16 update_miscControl(void)
     mt_misc.pt_cp_misc->u8_sw_minor_revision = MISC_SW_MINOR_REV;
 
     // FR-23.13 Read Clear Machine Faults Command from display and clear associated faults
-    if(*(mt_misc.pu8_clear_faults_cmd) != FALSE)
+    if(*(mt_misc.pu8_clear_faults_cmd) == TRUE &&
+       mt_misc.u8_prev_clear_cmd != *(mt_misc.pu8_clear_faults_cmd))
     {
         clear_machineFaults();
     }
+    mt_misc.u8_prev_clear_cmd = *(mt_misc.pu8_clear_faults_cmd);
+
 
     return s16_error;
 }

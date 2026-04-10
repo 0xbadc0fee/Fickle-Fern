@@ -5,11 +5,13 @@
  *
  * \addtogroup HAL
  * @{
- * \addtogroup InputHandlerLib
- * @{
- */
-
-/**
+ * \addtogroup InputHandlerLib Input Handler Library
+ *
+ * This module provides the implementation for the hardware abstraction layer
+ * input handler. It manages the acquisition, filtering, debouncing, and
+ * processing of physical system inputs (analog, digital, frequency, etc.)
+ * into scaled, usable software variables for the application layer.
+ *
  * @par Project
  * FloryTemplate_4CM
  *
@@ -21,6 +23,8 @@
  *
  * @par Created
  * Dec 8, 2025 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -30,7 +34,6 @@
 #include "input_handler_lib.h"
 #include "math.h"
 
-#include "dashboard_data_pool.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
@@ -56,7 +59,7 @@ T_VehicleInput at_vehicleInputs[X_IN_COUNT];    //!< Array of configured vehicle
 
 
     \ingroup system_io_group
-*/
+ */
 sint16 init_inputHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -73,11 +76,9 @@ sint16 init_inputHandler(void)
         // switch case based on intended input type
         switch(at_vehicleInputs[i].e_inputType)
         {
-            //TODO_STW: Make the pull circuitry configurable
             //TODO_STW: Make the diagnostic min and max NON configurable but auto detected based off Type and hardware id.
-            //TODO_STW: Make the return errors distinguishable between diagnostic init error and hardware init error
             case IT_VOLTAGE:
-                s16_initError = x_in_voltage_init( at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT,  DEFAULT_ADCINPUT_FILTER);
+                s16_initError |= x_in_voltage_init( at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].e_circuit,  DEFAULT_ADCINPUT_FILTER);
 
                 if(at_vehicleInputs[i].u8_diagEnabled && s16_initError == C_NO_ERR)
                 {
@@ -86,7 +87,7 @@ sint16 init_inputHandler(void)
                 break;
 
             case IT_CURRENT:
-                s16_initError = x_in_current_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_ADCINPUT_CIRCUIT, DEFAULT_ADCINPUT_FILTER);
+                s16_initError |= x_in_current_init(at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].e_circuit, DEFAULT_ADCINPUT_FILTER);
 
                 if(at_vehicleInputs[i].u8_diagEnabled && s16_initError == C_NO_ERR)
                 {
@@ -95,7 +96,7 @@ sint16 init_inputHandler(void)
                 break;
 
             case IT_DIGITAL:
-                s16_initError = x_in_digital_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, 10000);
+                s16_initError |= x_in_digital_init(at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].e_circuit, X_IN_LOGIC_POSITIVE, at_vehicleInputs[i].u16_debounce);
 
                 if(at_vehicleInputs[i].u8_diagEnabled && s16_initError == C_NO_ERR)
                 {
@@ -104,9 +105,8 @@ sint16 init_inputHandler(void)
                 break;
 
             case IT_FREQ:
-
-                s16_initError = x_in_frequency_init(at_vehicleInputs[i].u16_hardwareID, DEFAULT_DIG_CIRCUIT, X_IN_LOGIC_POSITIVE, 100);
-                if(at_vehicleInputs[i].u8_diagEnabled && s16_initError == C_NO_ERR)
+                s16_initError |= x_in_frequency_init(at_vehicleInputs[i].u16_hardwareID,  at_vehicleInputs[i].e_circuit, X_IN_LOGIC_POSITIVE, at_vehicleInputs[i].u16_debounce);
+                if(at_vehicleInputs[i].u8_diagEnabled)
                 {
                     s16_diagError = x_in_frequency_diag (at_vehicleInputs[i].u16_hardwareID, at_vehicleInputs[i].u16_dti, (uint32)at_vehicleInputs[i].s32_diagMin, (uint32)at_vehicleInputs[i].s32_diagMax, 100, 9900);
                 }
@@ -118,11 +118,12 @@ sint16 init_inputHandler(void)
     }
 
     //check error status
-    if(C_NO_ERR != s16_diagError)
-        s16_error = s16_diagError;
+    if((C_NO_ERR != s16_diagError) && (C_NO_ERR != s16_initError))
+        s16_error = C_INPUT_INIT_BOTH_FAIL;
+    else if(C_NO_ERR != s16_diagError)
+        s16_error = C_INPUT_INIT_DIAG_FAIL;
     else if (C_NO_ERR != s16_initError)
-        s16_error = s16_initError;
-
+        s16_error = C_INPUT_INIT_HW_FAIL;
 
     return s16_error;
 }
@@ -132,7 +133,7 @@ sint16 init_inputHandler(void)
     Function to be called cyclically that reads all configured hardware inputs and updates
     their values. Also performs fault checking on all configured inputs.
 
-**/
+ **/
 sint16 update_inputHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -200,7 +201,7 @@ sint16 update_inputHandler(void)
     Function to be called to check if there is a diagnostic fault present on the input requested.
 
     \internal Task function - called by OS scheduler
-**/
+ **/
 sint16 check_inputFaultStatus(uint8 u8_input)
 {
     sint16 s16_Error = C_COM;
@@ -280,7 +281,7 @@ sint16 check_inputFaultStatus(uint8 u8_input)
     \return Error Return Value
     \retval C_NO_ERR(0) No Error
     \retval C_RANGE(-5) Input Not Found
-**/
+ **/
 sint16 get_inputValue(const char *targetName, float32 *opf32_value)
 {
     sint16 s16_error;
@@ -303,7 +304,7 @@ sint16 get_inputValue(const char *targetName, float32 *opf32_value)
 
     \return Error Return Value
     \retval C_NO_ERR(0) No Error
-**/
+ **/
 sint16 get_numInputs(uint8 *const opu8_Count)
 {
     *opu8_Count = u8_numInputs;
@@ -317,7 +318,7 @@ sint16 get_numInputs(uint8 *const opu8_Count)
     \return Error Return Value
     \retval C_NO_ERR(0) No Error
     \retval C_RANGE(-5) Input Not Found
-**/
+ **/
 sint16 get_inputFaultStatus(const char *targetName, uint8 *opu8_status)
 {
     sint16 s16_error;
@@ -386,7 +387,7 @@ sint16 add_hwInput(T_VehicleInput input)
     \return Error Return Value
     \retval C_NO_ERR(0)  Input found
     \retval C_RANGE(-5)  Input not found
-**/
+ **/
 sint16 findInputByName(const char *targetName, uint8 *opu8_Index)
 {
     for (uint8 i = 0; i < u8_numInputs; i++)
@@ -408,7 +409,7 @@ sint16 findInputByName(const char *targetName, uint8 *opu8_Index)
 
     \return Error Return Value
     \retval C_NO_ERR(0)  All Input Faults Reset
-**/
+ **/
 sint16 clear_inputFaults(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -427,6 +428,4 @@ sint16 clear_inputFaults(void)
 
     return s16_error;
 }
-
-
 //EOF

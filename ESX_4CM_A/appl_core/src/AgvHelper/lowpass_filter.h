@@ -25,7 +25,6 @@
  *
  * @{
  */
-//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVHELPER_LOWPASS_FILTER_H_
 #define APPL_CORE_SRC_AGVHELPER_LOWPASS_FILTER_H_
@@ -43,7 +42,9 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Structure containing all relevant Low Pass Filter output information*/
+/**
+ * \struct T_LowPassFilter
+ * \brief Structure containing all relevant Low Pass Filter output information*/
 typedef struct
 {
         float32 f32_output; //!<Previous filtered output

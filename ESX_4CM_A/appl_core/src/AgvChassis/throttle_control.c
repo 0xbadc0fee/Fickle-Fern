@@ -43,6 +43,7 @@
 #include "hw_outputs.h"
 
 // -- Defines ------------------------------------------------------------------------------------------------------
+
 // -- Types --------------------------------------------------------------------------------------------------------
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
 // -- Module Global Variables --------------------------------------------------------------------------------------
@@ -51,9 +52,13 @@ static T_ThrottleControl mt_throttle; //!< Module-local instance of the throttle
 
 /** \brief Initialize Throttle Control
  *
- *  \param _ui Pointer to UI structure
+ * This function initializes the Throttle Control Logic.
  *
- *  \return s16_error Error code
+ * \param _can_devs Pointer to the CAN devices structure
+ * \param _chk_throttle Pointer to the global Throttle Checkpoints structure
+ *
+ * \return s16_error Error code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_throttleControl(T_CANDevices *_can_devs ,T_ChkPoints_Throttle *_chk_throttle)
 {
@@ -89,7 +94,10 @@ sint16 init_throttleControl(T_CANDevices *_can_devs ,T_ChkPoints_Throttle *_chk_
 
 /** \brief Update Throttle Control
  *
- *  \return s16_error Error code
+ * This function updates the Throttle Control Logic during the main execution loop.
+ *
+ * \return s16_error Error code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 update_throttleControl(void)
 {
@@ -267,6 +275,11 @@ sint16 update_throttleControl(void)
 
     mt_throttle.u8_prev_engine_status = mt_throttle.u8_engine_status;
     mt_throttle.u8_prev_throttle_cmd = mt_throttle.u8_throttle_cmd;
+
+
+
+    return s16_error;
+
 
     return s16_error;
 }

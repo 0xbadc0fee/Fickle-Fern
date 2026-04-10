@@ -38,23 +38,21 @@
 #include "ramp_calc.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
+#define FRONT_SWEEPS_DISABLED              (0.0F)     //!< Command value for disabled state
+#define FRONT_SWEEPS_PWM_SAFE_STATE        (0.0F)     //!< Default PWM safety output (0%)
 
-#define FRONT_SWEEPS_DISABLED              (0.0F)     /**< Command value for disabled state */
-#define FRONT_SWEEPS_PWM_SAFE_STATE        (0.0F)     /**< Default PWM safety output (0%) */
+#define FRONT_SWEEPS_MIN                   (0.0F)     //!< Minimum operational speed command
+#define FRONT_SWEEPS_MAX                   (10000.0F) //!< Maximum operational speed command
 
-#define FRONT_SWEEPS_MIN                   (0.0F)     /**< Minimum operational speed command */
-#define FRONT_SWEEPS_MAX                   (10000.0F) /**< Maximum operational speed command */
+#define FRONT_SWEEPS_PWM_THRESHOLD_CURRENT (4000.0F)  //!< Starting current threshold [mA]
+#define FRONT_SWEEPS_PWM_END_CURRENT       (18000.0F) //!< Maximum allowable current [mA]
 
-#define FRONT_SWEEPS_PWM_THRESHOLD_CURRENT (4000.0F)  /**< Starting current threshold [mA] */
-#define FRONT_SWEEPS_PWM_END_CURRENT       (18000.0F) /**< Maximum allowable current [mA] */
-
-#define FRONT_SWEEPS_RAMP_RATE             (1000.0F)  /**< Speed adjustment ramp rate [units/sec] */
-
+#define FRONT_SWEEPS_RAMP_RATE             (1000.0F)  //!< Speed adjustment ramp rate [units/sec]
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 
 /**
- * @struct T_ChkPoints_FSweeps
+ * \struct T_ChkPoints_FSweeps
  * \brief Checkpoints Structure - Front Sweeps Control
  *
  * Encapsulates the state-tracking checkpoints required for the Front Sweeps
@@ -68,7 +66,7 @@ typedef struct
 }T_ChkPoints_FSweeps;
 
 /**
- * @struct T_FrontSweepsControl
+ *\struct T_FrontSweepsControl
  * \brief Configuration Structure - Front Sweeps Control
  *
  * Encapsulates the non-volatile memory (NVM) configuration variables for

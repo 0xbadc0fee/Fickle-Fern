@@ -27,7 +27,6 @@
  * @{
  */
 //-----------------------------------------------------------------------------
-
 #ifndef APPL_CORE_SRC_AGVCHASSIS_THROTTLE_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_THROTTLE_CONTROL_H_
 

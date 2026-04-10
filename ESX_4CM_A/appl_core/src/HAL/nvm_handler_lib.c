@@ -238,6 +238,4 @@ sint16 apply_osyNVMDataset(uint8 u8_datapoolID, uint8 u8_list, uint8 u8_dataset)
 
 }
 
-
-
 //EOF

@@ -1,24 +1,15 @@
-//-----------------------------------------------------------------------------
-/**
- * \file       can_engine.h
- * \brief      System - J1939 Engine Communication Interface
- *
- * \addtogroup System
- * @{
- * \defgroup CanEngine CAN Engine
- * \brief This module manages J1939 CAN communications with the vehicle engine,
- * handling the reception of engine speed, temperatures, and fluid levels.
- * @{
- *
- * \implementation
- * project     FloryTemplate_4CM
- * copyright   STW Technic (c) 2026
- * license     use only under terms of contract / confidential
- *
- * created     Feb 5, 2026 kyle.boch
- * \endimplementation
+/*! \file       can_engine.h
+    \brief      <description>
+
+
+   	\implementation
+   	project     FloryTemplate_4CM
+   	copyright   STW Technic (c) 2026
+   	license     use only under terms of contract / confidential
+
+   	created     Feb 5, 2026 kyle.boch
+   	\endimplementation
  */
-//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_SYSTEM_CAN_DEVICES_CAN_ENGINE_H_
 #define APPL_CORE_SRC_SYSTEM_CAN_DEVICES_CAN_ENGINE_H_
 

@@ -25,6 +25,7 @@
  * @{
  */
 //-----------------------------------------------------------------------------
+
 #ifndef APPL_CORE_SRC_AGVHELPER_RAMP_CALC_H_
 #define APPL_CORE_SRC_AGVHELPER_RAMP_CALC_H_
 
@@ -37,18 +38,18 @@
 #include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x)))  //!<Restricts a 32-bit floating point value to a specified range [lo, hi].
+#define CLAMP_F32(x, lo, hi)(((x) < (lo)) ? (lo) : (((x) > (hi)) ? (hi): (x))) //!<Clamp F32 Macro
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /**
  * \struct T_RampState
- * \brief  Structure containing all relevant RAMP output information.
- */
+ * \brief Structure containing all relevant RAMP output information*/
 typedef struct
 {
         float32 f32_output;  //!<Current Ramped Output
-        uint32 u32_last_time_ms;//!< Timestamp of the last calculation cycle in milliseconds
+        uint32 u32_last_time_ms;
+
         float32 f32_ramp_rate; //!<Ramp Rate[unit/s]
         float32 f32_min_limit; //!<MIN Output Limit
         float32 f32_max_limit; //!<MAX Output Limit

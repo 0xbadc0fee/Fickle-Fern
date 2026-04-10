@@ -41,13 +41,11 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
-#include "dashboard_data_pool.h"
-
 // -- Defines ------------------------------------------------------------------------------------------------------
 #define PROGRAM_START_DEB_MS (3000u) //!< Startup debounce delay in milliseconds (3 seconds)
 // -- Types --------------------------------------------------------------------------------------------------------
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
-sint16 calc_sfSpeed(void);
+sint16 calc_sfSpeed(void); //!< Calculates the SF speed
 // -- Module Global Variables --------------------------------------------------------------------------------------
 static T_SuctionFanControl mt_suction_fan; //!<  Module-local instance of the suction fan control state structure.
 
@@ -57,7 +55,7 @@ static T_SuctionFanControl mt_suction_fan; //!<  Module-local instance of the su
  *
  *  This function initializes the Suction Fan Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
+ *  \param _can_devs Pointer to the project's UI Structure
  *  \param _nvmSuctionFan Pointer to Suction Fan NVM
  * \param _chkSuctionFan Pointer to Suction Fan checkpoints
  *

@@ -42,13 +42,11 @@
 
 #define TRACTION_VALVE_OFF         (0u) //!< Indicates the traction valve is deactivated (off)
 #define TRACTION_VALVE_ON          (1u) //!< Indicates the traction valve is activated (on)
-
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-
 /**
- * \struct Config_PowerAssistControl
+ * \struct PowerAssistControl
  * \brief Configuration Structure - Power Assist Control
  *
  * This structure represents all NVM configuration variables
@@ -61,15 +59,15 @@ typedef struct
 }T_Config_PowerAssistControl;
 
 /**
- * \struct PowerAssistControl
- * \brief Control Structure - Power Assist Control
+ * \struct T_PowerAssistControl
+ * \brief Configuration Structure - Power Assist Control
  *
- * This structure represents all variables and pointers that
- * are utilized and tracked for power assist control that need to
- * persist through cyclic calls (static).
+ **  This structure represents all variables and pointers that
+ *  are utilized and tracked for power assist control that need to
+ *  persist through cyclic calls (static).
  *
- * This structure does not include any variables that are considered
- * temporary.
+ * This structure represents all NVM configuration variables
+ * that are relevant to elevator control
  */
 typedef struct
 {
@@ -98,10 +96,8 @@ typedef struct
 } T_PowerAssistControl;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_powerAssistControl(T_CANDevices *_can_devs, T_Config_PowerAssistControl *_nvmPAControl);
 sint16 update_powerAssistControl(void);
 
 #endif /* APPL_CORE_SRC_AGVCHASSIS_POWER_ASSIST_CONTROL_H_ */
-

@@ -49,7 +49,7 @@ const T_x_out_pid_parameters t_PID_PARAMETERS =
             .s16_SampleTime = DEFAULT_PID_SAMPLETIME,
             .s16_OutputLimitMin = DEFAULT_PID_DUTYCYCLE_MIN,
             .s16_OutputLimitMax = DEFAULT_PID_DUTYCYCLE_MAX
-        };                                          //!<Default PID Parameters for Current Controlled Outputs
+        }; //!<Default PID Parameters for Current Controlled Outputs
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 

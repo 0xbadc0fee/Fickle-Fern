@@ -46,21 +46,15 @@
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_FrontSweepsControl mt_front_sweeps; /**<Global persistent state for Front Sweeps Control.*/
+static T_FrontSweepsControl mt_front_sweeps;  //!<Global persistent state for Front Sweeps Control.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
-/**
- * \brief Initialize Front Sweeps Control
+/** \brief Initialize Front Sweeps Control
  *
- * This function initializes the Front Sweeps Control logic, mapping the
- * operator interface and establishing the persistent checkpoint state
- * for the Drum V-Sweep system.
+ *  \param _can_dev Pointer to UI structure
+ *  \param _chkFrontSweeps Pointer to checkpoints
  *
- * \param[in,out] _ui               Pointer to the project's UI Structure
- * \param[in,out] _chkFrontSweeps    Pointer to the Front Sweeps Checkpoints Structure
- *
- * \return sint16 Error Code
- * \retval C_NO_ERR Function Executed Properly
+ *  \return s16_error Error code
  */
 sint16 init_frontSweepsControl(T_CANDevices *_can_dev, T_ChkPoints_FSweeps *_chkFrontSweeps)
 {
@@ -87,15 +81,9 @@ sint16 init_frontSweepsControl(T_CANDevices *_can_dev, T_ChkPoints_FSweeps *_chk
     return s16_error;
 }
 
-/**
- * \brief Update Front Sweeps Control
+/** \brief Update Front Sweeps Control
  *
- * This function executes the cyclical logic for the Front Sweeps module.
- * It processes operator commands to regulate PWM outputs for the
- * Drum V-Sweeps, ensuring consistent product delivery into the pick-up belt.
- *
- * \return sint16 Error Code
- * \retval C_NO_ERR Function Executed Properly
+ *  \return s16_error Error code
  */
 sint16 update_frontSweepsControl(void)
 {
