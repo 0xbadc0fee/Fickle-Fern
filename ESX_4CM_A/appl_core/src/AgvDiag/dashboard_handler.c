@@ -1,14 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       checkpoint_handler.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
-*/
-//-----------------------------------------------------------------------------
+/**
+ * \file       dashboard_handler.c
+ * \brief      AgvChassis - Dashboard Handler
+ *
+ * \addtogroup AgvDiag
+ * @{
+ * \addtogroup DashboardHandler Dashboard Handler
+ *
+ * This module is responsible for managing system "checkpoints"—critical state
+ * variables and diagnostic data that need to be monitored or persisted.
+ * It provides a centralized interface for updating, tracking, and validating
+ * the operational health of various machine modules.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
+ */
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW
@@ -56,6 +73,16 @@ T_ChkPoints_CoolingFan gt_coolingFanCheckpoints; //!<Structure that holds the Co
 T_ChkPoints_Mis gt_miscCheckpoints;              //!<Structure that holds theMiscellaneous Checkpoints
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
+/**
+ * \brief Initializes control variables from the dashboard data pool.
+ *
+ * This function locks the dashboard data pool, maps the stored dashboard values
+ * into their corresponding local control variables using the definition file,
+ * and then unlocks the data pool.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 init_dashHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -72,6 +99,16 @@ sint16 init_dashHandler(void)
     return s16_error;
 }
 
+/**
+ * \brief Updates the dashboard data pool with the latest control values.
+ *
+ * This function locks the dashboard data pool, pushes the current live values
+ * of the control variables back into the data pool using the definition file,
+ * and then unlocks the data pool for external access.
+ *
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
+ */
 sint16 update_dashHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -87,8 +124,5 @@ sint16 update_dashHandler(void)
 
     return s16_error;
 }
-
-
-
 
 //EOF

@@ -14,17 +14,14 @@
 //STW
 #include "stwtypes.h"
 #include "stwerrors.h"
-#include "alarm_handler_lib.h"
 #include "output_handler_lib.h"
 #include "input_handler_lib.h"
 #include "osy_com_j1939_dm1.h"
 #include "osy_com_j1939_dm2.h"
 #include "x_can.h"
-
 #include "nvm_handler_lib.h"
-
 //PROJECT
-
+#include "alarm_handler_lib.h"
 
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
@@ -33,20 +30,19 @@
 void add_J1939dtc(T_FloryFault *_dtc);
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_FaultNVM mat_nvmDtcs[445];
+T_FaultNVM mat_nvmDtcs[445];//!< NVM persistent storage array for Diagnostic Trouble Codes
 
+static uint16 u16_num_input_faults = 0;           //!< Total count of active hardware input faults
+static uint16 u16_num_output_faults = 0;          //!< Total count of active hardware output faults
+static uint16 u16_num_dtcs = 0;                   //!< Total number of Diagnostic Trouble Codes currently active
 
-static uint16 u16_num_input_faults = 0;
-static uint16 u16_num_output_faults = 0;
-static uint16 u16_num_dtcs = 0;
+static uint8 u8_num_logic_faults = 0;             //!< Current number of registered logic faults
+static T_FloryFault mat_logic_faults[MAX_LOGIC_FAULTS]; //!< Global array containing all logic fault definitions and states
 
-static uint8 u8_num_logic_faults = 0;
-static T_FloryFault mat_logic_faults[MAX_LOGIC_FAULTS];
+static uint8 u8_num_outputs = 0;                  //!< Number of hardware outputs currently initialized
+static uint8 u8_num_inputs = 0;                   //!< Number of hardware inputs currently initialized
 
-static uint8 u8_num_outputs = 0;
-static uint8 u8_num_inputs = 0;
-
-static T_osy_com_j1939_dm_lamp_status mt_dm1_lamps;
+static T_osy_com_j1939_dm_lamp_status mt_dm1_lamps;  //!< Local instance of the J1939 DM1 lamp status structure.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -202,7 +198,6 @@ sint16 update_alarmHandler(void)
             }
         }
 
-
         if(!u8_alarmFound)
         {
             //set active flags for logic alarms
@@ -238,10 +233,7 @@ sint16 update_alarmHandler(void)
         u8_alarmFound = FALSE;
     }
 
-
-
     osy_com_j1939_dm1_unlock_tx(X_CAN_BUS_01, 0);
-
 
     return s16_error;
 }
@@ -442,7 +434,5 @@ sint16 clear_logicFaults(void)
 
     return s16_error;
 }
-
-
 
 //EOF

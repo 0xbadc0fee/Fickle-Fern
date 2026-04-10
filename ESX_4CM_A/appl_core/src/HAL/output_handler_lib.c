@@ -1,13 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       output_handler_lib.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 4, 2026 STW Technic
-*/
+/**
+ * \file       output_handler_lib.c
+ * \brief      HAL - Output Handler Library
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup OutputHandler Output Handler
+ *
+ * The Output Handler Library provides a standardized interface for managing
+ * and commanding hardware outputs. It handles state translation, safety
+ * limit enforcement, and diagnostic monitoring for physical actuators
+ * and signals across the system.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 4, 2026 STW Technic
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "output_handler_lib.h"
@@ -31,7 +49,7 @@ const T_x_out_pid_parameters t_PID_PARAMETERS =
             .s16_SampleTime = DEFAULT_PID_SAMPLETIME,
             .s16_OutputLimitMin = DEFAULT_PID_DUTYCYCLE_MIN,
             .s16_OutputLimitMax = DEFAULT_PID_DUTYCYCLE_MAX
-        };                                          //!<Default PID Parameters for Current Controlled Outputs
+        }; //!<Default PID Parameters for Current Controlled Outputs
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 

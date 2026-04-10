@@ -1,15 +1,31 @@
-/*! \file       stick_box_control.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     Flory_8772-4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 24, 2026 kyle.boch
-   	\endimplementation
+//-----------------------------------------------------------------------------
+/**
+ * \file       stick_box_control.h
+ * \brief      AgvWork - Stick Box Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup StickBoxControl Stick Box Control
+ *
+ * The Stick Box Control Module manages the activation of Stick Box Relays
+ * located on an attached tow-behind cart. It ensures proper signal
+ * synchronization between the tractor and the cart hardware.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVWORK_STICK_BOX_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_STICK_BOX_CONTROL_H_
 
@@ -19,26 +35,28 @@
 #include "toggle_button.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DOOR_OPEN                 (1u)
-#define DOOR_CLOSED               (0u)
+#define DOOR_OPEN                       (1u)        //!< Indicator for door in OPEN state
+#define DOOR_CLOSED                     (0u)        //!< Indicator for door in CLOSED state
 
-#define IGN_ON                    (1u)
-#define IGN_OFF                   (0u)
+#define IGN_ON                          (1u)        //!< Ignition is in the ON state
+#define IGN_OFF                         (0u)        //!< Ignition is in the OFF state
 
-#define STICK_BOX_MODE_DISABLED   (0u)
-#define STICK_BOX_MODE_ENABLED    (1u)
+#define STICK_BOX_MODE_DISABLED         (0u)        //!< Stick Box functionality is disabled
+#define STICK_BOX_MODE_ENABLED          (1u)        //!< Stick Box functionality is enabled
 
-#define STICK_BOX_CMD_ON          (1u)
-#define STICK_BOX_CMD_OFF         (0u)
+#define STICK_BOX_CMD_ON                (1u)        //!< Logic command to activate stick box relays
+#define STICK_BOX_CMD_OFF               (0u)        //!< Logic command to deactivate stick box relays
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
-/** \brief Configuration Structure - Stick Box Control
+/**
+ * \struct Config_StickBoxControl
+ * \brief Configuration Structure - Stick Box Control
  *
  * This structure represents all NVM configuration variables
- * that are relevant to Stick Box control
+ * that are relevant to Stick Box control.
  */
 typedef struct
 {
@@ -46,7 +64,9 @@ typedef struct
 
 }T_Config_StickBoxControl;
 
-/** \brief Control Structure - Stick Box Control
+/**
+ * \struct StickBControl
+ * \brief Control Structure - Stick Box Control
  *
  * This structure represents all variables and pointers that
  * are utilized and tracked for Stick Box Control that need to

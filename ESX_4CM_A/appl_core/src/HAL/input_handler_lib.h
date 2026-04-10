@@ -1,13 +1,32 @@
 //-----------------------------------------------------------------------------
-/*! \file       input_handler_lib.h
-    \brief      <description>
-
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2025
-   	license     use only under terms of contract / confidential
-
-   	created     Dec 8, 2025 kyle.boch
-*/
+/**
+ * \file       input_handler_lib.h
+ * \brief      HAL - Input Handler Library Implementation
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup InputHandlerLib Input Handler Library
+ *
+ * This module provides the implementation for the hardware abstraction layer
+ * input handler. It manages the acquisition, filtering, debouncing, and
+ * processing of physical system inputs (analog, digital, frequency, etc.)
+ * into scaled, usable software variables for the application layer.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2025
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Dec 8, 2025 STW Technic
+ *
+ * @{
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_
 #define APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_
 
@@ -27,7 +46,9 @@
 #define C_INPUT_INIT_BOTH_FAIL (-22)    //!< Hardware and Diagnostic Failure Init
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-/*! \brief List of all Circut Inputs **/
+/*!
+ * \enum E_InputCircuit
+ * \brief List of all Circut Inputs **/
 typedef enum {
     INPUT_CIRCUIT_NONE = 0,
     INPUT_CIRCUIT_PULLUP,
@@ -45,7 +66,9 @@ typedef enum {
     IT_FREQSWITCH,   //!< Frequency switch input
 } E_InputTypes;
 
-/*! \brief List of all Possible Input Faults **/
+/*!
+ * \enum E_InputFaults
+ * \brief List of all Possible Input Faults **/
 typedef enum {
 
     e_INFAULT_SHORT_UB = 0,   //!<Input Short to UB Fault
@@ -58,8 +81,9 @@ typedef enum {
     e_NUM_INFAULTS            //!<Total Number of possible output faults
 } E_InputFaults;
 
-
-/*! \brief Struct for a Vehicle Input Object **/
+/*!
+ * \struct T_VehicleInput
+ * \brief Struct for a Vehicle Input Object **/
 typedef struct {
     //-----------------------------INIT PARAMS--------------------------------//
     char *Name_Description;         //!< Named Description of Hardware Output
@@ -81,7 +105,7 @@ typedef struct {
 } T_VehicleInput;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-extern T_VehicleInput at_vehicleInputs[X_IN_COUNT];
+extern T_VehicleInput at_vehicleInputs[X_IN_COUNT]; //!< Global array storing the state of all vehicle inputs
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_inputHandler(void);

@@ -1,16 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       suction_fan_control.h
-    \brief      The Suction Fan Control Module shall regulate the PWM-controlled
-    fan output using operator speed requests and current suction fan RPM.
-
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 24, 2026 Tiffany Gohnert
-*/
+/**
+ * \file       suction_fan_control.h
+ * \brief      AgvWork - Suction Fan Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup SuctionFanControl Suction Fan Control
+ *
+ * The Suction Fan Control Module shall regulate the PWM-controlled fan
+ * output using operator speed requests and current suction fan RPM to ensure
+ * consistent airflow and debris removal.
+ *
+ * @par Project
+ * Flory_8772-4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 24, 2026 Tiffany Gohnert
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
-
 #ifndef APPL_CORE_SRC_AGVWORK_SUCTION_FAN_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_SUCTION_FAN_CONTROL_H_
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -21,35 +36,31 @@
 #include "ramp_calc.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define DOOR_OPEN (1u)
-#define DOOR_CLOSED (0u)
+#define DOOR_OPEN                       (1u)        //!< Indicator for door in OPEN state
+#define DOOR_CLOSED                     (0u)        //!< Indicator for door in CLOSED state
+#define ENG_ON                          (1u)        //!< Indicator for Engine ON state
+#define ENG_OFF                         (0u)        //!< Indicator for Engine OFF state
+#define SUCTION_FAN_ENABLED             (1u)        //!< Suction fan logic enabled
+#define SUCTION_FAN_DISABLED            (0u)        //!< Suction fan logic disabled
 
-#define ENG_ON (1u)
-#define ENG_OFF (0u)
+#define SUCTION_FAN_SAFE_OUTPUT         (0.0F)      //!< Default safe PWM output
+#define SUCTION_FAN_SAFE_SPEED_RPM      (0.0F)      //!< Default safe speed in RPM
+#define SUCTION_FAN_CMD_MIN             (0.0F)      //!< Minimum operator command value
+#define SUCTION_FAN_CMD_MAX             (1000.0F)   //!< Maximum operator command value
+#define SUCTION_FAN_PWM_MIN             (0.0F)      //!< Minimum allowable PWM duty cycle
+#define SUCTION_FAN_PWM_MAX             (10000.0F)  //!< Maximum allowable PWM duty cycle
 
-#define SUCTION_FAN_ENABLED              (1u)
-#define SUCTION_FAN_DISABLED             (0u)
-
-#define SUCTION_FAN_SAFE_OUTPUT          (0.0F)
-#define SUCTION_FAN_SAFE_SPEED_RPM       (0.0F)
-
-#define SUCTION_FAN_FILTER_BUF_LEN       (10u)
-
-#define SUCTION_FAN_CMD_MIN              (0.0F)
-#define SUCTION_FAN_CMD_MAX              (1000.0F)
-
-#define SUCTION_FAN_PWM_MIN              (0.0F)
-#define SUCTION_FAN_PWM_MAX              (10000.0F)
-
-#define SUCTION_FAN_RAMP_RATE            (50.0F)
-
-#define SF_PPR                           (46.0F)
+#define SUCTION_FAN_RAMP_RATE           (50.0F)     //!< Rate of change for fan speed ramping
+#define SUCTION_FAN_FILTER_BUF_LEN      (10u)       //!< Buffer length for fan speed filtering
+#define SF_PPR                          (46.0F)     //!< Pulses Per Revolution for speed sensor scaling
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
-/** \brief Checkpoints Structure - Suction Fan Control
+/**
+ * \struct ChkPoints_SFan
+ * \brief Checkpoints Structure - Suction Fan Control
  *
  * This structure represents all checkpoints that are relevant
- * to suction fan control
+ * to the operational monitoring of the suction fan system.
  */
 typedef struct
 {
@@ -57,10 +68,12 @@ typedef struct
     sint16  u16_pwmStatus;  //!<Checkpoint #2
 }T_ChkPoints_SFan;
 
-/** \brief Configuration Structure - Suction Fan Control
+/**
+ * \struct Config_SFan
+ * \brief Configuration Structure - Suction Fan Control
  *
  * This structure represents all NVM configuration variables
- * that are relevant to header control
+ * that are relevant to suction fan control and mechanical scaling.
  */
 typedef struct
 {
@@ -69,6 +82,14 @@ typedef struct
     float32 f32_drive_ratio;//!<Configuration parameter for Suction Fan Drive Ratio
 } T_Config_SFan;
 
+/**
+ * \struct SuctionFanControl
+ * \brief Control Structure - Suction Fan Control
+ *
+ * This structure represents all variables and pointers that
+ * are utilized and tracked for Suction Fan Control that need to
+ * persist through cyclic calls (static).
+ */
 typedef struct
 {
         //RX CAN Variables
@@ -106,7 +127,6 @@ typedef struct
 } T_SuctionFanControl;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_suctionFanControl(T_CANDevices *_can_devs, T_Config_SFan *_nvmSuctionFan, T_ChkPoints_SFan *_chkSuctionFan);

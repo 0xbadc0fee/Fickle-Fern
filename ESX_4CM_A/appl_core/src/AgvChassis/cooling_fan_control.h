@@ -1,13 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       cooling_fan_control.h
-    \brief      The Cooling Fan Control Module controls two output valves (Speed Control Valve
-    and Fan Direction Valve) to control the fan speed and direction.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       cooling_fan_control.h
+ * \brief      AgvChassis - Cooling Fan Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup CoolingFanControl Cooling Fan Control
+ *
+ * The Cooling Fan Control Module controls two output valves (Speed Control Valve
+ * and Fan Direction Valve) to manage fan speed and direction based on system
+ * temperature requirements and operator commands.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 Tiffany.Gohnert
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVWORK_COOLING_FAN_CONTROL_H_
@@ -26,55 +42,59 @@
 #include "moving_avg_filter.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define CF_DIR_FORWARD            (0.0F)
-#define CF_DIR_REVERSE            (1.0F)
+#define CF_DIR_FORWARD            (0.0F)      //!< Fan direction: Forward
+#define CF_DIR_REVERSE            (1.0F)      //!< Fan direction: Reverse
 
-#define CF_PWM_LOW_LIMIT          (4000.0F)
-#define CF_PWM_HIGH_LIMIT         (10000.0F)
-#define CF_SAFE_PWM               (8700.0F)
-#define CF_MIN_COOL_DEMAND        (0.0F)
-#define CF_MAX_COOL_DEMAND        (100.0F)
+#define CF_PWM_LOW_LIMIT          (4000.0F)   //!< Minimum PWM duty cycle limit
+#define CF_PWM_HIGH_LIMIT         (10000.0F)  //!< Maximum PWM duty cycle limit
+#define CF_SAFE_PWM               (8700.0F)   //!< PWM speed for safe/fallback state
+#define CF_MIN_COOL_DEMAND        (0.0F)      //!< Minimum cooling demand percentage
+#define CF_MAX_COOL_DEMAND        (100.0F)    //!< Maximum cooling demand percentage
 
-#define CF_AUTO_CLEANOUT_DELAY_MS (600000u)
-#define CF_FAULT_TEMP             (200.0F)
+#define CF_AUTO_CLEANOUT_DELAY_MS (600000u)   //!< Delay between automatic cleanout cycles in milliseconds
+#define CF_FAULT_TEMP             (200.0F)    //!< General fault temperature threshold
 
-#define CF_COOLANT_MIN_C          (92.0F)
-#define CF_COOLANT_MAX_C          (98.0F)
-#define CF_COOLANT_OVERTEMP_C     (190.0F)
+#define CF_COOLANT_MIN_C          (92.0F)     //!< Coolant temperature for minimum fan speed
+#define CF_COOLANT_MAX_C          (98.0F)     //!< Coolant temperature for maximum fan speed
+#define CF_COOLANT_OVERTEMP_C     (190.0F)    //!< Coolant over-temperature critical threshold
 
-#define CF_INTAKE_MIN_C           (38.0F)
-#define CF_INTAKE_MAX_C           (65.0F)
-#define CF_INTAKE_OVERTEMP_C      (123.0F)
+#define CF_INTAKE_MIN_C           (38.0F)     //!< Intake air temperature for minimum fan speed
+#define CF_INTAKE_MAX_C           (65.0F)     //!< Intake air temperature for maximum fan speed
+#define CF_INTAKE_OVERTEMP_C      (123.0F)    //!< Intake air over-temperature critical threshold
 
-#define CF_HYDOIL_MIN_C           (45.0F)
-#define CF_HYDOIL_MAX_C           (85.0F)
-#define CF_HYDOIL_OVERTEMP_C      (96.0F)
+#define CF_HYDOIL_MIN_C           (45.0F)     //!< Hydraulic oil temperature for minimum fan speed
+#define CF_HYDOIL_MAX_C           (85.0F)     //!< Hydraulic oil temperature for maximum fan speed
+#define CF_HYDOIL_OVERTEMP_C      (96.0F)     //!< Hydraulic oil over-temperature critical threshold
 
-#define CF_HYD_BUF_LEN            (8u)
-#define CF_HYD_FILTER_SAMPLE_NO   (5u)
-#define CF_HYD_FILTER_SAMPLE_MS   (100u)
+#define CF_HYD_BUF_LEN            (8u)        //!< Buffer length for hydraulic temperature averaging
+#define CF_HYD_FILTER_SAMPLE_NO   (5u)        //!< Number of samples for hydraulic filter logic
+#define CF_HYD_FILTER_SAMPLE_MS   (100u)      //!< Sampling interval for hydraulic filter in milliseconds
 
-#define CF_FWD_RUN_RAMP           (400.0F)
-#define CF_RAMP_DOWN_TIME         (2500.0F)
-#define CF_RAMP_UP_TIME           (2500.0F)
-#define CF_STOPPED_TIME           (1500.0F)
-#define CF_REV_RUN_TIME           (10000.0F)
+#define CF_FWD_RUN_RAMP           (400.0F)    //!< Ramp rate for forward fan operation
+#define CF_RAMP_DOWN_TIME         (2500.0F)   //!< Time duration to ramp down fan speed in milliseconds
+#define CF_RAMP_UP_TIME           (2500.0F)   //!< Time duration to ramp up fan speed in milliseconds
+#define CF_STOPPED_TIME           (1500.0F)   //!< Dwell time when fan is fully stopped during transitions
+#define CF_REV_RUN_TIME           (10000.0F)  //!< Duration of reverse rotation during cleanout cycle
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Checkpoints Structure - Cooling Fan Control
+/**
+ * \enum E_CoolingFanRevState
+ * \brief Checkpoints Structure - Cooling Fan Control
  *
  * This structure represents Reverse Fan States
  */
 typedef enum
 {
-    CF_STATE_RUN_FWD = 0u,        //!<Fan moving forward at X speed
-    CF_STATE_RAMP_DOWN,   //!<Fan slows down to 0 over 2.5s
-    CF_STATE_STOPPED,             //!<Fan stays stopped for 1.5s (both directions
-    CF_STATE_RUN_REV,             //!< Fan stays at target speed Y for 10 seconds
-    CF_STATE_RAMP_UP          //!<Fan ramps to target speed X over 2.5s in forward
+    CF_STATE_RUN_FWD = 0u,       //!<Fan moving forward at X speed
+    CF_STATE_RAMP_DOWN,          //!<Fan slows down to 0 over 2.5s
+    CF_STATE_STOPPED,            //!<Fan stays stopped for 1.5s (both directions
+    CF_STATE_RUN_REV,            //!< Fan stays at target speed Y for 10 seconds
+    CF_STATE_RAMP_UP             //!<Fan ramps to target speed X over 2.5s in forward
 } E_CoolingFanRevState;
 
-/** \brief Checkpoints Structure - Cooling Fan Control
+/**
+ * \struct T_ChkPoints_CoolingFan
+ * \brief Checkpoints Structure - Cooling Fan Control
  *
  * This structure represents all checkpoints that are relevant
  * to Cooling Fan Control
@@ -86,18 +106,20 @@ typedef struct
 
 }T_ChkPoints_CoolingFan;
 
-/** \brief NVM Structure - Cooling Fan Control
+/**
+ * \struct T_Config_CF
+ * \brief NVM Structure - Cooling Fan Control
  *
  */
 typedef struct
 {
-    uint8  u8_purge_active_time;
-    uint16 u16_auto_cycle_time;
-
+        uint8  u8_purge_active_time; //!< Duration of the active purge/cleanout cycle
+        uint16 u16_auto_cycle_time;  //!< Configured time interval between automatic cleanout cycles
 }T_Config_CF;
 
-
-/** \brief Control Structure - Cooling Fan Control
+/**
+ * \struct T_CoolingFanControl
+ * \brief Control Structure - Cooling Fan Control
  *
  * This structure represents all variables and pointers that
  * are utilized and tracked for cooling fan control that need to
@@ -149,7 +171,6 @@ typedef struct
         uint32 u32_fwd_run_starttime;          //!<Start time of Run Forward State
         uint32 u32_rev_run_starttime;          //!<Start time of Run Reverse State
         uint32 u32_stop_starttime;             //!<Start time of Stopped State
-
 
         //Control Checkpoints
         T_ChkPoints_CoolingFan *pt_cp_cooling;  //!<Cooling Fan Control Checkpoints Structure

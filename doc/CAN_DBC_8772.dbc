@@ -131,9 +131,9 @@ BO_ 2566848771 DISP_FDBK2: 8 ESX_4CM_A
 
 BO_ 2566846206 IC1: 8 Engine
  SG_ EngCoolantFilterDiffPress : 56|8@1+ (0.5,0) [0|125] "kPa"  ESX_4CM_A
- SG_ EngExhaustGasTemp : 40|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
+ SG_ EngExhaustGasTemp : 40|16@1+ (0.03125,-273) [4294967023|1734.96875] "deg C"  ESX_4CM_A
  SG_ EngAirFilter1DiffPress : 32|8@1+ (0.05,0) [0|12.5] "kPa"  ESX_4CM_A
- SG_ EngIntakeManifold1Temp : 16|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
+ SG_ EngIntakeManifold1Temp : 16|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
  SG_ EngIntakeManifold1Press : 8|8@1+ (2,0) [0|500] "kPa"  ESX_4CM_A
  SG_ EngDslPrtclateFilterIntakePress : 0|8@1+ (0.5,0) [0|125] "kPa"  ESX_4CM_A
  SG_ EngAirIntakePress : 24|8@1+ (2,0) [0|500] "kPa"  ESX_4CM_A
@@ -142,7 +142,7 @@ BO_ 2348810494 TSC1: 8 ESX_4CM_A
  SG_ MessageCounter : 56|4@1+ (1,0) [0|15] "" Vector__XXX
  SG_ ControlPurpose : 35|5@1+ (1,0) [0|31] "" Vector__XXX
  SG_ TransmissionRate : 32|3@1+ (1,0) [0|7] "" Vector__XXX
- SG_ EngRqedTorque_TorqueLimit : 24|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ EngRqedTorque_TorqueLimit : 24|8@1+ (1,-125) [4294967171|125] "%" Vector__XXX
  SG_ EngRqedSpeed_SpeedLimit : 8|16@1+ (0.125,0) [0|8031.875] "rpm"  Engine
  SG_ OverrideCtrlModePriority : 4|2@1+ (1,0) [0|3] "" Vector__XXX
  SG_ EngRqedSpeedCtrlConditions : 2|2@1+ (1,0) [0|3] "" Vector__XXX
@@ -151,7 +151,7 @@ BO_ 2348810494 TSC1: 8 ESX_4CM_A
  SG_ EngineRequestedTorqueHiRes : 40|4@1+ (0.125,0) [0|0.875] "%" Vector__XXX
 
 BO_ 2566844158 ET1: 8 Engine
- SG_ EngFuelTemp1 : 8|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
+ SG_ EngFuelTemp1 : 8|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
  SG_ EngIntercoolerThermostatOpening : 56|8@1+ (0.4,0) [0|100] "%"  ESX_4CM_A
  SG_ EngIntercoolerTemp : 48|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
  SG_ EngTurboOilTemp : 32|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
@@ -161,11 +161,11 @@ BO_ 2566844158 ET1: 8 Engine
 BO_ 2364540158 EEC1: 8 Engine
  SG_ SrcAddrssOfCtrllngDvcFrEngCntrl : 40|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ ActlEngPrcntTrqueHighResolution : 4|4@1+ (0.125,0) [0|0.875] "%" Vector__XXX
- SG_ EngDemandPercentTorque : 56|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ EngDemandPercentTorque : 56|8@1+ (1,-125) [4294967171|125] "%" Vector__XXX
  SG_ EngStarterMode : 48|4@1+ (1,0) [0|15] "" Vector__XXX
  SG_ EngSpeed : 24|16@1+ (0.125,0) [0|8031.875] "rpm"  ESX_4CM_A,Display
- SG_ ActualEngPercentTorque : 16|8@1+ (1,-125) [-125|125] "%" Vector__XXX
- SG_ DriversDemandEngPercentTorque : 8|8@1+ (1,-125) [-125|125] "%" Vector__XXX
+ SG_ ActualEngPercentTorque : 16|8@1+ (1,-125) [4294967171|125] "%" Vector__XXX
+ SG_ DriversDemandEngPercentTorque : 8|8@1+ (1,-125) [4294967171|125] "%" Vector__XXX
  SG_ EngTorqueMode : 0|4@1+ (1,0) [0|15] "" Vector__XXX
 
 BO_ 2365445886 BJM1: 8 Joystick_JS6000

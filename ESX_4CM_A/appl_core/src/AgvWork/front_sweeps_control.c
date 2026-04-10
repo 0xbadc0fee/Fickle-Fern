@@ -1,14 +1,28 @@
 //-----------------------------------------------------------------------------
-/*! \file       front_sweeps_control.c
-    \brief      The Front Sweeps Control Module shall read the operator Drum V-Sweep
-    commands and convert the requested Drum V-Sweep Speed to a PWM output to control
-    how far the product is thrown into the throat of the pick-up belt.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       front_sweeps_control.c
+ * \brief      AgvWork - Front Sweeps Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup FrontSweepsControl Front Sweeps Control
+ * This module manages the Front Sweeps control logic. It processes operator
+ * Drum V-Sweep commands to regulate PWM outputs, controlling the speed
+ * and trajectory of product delivery into the pick-up belt throat.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -32,13 +46,13 @@
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_FrontSweepsControl mt_front_sweeps;
+static T_FrontSweepsControl mt_front_sweeps;  //!<Global persistent state for Front Sweeps Control.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Front Sweeps Control
  *
- *  \param _ui Pointer to UI structure
- *  \param _nvmFrontSweepsControl Pointer to configuration
+ *  \param _can_dev Pointer to UI structure
+ *  \param _chkFrontSweeps Pointer to checkpoints
  *
  *  \return s16_error Error code
  */

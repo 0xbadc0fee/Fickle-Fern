@@ -1,13 +1,32 @@
 //-----------------------------------------------------------------------------
-/*! \file       nvm_handler.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 7, 2026 STW Technic
-*/
+/**
+ * \file       nvm_handler.c
+ * \brief      AgvCore - NVM Handler Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup NvmHandler NVM Handler
+ *
+ * The NVM Handler module manages the application-specific reading, writing,
+ * and storage mapping of non-volatile memory parameters. It interfaces
+ * with the underlying NVM library to ensure machine settings, states,
+ * and fault data are properly formatted and safely preserved across
+ * power cycles.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 7, 2026 STW Technic
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -32,7 +51,7 @@
 #include "SPN_definitions.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define NUM_OSY_NVM_DATAPOOLS (1u)
+#define NUM_OSY_NVM_DATAPOOLS (1u) //!< Total number of independent NVM datapools defined in the system
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
@@ -44,6 +63,17 @@ T_Config_PowerAssistControl gt_paConfig;
 T_Config_SFan gt_suctionFanConfig; //!<Structure that holds the Suction Fan config.
 T_Config_MiscrControl gt_miscConfig; //!<Structure that holds the MISC config.
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
+
+/**
+ * \brief      Initializes the Non-Volatile Memory (NVM) parameters.
+ *
+ * \details    This function handles the startup initialization of machine
+ * configuration variables, loading them from NVM storage into RAM.
+ * If the stored data is invalid or uninitialized, it applies
+ * default fallback parameters.
+ *
+ *  \return s16_error Error Code
+ */
 sint16 init_nvmParameters(void)
 {
 
@@ -115,6 +145,5 @@ sint16 reset_nvmParameters(void)
 
     return s16_error;
 }
-
 
 //EOF

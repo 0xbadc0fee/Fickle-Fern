@@ -26,7 +26,9 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Structure containing PID coefficients (Kp, Ki, Kd, Max/Min output).*/
+/**
+ *\struct T_PID_coeff
+ * \brief Structure containing PID coefficients (Kp, Ki, Kd, Max/Min output).*/
 typedef struct
 {
         float32 s32_max_output;
@@ -36,7 +38,9 @@ typedef struct
         float32 f32_ki;
 } T_PID_coeff;
 
-/** \brief Structure containing all relevant PID information for each PID loop*/
+/**
+ * \struct T_PID_state
+ * \brief Structure containing all relevant PID information for each PID loop*/
 typedef struct
 {
         float32 f32_prev_error;

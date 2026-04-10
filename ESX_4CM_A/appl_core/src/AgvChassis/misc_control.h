@@ -1,14 +1,27 @@
 //-----------------------------------------------------------------------------
-/*! \file       misc_control.h
-    \brief      The Miscellaneous Control Module shall provide supporting logic for
-    auxiliary features within the 8772 Harvester application.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 Tiffany.Gohnert
+/**
+ * \file       misc_control.h
+ * \brief      AgvChassis - Miscellaneous Control Implementation
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup MiscControl
+ * @{
  */
+/**
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * March 6, 2026 Tiffany.Gohnert
+ */
+//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVCHASSIS_MISC_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_MISC_CONTROL_H_
@@ -25,42 +38,43 @@
 #include "moving_avg_filter.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define FM_RAW_MIN                 (500.0F)
-#define FM_RAW_MAX                 (4500.0F)
-#define FM_SERVICE_THRESH          (85.0F)
-#define FM_FAULT_THRESH            (5.0F)
+#define FM_RAW_MIN                 (500.0F)   /**< Minimum raw sensor value for Filter Minder */
+#define FM_RAW_MAX                 (4500.0F)  /**< Maximum raw sensor value for Filter Minder */
+#define FM_SERVICE_THRESH          (85.0F)    /**< Threshold percentage to trigger filter service warning */
+#define FM_FAULT_THRESH            (5.0F)     /**< Threshold to indicate a sensor or system fault */
 
-#define FILTER_MINDER_SAFE_STATE                    (0.0F)
-#define FILTER_MINDER_BUF_LEN                       (8u)
-#define FILTER_MINDER_FILTER_SAFE_OUTPUT            (0.0F)
-#define FILTER_MINDER_FILTER_SAMPLE_NO              (5u)
-#define FILTER_MINDER_FILTER_SAMPLE_MS              (250u)
+#define FILTER_MINDER_SAFE_STATE   (0.0F)     /**< Safe default value for Filter Minder on failure */
+#define FILTER_MINDER_BUF_LEN      (8u)       /**< Buffer length for Filter Minder signal smoothing */
+#define FILTER_MINDER_FILTER_SAFE_OUTPUT (0.0F) /**< Safe output value for the digital filter */
+#define FILTER_MINDER_FILTER_SAMPLE_NO   (5u)   /**< Number of samples required for filter logic */
+#define FILTER_MINDER_FILTER_SAMPLE_MS   (250u) /**< Sampling interval for Filter Minder in milliseconds */
+
 // Fuel
-#define FUEL_RAW_MIN                       (500.0F)
-#define FUEL_RAW_MAX                       (4500.0F)
-#define FUEL_LOW_DELAY_MS                  (1000u)
-#define FUEL_LOW_SETPOINT                  (7.0F)
+#define FUEL_RAW_MIN                       (500.0F)   /**< Minimum raw fuel sensor value */
+#define FUEL_RAW_MAX                       (4500.0F)  /**< Maximum raw fuel sensor value */
+#define FUEL_LOW_DELAY_MS                  (1000u)    /**< Delay in milliseconds before triggering low fuel warning */
+#define FUEL_LOW_SETPOINT                  (7.0F)     /**< Percentage setpoint for low fuel warning */
 
-#define FUEL_FAULT_THRESHOLD               (6.25F)
+#define FUEL_FAULT_THRESHOLD               (6.25F)    /**< Critical low fuel or sensor fault threshold */
 
-
-#define FUEL_SAFE_STATE                    (0.0F)
-#define FUEL_BUF_LEN                       (8u)
-#define FUEL_FILTER_SAFE_OUTPUT            (0.0F)
-#define FUEL_FILTER_SAMPLE_NO              (7u)
-#define FUEL_FILTER_SAMPLE_MS              (100u)
+#define FUEL_SAFE_STATE                    (0.0F)     /**< Safe default state for fuel level on failure */
+#define FUEL_BUF_LEN                       (8u)       /**< Buffer length for fuel signal smoothing */
+#define FUEL_FILTER_SAFE_OUTPUT            (0.0F)     /**< Safe output value for fuel digital filter */
+#define FUEL_FILTER_SAMPLE_NO              (7u)       /**< Number of samples required for fuel filter logic */
+#define FUEL_FILTER_SAMPLE_MS              (100u)     /**< Sampling interval for fuel level in milliseconds */
 
 // Scaling
-#define PERCENT_SCALE                      (100.0F)
-#define PERCENT_SCALE_01PCT                (10000.0F)
+#define PERCENT_SCALE                      (100.0F)   /**< Standard multiplier for calculating percentages */
+#define PERCENT_SCALE_01PCT                (10000.0F) /**< High-resolution multiplier for 0.01% precision */
 
 // SW Version
-#define MISC_SW_MAJOR_REV                  (1u)
-#define MISC_SW_MINOR_REV                  (0u)
+#define MISC_SW_MAJOR_REV                  (1u)       /**< Major software revision number */
+#define MISC_SW_MINOR_REV                  (0u)       /**< Minor software revision number */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-
-/** \brief Checkpoints Structure - Miscellaneous Control
+/**
+ * \struct ChkPoints_Mis
+ * \brief Checkpoints Structure - Miscellaneous Control
  *
  * This structure represents all checkpoints that are relevant
  * to Miscellaneous Control
@@ -79,7 +93,9 @@ typedef struct
         uint8 u8_sw_minor_revision;//!<Checkpoint SW Minor Revision
 }T_ChkPoints_Mis;
 
-/** \brief Configuration Structure - Miscellaneous Control
+/**
+ * \struct Config_MiscrControl
+ * \brief Configuration Structure - Miscellaneous Control
  *
  * This structure represents all NVM configuration variables
  * that are relevant to Miscellaneous Control
@@ -91,7 +107,9 @@ typedef struct
 
 }T_Config_MiscrControl;
 
-/** \brief Control Structure - Miscellaneous Control
+/**
+ * \struct MiscControl
+ * \brief Control Structure - Miscellaneous Control
  *
  * This structure represents all variables and pointers that
  * are utilized and tracked for Miscellaneous Control that need to
@@ -122,8 +140,8 @@ typedef struct
         uint8   *pu8_clear_faults_cmd;//!<RX Clear Machine Faults
 
         //Local Control Variables
-        float32 f32_last_fuel_gauge;//!<Last Fuel Gauge
-        uint8 u8_prev_clear_cmd;
+        float32 f32_last_fuel_gauge; //!<Last Fuel Gauge
+        uint8 u8_prev_clear_cmd; //!<Previous Clear Command Flag
 
         //Local Filter Variables
         T_MoveAvgFilter t_fuel_level_flt;//!<Moving Average Filter Fuel Level

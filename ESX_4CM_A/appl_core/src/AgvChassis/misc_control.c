@@ -1,15 +1,28 @@
 //-----------------------------------------------------------------------------
-/*! \file       misc_control.c
-    \brief      The Miscellaneous Control Module shall provide supporting logic for
-    auxiliary features within the 8772 Harvester application.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 Tiffany.Gohnert
+/**
+ * \file       misc_control.c
+ * \brief      AgvChassis - Miscellaneous Control Implementation
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup MiscControl
+ * @{
  */
 
+/**
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * March 6, 2026 Tiffany.Gohnert
+ */
+//-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include <stdint.h>
@@ -34,7 +47,7 @@ sint16 update_filterMinder(void);
 sint16 update_fuelLevel(void);
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_MiscControl mt_misc;
+static T_MiscControl mt_misc; //!< Internal state instance for miscellaneous control
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 

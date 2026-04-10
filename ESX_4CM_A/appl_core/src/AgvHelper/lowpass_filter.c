@@ -1,12 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       lowpass_filter.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 STW Technic
+/**
+ * \file       lowpass_filter.c
+ * \brief      AgvHelper - Low Pass Filter
+ *
+ * \addtogroup AgvHelper
+ * @{
+ * \addtogroup LowPassFilter Low Pass Filter
+ *
+ * The Low Pass Filter Module produces a smoothed output by combining the
+ * new input value with the previous filtered value using a single
+ * filtering coefficient.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */

@@ -1,12 +1,30 @@
 //-----------------------------------------------------------------------------
-/*! \file       hitch_position_control.c
-    \brief      <description>
-
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 24, 2026 STW Technic
+/**
+ * \file       hitch_position_control.c
+ * \brief      AgvWork - Hitch Position Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup HitchPositionControl Hitch Position Control
+ *
+ * The Hitch Position Control Module manages the machine's "hitch" movement.
+ * It processes operator Hitch "IN" and Hitch "OUT" commands to regulate
+ * position and hydraulic engagement.
+ *
+ * @{
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -24,18 +42,20 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_HitchPosControl mt_hp_control;
+static T_HitchPosControl mt_hp_control;/**< Global persistent state for Hitch Position Control. */
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
-/** \brief Initialize AgvWork - Hitch Position Control
+/**
+ * \brief Initialize AgvWork - Hitch Position Control
  *
- *  This function initializes the AgvWork - Hitch Position Control.
+ * This function initializes the Hitch Position Control logic, linking the
+ * operator interface and the non-volatile configuration parameters.
  *
- *  \param _ui Pointer to the project's UI Structure
- *  \param _nvmHitchPosControl Pointer to the global Elevator Checkpoints Structure
+ * \param[in,out] _can_devs                Pointer to the project's UI Structure
+ * \param[in]     _nvmHitchPosControl Pointer to the NVM Configuration Structure
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return sint16 Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_hitchPosControl(T_CANDevices *_can_devs, T_Config_HeaderControl *_nvmHitchPosControl)
 {
@@ -66,7 +86,6 @@ sint16 init_hitchPosControl(T_CANDevices *_can_devs, T_Config_HeaderControl *_nv
  *
  *  Primary logic for this function is to move hitch in and out based on operator commands
  *  This logic tackles functionality described in FR2.X of the Functional Requirements
- *
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly

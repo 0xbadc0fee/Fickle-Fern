@@ -1,13 +1,30 @@
 //-----------------------------------------------------------------------------
-/*! \file       engine_starter_control.h
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       engine_starter_control.h
+ * \brief      AgvChassis - Engine Starter Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup EngineStarterControl Engine Starter Control
+ *
+ * This module manages the operation of the vehicle's engine starter motor,
+ * cranking sequence, and associated safety interlocks.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
+//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVCHASSIS_ENGINE_STARTER_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_ENGINE_STARTER_CONTROL_H_
@@ -22,9 +39,8 @@
 #include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define NEUTRAL_SAFE_FALSE         (0u)
-#define NEUTRAL_SAFE_TRUE          (1u)
-
+#define NEUTRAL_SAFE_FALSE         (0u)  //!< Neutral safety condition not met (False)
+#define NEUTRAL_SAFE_TRUE          (1u)  //!< Neutral safety condition met (True)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
