@@ -1,13 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       cooling_fan_control.c
-    \brief      The Cooling Fan Control Module controls two output valves (Speed Control Valve
-    and Fan Direction Valve) to control the fan speed and direction.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       cooling_fan_control.c
+ * \brief      AgvChassis - Cooling Fan Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup CoolingFanControl Cooling Fan Control
+ *
+ * The Cooling Fan Control Module controls two output valves (Speed Control Valve
+ * and Fan Direction Valve) to manage fan speed and direction based on system
+ * temperature requirements and operator commands.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 Tiffany.Gohnert
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -35,10 +51,9 @@ void calc_maxDemand(float32 f32_cmd1, float32 f32_cmd2, float32 f32_cmd3, float3
 void set_fanSafeState(void);
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_CoolingFanControl mt_cf;
+static T_CoolingFanControl mt_cf;  //!<Module-local instance of the cooling fan control state structure.
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
-
 
 /** \brief Initialize AgvWork - Cooling Fan Control
  *
@@ -215,7 +230,13 @@ void calc_coolingDemand(void)
     }
 }
 
-
+/**
+ * @brief Sets the fan system to a predefined safe operating state.
+ * * This function deactivates any active cleanout procedures and forces the fan
+ * into a forward-running state at a safety-limited PWM speed. It ensures
+ * predictable behavior during error states or initialization.
+ * * @note Modifies global state via the @ref mt_cf structure.
+ */
 void set_fanSafeState(void)
 {
     mt_cf.u8_cleanout_active = FALSE;
@@ -225,7 +246,19 @@ void set_fanSafeState(void)
     mt_cf.f32_speed_cmd = CF_SAFE_PWM;
 }
 
-
+/**
+ * \brief Calculates the maximum value among three demand inputs and identifies the source.
+ * Compares three cooling commands and returns the highest value via a pointer.
+ * Additionally, it updates the global cooling control structure to track which
+ * sensor (1, 2, or 3) is currently driving the "lead" demand.
+ *
+ * \param[in]  f32_cmd1    Demand value from sensor/source 1.
+ * \param[in]  f32_cmd2    Demand value from sensor/source 2.
+ * \param[in]  f32_cmd3    Demand value from sensor/source 3.
+ * \param[out] _maxval     Pointer to a float32 where the maximum demand value will be stored.
+ *
+ * \note Updates @p mt_cf.pt_cp_cooling->u8_leadsensornumber to indicate the winning source.
+ */
 void calc_maxDemand(float32 f32_cmd1, float32 f32_cmd2, float32 f32_cmd3, float32 *_maxval)
 {
     *_maxval = f32_cmd1;
@@ -248,7 +281,7 @@ void calc_maxDemand(float32 f32_cmd1, float32 f32_cmd2, float32 f32_cmd3, float3
  *
  *  This function is for the cooling fan REVERSE to PWM AgvWork - Cooling Fan Control Logic.
  *
- *  \param f32_forward_speed_target_pwm
+ *  \param[out] f32_forward_speed_target_pwm
  *
  */
 void update_coolingFanReversal()
@@ -261,8 +294,6 @@ void update_coolingFanReversal()
     float32 f32_ramp_rate = CF_FWD_RUN_RAMP;
 
     uint32 u32_now_ms = get_system_time_ms();
-
-
 
     //manual purge command
     u8_manual_purge_cmd = (uint8)(*mt_cf.pu8_manual_purge_req);
@@ -289,8 +320,6 @@ void update_coolingFanReversal()
         mt_cf.e_fanstate = CF_STATE_RAMP_DOWN;
         mt_cf.u8_cleanout_active = TRUE;
     }
-
-    //u32_elapsed_ms = u32_now_ms - mt_cooling_fan.u32_rev_state_start_ms;
 
     switch(mt_cf.e_fanstate)
     {
@@ -403,8 +432,6 @@ void update_coolingFanReversal()
 
             break;
 
-
-
         default:
             // IR-7.2 invalid sequence -> safe forward state
             set_fanSafeState();
@@ -413,6 +440,5 @@ void update_coolingFanReversal()
             break;
     }
 }
-
 
 //EOF

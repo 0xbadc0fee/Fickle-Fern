@@ -1,12 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       stick_box_control.c
-    \brief      <description>
-
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 24, 2026 STW Technic
+/**
+ * \file       stick_box_control.c
+ * \brief      AgvWork - Stick Box Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup StickBoxControl Stick Box Control
+ *
+ * The Stick Box Control Module manages the activation of Stick Box Relays
+ * located on an attached tow-behind cart. It ensures proper signal
+ * synchronization between the tractor and the cart hardware.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -23,20 +40,19 @@
 #include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define PROGRAM_START_DEB_MS      (3000u) /* 3 seconds */
+#define PROGRAM_START_DEB_MS      (3000u) //!< Program start debounce time [ms]
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_StickBControl mt_stick_box;
-
+T_StickBControl mt_stick_box; //!< Module-local instance of the stick box control state structure.
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /** \brief Initialize AgvWork - Stick Box Control
  *
  *  This function initializes the AgvWork - Stick Box Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
- *  \param _chkElevator Pointer to the global Stick Box Control Checkpoints Structure
+ *  \param _can_dev Pointer to the project's UI Structure
+ *  \param _nvmStickBControl Pointer to the global Stick Box Control Checkpoints Structure
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly

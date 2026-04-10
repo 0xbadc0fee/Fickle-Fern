@@ -1,15 +1,32 @@
-/*! \file       output_handler_lib.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 4, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       output_handler_lib.H
+ * \brief      HAL - Output Handler Library
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup OutputHandler Output Handler
+ *
+ * The Output Handler Library provides a standardized interface for managing
+ * and commanding hardware outputs. It handles state translation, safety
+ * limit enforcement, and diagnostic monitoring for physical actuators
+ * and signals across the system.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 4, 2026 STW Technic
+ *
+ * @{
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_
 #define APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_
 
@@ -44,7 +61,10 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/*! \brief List of all Output Types **/
+/**
+ * \enum E_OutputTypes
+ * \brief List of all Output Types.
+ */
 typedef enum {
     OT_NONE = 0,
     OT_DIGITAL,      //!< output is digital type
@@ -52,7 +72,10 @@ typedef enum {
     OT_CC            //!< output is type current controlled
 } E_OutputTypes;
 
-/*! \brief List of all Possible Output Faults **/
+/**
+ * \enum E_OutputFaults
+ * \brief List of all Possible Output Faults.
+ */
 typedef enum {
 
     e_OUTFAULT_SHORT_GND = 0,  //!<Output Short to GND Fault
@@ -62,9 +85,10 @@ typedef enum {
     e_NUM_OUTFAULTS            //!<Total Number of possible output faults
 } E_OutputFaults;
 
-
-
-/*! \brief Struct for a Vehicle Output Object **/
+/**
+ * \struct T_VehicleOutput
+ * \brief Struct for a Vehicle Output Object.
+ */
 typedef struct {
     //-----------------------------INIT PARAMS--------------------------------//
     char *Name_Description;          //!< Named Description of Hardware Output
@@ -81,7 +105,7 @@ typedef struct {
 
 } T_VehicleOutput;
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-extern T_VehicleOutput at_vehicleOutputs[X_OUT_COUNT];
+extern T_VehicleOutput at_vehicleOutputs[X_OUT_COUNT]; //!< Global array storing the state of all vehicle outputs
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_outputHandler(void);

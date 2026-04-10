@@ -1,14 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       rotary_trap_control.c
-    \brief      The Rotary Trap Control Module shall read the operator request
-    commands and convert the Rotary Trap Speed to a proportional PWM output to
-    control the speed of the windrow feed.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       rotary_trap_control.c
+ * \brief      AgvWork - Rotary Trap Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup RotaryTrapControl Rotary Trap Control
+ *
+ * The Rotary Trap Control Module processes operator requests to regulate the
+ * speed of the windrow feed. It converts commanded Rotary Trap speed into
+ * proportional PWM outputs for precise hydraulic control.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 // -- Includes ------------------------------------------------------------------------------------------------------
@@ -33,15 +48,19 @@
 // -- Types --------------------------------------------------------------------------------------------------------
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
 // -- Module Global Variables --------------------------------------------------------------------------------------
-static T_RotaryTrapControl mt_rotary_trap;
+static T_RotaryTrapControl mt_rotary_trap;/**< Global persistent state for Rotary Trap Control. */
 
 // -- Implementation  ----------------------------------------------------------------------------------------------
 
 /** \brief Initialize Rotary Trap Control
  *
- *  \param _ui Pointer to UI structure
+ * This function initializes the Rotary Trap Control Logic.
  *
- *  \return s16_error Error code
+ * \param _can_dev Pointer to the CAN devices structure
+ * \param _chkRotaryTrap Pointer to the global Rotary Trap Checkpoints structure
+ *
+ * \return s16_error Error code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_rotaryTrapControl(T_CANDevices *_can_dev, T_ChkPoints_RTrap *_chkRotaryTrap)
 {
@@ -187,4 +206,3 @@ sint16 update_rotaryTrapControl(void)
     return s16_error;
 }
 //EOF
-

@@ -1,14 +1,30 @@
 //-----------------------------------------------------------------------------
-/*! \file       lowpass_filter.h
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 STW Technic
+/**
+ * \file       lowpass_filter.h
+ * \brief      AgvHelper - Low Pass Filter
+ *
+ * \addtogroup AgvHelper
+ * @{
+ * \addtogroup LowPassFilter Low Pass Filter
+ *
+ * The Low Pass Filter Module produces a smoothed output by combining the
+ * new input value with the previous filtered value using a single
+ * filtering coefficient.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
-//-----------------------------------------------------------------------------
 
 #ifndef APPL_CORE_SRC_AGVHELPER_LOWPASS_FILTER_H_
 #define APPL_CORE_SRC_AGVHELPER_LOWPASS_FILTER_H_
@@ -26,7 +42,9 @@
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Structure containing all relevant Low Pass Filter output information*/
+/**
+ * \struct T_LowPassFilter
+ * \brief Structure containing all relevant Low Pass Filter output information*/
 typedef struct
 {
         float32 f32_output; //!<Previous filtered output

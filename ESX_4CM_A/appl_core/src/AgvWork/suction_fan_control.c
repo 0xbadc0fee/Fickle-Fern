@@ -1,13 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       suction_fan_control.c
-    \brief      The Suction Fan Control Module shall regulate the PWM-controlled fan
-    output using operator speed requests and current suction fan RPM.
-
-    project     Flory_8772-4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 24, 2026 Tiffany Gohnert
+/**
+ * \file       suction_fan_control.c
+ * \brief      AgvWork - Suction Fan Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup SuctionFanControl Suction Fan Control
+ *
+ * The Suction Fan Control Module shall regulate the PWM-controlled fan
+ * output using operator speed requests and current suction fan RPM to ensure
+ * consistent airflow and debris removal.
+ *
+ * @par Project
+ * Flory_8772-4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 24, 2026 Tiffany Gohnert
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 // -- Includes ------------------------------------------------------------------------------------------------------
@@ -26,12 +42,12 @@
 #include "hw_outputs.h"
 
 // -- Defines ------------------------------------------------------------------------------------------------------
-#define PROGRAM_START_DEB_MS (3000u) //3 seconds
+#define PROGRAM_START_DEB_MS (3000u) //!< Startup debounce delay in milliseconds (3 seconds)
 // -- Types --------------------------------------------------------------------------------------------------------
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
-sint16 calc_sfSpeed(void);
+sint16 calc_sfSpeed(void); //!< Calculates the SF speed
 // -- Module Global Variables --------------------------------------------------------------------------------------
-static T_SuctionFanControl mt_suction_fan;
+static T_SuctionFanControl mt_suction_fan; //!<  Module-local instance of the suction fan control state structure.
 
 // -- Implementation ------------------------------------------------------------------------------------------------
 
@@ -39,7 +55,7 @@ static T_SuctionFanControl mt_suction_fan;
  *
  *  This function initializes the Suction Fan Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
+ *  \param _can_devs Pointer to the project's UI Structure
  *  \param _nvmSuctionFan Pointer to Suction Fan NVM
  * \param _chkSuctionFan Pointer to Suction Fan checkpoints
  *

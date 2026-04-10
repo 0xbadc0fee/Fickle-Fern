@@ -1,13 +1,29 @@
-/*! \file       lighting_control.h
-    \brief      The Lighting Control Module shall control all required combinations of external headlights and worklights.
-
-    \implementation
-    project     Flory_8772_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 7, 2026 Tiffany.Gohnert
-    \endimplementation
+//-----------------------------------------------------------------------------
+/**
+ * \file       lights_control.h
+ * \brief      AgvChassis - Lights Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup LightsControl Lights Control
+ *
+ * The Lights Control Module manages the activation and state of the machine's
+ * lighting systems, including work lights, road lights, and auxiliary
+ * illumination based on operator inputs and system conditions.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 #ifndef APPL_CORE_SRC_AGVCHASSIS_LIGHTING_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_LIGHTING_CONTROL_H_
@@ -19,27 +35,29 @@
 #include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define WORK_ON (1u)
-#define WORK_OFF (0u)
-#define HEAD_ON (1u)
-#define HEAD_OFF (0u)
-#define TAIL_ON (1u)
-#define TAIL_OFF (0u)
+#define WORK_ON               (1u)  //!< Work lights activation state ON
+#define WORK_OFF              (0u)  //!< Work lights activation state OFF
+#define HEAD_ON               (1u)  //!< Headlights activation state ON
+#define HEAD_OFF              (0u)  //!< Headlights activation state OFF
+#define TAIL_ON               (1u)  //!< Tail lights activation state ON
+#define TAIL_OFF              (0u)  //!< Tail lights activation state OFF
 
-#define LIGHT_MODE_OFF (0u)
-#define LIGHT_MODE_HEAD_TAIL (1u)
-#define LIGHT_MODE_WORK (2u)
+#define LIGHT_MODE_OFF        (0u)  //!< Lighting mode: All lights disabled
+#define LIGHT_MODE_HEAD_TAIL  (1u)  //!< Lighting mode: Headlights and Tail lights enabled
+#define LIGHT_MODE_WORK       (2u)  //!< Lighting mode: Work lights enabled
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
-/** \brief Control Structure - Lighting Control
+/**
+ * \struct T_LightControl
+ * \brief Control Structure - Lighting Control
  *
- * This structure represents all variables and pointers that
- * are utilized and tracked for light controls that need to
- * persist through cyclic calls (static).
+ * Encapsulates the persistent state variables and interface pointers
+ * required for the management of external headlights and worklights.
+ * These members persist across cyclic calls to maintain logic states
+ * and safety interlocks.
  *
- * This structure does not include any variables that are considered
- * temporary.
+ * \note This structure excludes transient or temporary variables.
  */
 typedef struct
 {

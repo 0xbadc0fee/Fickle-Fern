@@ -1,13 +1,27 @@
-//-----------------------------------------------------------------------------
-/*! \file       auger_cart_control.c
-    \brief      The Auger Cart Control Module shall universally control all unloading operations of a variety of
-    possible attached cart configurations and do so in an operator safe manner.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
+/**
+ * \file       auger_cart_control.c
+ * \brief      AgvWork - Auger Cart Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup AugerCartControl Auger Cart Control
+ *
+ * The Auger Cart Control Module shall universally control all unloading
+ * operations of a variety of possible attached cart configurations and do so in an operator safe manner.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -23,13 +37,12 @@
 #include "engine_starter_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-
-#define PROGRAM_START_DEB_MS (3000u) //3 seconds
+#define PROGRAM_START_DEB_MS (3000u)/**< Program start sequence debounce time [ms] */
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_AugerControl mt_augerc;
+static T_AugerControl mt_augerc; /**< Global persistent state for Auger Cart Control. */
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -37,7 +50,7 @@ static T_AugerControl mt_augerc;
  *
  *  This function initializes the AgvWork - Auger Cart Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
+ *  \param _can_dev Pointer to the project's UI Structure
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly

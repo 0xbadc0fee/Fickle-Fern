@@ -1,24 +1,43 @@
-/*! \file       SPN_definitions.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Jan 6, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/* Project:   FloryTemplate_4CM
+ * Copyright: STW Technic (c) 2026
+ * License:   use only under terms of contract / confidential
+ * Created:   Jan 6, 2026 kyle.boch
+ */
+//-----------------------------------------------------------------------------
+/**
+ * \file       spn_definitions.h
+ * \brief      System - SPN Definitions
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup SpnDefinitions SPN Definitions
+ *
+ * The SPN Definitions Module contains the standardized Suspect Parameter
+ * Numbers (SPN) and their associated scaling, offsets, and bit-masks
+ * as defined by the SAE J1939 protocol for vehicle network communication.
+ *
+ * @{
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_SYSTEM_CAN_SPN_DEFINITIONS_H_
 #define APPL_CORE_SRC_SYSTEM_CAN_SPN_DEFINITIONS_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
+/** \brief Safely assigns a source value to a target variable */
 #define VAR_ASSIGN(tar_value, src_value) do { (tar_value) = (src_value); } while (0)
 
+/** \brief Generates a bitmask for a given NVM list ID */
 #define NVM_LIST_BIT(list_id)     (1UL << (list_id))
 
+/** \brief Synchronizes a control value to a datapath value and updates the dirty mask if changed
+ *
+ * \param list_id The ID of the NVM list (used to set the dirty bit)
+ * \param dp_lvalue The target datapath/NVM variable to update
+ * \param ctrl_rvalue The source control variable
+ * \param dirty_mask_lvalue The bitmask variable to update if a change occurs
+ */
 #define NVM_SYNC_ITEM(list_id, dp_lvalue, ctrl_rvalue, dirty_mask_lvalue) \
     do {                                                                  \
         if ((dp_lvalue) != (ctrl_rvalue))                                 \
@@ -27,8 +46,6 @@
             (dirty_mask_lvalue) |= NVM_LIST_BIT((list_id));               \
         }                                                                 \
     } while (0)
-
-
 
 //SPN Table
 
@@ -79,9 +96,6 @@
 #define SPN_520224 520224
 #define SPN_520225 520225
 #define SPN_520226 520226
-
-
-
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */

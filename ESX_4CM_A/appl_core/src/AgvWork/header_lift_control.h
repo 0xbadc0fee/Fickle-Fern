@@ -1,15 +1,33 @@
-/*! \file       header_lift_control.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     Flory_8772-4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 24, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       header_lift_control.h
+ * \brief      AgvWork - Header Lift Control
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup HeaderLiftControl Header Lift Control
+ *
+ * The Header Lift Control Module shall control the lifting and lowering of
+ * the machine "header" through the use of hydraulic control valves and
+ * hardware or CAN switch inputs.
+ *
+ * @{
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_AGVWORK_HEADER_LIFT_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_HEADER_LIFT_CONTROL_H_
 
@@ -24,10 +42,14 @@
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-/** \brief Checkpoints Structure - Header Control
+
+/**
+ * @struct T_ChkPoints_Header
+ * \brief Checkpoints Structure - Header Control
  *
- * This structure represents all checkpoints that are relevant
- * to header control
+ * Encapsulates the state-tracking checkpoints relevant to the Header Lift
+ * control logic. Used to monitor transition states and safety milestones
+ * across execution cycles.
  */
 typedef struct
 {
@@ -37,10 +59,12 @@ typedef struct
 
 }T_ChkPoints_Header;
 
-/** \brief Configuration Structure - Header Control
+/**
+ * @struct T_Config_HeaderControl
+ * \brief Configuration Structure - Header Control
  *
- * This structure represents all NVM configuration variables
- * that are relevant to header control
+ * Encapsulates all non-volatile memory (NVM) configuration variables
+ * utilized by the Header Lift system to define machine-specific behavior.
  */
 typedef struct
 {
@@ -48,14 +72,15 @@ typedef struct
 
 }T_Config_HeaderControl;
 
-/** \brief Control Structure - Header Lift  Control
+/**
+ * @struct T_HeaderControl
+ * \brief Control Structure - Header Lift Control
  *
- * This structure represents all variables and pointers that
- * are utilized and tracked for header lift lower control that need to
- * persist through cyclic calls (static).
+ * Encapsulates all persistent variables and pointers required for Header
+ * Lift/Lower operations. These members persist across cyclic calls to
+ * maintain state and timing.
  *
- * This structure does not include any variables that are considered
- * temporary.
+ * \note This structure excludes transient or temporary variables.
  */
 typedef struct
 {
@@ -78,8 +103,8 @@ typedef struct
 
 
 }T_HeaderControl;
-/* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
+/* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_headerControl(T_CANDevices *_can_dev, T_ChkPoints_Header *_chkPoints, T_Config_HeaderControl *_nvmHeaderControl);

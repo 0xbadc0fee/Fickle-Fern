@@ -1,13 +1,32 @@
 //-----------------------------------------------------------------------------
-/*! \file       input_handler_lib.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2025
-    license     use only under terms of contract / confidential
-
-    created     Dec 8, 2025 STW Technic
+/**
+ * \file       input_handler_lib.c
+ * \brief      HAL - Input Handler Library Implementation
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup InputHandlerLib Input Handler Library
+ *
+ * This module provides the implementation for the hardware abstraction layer
+ * input handler. It manages the acquisition, filtering, debouncing, and
+ * processing of physical system inputs (analog, digital, frequency, etc.)
+ * into scaled, usable software variables for the application layer.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2025
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Dec 8, 2025 STW Technic
+ *
+ * @{
  */
+//-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 //STW
@@ -428,6 +447,4 @@ sint16 clear_inputFaults(void)
 
     return s16_error;
 }
-
-
 //EOF

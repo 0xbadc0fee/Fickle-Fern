@@ -1,14 +1,36 @@
 //-----------------------------------------------------------------------------
-/*! \file       cleaning_chains_control.c
-    \brief      The Cleaning Chain Control Module shall read the operator Shaft
-    Drive Enable command which will be used by the rest of the Control Systems to
-    establish the operational status of all three cleaning chains.
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
+/**
+ * \file     cleaning_chains_control.c
+ * \brief    AgvWork - Cleaning Chains Control
+ *
+ * \project   FloryTemplate_4CM
+ * \copyright STW Technic (c) 2026
+ * \license   use only under terms of contract / confidential
+ *
+ * \created   Jan 6, 2026 STW Technic
+ *
+ * \addtogroup AgvWork
+ * @{
+ * \addtogroup CleaningChainsControl Cleaning Chains Control
+ * @{
+ *
+ * This module manages the operational status of the three cleaning chains.
+ * It processes the Operator Shaft Drive Enable command to establish state
+ * synchronization across the broader control system.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
@@ -27,24 +49,24 @@
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
-#define PROGRAM_START_DEB_MS (3000u) //3 seconds
+#define PROGRAM_START_DEB_MS (3000u) /**< Program start sequence debounce time [ms] */
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_CChainsControl mt_cchains;
+static T_CChainsControl mt_cchains; /**< Internal module state for Cleaning Chains Control */
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /** \brief Initialize AgvWork - Cleaning Chains Control
  *
- *  This function initializes the AgvWork - Cleaning Chains Control Logic.
+ * This function initializes the AgvWork - Cleaning Chains Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
- *  \param _chkElevator Pointer to the global Cleaning Chains Checkpoints Structure
+ * \param _can_dev Pointer to the CAN devices structure
+ * \param _chkCleaningShaft Pointer to the global Cleaning Chains Checkpoints Structure
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_cChainsControl(T_CANDevices *_can_dev, T_ChkPoints_CChains *_chkCleaningShaft)
 {
@@ -147,7 +169,6 @@ sint16 update_cChainsControl(void)
     return s16_error;
 
 }
-
 
 /** \brief Get AgvWork - Shaft Drive Status
  *

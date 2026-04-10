@@ -1,15 +1,31 @@
-/*! \file       propulsion_control.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     Flory_8772-4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Mar 13, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       propulsion_control.h
+ * \brief      AgvChassis - Propulsion Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup PropulsionControl Propulsion Control
+ *
+ * The Propulsion Control Module manages the core movement and drive systems
+ * of the machine. It processes operator inputs to safely control vehicle speed,
+ * direction, and acceleration, while monitoring drive train parameters and
+ * handling motion-related safety interlocks.
+ *
+ * @par Project
+ * Flory_8772-4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Mar 13, 2026 STW Technic
+ *
+ * @{
+ */
 #ifndef APPL_CORE_SRC_AGVCHASSIS_PROPULSION_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_PROPULSION_CONTROL_H_
 
@@ -33,20 +49,25 @@
 #define WHEEL_PPR              44.0f  //!<Pulses per wheel revolution
 #define GEAR_RATIO             2.517f //!<Flory Wheel Gear Ratio
 
-#define HIGH_SPEED_GEAR        1
-#define LOW_SPEED_GEAR         0
+#define HIGH_SPEED_GEAR         1             //!< Indicator for high speed gear selection
+#define LOW_SPEED_GEAR          0             //!< Indicator for low speed gear selection
 
 #define EDC_STARTUP_DELAY      4000     //!<40000ms EDC enable startup delay.
 
 #define NEUTRAL_DEADBAND      250.0f    //!<Joystick deadband of +/- 250 units
 #define SPEED_LIMIT_PER      4750.0f    //!<when Speed enviro is selected - limit joystick Y pos to 47.5%
 
-#define ACCEL_RATE              1500.0f
-#define DECCEL_RATE             1500.0f
-#define CHG_DIR_RATE            1500.0f
-#define MAX_DECCEL_RATE         2000.0f
+#define ACCEL_RATE              1500.0f       //!< Standard acceleration ramping rate
+#define DECCEL_RATE             1500.0f       //!< Standard deceleration ramping rate
+#define CHG_DIR_RATE            1500.0f       //!< Ramping rate applied when changing directions
+#define MAX_DECCEL_RATE         2000.0f       //!< Maximum deceleration rate (e.g., for sudden stops or interlocks)
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
+
+/**
+ * \enum E_JoystickStates
+ * \brief Defines the directional states of the operator's joystick.
+ */
 typedef enum
 {
     E_JOYSTICK_FWD = 0,  //!< E_JOYSTICK_FWD
@@ -55,6 +76,10 @@ typedef enum
     E_NUM_JOYSTICK_STATES//!< E_NUM_JOYSTICK_STATES
 }E_JoystickStates;
 
+/**
+ * \enum E_RampTypes
+ * \brief Defines the available speed ramping profiles for motion smoothing.
+ */
 typedef enum
 {
     E_NO_RAMP = 0,
@@ -65,10 +90,12 @@ typedef enum
     E_NUM_RAMPS
 }E_RampTypes;
 
-/** \brief Checkpoints Structure - Elevator Control
+/**
+ * \struct ChkPoints_Propulsion
+ * \brief Checkpoints Structure - Propulsion Control
  *
  * This structure represents all checkpoints that are relevant
- * to elevator control
+ * to propulsion control.
  */
 typedef struct
 {
@@ -79,8 +106,9 @@ typedef struct
 
 }T_ChkPoints_Propulsion;
 
-
-/** \brief Control Structure - Propulsion Control
+/**
+ * \struct PropulsionControl
+ * \brief Control Structure - Propulsion Control
  *
  * This structure represents all variables and pointers that
  * are utilized and tracked for propulsion control that need to
@@ -113,20 +141,20 @@ typedef struct
     uint8 u8_edc_enable;                    //!<True/False variable when EDC drive is enabled or disabled
     uint8 u8_reverse_ind;                   //!<True/False variable when Joystick is detected to be in Reverse
 
-    uint8 u8_joystick_state;
-    uint8 u8_prev_joystick_state;
+    uint8 u8_joystick_state;                //!<Current state or position of the joystick
+    uint8 u8_prev_joystick_state;           //!<Previous state of the joystick, used for transition detection
     uint8 u8_speed_ramp_type;                //!<Tracker for what type of accel/deccel ramp will be used
     uint8 u8_neutral_ind;
 
-    uint8 u8_speed_enable;
+    uint8 u8_speed_enable;                  //!< Flag indicating whether speed control is enabled
     sint16  s16_yPos;                       //!<Local Variable for Joystick Y Position
     uint16  u16_joystick_command;
     uint16  u16_prev_joystick_command;
     float32 f32_raw_output;                 //!<Raw/ unramped output value
     float32 f32_ramped_output;              //!<Ramped output value to valves
 
-    uint8 u8_cc_active;
-    uint16 u16_cc_max_speed;
+    uint8  u8_cc_active;                      //!<Cruise Control active flag */
+    uint16 u16_cc_max_speed;                  //!<Cruise Control maximum speed limit */
 
     //TX CAN Variables
     uint8 *pu8_neutral_state;               //!<Pointer to the Neutral State to Display
@@ -136,18 +164,16 @@ typedef struct
     //RX CAN Variables
     uint8  *pu8_gear_selector;              //!<Local variable to hold the gear selector command from Display
     uint16 *pu16_joy_y_pos;                 //!<Pointer to Joystick Y Position
-    uint8  *pu8_joy_fwd;
-    uint8  *pu8_joy_rev;
+    uint8  *pu8_joy_fwd;                    //!< Pointer to Joystick Forward indicator
+    uint8  *pu8_joy_rev;                    //!< Pointer to Joystick Reverse indicator
     uint8  *pu8_speed_limit_enable;         //!<Pointer to Speed Limit Enable Button from Display
     uint8  *pu8_max_speed_set;              //!<Pointer to Max Speed Set Button from Display
 
     //Engine Variable Pointer
-    uint8  *pu8_engine_status;
+    uint8  *pu8_engine_status;              //!< Pointer to Engine Status
 
     //Control Checkpoints
     T_ChkPoints_Propulsion *pt_chkProp;     //!<Propulsion Control Checkpoints Structure
-
-
 }T_PropulsionControl;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */

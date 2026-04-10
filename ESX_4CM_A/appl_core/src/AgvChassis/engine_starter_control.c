@@ -1,12 +1,28 @@
 //-----------------------------------------------------------------------------
-/*! \file       engine_starter_control.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 Tiffany.Gohnert
+/**
+ * \file       engine_starter_control.c
+ * \brief      AgvChassis - Engine Starter Control
+ *
+ * \addtogroup AgvChassis
+ * @{
+ * \addtogroup EngineStarterControl Engine Starter Control
+ *
+ * This module manages the operation of the vehicle's engine starter motor,
+ * cranking sequence, and associated safety interlocks.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 // -- Includes ------------------------------------------------------------------------------------------------------
@@ -17,7 +33,6 @@
 #include "stwerrors.h"
 #include "stwtypes.h"
 #include "system.h"
-
 //PROJECT
 #include "engine_starter_control.h"
 #include "cleaning_chains_control.h"
@@ -31,19 +46,19 @@
 void check_engineStatus(void);
 
 // -- Module Global Variables --------------------------------------------------------------------------------------
-static T_EngineControl mt_engine;
+static T_EngineControl mt_engine;//!< Internal state instance for managing engine control operations.
 
 // -- Implementation ------------------------------------------------------------------------------------------------
 
 /** \brief Initialize Engine Starter Control
  *
- *  This function initializes the Engine Starter Control Logic.
+ * This function initializes the Engine Starter Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
- *  \param _chkEngineStarter Pointer to Engine Starter checkpoints
+ * \param _can_devs Pointer to the CAN devices structure
+ * \param _chkEngineStarter Pointer to Engine Starter checkpoints
  *
- *  \return s16_error Error Code
- *  \retval C_NO_ERR Function Executed Properly
+ * \return s16_error Error Code
+ * \retval C_NO_ERR Function Executed Properly
  */
 sint16 init_engineStarterControl(T_CANDevices *_can_devs, T_ChkPoints_EngineStarter *_chkEngineStarter)
 {
@@ -225,7 +240,6 @@ void check_engineStatus(void)
             mt_engine.u8_engine_status = ENGINE_RUNNING;
             if(mt_engine.u8_prev_engine_status == ENGINE_OFF)
                 mt_engine.u32_engine_start_time = get_system_time_ms();
-
         }
     }
 }

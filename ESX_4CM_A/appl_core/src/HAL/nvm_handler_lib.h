@@ -1,15 +1,32 @@
-/*! \file       nvm_handler_lib.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 5, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file       nvm_handler_lib.c
+ * \brief      HAL - NVM Handler Library
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup NvmHandler NVM Handler
+ *
+ * The NVM Handler Library manages reading from and writing to the
+ * Non-Volatile Memory. It provides a standardized interface for safe
+ * data storage, ensuring the persistence of critical configurations
+ * and operational state data across system power cycles.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 5, 2026 STW Technic
+ *
+ * @{
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_HAL_NVM_HANDLER_LIB_H_
 #define APPL_CORE_SRC_HAL_NVM_HANDLER_LIB_H_
 
@@ -29,7 +46,10 @@
 #define NVM_FAULTS_START_ADDR    30000  //!<Start address index of the Faults Block in EEPROM
 #define NVM_FAULTS_SIZE           1000  //!<Size of the Faults Block in EEPROM
 /* -- Types --------------------------------------------------------------------------------------------------------- */
-/*! \brief Struct for a Fault NVM Object Header**/
+/**
+ * \struct T_HeaderNVM
+ * \brief  Struct for a Fault NVM Object Header.
+ */
 typedef struct
 {
     uint32 u32_spn;         //!<SPN of Data to be stored
@@ -37,13 +57,19 @@ typedef struct
     uint8  u8_dataLength;   //!<Length of Data to be stored
 } T_HeaderNVM;
 
-/*! \brief Struct for a Fault NVM Object Data**/
+/**
+ * \struct T_DataNVM
+ * \brief  Struct for a Fault NVM Object Data.
+ */
 typedef struct
 {
     uint8 data;             //!<Stored Data
 } T_DataNVM;
 
-/*! \brief Struct for a Fault NVM Object **/
+/**
+ * \struct T_FaultNVM
+ * \brief  Struct for a Fault NVM Object.
+ */
 typedef struct
 {
     uint32 u32_spn;             //!<SPN of Object
