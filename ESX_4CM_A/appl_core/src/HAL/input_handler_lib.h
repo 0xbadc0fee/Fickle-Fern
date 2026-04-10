@@ -31,7 +31,7 @@
 typedef enum {
     INPUT_CIRCUIT_NONE = 0,
     INPUT_CIRCUIT_PULLUP,
-    INPUT_CURCUIT_PULLDOWN
+    INPUT_CIRCUIT_PULLDOWN
 } E_InputCircuit;
 
 /*! \brief List of all Input Types **/

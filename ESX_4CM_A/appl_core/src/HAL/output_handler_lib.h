@@ -55,9 +55,7 @@ typedef enum {
 /*! \brief List of all Possible Output Faults **/
 typedef enum {
 
-    e_OUTFAULT_NO_FAULT,        //!<No Fault Present
-    e_OUTFAULT_SHORT_UB,        //!<Output Short to UB Fault
-    e_OUTFAULT_SHORT_GND,      //!<Output Short to GND Fault
+    e_OUTFAULT_SHORT_GND = 0,  //!<Output Short to GND Fault
     e_OUTFAULT_OL,             //!<Output Open Load Fault
     e_OUTFAULT_OC,             //!<Output Overcurrent Fault
     e_OUTFAULT_DC_OOB,         //!<Duty Cycle OOB Fault
