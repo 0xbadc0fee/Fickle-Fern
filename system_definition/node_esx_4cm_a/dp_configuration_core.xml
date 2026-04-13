@@ -83,7 +83,7 @@
                 </data-elements>
                 <data-sets/>
             </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="20" nvm-size="100">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="20" nvm-size="20">
                 <name>PorpulsionConfig</name>
                 <comment/>
                 <data-elements length="7">
@@ -91,80 +91,99 @@
                         <name>tire_diameter</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Parameter description</comment>
-                        <min-value value="-3.4028235e+38"/>
-                        <max-value value="3.4028235e+38"/>
-                        <unit/>
+                        <min-value value="0"/>
+                        <max-value value="50"/>
+                        <unit>in</unit>
                         <access>read-write</access>
-                        <data-set-values/>
+                        <data-set-values>
+                            <data-set-value value="31.5"/>
+                        </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="24">
                         <name>max_curr_fwd</name>
-                        <type base-type="uint8" is-array="false"/>
+                        <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>
-                        <max-value value="255"/>
-                        <unit/>
+                        <max-value value="1650"/>
+                        <unit>mA</unit>
                         <access>read-write</access>
-                        <data-set-values/>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="25">
-                        <name>min_curr_fwd</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment>Parameter description</comment>
-                        <min-value value="0"/>
-                        <max-value value="255"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values/>
+                        <data-set-values>
+                            <data-set-value value="1650"/>
+                        </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="26">
-                        <name>max_curr_rev</name>
-                        <type base-type="uint8" is-array="false"/>
+                        <name>min_curr_fwd</name>
+                        <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>
-                        <max-value value="255"/>
-                        <unit/>
+                        <max-value value="768"/>
+                        <unit>mA</unit>
                         <access>read-write</access>
-                        <data-set-values/>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="27">
-                        <name>min_curr_rev</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment>Parameter description</comment>
-                        <min-value value="0"/>
-                        <max-value value="255"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values/>
+                        <data-set-values>
+                            <data-set-value value="640"/>
+                        </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="28">
+                        <name>max_curr_rev</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1650"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="1650"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="30">
+                        <name>min_curr_rev</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="768"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="640"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="32">
                         <name>ramp_inc_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>
-                        <max-value value="255"/>
-                        <unit/>
+                        <max-value value="6"/>
+                        <unit>s</unit>
                         <access>read-write</access>
-                        <data-set-values/>
+                        <data-set-values>
+                            <data-set-value value="4"/>
+                        </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="29">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="33">
                         <name>ramp_dec_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>
-                        <max-value value="255"/>
-                        <unit/>
+                        <max-value value="6"/>
+                        <unit>s</unit>
                         <access>read-write</access>
-                        <data-set-values/>
+                        <data-set-values>
+                            <data-set-value value="4"/>
+                        </data-set-values>
                     </data-element>
                 </data-elements>
-                <data-sets/>
+                <data-sets>
+                    <data-set>
+                        <name>Default</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
             </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="120" nvm-size="20">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="40" nvm-size="20">
                 <name>SuctionFanConfig</name>
                 <comment/>
                 <data-elements length="3">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="120">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="40">
                         <name>sf_drive_ratio</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -174,7 +193,7 @@
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="124">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="44">
                         <name>sf_inc_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -184,7 +203,7 @@
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="125">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="45">
                         <name>sf_dec_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -197,11 +216,11 @@
                 </data-elements>
                 <data-sets/>
             </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="140" nvm-size="10">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="60" nvm-size="10">
                 <name>MiscConfig</name>
                 <comment/>
                 <data-elements length="2">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="140">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="60">
                         <name>fuel_high_deadband</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -211,7 +230,7 @@
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="142">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="62">
                         <name>filter_rstn_max</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>

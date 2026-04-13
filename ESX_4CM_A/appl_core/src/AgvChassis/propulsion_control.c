@@ -440,8 +440,6 @@ sint16 ramp_targetSpeedCommand(E_RampTypes _rampType)
 sint16 calc_wheelSpeed(void)
 {
 
-    //TODO_STW: Dashboard Config Wheel Diameter
-
     sint16 s16_error = C_NO_ERR;
     float32 f32_rpm = 0.0;
 
@@ -452,7 +450,7 @@ sint16 calc_wheelSpeed(void)
 
     s16_error += movingAdvFlt(&mt_prop_control.t_filter_wheel_speed, f32_rpm);
 
-    mt_prop_control.f32_wheel_speed_mph = (mt_prop_control.t_filter_wheel_speed.f32_out * WHEEL_DIAMETER) / (GEAR_RATIO * 336.0f);
+    mt_prop_control.f32_wheel_speed_mph = (mt_prop_control.t_filter_wheel_speed.f32_out * mt_prop_control.pt_config->f32_tire_diameter) / (GEAR_RATIO * 336.0f);
 
     return s16_error;
 }
@@ -519,21 +517,34 @@ sint16 output_edcValves(void)
         case E_JOYSTICK_FWD:
             s16_error += set_outputValue("PROPEL_FWD", mt_prop_control.f32_ramped_output);
             s16_error += set_outputValue("PROPEL_REV", 0.0);
+
+            mt_prop_control.pt_chkProp->u16_edc_fwd_curr = (uint16)mt_prop_control.f32_ramped_output;
+            mt_prop_control.pt_chkProp->u16_edc_rev_curr = 0;
+
             break;
 
         case E_JOYSTICK_REV:
             s16_error += set_outputValue("PROPEL_FWD", 0.0);
             s16_error += set_outputValue("PROPEL_REV", mt_prop_control.f32_ramped_output);
+
+            mt_prop_control.pt_chkProp->u16_edc_fwd_curr = 0;
+            mt_prop_control.pt_chkProp->u16_edc_rev_curr = (uint16)mt_prop_control.f32_ramped_output;
             break;
 
         case E_JOYSTICK_NEU:
             s16_error += set_outputValue("PROPEL_FWD", 0.0);
             s16_error += set_outputValue("PROPEL_REV", 0.0);
+
+            mt_prop_control.pt_chkProp->u16_edc_fwd_curr = 0;
+            mt_prop_control.pt_chkProp->u16_edc_rev_curr = 0;
             break;
 
         default:
             s16_error += set_outputValue("PROPEL_FWD", 0.0);
             s16_error += set_outputValue("PROPEL_REV", 0.0);
+
+            mt_prop_control.pt_chkProp->u16_edc_fwd_curr = 0;
+            mt_prop_control.pt_chkProp->u16_edc_rev_curr = 0;
             break;
 
     }

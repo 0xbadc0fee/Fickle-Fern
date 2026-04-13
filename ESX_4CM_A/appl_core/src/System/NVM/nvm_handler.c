@@ -45,6 +45,7 @@
 
 #include "power_assist_control.h"
 #include "suction_fan_control.h"
+#include "propulsion_control.h"
 
 #include "misc_control.h"
 //Include SPNS (current location for DP Assignment MACRO)
@@ -62,6 +63,8 @@ T_Config_StickBoxControl gt_stickBConfig; //!<Structure that holds the Stick Box
 T_Config_PowerAssistControl gt_paConfig;
 T_Config_SFan gt_suctionFanConfig; //!<Structure that holds the Suction Fan config.
 T_Config_MiscrControl gt_miscConfig; //!<Structure that holds the MISC config.
+T_Config_Propulsion  gt_propConfig; //!<Structure that holds propulsion config
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /**

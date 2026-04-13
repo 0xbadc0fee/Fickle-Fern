@@ -25,13 +25,13 @@
             </list>
             <list>
                 <data-elements length="7">
-                    <data-element auto_min_max_active="true"/>
-                    <data-element auto_min_max_active="true"/>
-                    <data-element auto_min_max_active="true"/>
-                    <data-element auto_min_max_active="true"/>
-                    <data-element auto_min_max_active="true"/>
-                    <data-element auto_min_max_active="true"/>
-                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
                 </data-elements>
             </list>
             <list>

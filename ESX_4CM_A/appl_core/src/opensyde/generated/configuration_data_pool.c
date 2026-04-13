@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3236772725 mt_Variable;
+static T_osy_non_existing_type_2645855571 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CONFIGURATION_PROJECT_ID_3236772725
+CONFIGURATION_PROJECT_ID_2645855571
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -96,6 +96,50 @@ static const T_Configuration_PowerAssistConfig_Values mt_PowerAssistConfigMaxVal
 };
 
 ///Minimum values
+static const T_Configuration_PorpulsionConfig_Values mt_PorpulsionConfigMinValues =
+{
+   0.0F,   ///< tire_diameter (Parameter description)
+   0U,   ///< max_curr_fwd (Parameter description)
+   0U,   ///< min_curr_fwd (Parameter description)
+   0U,   ///< max_curr_rev (Parameter description)
+   0U,   ///< min_curr_rev (Parameter description)
+   0U,   ///< ramp_inc_time (Parameter description)
+   0U    ///< ramp_dec_time (Parameter description)
+};
+
+///Maximum values
+static const T_Configuration_PorpulsionConfig_Values mt_PorpulsionConfigMaxValues =
+{
+   50.0F,   ///< tire_diameter (Parameter description)
+   1650U,   ///< max_curr_fwd (Parameter description)
+   768U,   ///< min_curr_fwd (Parameter description)
+   1650U,   ///< max_curr_rev (Parameter description)
+   768U,   ///< min_curr_rev (Parameter description)
+   6U,   ///< ramp_inc_time (Parameter description)
+   6U    ///< ramp_dec_time (Parameter description)
+};
+
+///Dataset values
+static const T_Configuration_PorpulsionConfig_Values mat_PorpulsionConfigDataSetValues [CONFIGURATION_PORPULSIONCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   {
+      31.5F,   ///< tire_diameter (Parameter description)
+      1650U,   ///< max_curr_fwd (Parameter description)
+      640U,   ///< min_curr_fwd (Parameter description)
+      1650U,   ///< max_curr_rev (Parameter description)
+      640U,   ///< min_curr_rev (Parameter description)
+      4U,   ///< ramp_inc_time (Parameter description)
+      4U    ///< ramp_dec_time (Parameter description)
+   }
+};
+
+///Dataset table:
+static const T_osy_dpa_data_set mat_PorpulsionConfigDataSetTable[CONFIGURATION_PORPULSIONCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   { &mat_PorpulsionConfigDataSetValues[0] }
+};
+
+///Minimum values
 static const T_Configuration_SuctionFanConfig_Values mt_SuctionFanConfigMinValues =
 {
    -3.40282347e+38F,   ///< sf_drive_ratio (Parameter description)
@@ -146,6 +190,17 @@ static const T_osy_dpa_element_definition mat_DataPoolPowerAssistConfigElements[
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed, &mt_PowerAssistConfigMinValues.u8_power_assist_installed, &mt_PowerAssistConfigMaxValues.u8_power_assist_installed }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolPorpulsionConfigElements[CONFIGURATION_PORPULSIONCONFIG_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.f32_tire_diameter, &mt_PorpulsionConfigMinValues.f32_tire_diameter, &mt_PorpulsionConfigMaxValues.f32_tire_diameter },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.u16_max_curr_fwd, &mt_PorpulsionConfigMinValues.u16_max_curr_fwd, &mt_PorpulsionConfigMaxValues.u16_max_curr_fwd },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.u16_min_curr_fwd, &mt_PorpulsionConfigMinValues.u16_min_curr_fwd, &mt_PorpulsionConfigMaxValues.u16_min_curr_fwd },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.u16_max_curr_rev, &mt_PorpulsionConfigMinValues.u16_max_curr_rev, &mt_PorpulsionConfigMaxValues.u16_max_curr_rev },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.u16_min_curr_rev, &mt_PorpulsionConfigMinValues.u16_min_curr_rev, &mt_PorpulsionConfigMaxValues.u16_min_curr_rev },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.u8_ramp_inc_time, &mt_PorpulsionConfigMinValues.u8_ramp_inc_time, &mt_PorpulsionConfigMaxValues.u8_ramp_inc_time },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.u8_ramp_dec_time, &mt_PorpulsionConfigMinValues.u8_ramp_dec_time, &mt_PorpulsionConfigMaxValues.u8_ramp_dec_time }
+};
+
 static const T_osy_dpa_element_definition mat_DataPoolSuctionFanConfigElements[CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS] =
 {
    { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.f32_sf_drive_ratio, &mt_SuctionFanConfigMinValues.f32_sf_drive_ratio, &mt_SuctionFanConfigMaxValues.f32_sf_drive_ratio },
@@ -166,8 +221,9 @@ static const T_osy_dpa_list_definition mat_DataPoolLists[CONFIGURATION_NUMBER_OF
    { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000005U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, NULL },
    { CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000aU, sizeof(T_Configuration_StickBoxConfig_Values), &mat_DataPoolStickBoxConfigElements[0], &gt_Configuration_DataPoolValues.t_StickBoxConfigValues, NULL },
    { CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000fU, sizeof(T_Configuration_PowerAssistConfig_Values), &mat_DataPoolPowerAssistConfigElements[0], &gt_Configuration_DataPoolValues.t_PowerAssistConfigValues, NULL },
-   { CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000014U, sizeof(T_Configuration_SuctionFanConfig_Values), &mat_DataPoolSuctionFanConfigElements[0], &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues, NULL },
-   { CONFIGURATION_MISCCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_MISCCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000028U, sizeof(T_Configuration_MiscConfig_Values), &mat_DataPoolMiscConfigElements[0], &gt_Configuration_DataPoolValues.t_MiscConfigValues, NULL }
+   { CONFIGURATION_PORPULSIONCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_PORPULSIONCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000014U, sizeof(T_Configuration_PorpulsionConfig_Values), &mat_DataPoolPorpulsionConfigElements[0], &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues, &mat_PorpulsionConfigDataSetTable[0] },
+   { CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000028U, sizeof(T_Configuration_SuctionFanConfig_Values), &mat_DataPoolSuctionFanConfigElements[0], &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues, NULL },
+   { CONFIGURATION_MISCCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_MISCCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000003cU, sizeof(T_Configuration_MiscConfig_Values), &mat_DataPoolMiscConfigElements[0], &gt_Configuration_DataPoolValues.t_MiscConfigValues, NULL }
 };
 
 ///Datapool definition:
@@ -178,7 +234,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Configuration",  ///< name of Datapool
    CONFIGURATION_NUMBER_OF_LISTS,
-   0x94b17506U, ///< CRC of Datapool definition
+   0xc7d050b9U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    20000U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],
@@ -186,7 +242,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
 };
 
 ///Create Datapool instance data:
-OSY_DPA_CREATE_STATIC_DP_INSTANCE_DATA_WITH_BUFFER(mt_DpInstanceData, &mt_DataPoolDefinition, 6U)
+OSY_DPA_CREATE_STATIC_DP_INSTANCE_DATA_WITH_BUFFER(mt_DpInstanceData, &mt_DataPoolDefinition, 14U)
 
 const T_osy_dpa_data_pool gt_Configuration_DataPool =
 {

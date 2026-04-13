@@ -194,7 +194,7 @@
             <list>
                 <name>PropulsionControl</name>
                 <comment/>
-                <data-elements length="10">
+                <data-elements length="12">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>wheel_rpm</name>
                         <type base-type="float32" is-array="false"/>
@@ -221,6 +221,26 @@
                         <comment>Checkpoint - EDC Enable/Disabled Status</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>edc_fwd_curr</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Checkpoint - EDC Fwd Valve Current Command</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>edc_rev_curr</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Checkpoint - EDC Fwd Valve Current Command</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>

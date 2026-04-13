@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_776136261 mt_Variable;
+static T_osy_non_existing_type_194435069 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-DASHBOARD_PROJECT_ID_776136261
+DASHBOARD_PROJECT_ID_194435069
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -127,6 +127,8 @@ static const T_Dashboard_PropulsionControl_Values mt_PropulsionControlMinValues 
    -3.40282347e+38F,   ///< wheel_rpm (Checkpoint - Wheel Motor RPM)
    -3.40282347e+38F,   ///< wheel_speed_mph_x10 (Checkpoint - Wheel Speed MPH)
    0U,   ///< edc_enable (Checkpoint - EDC Enable/Disabled Status)
+   0U,   ///< edc_fwd_curr (Checkpoint - EDC Fwd Valve Current Command)
+   0U,   ///< edc_rev_curr (Checkpoint - EDC Fwd Valve Current Command)
    0.0F,   ///< p_tire_diameter (Parameter - Tire Diameter)
    0U,   ///< p_max_fwd_current (Parameter - Max FWD Current)
    0U,   ///< p_min_fwd_current (Parameter - Min FWD Current)
@@ -142,6 +144,8 @@ static const T_Dashboard_PropulsionControl_Values mt_PropulsionControlMaxValues 
    3.40282347e+38F,   ///< wheel_rpm (Checkpoint - Wheel Motor RPM)
    3.40282347e+38F,   ///< wheel_speed_mph_x10 (Checkpoint - Wheel Speed MPH)
    255U,   ///< edc_enable (Checkpoint - EDC Enable/Disabled Status)
+   65535U,   ///< edc_fwd_curr (Checkpoint - EDC Fwd Valve Current Command)
+   65535U,   ///< edc_rev_curr (Checkpoint - EDC Fwd Valve Current Command)
    100.0F,   ///< p_tire_diameter (Parameter - Tire Diameter)
    16500U,   ///< p_max_fwd_current (Parameter - Max FWD Current)
    768U,   ///< p_min_fwd_current (Parameter - Min FWD Current)
@@ -321,6 +325,8 @@ static const T_osy_dpa_element_definition mat_DataPoolPropulsionControlElements[
    { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_wheel_rpm, &mt_PropulsionControlMinValues.f32_wheel_rpm, &mt_PropulsionControlMaxValues.f32_wheel_rpm },
    { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_wheel_speed_mph_x10, &mt_PropulsionControlMinValues.f32_wheel_speed_mph_x10, &mt_PropulsionControlMaxValues.f32_wheel_speed_mph_x10 },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u8_edc_enable, &mt_PropulsionControlMinValues.u8_edc_enable, &mt_PropulsionControlMaxValues.u8_edc_enable },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_edc_fwd_curr, &mt_PropulsionControlMinValues.u16_edc_fwd_curr, &mt_PropulsionControlMaxValues.u16_edc_fwd_curr },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_edc_rev_curr, &mt_PropulsionControlMinValues.u16_edc_rev_curr, &mt_PropulsionControlMaxValues.u16_edc_rev_curr },
    { OSY_DPA_ELEMENT_TYPE_FLOAT32, 1U, 4U, &gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_p_tire_diameter, &mt_PropulsionControlMinValues.f32_p_tire_diameter, &mt_PropulsionControlMaxValues.f32_p_tire_diameter },
    { OSY_DPA_ELEMENT_TYPE_UINT16, 1U, 2U, &gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_max_fwd_current, &mt_PropulsionControlMinValues.u16_p_max_fwd_current, &mt_PropulsionControlMaxValues.u16_p_max_fwd_current },
    { OSY_DPA_ELEMENT_TYPE_UINT16, 1U, 2U, &gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_min_fwd_current, &mt_PropulsionControlMinValues.u16_p_min_fwd_current, &mt_PropulsionControlMaxValues.u16_p_min_fwd_current },
@@ -413,7 +419,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Dashboard",  ///< name of Datapool
    DASHBOARD_NUMBER_OF_LISTS,
-   0xf4f83d9U, ///< CRC of Datapool definition
+   0xc8854e2bU, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

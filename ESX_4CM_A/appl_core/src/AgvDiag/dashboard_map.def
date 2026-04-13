@@ -30,6 +30,17 @@ CNTRL2DP(rtrapCP2, 		 gt_rotaryTrapCheckpoints.f32_trap_target_cmd, 	 		gt_Dashb
 CNTRL2DP(wheelRPM, 	 	 gt_propCheckpoints.f32_wheel_rpm, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_wheel_rpm)
 CNTRL2DP(wheelSpeed, 	 gt_propCheckpoints.f32_wheel_speed_10, 				gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_wheel_speed_mph_x10)
 CNTRL2DP(edcEnable,  	 gt_propCheckpoints.u8_edc_enable, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u8_edc_enable)
+CNTRL2DP(edcFwd,     	 gt_propCheckpoints.u16_edc_fwd_curr, 					gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_edc_fwd_curr)
+CNTRL2DP(edcRev,    	 gt_propCheckpoints.u16_edc_rev_curr, 					gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_edc_rev_curr)
+
+CNTRL2DP(wheeldia, 	 	 gt_propConfig.f32_tire_diameter, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_p_tire_diameter)
+CNTRL2DP(wheelSpeed, 	 gt_propConfig.u16_max_curr_fwd, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_max_fwd_current)
+CNTRL2DP(edcEnable,  	 gt_propConfig.u16_min_curr_fwd, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_min_fwd_current)
+CNTRL2DP(edcFwd,     	 gt_propConfig.u16_max_curr_rev, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_max_rev_current)
+CNTRL2DP(edcRev,    	 gt_propConfig.u16_min_curr_rev, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_min_rev_current)
+CNTRL2DP(edcFwd,     	 gt_propConfig.u8_ramp_dec_time, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u8_p_ramp_down_time)
+CNTRL2DP(edcRev,    	 gt_propConfig.u8_ramp_inc_time, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u8_p_ramp_up_time)
+
 
 /* Suction Fan Control checkpoints */
 CNTRL2DP(sFanCP, 		 gt_suctionFanCheckpoints.u8_suctionFanOn, 	 			gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_suction_fan_on)

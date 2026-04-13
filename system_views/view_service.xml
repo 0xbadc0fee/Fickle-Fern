@@ -449,7 +449,7 @@
                             </box>
                             <data-pool-elements>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="6" element="3"/>
+                                    <index node="0" data-pool="0" list="6" element="5"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
