@@ -6,7 +6,7 @@
         <name>Configuration</name>
         <version major="0" minor="0" release="0"/>
         <comment>NVM Datapool to hold Configuration Data</comment>
-        <lists length="6">
+        <lists length="7">
             <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="5">
                 <name>ElevatorConfig</name>
                 <comment/>
@@ -83,12 +83,12 @@
                 </data-elements>
                 <data-sets/>
             </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="20" nvm-size="20">
-                <name>SuctionFanConfig</name>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="20" nvm-size="100">
+                <name>PorpulsionConfig</name>
                 <comment/>
-                <data-elements length="3">
+                <data-elements length="7">
                     <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="20">
-                        <name>sf_drive_ratio</name>
+                        <name>tire_diameter</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="-3.4028235e+38"/>
@@ -98,7 +98,7 @@
                         <data-set-values/>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="24">
-                        <name>sf_inc_time</name>
+                        <name>max_curr_fwd</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>
@@ -108,6 +108,83 @@
                         <data-set-values/>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="25">
+                        <name>min_curr_fwd</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="26">
+                        <name>max_curr_rev</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="27">
+                        <name>min_curr_rev</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="28">
+                        <name>ramp_inc_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="29">
+                        <name>ramp_dec_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="120" nvm-size="20">
+                <name>SuctionFanConfig</name>
+                <comment/>
+                <data-elements length="3">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="120">
+                        <name>sf_drive_ratio</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="124">
+                        <name>sf_inc_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="125">
                         <name>sf_dec_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -120,11 +197,11 @@
                 </data-elements>
                 <data-sets/>
             </list>
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="40" nvm-size="10">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="140" nvm-size="10">
                 <name>MiscConfig</name>
                 <comment/>
                 <data-elements length="2">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="40">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="140">
                         <name>fuel_high_deadband</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -134,7 +211,7 @@
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="42">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="142">
                         <name>filter_rstn_max</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
