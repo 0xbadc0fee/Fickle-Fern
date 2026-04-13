@@ -31,16 +31,17 @@
 #define APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
-#include "stwtypes.h"
-#include "x_out.h"
-#include "x_msw.h"
-#include "x_out_client.h"
-#include "string.h"
-#include "osy_com_j1939_dm1.h"
+//STD
 #include <math.h>
+#include "string.h"
+
+//STW Libs
+#include "stwtypes.h"
+#include "osy_com_j1939_dm1.h"
+
+//Flory HAL
+#include "outputs.h"
 #include "alarm_handler_lib.h"
-
-
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define DEFAULT_PWM_CC_FREQ 100000u                  //!< Default PWM CC Frequency if not otherwise set
@@ -85,6 +86,18 @@ typedef enum {
     e_NUM_OUTFAULTS            //!<Total Number of possible output faults
 } E_OutputFaults;
 
+
+/**
+ * \enum E_UextFaults
+ * \brief List of all Possible Output Faults.
+ */
+typedef enum {
+
+    e_UEXT_HIGH = 0,  //!<Voltage output High
+    e_UEXT_LOW,       //!<Voltage output Low
+    e_NUM_UEXTFAULTS  //!<Total number of UEXT Faults
+} E_UextFaults;
+
 /**
  * \struct T_VehicleOutput
  * \brief Struct for a Vehicle Output Object.
@@ -104,6 +117,19 @@ typedef struct {
     uint16 u16_dti;                  //!< Fault Test Interval
 
 } T_VehicleOutput;
+
+/**
+ * \struct T_UEXT
+ * \brief Struct for a Voltage Reference Output
+ */
+typedef struct {
+    uint8 u8_id;           //!<ID of UEXT Channel
+    uint16 u16_setting;    //!<Voltage Output Setting
+    uint8 u8_diagEnabled;  //!< Enable - Disable Toggle for Output Diagnostics / Alarm
+    T_FloryFault t_fault;
+    uint16 u16_dti;        //!< Fault Test Interval
+
+}T_UEXT;
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 extern T_VehicleOutput at_vehicleOutputs[X_OUT_COUNT]; //!< Global array storing the state of all vehicle outputs
 
@@ -115,6 +141,8 @@ sint16 get_numOutputs(uint8 *const opu8_Count);
 sint16 clear_outputFaults(void);
 sint16 get_outputFaultStatus(const char *targetName, uint8 *opu8_status);
 sint16 set_outputValue(const char *targetName, float32 value);
+
+sint16 init_vrefSupply(T_UEXT _vref);
 
 #endif /* APPL_CORE_SRC_HAL_OUTPUT_HANDLER_LIB_H_ */
 

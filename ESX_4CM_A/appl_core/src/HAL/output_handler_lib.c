@@ -34,6 +34,7 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 sint16 check_outputFaultStatus(uint8 u8_output);
+sint16 check_uextFaultStatus(uint8 u8_uext);
 sint16 findOutputByName(const char *targetName, uint8 *opu8_Index);
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
@@ -50,6 +51,10 @@ const T_x_out_pid_parameters t_PID_PARAMETERS =
             .s16_OutputLimitMin = DEFAULT_PID_DUTYCYCLE_MIN,
             .s16_OutputLimitMax = DEFAULT_PID_DUTYCYCLE_MAX
         }; //!<Default PID Parameters for Current Controlled Outputs
+
+
+uint8  u8_num_uext = 0;
+T_UEXT at_uext[X_UEXT_COUNT];   //!<enable tracker for UEXT diagnostics
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -148,6 +153,37 @@ sint16 init_outputHandler(void)
     return s16_error;
 }
 
+/** \brief Initialize a Reference Voltage Output
+    Initialize a voltage reference output to a specific voltage and enable/disable
+    diagnostics for the pin
+
+    \param u8_id ID of Voltage Reference to be initialized
+    \param u16_voltage Voltage (mV) of Reference
+    \param u8_diag_enable Enable/Disable Toggle for Diagnostic Monitoring of Vref channel
+
+    \return Error Return Value
+    \retval C_NO_ERR(0)  All Output Faults Reset
+**/
+sint16 init_vrefSupply(T_UEXT _vref)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    at_uext[u8_num_uext] = _vref;
+    u8_num_uext++;
+
+    if(_vref.u8_diagEnabled)
+    {
+        s16_error = x_uext_diag(_vref.u8_id, _vref.u16_dti);
+
+        if(s16_error != C_NO_ERR)
+            return s16_error;
+    }
+
+    s16_error = x_uext_set_voltage_setpoint(_vref.u8_id, _vref.u16_setting);
+
+    return s16_error;
+}
+
 /** \brief Vehicle hardware input handler function
 
     Function to be called cyclically that reads all configured hardware inputs and updates
@@ -191,6 +227,15 @@ sint16 update_outputHandler(void)
             }
 
             at_vehicleOutputs[j].f32_prevOutputValue = at_vehicleOutputs[j].f32_outputValue;
+        }
+    }
+
+    //Uext Diagnostics
+    for(uint8 i = 0; i < X_UEXT_COUNT; i++)
+    {
+        if(at_uext[i].u8_diagEnabled)
+        {
+            check_uextFaultStatus(i);
         }
     }
 
@@ -262,6 +307,38 @@ sint16 check_outputFaultStatus(uint8 u8_output)
     }
 
     return s16_Error;
+}
+
+sint16 check_uextFaultStatus(uint8 u8_uext)
+{
+    sint16 s16_error = C_NO_ERR;
+    uint32 u32_uextFault = 0;
+
+    x_uext_get_active_faults(at_uext[u8_uext].u8_id, &u32_uextFault);
+
+    if(u32_uextFault)
+    {
+        at_uext[u8_uext].t_fault.u8_fault_status = TRUE;
+
+        if (((u32_uextFault & X_UEXT_FAULT_VOLTAGE_TOO_HIGH) == X_UEXT_FAULT_VOLTAGE_TOO_HIGH))
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_HIGH].u8_is_active = TRUE;
+        else
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_HIGH].u8_is_active = FALSE;
+
+        if (((u32_uextFault & X_UEXT_FAULT_VOLTAGE_TOO_LOW) == X_UEXT_FAULT_VOLTAGE_TOO_LOW))
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_LOW].u8_is_active = TRUE;
+        else
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_LOW].u8_is_active = FALSE;
+    }
+    else if(!u32_uextFault)
+    {
+        at_uext[u8_uext].t_fault.u8_fault_status = FALSE;
+
+        for (uint8 i = 0; i < e_NUM_UEXTFAULTS; i++)
+            at_uext[u8_uext].t_fault.t_fmi[i].u8_is_active = FALSE;
+    }
+
+    return s16_error;
 }
 
 // Getter Functions ------------------------------------------------------------------------

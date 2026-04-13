@@ -464,6 +464,26 @@ T_VehicleOutput tvo_fan_hydro_fwd =
     .u8_diagEnabled = FALSE,
 };
 
+
+T_UEXT vref_1 =
+{
+    .u8_id = VREF_5V_1,
+    .u16_setting = 5000,
+    .u8_diagEnabled = TRUE,
+    .t_fault=
+    {
+        .u8_dm1_enable      = TRUE,
+        .u8_fault_status    = FALSE,
+        .u32_spn            = SPN_520226,
+        .t_fmi = {
+            [e_UEXT_HIGH]  = {.u8_is_active = FALSE, .u8_fmi_value = 16},
+            [e_UEXT_LOW]   = {.u8_is_active = FALSE, .u8_fmi_value = 32}
+        }
+    },
+
+    .u16_dti = 1000,
+};
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Outputs
  *
@@ -506,6 +526,9 @@ sint16 init_hwOutputs(void)
     s16_return |= add_hwOutput(tvo_fan_hydro_fwd);
 
     s16_return |= init_outputHandler();
+
+    //Initialize Vref Supplies
+    init_vrefSupply(vref_1);
 
     return s16_return;
 }
