@@ -110,18 +110,18 @@
 </comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
-                        <unit/>
+                        <unit>%</unit>
                         <access>read-only</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
                         <name>p_sweeps_installed</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter - VSweeps Option Installed</comment>
                         <min-value value="0"/>
-                        <max-value value="255"/>
+                        <max-value value="1"/>
                         <unit/>
-                        <access>read-only</access>
+                        <access>read-write</access>
                         <data-set-values/>
                     </data-element>
                 </data-elements>
@@ -194,7 +194,7 @@
             <list>
                 <name>PropulsionControl</name>
                 <comment/>
-                <data-elements length="10">
+                <data-elements length="12">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>wheel_rpm</name>
                         <type base-type="float32" is-array="false"/>
@@ -221,6 +221,26 @@
                         <comment>Checkpoint - EDC Enable/Disabled Status</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>edc_fwd_curr</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Checkpoint - EDC Fwd Valve Current Command</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>edc_rev_curr</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Checkpoint - EDC Fwd Valve Current Command</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
                         <unit/>
                         <access>read-only</access>
                         <data-set-values/>
@@ -431,11 +451,11 @@
                         <data-set-values/>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
-                        <name>p_sf_ratio</name>
-                        <type base-type="float32" is-array="false"/>
+                        <name>p_sf_6_7_enable</name>
+                        <type base-type="uint8" is-array="false"/>
                         <comment>Parameter - Suction Fan Drive Ratio</comment>
                         <min-value value="0"/>
-                        <max-value value="500"/>
+                        <max-value value="1"/>
                         <unit/>
                         <access>read-write</access>
                         <data-set-values/>
@@ -446,7 +466,7 @@
             <list>
                 <name>CoolingFanControl</name>
                 <comment/>
-                <data-elements length="4">
+                <data-elements length="6">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>lead_sensor_id</name>
                         <type base-type="uint8" is-array="false"/>
@@ -461,9 +481,19 @@
                         <name>cooling_demand_pct</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Checkpoint - Cooling Demand</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit>%</unit>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>hyd_oil_temp</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Checkpoint - Hydraulic Oil Temperature</comment>
                         <min-value value="-3.4028235e+38"/>
                         <max-value value="3.4028235e+38"/>
-                        <unit>%</unit>
+                        <unit>C</unit>
                         <access>read-only</access>
                         <data-set-values/>
                     </data-element>
@@ -487,13 +517,23 @@
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_hyd_oil_cal</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Parameter - Hydraulic Oil Temp Sensor Cal Value</comment>
+                        <min-value value="-100"/>
+                        <max-value value="100"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
                 </data-elements>
                 <data-sets/>
             </list>
             <list>
                 <name>MiscControl</name>
                 <comment/>
-                <data-elements length="14">
+                <data-elements length="12">
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
                         <name>fuel_level_gauge_pct</name>
                         <type base-type="float32" is-array="false"/>
@@ -574,7 +614,7 @@
                         <access>read-only</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
                         <name>p_filter_fault_pct</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Variable description</comment>
@@ -585,32 +625,22 @@
                         <data-set-values/>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
-                        <name>p_fuel_high_dbnd</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
-                        <min-value value="0"/>
-                        <max-value value="100"/>
-                        <unit>%</unit>
-                        <access>read-write</access>
-                        <data-set-values/>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
                         <name>p_filter_low_cal</name>
-                        <type base-type="uint8" is-array="false"/>
+                        <type base-type="uint16" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="0"/>
-                        <max-value value="100"/>
-                        <unit>%</unit>
+                        <max-value value="5000"/>
+                        <unit>mV</unit>
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
                         <name>p_filter_high_cal</name>
-                        <type base-type="uint8" is-array="false"/>
+                        <type base-type="uint16" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="0"/>
-                        <max-value value="100"/>
-                        <unit>%</unit>
+                        <max-value value="5000"/>
+                        <unit>mV</unit>
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>
@@ -621,16 +651,6 @@
                         <min-value value="0"/>
                         <max-value value="5000"/>
                         <unit>mV</unit>
-                        <access>read-write</access>
-                        <data-set-values/>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
-                        <name>p_hyd_oil_cal</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment>Variable description</comment>
-                        <min-value value="0"/>
-                        <max-value value="255"/>
-                        <unit/>
                         <access>read-write</access>
                         <data-set-values/>
                     </data-element>

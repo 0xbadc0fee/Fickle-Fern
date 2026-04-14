@@ -25,7 +25,7 @@
             <list>
                 <data-elements length="2">
                     <data-element auto_min_max_active="true"/>
-                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
                 </data-elements>
             </list>
             <list>
@@ -42,7 +42,9 @@
                 </data-elements>
             </list>
             <list>
-                <data-elements length="10">
+                <data-elements length="12">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
                     <data-element auto_min_max_active="true"/>
                     <data-element auto_min_max_active="true"/>
                     <data-element auto_min_max_active="true"/>
@@ -77,15 +79,17 @@
                 </data-elements>
             </list>
             <list>
-                <data-elements length="4">
+                <data-elements length="6">
                     <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
                 </data-elements>
             </list>
             <list>
-                <data-elements length="14">
+                <data-elements length="12">
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
@@ -98,8 +102,6 @@
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="true"/>
                 </data-elements>
             </list>
             <list>

@@ -22,6 +22,7 @@ CNTRL2DP(cchainsCP2,  	 gt_cleaningShaftCheckpoints.u8_status, 		    	gt_Dashboa
 
 /* Front Sweeps Control checkpoints */
 CNTRL2DP(fsweepsCP2,  	 gt_frontSweepsCheckpoints.u8_speed_cmd, 	 			gt_Dashboard_DataPoolValues.t_FrontSweepsControlValues.u8_speed_cmd)
+CNTRL2DP(fsInstall,  	 gt_fsConfig.u8_fs_installed, 	 						gt_Dashboard_DataPoolValues.t_FrontSweepsControlValues.u8_p_sweeps_installed)
 
 /* Rotary Trap Control checkpoints */
 CNTRL2DP(rtrapCP2, 		 gt_rotaryTrapCheckpoints.f32_trap_target_cmd, 	 		gt_Dashboard_DataPoolValues.t_RotaryTrapValues.f32_trap_target_cmd)
@@ -30,13 +31,24 @@ CNTRL2DP(rtrapCP2, 		 gt_rotaryTrapCheckpoints.f32_trap_target_cmd, 	 		gt_Dashb
 CNTRL2DP(wheelRPM, 	 	 gt_propCheckpoints.f32_wheel_rpm, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_wheel_rpm)
 CNTRL2DP(wheelSpeed, 	 gt_propCheckpoints.f32_wheel_speed_10, 				gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_wheel_speed_mph_x10)
 CNTRL2DP(edcEnable,  	 gt_propCheckpoints.u8_edc_enable, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u8_edc_enable)
+CNTRL2DP(edcFwd,     	 gt_propCheckpoints.u16_edc_fwd_curr, 					gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_edc_fwd_curr)
+CNTRL2DP(edcRev,    	 gt_propCheckpoints.u16_edc_rev_curr, 					gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_edc_rev_curr)
+
+CNTRL2DP(wheeldia, 	 	 gt_propConfig.f32_tire_diameter, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.f32_p_tire_diameter)
+CNTRL2DP(wheelSpeed, 	 gt_propConfig.u16_max_curr_fwd, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_max_fwd_current)
+CNTRL2DP(edcEnable,  	 gt_propConfig.u16_min_curr_fwd, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_min_fwd_current)
+CNTRL2DP(edcFwd,     	 gt_propConfig.u16_max_curr_rev, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_max_rev_current)
+CNTRL2DP(edcRev,    	 gt_propConfig.u16_min_curr_rev, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u16_p_min_rev_current)
+CNTRL2DP(edcFwd,     	 gt_propConfig.u8_ramp_dec_time, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u8_p_ramp_down_time)
+CNTRL2DP(edcRev,    	 gt_propConfig.u8_ramp_inc_time, 						gt_Dashboard_DataPoolValues.t_PropulsionControlValues.u8_p_ramp_up_time)
+
 
 /* Suction Fan Control checkpoints */
 CNTRL2DP(sFanCP, 		 gt_suctionFanCheckpoints.u8_suctionFanOn, 	 			gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_suction_fan_on)
 CNTRL2DP(sFanPWMCP, 	 gt_suctionFanCheckpoints.u16_pwmStatus, 	 			gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u16_pwm_status)
 CNTRL2DP(sfconfig1, 	 gt_suctionFanConfig.u8_fan_inc_time,				    gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_p_sf_inctime)	
 CNTRL2DP(sfconfig2, 	 gt_suctionFanConfig.u8_fan_dec_time,				    gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_p_sf_dectime)	
-CNTRL2DP(sfconfig3, 	 gt_suctionFanConfig.f32_drive_ratio,				    gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_p_sf_dectime)
+CNTRL2DP(sfconfig3, 	 gt_suctionFanConfig.u8_6_7_enable,				        gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_p_sf_6_7_enable)
 
 /* Engine Starter Control checkpoints */
 CNTRL2DP(engOffCP, 		 gt_engineStarterCheckpoints.u8_eng_status, 	 		gt_Dashboard_DataPoolValues.t_EngineControlValues.u8_eng_status)
@@ -59,6 +71,10 @@ CNTRL2DP(stickBoxConfig, gt_paConfig.u8_power_assist_installed,				    gt_Dashbo
 /* Cooling Fan Control Parameters */
 CNTRL2DP(coolLeadNum, 	gt_coolingFanCheckpoints.u8_leadsensornumber, 	 		gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.u8_lead_sensor_id)
 CNTRL2DP(rtrapCP2, 		gt_coolingFanCheckpoints.f32_cooling_demand_pct, 	 	gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.f32_cooling_demand_pct)
+CNTRL2DP(rtrapCP3, 		gt_coolingFanCheckpoints.f32_hyd_oil_temp, 	 			gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.f32_hyd_oil_temp)
+CNTRL2DP(actTime, 	    gt_coolingFanConfig.u8_purge_active_time, 	 			gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.u8_p_purge_active_time)
+CNTRL2DP(cycTime, 		gt_coolingFanConfig.u16_auto_cycle_time, 	 			gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.u16_p_purge_cycle_time)
+CNTRL2DP(sensCal, 		gt_coolingFanConfig.f32_sensor_cal, 	 				gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.f32_p_hyd_oil_cal)
 
 /* MISC Control Parameters */
 CNTRL2DP(fuelLevGagP, 	gt_miscCheckpoints.f32_fuel_level_gauge_pct, 			gt_Dashboard_DataPoolValues.t_MiscControlValues.f32_fuel_level_gauge_pct)
@@ -69,8 +85,10 @@ CNTRL2DP(HydoilLow,     gt_miscCheckpoints.u8_low_hyd_fluid_indicator, 	 		gt_Da
 CNTRL2DP(brakesEngaged, gt_miscCheckpoints.u8_brakes_engaged, 	 				gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_brakes_engaged)
 CNTRL2DP(swMajor, 	    gt_miscCheckpoints.u8_sw_major_revision, 	 			gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_sw_major_revision)
 CNTRL2DP(swMinor, 		gt_miscCheckpoints.u8_sw_minor_revision, 	 			gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_sw_minor_revision)
-CNTRL2DP(filterMax, 	gt_miscConfig.u8_filter_rstn_max, 	 					gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_filter_fault_pct)
-CNTRL2DP(fuelHigh, 		gt_miscConfig.u16_fuel_high_deadband, 	 				gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_fuel_full_voltage)
+CNTRL2DP(filterMax, 	gt_miscConfig.u8_af_fault_pct, 	 						gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_filter_fault_pct)
+CNTRL2DP(fuelHigh, 		gt_miscConfig.u16_fuel_full_voltage, 	 				gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_fuel_full_voltage)
+CNTRL2DP(filterMax, 	gt_miscConfig.u16_af_max_voltage, 	 					gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_filter_high_cal)
+CNTRL2DP(fuelHigh, 		gt_miscConfig.u16_af_min_voltage, 	 				    gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_filter_low_cal)
 
 
 

@@ -34,6 +34,7 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 sint16 check_outputFaultStatus(uint8 u8_output);
+sint16 check_uextFaultStatus(uint8 u8_uext);
 sint16 findOutputByName(const char *targetName, uint8 *opu8_Index);
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
@@ -50,6 +51,10 @@ const T_x_out_pid_parameters t_PID_PARAMETERS =
             .s16_OutputLimitMin = DEFAULT_PID_DUTYCYCLE_MIN,
             .s16_OutputLimitMax = DEFAULT_PID_DUTYCYCLE_MAX
         }; //!<Default PID Parameters for Current Controlled Outputs
+
+
+uint8  u8_num_uext = 0;
+T_UEXT at_uext[X_UEXT_COUNT];   //!<enable tracker for UEXT diagnostics
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -97,6 +102,7 @@ sint16 init_outputHandler(void)
             // check if diagnostic required
             if (at_vehicleOutputs[i].u8_diagEnabled)
             {
+                x_out_set_circuit(at_vehicleOutputs[i].u16_hardwareID, X_OUT_CIRCUIT_PULL_UP);
                 s16_diagError |= x_out_digital_diag(at_vehicleOutputs[i].u16_hardwareID, at_vehicleOutputs[i].u16_dti);
             }
         }
@@ -113,6 +119,7 @@ sint16 init_outputHandler(void)
 
             if (at_vehicleOutputs[i].u8_diagEnabled)
             {
+                x_out_set_circuit(at_vehicleOutputs[i].u16_hardwareID, X_OUT_CIRCUIT_PULL_UP);
                 s16_diagError |= x_out_pwm_diag(at_vehicleOutputs[i].u16_hardwareID, at_vehicleOutputs[i].u16_dti);
             }
         }
@@ -130,6 +137,7 @@ sint16 init_outputHandler(void)
 
             if (at_vehicleOutputs[i].u8_diagEnabled)
             {
+                x_out_set_circuit(at_vehicleOutputs[i].u16_hardwareID, X_OUT_CIRCUIT_PULL_UP);
                 (void) x_out_cc_diag_v2(at_vehicleOutputs[i].u16_hardwareID, at_vehicleOutputs[i].u16_dti,DEFAULT_CC_MAX_CURRENT, DEFAULT_CC_TOL_REL, DEFAULT_CC_TOL_ABS);
             }
         }
@@ -141,6 +149,37 @@ sint16 init_outputHandler(void)
     else if (C_NO_ERR != s16_initError)
         s16_error = s16_initError;
 
+
+    return s16_error;
+}
+
+/** \brief Initialize a Reference Voltage Output
+    Initialize a voltage reference output to a specific voltage and enable/disable
+    diagnostics for the pin
+
+    \param u8_id ID of Voltage Reference to be initialized
+    \param u16_voltage Voltage (mV) of Reference
+    \param u8_diag_enable Enable/Disable Toggle for Diagnostic Monitoring of Vref channel
+
+    \return Error Return Value
+    \retval C_NO_ERR(0)  All Output Faults Reset
+**/
+sint16 init_vrefSupply(T_UEXT _vref)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    at_uext[u8_num_uext] = _vref;
+    u8_num_uext++;
+
+    if(_vref.u8_diagEnabled)
+    {
+        s16_error = x_uext_diag(_vref.u8_id, _vref.u16_dti);
+
+        if(s16_error != C_NO_ERR)
+            return s16_error;
+    }
+
+    s16_error = x_uext_set_voltage_setpoint(_vref.u8_id, _vref.u16_setting);
 
     return s16_error;
 }
@@ -191,6 +230,15 @@ sint16 update_outputHandler(void)
         }
     }
 
+    //Uext Diagnostics
+    for(uint8 i = 0; i < X_UEXT_COUNT; i++)
+    {
+        if(at_uext[i].u8_diagEnabled)
+        {
+            check_uextFaultStatus(i);
+        }
+    }
+
     return s16_error;
 }
 
@@ -212,6 +260,7 @@ sint16 check_outputFaultStatus(uint8 u8_output)
     uint32 u32_hwOutputFault = 0;
 
     //get the active faults
+
     s16_Error = x_out_get_active_faults(at_vehicleOutputs[u8_output].u16_hardwareID, &u32_hwOutputFault);
 
     if (u32_hwOutputFault)
@@ -219,44 +268,77 @@ sint16 check_outputFaultStatus(uint8 u8_output)
         at_vehicleOutputs[u8_output].t_fault.u8_fault_status = TRUE;
 
         // SHORT UB+ / OL
-        if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_UB) == X_OUT_FAULT_SHORT_UB))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[0].u8_is_active = TRUE;
+        if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_UB_OL) == X_OUT_FAULT_SHORT_UB_OL))
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[0].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = FALSE;
 
         // SHORT TO GND
         if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_GND) == X_OUT_FAULT_SHORT_GND))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[1].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_GND].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[1].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_GND].u8_is_active = FALSE;
 
         // OPEN LOAD
         if (((u32_hwOutputFault & X_OUT_FAULT_OPEN_LOAD) == X_OUT_FAULT_OPEN_LOAD))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[2].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[2].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = FALSE;
 
         // OVERCURRENT
         if (((u32_hwOutputFault & X_OUT_FAULT_OVERCURRENT) == X_OUT_FAULT_OVERCURRENT))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[3].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OC].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[3].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OC].u8_is_active = FALSE;
 
         // PWM FAULT
         if (((u32_hwOutputFault & X_OUT_FAULT_DUTY_CYCLE_OOOB) == X_OUT_FAULT_DUTY_CYCLE_OOOB))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[4].u8_is_active = TRUE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_DC_OOB].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[4].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_DC_OOB].u8_is_active = FALSE;
     }
 
     else if (s16_Error == C_NO_ERR && !u32_hwOutputFault)
     {
         at_vehicleOutputs[u8_output].t_fault.u8_fault_status = FALSE;
 
-        for (uint8 i = 0; i < MAX_NUM_FMI; i++)
+        for (uint8 i = 0; i < e_NUM_OUTFAULTS; i++)
             at_vehicleOutputs[u8_output].t_fault.t_fmi[i].u8_is_active = FALSE;
     }
+
     return s16_Error;
+}
+
+sint16 check_uextFaultStatus(uint8 u8_uext)
+{
+    sint16 s16_error = C_NO_ERR;
+    uint32 u32_uextFault = 0;
+
+    x_uext_get_active_faults(at_uext[u8_uext].u8_id, &u32_uextFault);
+
+    if(u32_uextFault)
+    {
+        at_uext[u8_uext].t_fault.u8_fault_status = TRUE;
+
+        if (((u32_uextFault & X_UEXT_FAULT_VOLTAGE_TOO_HIGH) == X_UEXT_FAULT_VOLTAGE_TOO_HIGH))
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_HIGH].u8_is_active = TRUE;
+        else
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_HIGH].u8_is_active = FALSE;
+
+        if (((u32_uextFault & X_UEXT_FAULT_VOLTAGE_TOO_LOW) == X_UEXT_FAULT_VOLTAGE_TOO_LOW))
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_LOW].u8_is_active = TRUE;
+        else
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_LOW].u8_is_active = FALSE;
+    }
+    else if(!u32_uextFault)
+    {
+        at_uext[u8_uext].t_fault.u8_fault_status = FALSE;
+
+        for (uint8 i = 0; i < e_NUM_UEXTFAULTS; i++)
+            at_uext[u8_uext].t_fault.t_fmi[i].u8_is_active = FALSE;
+    }
+
+    return s16_error;
 }
 
 // Getter Functions ------------------------------------------------------------------------

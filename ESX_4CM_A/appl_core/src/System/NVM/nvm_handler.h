@@ -44,6 +44,9 @@
 #include "power_assist_control.h"
 #include "suction_fan_control.h"
 #include "misc_control.h"
+#include "propulsion_control.h"
+#include "cooling_fan_control.h"
+#include "front_sweeps_control.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 /* -- Types --------------------------------------------------------------------------------------------------------- */
@@ -54,6 +57,9 @@ extern T_Config_StickBoxControl    gt_stickBConfig;        //!< Global configura
 extern T_Config_PowerAssistControl gt_paConfig;            //!< Global configuration for Power Assist Control
 extern T_Config_SFan               gt_suctionFanConfig;    //!< Global configuration for Suction Fan
 extern T_Config_MiscrControl       gt_miscConfig;          //!< Global configuration for Miscellaneous functions
+extern T_Config_Propulsion         gt_propConfig;          //!< Global configuraiton for the Propulsion Control
+extern T_Config_CF                 gt_coolingFanConfig;    //!< Global configuration for the Cooling Fan Control
+extern T_Config_FS                 gt_fsConfig;            //!<Front Sweeps Configuration Structure
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_nvmParameters(void);

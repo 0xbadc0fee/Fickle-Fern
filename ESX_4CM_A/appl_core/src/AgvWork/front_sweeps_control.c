@@ -56,7 +56,9 @@ static T_FrontSweepsControl mt_front_sweeps;  //!<Global persistent state for Fr
  *
  *  \return s16_error Error code
  */
-sint16 init_frontSweepsControl(T_CANDevices *_can_dev, T_ChkPoints_FSweeps *_chkFrontSweeps)
+sint16 init_frontSweepsControl(T_CANDevices        *_can_dev,
+                               T_ChkPoints_FSweeps *_chkFrontSweeps,
+                               T_Config_FS         *_fsConfig)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -71,6 +73,9 @@ sint16 init_frontSweepsControl(T_CANDevices *_can_dev, T_ChkPoints_FSweeps *_chk
 
     //populate local copy of checkpoints
     mt_front_sweeps.pt_cp_frontsweeps = _chkFrontSweeps;
+
+    //populate local copy of nvm
+    mt_front_sweeps.pt_config = _fsConfig;
 
     s16_error += rampInit(&mt_front_sweeps.t_sweeps_ramp,
     FRONT_SWEEPS_RAMP_RATE,
@@ -114,7 +119,7 @@ sint16 update_frontSweepsControl(void)
     get_shaftDriveStatus(&u8_shaft_drive);
 
     // FR-3.4 Sweep Target Speed to zero when Shaft Drive Enable or Drum V-Sweep Enable is disabled.
-    if((u8_enable == TRUE) && (u8_shaft_drive == TRUE))
+    if((u8_enable == TRUE) && (u8_shaft_drive == TRUE) && mt_front_sweeps.pt_config->u8_fs_installed)
     {
         f32_target_cmd_pct = CLAMP_F32(f32_req, FRONT_SWEEPS_MIN, FRONT_SWEEPS_MAX);
     }

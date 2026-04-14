@@ -127,7 +127,7 @@ int main(void)
         s16_Error += init_augerControl        (&gt_can_devs);
         s16_Error += init_lightControl        (&gt_can_devs);
         s16_Error += init_cChainsControl      (&gt_can_devs, &gt_cleaningShaftCheckpoints);
-        s16_Error += init_frontSweepsControl  (&gt_can_devs, &gt_frontSweepsCheckpoints);
+        s16_Error += init_frontSweepsControl  (&gt_can_devs, &gt_frontSweepsCheckpoints, &gt_fsConfig);
         s16_Error += init_rotaryTrapControl   (&gt_can_devs, &gt_rotaryTrapCheckpoints);
         s16_Error += init_stickBControl       (&gt_can_devs, &gt_stickBConfig);
         s16_Error += init_stickRemoverControl (&gt_can_devs);
@@ -136,7 +136,7 @@ int main(void)
         s16_Error += init_suctionFanControl   (&gt_can_devs, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
         s16_Error += init_engineStarterControl(&gt_can_devs, &gt_engineStarterCheckpoints);
         s16_Error += init_throttleControl     (&gt_can_devs, &gt_throttleCheckpoints);
-        s16_Error += init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints);
+        s16_Error += init_coolingFanControl	  (&gt_can_devs, &gt_coolingFanCheckpoints, &gt_coolingFanConfig);
         s16_Error += init_miscControl		  (&gt_can_devs, &gt_miscCheckpoints, &gt_miscConfig);
     }
 

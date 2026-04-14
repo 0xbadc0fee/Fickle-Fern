@@ -168,7 +168,7 @@ sint16 update_alarmHandler(void)
         if(!u8_alarmFound)
         {
             //set active flags for output alarms
-            for(uint16 k = 0; k<u8_num_outputs; k++)
+            for(uint16 k = 0; k<u8_num_inputs; k++)
             {
                 if(at_vehicleInputs[k].t_fault.u8_dm1_enable)
                 {

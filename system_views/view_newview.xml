@@ -14,6 +14,7 @@
             <active-node state="false"/>
             <active-node state="false"/>
             <active-node state="false"/>
+            <active-node state="false"/>
         </active-nodes>
         <node-update-information>
             <node-specific-update-information position="0">
@@ -77,6 +78,19 @@
                 </pem-file>
             </node-specific-update-information>
             <node-specific-update-information position="4">
+                <data-block-paths/>
+                <param-sets/>
+                <file-based-paths/>
+                <skip-update-of-files/>
+                <pem-file skip="false">
+                    <path/>
+                    <states>
+                        <security>no-change</security>
+                        <debugger>no-change</debugger>
+                    </states>
+                </pem-file>
+            </node-specific-update-information>
+            <node-specific-update-information position="5">
                 <data-block-paths/>
                 <param-sets/>
                 <file-based-paths/>
@@ -180,13 +194,69 @@
                             </box>
                             <data-pool-elements>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="8" element="1"/>
+                                    <index node="0" data-pool="0" list="9" element="1"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
                                     <hal-channel-name/>
                                     <scaling use-default="true" factor="1" offset="0">
                                         <unit>%</unit>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>default</type>
+                    </label>
+                    <label show-caption="true" show-unit="true">
+                        <base>
+                            <box>
+                                <position x="1031.3043478260875" y="108.69565217391306"/>
+                                <size width="150" height="84"/>
+                                <zorder value="8"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="10" element="0"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit>%</unit>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>default</type>
+                    </label>
+                    <label show-caption="true" show-unit="true">
+                        <base>
+                            <box>
+                                <position x="1035.2173913043484" y="219.56521739130437"/>
+                                <size width="150" height="84"/>
+                                <zorder value="9"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="10" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
                                     </scaling>
                                     <display-formatter is-active="false">
                                         <string/>
@@ -265,6 +335,20 @@
                                     </display-formatter>
                                     <display-name/>
                                 </data-pool-element>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="1" list="0" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
                             </data-pool-elements>
                             <display-style>opensyde</display-style>
                         </base>
@@ -273,10 +357,11 @@
                             <data-set-selection value="-1"/>
                             <data-set-selection value="-1"/>
                             <data-set-selection value="-1"/>
+                            <data-set-selection value="-1"/>
                         </data-set-selections>
                         <values>
                             <value array="false" value="7">
-                                <type>float32</type>
+                                <type>uint8</type>
                             </value>
                             <value array="false" value="0">
                                 <type>uint8</type>
@@ -285,6 +370,9 @@
                                 <type>uint8</type>
                             </value>
                             <value array="false" value="1">
+                                <type>uint8</type>
+                            </value>
+                            <value array="false" value="0">
                                 <type>uint8</type>
                             </value>
                         </values>
@@ -672,14 +760,35 @@
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="1">
-                <id node="0" data-pool="0" list="8" element="1"/>
-                <threshold array="false" value="6553">
-                    <type>uint16</type>
+                <id node="0" data-pool="0" list="9" element="1"/>
+                <threshold array="false" value="inf">
+                    <type>float32</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="10" element="0"/>
+                <threshold array="false" value="10">
+                    <type>float32</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="10" element="1"/>
+                <threshold array="false" value="10">
+                    <type>float32</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
                 <id node="0" data-pool="1" list="0" element="0"/>
+                <threshold array="false" value="25">
+                    <type>uint8</type>
+                </threshold>
+                <transmission-mode>manual</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="0">
+                <id node="0" data-pool="1" list="0" element="1"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
                 </threshold>

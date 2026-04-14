@@ -2,10 +2,11 @@
 <opensyde-dp-ui-definition>
     <file-version>1</file-version>
     <data-pool>
-        <lists length="6">
+        <lists length="9">
             <list>
-                <data-elements length="1">
-                    <data-element auto_min_max_active="true"/>
+                <data-elements length="2">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
                 </data-elements>
             </list>
             <list>
@@ -21,18 +22,44 @@
             <list>
                 <data-elements length="1">
                     <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="7">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
                 </data-elements>
             </list>
             <list>
                 <data-elements length="3">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="3">
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
+                </data-elements>
+            </list>
+            <list>
+                <data-elements length="5">
+                    <data-element auto_min_max_active="true"/>
+                    <data-element auto_min_max_active="true"/>
                     <data-element auto_min_max_active="true"/>
                     <data-element auto_min_max_active="true"/>
                     <data-element auto_min_max_active="true"/>
                 </data-elements>
             </list>
             <list>
-                <data-elements length="2">
-                    <data-element auto_min_max_active="true"/>
+                <data-elements length="1">
                     <data-element auto_min_max_active="true"/>
                 </data-elements>
             </list>

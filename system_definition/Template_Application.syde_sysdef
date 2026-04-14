@@ -3,12 +3,13 @@
     <file-version>3</file-version>
     <properties name-max-char-limit="31"/>
     <node-groups length="0"/>
-    <nodes length="5">
+    <nodes length="6">
         <node>node_esx_4cm_a/node_core.xml</node>
         <node>node_joystick_js6000/node_core.xml</node>
         <node>node_button_panel_8/node_core.xml</node>
         <node>node_engine/node_core.xml</node>
         <node>node_display/node_core.xml</node>
+        <node>node_tcg_4/node_core.xml</node>
     </nodes>
     <buses length="2">
         <bus useable-for-routing="true">

@@ -101,10 +101,30 @@ typedef struct
 {
     float32 f32_wheel_rpm;                    //!<Wheel RPM Checkpoint
     float32 f32_wheel_speed_10;               //!<Wheel Speed MPH x 10 Checkpoint
-
-    uint8 u8_edc_enable;                      //!<EDC Enable/Disable Status Checkpoint
+    uint8   u8_edc_enable;                    //!<EDC Enable/Disable Status Checkpoint
+    uint16  u16_edc_fwd_curr;                 //!<Fwd Current Applied to EDC Valve A
+    uint16  u16_edc_rev_curr;                 //!<Rev Current Applied to EDC Valve B
 
 }T_ChkPoints_Propulsion;
+
+/**
+ * \struct Config_Propulsion
+ * \brief NVM Configuration Structure - Propulsion Control
+ *
+ * This structure represents all nvm parameter that are relevant
+ * to propulsion control.
+ */
+typedef struct
+{
+    float32 f32_tire_diameter;
+    uint16  u16_max_curr_fwd;
+    uint16  u16_max_curr_rev;
+    uint16  u16_min_curr_fwd;
+    uint16  u16_min_curr_rev;
+    uint8   u8_ramp_inc_time;
+    uint8   u8_ramp_dec_time;
+
+}T_Config_Propulsion;
 
 /**
  * \struct PropulsionControl
@@ -174,6 +194,9 @@ typedef struct
 
     //Control Checkpoints
     T_ChkPoints_Propulsion *pt_chkProp;     //!<Propulsion Control Checkpoints Structure
+
+    //Control NVM
+    T_Config_Propulsion *pt_config;
 }T_PropulsionControl;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */

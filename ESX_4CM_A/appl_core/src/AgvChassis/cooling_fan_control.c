@@ -65,7 +65,7 @@ static T_CoolingFanControl mt_cf;  //!<Module-local instance of the cooling fan 
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_chkCoolingFan)
+sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_chkCoolingFan, T_Config_CF *_cfConfig)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -90,6 +90,9 @@ sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_
 
     //Populate local copy of checkpoints
     mt_cf.pt_cp_cooling = _chkCoolingFan;
+
+    //Populate local copy of nvm
+    mt_cf.pt_config = _cfConfig;
 
     //Initialize local variables
 
@@ -174,6 +177,8 @@ sint16 update_coolingFanControl(void)
     set_outputValue("COOL_FAN_DIRECTION",  mt_cf.f32_dir_cmd);
 
     // FR-7.15 CAN/display outputs
+
+    mt_cf.pt_cp_cooling->f32_hyd_oil_temp  = mt_cf.f32_hydoil_temp;
     *(mt_cf.pu16_disp_hyd_oil_temp_degC)   = mt_cf.f32_hydoil_temp;
     *(mt_cf.pu8_disp_fan_reverse_ind)      = (mt_cf.f32_dir_cmd == CF_DIR_REVERSE) ? TRUE : FALSE;
     *(mt_cf.pu8_disp_cooling_system_fault) = mt_cf.u8_sequence_fault;
@@ -189,6 +194,8 @@ void calc_coolingDemand(void)
     sint16 s16_error = C_NO_ERR;
     uint8 u8_hydoil_fault = 0;
 
+    float32 f32_sensor_resistance = 0;
+
     //Get all temperatures
     mt_cf.f32_coolant_temp = (float32)*(mt_cf.pu8_engine_coolant_temp_degC) - 40.0F;
     mt_cf.f32_intake_temp = (float32)*(mt_cf.pu8_intake_manifold_temp_degC) - 40.0F;
@@ -200,6 +207,9 @@ void calc_coolingDemand(void)
         get_inputValue("HYD_OIL_TEMP", &mt_cf.f32_hydoil_temp);
     }
 
+    f32_sensor_resistance = (6800.0f*mt_cf.f32_hydoil_temp)/(5000.0f - mt_cf.f32_hydoil_temp);
+    mt_cf.f32_hydoil_temp = (3.35e-5f * (float32)pow(f32_sensor_resistance,2)) + (0.164f * f32_sensor_resistance) - 197.0f;
+    mt_cf.f32_hydoil_temp = mt_cf.f32_hydoil_temp + mt_cf.pt_config->f32_sensor_cal;
 
     s16_error += movingAdvFlt(&mt_cf.t_hyd_oil_temp_filt, mt_cf.f32_hydoil_temp);
     mt_cf.f32_hydoil_temp = mt_cf.t_hyd_oil_temp_filt.f32_out;
@@ -311,10 +321,9 @@ void update_coolingFanReversal()
         mt_cf.u8_cleanout_active = TRUE;
     }
 
-    //TODO_STW: Check if CF_AUTO_CLEANOUT_DELAY_MS needs to be replaced with NVM Parameter
     // FR-7.6/7 automatic cleanout after preset forward time while machine is in motion
-    else if(((u32_now_ms - mt_cf.u32_fwd_run_starttime) >= CF_AUTO_CLEANOUT_DELAY_MS) &&
-              (u8_machine_in_motion)                                                           &&
+    else if(((u32_now_ms - mt_cf.u32_fwd_run_starttime) >= (mt_cf.pt_config->u16_auto_cycle_time * 1000)) &&
+              (u8_machine_in_motion)                                                                      &&
               (!mt_cf.u8_cleanout_active))
     {
         mt_cf.e_fanstate = CF_STATE_RAMP_DOWN;
@@ -425,9 +434,8 @@ void update_coolingFanReversal()
                 mt_cf.e_prev_fanstate = mt_cf.e_fanstate;
             }
 
-            //TODO_STW: Check if CF_REV_RUN_TIME needs to be replaced with NVM Parameter
-            //reverse for 10 seconds then ramp back down
-            if((u32_now_ms - mt_cf.u32_rev_run_starttime) > CF_REV_RUN_TIME)
+            //reverse for configured time then ramp back down
+            if((u32_now_ms - mt_cf.u32_rev_run_starttime) > (mt_cf.pt_config->u8_purge_active_time * 1000))
                 mt_cf.e_fanstate = CF_STATE_RAMP_DOWN;
 
             break;

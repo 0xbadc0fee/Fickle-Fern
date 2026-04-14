@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-node-ui-definition>
+    <file-version>1</file-version>
+    <node>
+        <com-protocols length="0"/>
+        <data-pools length="0"/>
+        <box>
+            <position x="913" y="120"/>
+            <size width="165" height="110"/>
+            <zorder value="10"/>
+        </box>
+        <busconnections>
+            <connection type="can" busnumber="0">
+                <interaction-points>
+                    <interaction-point x="992" y="234.49000000000001"/>
+                    <interaction-point x="991" y="320"/>
+                </interaction-points>
+            </connection>
+        </busconnections>
+    </node>
+</opensyde-node-ui-definition>
