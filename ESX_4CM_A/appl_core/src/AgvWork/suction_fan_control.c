@@ -284,6 +284,13 @@ sint16 calc_sfSpeed(void)
 {
     sint16 s16_error = C_NO_ERR;
     float32 f32_mRPM = 0.0;
+    float32 f32_ratio = 209.0;
+
+    //determine what the suction fan drive ratio actually is
+    if(mt_suction_fan.pt_nvm->u8_6_7_enable)
+        f32_ratio = 209.0;
+    else
+        f32_ratio = 310.0;
 
     s16_error += get_inputValue("FAN_SPEED", &mt_suction_fan.f32_fan_frequency);
 
@@ -291,7 +298,7 @@ sint16 calc_sfSpeed(void)
 
     s16_error += movingAdvFlt(&mt_suction_fan.t_speed_filter, f32_mRPM);
 
-    mt_suction_fan.f32_shaft_rpm = mt_suction_fan.t_speed_filter.f32_out / mt_suction_fan.pt_nvm->f32_drive_ratio;
+    mt_suction_fan.f32_shaft_rpm = mt_suction_fan.t_speed_filter.f32_out / f32_ratio;
 
     return s16_error;
 }

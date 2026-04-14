@@ -112,7 +112,7 @@ sint16 update_powerAssistControl(void)
        uint8 u8_power_assist_cmd = POWER_ASSIST_DISABLED;
        uint8 u8_high_gear_enabled = HIGH_GEAR_DISABLED;
        uint8 u8_ign_on = FALSE;
-       uint8 u8_high_gear_status = FALSE; //TODO_STW Add getter HIGH GEAR ENABLE
+       uint8 u8_high_gear_status = FALSE;
 
        uint8 u8_power_assist_output_fault = FALSE;
        uint8 u8_traction_output_fault = FALSE;

@@ -101,8 +101,9 @@ typedef enum
  */
 typedef struct
 {
-        uint8 u8_leadsensornumber; //!<Lead Sensor Number Checkpoint
-        float32 f32_cooling_demand_pct;//!<Cooling Demand Percentage Checkpoint
+    uint8 u8_leadsensornumber; //!<Lead Sensor Number Checkpoint
+    float32 f32_cooling_demand_pct;//!<Cooling Demand Percentage Checkpoint
+    float32 f32_hyd_oil_temp;   //!<Hydraulic Oil Temperature Checkpoint
 
 }T_ChkPoints_CoolingFan;
 
@@ -113,8 +114,9 @@ typedef struct
  */
 typedef struct
 {
-        uint8  u8_purge_active_time; //!< Duration of the active purge/cleanout cycle
-        uint16 u16_auto_cycle_time;  //!< Configured time interval between automatic cleanout cycles
+    uint8  u8_purge_active_time; //!< Duration of the active purge/cleanout cycle
+    uint16 u16_auto_cycle_time;  //!< Configured time interval between automatic cleanout cycles
+    float32 f32_sensor_cal;    //!<Hydraulic Oil Temperature Sensor Cal Offset
 }T_Config_CF;
 
 /**
@@ -131,61 +133,62 @@ typedef struct
 typedef struct
 {
 
-        //TX CAN Variables
-        uint16  *pu16_disp_hyd_oil_temp_degC;   //!<Hydraulic Oil Temperature Degree C
-        uint8   *pu8_disp_fan_reverse_ind;      //!<Fan Reverse
-        uint8   *pu8_disp_cooling_system_fault; //!<Cooling System Fault
-        uint8   *pu8_disp_hyd_oil_overtemp;     //!<Hydraulic Oil Temperature Over Temperature
-        uint8   *pu8_disp_intake_overtemp;      //!<Intake Over Temperature
-        uint8   *pu8_disp_coolant_overtemp;     //!<Engine Coolant Over Temperature
+    //TX CAN Variables
+    uint16  *pu16_disp_hyd_oil_temp_degC;   //!<Hydraulic Oil Temperature Degree C
+    uint8   *pu8_disp_fan_reverse_ind;      //!<Fan Reverse
+    uint8   *pu8_disp_cooling_system_fault; //!<Cooling System Fault
+    uint8   *pu8_disp_hyd_oil_overtemp;     //!<Hydraulic Oil Temperature Over Temperature
+    uint8   *pu8_disp_intake_overtemp;      //!<Intake Over Temperature
+    uint8   *pu8_disp_coolant_overtemp;     //!<Engine Coolant Over Temperature
 
-        //RX CAN Variables
-        uint8 *pu8_engine_coolant_temp_degC; //!<Engine Coolant Temperature RX
-        uint8 *pu8_intake_manifold_temp_degC;//!<Intake Manifold Temperature RX
-        uint8 *pu8_manual_purge_req;            //!<Manual Purge Request RX
+    //RX CAN Variables
+    uint8 *pu8_engine_coolant_temp_degC; //!<Engine Coolant Temperature RX
+    uint8 *pu8_intake_manifold_temp_degC;//!<Intake Manifold Temperature RX
+    uint8 *pu8_manual_purge_req;            //!<Manual Purge Request RX
 
-        //Local Control Variables
-        float32 f32_dir_cmd;         //!<Fan Direction Valve Output Command
-        float32 f32_speed_cmd;       //!< Fan Speed Control Valve Output Command
+    //Local Control Variables
+    float32 f32_dir_cmd;         //!<Fan Direction Valve Output Command
+    float32 f32_speed_cmd;       //!< Fan Speed Control Valve Output Command
 
-        //Cooling Demand Variables
-        float32 f32_hydoil_temp;        //!<Hydraulic Oil Temperature (deg C)
-        float32 f32_intake_temp;        //!<Engine Intake Temperature (deg C)
-        float32 f32_coolant_temp;       //!<Engine Coolant Temperature (deg C)
+    //Cooling Demand Variables
+    float32 f32_hydoil_temp;        //!<Hydraulic Oil Temperature (deg C)
+    float32 f32_intake_temp;        //!<Engine Intake Temperature (deg C)
+    float32 f32_coolant_temp;       //!<Engine Coolant Temperature (deg C)
 
-        float32 f32_hydoil_cmd;         //!< Hydraulic Oil Cooling Demand %
-        float32 f32_intake_cmd;         //!< Engine Intake Cooling Demand %
-        float32 f32_coolant_cmd;        //!< Engine Coolant Cooling Demand %
+    float32 f32_hydoil_cmd;         //!< Hydraulic Oil Cooling Demand %
+    float32 f32_intake_cmd;         //!< Engine Intake Cooling Demand %
+    float32 f32_coolant_cmd;        //!< Engine Coolant Cooling Demand %
 
-        float32 f32_cooling_demand;     //!< Maximum Cooling Demand %
+    float32 f32_cooling_demand;     //!< Maximum Cooling Demand %
 
-        //Fan Reverse / State Variables
-        E_CoolingFanRevState e_fanstate;       //!<Fan State
-        E_CoolingFanRevState e_prev_fanstate;  //!<Previous Fan State
+    //Fan Reverse / State Variables
+    E_CoolingFanRevState e_fanstate;       //!<Fan State
+    E_CoolingFanRevState e_prev_fanstate;  //!<Previous Fan State
 
-        uint8   u8_cleanout_active;            //!<Cleanout Active
-        uint8   u8_sequence_fault;             //!<Fan Control Sequence Error variable
+    uint8   u8_cleanout_active;            //!<Cleanout Active
+    uint8   u8_sequence_fault;             //!<Fan Control Sequence Error variable
 
-        uint32 u32_ramp_down_starttime;        //!<Start time of Ramp Down State
-        uint32 u32_ramp_up_starttime;          //!<Start time of Ramp Up State
-        uint32 u32_fwd_run_starttime;          //!<Start time of Run Forward State
-        uint32 u32_rev_run_starttime;          //!<Start time of Run Reverse State
-        uint32 u32_stop_starttime;             //!<Start time of Stopped State
+    uint32 u32_ramp_down_starttime;        //!<Start time of Ramp Down State
+    uint32 u32_ramp_up_starttime;          //!<Start time of Ramp Up State
+    uint32 u32_fwd_run_starttime;          //!<Start time of Run Forward State
+    uint32 u32_rev_run_starttime;          //!<Start time of Run Reverse State
+    uint32 u32_stop_starttime;             //!<Start time of Stopped State
 
-        //Control Checkpoints
-        T_ChkPoints_CoolingFan *pt_cp_cooling;  //!<Cooling Fan Control Checkpoints Structure
+    //Control Checkpoints
+    T_ChkPoints_CoolingFan *pt_cp_cooling;  //!<Cooling Fan Control Checkpoints Structure
+    T_Config_CF *pt_config;
 
-        //Ramp variables
-        T_RampState          t_speed_ramp;      //!<Fan Speed Ramp Config
-        T_MoveAvgFilter  t_hyd_oil_temp_filt;   //!<Hydraulic Oil Temperature Filter Config
-        float32 f32_hyd_buff[CF_HYD_BUF_LEN];   //!<Moving Average Buffer
+    //Ramp variables
+    T_RampState          t_speed_ramp;      //!<Fan Speed Ramp Config
+    T_MoveAvgFilter  t_hyd_oil_temp_filt;   //!<Hydraulic Oil Temperature Filter Config
+    float32 f32_hyd_buff[CF_HYD_BUF_LEN];   //!<Moving Average Buffer
 
 }T_CoolingFanControl;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_chkCoolingFan);
+sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_chkCoolingFan, T_Config_CF *_cfConfig);
 sint16 update_coolingFanControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_COOLING_FAN_CONTROL_H_ */

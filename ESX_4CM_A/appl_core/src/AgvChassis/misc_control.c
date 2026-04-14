@@ -85,16 +85,9 @@ sint16 update_filterMinder(void)
     {
         s16_error += get_inputValue("AIR_RESTRICT", &f32_raw);
 
-
-        //TODO_STW:Dashboard Config - Filter Sensor Fault Percentage
-        //TODO_STW:Dashboard Config - Filter Sensor High Deadband
-        //TODO_STW:Dashboard Config - Filter Sensor Low Calibration
-        //TODO_STW:Dashboard Config - Filter Sensor High Calibration
-
-
         // Convert raw input to restriction percent (0..100)
-        f32_filter_pct = ((100.0f / (FM_RAW_MAX-FM_RAW_MIN)) * f32_raw) -
-                         ((100.0f*FM_RAW_MIN)/(FM_RAW_MAX-FM_RAW_MIN));
+        f32_filter_pct = ((100.0f / (mt_misc.pt_config->u16_af_max_voltage-mt_misc.pt_config->u16_af_min_voltage)) * f32_raw) -
+                         ((100.0f*FM_RAW_MIN)/(mt_misc.pt_config->u16_af_max_voltage-mt_misc.pt_config->u16_af_min_voltage));
         f32_filter_pct = CLAMP(f32_filter_pct, 0.0F, 100.0F);
 
         // Filter restriction percent
@@ -104,7 +97,7 @@ sint16 update_filterMinder(void)
         gt_Dashboard_DataPoolValues.t_GeneralTestingValues.s16_test2 = (sint16)mt_misc.t_minder_flt.f32_out;
 
         // If filtered output is greater than stored max for 1000 ms, reset stored max to filter value
-        if(mt_misc.t_minder_flt.f32_out > mt_misc.pt_nvm_misc_control->u8_filter_rstn_max)
+        if(mt_misc.t_minder_flt.f32_out > mt_misc.pt_config->u8_filter_rstn_max)
         {
             if(mt_misc.u8_minder_timer_active == FALSE)
             {
@@ -113,7 +106,7 @@ sint16 update_filterMinder(void)
             }
             else if((u32_now_ms - mt_misc.u32_minder_timer_start_ms) >= 1000u)
             {
-                mt_misc.pt_nvm_misc_control->u8_filter_rstn_max = mt_misc.t_minder_flt.f32_out;
+                mt_misc.pt_config->u8_filter_rstn_max = mt_misc.t_minder_flt.f32_out;
                 //write_nvmParameters();
             }
         }
@@ -124,18 +117,18 @@ sint16 update_filterMinder(void)
         }
 
         // Service on if max is greater than threshold
-        u8_service_filter_on = (mt_misc.pt_nvm_misc_control->u8_filter_rstn_max >= FM_SERVICE_THRESH) ? TRUE : FALSE;
+        u8_service_filter_on = (mt_misc.pt_config->u8_filter_rstn_max >= FM_SERVICE_THRESH) ? TRUE : FALSE;
 
         //needed?
-        u8_fault_active = (mt_misc.t_minder_flt.f32_out <= FM_FAULT_THRESH) ? TRUE : FALSE;
+        u8_fault_active = (mt_misc.t_minder_flt.f32_out <=  mt_misc.pt_config->u8_af_fault_pct) ? TRUE : FALSE;
     }
 
     // Outputs
-    *(mt_misc.pf32_filter_restriction_pct) = mt_misc.pt_nvm_misc_control->u8_filter_rstn_max;
+    *(mt_misc.pf32_filter_restriction_pct) = mt_misc.pt_config->u8_filter_rstn_max;
     *(mt_misc.pu8_service_filter_status) = u8_service_filter_on;
 
     //Checkpoints
-    mt_misc.pt_cp_misc->f32_filter_rest_pct = mt_misc.pt_nvm_misc_control->u8_filter_rstn_max;
+    mt_misc.pt_cp_misc->f32_filter_rest_pct = mt_misc.pt_config->u8_filter_rstn_max;
     mt_misc.pt_cp_misc->f32_minder_gauge_pct= mt_misc.t_minder_flt.f32_out;
     mt_misc.pt_cp_misc->u8_service_filter_status = u8_service_filter_on;
 
@@ -169,11 +162,9 @@ sint16 update_fuelLevel(void)
     {
         s16_error += get_inputValue("FUEL_LEVEL", &f32_raw_fuel_level);
 
-        //TODO_STW:Dashboard Config - Fuel Gauge High Voltage
-
         // FR-23.4 Read fuel level sensor input and convert to normalized percentage output
-        f32_fuel_pct = ((100.0f / (FUEL_RAW_MAX-FUEL_RAW_MIN)) * f32_raw_fuel_level) -
-                         ((100.0f*FUEL_RAW_MIN)/(FUEL_RAW_MAX-FUEL_RAW_MIN));
+        f32_fuel_pct = ((100.0f / (mt_misc.pt_config->u16_fuel_full_voltage-FUEL_RAW_MIN)) * f32_raw_fuel_level) -
+                         ((100.0f*FUEL_RAW_MIN)/(mt_misc.pt_config->u16_fuel_full_voltage-FUEL_RAW_MIN));
 
         f32_fuel_pct = CLAMP(f32_fuel_pct, 0.0F, 100.0F);
 
@@ -268,7 +259,7 @@ sint16 init_miscControl(T_CANDevices *_can_devs, T_ChkPoints_Mis *_chk_misc,T_Co
     mt_misc.u8_low_fuel_timer_active = FALSE;
 
     //Populate local copy of nvm variables
-    mt_misc.pt_nvm_misc_control= _nvm_misc_control;
+    mt_misc.pt_config= _nvm_misc_control;
 
     //Populate local copy of checkpoints
     mt_misc.pt_cp_misc = _chk_misc;

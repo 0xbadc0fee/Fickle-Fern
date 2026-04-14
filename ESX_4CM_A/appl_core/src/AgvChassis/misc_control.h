@@ -102,8 +102,11 @@ typedef struct
  */
 typedef struct
 {
-        uint16 u16_fuel_high_deadband; //!<Configuration parameter for Fuel Level deadband
+        uint16 u16_fuel_full_voltage; //!<Configuration parameter for Fuel Level deadband
         uint8  u8_filter_rstn_max; //!<Configuration parameter for Filter Minder
+        uint16 u16_af_max_voltage;
+        uint16 u16_af_min_voltage;
+        uint8 u8_af_fault_pct;
 
 }T_Config_MiscrControl;
 
@@ -121,7 +124,7 @@ typedef struct
 typedef struct
 {
         //TX CAN Variables
-        uint8 *pu8_filter_minder_gauge;  //!<Filter Minder Gauge 255
+        uint8   *pu8_filter_minder_gauge;  //!<Filter Minder Gauge 255
         float32 *pf32_filter_restriction_pct;//!<Filter Restriction Percentage
         uint8   *pu8_service_filter_status;//!<Service Filter Status
 
@@ -155,7 +158,7 @@ typedef struct
         uint32 u32_minder_timer_start_ms;//!<Filter Minder timer
 
         //NVM Configuration Parameters
-        T_Config_MiscrControl *pt_nvm_misc_control;      //!<Header Control Configuration Structure
+        T_Config_MiscrControl *pt_config;      //!<Header Control Configuration Structure
 
         //Control Checkpoints
         T_ChkPoints_Mis *pt_cp_misc; //!<Miscellaneous Control Checkpoints Structure

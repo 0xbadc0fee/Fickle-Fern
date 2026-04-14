@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_194435069 mt_Variable;
+static T_osy_non_existing_type_1430172603 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-DASHBOARD_PROJECT_ID_194435069
+DASHBOARD_PROJECT_ID_1430172603
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -88,7 +88,7 @@ static const T_Dashboard_FrontSweepsControl_Values mt_FrontSweepsControlMinValue
 static const T_Dashboard_FrontSweepsControl_Values mt_FrontSweepsControlMaxValues =
 {
    255U,   ///< speed_cmd (Checkpoint - VSweeps Speed Command_)
-   255U    ///< p_sweeps_installed (Parameter - VSweeps Option Installed)
+   1U    ///< p_sweeps_installed (Parameter - VSweeps Option Installed)
 };
 
 ///Minimum values
@@ -188,7 +188,7 @@ static const T_Dashboard_SuctionFanControl_Values mt_SuctionFanControlMinValues 
    0U,   ///< pwm_status (Checpoint - Suction Fan Output Value)
    4U,   ///< p_sf_inctime (Parameter - Suction Fan Ramp Up Time_)
    4U,   ///< p_sf_dectime (Parameter - Suction Fan Ramp Down Time)
-   0.0F    ///< p_sf_ratio (Parameter - Suction Fan Drive Ratio)
+   0U    ///< p_sf_6_7_enable (Parameter - Suction Fan Drive Ratio)
 };
 
 ///Maximum values
@@ -198,25 +198,29 @@ static const T_Dashboard_SuctionFanControl_Values mt_SuctionFanControlMaxValues 
    65535U,   ///< pwm_status (Checpoint - Suction Fan Output Value)
    8U,   ///< p_sf_inctime (Parameter - Suction Fan Ramp Up Time_)
    8U,   ///< p_sf_dectime (Parameter - Suction Fan Ramp Down Time)
-   500.0F    ///< p_sf_ratio (Parameter - Suction Fan Drive Ratio)
+   1U    ///< p_sf_6_7_enable (Parameter - Suction Fan Drive Ratio)
 };
 
 ///Minimum values
 static const T_Dashboard_CoolingFanControl_Values mt_CoolingFanControlMinValues =
 {
    0U,   ///< lead_sensor_id (Checkpoint - Lead Cooling Drive Sensor ID)
-   -3.40282347e+38F,   ///< cooling_demand_pct (Checkpoint - Cooling Demand)
+   0.0F,   ///< cooling_demand_pct (Checkpoint - Cooling Demand)
+   -3.40282347e+38F,   ///< hyd_oil_temp (Checkpoint - Hydraulic Oil Temperature)
    60U,   ///< p_purge_cycle_time (Parameter - Purge Cycle Time)
-   1U    ///< p_purge_active_time (Parameter - Purge Active Time)
+   1U,   ///< p_purge_active_time (Parameter - Purge Active Time)
+   -100.0F    ///< p_hyd_oil_cal (Parameter - Hydraulic Oil Temp Sensor Cal Value)
 };
 
 ///Maximum values
 static const T_Dashboard_CoolingFanControl_Values mt_CoolingFanControlMaxValues =
 {
    255U,   ///< lead_sensor_id (Checkpoint - Lead Cooling Drive Sensor ID)
-   3.40282347e+38F,   ///< cooling_demand_pct (Checkpoint - Cooling Demand)
+   100.0F,   ///< cooling_demand_pct (Checkpoint - Cooling Demand)
+   3.40282347e+38F,   ///< hyd_oil_temp (Checkpoint - Hydraulic Oil Temperature)
    1200U,   ///< p_purge_cycle_time (Parameter - Purge Cycle Time)
-   30U    ///< p_purge_active_time (Parameter - Purge Active Time)
+   30U,   ///< p_purge_active_time (Parameter - Purge Active Time)
+   100.0F    ///< p_hyd_oil_cal (Parameter - Hydraulic Oil Temp Sensor Cal Value)
 };
 
 ///Minimum values
@@ -231,11 +235,9 @@ static const T_Dashboard_MiscControl_Values mt_MiscControlMinValues =
    0U,   ///< sw_major_revision (Variable description)
    0U,   ///< sw_minor_revision (Variable description)
    0U,   ///< p_filter_fault_pct (Variable description)
-   0U,   ///< p_fuel_high_dbnd (Variable description)
    0U,   ///< p_filter_low_cal (Variable description)
    0U,   ///< p_filter_high_cal (Variable description)
-   0U,   ///< p_fuel_full_voltage (Variable description)
-   0U    ///< p_hyd_oil_cal (Variable description)
+   0U    ///< p_fuel_full_voltage (Variable description)
 };
 
 ///Maximum values
@@ -250,11 +252,9 @@ static const T_Dashboard_MiscControl_Values mt_MiscControlMaxValues =
    255U,   ///< sw_major_revision (Variable description)
    255U,   ///< sw_minor_revision (Variable description)
    100U,   ///< p_filter_fault_pct (Variable description)
-   100U,   ///< p_fuel_high_dbnd (Variable description)
-   100U,   ///< p_filter_low_cal (Variable description)
-   100U,   ///< p_filter_high_cal (Variable description)
-   5000U,   ///< p_fuel_full_voltage (Variable description)
-   255U    ///< p_hyd_oil_cal (Variable description)
+   5000U,   ///< p_filter_low_cal (Variable description)
+   5000U,   ///< p_filter_high_cal (Variable description)
+   5000U    ///< p_fuel_full_voltage (Variable description)
 };
 
 ///Minimum values
@@ -304,7 +304,7 @@ static const T_osy_dpa_element_definition mat_DataPoolHeaderControlElements[DASH
 static const T_osy_dpa_element_definition mat_DataPoolFrontSweepsControlElements[DASHBOARD_FRONTSWEEPSCONTROL_NUMBER_OF_ELEMENTS] =
 {
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Dashboard_DataPoolValues.t_FrontSweepsControlValues.u8_speed_cmd, &mt_FrontSweepsControlMinValues.u8_speed_cmd, &mt_FrontSweepsControlMaxValues.u8_speed_cmd },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Dashboard_DataPoolValues.t_FrontSweepsControlValues.u8_p_sweeps_installed, &mt_FrontSweepsControlMinValues.u8_p_sweeps_installed, &mt_FrontSweepsControlMaxValues.u8_p_sweeps_installed }
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_FrontSweepsControlValues.u8_p_sweeps_installed, &mt_FrontSweepsControlMinValues.u8_p_sweeps_installed, &mt_FrontSweepsControlMaxValues.u8_p_sweeps_installed }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolRotaryTrapElements[DASHBOARD_ROTARYTRAP_NUMBER_OF_ELEMENTS] =
@@ -354,15 +354,17 @@ static const T_osy_dpa_element_definition mat_DataPoolSuctionFanControlElements[
    { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u16_pwm_status, &mt_SuctionFanControlMinValues.u16_pwm_status, &mt_SuctionFanControlMaxValues.u16_pwm_status },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_p_sf_inctime, &mt_SuctionFanControlMinValues.u8_p_sf_inctime, &mt_SuctionFanControlMaxValues.u8_p_sf_inctime },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_p_sf_dectime, &mt_SuctionFanControlMinValues.u8_p_sf_dectime, &mt_SuctionFanControlMaxValues.u8_p_sf_dectime },
-   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 1U, 4U, &gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.f32_p_sf_ratio, &mt_SuctionFanControlMinValues.f32_p_sf_ratio, &mt_SuctionFanControlMaxValues.f32_p_sf_ratio }
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_SuctionFanControlValues.u8_p_sf_6_7_enable, &mt_SuctionFanControlMinValues.u8_p_sf_6_7_enable, &mt_SuctionFanControlMaxValues.u8_p_sf_6_7_enable }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolCoolingFanControlElements[DASHBOARD_COOLINGFANCONTROL_NUMBER_OF_ELEMENTS] =
 {
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.u8_lead_sensor_id, &mt_CoolingFanControlMinValues.u8_lead_sensor_id, &mt_CoolingFanControlMaxValues.u8_lead_sensor_id },
    { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.f32_cooling_demand_pct, &mt_CoolingFanControlMinValues.f32_cooling_demand_pct, &mt_CoolingFanControlMaxValues.f32_cooling_demand_pct },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.f32_hyd_oil_temp, &mt_CoolingFanControlMinValues.f32_hyd_oil_temp, &mt_CoolingFanControlMaxValues.f32_hyd_oil_temp },
    { OSY_DPA_ELEMENT_TYPE_UINT16, 1U, 2U, &gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.u16_p_purge_cycle_time, &mt_CoolingFanControlMinValues.u16_p_purge_cycle_time, &mt_CoolingFanControlMaxValues.u16_p_purge_cycle_time },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.u8_p_purge_active_time, &mt_CoolingFanControlMinValues.u8_p_purge_active_time, &mt_CoolingFanControlMaxValues.u8_p_purge_active_time }
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.u8_p_purge_active_time, &mt_CoolingFanControlMinValues.u8_p_purge_active_time, &mt_CoolingFanControlMaxValues.u8_p_purge_active_time },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 1U, 4U, &gt_Dashboard_DataPoolValues.t_CoolingFanControlValues.f32_p_hyd_oil_cal, &mt_CoolingFanControlMinValues.f32_p_hyd_oil_cal, &mt_CoolingFanControlMaxValues.f32_p_hyd_oil_cal }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolMiscControlElements[DASHBOARD_MISCCONTROL_NUMBER_OF_ELEMENTS] =
@@ -375,12 +377,10 @@ static const T_osy_dpa_element_definition mat_DataPoolMiscControlElements[DASHBO
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_brakes_engaged, &mt_MiscControlMinValues.u8_brakes_engaged, &mt_MiscControlMaxValues.u8_brakes_engaged },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_sw_major_revision, &mt_MiscControlMinValues.u8_sw_major_revision, &mt_MiscControlMaxValues.u8_sw_major_revision },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_sw_minor_revision, &mt_MiscControlMinValues.u8_sw_minor_revision, &mt_MiscControlMaxValues.u8_sw_minor_revision },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_filter_fault_pct, &mt_MiscControlMinValues.u8_p_filter_fault_pct, &mt_MiscControlMaxValues.u8_p_filter_fault_pct },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_fuel_high_dbnd, &mt_MiscControlMinValues.u8_p_fuel_high_dbnd, &mt_MiscControlMaxValues.u8_p_fuel_high_dbnd },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_filter_low_cal, &mt_MiscControlMinValues.u8_p_filter_low_cal, &mt_MiscControlMaxValues.u8_p_filter_low_cal },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_filter_high_cal, &mt_MiscControlMinValues.u8_p_filter_high_cal, &mt_MiscControlMaxValues.u8_p_filter_high_cal },
-   { OSY_DPA_ELEMENT_TYPE_UINT16, 1U, 2U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_fuel_full_voltage, &mt_MiscControlMinValues.u16_p_fuel_full_voltage, &mt_MiscControlMaxValues.u16_p_fuel_full_voltage },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_hyd_oil_cal, &mt_MiscControlMinValues.u8_p_hyd_oil_cal, &mt_MiscControlMaxValues.u8_p_hyd_oil_cal }
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 1U, 1U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_filter_fault_pct, &mt_MiscControlMinValues.u8_p_filter_fault_pct, &mt_MiscControlMaxValues.u8_p_filter_fault_pct },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 1U, 2U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_filter_low_cal, &mt_MiscControlMinValues.u16_p_filter_low_cal, &mt_MiscControlMaxValues.u16_p_filter_low_cal },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 1U, 2U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_filter_high_cal, &mt_MiscControlMinValues.u16_p_filter_high_cal, &mt_MiscControlMaxValues.u16_p_filter_high_cal },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 1U, 2U, &gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_fuel_full_voltage, &mt_MiscControlMinValues.u16_p_fuel_full_voltage, &mt_MiscControlMaxValues.u16_p_fuel_full_voltage }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolStickBoxControlElements[DASHBOARD_STICKBOXCONTROL_NUMBER_OF_ELEMENTS] =
@@ -419,7 +419,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Dashboard",  ///< name of Datapool
    DASHBOARD_NUMBER_OF_LISTS,
-   0xc8854e2bU, ///< CRC of Datapool definition
+   0x79c7f272U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    0U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

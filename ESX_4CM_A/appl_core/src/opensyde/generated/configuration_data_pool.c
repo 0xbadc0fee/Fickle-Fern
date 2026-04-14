@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_2645855571 mt_Variable;
+static T_osy_non_existing_type_3390792857 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-CONFIGURATION_PROJECT_ID_2645855571
+CONFIGURATION_PROJECT_ID_3390792857
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -36,20 +36,23 @@ OSY_DPA_CREATE_STATIC_DP_DEFINITION_INSTANCE_DATA(mt_DpDefinitionInstanceData)
 ///Minimum values
 static const T_Configuration_ElevatorConfig_Values mt_ElevatorConfigMinValues =
 {
-   -3.40282347e+38F    ///< max_current (Parameter description)
+   0U,   ///< vl3512_enable (Parameter description)
+   0U    ///< vl3514_enable (Parameter description)
 };
 
 ///Maximum values
 static const T_Configuration_ElevatorConfig_Values mt_ElevatorConfigMaxValues =
 {
-   3.40282347e+38F    ///< max_current (Parameter description)
+   1U,   ///< vl3512_enable (Parameter description)
+   1U    ///< vl3514_enable (Parameter description)
 };
 
 ///Dataset values
 static const T_Configuration_ElevatorConfig_Values mat_ElevatorConfigDataSetValues [CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS] =
 {
    {
-      1800.0F    ///< max_current (Parameter description)
+      1U,   ///< vl3512_enable (Parameter description)
+      0U    ///< vl3514_enable (Parameter description)
    }
 };
 
@@ -71,6 +74,20 @@ static const T_Configuration_HeaderConfig_Values mt_HeaderConfigMaxValues =
    255U    ///< joystick_hll_enable (Parameter description)
 };
 
+///Dataset values
+static const T_Configuration_HeaderConfig_Values mat_HeaderConfigDataSetValues [CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   {
+      0U    ///< joystick_hll_enable (Parameter description)
+   }
+};
+
+///Dataset table:
+static const T_osy_dpa_data_set mat_HeaderConfigDataSetTable[CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   { &mat_HeaderConfigDataSetValues[0] }
+};
+
 ///Minimum values
 static const T_Configuration_StickBoxConfig_Values mt_StickBoxConfigMinValues =
 {
@@ -83,6 +100,20 @@ static const T_Configuration_StickBoxConfig_Values mt_StickBoxConfigMaxValues =
    255U    ///< stick_box_installed (Parameter description)
 };
 
+///Dataset values
+static const T_Configuration_StickBoxConfig_Values mat_StickBoxConfigDataSetValues [CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   {
+      0U    ///< stick_box_installed (Parameter description)
+   }
+};
+
+///Dataset table:
+static const T_osy_dpa_data_set mat_StickBoxConfigDataSetTable[CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   { &mat_StickBoxConfigDataSetValues[0] }
+};
+
 ///Minimum values
 static const T_Configuration_PowerAssistConfig_Values mt_PowerAssistConfigMinValues =
 {
@@ -93,6 +124,20 @@ static const T_Configuration_PowerAssistConfig_Values mt_PowerAssistConfigMinVal
 static const T_Configuration_PowerAssistConfig_Values mt_PowerAssistConfigMaxValues =
 {
    255U    ///< power_assist_installed (Parameter description)
+};
+
+///Dataset values
+static const T_Configuration_PowerAssistConfig_Values mat_PowerAssistConfigDataSetValues [CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   {
+      0U    ///< power_assist_installed (Parameter description)
+   }
+};
+
+///Dataset table:
+static const T_osy_dpa_data_set mat_PowerAssistConfigDataSetTable[CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   { &mat_PowerAssistConfigDataSetValues[0] }
 };
 
 ///Minimum values
@@ -140,9 +185,41 @@ static const T_osy_dpa_data_set mat_PorpulsionConfigDataSetTable[CONFIGURATION_P
 };
 
 ///Minimum values
+static const T_Configuration_CoolingFanConfig_Values mt_CoolingFanConfigMinValues =
+{
+   60U,   ///< purge_cycle_time (Time between cooling fan purge cycles (auto))
+   1U,   ///< purge_active_time (Time fan spends in Reverse during purge)
+   -100.0F    ///< hyd_oil_cal (Hydraulic Oil Temperature Sensor Cal offset)
+};
+
+///Maximum values
+static const T_Configuration_CoolingFanConfig_Values mt_CoolingFanConfigMaxValues =
+{
+   1200U,   ///< purge_cycle_time (Time between cooling fan purge cycles (auto))
+   30U,   ///< purge_active_time (Time fan spends in Reverse during purge)
+   100.0F    ///< hyd_oil_cal (Hydraulic Oil Temperature Sensor Cal offset)
+};
+
+///Dataset values
+static const T_Configuration_CoolingFanConfig_Values mat_CoolingFanConfigDataSetValues [CONFIGURATION_COOLINGFANCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   {
+      600U,   ///< purge_cycle_time (Time between cooling fan purge cycles (auto))
+      10U,   ///< purge_active_time (Time fan spends in Reverse during purge)
+      0.0F    ///< hyd_oil_cal (Hydraulic Oil Temperature Sensor Cal offset)
+   }
+};
+
+///Dataset table:
+static const T_osy_dpa_data_set mat_CoolingFanConfigDataSetTable[CONFIGURATION_COOLINGFANCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   { &mat_CoolingFanConfigDataSetValues[0] }
+};
+
+///Minimum values
 static const T_Configuration_SuctionFanConfig_Values mt_SuctionFanConfigMinValues =
 {
-   -3.40282347e+38F,   ///< sf_drive_ratio (Parameter description)
+   0U,   ///< sf_6_7_enable (Parameter description)
    0U,   ///< sf_inc_time (Parameter description)
    0U    ///< sf_dec_time (Parameter description)
 };
@@ -150,29 +227,96 @@ static const T_Configuration_SuctionFanConfig_Values mt_SuctionFanConfigMinValue
 ///Maximum values
 static const T_Configuration_SuctionFanConfig_Values mt_SuctionFanConfigMaxValues =
 {
-   3.40282347e+38F,   ///< sf_drive_ratio (Parameter description)
+   1U,   ///< sf_6_7_enable (Parameter description)
    255U,   ///< sf_inc_time (Parameter description)
    255U    ///< sf_dec_time (Parameter description)
+};
+
+///Dataset values
+static const T_Configuration_SuctionFanConfig_Values mat_SuctionFanConfigDataSetValues [CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   {
+      0U,   ///< sf_6_7_enable (Parameter description)
+      6U,   ///< sf_inc_time (Parameter description)
+      6U    ///< sf_dec_time (Parameter description)
+   }
+};
+
+///Dataset table:
+static const T_osy_dpa_data_set mat_SuctionFanConfigDataSetTable[CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   { &mat_SuctionFanConfigDataSetValues[0] }
 };
 
 ///Minimum values
 static const T_Configuration_MiscConfig_Values mt_MiscConfigMinValues =
 {
-   0U,   ///< fuel_high_deadband (Parameter description)
-   0U    ///< filter_rstn_max (Parameter description)
+   0U,   ///< fuel_full_voltage (Parameter description)
+   0U,   ///< filter_rstn_max (Parameter description)
+   0U,   ///< af_max_voltage (Parameter description)
+   0U,   ///< af_min_voltage (Parameter description)
+   0U    ///< af_fault_pct (Parameter description)
 };
 
 ///Maximum values
 static const T_Configuration_MiscConfig_Values mt_MiscConfigMaxValues =
 {
-   65535U,   ///< fuel_high_deadband (Parameter description)
-   255U    ///< filter_rstn_max (Parameter description)
+   65535U,   ///< fuel_full_voltage (Parameter description)
+   255U,   ///< filter_rstn_max (Parameter description)
+   65535U,   ///< af_max_voltage (Parameter description)
+   65535U,   ///< af_min_voltage (Parameter description)
+   255U    ///< af_fault_pct (Parameter description)
+};
+
+///Dataset values
+static const T_Configuration_MiscConfig_Values mat_MiscConfigDataSetValues [CONFIGURATION_MISCCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   {
+      4500U,   ///< fuel_full_voltage (Parameter description)
+      0U,   ///< filter_rstn_max (Parameter description)
+      4500U,   ///< af_max_voltage (Parameter description)
+      500U,   ///< af_min_voltage (Parameter description)
+      1U    ///< af_fault_pct (Parameter description)
+   }
+};
+
+///Dataset table:
+static const T_osy_dpa_data_set mat_MiscConfigDataSetTable[CONFIGURATION_MISCCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   { &mat_MiscConfigDataSetValues[0] }
+};
+
+///Minimum values
+static const T_Configuration_FrontSweepsConfig_Values mt_FrontSweepsConfigMinValues =
+{
+   0U    ///< sweeps_installed (Parameter description)
+};
+
+///Maximum values
+static const T_Configuration_FrontSweepsConfig_Values mt_FrontSweepsConfigMaxValues =
+{
+   255U    ///< sweeps_installed (Parameter description)
+};
+
+///Dataset values
+static const T_Configuration_FrontSweepsConfig_Values mat_FrontSweepsConfigDataSetValues [CONFIGURATION_FRONTSWEEPSCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   {
+      0U    ///< sweeps_installed (Parameter description)
+   }
+};
+
+///Dataset table:
+static const T_osy_dpa_data_set mat_FrontSweepsConfigDataSetTable[CONFIGURATION_FRONTSWEEPSCONFIG_NUMBER_OF_DATA_SETS] =
+{
+   { &mat_FrontSweepsConfigDataSetValues[0] }
 };
 
 ///List definitions:
 static const T_osy_dpa_element_definition mat_DataPoolElevatorConfigElements[CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS] =
 {
-   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current, &mt_ElevatorConfigMinValues.f32_max_current, &mt_ElevatorConfigMaxValues.f32_max_current }
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_vl3512_enable, &mt_ElevatorConfigMinValues.u8_vl3512_enable, &mt_ElevatorConfigMaxValues.u8_vl3512_enable },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_vl3514_enable, &mt_ElevatorConfigMinValues.u8_vl3514_enable, &mt_ElevatorConfigMaxValues.u8_vl3514_enable }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolHeaderConfigElements[CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS] =
@@ -201,29 +345,46 @@ static const T_osy_dpa_element_definition mat_DataPoolPorpulsionConfigElements[C
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.u8_ramp_dec_time, &mt_PorpulsionConfigMinValues.u8_ramp_dec_time, &mt_PorpulsionConfigMaxValues.u8_ramp_dec_time }
 };
 
+static const T_osy_dpa_element_definition mat_DataPoolCoolingFanConfigElements[CONFIGURATION_COOLINGFANCONFIG_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_CoolingFanConfigValues.u16_purge_cycle_time, &mt_CoolingFanConfigMinValues.u16_purge_cycle_time, &mt_CoolingFanConfigMaxValues.u16_purge_cycle_time },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_CoolingFanConfigValues.u8_purge_active_time, &mt_CoolingFanConfigMinValues.u8_purge_active_time, &mt_CoolingFanConfigMaxValues.u8_purge_active_time },
+   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_CoolingFanConfigValues.f32_hyd_oil_cal, &mt_CoolingFanConfigMinValues.f32_hyd_oil_cal, &mt_CoolingFanConfigMaxValues.f32_hyd_oil_cal }
+};
+
 static const T_osy_dpa_element_definition mat_DataPoolSuctionFanConfigElements[CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS] =
 {
-   { OSY_DPA_ELEMENT_TYPE_FLOAT32, 0U, 4U, &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.f32_sf_drive_ratio, &mt_SuctionFanConfigMinValues.f32_sf_drive_ratio, &mt_SuctionFanConfigMaxValues.f32_sf_drive_ratio },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_6_7_enable, &mt_SuctionFanConfigMinValues.u8_sf_6_7_enable, &mt_SuctionFanConfigMaxValues.u8_sf_6_7_enable },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_inc_time, &mt_SuctionFanConfigMinValues.u8_sf_inc_time, &mt_SuctionFanConfigMaxValues.u8_sf_inc_time },
    { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_dec_time, &mt_SuctionFanConfigMinValues.u8_sf_dec_time, &mt_SuctionFanConfigMaxValues.u8_sf_dec_time }
 };
 
 static const T_osy_dpa_element_definition mat_DataPoolMiscConfigElements[CONFIGURATION_MISCCONFIG_NUMBER_OF_ELEMENTS] =
 {
-   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_fuel_high_deadband, &mt_MiscConfigMinValues.u16_fuel_high_deadband, &mt_MiscConfigMaxValues.u16_fuel_high_deadband },
-   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_MiscConfigValues.u8_filter_rstn_max, &mt_MiscConfigMinValues.u8_filter_rstn_max, &mt_MiscConfigMaxValues.u8_filter_rstn_max }
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_fuel_full_voltage, &mt_MiscConfigMinValues.u16_fuel_full_voltage, &mt_MiscConfigMaxValues.u16_fuel_full_voltage },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_MiscConfigValues.u8_filter_rstn_max, &mt_MiscConfigMinValues.u8_filter_rstn_max, &mt_MiscConfigMaxValues.u8_filter_rstn_max },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_af_max_voltage, &mt_MiscConfigMinValues.u16_af_max_voltage, &mt_MiscConfigMaxValues.u16_af_max_voltage },
+   { OSY_DPA_ELEMENT_TYPE_UINT16, 0U, 2U, &gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_af_min_voltage, &mt_MiscConfigMinValues.u16_af_min_voltage, &mt_MiscConfigMaxValues.u16_af_min_voltage },
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_MiscConfigValues.u8_af_fault_pct, &mt_MiscConfigMinValues.u8_af_fault_pct, &mt_MiscConfigMaxValues.u8_af_fault_pct }
+};
+
+static const T_osy_dpa_element_definition mat_DataPoolFrontSweepsConfigElements[CONFIGURATION_FRONTSWEEPSCONFIG_NUMBER_OF_ELEMENTS] =
+{
+   { OSY_DPA_ELEMENT_TYPE_UINT8, 0U, 1U, &gt_Configuration_DataPoolValues.t_FrontSweepsConfigValues.u8_sweeps_installed, &mt_FrontSweepsConfigMinValues.u8_sweeps_installed, &mt_FrontSweepsConfigMaxValues.u8_sweeps_installed }
 };
 
 ///list of lists:
 static const T_osy_dpa_list_definition mat_DataPoolLists[CONFIGURATION_NUMBER_OF_LISTS] =
 {
    { CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_ELEVATORCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000000U, sizeof(T_Configuration_ElevatorConfig_Values), &mat_DataPoolElevatorConfigElements[0], &gt_Configuration_DataPoolValues.t_ElevatorConfigValues, &mat_ElevatorConfigDataSetTable[0] },
-   { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000005U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, NULL },
-   { CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000aU, sizeof(T_Configuration_StickBoxConfig_Values), &mat_DataPoolStickBoxConfigElements[0], &gt_Configuration_DataPoolValues.t_StickBoxConfigValues, NULL },
-   { CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000fU, sizeof(T_Configuration_PowerAssistConfig_Values), &mat_DataPoolPowerAssistConfigElements[0], &gt_Configuration_DataPoolValues.t_PowerAssistConfigValues, NULL },
+   { CONFIGURATION_HEADERCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_HEADERCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000005U, sizeof(T_Configuration_HeaderConfig_Values), &mat_DataPoolHeaderConfigElements[0], &gt_Configuration_DataPoolValues.t_HeaderConfigValues, &mat_HeaderConfigDataSetTable[0] },
+   { CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_STICKBOXCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000aU, sizeof(T_Configuration_StickBoxConfig_Values), &mat_DataPoolStickBoxConfigElements[0], &gt_Configuration_DataPoolValues.t_StickBoxConfigValues, &mat_StickBoxConfigDataSetTable[0] },
+   { CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_POWERASSISTCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000000fU, sizeof(T_Configuration_PowerAssistConfig_Values), &mat_DataPoolPowerAssistConfigElements[0], &gt_Configuration_DataPoolValues.t_PowerAssistConfigValues, &mat_PowerAssistConfigDataSetTable[0] },
    { CONFIGURATION_PORPULSIONCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_PORPULSIONCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000014U, sizeof(T_Configuration_PorpulsionConfig_Values), &mat_DataPoolPorpulsionConfigElements[0], &gt_Configuration_DataPoolValues.t_PorpulsionConfigValues, &mat_PorpulsionConfigDataSetTable[0] },
-   { CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000028U, sizeof(T_Configuration_SuctionFanConfig_Values), &mat_DataPoolSuctionFanConfigElements[0], &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues, NULL },
-   { CONFIGURATION_MISCCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_MISCCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x0000003cU, sizeof(T_Configuration_MiscConfig_Values), &mat_DataPoolMiscConfigElements[0], &gt_Configuration_DataPoolValues.t_MiscConfigValues, NULL }
+   { CONFIGURATION_COOLINGFANCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_COOLINGFANCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000028U, sizeof(T_Configuration_CoolingFanConfig_Values), &mat_DataPoolCoolingFanConfigElements[0], &gt_Configuration_DataPoolValues.t_CoolingFanConfigValues, &mat_CoolingFanConfigDataSetTable[0] },
+   { CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_SUCTIONFANCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000032U, sizeof(T_Configuration_SuctionFanConfig_Values), &mat_DataPoolSuctionFanConfigElements[0], &gt_Configuration_DataPoolValues.t_SuctionFanConfigValues, &mat_SuctionFanConfigDataSetTable[0] },
+   { CONFIGURATION_MISCCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_MISCCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000046U, sizeof(T_Configuration_MiscConfig_Values), &mat_DataPoolMiscConfigElements[0], &gt_Configuration_DataPoolValues.t_MiscConfigValues, &mat_MiscConfigDataSetTable[0] },
+   { CONFIGURATION_FRONTSWEEPSCONFIG_NUMBER_OF_ELEMENTS, CONFIGURATION_FRONTSWEEPSCONFIG_NUMBER_OF_DATA_SETS, 0U, 0x00000050U, sizeof(T_Configuration_FrontSweepsConfig_Values), &mat_DataPoolFrontSweepsConfigElements[0], &gt_Configuration_DataPoolValues.t_FrontSweepsConfigValues, &mat_FrontSweepsConfigDataSetTable[0] }
 };
 
 ///Datapool definition:
@@ -234,7 +395,7 @@ static const T_osy_dpa_data_pool_definition mt_DataPoolDefinition =
    { 0x00U, 0x00U, 0x00U }, ///< Datapool definition version V0.0r0
    "Configuration",  ///< name of Datapool
    CONFIGURATION_NUMBER_OF_LISTS,
-   0xc7d050b9U, ///< CRC of Datapool definition
+   0x3d808cf4U, ///< CRC of Datapool definition
    0x00000000U,  ///< NVM start address
    20000U,  ///< number of bytes occupied in NVM
    &mat_DataPoolLists[0],

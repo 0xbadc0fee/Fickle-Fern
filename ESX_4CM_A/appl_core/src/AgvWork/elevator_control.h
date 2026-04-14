@@ -41,7 +41,8 @@
 #define ELEVATOR_OFF             (0u)         //!< Elevator disabled/off state
 
 #define ELEVATOR_MIN_CURRENT_MA  (300.0F)     //!< Minimum operational current for the elevator in mA
-#define ELEVATOR_MAX_CURRENT_MA  (1000.0F)    //!< Maximum operational current for the elevator in mA
+#define VL3514_MAX_CURRENT_MA    (725.0F)    //!< Maximum operational current for the elevator VL3514 Valve in mA
+#define VL3512_MAX_CURRENT_MA    (1000.0F)    //!< Maximum operational current for the elevator VL3512 Valve in mA
 
 #define ELEVATOR_RAMP_RATE       (250.0f)     //!< Maximum rate of change for elevator current (250mA / Second)
 

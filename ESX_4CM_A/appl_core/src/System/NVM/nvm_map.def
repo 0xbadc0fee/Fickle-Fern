@@ -7,7 +7,8 @@
 */
 
 /* Elevator Control Parameters */
-NVM_FIELD(elevatorMaxCurrent, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.f32_max_current, gt_elevatorConfig.f32_max_current)
+NVM_FIELD(ele3512, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_vl3512_enable, gt_elevatorConfig.u8_vl3512_enable)
+NVM_FIELD(ele3514, CONFIGURATION_LIST_INDEX_ELEVATORCONFIG, gt_Configuration_DataPoolValues.t_ElevatorConfigValues.u8_vl3514_enable, gt_elevatorConfig.u8_vl3514_enable)
 
 /* Header Control Parameter */
 NVM_FIELD(hllEnable, CONFIGURATION_LIST_INDEX_HEADERCONFIG, gt_Configuration_DataPoolValues.t_HeaderConfigValues.u8_joystick_hll_enable, gt_headerConfig.u8_joystick_hll_enable)
@@ -19,14 +20,24 @@ NVM_FIELD(stickBoxInstalled, CONFIGURATION_LIST_INDEX_STICKBOXCONFIG, gt_Configu
 NVM_FIELD(paInstalled, CONFIGURATION_LIST_INDEX_POWERASSISTCONFIG, gt_Configuration_DataPoolValues.t_PowerAssistConfigValues.u8_power_assist_installed, gt_paConfig.u8_power_assist_installed)
 
 /* Suction Fan Parameters */
-NVM_FIELD(sfDR, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.f32_sf_drive_ratio, gt_suctionFanConfig.f32_drive_ratio)
-NVM_FIELD(sfIncTime, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_inc_time, gt_suctionFanConfig.u8_fan_inc_time)
-NVM_FIELD(sfDecTime, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_dec_time, gt_suctionFanConfig.u8_fan_dec_time)
+NVM_FIELD(sfDR, 	 CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_6_7_enable, gt_suctionFanConfig.u8_6_7_enable)
+NVM_FIELD(sfIncTime, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_inc_time,   gt_suctionFanConfig.u8_fan_inc_time)
+NVM_FIELD(sfDecTime, CONFIGURATION_LIST_INDEX_SUCTIONFANCONFIG, gt_Configuration_DataPoolValues.t_SuctionFanConfigValues.u8_sf_dec_time,   gt_suctionFanConfig.u8_fan_dec_time)
 
 /* MISC Control Parameter */
-NVM_FIELD(fuelHighDdb, CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_fuel_high_deadband, gt_miscConfig.u16_fuel_high_deadband)
-NVM_FIELD(filterRSTNMax, CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u8_filter_rstn_max, gt_miscConfig.u8_filter_rstn_max)
+NVM_FIELD(fuelHigh,      CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_fuel_full_voltage, gt_miscConfig.u16_fuel_full_voltage)
+NVM_FIELD(filterRSTNMax, CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u8_filter_rstn_max, 	gt_miscConfig.u8_filter_rstn_max)
+NVM_FIELD(afmax, 		 CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_af_max_voltage, 	gt_miscConfig.u16_af_max_voltage)
+NVM_FIELD(afmin, 		 CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u16_af_min_voltage, 	gt_miscConfig.u16_af_min_voltage)
+NVM_FIELD(affault, 		 CONFIGURATION_LIST_INDEX_MISCCONFIG, gt_Configuration_DataPoolValues.t_MiscConfigValues.u8_af_fault_pct, 		gt_miscConfig.u8_af_fault_pct)
 
+/* Cooling Fan Parameters */
+NVM_FIELD(actTime,  CONFIGURATION_LIST_INDEX_COOLINGFANCONFIG, gt_Configuration_DataPoolValues.t_CoolingFanConfigValues.u8_purge_active_time, gt_coolingFanConfig.u8_purge_active_time)
+NVM_FIELD(cycTime,  CONFIGURATION_LIST_INDEX_COOLINGFANCONFIG, gt_Configuration_DataPoolValues.t_CoolingFanConfigValues.u16_purge_cycle_time, gt_coolingFanConfig.u16_auto_cycle_time)
+NVM_FIELD(oilCal,   CONFIGURATION_LIST_INDEX_COOLINGFANCONFIG, gt_Configuration_DataPoolValues.t_CoolingFanConfigValues.f32_hyd_oil_cal,  	  gt_coolingFanConfig.f32_sensor_cal)
+
+/* Front Sweeps Parameters */
+NVM_FIELD(fsInstalled, CONFIGURATION_LIST_INDEX_FRONTSWEEPSCONFIG, gt_Configuration_DataPoolValues.t_FrontSweepsConfigValues.u8_sweeps_installed, gt_fsConfig.u8_fs_installed)
 
 /* Propulsion Parameters */
 NVM_FIELD(wheelDia,  CONFIGURATION_LIST_INDEX_PORPULSIONCONFIG, gt_Configuration_DataPoolValues.t_PorpulsionConfigValues.f32_tire_diameter, gt_propConfig.f32_tire_diameter)

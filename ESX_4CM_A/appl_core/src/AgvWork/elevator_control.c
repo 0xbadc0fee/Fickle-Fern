@@ -101,7 +101,7 @@ sint16 init_elevatorControl(T_CANDevices         *_can_dev,
     s16_error += rampInit(&mt_elevator.t_ramp_state,
                           ELEVATOR_RAMP_RATE,
                           ELEVATOR_MIN_CURRENT_MA,
-                          ELEVATOR_MAX_CURRENT_MA,
+                          VL3512_MAX_CURRENT_MA,
                           ELEVATOR_SAFE_STATE);
 
     return s16_error;
@@ -131,7 +131,7 @@ sint16 update_elevatorControl(void)
 
     float32 f32_speed_req_pct = ELEVATOR_SAFE_STATE;
     float32 f32_output_current = ELEVATOR_SAFE_STATE;
-    float32 f32_maxCurrent = ELEVATOR_MAX_CURRENT_MA;
+    float32 f32_max_current = VL3512_MAX_CURRENT_MA;
 
     if((mt_elevator.pu8_onOffCommand == NULL) ||
     (mt_elevator.pu8_requestedSpeed == NULL) ||
@@ -156,8 +156,17 @@ sint16 update_elevatorControl(void)
 
     if(mt_elevator.pt_nvmElevator != NULL)
     {
-        f32_maxCurrent = mt_elevator.pt_nvmElevator->f32_max_current;
-        mt_elevator.t_ramp_state.f32_max_limit= f32_maxCurrent;
+        if(mt_elevator.pt_nvmElevator->u8_vl3514_enable)
+        {
+            f32_max_current = VL3514_MAX_CURRENT_MA;
+        }
+        else
+        {
+            f32_max_current = VL3512_MAX_CURRENT_MA;
+        }
+
+
+        mt_elevator.t_ramp_state.f32_max_limit= f32_max_current;
     }
 
     // IR-6.2 Faulted Elevator Control Valve => zero speed
@@ -181,7 +190,7 @@ sint16 update_elevatorControl(void)
         f32_speed_req_pct = ELEVATOR_SAFE_STATE;
     }
 
-    f32_output_current = (f32_speed_req_pct * ((f32_maxCurrent - ELEVATOR_MIN_CURRENT_MA)/100.0F)) + ELEVATOR_MIN_CURRENT_MA;
+    f32_output_current = (f32_speed_req_pct * ((f32_max_current - ELEVATOR_MIN_CURRENT_MA)/100.0F)) + ELEVATOR_MIN_CURRENT_MA;
     // FR-6.5/7 Apply ramping using helper and clamp output to min and max
     s16_error += rampCalc(f32_output_current, &mt_elevator.t_ramp_state);
 

@@ -65,6 +65,12 @@ typedef struct
 
 }T_ChkPoints_FSweeps;
 
+typedef struct
+{
+        uint8 u8_fs_installed;
+
+}T_Config_FS;
+
 /**
  *\struct T_FrontSweepsControl
  * \brief Configuration Structure - Front Sweeps Control
@@ -87,10 +93,12 @@ typedef struct
         //Ramp variables
         T_RampState t_sweeps_ramp;//!<Front Sweeps Ramp Params
 
+        T_Config_FS *pt_config;
+
 } T_FrontSweepsControl;
 
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
-sint16 init_frontSweepsControl(T_CANDevices *_can_devs, T_ChkPoints_FSweeps *_chkFrontSweeps);
+sint16 init_frontSweepsControl(T_CANDevices *_can_dev, T_ChkPoints_FSweeps *_chkFrontSweeps, T_Config_FS *_fsConfig);
 sint16 update_frontSweepsControl(void);
 
 #endif /* APPL_CORE_SRC_AGVWORK_FRONT_SWEEPS_CONTROL_H_ */
