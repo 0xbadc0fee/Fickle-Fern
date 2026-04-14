@@ -47,16 +47,16 @@ The system follows a **cyclic execution model**:
 - **Function 4: Rotary Trap Control**
 - **Function 5: Suction Fan Control**
 - **Function 6: Elevator Control**
-- **Function 7: Cooling Fan Control**
-- **Function 8: Cleaning Chain Controls**
-- **Function 9: Auger Cart Control**
-- **Function 10: Stick Box Control**
-- **Function 11: Stick Remover Control**
+- **Function 7: Cleaning Chain Controls**
+- **Function 8: Auger Cart Control**
+- **Function 9: Stick Box Control**
+- **Function 10: Stick Remover Control**
 
 ---
 
 ### AgvChassis Functions
 
+- **Function 11: Cooling Fan Control**
 - **Function 12: Engine Starter Control**
 - **Function 13: Propulsion Control**
 - **Function 14: Throttle Control**
@@ -70,9 +70,7 @@ The system follows a **cyclic execution model**:
 - **Function 17: PID Output Calculation**
 - **Function 18: Ramp Value Calculation**
 - **Function 19: Moving Average Filter**
-- **Function 20: Low Pass Filter**
-- **Function 21: Joystick Neutral Value Calculation**
-- **Function 22: Toggle Button**
+- **Function 20: Toggle Button**
 
 ---
 
