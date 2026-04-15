@@ -29,7 +29,6 @@
 #ifndef APPL_CORE_SRC_AGVWORK_COOLING_FAN_CONTROL_H_
 #define APPL_CORE_SRC_AGVWORK_COOLING_FAN_CONTROL_H_
 
-
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include <stdint.h>

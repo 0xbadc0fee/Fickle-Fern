@@ -1,15 +1,29 @@
-/*! \file       outputs.h
-    \brief      Header for Outputs 4CM HAL File
-
-
-   	\implementation
-   	project     Flory_8772-4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Apr 13, 2026 kyle.boch
-   	\endimplementation
-*/
+//-----------------------------------------------------------------------------
+/**
+ * \file        outputs.h
+ * \brief       System - Outputs 4CM HAL File
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup Outputs Outputs HAL
+ *
+ * The Outputs module serves as the Hardware Abstraction Layer (HAL) for
+ * the 4CM controller.
+ *
+ * @par Project
+ * Flory_8772-4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Apr 13, 2026 kyle.boch
+ *
+ * @{
+ */
 #ifndef APPL_CORE_SRC_HAL_STW_4CM_HAL_OUTPUTS_H_
 #define APPL_CORE_SRC_HAL_STW_4CM_HAL_OUTPUTS_H_
 
@@ -44,13 +58,11 @@
 #define OUT_X4K3    OPL2A_3
 #define OUT_X4K4    OPL2A_4
 
-
 //Reference Voltage Outputs (Sensor Supplies)
 #define VREF_5V_1      X_UEXT_5V_1         //!< 5V fixed voltage supply
 #define VREF_5V_2      X_UEXT_5V_2         //!< 5V fixed voltage supply
 #define VREF_ADJ_12V_1 X_UEXT_ADJ_5V_12V_1 //!< adjustable 5..12V voltage supply
 #define VREF_ADJ_12V_2 X_UEXT_ADJ_5V_12V_2 //!< adjustable 5..12V voltage supply
-
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
@@ -58,8 +70,6 @@
 //set_output_dither();
 ///set_voltage_filter();
 //set_current_filter();
-
-
 
 #endif /* APPL_CORE_SRC_HAL_STW_4CM_HAL_OUTPUTS_H_ */
 

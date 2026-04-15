@@ -45,6 +45,7 @@
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
 T_StickBControl mt_stick_box; //!< Module-local instance of the stick box control state structure.
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /** \brief Initialize AgvWork - Stick Box Control

@@ -53,7 +53,7 @@ static T_PowerAssistControl mt_power_assist; //!< Module-local instance of the p
  *
  *  This function initializes the AgvChassis - Power Assist Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
+ *  \param _can_devs Pointer to the project's UI Structure
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly

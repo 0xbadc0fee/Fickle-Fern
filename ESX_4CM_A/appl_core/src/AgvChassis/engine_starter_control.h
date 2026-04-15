@@ -29,7 +29,6 @@
 #ifndef APPL_CORE_SRC_AGVCHASSIS_ENGINE_STARTER_CONTROL_H_
 #define APPL_CORE_SRC_AGVCHASSIS_ENGINE_STARTER_CONTROL_H_
 
-
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
 #include "x_stdtypes.h"
@@ -79,9 +78,8 @@ typedef struct
         uint8 u8_engine_start_cmd; //!<Engine Start Command
 
         uint32 u32_engine_start_time;   //!<Engine Start Time
-        uint8 u8_engine_status;
-        uint8 u8_prev_engine_status;
-
+        uint8 u8_engine_status;         //!< Current engine operational status or state
+        uint8 u8_prev_engine_status;    //!< Previous engine status, used for state transition detection
 
         //Control Checkpoints
         T_ChkPoints_EngineStarter *pt_chk;//!<Engine Start Checkpoint

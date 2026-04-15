@@ -41,7 +41,6 @@
 #include "propulsion_control.h"
 #include "engine_starter_control.h"
 
-
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
@@ -59,7 +58,7 @@ static T_CoolingFanControl mt_cf;  //!<Module-local instance of the cooling fan 
  *
  *  This function initializes the AgvWork - Cooling Fan Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
+ *  \param _can_devs Pointer to the project's UI Structure
  *  \param _chkCooling Fan Pointer to the global Cooling Fan Checkpoints Structure
  *
  *  \return s16_error Error Code
@@ -95,7 +94,6 @@ sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_
     mt_cf.pt_config = _cfConfig;
 
     //Initialize local variables
-
     mt_cf.u8_cleanout_active = FALSE;
     mt_cf.u8_sequence_fault = FALSE;
 
@@ -129,7 +127,6 @@ sint16 init_coolingFanControl(T_CANDevices *_can_devs, T_ChkPoints_CoolingFan *_
  *  Primary logic for this function
  *
  *  Additional interlocks are utilized throughout the logic.
- *
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -166,7 +163,6 @@ sint16 update_coolingFanControl(void)
 
         //Update Reversal State Machine
         update_coolingFanReversal();
-
     }
 
     //ramp speed output
@@ -177,7 +173,6 @@ sint16 update_coolingFanControl(void)
     set_outputValue("COOL_FAN_DIRECTION",  mt_cf.f32_dir_cmd);
 
     // FR-7.15 CAN/display outputs
-
     mt_cf.pt_cp_cooling->f32_hyd_oil_temp  = mt_cf.f32_hydoil_temp;
     *(mt_cf.pu16_disp_hyd_oil_temp_degC)   = mt_cf.f32_hydoil_temp;
     *(mt_cf.pu8_disp_fan_reverse_ind)      = (mt_cf.f32_dir_cmd == CF_DIR_REVERSE) ? TRUE : FALSE;
@@ -189,6 +184,20 @@ sint16 update_coolingFanControl(void)
     return s16_error;
 }
 
+/**
+ * \brief       Calculates the overall cooling system demand based on temperature inputs.
+ *
+ * \details     This function evaluates engine coolant, intake manifold, and hydraulic
+ * oil temperatures. It applies necessary J1939 offsets, calculates sensor
+ * resistance, and applies a moving average filter to the hydraulic oil
+ * temperature (FR-7.3).
+ * * If any temperature exceeds a critical threshold (CF_FAULT_TEMP), the
+ * system is forced into a safe state. Otherwise, it calculates individual
+ * cooling demands using linear interpolation and sets the total system
+ * cooling demand to the maximum of the three values (FR-7.4).
+ *
+ * \return      None
+ */
 void calc_coolingDemand(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -241,11 +250,11 @@ void calc_coolingDemand(void)
 }
 
 /**
- * @brief Sets the fan system to a predefined safe operating state.
+ * \brief Sets the fan system to a predefined safe operating state.
  * * This function deactivates any active cleanout procedures and forces the fan
  * into a forward-running state at a safety-limited PWM speed. It ensures
  * predictable behavior during error states or initialization.
- * * @note Modifies global state via the @ref mt_cf structure.
+ * \note Modifies global state via the \ref mt_cf structure.
  */
 void set_fanSafeState(void)
 {
@@ -421,7 +430,6 @@ void update_coolingFanReversal()
                 //Move to Reverse run state if driving the fan in reverse
                 else if (mt_cf.f32_dir_cmd == CF_DIR_REVERSE)
                     mt_cf.e_fanstate = CF_STATE_RUN_REV;
-
             }
             break;
 

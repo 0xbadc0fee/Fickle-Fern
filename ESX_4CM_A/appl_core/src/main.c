@@ -150,8 +150,6 @@ int main(void)
 
     system_keep_alive(TRUE);
 
-    //add required startup delay here
-
     do
     {
         //Run Control Sequence
@@ -190,12 +188,7 @@ int main(void)
         u8_ResetRequest = get_system_reset_status();
 
         s16_Error = get_ignition_status(&u8_ign_status);
-        // get state of ignition
-        if ((u8_ign_status == FALSE) && (s16_Error == C_NO_ERR))
-        {
-            //Shutdown Sequence
-            //write_nvmParameters();
-        }
+
     }
     while (u8_ResetRequest == FALSE);
 

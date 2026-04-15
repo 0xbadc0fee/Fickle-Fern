@@ -54,19 +54,19 @@
  * \brief Structure containing all relevant Moving Average Parameters*/
 typedef struct
 {
-        float32 * pf32_buf; //!<Caller buffer
-        uint16 u16_buf_len;  //!<Buffer capacity
-        uint16 u16_head; //!<Next write index
-        uint16 u16_count; //!<Samples currently stored
-        uint32 u32_accum_ms; //!<Accumulates dt until >= sample time ms
-        float32 f32_sum; //!<Running sum of samples in window
-        float32 f32_out; //!<Current filtered output
-        uint8 u8_faulted; //!<1 = Faulted and forced safe
+        float32 * pf32_buf; //!< Caller buffer
+        uint16 u16_buf_len;  //!< Buffer capacity
+        uint16 u16_head; //!< Next write index
+        uint16 u16_count; //!< Samples currently stored
+        uint32 u32_accum_ms; //!< Accumulates dt until >= sample time ms
+        float32 f32_sum; //!< Running sum of samples in window
+        float32 f32_out; //!< Current filtered output
+        uint8 u8_faulted; //!< 1 = Faulted and forced safe
 
         //Config values
         uint16 u16_sample_time_ms;              //!< Sample time in milliseconds
         uint16 u16_sample_no;                   //!< Number of samples
-        float32 f32_safe_state; //!<Safe State
+        float32 f32_safe_state; //!< Safe State
 
 }T_MoveAvgFilter;
 

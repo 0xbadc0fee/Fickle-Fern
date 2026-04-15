@@ -16,12 +16,12 @@
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "stwtypes.h"
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define JS_BUTTON_PRESSED 0b01
-#define JS_BUTTON_FAULT   0b11
+#define JS_BUTTON_PRESSED   0b01      //!< Joystick button pressed state
+#define JS_BUTTON_FAULT     0b11      //!< Joystick button fault/error state
 
-#define JS_MAX_Y_POS     10000
-#define JS_MIN_Y_POS     -10000
-#define JS_NEUTRAL_POS       0
+#define JS_MAX_Y_POS        10000     //!< Maximum Y-axis position of the joystick
+#define JS_MIN_Y_POS        -10000    //!< Minimum (full reverse) Y-axis position of the joystick
+#define JS_NEUTRAL_POS      0         //!< Neutral/center position of the joystick
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /** \brief HMI Device Structure - JS6000 Joystick
  *

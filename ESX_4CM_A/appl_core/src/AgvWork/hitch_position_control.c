@@ -42,7 +42,8 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static T_HitchPosControl mt_hp_control;/**< Global persistent state for Hitch Position Control. */
+static T_HitchPosControl mt_hp_control; //!< Global persistent state for Hitch Position Control.
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /**

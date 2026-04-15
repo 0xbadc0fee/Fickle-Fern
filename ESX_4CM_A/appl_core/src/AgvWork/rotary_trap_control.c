@@ -42,13 +42,12 @@
 #include "hw_outputs.h"
 #include "propulsion_control.h"
 
-
 // -- Defines ------------------------------------------------------------------------------------------------------
 
 // -- Types --------------------------------------------------------------------------------------------------------
 // -- Module Global Function Prototypes ----------------------------------------------------------------------------
 // -- Module Global Variables --------------------------------------------------------------------------------------
-static T_RotaryTrapControl mt_rotary_trap;/**< Global persistent state for Rotary Trap Control. */
+static T_RotaryTrapControl mt_rotary_trap;  //!<Global persistent state for Rotary Trap Control.
 
 // -- Implementation  ----------------------------------------------------------------------------------------------
 
@@ -187,7 +186,6 @@ sint16 update_rotaryTrapControl(void)
 
     //Publish checkpoints
     mt_rotary_trap.pt_cp_rotarytrap->f32_trap_target_cmd = f32_target_cmd_pct;
-
 
     // FR-4.8 Ramp
     s16_error += rampCalc(f32_target_cmd_pct, &mt_rotary_trap.t_trap_ramp);

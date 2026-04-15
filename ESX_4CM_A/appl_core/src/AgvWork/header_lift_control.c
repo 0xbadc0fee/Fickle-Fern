@@ -41,7 +41,8 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_HeaderControl mt_hdr_control;/**<Global persistent state for Header Lift Control. */
+T_HeaderControl mt_hdr_control;//!< Global persistent state for Header Lift Control.
+
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
 /**
@@ -86,7 +87,7 @@ sint16 init_headerControl(T_CANDevices *_can_dev, T_ChkPoints_Header *_chkPoints
  *  This function contains the cyclical logic for AgvWork - Header Lift Control.
  *
  *  Primary logic for this function is to lift of lower the header based on operator commands
- *  This logic tackles functionality descibed in FR1.X of the Functional Requirements
+ *  This logic tackles functionality described in FR1.X of the Functional Requirements
  *
  *
  *  \return s16_error Error Code
@@ -136,9 +137,8 @@ sint16 update_headerControl(void)
             mt_hdr_control.u8_lift_command = (uint8)f32_right_pedal;
             mt_hdr_control.u8_lower_command = (uint8)f32_left_pedal;
         }
-
-
     }
+
     else //if joystick hll enabled - header lift lower through joystick
     {
         mt_hdr_control.u8_lift_command = *(mt_hdr_control.pu8_joy_lift_header);
@@ -150,8 +150,6 @@ sint16 update_headerControl(void)
             mt_hdr_control.u8_lift_command = FALSE;
             mt_hdr_control.u8_lower_command = FALSE;
         }
-
-
     }
 
     //FR-1.3 Header lift takes prio - perform logic

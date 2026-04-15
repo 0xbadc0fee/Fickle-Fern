@@ -92,7 +92,7 @@ sint16 init_stickRemoverControl(T_CANDevices *_can_dev)
  *  This function contains the cyclical logic for AgvWork - Stick Remover Control.
  *
  *  The Stick Remover Control Module shall control ON/OFF operation of the
- *  optional, cart installed Stick Remover conveyor chain.
+ *  optional, cart installed Stick Remover conveyer chain.
  *
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
@@ -145,8 +145,6 @@ sint16 update_stickRemoverControl(void)
             *(mt_stick_remover.pu8_stick_remover_led_status) = BLUE_OFF | GREEN_ON | AMBER_OFF | RED_OFF;
         else
             *(mt_stick_remover.pu8_stick_remover_led_status) = BLUE_OFF | GREEN_OFF | AMBER_OFF | RED_ON;
-
-
     }
     else
     {
@@ -159,7 +157,6 @@ sint16 update_stickRemoverControl(void)
     {
         *(mt_stick_remover.pu8_stick_remover_status) = mt_stick_remover.u8_stick_remover_latched;
     }
-
 
     return s16_error;
 }

@@ -1,14 +1,28 @@
-/*! \file       can_engine.h
-    \brief      <description>
-
-
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
-
-   	created     Feb 5, 2026 kyle.boch
-   	\endimplementation
+//-----------------------------------------------------------------------------
+/**
+ * \file        can_engine.h
+ * \brief       System - CAN Engine Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup CanEngine CAN Engine
+ *
+ * The CAN Engine module manages CAN bus communications specifically related
+ * to the engine control unit (ECU).
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 5, 2026 kyle.boch
+ *
+ * @{
  */
 #ifndef APPL_CORE_SRC_SYSTEM_CAN_DEVICES_CAN_ENGINE_H_
 #define APPL_CORE_SRC_SYSTEM_CAN_DEVICES_CAN_ENGINE_H_
@@ -17,7 +31,6 @@
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define ENGINE_RUNNING (1u)
 #define ENGINE_OFF     (0u)
-
 
 #define ENGINE_START_CMD_OFF       (0u)
 #define ENGINE_START_CMD_ON        (1u)

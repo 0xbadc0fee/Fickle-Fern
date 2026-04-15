@@ -48,7 +48,7 @@
 typedef struct
 {
         float32 f32_output;  //!<Current Ramped Output
-        uint32 u32_last_time_ms;
+        uint32 u32_last_time_ms; //!< Last recorded timestamp in milliseconds (used for delta/elapsed time calculations)
 
         float32 f32_ramp_rate; //!<Ramp Rate[unit/s]
         float32 f32_min_limit; //!<MIN Output Limit

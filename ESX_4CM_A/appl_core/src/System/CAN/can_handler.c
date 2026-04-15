@@ -41,13 +41,14 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
+
 static bool maq_CanAvailable[X_CAN_COUNT]; //!< Internal array tracking the availability status of each CAN bus
 T_CANDevices gt_can_devs; //!< Global structure managing all CAN devices
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize CAN Interfaces
  *
- *  This funciton looks at all can interface settings described in openSYDE project and initializes
+ *  This function looks at all can interface settings described in openSYDE project and initializes
  *  said interfaces.
  *
  *  \return s16_error Error Code
@@ -150,6 +151,5 @@ bool can_get_availability_state(const uint16 ou16_Channel)
 {
    return maq_CanAvailable[ou16_Channel];
 }
-
 
 //EOF

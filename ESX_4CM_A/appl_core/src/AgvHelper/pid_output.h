@@ -1,12 +1,29 @@
 //-----------------------------------------------------------------------------
-/*! \file       pid_output.h
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     March 6, 2026 STW Technic
+/**
+ * \file       pid_output.h
+ * \brief      AgvHelper - PID Output
+ *
+ * \addtogroup AgvHelper
+ * @{
+ * \addtogroup PidOutput PID Output
+ *
+ * The PID Calculation Module determines a bounded actuator command by
+ * summing proportional, integral, and derivative responses to the
+ * difference between setpoint and measured feedback each control cycle.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
  */
 //-----------------------------------------------------------------------------
 
