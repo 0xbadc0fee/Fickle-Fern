@@ -1,0 +1,5 @@
+#Default: No line ending conversions
+* -text
+#Specific rules for source files
+*.bat text eol=crlf
+*.sh text eol=lf

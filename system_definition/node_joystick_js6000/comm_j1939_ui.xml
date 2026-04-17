@@ -4,50 +4,19 @@
     <com-protocol>
         <com-message-containers length="4">
             <com-message-container>
-                <tx-messages length="2">
+                <tx-messages length="1">
                     <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
-                        <com-signals length="22">
-                            <com-signal color-index="5"/>
-                            <com-signal color-index="48"/>
-                            <com-signal color-index="62"/>
-                            <com-signal color-index="20"/>
-                            <com-signal color-index="7"/>
-                            <com-signal color-index="47"/>
-                            <com-signal color-index="33"/>
-                            <com-signal color-index="64"/>
-                            <com-signal color-index="37"/>
-                            <com-signal color-index="36"/>
-                            <com-signal color-index="60"/>
-                            <com-signal color-index="39"/>
-                            <com-signal color-index="22"/>
-                            <com-signal color-index="34"/>
-                            <com-signal color-index="1"/>
-                            <com-signal color-index="16"/>
-                            <com-signal color-index="18"/>
-                            <com-signal color-index="50"/>
-                            <com-signal color-index="15"/>
-                            <com-signal color-index="46"/>
-                            <com-signal color-index="24"/>
-                            <com-signal color-index="52"/>
-                        </com-signals>
-                    </com-message>
-                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
-                        <com-signals length="15">
-                            <com-signal color-index="41"/>
-                            <com-signal color-index="3"/>
-                            <com-signal color-index="49"/>
-                            <com-signal color-index="35"/>
-                            <com-signal color-index="12"/>
-                            <com-signal color-index="7"/>
-                            <com-signal color-index="34"/>
-                            <com-signal color-index="24"/>
-                            <com-signal color-index="60"/>
-                            <com-signal color-index="51"/>
-                            <com-signal color-index="19"/>
-                            <com-signal color-index="20"/>
-                            <com-signal color-index="31"/>
-                            <com-signal color-index="8"/>
+                        <com-signals length="10">
+                            <com-signal color-index="61"/>
                             <com-signal color-index="32"/>
+                            <com-signal color-index="54"/>
+                            <com-signal color-index="41"/>
+                            <com-signal color-index="56"/>
+                            <com-signal color-index="39"/>
+                            <com-signal color-index="40"/>
+                            <com-signal color-index="44"/>
+                            <com-signal color-index="35"/>
+                            <com-signal color-index="18"/>
                         </com-signals>
                     </com-message>
                 </tx-messages>

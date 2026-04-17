@@ -468,10 +468,14 @@ sint16 osy_app_j1939_init(void)
    s16_Return = osy_com_engine_init(&gt_comm_j1939_can1_ProtocolConfiguration,
                                     &hc_COMM_STACK_J1939_0_BUFFER_CONFIG, &ac_TrgInitParamsCan);
 
+   s16_Return = osy_com_engine_init(&gt_comm_j1939_can2_ProtocolConfiguration,
+                                    &hc_COMM_STACK_J1939_0_BUFFER_CONFIG, &ac_TrgInitParamsCan);
+
 
    if (s16_Return == C_NO_ERR)
    {
       s16_Return |= osy_com_engine_start(&gt_comm_j1939_can1_ProtocolConfiguration);
+      s16_Return |= osy_com_engine_start(&gt_comm_j1939_can2_ProtocolConfiguration);
    }
 
 
@@ -519,9 +523,11 @@ sint16 osy_app_j1939_cycle(void)
 
    // Rx Messages----------------------------------
    (void)osy_com_engine_handle_rx(&gt_comm_j1939_can1_ProtocolConfiguration);
+   (void)osy_com_engine_handle_rx(&gt_comm_j1939_can2_ProtocolConfiguration);
 
    // Tx Messages----------------------------------
    (void)osy_com_engine_handle_tx(&gt_comm_j1939_can1_ProtocolConfiguration);
+   (void)osy_com_engine_handle_tx(&gt_comm_j1939_can2_ProtocolConfiguration);
 
    return s16_Return;
 }

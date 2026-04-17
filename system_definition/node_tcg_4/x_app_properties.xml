@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<opensyde-x-app-properties>
+    <file-version>1</file-version>
+    <properties polling-interval-ms="10" data-request-interval-ms="100">
+        <connected-interface interface-number="0">
+            <type>can</type>
+        </connected-interface>
+    </properties>
+</opensyde-x-app-properties>

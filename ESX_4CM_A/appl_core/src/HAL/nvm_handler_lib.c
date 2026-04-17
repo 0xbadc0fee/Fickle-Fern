@@ -1,13 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       nvm_handler_lib.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 5, 2026 STW Technic
-*/
+/**
+ * \file       nvm_handler_lib.c
+ * \brief      HAL - NVM Handler Library
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup NvmHandler NVM Handler
+ *
+ * The NVM Handler Library manages reading from and writing to the
+ * Non-Volatile Memory. It provides a standardized interface for safe
+ * data storage, ensuring the persistence of critical configurations
+ * and operational state data across system power cycles.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 5, 2026 STW Technic
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -84,15 +102,17 @@ sint16 fault_nvm_init(T_FaultNVM* mem, uint32 _spn, uint8 _fmi, uint8 _defaultVa
             {
                 q_runSearch = FALSE;
                 t_hdr.u32_spn = mem->u32_spn;
+                t_hdr.u8_fmi = mem->u8_fmi;
                 t_hdr.u8_dataLength = mem->u8_dataLength;
 
                 t_data.data = _defaultVal;
 
                 x_nvm_write(index, u8_hdrSize, (uint8*)&t_hdr);
                 x_nvm_write(index + u8_hdrSize, u8_dataSize, (uint8*)&t_data);
-            } else
+            }
+            else
             {
-                index++;
+                index += (uint16)(u8_hdrSize + u8_dataSize);
             }
         }
         else
@@ -156,7 +176,6 @@ void clear_fault_nvm(void)
     }
 }
 
-
 /** \brief Initialize all OSY NVM Datapools into RAM
  *
  *  Read into RAM (global osy variables) all the values from EEPROM.
@@ -175,9 +194,7 @@ sint16 init_osyNVMDatapools(uint8 u8_datapoolID, uint8 u8_numLists)
     }
 
     return s16_error;
-
 }
-
 
 /** \brief Write OSY NVM Datapool List into NVM
  *
@@ -194,7 +211,6 @@ sint16 write_osyNVMDatapool(uint8 u8_datapoolID, uint8 u8_list)
     s16_error = osy_dph_nvm_write_list(u8_datapoolID, u8_list);
 
     return s16_error;
-
 }
 
 /** \brief Apply Dataset to NVM Datapool List
@@ -215,9 +231,6 @@ sint16 apply_osyNVMDataset(uint8 u8_datapoolID, uint8 u8_list, uint8 u8_dataset)
     s16_error |= osy_dph_nvm_write_list(u8_datapoolID, u8_list);
 
     return s16_error;
-
 }
-
-
 
 //EOF

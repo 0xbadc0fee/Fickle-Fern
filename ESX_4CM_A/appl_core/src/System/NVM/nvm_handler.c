@@ -1,13 +1,32 @@
 //-----------------------------------------------------------------------------
-/*! \file       nvm_handler.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 7, 2026 STW Technic
-*/
+/**
+ * \file       nvm_handler.c
+ * \brief      AgvCore - NVM Handler Module
+ *
+ * \addtogroup System
+ * @{
+ * \addtogroup NvmHandler NVM Handler
+ *
+ * The NVM Handler module manages the application-specific reading, writing,
+ * and storage mapping of non-volatile memory parameters. It interfaces
+ * with the underlying NVM library to ensure machine settings, states,
+ * and fault data are properly formatted and safely preserved across
+ * power cycles.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 7, 2026 STW Technic
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -21,23 +40,50 @@
 
 //Include Controls that have checkpoints
 #include "elevator_control.h"
+#include "header_lift_control.h"
+#include "stick_box_control.h"
+
+#include "power_assist_control.h"
+#include "suction_fan_control.h"
+#include "propulsion_control.h"
+
+#include "misc_control.h"
+#include "cooling_fan_control.h"
+#include "front_sweeps_control.h"
 
 //Include SPNS (current location for DP Assignment MACRO)
 #include "SPN_definitions.h"
 
-
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
-#define NUM_OSY_NVM_DATAPOOLS (1u)
+#define NUM_OSY_NVM_DATAPOOLS (1u) //!< Total number of independent NVM datapools defined in the system
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-T_Config_Elevator gt_elevatorConfig;    //!<Structure that holds all agVWork - Elevator Control NVM Config
+T_Config_Elevator           gt_elevatorConfig;    //!<Structure that holds all agVWork - Elevator Control NVM Config
+T_Config_HeaderControl      gt_headerConfig;    //!<Structure that holds the Joystick HLL config.
+T_Config_StickBoxControl    gt_stickBConfig; //!<Structure that holds the Stick Box config.
+T_Config_PowerAssistControl gt_paConfig;    //!< Global configuration parameters for the power assist control system
+T_Config_SFan               gt_suctionFanConfig; //!<Structure that holds the Suction Fan config.
+T_Config_MiscrControl       gt_miscConfig;      //!<Structure that holds the MISC config.
+T_Config_Propulsion         gt_propConfig;          //!< Global configuration parameters for the propulsion system
+T_Config_CF                 gt_coolingFanConfig;    //!< Global configuration parameters for the cooling fan system
+T_Config_FS                 gt_fsConfig;           //!<Front Sweeps Configuration Structure
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
+
+/**
+ * \brief      Initializes the Non-Volatile Memory (NVM) parameters.
+ *
+ * \details    This function handles the startup initialization of machine
+ * configuration variables, loading them from NVM storage into RAM.
+ * If the stored data is invalid or uninitialized, it applies
+ * default fallback parameters.
+ *
+ *  \return s16_error Error Code
+ */
 sint16 init_nvmParameters(void)
 {
-
     sint16 s16_error = C_NO_ERR;
 
     //Initialize all openSYDE NVM Lists for each datapool
@@ -57,7 +103,7 @@ sint16 init_nvmParameters(void)
  *  If the RAM/Control copy is different than the OSY, write the corresponding OSY List
  *  to NVM.
  *
- * @return
+ *  \return s16_error Error Code
  */
 sint16 write_nvmParameters(void)
 {
@@ -80,7 +126,6 @@ sint16 write_nvmParameters(void)
         }
     }
 
-
     return s16_error;
 }
 
@@ -92,13 +137,14 @@ sint16 write_nvmParameters(void)
  * It is assumed that every nvm list defined in openSYDE has a corresponding default
  * list defined.
  *
- * @return
+ *  \return s16_error Error Code
  */
 sint16 reset_nvmParameters(void)
 {
     sint16 s16_error = C_NO_ERR;
     const uint8 u8_defaultDataset = 0;
 
+    //TODO_STW: Make a Reset / List option instead of whole NVM reset
     for(uint8 i = 0; i< CONFIGURATION_NUMBER_OF_LISTS; i++)
     {
         s16_error |= apply_osyNVMDataset(CONFIGURATION_DATA_POOL_INDEX, i, u8_defaultDataset);
@@ -106,6 +152,5 @@ sint16 reset_nvmParameters(void)
 
     return s16_error;
 }
-
 
 //EOF

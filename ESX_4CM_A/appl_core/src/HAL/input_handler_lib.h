@@ -1,13 +1,32 @@
 //-----------------------------------------------------------------------------
-/*! \file       input_handler_lib.h
-    \brief      <description>
-
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2025
-   	license     use only under terms of contract / confidential
-
-   	created     Dec 8, 2025 kyle.boch
-*/
+/**
+ * \file       input_handler_lib.h
+ * \brief      HAL - Input Handler Library Implementation
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup InputHandlerLib Input Handler Library
+ *
+ * This module provides the implementation for the hardware abstraction layer
+ * input handler. It manages the acquisition, filtering, debouncing, and
+ * processing of physical system inputs (analog, digital, frequency, etc.)
+ * into scaled, usable software variables for the application layer.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2025
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Dec 8, 2025 STW Technic
+ *
+ * @{
+ */
+//-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_
 #define APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_
 
@@ -19,12 +38,22 @@
 #include "alarm_handler_lib.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DEFAULT_DIG_DEBOUNCE    100 //!< .1ms debounce used on digital input signals
-#define DEFAULT_DIG_CIRCUIT       0 //!< Pullup/down disabled
+#define DEFAULT_DIG_DEBOUNCE   1000     //!< 1ms debounce used on digital input signals
+#define DEFAULT_FREQ_DEBOUNCE   100 //!< 100uS debounce used on frequency input signals
 #define DEFAULT_ADCINPUT_FILTER   0 //!< Default ADC input filter value
-#define DEFAULT_ADCINPUT_CIRCUIT  0 //!< Default ADC input circuit value
+#define C_INPUT_INIT_HW_FAIL   (-20)    //!< Hardware Failure Init
+#define C_INPUT_INIT_DIAG_FAIL (-21)    //!< Diagnostic Failure Init
+#define C_INPUT_INIT_BOTH_FAIL (-22)    //!< Hardware and Diagnostic Failure Init
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
+/*!
+ * \enum E_InputCircuit
+ * \brief List of all Circut Inputs **/
+typedef enum {
+    INPUT_CIRCUIT_NONE = 0,
+    INPUT_CIRCUIT_PULLUP,
+    INPUT_CIRCUIT_PULLDOWN
+} E_InputCircuit;
 
 /*! \brief List of all Input Types **/
 typedef enum {
@@ -37,7 +66,9 @@ typedef enum {
     IT_FREQSWITCH,   //!< Frequency switch input
 } E_InputTypes;
 
-/*! \brief List of all Possible Input Faults **/
+/*!
+ * \enum E_InputFaults
+ * \brief List of all Possible Input Faults **/
 typedef enum {
 
     e_INFAULT_SHORT_UB = 0,   //!<Input Short to UB Fault
@@ -50,8 +81,9 @@ typedef enum {
     e_NUM_INFAULTS            //!<Total Number of possible output faults
 } E_InputFaults;
 
-
-/*! \brief Struct for a Vehicle Input Object **/
+/*!
+ * \struct T_VehicleInput
+ * \brief Struct for a Vehicle Input Object **/
 typedef struct {
     //-----------------------------INIT PARAMS--------------------------------//
     char *Name_Description;         //!< Named Description of Hardware Output
@@ -61,6 +93,8 @@ typedef struct {
     float32 f32_inputValue;         //!< Most recent Input Value
     float32 f32_prevInputValue;     //!< Previously captured input value
     uint8 mq_inputChanged;          //!< Input Changed Status
+    E_InputCircuit e_circuit;       //!< Pull configuration
+    uint16 u16_debounce;            //!< Debounce (ms)
     //-----------------------------DIAG PARAMS-------------------------------//
     uint8 u8_diagEnabled;           //!<Enable - Disable Toggle for Input Diagnostics / Alarm
     T_FloryFault t_fault;           //!<Fault Information
@@ -71,7 +105,7 @@ typedef struct {
 } T_VehicleInput;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-extern T_VehicleInput at_vehicleInputs[X_IN_COUNT];
+extern T_VehicleInput at_vehicleInputs[X_IN_COUNT]; //!< Global array storing the state of all vehicle inputs
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 sint16 init_inputHandler(void);
@@ -79,8 +113,8 @@ sint16 update_inputHandler(void);
 sint16 add_hwInput(T_VehicleInput input);
 sint16 get_inputFaultStatus(const char *targetName, uint8 *opu8_status);
 sint16 get_numInputs(uint8 *const opu8_Count);
-
-
+sint16 clear_inputFaults(void);
+sint16 get_inputValue(const char *targetName, float32 *opf32_value);
 
 #endif /* APPL_CORE_SRC_SYSTEM_IO_INPUT_HANDLER_LIB_H_ */
 

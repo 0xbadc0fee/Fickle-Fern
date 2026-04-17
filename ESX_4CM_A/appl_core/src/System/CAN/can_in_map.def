@@ -7,5 +7,60 @@
 */
 
 /* Elevator Control CAN Parameters */
-DP2CNTRL(elevatorSpeed, gt_ui.t_display.u8_elevatorSpeedRequest, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CAN_Rec1_AgvHmiElevatorSpeedCmd)
-DP2CNTRL(elevatorOnOff, gt_ui.t_joystick.u8_b1_state, 			 gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_BJM1_Joystick1Button1PressedStatus)
+DP2CNTRL(elevatorSpeed, 	 gt_can_devs.t_display.u8_elevatorSpeedRequest, gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_ELEV_SpeedCmd)
+DP2CNTRL(elevatorOnOff,      gt_can_devs.t_joystick.u8_b1_state, 			gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_BTN1_ELEV)
+
+/* Header Control CAN Parameters */
+DP2CNTRL(headerLift, 		 gt_can_devs.t_joystick.u8_b5_state, 			gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_BTN5_HDRLIFT)
+DP2CNTRL(headerLower, 		 gt_can_devs.t_joystick.u8_b6_state, 			gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_BTN6_HDRLWR)
+
+/* Auger Cart Control CAN Parameters */
+DP2CNTRL(augerOnOff,  		 gt_can_devs.t_buttonPanel.u8_b2_state, 		gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_E1_BTN_STATUS_BTN02_AutoUL)
+DP2CNTRL(manualOnOff, 		 gt_can_devs.t_buttonPanel.u8_b6_state, 		gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_E1_BTN_STATUS_BNT06_ManUL)
+
+/* Light Control CAN Parameters */
+DP2CNTRL(lightState, 		 gt_can_devs.t_buttonPanel.u8_b4_state,         gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_E1_BTN_STATUS_BTN04_Lights)
+
+/*Cleaning Chains Control CAN Parameters */
+DP2CNTRL(shaftDriveOnOff, 	 gt_can_devs.t_joystick.u8_b2_state, 	     	gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_BTN2_SHAFTS)
+
+/*Front Sweeps Control CAN Parameters */
+DP2CNTRL(frontSweepsEnable,  gt_can_devs.t_display.u8_drum_speed_enable,    gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_FS_EnableCmd)
+DP2CNTRL(frontSweepsRequest, gt_can_devs.t_display.u8_drum_speed_request,   gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD2_FS_SpeedCmd)
+
+/*Rotary Trap Control CAN Parameters */
+DP2CNTRL(rotaryTrapRange, 	 gt_can_devs.t_display.u8_trap_speed_range,     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_RT_SpeedCmd)
+DP2CNTRL(rotaryTrapIncrease, gt_can_devs.t_joystick.u8_b3_state, 	        gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_BTN3_RT_INC)
+
+/* Stick Box */
+DP2CNTRL(stickOpen,			 gt_can_devs.t_buttonPanel.u8_b3_state, 	    gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_E1_BTN_STATUS_BTN03_SB_OP)
+DP2CNTRL(stickClose, 		 gt_can_devs.t_buttonPanel.u8_b7_state, 	    gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_E1_BTN_STATUS_BTN07_SB_CL)
+
+/* Stick Remover CAN Parameters */
+DP2CNTRL(stickRemOnOff, 	 gt_can_devs.t_buttonPanel.u8_b8_state, 	    gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_E1_BTN_STATUS_BTN08_SR)
+
+/* Propulsion Control */
+DP2CNTRL(gearSelect, 	 	 gt_can_devs.t_display.u8_gear_select, 	        gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_PROP_GearSelect)
+DP2CNTRL(speedLimitEnable, 	 gt_can_devs.t_display.u8_speed_limit_enable, 	gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_PROP_SetSpeedLimit)
+DP2CNTRL(speedLimitSet, 	 gt_can_devs.t_display.u8_max_speed_set, 	    gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD2_PROP_SetCCMax)
+DP2CNTRL(joystickPos, 		 gt_can_devs.t_joystick.u16_yPos, 	   		    gt_J1939_DataPoolValues.t_CAN2_RXValues.u16_BJM1_JS_YPOS)
+DP2CNTRL(joystickPos2, 		 gt_can_devs.t_joystick.u8_fwd_status, 	   		gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_Y_POSITIVE)
+DP2CNTRL(joystickPos3, 		 gt_can_devs.t_joystick.u8_rev_status, 	   		gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_Y_NEGATVE)
+
+/* Propulsion Control */
+DP2CNTRL(paEnable, 	 	 	 gt_can_devs.t_buttonPanel.u8_b5_state, 	    gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_E1_BTN_STATUS_BTN05_PA)
+
+/*Suction Fan */
+DP2CNTRL(suctionFanOnOff, 	 gt_can_devs.t_joystick.u8_b4_state, 			gt_J1939_DataPoolValues.t_CAN2_RXValues.u8_BJM1_JS_BTN4_SF)
+DP2CNTRL(suctionFanSpeedReq, gt_can_devs.t_display.u16_sf_speed_req,  		gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_DISP_CMD1_SF_SpeedCmd)
+ 
+/*Engine */
+DP2CNTRL(engineSpeed,    	 gt_can_devs.t_engine.u16_engine_speed,  		gt_J1939_DataPoolValues.t_CAN1_RXValues.u16_EEC1_EngSpeed)
+DP2CNTRL(intakeTemp,    	 gt_can_devs.t_engine.u8_intake_temp,  			gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_IC1_EngIntakeManifold1Temp)
+DP2CNTRL(coolantTemp,    	 gt_can_devs.t_engine.u8_coolant_temp,  		gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_ET1_EngCoolantTemp)
+
+/* Cooling Fan Control CAN Parameters */
+DP2CNTRL(coolManPurge, 		gt_can_devs.t_display.u8_manual_purge_req, 		gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_CF_ManualCmd)
+
+/* MISC Control CAN Parameters */
+DP2CNTRL(clearMacFaults, 	gt_can_devs.t_display.u8_clear_faults_cmd,     gt_J1939_DataPoolValues.t_CAN1_RXValues.u8_DISP_CMD1_MISC_ClearFaults)

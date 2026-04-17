@@ -1,13 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       output_handler_lib.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Feb 4, 2026 STW Technic
-*/
+/**
+ * \file       output_handler_lib.c
+ * \brief      HAL - Output Handler Library
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup OutputHandler Output Handler
+ *
+ * The Output Handler Library provides a standardized interface for managing
+ * and commanding hardware outputs. It handles state translation, safety
+ * limit enforcement, and diagnostic monitoring for physical actuators
+ * and signals across the system.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Feb 4, 2026 STW Technic
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 #include "output_handler_lib.h"
@@ -16,6 +34,7 @@
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 sint16 check_outputFaultStatus(uint8 u8_output);
+sint16 check_uextFaultStatus(uint8 u8_uext);
 sint16 findOutputByName(const char *targetName, uint8 *opu8_Index);
 
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
@@ -31,7 +50,11 @@ const T_x_out_pid_parameters t_PID_PARAMETERS =
             .s16_SampleTime = DEFAULT_PID_SAMPLETIME,
             .s16_OutputLimitMin = DEFAULT_PID_DUTYCYCLE_MIN,
             .s16_OutputLimitMax = DEFAULT_PID_DUTYCYCLE_MAX
-        };                                          //!<Default PID Parameters for Current Controlled Outputs
+        }; //!<Default PID Parameters for Current Controlled Outputs
+
+
+uint8  u8_num_uext = 0; //!< Number of connected UEXT (extension) modules
+T_UEXT at_uext[X_UEXT_COUNT];   //!<enable tracker for UEXT diagnostics
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -43,8 +66,6 @@ const T_x_out_pid_parameters t_PID_PARAMETERS =
     \retval C_NO_ERR(0)   Input Handler Successfully Initialized
     \retval C_NOACT(-8)   Invalid Output Diagnostic Configuration - Initialization Failed
     \retval C_CONFIG(-10) Invalid Output Configuration - Initialization Failed
-
-
     \ingroup system_io_group
 */
 sint16 init_outputHandler(void)
@@ -62,8 +83,7 @@ sint16 init_outputHandler(void)
     s16_error |= x_msw_set_state(X_MSW_02, X_ON);
     s16_error |= x_msw_set_state(X_MSW_03, X_ON);
 
-    //Initialize Output Runner List
-    // loop through all outputs and initialize
+    //Initialize Output Runner List by looping through all outputs and initialize
     for (uint8 i = 0; i < u8_numOutputs; i++)
     {
         // INIT OT_DIGITAL
@@ -77,6 +97,7 @@ sint16 init_outputHandler(void)
             // check if diagnostic required
             if (at_vehicleOutputs[i].u8_diagEnabled)
             {
+                x_out_set_circuit(at_vehicleOutputs[i].u16_hardwareID, X_OUT_CIRCUIT_PULL_UP);
                 s16_diagError |= x_out_digital_diag(at_vehicleOutputs[i].u16_hardwareID, at_vehicleOutputs[i].u16_dti);
             }
         }
@@ -93,6 +114,7 @@ sint16 init_outputHandler(void)
 
             if (at_vehicleOutputs[i].u8_diagEnabled)
             {
+                x_out_set_circuit(at_vehicleOutputs[i].u16_hardwareID, X_OUT_CIRCUIT_PULL_UP);
                 s16_diagError |= x_out_pwm_diag(at_vehicleOutputs[i].u16_hardwareID, at_vehicleOutputs[i].u16_dti);
             }
         }
@@ -107,9 +129,9 @@ sint16 init_outputHandler(void)
             s16_error |= x_out_set_current_filter(at_vehicleOutputs[i].u16_hardwareID, DEFAULT_CC_FILTER);
             s16_error |= x_out_cc_set_dither(at_vehicleOutputs[i].u16_hardwareID, DEFAULT_CC_DITHER);
 
-
             if (at_vehicleOutputs[i].u8_diagEnabled)
             {
+                x_out_set_circuit(at_vehicleOutputs[i].u16_hardwareID, X_OUT_CIRCUIT_PULL_UP);
                 (void) x_out_cc_diag_v2(at_vehicleOutputs[i].u16_hardwareID, at_vehicleOutputs[i].u16_dti,DEFAULT_CC_MAX_CURRENT, DEFAULT_CC_TOL_REL, DEFAULT_CC_TOL_ABS);
             }
         }
@@ -121,6 +143,36 @@ sint16 init_outputHandler(void)
     else if (C_NO_ERR != s16_initError)
         s16_error = s16_initError;
 
+    return s16_error;
+}
+
+/** \brief Initialize a Reference Voltage Output
+    Initialize a voltage reference output to a specific voltage and enable/disable
+    diagnostics for the pin
+
+    \param u8_id ID of Voltage Reference to be initialized
+    \param u16_voltage Voltage (mV) of Reference
+    \param u8_diag_enable Enable/Disable Toggle for Diagnostic Monitoring of Vref channel
+
+    \return Error Return Value
+    \retval C_NO_ERR(0)  All Output Faults Reset
+**/
+sint16 init_vrefSupply(T_UEXT _vref)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    at_uext[u8_num_uext] = _vref;
+    u8_num_uext++;
+
+    if(_vref.u8_diagEnabled)
+    {
+        s16_error = x_uext_diag(_vref.u8_id, _vref.u16_dti);
+
+        if(s16_error != C_NO_ERR)
+            return s16_error;
+    }
+
+    s16_error = x_uext_set_voltage_setpoint(_vref.u8_id, _vref.u16_setting);
 
     return s16_error;
 }
@@ -158,6 +210,9 @@ sint16 update_outputHandler(void)
                     s16_error |= x_out_set_duty_cycle(at_vehicleOutputs[j].u16_hardwareID, (uint32) at_vehicleOutputs[j].f32_outputValue);
                     break;
 
+                case OT_CC:
+                    s16_error |= x_out_set_current_setpoint(at_vehicleOutputs[j].u16_hardwareID, (sint32)(at_vehicleOutputs[j].f32_outputValue*1000.0f));
+                    break;
 
                 default:
                     break;
@@ -167,9 +222,17 @@ sint16 update_outputHandler(void)
         }
     }
 
+    //Uext Diagnostics
+    for(uint8 i = 0; i < X_UEXT_COUNT; i++)
+    {
+        if(at_uext[i].u8_diagEnabled)
+        {
+            check_uextFaultStatus(i);
+        }
+    }
+
     return s16_error;
 }
-
 
 /*! \brief Check output fault status
     Reads hardware fault status for specified output and updates
@@ -188,15 +251,18 @@ sint16 check_outputFaultStatus(uint8 u8_output)
     uint32 u32_hwOutputFault = 0;
 
     //get the active faults
+
     s16_Error = x_out_get_active_faults(at_vehicleOutputs[u8_output].u16_hardwareID, &u32_hwOutputFault);
 
     if (u32_hwOutputFault)
     {
+        at_vehicleOutputs[u8_output].t_fault.u8_fault_status = TRUE;
+
         // SHORT UB+ / OL
-        if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_UB) == X_OUT_FAULT_SHORT_UB))
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_UB].u8_is_active = TRUE;
+        if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_UB_OL) == X_OUT_FAULT_SHORT_UB_OL))
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = TRUE;
         else
-            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_SHORT_UB].u8_is_active = FALSE;
+            at_vehicleOutputs[u8_output].t_fault.t_fmi[e_OUTFAULT_OL].u8_is_active = FALSE;
 
         // SHORT TO GND
         if (((u32_hwOutputFault & X_OUT_FAULT_SHORT_GND) == X_OUT_FAULT_SHORT_GND))
@@ -225,10 +291,58 @@ sint16 check_outputFaultStatus(uint8 u8_output)
 
     else if (s16_Error == C_NO_ERR && !u32_hwOutputFault)
     {
-        for (uint8 i = 0; i < MAX_NUM_FMI; i++)
+        at_vehicleOutputs[u8_output].t_fault.u8_fault_status = FALSE;
+
+        for (uint8 i = 0; i < e_NUM_OUTFAULTS; i++)
             at_vehicleOutputs[u8_output].t_fault.t_fmi[i].u8_is_active = FALSE;
     }
+
     return s16_Error;
+}
+
+/**
+ * \brief       Checks and updates the active fault status for a specific UEXT module.
+ *
+ * \details     This function queries the hardware layer for the active fault mask
+ * of a given UEXT module. If faults are present, it parses the 32-bit mask
+ * to determine specific fault conditions (e.g., voltage too high or too low)
+ * and updates the corresponding Failure Mode Identifier (FMI) flags. If no
+ * faults are detected, it clears the general fault status and resets all
+ * associated FMI flags.
+ *
+ * \param       u8_uext The index or identifier of the UEXT module to check.
+ * \return      sint16 Cumulative error status (C_NO_ERR if successful).
+ */
+sint16 check_uextFaultStatus(uint8 u8_uext)
+{
+    sint16 s16_error = C_NO_ERR;
+    uint32 u32_uextFault = 0;
+
+    x_uext_get_active_faults(at_uext[u8_uext].u8_id, &u32_uextFault);
+
+    if(u32_uextFault)
+    {
+        at_uext[u8_uext].t_fault.u8_fault_status = TRUE;
+
+        if (((u32_uextFault & X_UEXT_FAULT_VOLTAGE_TOO_HIGH) == X_UEXT_FAULT_VOLTAGE_TOO_HIGH))
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_HIGH].u8_is_active = TRUE;
+        else
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_HIGH].u8_is_active = FALSE;
+
+        if (((u32_uextFault & X_UEXT_FAULT_VOLTAGE_TOO_LOW) == X_UEXT_FAULT_VOLTAGE_TOO_LOW))
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_LOW].u8_is_active = TRUE;
+        else
+            at_uext[u8_uext].t_fault.t_fmi[e_UEXT_LOW].u8_is_active = FALSE;
+    }
+    else if(!u32_uextFault)
+    {
+        at_uext[u8_uext].t_fault.u8_fault_status = FALSE;
+
+        for (uint8 i = 0; i < e_NUM_UEXTFAULTS; i++)
+            at_uext[u8_uext].t_fault.t_fmi[i].u8_is_active = FALSE;
+    }
+
+    return s16_error;
 }
 
 // Getter Functions ------------------------------------------------------------------------
@@ -245,9 +359,44 @@ sint16 get_numOutputs(uint8 *const opu8_Count)
     return C_NO_ERR;
 }
 
+/** \brief Get the output fault status for a specific output
+
+    \param[out] opu8_status Fault status of output
+
+    \return Error Return Value
+    \retval C_NO_ERR(0) No Error
+    \retval C_RANGE(-5) Output Not Found
+**/
+sint16 get_outputFaultStatus(const char *targetName, uint8 *opu8_status)
+{
+    sint16 s16_error;
+    uint8 u8_index = 0;
+
+    s16_error = findOutputByName(targetName, &u8_index);
+
+    if (C_NO_ERR == s16_error)
+        *opu8_status = at_vehicleOutputs[u8_index].t_fault.u8_fault_status;
+    else
+        *opu8_status = 255;
+
+    return s16_error;
+}
+
 // Setter Functions ------------------------------------------------------------------------
 /*! \brief Set output value by name
     Searches for an output by name and sets its value
+
+    Digital
+    -------
+    Value > 0 = Output ON, Value = 0 = Output Off
+
+    PWM
+    -------
+    Value in m% - 0-10000 = 0%DC -> 100%DC
+
+    CC
+    -------
+    Value in mA
 
     \param[in] targetName Name of the output to find
     \param[in] value New output value to set
@@ -331,17 +480,44 @@ sint16 add_hwOutput(T_VehicleOutput output)
  */
 sint16 findOutputByName(const char *targetName, uint8 *opu8_Index)
 {
-    sint16 s16_Error = C_RANGE;
 
     for (uint8 i = 0; i < u8_numOutputs; i++)
     {
         if (strcmp(at_vehicleOutputs[i].Name_Description, targetName) == 0)
         {
             *opu8_Index = i;  // Return index of matching item
-            s16_Error = C_NO_ERR;
+            return C_NO_ERR;
         }
     }
     *opu8_Index = 255;  // Not found
-    return s16_Error;
+    return C_RANGE;
 }
+
+/** \brief Clear all active output faults and occurence counters
+    Searches the output array for any output that has an active fault and sets
+    it to FALSE
+
+    \return Error Return Value
+    \retval C_NO_ERR(0)  All Output Faults Reset
+**/
+sint16 clear_outputFaults(void)
+{
+    sint16 s16_error = C_NO_ERR;
+
+    //clear all active status'
+    for (uint8 i = 0; i < u8_numOutputs; i++)
+    {
+        if (at_vehicleOutputs[i].u8_diagEnabled)
+        {
+            at_vehicleOutputs[i].t_fault.u8_fault_status = FALSE;
+            for(uint8 j = 0; j< MAX_NUM_FMI; j++)
+            {
+                at_vehicleOutputs[i].t_fault.t_fmi[j].u8_is_active = FALSE;
+            }
+        }
+    }
+
+    return s16_error;
+}
+
 //EOF

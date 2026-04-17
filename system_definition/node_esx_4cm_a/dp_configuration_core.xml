@@ -6,13 +6,362 @@
         <name>Configuration</name>
         <version major="0" minor="0" release="0"/>
         <comment>NVM Datapool to hold Configuration Data</comment>
-        <lists length="1">
-            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="100">
+        <lists length="9">
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="0" nvm-size="5">
                 <name>ElevatorConfig</name>
                 <comment/>
                 <data-elements length="2">
-                    <data-element factor="1" offset="0" nvm-start-address="0">
-                        <name>minSpeed</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="0">
+                        <name>vl3512_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="1"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="1">
+                        <name>vl3514_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>DEFAULT</name>
+                        <comment>Dataset to hold all default values
+</comment>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="5" nvm-size="5">
+                <name>HeaderConfig</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="5">
+                        <name>joystick_hll_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Default</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="10" nvm-size="5">
+                <name>StickBoxConfig</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="10">
+                        <name>stick_box_installed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Default</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="15" nvm-size="5">
+                <name>PowerAssistConfig</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="15">
+                        <name>power_assist_installed</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Default</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="20" nvm-size="20">
+                <name>PorpulsionConfig</name>
+                <comment/>
+                <data-elements length="7">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="20">
+                        <name>tire_diameter</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="50"/>
+                        <unit>in</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="31.5"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="24">
+                        <name>max_curr_fwd</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1650"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="1650"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="26">
+                        <name>min_curr_fwd</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="768"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="640"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="28">
+                        <name>max_curr_rev</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1650"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="1650"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="30">
+                        <name>min_curr_rev</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="768"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="640"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="32">
+                        <name>ramp_inc_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="6"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="4"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="33">
+                        <name>ramp_dec_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="6"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="4"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Default</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="40" nvm-size="10">
+                <name>CoolingFanConfig</name>
+                <comment/>
+                <data-elements length="3">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="40">
+                        <name>purge_cycle_time</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Time between cooling fan purge cycles (auto)</comment>
+                        <min-value value="60"/>
+                        <max-value value="1200"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="600"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="42">
+                        <name>purge_active_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Time fan spends in Reverse during purge</comment>
+                        <min-value value="1"/>
+                        <max-value value="30"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="10"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="43">
+                        <name>hyd_oil_cal</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Hydraulic Oil Temperature Sensor Cal offset</comment>
+                        <min-value value="-100"/>
+                        <max-value value="100"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Default</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="50" nvm-size="20">
+                <name>SuctionFanConfig</name>
+                <comment/>
+                <data-elements length="3">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="50">
+                        <name>sf_6_7_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="51">
+                        <name>sf_inc_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="6"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="52">
+                        <name>sf_dec_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="6"/>
+                        </data-set-values>
+                    </data-element>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Default</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="70" nvm-size="10">
+                <name>MiscConfig</name>
+                <comment/>
+                <data-elements length="5">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="70">
+                        <name>fuel_full_voltage</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="4500"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="72">
+                        <name>filter_rstn_max</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="0"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="73">
+                        <name>af_max_voltage</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="4500"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="75">
+                        <name>af_min_voltage</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Parameter description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-write</access>
+                        <data-set-values>
+                            <data-set-value value="500"/>
+                        </data-set-values>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="77">
+                        <name>af_fault_pct</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>
@@ -23,8 +372,20 @@
                             <data-set-value value="1"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" nvm-start-address="1">
-                        <name>maxSpeed</name>
+                </data-elements>
+                <data-sets>
+                    <data-set>
+                        <name>Default</name>
+                        <comment/>
+                    </data-set>
+                </data-sets>
+            </list>
+            <list nvm-crc-active="false" nvm-crc="0" nvm-start-address="80" nvm-size="100">
+                <name>FrontSweepsConfig</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="80">
+                        <name>sweeps_installed</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
                         <min-value value="0"/>
@@ -32,15 +393,14 @@
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
-                            <data-set-value value="2"/>
+                            <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
                 </data-elements>
                 <data-sets>
                     <data-set>
-                        <name>DEFAULT</name>
-                        <comment>Dataset to hold all default values
-</comment>
+                        <name>Default</name>
+                        <comment/>
                     </data-set>
                 </data-sets>
             </list>

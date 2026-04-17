@@ -6,13 +6,13 @@
         <name>Checkpoints</name>
         <version major="0" minor="0" release="0"/>
         <comment>Datapool to store all checkpoints for dashboard viewing</comment>
-        <lists length="1">
+        <lists length="10">
             <list>
                 <name>ElevatorControl</name>
                 <comment/>
-                <data-elements length="2">
-                    <data-element factor="1" offset="0" diag-event-call="false">
-                        <name>checkpoint1</name>
+                <data-elements length="3">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>status</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="0"/>
@@ -21,14 +21,497 @@
                         <access>read-only</access>
                         <data-set-values/>
                     </data-element>
-                    <data-element factor="1" offset="0" diag-event-call="false">
-                        <name>checkpoint2</name>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>speed_cmd</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>output</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>CleaningChainsControls</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>status</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Variable description</comment>
                         <min-value value="0"/>
                         <max-value value="255"/>
                         <unit/>
                         <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>FrontSweepsControl</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>speed_cmd</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>RotaryTrap</name>
+                <comment/>
+                <data-elements length="1">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>trap_target_cmd</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>GeneralTesting</name>
+                <comment/>
+                <data-elements length="4">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>test1</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>test2</name>
+                        <type base-type="sint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-32768"/>
+                        <max-value value="32767"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>test3</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>test4</name>
+                        <type base-type="uint32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="4294967295"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>PropulsionControl</name>
+                <comment/>
+                <data-elements length="10">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>wheel_rpm</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>wheel_speed_mph_x10</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>edc_enable</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_tire_diameter</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Parameter - Tire Diameter</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit>in</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_max_fwd_current</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="16500"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_min_fwd_current</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="768"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_max_rev_current</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="16500"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_min_rev_current</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="768"/>
+                        <unit>mA</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="6" interpret_as_string="false" diag-event-call="true">
+                        <name>p_ramp_down_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="6" interpret_as_string="false" diag-event-call="true">
+                        <name>p_ramp_up_time</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit>s</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>EngineControl</name>
+                <comment/>
+                <data-elements length="8">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>eng_status</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>start_key</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>start_suction_fan_off</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>start_shaft_drive_off</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>start_neutral</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>eng_spd</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>eng_spd_up_osc</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>eng_spd_down_osc</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>SuctionFanControl</name>
+                <comment/>
+                <data-elements length="2">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>suction_fan_on</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>pwm_status</name>
+                        <type base-type="uint16" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="65535"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>CoolingFanControl</name>
+                <comment/>
+                <data-elements length="2">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>lead_sensor_id</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>cooling_demand_pct</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="-3.4028235e+38"/>
+                        <max-value value="3.4028235e+38"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                </data-elements>
+                <data-sets/>
+            </list>
+            <list>
+                <name>MiscControl</name>
+                <comment/>
+                <data-elements length="12">
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>fuel_level_gauge_pct</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit>%</unit>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>filter_rest_pct</name>
+                        <type base-type="float32" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>service_filter_status</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>door_open_status</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>low_hyd_fluid_indicator</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="1"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>brakes_engaged</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>sw_major_revision</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>sw_minor_revision</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="255"/>
+                        <unit/>
+                        <access>read-only</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="false">
+                        <name>p_filter_fault_pct</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_fuel_high_dbnd</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_filter_low_cal</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
+                        <data-set-values/>
+                    </data-element>
+                    <data-element factor="1" offset="0" interpret_as_string="false" diag-event-call="true">
+                        <name>p_filter_high_cal</name>
+                        <type base-type="uint8" is-array="false"/>
+                        <comment>Variable description</comment>
+                        <min-value value="0"/>
+                        <max-value value="100"/>
+                        <unit>%</unit>
+                        <access>read-write</access>
                         <data-set-values/>
                     </data-element>
                 </data-elements>

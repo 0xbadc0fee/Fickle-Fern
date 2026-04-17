@@ -3,7 +3,7 @@
     <file-version>1</file-version>
     <node datapool-auto-nvm-start-address="true">
         <type>ESX-4CM-A</type>
-        <properties>
+        <properties x-app-support="false">
             <name>ESX_4CM_A</name>
             <comment/>
             <diagnostic-server>open-syde</diagnostic-server>
@@ -17,7 +17,7 @@
                 <communication-interface interface-number="1" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
                     <type>can</type>
                     <communication-protocol/>
-                    <bus connected="false" interface-connected="true" bus-index="0"/>
+                    <bus connected="true" interface-connected="true" bus-index="1"/>
                 </communication-interface>
                 <communication-interface interface-number="2" node-id="0" update-available="true" routing-available="true" diagnosis-available="true">
                     <type>can</type>
@@ -99,7 +99,7 @@
             <com-protocol>comm_j1939_core.xml</com-protocol>
         </com-protocols>
         <data-pools length="3">
-            <data-pool>dp_checkpoints_core.xml</data-pool>
+            <data-pool>dp_dashboard_core.xml</data-pool>
             <data-pool>dp_configuration_core.xml</data-pool>
             <data-pool>dp_j1939_core.xml</data-pool>
         </data-pools>

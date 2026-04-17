@@ -1,21 +1,27 @@
-/*! \file       joystick_handler.h.h
-    \brief      <description>
+/*! \file       hmi_joystick.h
+    \brief      JS6000 Joystick Description File
 
 
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
+    File that contains all relevent defintions, structures and compoennts to be utlized
+    by a JS6000 Joystick.
 
-   	created     Jan 7, 2026 kyle.boch
-   	\endimplementation
+
+   	\copyright   STW Technic (c) 2026
+   	use only under terms of contract / confidential
+   	\author      Jan 7, 2026 kyle.boch
 */
 #ifndef APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 #define APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
+#include "stwtypes.h"
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define JS_BUTTON_PRESSED 0b01
+#define JS_BUTTON_PRESSED   0b01      //!< Joystick button pressed state
+#define JS_BUTTON_FAULT     0b11      //!< Joystick button fault/error state
+
+#define JS_MAX_Y_POS        10000     //!< Maximum Y-axis position of the joystick
+#define JS_MIN_Y_POS        -10000    //!< Minimum (full reverse) Y-axis position of the joystick
+#define JS_NEUTRAL_POS      0         //!< Neutral/center position of the joystick
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 /** \brief HMI Device Structure - JS6000 Joystick
  *
@@ -26,7 +32,9 @@ typedef struct{
 
     uint8 u8_joystickActive;
 
-    sint16 s16_yPos;        //!<Y Position of Joystick (Forward - Reverse Direction)
+    uint16 u16_yPos;        //!<Y Position of Joystick (0-100%)
+    uint8  u8_fwd_status;    //!<Forward Status(Y Pos) of Joystick
+    uint8  u8_rev_status;   //!<Reverse Status (YPos) of Joystick
     uint8  u8_b1_state;     //!<Button 1 State (0 = not pressed, 1 = pressed)
     uint8  u8_b2_state;     //!<Button 2 State (0 = not pressed, 1 = pressed)
     uint8  u8_b3_state;     //!<Button 3 State (0 = not pressed, 1 = pressed)

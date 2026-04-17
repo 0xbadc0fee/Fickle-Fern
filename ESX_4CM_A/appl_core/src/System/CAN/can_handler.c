@@ -1,13 +1,19 @@
 //-----------------------------------------------------------------------------
-/*! \file       can_device_interface.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 7, 2026 STW Technic
-*/
+/**
+ * \file       can_handler.c
+ * \brief      System - CAN Device Interface
+ *
+ * \addtogroup System
+ * @{
+ * \defgroup CanDeviceInterface CAN Device Interface
+ * \brief Interface layer for CAN device communication and management.
+ * @{
+ *
+ * \copyright   STW Technic (c) 2026
+ *              use only under terms of contract / confidential
+ *
+ * \author     Jan 7, 2026 kyle.boch
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -25,22 +31,21 @@
 #include "j1939_data_pool.h"
 #include "can_handler.h"
 
-#include "hmi_definition.h"
+#include "can_device_definition.h"
 #include "can_engine.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
-static bool maq_CanAvailable[X_CAN_COUNT];
 
-T_UserInterface gt_ui;
-T_Engine gt_engine;
+static bool maq_CanAvailable[X_CAN_COUNT]; //!< Internal array tracking the availability status of each CAN bus
+T_CANDevices gt_can_devs; //!< Global structure managing all CAN devices
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize CAN Interfaces
  *
- *  This funciton looks at all can interface settings described in openSYDE project and initializes
+ *  This function looks at all can interface settings described in openSYDE project and initializes
  *  said interfaces.
  *
  *  \return s16_error Error Code
@@ -143,6 +148,5 @@ bool can_get_availability_state(const uint16 ou16_Channel)
 {
    return maq_CanAvailable[ou16_Channel];
 }
-
 
 //EOF

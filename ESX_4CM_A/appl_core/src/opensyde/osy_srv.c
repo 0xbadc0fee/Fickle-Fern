@@ -59,6 +59,8 @@ sint16 osy_srv_init(void)
    s16_Error += x_icc_barrier_wait_for(2u, X_ICC_BARRIER_TIMEOUT_INFINITE);
    s16_Error += x_os_install_task(&t_TaskConfig, NULL, &pt_TaskHandle);
 
+   osy_app_j1939_init();
+
    return s16_Error;
 }
 
