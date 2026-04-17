@@ -341,7 +341,7 @@ T_VehicleInput tvi_head_pressure =
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Inputs
  *
- *  This funciton takes all the inputs described as modules global variables and adds them to the update list using
+ *  This function takes all the inputs described as modules global variables and adds them to the update list using
  *  add_hwInput().  After all inputs are added to the update list, the handler (and all inputs in the update list) are initialized
  *  according to their set configuration.
  *
@@ -376,7 +376,7 @@ sint16 init_hwInputs(void)
 
 /** \brief Update Hardware Inputs
  *
- *  This funciton makes a single call to update_inputHandler (see corresponding documentation)takes all the inputs described as modules global variables and adds them to the update list using
+ *  This function makes a single call to update_inputHandler (see corresponding documentation)takes all the inputs described as modules global variables and adds them to the update list using
  *  add_hwInput().  After all inputs are added to the update list, the handler (and all inputs in the update list) are initialized
  *  according to their set configuration.
  *
@@ -386,6 +386,5 @@ sint16 update_hwInputs(void)
 {
     return update_inputHandler();
 }
-
 
 //EOF

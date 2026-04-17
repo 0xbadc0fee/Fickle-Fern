@@ -276,11 +276,6 @@ sint16 update_throttleControl(void)
     mt_throttle.u8_prev_engine_status = mt_throttle.u8_engine_status;
     mt_throttle.u8_prev_throttle_cmd = mt_throttle.u8_throttle_cmd;
 
-
-
-    return s16_error;
-
-
     return s16_error;
 }
 //EOF

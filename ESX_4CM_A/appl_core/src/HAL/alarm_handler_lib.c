@@ -1,13 +1,31 @@
 //-----------------------------------------------------------------------------
-/*! \file       alarm_handler_lib.c
-    \brief      <description>
-
-    project     FloryTemplate_4CM
-    copyright   STW Technic (c) 2026
-    license     use only under terms of contract / confidential
-
-    created     Jan 6, 2026 STW Technic
-*/
+/**
+ * \file        alarm_handler_lib.c
+ * \brief       HAL - Alarm Handler Library
+ *
+ * \addtogroup HAL
+ * @{
+ * \addtogroup AlarmHandler Alarm Handler
+ *
+ * The Alarm Handler Library is responsible for managing system-wide faults,
+ * warnings, and alarm states. It provides standard routines for evaluating
+ * error conditions, triggering active alarms, managing fault history, and
+ * clearing inactive faults to ensure safe and reliable controller operation.
+ *
+ * @par Project
+ * FloryTemplate_4CM
+ *
+ * @par Copyright
+ * STW Technic (c) 2026
+ *
+ * @par License
+ * Use only under terms of contract / confidential
+ *
+ * @par Created
+ * Jan 6, 2026 STW Technic
+ *
+ * @{
+ */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
 //STD
@@ -22,7 +40,6 @@
 #include "nvm_handler_lib.h"
 //PROJECT
 #include "alarm_handler_lib.h"
-
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */

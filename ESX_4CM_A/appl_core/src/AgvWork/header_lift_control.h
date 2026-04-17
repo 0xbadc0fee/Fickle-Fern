@@ -44,7 +44,7 @@
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
 /**
- * @struct T_ChkPoints_Header
+ * \struct T_ChkPoints_Header
  * \brief Checkpoints Structure - Header Control
  *
  * Encapsulates the state-tracking checkpoints relevant to the Header Lift
@@ -73,7 +73,7 @@ typedef struct
 }T_Config_HeaderControl;
 
 /**
- * @struct T_HeaderControl
+ * \struct T_HeaderControl
  * \brief Control Structure - Header Lift Control
  *
  * Encapsulates all persistent variables and pointers required for Header
@@ -100,7 +100,6 @@ typedef struct
 
     //Control Checkpoints
     T_ChkPoints_Header *pt_chkPoints;   //!<Header Control Checkpoints Structure
-
 
 }T_HeaderControl;
 

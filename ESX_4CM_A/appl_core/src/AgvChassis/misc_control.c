@@ -60,14 +60,11 @@ static T_MiscControl mt_misc; //!< Internal state instance for miscellaneous con
  */
 sint16 update_filterMinder(void)
 {
-    //TODO_STW: Dashboard Config High Deadband
-    //TODO_STW: Dashboard Pin Voltage
-
     sint16 s16_error = C_NO_ERR;
 
     uint8 u8_minder_flt = FALSE;
     uint8 u8_service_filter_on = FALSE;
-    uint8 u8_fault_active = FALSE;
+    //uint8 u8_fault_active = FALSE;
 
     float32 f32_raw = 0.0F;
     float32 f32_filter_pct = 0.0F;
@@ -88,6 +85,7 @@ sint16 update_filterMinder(void)
         // Convert raw input to restriction percent (0..100)
         f32_filter_pct = ((100.0f / (mt_misc.pt_config->u16_af_max_voltage-mt_misc.pt_config->u16_af_min_voltage)) * f32_raw) -
                          ((100.0f*FM_RAW_MIN)/(mt_misc.pt_config->u16_af_max_voltage-mt_misc.pt_config->u16_af_min_voltage));
+
         f32_filter_pct = CLAMP(f32_filter_pct, 0.0F, 100.0F);
 
         // Filter restriction percent
@@ -107,7 +105,6 @@ sint16 update_filterMinder(void)
             else if((u32_now_ms - mt_misc.u32_minder_timer_start_ms) >= 1000u)
             {
                 mt_misc.pt_config->u8_filter_rstn_max = mt_misc.t_minder_flt.f32_out;
-                //write_nvmParameters();
             }
         }
         else
@@ -119,8 +116,8 @@ sint16 update_filterMinder(void)
         // Service on if max is greater than threshold
         u8_service_filter_on = (mt_misc.pt_config->u8_filter_rstn_max >= FM_SERVICE_THRESH) ? TRUE : FALSE;
 
-        //needed?
-        u8_fault_active = (mt_misc.t_minder_flt.f32_out <=  mt_misc.pt_config->u8_af_fault_pct) ? TRUE : FALSE;
+        //TODO_STW
+        //u8_fault_active = (mt_misc.t_minder_flt.f32_out <=  mt_misc.pt_config->u8_af_fault_pct) ? TRUE : FALSE;
     }
 
     // Outputs
@@ -207,7 +204,7 @@ sint16 update_fuelLevel(void)
  *
  *  This function initializes the AgvChassis - Miscellaneous Control Logic.
  *
- *  \param _ui Pointer to the project's UI Structure
+ *  \param _can_devs Pointer to the project's UI Structure
  *  \param _chk_misc Fan Pointer to the global Miscellaneous Control Checkpoints Structure
  *  \param _nvm_misc_control Fan Pointer to the global Miscellaneous Control NVM Structure
  *

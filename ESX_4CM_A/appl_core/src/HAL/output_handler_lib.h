@@ -86,7 +86,6 @@ typedef enum {
     e_NUM_OUTFAULTS            //!<Total Number of possible output faults
 } E_OutputFaults;
 
-
 /**
  * \enum E_UextFaults
  * \brief List of all Possible Output Faults.
@@ -105,15 +104,15 @@ typedef enum {
 typedef struct {
     //-----------------------------INIT PARAMS--------------------------------//
     char *Name_Description;          //!< Named Description of Hardware Output
-    E_OutputTypes e_outputType;  //!< Configuration Type of Output
-    uint16 u16_hardwareID;       //!< Output ID - Hardware PIN ID
+    E_OutputTypes e_outputType;      //!< Configuration Type of Output
+    uint16 u16_hardwareID;           //!< Output ID - Hardware PIN ID
     //-----------------------------OUTPUT VALUES------------------------------//
-    float32 f32_outputValue;     //!< Output Value
+    float32 f32_outputValue;         //!< Output Value
     float32 f32_prevOutputValue;     //!< Array to track previously set output values
     uint8 mq_outputChanged;          //!< Output Changed Status
     //------------------------------DIAG PARAMS-------------------------------//
-    uint8 u8_diagEnabled;        //!< Enable - Disable Toggle for Output Diagnostics / Alarm
-    T_FloryFault t_fault;
+    uint8 u8_diagEnabled;            //!< Enable - Disable Toggle for Output Diagnostics / Alarm
+    T_FloryFault t_fault;            //!< Structure holding active fault and diagnostic information
     uint16 u16_dti;                  //!< Fault Test Interval
 
 } T_VehicleOutput;

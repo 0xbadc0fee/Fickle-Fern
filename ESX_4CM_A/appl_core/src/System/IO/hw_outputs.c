@@ -42,8 +42,8 @@
 /* -- Module Global Variables -------------------------------------------------------------------------------------- */
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
-// Define vehicle specific inputs
 
+// Define vehicle specific inputs
 T_VehicleOutput tvo_auto_unload =
 {
     .Name_Description = "AUTO_UNLOAD",
@@ -487,7 +487,7 @@ T_UEXT vref_1 =
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /** \brief Initialize Hardware Outputs
  *
- *  This funciton takes all the outputs described as modules global variables and adds them to the update list using
+ *  This function takes all the outputs described as modules global variables and adds them to the update list using
  *  add_hwOutput().  After all outputs are added to the update list, the handler (and all outputs in the update list) are initialized
  *  according to their set configuration.
  *
@@ -535,7 +535,7 @@ sint16 init_hwOutputs(void)
 
 /** \brief Update Hardware Outputs
  *
- *  This funciton makes a single call to update_outputHandler (see corresponding documentation)takes all the outputs described as modules global variables and gathers
+ *  This function makes a single call to update_outputHandler (see corresponding documentation)takes all the outputs described as modules global variables and gathers
  *  the latest values and fault status'
  *
  *  \return update_outputHandler() - Pass through return code for indication of update_outputHandler execution.

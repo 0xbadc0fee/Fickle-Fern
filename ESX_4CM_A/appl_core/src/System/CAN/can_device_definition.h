@@ -9,14 +9,10 @@
  * \brief This header defines the network configuration, source addresses,
  * and hardware abstraction layers for all CAN-based peripherals in the system.
  * @{
+ * \copyright   STW Technic (c) 2026
+ * use only under terms of contract / confidential
  *
- * \implementation
- * project     FloryTemplate_4CM
- * copyright   STW Technic (c) 2026
- * license     use only under terms of contract / confidential
- *
- * created     Jan 7, 2026 kyle.boch
- * \endimplementation
+ * \author      Jan 7, 2026 kyle.boch
  */
 //-----------------------------------------------------------------------------
 #ifndef APPL_CORE_SRC_CAN_CANDEV_DEF_H_

@@ -53,7 +53,7 @@ const T_x_out_pid_parameters t_PID_PARAMETERS =
         }; //!<Default PID Parameters for Current Controlled Outputs
 
 
-uint8  u8_num_uext = 0;
+uint8  u8_num_uext = 0; //!< Number of connected UEXT (extension) modules
 T_UEXT at_uext[X_UEXT_COUNT];   //!<enable tracker for UEXT diagnostics
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
@@ -66,8 +66,6 @@ T_UEXT at_uext[X_UEXT_COUNT];   //!<enable tracker for UEXT diagnostics
     \retval C_NO_ERR(0)   Input Handler Successfully Initialized
     \retval C_NOACT(-8)   Invalid Output Diagnostic Configuration - Initialization Failed
     \retval C_CONFIG(-10) Invalid Output Configuration - Initialization Failed
-
-
     \ingroup system_io_group
 */
 sint16 init_outputHandler(void)
@@ -85,10 +83,7 @@ sint16 init_outputHandler(void)
     s16_error |= x_msw_set_state(X_MSW_02, X_ON);
     s16_error |= x_msw_set_state(X_MSW_03, X_ON);
 
-    //TODO_STW: Make the return errors distinguishable between diagnostic init error and hardware init error
-
-    //Initialize Output Runner List
-    // loop through all outputs and initialize
+    //Initialize Output Runner List by looping through all outputs and initialize
     for (uint8 i = 0; i < u8_numOutputs; i++)
     {
         // INIT OT_DIGITAL
@@ -134,7 +129,6 @@ sint16 init_outputHandler(void)
             s16_error |= x_out_set_current_filter(at_vehicleOutputs[i].u16_hardwareID, DEFAULT_CC_FILTER);
             s16_error |= x_out_cc_set_dither(at_vehicleOutputs[i].u16_hardwareID, DEFAULT_CC_DITHER);
 
-
             if (at_vehicleOutputs[i].u8_diagEnabled)
             {
                 x_out_set_circuit(at_vehicleOutputs[i].u16_hardwareID, X_OUT_CIRCUIT_PULL_UP);
@@ -148,7 +142,6 @@ sint16 init_outputHandler(void)
         s16_error = s16_diagError;
     else if (C_NO_ERR != s16_initError)
         s16_error = s16_initError;
-
 
     return s16_error;
 }
@@ -221,7 +214,6 @@ sint16 update_outputHandler(void)
                     s16_error |= x_out_set_current_setpoint(at_vehicleOutputs[j].u16_hardwareID, (sint32)(at_vehicleOutputs[j].f32_outputValue*1000.0f));
                     break;
 
-
                 default:
                     break;
             }
@@ -241,7 +233,6 @@ sint16 update_outputHandler(void)
 
     return s16_error;
 }
-
 
 /*! \brief Check output fault status
     Reads hardware fault status for specified output and updates
@@ -309,6 +300,19 @@ sint16 check_outputFaultStatus(uint8 u8_output)
     return s16_Error;
 }
 
+/**
+ * \brief       Checks and updates the active fault status for a specific UEXT module.
+ *
+ * \details     This function queries the hardware layer for the active fault mask
+ * of a given UEXT module. If faults are present, it parses the 32-bit mask
+ * to determine specific fault conditions (e.g., voltage too high or too low)
+ * and updates the corresponding Failure Mode Identifier (FMI) flags. If no
+ * faults are detected, it clears the general fault status and resets all
+ * associated FMI flags.
+ *
+ * \param       u8_uext The index or identifier of the UEXT module to check.
+ * \return      sint16 Cumulative error status (C_NO_ERR if successful).
+ */
 sint16 check_uextFaultStatus(uint8 u8_uext)
 {
     sint16 s16_error = C_NO_ERR;

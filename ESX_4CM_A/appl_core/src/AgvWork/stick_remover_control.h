@@ -34,14 +34,14 @@
 #include "toggle_button.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
-#define DOOR_OPEN                 (1u)      /**< Door state: Open */
-#define DOOR_CLOSED               (0u)      /**< Door state: Closed */
+#define DOOR_OPEN                 (1u)      //!< Door state: Open
+#define DOOR_CLOSED               (0u)      //!< Door state: Closed
 
-#define IGN_ON                    (1u)      /**< Ignition state: On */
-#define IGN_OFF                   (0u)      /**< Ignition state: Off */
+#define IGN_ON                    (1u)      //!< Ignition state: On
+#define IGN_OFF                   (0u)      //!< Ignition state: Off
 
-#define STICK_REMOVER_ENABLED     (1u)      /**< Stick remover feature: Enabled */
-#define STICK_REMOVER_DISABLED    (0u)      /**< Stick remover feature: Disabled */
+#define STICK_REMOVER_ENABLED     (1u)      //!< Stick remover feature: Enabled
+#define STICK_REMOVER_DISABLED    (0u)      //!< Stick remover feature: Disabled
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 

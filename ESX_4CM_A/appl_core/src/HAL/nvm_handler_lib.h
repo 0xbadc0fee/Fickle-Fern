@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 /**
- * \file       nvm_handler_lib.c
+ * \file       nvm_handler_lib.h
  * \brief      HAL - NVM Handler Library
  *
  * \addtogroup HAL
@@ -76,7 +76,7 @@ typedef struct
     uint8  u8_fmi;              //!<FMI of Object
     uint16 u16_memAddress;      //!<Memory Storage address of Object
     uint8  u8_dataLength;       //!<Data length of Object
-    uint8  u8_occurenceCount;   //!<Data (Occurence Count) of Object
+    uint8  u8_occurenceCount;   //!<Data (Occurrence Count) of Object
 } T_FaultNVM;
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */

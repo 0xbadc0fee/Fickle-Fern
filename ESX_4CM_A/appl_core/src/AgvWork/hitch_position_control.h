@@ -40,7 +40,9 @@
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
-/** \brief Control Structure - Hitch Position Control
+/**
+ * \struct T_HitchPosControl
+ * \brief Control Structure - Hitch Position Control
  *
  * This structure represents all variables and pointers that
  * are utilized and tracked for hitch position control that need to

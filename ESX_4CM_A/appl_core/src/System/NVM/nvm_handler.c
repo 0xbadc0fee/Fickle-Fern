@@ -63,13 +63,12 @@
 T_Config_Elevator           gt_elevatorConfig;    //!<Structure that holds all agVWork - Elevator Control NVM Config
 T_Config_HeaderControl      gt_headerConfig;    //!<Structure that holds the Joystick HLL config.
 T_Config_StickBoxControl    gt_stickBConfig; //!<Structure that holds the Stick Box config.
-T_Config_PowerAssistControl gt_paConfig;
+T_Config_PowerAssistControl gt_paConfig;    //!< Global configuration parameters for the power assist control system
 T_Config_SFan               gt_suctionFanConfig; //!<Structure that holds the Suction Fan config.
 T_Config_MiscrControl       gt_miscConfig;      //!<Structure that holds the MISC config.
-T_Config_Propulsion         gt_propConfig;
-T_Config_CF                 gt_coolingFanConfig;
+T_Config_Propulsion         gt_propConfig;          //!< Global configuration parameters for the propulsion system
+T_Config_CF                 gt_coolingFanConfig;    //!< Global configuration parameters for the cooling fan system
 T_Config_FS                 gt_fsConfig;           //!<Front Sweeps Configuration Structure
-
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 
@@ -85,7 +84,6 @@ T_Config_FS                 gt_fsConfig;           //!<Front Sweeps Configuratio
  */
 sint16 init_nvmParameters(void)
 {
-
     sint16 s16_error = C_NO_ERR;
 
     //Initialize all openSYDE NVM Lists for each datapool
@@ -105,7 +103,7 @@ sint16 init_nvmParameters(void)
  *  If the RAM/Control copy is different than the OSY, write the corresponding OSY List
  *  to NVM.
  *
- * @return
+ *  \return s16_error Error Code
  */
 sint16 write_nvmParameters(void)
 {
@@ -128,7 +126,6 @@ sint16 write_nvmParameters(void)
         }
     }
 
-
     return s16_error;
 }
 
@@ -140,13 +137,14 @@ sint16 write_nvmParameters(void)
  * It is assumed that every nvm list defined in openSYDE has a corresponding default
  * list defined.
  *
- * @return
+ *  \return s16_error Error Code
  */
 sint16 reset_nvmParameters(void)
 {
     sint16 s16_error = C_NO_ERR;
     const uint8 u8_defaultDataset = 0;
 
+    //TODO_STW: Make a Reset / List option instead of whole NVM reset
     for(uint8 i = 0; i< CONFIGURATION_NUMBER_OF_LISTS; i++)
     {
         s16_error |= apply_osyNVMDataset(CONFIGURATION_DATA_POOL_INDEX, i, u8_defaultDataset);

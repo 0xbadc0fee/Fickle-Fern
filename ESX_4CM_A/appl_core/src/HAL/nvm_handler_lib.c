@@ -176,7 +176,6 @@ void clear_fault_nvm(void)
     }
 }
 
-
 /** \brief Initialize all OSY NVM Datapools into RAM
  *
  *  Read into RAM (global osy variables) all the values from EEPROM.
@@ -195,9 +194,7 @@ sint16 init_osyNVMDatapools(uint8 u8_datapoolID, uint8 u8_numLists)
     }
 
     return s16_error;
-
 }
-
 
 /** \brief Write OSY NVM Datapool List into NVM
  *
@@ -214,7 +211,6 @@ sint16 write_osyNVMDatapool(uint8 u8_datapoolID, uint8 u8_list)
     s16_error = osy_dph_nvm_write_list(u8_datapoolID, u8_list);
 
     return s16_error;
-
 }
 
 /** \brief Apply Dataset to NVM Datapool List
@@ -235,7 +231,6 @@ sint16 apply_osyNVMDataset(uint8 u8_datapoolID, uint8 u8_list, uint8 u8_dataset)
     s16_error |= osy_dph_nvm_write_list(u8_datapoolID, u8_list);
 
     return s16_error;
-
 }
 
 //EOF

@@ -55,8 +55,8 @@ static T_SuctionFanControl mt_suction_fan; //!<  Module-local instance of the su
  *
  *  This function initializes the Suction Fan Control Logic.
  *
- *  \param _can_devs Pointer to the project's UI Structure
- *  \param _nvmSuctionFan Pointer to Suction Fan NVM
+ * \param _can_devs Pointer to the project's UI Structure
+ * \param _nvmSuctionFan Pointer to Suction Fan NVM
  * \param _chkSuctionFan Pointer to Suction Fan checkpoints
  *
  *  \return s16_error Error Code
@@ -252,7 +252,6 @@ sint16 update_suctionFanControl(void)
         f32_pwm_cmd = SUCTION_FAN_SAFE_OUTPUT;
     }
 
-
     //Inhibit on logic/output fault
     s16_error += get_outputFaultStatus("FAN_HYDRO_FWD", &u8_output_fault);
     if (u8_output_fault == FALSE)
@@ -280,6 +279,18 @@ sint16 update_suctionFanControl(void)
     return s16_error;
 }
 
+/**
+ * \brief       Calculates the suction fan shaft speed in RPM.
+ *
+ * \details     This function determines the suction fan drive ratio based on
+ * the NVM configuration (e.g., whether the 6.7L configuration is
+ * enabled). It reads the raw fan frequency, converts it to motor
+ * RPM using the defined Pulses Per Revolution (SF_PPR), applies
+ * a moving average filter to smooth the reading, and finally
+ * calculates the actual shaft RPM by applying the drive ratio.
+ *
+ * \return      sint16 Cumulative error status (C_NO_ERR if successful)
+ */
 sint16 calc_sfSpeed(void)
 {
     sint16 s16_error = C_NO_ERR;
@@ -302,7 +313,6 @@ sint16 calc_sfSpeed(void)
 
     return s16_error;
 }
-
 
 /** \brief Get AgvWork - Suction Fan Status
  *

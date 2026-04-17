@@ -80,7 +80,6 @@ sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_c
     mt_prop_control.pu8_speed_limit_enable = &_can_dev->t_display.u8_speed_limit_enable;
     mt_prop_control.pu8_max_speed_set      = &_can_dev->t_display.u8_max_speed_set;
 
-
     //populate local copy of RX ui elements
     mt_prop_control.pu8_neutral_state   = &_can_dev->t_display.u8_neutral_state;
     mt_prop_control.pu8_wheel_speed_10  = &_can_dev->t_display.u8_wheel_speed_10;
@@ -114,7 +113,7 @@ sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_c
  *  Primary logic for this function is to execute the functionality defined in Function 13
  *  of the Functional Requirements - Propulsion Control.
  *
- *  This funcitonality includes (but is not limited to):
+ *  This functionality includes (but is not limited to):
  *
  *  - Gear Selector Functionality
  *  - Wheel Speed Calculation
@@ -195,7 +194,6 @@ sint16 update_propulsionControl(void)
     s16_error += output_edcValves();
 
     return s16_error;
-
 }
 
 /**
@@ -272,7 +270,6 @@ sint16 calc_joystickSpeedCommand(void)
 
     else
         mt_prop_control.f32_raw_output = 9000.0;
-
 
     //FR-13.8 Joystick State Calculation
     if(*(mt_prop_control.pu8_joy_fwd) && mt_prop_control.u16_joystick_command >= NEUTRAL_DEADBAND)
@@ -546,7 +543,6 @@ sint16 output_edcValves(void)
             mt_prop_control.pt_chkProp->u16_edc_fwd_curr = 0;
             mt_prop_control.pt_chkProp->u16_edc_rev_curr = 0;
             break;
-
     }
 
     return s16_error;

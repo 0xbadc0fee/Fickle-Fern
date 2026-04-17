@@ -124,8 +124,6 @@ sint16 update_engineStarterControl(void)
     // FR-12.1 Read additional inputs from internal control modules
     check_engineStatus();
 
-
-
     get_joystickNeutralStatus(&u8_joystick_neutral);
     get_suctionFanStatus(&u8_suction_fan_status);
     get_shaftDriveStatus(&u8_shaft_drive_status);
