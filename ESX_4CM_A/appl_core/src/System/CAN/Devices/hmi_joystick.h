@@ -1,14 +1,14 @@
-/*! \file       joystick_handler.h.h
-    \brief      <description>
+/*! \file       hmi_joystick.h
+    \brief      JS6000 Joystick Description File
 
 
-   	\implementation
-   	project     FloryTemplate_4CM
-   	copyright   STW Technic (c) 2026
-   	license     use only under terms of contract / confidential
+    File that contains all relevent defintions, structures and compoennts to be utlized
+    by a JS6000 Joystick.
 
-   	created     Jan 7, 2026 kyle.boch
-   	\endimplementation
+
+   	\copyright   STW Technic (c) 2026
+   	use only under terms of contract / confidential
+   	\author      Jan 7, 2026 kyle.boch
 */
 #ifndef APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_
 #define APPL_CORE_SRC_AGVHMI_JOYSTICK_HANDLER_H_

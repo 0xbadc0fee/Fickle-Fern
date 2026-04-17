@@ -9,13 +9,10 @@
  * \brief Interface layer for CAN device communication and management.
  * @{
  *
- * \implementation
- * project     FloryTemplate_4CM
- * copyright   STW Technic (c) 2026
- * license     use only under terms of contract / confidential
+ * \copyright   STW Technic (c) 2026
+ *              use only under terms of contract / confidential
  *
- * created     Jan 7, 2026 STW Technic
- * \endimplementation
+ * \author     Jan 7, 2026 kyle.boch
  */
 //-----------------------------------------------------------------------------
 /* -- Includes ------------------------------------------------------------------------------------------------------ */

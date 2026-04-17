@@ -144,6 +144,7 @@ sint16 reset_nvmParameters(void)
     sint16 s16_error = C_NO_ERR;
     const uint8 u8_defaultDataset = 0;
 
+    //TODO_STW: Make a Reset / List option instead of whole NVM reset
     for(uint8 i = 0; i< CONFIGURATION_NUMBER_OF_LISTS; i++)
     {
         s16_error |= apply_osyNVMDataset(CONFIGURATION_DATA_POOL_INDEX, i, u8_defaultDataset);
