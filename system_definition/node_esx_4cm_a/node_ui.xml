@@ -28,6 +28,18 @@
                     <interaction-point x="501" y="601"/>
                 </interaction-points>
             </connection>
+            <connection type="can" busnumber="2">
+                <interaction-points>
+                    <interaction-point x="525" y="405.5"/>
+                    <interaction-point x="535" y="342"/>
+                </interaction-points>
+            </connection>
+            <connection type="can" busnumber="3">
+                <interaction-points>
+                    <interaction-point x="486" y="524.49000000000001"/>
+                    <interaction-point x="486" y="567"/>
+                </interaction-points>
+            </connection>
         </busconnections>
     </node>
 </opensyde-node-ui-definition>

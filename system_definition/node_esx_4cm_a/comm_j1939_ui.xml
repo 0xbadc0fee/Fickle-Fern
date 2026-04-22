@@ -134,7 +134,7 @@
                     </com-message>
                 </tx-messages>
                 <rx-messages length="2">
-                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
+                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="true">
                         <com-signals length="10">
                             <com-signal color-index="61"/>
                             <com-signal color-index="32"/>
@@ -148,7 +148,7 @@
                             <com-signal color-index="18"/>
                         </com-signals>
                     </com-message>
-                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
+                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="true">
                         <com-signals length="9">
                             <com-signal color-index="30"/>
                             <com-signal color-index="40"/>

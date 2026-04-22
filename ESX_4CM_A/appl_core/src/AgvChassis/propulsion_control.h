@@ -202,7 +202,7 @@ typedef struct
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_chkProp);
+sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_chkProp, T_Config_Propulsion *_configProp);
 sint16 update_propulsionControl(void);
 sint16 get_wheelSpeed(float32 *_wheelSpeed);
 sint16 get_gearSelection(uint8 *_gear_selection);

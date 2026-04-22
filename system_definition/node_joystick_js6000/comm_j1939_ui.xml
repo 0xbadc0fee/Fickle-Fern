@@ -5,7 +5,7 @@
         <com-message-containers length="4">
             <com-message-container>
                 <tx-messages length="1">
-                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
+                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="true">
                         <com-signals length="10">
                             <com-signal color-index="61"/>
                             <com-signal color-index="32"/>

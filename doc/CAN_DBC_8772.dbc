@@ -81,7 +81,7 @@ BO_ 2566849565 DISP_CMD2: 8 Display
  SG_ PROP_SetCCMax : 32|1@1+ (1,0) [0|0] ""  ESX_4CM_A
  SG_ FS_SpeedCmd : 56|8@1+ (1,0) [0|0] "%"  ESX_4CM_A
 
-BO_ 2566849053 DISP_CMD1: 8 Display
+BO_ 2566849024 DISP_CMD1: 8 Display
  SG_ SF_SpeedCmd : 16|16@1+ (1,0) [0|10000] "RPM"  ESX_4CM_A
  SG_ PROP_SetSpeedLimit : 5|1@1+ (1,0) [0|0] ""  ESX_4CM_A
  SG_ RT_SpeedCmd : 40|8@1+ (1,0) [0|100] "%"  ESX_4CM_A
@@ -92,7 +92,7 @@ BO_ 2566849053 DISP_CMD1: 8 Display
  SG_ PROP_GearSelect : 0|1@1+ (1,0) [0|0] ""  ESX_4CM_A
  SG_ MISC_CameraReset : 1|1@1+ (1,0) [0|0] ""  ESX_4CM_A
 
-BO_ 2566848515 DISP_FDBK1: 8 ESX_4CM_A
+BO_ 2566848512 DISP_FDBK1: 8 ESX_4CM_A
  SG_ HYDOIL_Temp : 48|16@1+ (1,0) [0|255] "degrees C" Vector__XXX
  SG_ HYDOIL_LevelLow : 20|1@1+ (1,0) [0|1] ""  Display
  SG_ HC_ReliefPressure : 19|1@1+ (1,0) [0|1] ""  Display
@@ -120,7 +120,7 @@ BO_ 2566848515 DISP_FDBK1: 8 ESX_4CM_A
  SG_ FUEL_FuelGage2 : 8|8@1+ (1,0) [0|0] "UINT8"  Display
  SG_ AIRFILT_Restriction : 0|8@1+ (1,0) [0|0] "UINT8"  Display
 
-BO_ 2566848771 DISP_FDBK2: 8 ESX_4CM_A
+BO_ 2566848768 DISP_FDBK2: 8 ESX_4CM_A
  SG_ SF_RPM : 0|16@1- (1,0) [0|0] "RPM"  Display
  SG_ FuelGagePrcnt : 56|8@1+ (1,0) [0|0] "%"  Display
  SG_ SW_MinorRev : 48|8@1- (1,0) [0|0] ""  Display
@@ -153,10 +153,10 @@ BO_ 2348810494 TSC1: 8 ESX_4CM_A
 BO_ 2566844158 ET1: 8 Engine
  SG_ EngFuelTemp1 : 8|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
  SG_ EngIntercoolerThermostatOpening : 56|8@1+ (0.4,0) [0|100] "%"  ESX_4CM_A
- SG_ EngIntercoolerTemp : 48|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
- SG_ EngTurboOilTemp : 32|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
- SG_ EngOilTemp1 : 16|16@1+ (0.03125,-273) [-273|1734.96875] "deg C"  ESX_4CM_A
- SG_ EngCoolantTemp : 0|8@1+ (1,-40) [-40|210] "deg C"  ESX_4CM_A
+ SG_ EngIntercoolerTemp : 48|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
+ SG_ EngTurboOilTemp : 32|16@1+ (0.03125,-273) [4294967023|1734.96875] "deg C"  ESX_4CM_A
+ SG_ EngOilTemp1 : 16|16@1+ (0.03125,-273) [4294967023|1734.96875] "deg C"  ESX_4CM_A
+ SG_ EngCoolantTemp : 0|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
 
 BO_ 2364540158 EEC1: 8 Engine
  SG_ SrcAddrssOfCtrllngDvcFrEngCntrl : 40|8@1+ (1,0) [0|255] "" Vector__XXX
@@ -216,48 +216,48 @@ CM_ SG_ 2566889889 BTN02_AutoUL "Auger Auto Unload - Button 02 State";
 CM_ BO_ 2566849565 "General UI Machine Parameters 1";
 CM_ SG_ 2566849565 PROP_SetCCMax "Momentary Input - Enable/Disable CC and Set CC Max Speed";
 CM_ SG_ 2566849565 FS_SpeedCmd "Front Sweeps Speed Command";
-CM_ BO_ 2566849053 "General UI Machine Parameters 2";
-CM_ SG_ 2566849053 SF_SpeedCmd "Suction Fan Speed Command";
-CM_ SG_ 2566849053 PROP_SetSpeedLimit "Toggled Input - Enable/Disable 47.5% Max Joystick Position";
-CM_ SG_ 2566849053 RT_SpeedCmd "Rotary Trap Speed Command";
-CM_ SG_ 2566849053 FS_EnableCmd "Toggled Input - Enable/Disable Front Sweeps";
-CM_ SG_ 2566849053 ELEV_SpeedCmd "Elevator Speed Command";
-CM_ SG_ 2566849053 CF_ManualCmd "Momentary Input - Manual Fan Reversal Command";
-CM_ SG_ 2566849053 MISC_ClearFaults "Momentary Input - Clear Machine Faults";
-CM_ SG_ 2566849053 PROP_GearSelect "Toggled Input -Toggle High/Low Gear";
-CM_ BO_ 2566848515 "General UI Machine Feedback 1";
-CM_ SG_ 2566848515 HYDOIL_Temp "Hydraulic Oil Temperature - degrees C";
-CM_ SG_ 2566848515 HYDOIL_LevelLow "Hydraulic Oil Level Low Indicator";
-CM_ SG_ 2566848515 HC_ReliefPressure "Header Relief Pressure Switch Status";
-CM_ SG_ 2566848515 JS_NeutralState "Joystick Neutral Position Status";
-CM_ SG_ 2566848515 CF_Sen3OvrTmp "Cooling Fan - Sensor 3 Overtemp Indicator";
-CM_ SG_ 2566848515 CD_Sen2OvrTmp "Cooling Fan - Sensor 2 Overtemp Indicator";
-CM_ SG_ 2566848515 CF_Sen1OvrTmp "Cooling Fan - Sensor 1 Overtemp Indicator";
-CM_ SG_ 2566848515 CF_ManualStatus "Cooling Fan - Manual Reverse Status";
-CM_ SG_ 2566848515 CF_DIR "Cooling Fan - Fan Direction";
-CM_ SG_ 2566848515 PROP_SpeedLimitStatus "Max Joystick Position (47.5%) Status";
-CM_ SG_ 2566848515 SR_Status "Stick Remover Status";
-CM_ SG_ 2566848515 AUGER_Status "Auger Status";
-CM_ SG_ 2566848515 SHAFT_Status "Cleaning Chains / Shaft Drive On/Off Status";
-CM_ SG_ 2566848515 LIGHTS_WORKStatus "Worklights On/Off Status";
-CM_ SG_ 2566848515 LIGHTS_HDLTStatus "Headlights On/Off Status";
-CM_ SG_ 2566848515 ENGINE_Status "Taillights On/Off Status";
-CM_ SG_ 2566848515 ELEV_Status "Elevator On/Off Status";
-CM_ SG_ 2566848515 SF_Status "Suction Fan On/Off Status";
-CM_ SG_ 2566848515 PROP_SpeedX10 "Ground Speed (x10)";
-CM_ SG_ 2566848515 PROP_NeutralSafeInd "Machine in Neutral and Safe State (Engine Start Safe) Indicator";
-CM_ SG_ 2566848515 MISC_BrakeStatus "Brake On/Off Status";
-CM_ SG_ 2566848515 MISC_DoorStatus "Door Open/Closed Status";
-CM_ SG_ 2566848515 FUEL_LevelLow "Fuel Level Low Indicator";
-CM_ SG_ 2566848515 AIRFILT_ServiceRqd "Air Filter Service Required Indicator";
-CM_ SG_ 2566848515 FUEL_FuelGage2 "0-255 Value (0-100%)";
-CM_ SG_ 2566848515 AIRFILT_Restriction "0-255 Value (0-100%)";
-CM_ BO_ 2566848771 "General UI Machine Feedback 2";
-CM_ SG_ 2566848771 SF_RPM "Suction Fan Speed (RPM)";
-CM_ SG_ 2566848771 FuelGagePrcnt "Fuel Gauge Level (Percent)";
-CM_ SG_ 2566848771 SW_MinorRev "Software Version - Minor ";
-CM_ SG_ 2566848771 SW_MajorRev "Software Version - Major";
-CM_ SG_ 2566848771 AirFilterRestrictPrcnt "Air Restriction Gauge Percent";
+CM_ BO_ 2566849024 "General UI Machine Parameters 2";
+CM_ SG_ 2566849024 SF_SpeedCmd "Suction Fan Speed Command";
+CM_ SG_ 2566849024 PROP_SetSpeedLimit "Toggled Input - Enable/Disable 47.5% Max Joystick Position";
+CM_ SG_ 2566849024 RT_SpeedCmd "Rotary Trap Speed Command";
+CM_ SG_ 2566849024 FS_EnableCmd "Toggled Input - Enable/Disable Front Sweeps";
+CM_ SG_ 2566849024 ELEV_SpeedCmd "Elevator Speed Command";
+CM_ SG_ 2566849024 CF_ManualCmd "Momentary Input - Manual Fan Reversal Command";
+CM_ SG_ 2566849024 MISC_ClearFaults "Momentary Input - Clear Machine Faults";
+CM_ SG_ 2566849024 PROP_GearSelect "Toggled Input -Toggle High/Low Gear";
+CM_ BO_ 2566848512 "General UI Machine Feedback 1";
+CM_ SG_ 2566848512 HYDOIL_Temp "Hydraulic Oil Temperature - degrees C";
+CM_ SG_ 2566848512 HYDOIL_LevelLow "Hydraulic Oil Level Low Indicator";
+CM_ SG_ 2566848512 HC_ReliefPressure "Header Relief Pressure Switch Status";
+CM_ SG_ 2566848512 JS_NeutralState "Joystick Neutral Position Status";
+CM_ SG_ 2566848512 CF_Sen3OvrTmp "Cooling Fan - Sensor 3 Overtemp Indicator";
+CM_ SG_ 2566848512 CD_Sen2OvrTmp "Cooling Fan - Sensor 2 Overtemp Indicator";
+CM_ SG_ 2566848512 CF_Sen1OvrTmp "Cooling Fan - Sensor 1 Overtemp Indicator";
+CM_ SG_ 2566848512 CF_ManualStatus "Cooling Fan - Manual Reverse Status";
+CM_ SG_ 2566848512 CF_DIR "Cooling Fan - Fan Direction";
+CM_ SG_ 2566848512 PROP_SpeedLimitStatus "Max Joystick Position (47.5%) Status";
+CM_ SG_ 2566848512 SR_Status "Stick Remover Status";
+CM_ SG_ 2566848512 AUGER_Status "Auger Status";
+CM_ SG_ 2566848512 SHAFT_Status "Cleaning Chains / Shaft Drive On/Off Status";
+CM_ SG_ 2566848512 LIGHTS_WORKStatus "Worklights On/Off Status";
+CM_ SG_ 2566848512 LIGHTS_HDLTStatus "Headlights On/Off Status";
+CM_ SG_ 2566848512 ENGINE_Status "Taillights On/Off Status";
+CM_ SG_ 2566848512 ELEV_Status "Elevator On/Off Status";
+CM_ SG_ 2566848512 SF_Status "Suction Fan On/Off Status";
+CM_ SG_ 2566848512 PROP_SpeedX10 "Ground Speed (x10)";
+CM_ SG_ 2566848512 PROP_NeutralSafeInd "Machine in Neutral and Safe State (Engine Start Safe) Indicator";
+CM_ SG_ 2566848512 MISC_BrakeStatus "Brake On/Off Status";
+CM_ SG_ 2566848512 MISC_DoorStatus "Door Open/Closed Status";
+CM_ SG_ 2566848512 FUEL_LevelLow "Fuel Level Low Indicator";
+CM_ SG_ 2566848512 AIRFILT_ServiceRqd "Air Filter Service Required Indicator";
+CM_ SG_ 2566848512 FUEL_FuelGage2 "0-255 Value (0-100%)";
+CM_ SG_ 2566848512 AIRFILT_Restriction "0-255 Value (0-100%)";
+CM_ BO_ 2566848768 "General UI Machine Feedback 2";
+CM_ SG_ 2566848768 SF_RPM "Suction Fan Speed (RPM)";
+CM_ SG_ 2566848768 FuelGagePrcnt "Fuel Gauge Level (Percent)";
+CM_ SG_ 2566848768 SW_MinorRev "Software Version - Minor ";
+CM_ SG_ 2566848768 SW_MajorRev "Software Version - Major";
+CM_ SG_ 2566848768 AirFilterRestrictPrcnt "Air Restriction Gauge Percent";
 CM_ BO_ 2566846206 "Intake/Exhaust Conditions 1";
 CM_ SG_ 2566846206 EngCoolantFilterDiffPress "Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter";
 CM_ SG_ 2566846206 EngExhaustGasTemp "Temperature of combustion byproducts leaving the engine.";
@@ -391,51 +391,51 @@ BA_ "SPN" SG_ 2566889889 MUX 520660;
 BA_ "VFrameFormat" BO_ 2566849565 3;
 BA_ "SPN" SG_ 2566849565 PROP_SetCCMax 520546;
 BA_ "SPN" SG_ 2566849565 FS_SpeedCmd 520545;
-BA_ "VFrameFormat" BO_ 2566849053 3;
-BA_ "SPN" SG_ 2566849053 SF_SpeedCmd 520543;
-BA_ "SPN" SG_ 2566849053 PROP_SetSpeedLimit 520540;
-BA_ "SPN" SG_ 2566849053 RT_SpeedCmd 520544;
-BA_ "SPN" SG_ 2566849053 FS_EnableCmd 520541;
-BA_ "SPN" SG_ 2566849053 ELEV_SpeedCmd 520542;
-BA_ "SPN" SG_ 2566849053 CF_ManualCmd 520538;
-BA_ "SPN" SG_ 2566849053 MISC_ClearFaults 520539;
-BA_ "SPN" SG_ 2566849053 PROP_GearSelect 520536;
-BA_ "SPN" SG_ 2566849053 MISC_CameraReset 520537;
-BA_ "VFrameFormat" BO_ 2566848515 3;
-BA_ "SPN" SG_ 2566848515 HYDOIL_Temp 520526;
-BA_ "SPN" SG_ 2566848515 HYDOIL_LevelLow 520507;
-BA_ "SPN" SG_ 2566848515 HC_ReliefPressure 520506;
-BA_ "SPN" SG_ 2566848515 JS_NeutralState 520505;
-BA_ "SPN" SG_ 2566848515 CF_Sen3OvrTmp 520524;
-BA_ "SPN" SG_ 2566848515 CD_Sen2OvrTmp 520524;
-BA_ "SPN" SG_ 2566848515 CF_Sen1OvrTmp 520523;
-BA_ "SPN" SG_ 2566848515 CF_ManualStatus 520522;
-BA_ "SPN" SG_ 2566848515 CF_DIR 520521;
-BA_ "SPN" SG_ 2566848515 PROP_SpeedLimitStatus 520520;
-BA_ "SPN" SG_ 2566848515 SR_Status 520519;
-BA_ "SPN" SG_ 2566848515 AUGER_Status 520518;
-BA_ "SPN" SG_ 2566848515 SHAFT_Status 520517;
-BA_ "SPN" SG_ 2566848515 LIGHTS_WORKStatus 520516;
-BA_ "SPN" SG_ 2566848515 LIGHTS_HDLTStatus 520515;
-BA_ "SPN" SG_ 2566848515 ENGINE_Status 520514;
-BA_ "SPN" SG_ 2566848515 ELEV_Status 520513;
-BA_ "SPN" SG_ 2566848515 SF_Status 520512;
-BA_ "SPN" SG_ 2566848515 PROP_SpeedX10 520511;
-BA_ "SPN" SG_ 2566848515 PROP_NeutralSafeInd 520510;
-BA_ "SPN" SG_ 2566848515 MISC_BrakeStatus 520509;
-BA_ "SPN" SG_ 2566848515 MISC_DoorStatus 520508;
-BA_ "SPN" SG_ 2566848515 FUEL_LevelLow 520503;
-BA_ "SPN" SG_ 2566848515 AIRFILT_ServiceRqd 520502;
-BA_ "SPN" SG_ 2566848515 FUEL_FuelGage2 524001;
-BA_ "SPN" SG_ 2566848515 AIRFILT_Restriction 524012;
-BA_ "VFrameFormat" BO_ 2566848771 3;
-BA_ "SPN" SG_ 2566848771 SF_RPM 520528;
-BA_ "SPN" SG_ 2566848771 FuelGagePrcnt 520535;
-BA_ "SPN" SG_ 2566848771 SW_MinorRev 520534;
-BA_ "SPN" SG_ 2566848771 SW_MajorRev 520533;
-BA_ "SPN" SG_ 2566848771 AirFilterRestrictPrcnt 520532;
-BA_ "SPN" SG_ 2566848771 SF_HPTenths 520531;
-BA_ "SPN" SG_ 2566848771 SF_HP 520530;
+BA_ "VFrameFormat" BO_ 2566849024 3;
+BA_ "SPN" SG_ 2566849024 SF_SpeedCmd 520543;
+BA_ "SPN" SG_ 2566849024 PROP_SetSpeedLimit 520540;
+BA_ "SPN" SG_ 2566849024 RT_SpeedCmd 520544;
+BA_ "SPN" SG_ 2566849024 FS_EnableCmd 520541;
+BA_ "SPN" SG_ 2566849024 ELEV_SpeedCmd 520542;
+BA_ "SPN" SG_ 2566849024 CF_ManualCmd 520538;
+BA_ "SPN" SG_ 2566849024 MISC_ClearFaults 520539;
+BA_ "SPN" SG_ 2566849024 PROP_GearSelect 520536;
+BA_ "SPN" SG_ 2566849024 MISC_CameraReset 520537;
+BA_ "VFrameFormat" BO_ 2566848512 3;
+BA_ "SPN" SG_ 2566848512 HYDOIL_Temp 520526;
+BA_ "SPN" SG_ 2566848512 HYDOIL_LevelLow 520507;
+BA_ "SPN" SG_ 2566848512 HC_ReliefPressure 520506;
+BA_ "SPN" SG_ 2566848512 JS_NeutralState 520505;
+BA_ "SPN" SG_ 2566848512 CF_Sen3OvrTmp 520524;
+BA_ "SPN" SG_ 2566848512 CD_Sen2OvrTmp 520524;
+BA_ "SPN" SG_ 2566848512 CF_Sen1OvrTmp 520523;
+BA_ "SPN" SG_ 2566848512 CF_ManualStatus 520522;
+BA_ "SPN" SG_ 2566848512 CF_DIR 520521;
+BA_ "SPN" SG_ 2566848512 PROP_SpeedLimitStatus 520520;
+BA_ "SPN" SG_ 2566848512 SR_Status 520519;
+BA_ "SPN" SG_ 2566848512 AUGER_Status 520518;
+BA_ "SPN" SG_ 2566848512 SHAFT_Status 520517;
+BA_ "SPN" SG_ 2566848512 LIGHTS_WORKStatus 520516;
+BA_ "SPN" SG_ 2566848512 LIGHTS_HDLTStatus 520515;
+BA_ "SPN" SG_ 2566848512 ENGINE_Status 520514;
+BA_ "SPN" SG_ 2566848512 ELEV_Status 520513;
+BA_ "SPN" SG_ 2566848512 SF_Status 520512;
+BA_ "SPN" SG_ 2566848512 PROP_SpeedX10 520511;
+BA_ "SPN" SG_ 2566848512 PROP_NeutralSafeInd 520510;
+BA_ "SPN" SG_ 2566848512 MISC_BrakeStatus 520509;
+BA_ "SPN" SG_ 2566848512 MISC_DoorStatus 520508;
+BA_ "SPN" SG_ 2566848512 FUEL_LevelLow 520503;
+BA_ "SPN" SG_ 2566848512 AIRFILT_ServiceRqd 520502;
+BA_ "SPN" SG_ 2566848512 FUEL_FuelGage2 524001;
+BA_ "SPN" SG_ 2566848512 AIRFILT_Restriction 524012;
+BA_ "VFrameFormat" BO_ 2566848768 3;
+BA_ "SPN" SG_ 2566848768 SF_RPM 520528;
+BA_ "SPN" SG_ 2566848768 FuelGagePrcnt 520535;
+BA_ "SPN" SG_ 2566848768 SW_MinorRev 520534;
+BA_ "SPN" SG_ 2566848768 SW_MajorRev 520533;
+BA_ "SPN" SG_ 2566848768 AirFilterRestrictPrcnt 520532;
+BA_ "SPN" SG_ 2566848768 SF_HPTenths 520531;
+BA_ "SPN" SG_ 2566848768 SF_HP 520530;
 BA_ "GenMsgSendType" BO_ 2566846206 0;
 BA_ "GenMsgCycleTime" BO_ 2566846206 500;
 BA_ "VFrameFormat" BO_ 2566846206 3;
@@ -552,32 +552,32 @@ VAL_ 2566889889 BTN03_SB_OP 0 "OFF" 1 "PRESSED" ;
 VAL_ 2566889889 BTN02_AutoUL 0 "OFF" 1 "PRESSED" ;
 VAL_ 2566889889 MUX 32 "MASTER" 33 "EXP_1" ;
 VAL_ 2566849565 PROP_SetCCMax 0 "OFF" 1 "PRESSED" ;
-VAL_ 2566849053 PROP_SetSpeedLimit 0 "OFF" 1 "PRESSED" ;
-VAL_ 2566849053 CF_ManualCmd 0 "OFF" 1 "PRESSED" ;
-VAL_ 2566849053 MISC_ClearFaults 0 "OFF" 1 "PRESSED" ;
-VAL_ 2566849053 PROP_GearSelect 0 "OFF" 1 "PRESSED" ;
-VAL_ 2566848515 HYDOIL_LevelLow 0 "Level OK" 1 "Level Low" ;
-VAL_ 2566848515 HC_ReliefPressure 0 "Pressure OK" 1 "Relief Active" ;
-VAL_ 2566848515 JS_NeutralState 0 "Out of Neutral" 1 "In Neutral" ;
-VAL_ 2566848515 CF_Sen3OvrTmp 0 "Temp OK" 1 "Overtemp" ;
-VAL_ 2566848515 CD_Sen2OvrTmp 0 "Temp OK" 1 "Overtemp" ;
-VAL_ 2566848515 CF_Sen1OvrTmp 0 "Temp OK" 1 "Overtemp" ;
-VAL_ 2566848515 CF_ManualStatus 0 "Not Enabled" 1 "Enabled" ;
-VAL_ 2566848515 CF_DIR 0 "FWD" 1 "REVERSE" ;
-VAL_ 2566848515 PROP_SpeedLimitStatus 0 "Not Enabled" 1 "Enabled" ;
-VAL_ 2566848515 SR_Status 0 "Not Enabled" 1 "Enabled" ;
-VAL_ 2566848515 AUGER_Status 0 "Not Enabled" 1 "Enabled" ;
-VAL_ 2566848515 SHAFT_Status 0 "Not Enabled" 1 "Enabled" ;
-VAL_ 2566848515 LIGHTS_WORKStatus 0 "OFF" 1 "ON" ;
-VAL_ 2566848515 LIGHTS_HDLTStatus 0 "OFF" 1 "ON" ;
-VAL_ 2566848515 ENGINE_Status 0 "OFF" 1 "ON" ;
-VAL_ 2566848515 ELEV_Status 0 "Not Enabled" 1 "Enabled" ;
-VAL_ 2566848515 SF_Status 0 "Not Enabled" 1 "Enabled" ;
-VAL_ 2566848515 PROP_NeutralSafeInd 0 "Safe Netural Not Detected" 1 "Safe Netrual Detected" ;
-VAL_ 2566848515 MISC_BrakeStatus 0 "Disengaged" 1 "Engaged" ;
-VAL_ 2566848515 MISC_DoorStatus 0 "Door Closed" 1 "Door Open" ;
-VAL_ 2566848515 FUEL_LevelLow 0 "Fuel Level OK" 1 "Fuel Level Low" ;
-VAL_ 2566848515 AIRFILT_ServiceRqd 0 "FILTER OK" 1 "SERVICE REQ" ;
+VAL_ 2566849024 PROP_SetSpeedLimit 0 "OFF" 1 "PRESSED" ;
+VAL_ 2566849024 CF_ManualCmd 0 "OFF" 1 "PRESSED" ;
+VAL_ 2566849024 MISC_ClearFaults 0 "OFF" 1 "PRESSED" ;
+VAL_ 2566849024 PROP_GearSelect 0 "OFF" 1 "PRESSED" ;
+VAL_ 2566848512 HYDOIL_LevelLow 0 "Level OK" 1 "Level Low" ;
+VAL_ 2566848512 HC_ReliefPressure 0 "Pressure OK" 1 "Relief Active" ;
+VAL_ 2566848512 JS_NeutralState 0 "Out of Neutral" 1 "In Neutral" ;
+VAL_ 2566848512 CF_Sen3OvrTmp 0 "Temp OK" 1 "Overtemp" ;
+VAL_ 2566848512 CD_Sen2OvrTmp 0 "Temp OK" 1 "Overtemp" ;
+VAL_ 2566848512 CF_Sen1OvrTmp 0 "Temp OK" 1 "Overtemp" ;
+VAL_ 2566848512 CF_ManualStatus 0 "Not Enabled" 1 "Enabled" ;
+VAL_ 2566848512 CF_DIR 0 "FWD" 1 "REVERSE" ;
+VAL_ 2566848512 PROP_SpeedLimitStatus 0 "Not Enabled" 1 "Enabled" ;
+VAL_ 2566848512 SR_Status 0 "Not Enabled" 1 "Enabled" ;
+VAL_ 2566848512 AUGER_Status 0 "Not Enabled" 1 "Enabled" ;
+VAL_ 2566848512 SHAFT_Status 0 "Not Enabled" 1 "Enabled" ;
+VAL_ 2566848512 LIGHTS_WORKStatus 0 "OFF" 1 "ON" ;
+VAL_ 2566848512 LIGHTS_HDLTStatus 0 "OFF" 1 "ON" ;
+VAL_ 2566848512 ENGINE_Status 0 "OFF" 1 "ON" ;
+VAL_ 2566848512 ELEV_Status 0 "Not Enabled" 1 "Enabled" ;
+VAL_ 2566848512 SF_Status 0 "Not Enabled" 1 "Enabled" ;
+VAL_ 2566848512 PROP_NeutralSafeInd 0 "Safe Netural Not Detected" 1 "Safe Netrual Detected" ;
+VAL_ 2566848512 MISC_BrakeStatus 0 "Disengaged" 1 "Engaged" ;
+VAL_ 2566848512 MISC_DoorStatus 0 "Door Closed" 1 "Door Open" ;
+VAL_ 2566848512 FUEL_LevelLow 0 "Fuel Level OK" 1 "Fuel Level Low" ;
+VAL_ 2566848512 AIRFILT_ServiceRqd 0 "FILTER OK" 1 "SERVICE REQ" ;
 VAL_ 2348810494 MessageCounter 14 "Reserved" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "Reserved" 15 "Not Available" ;
 VAL_ 2348810494 ControlPurpose 5 "TemporaryPowerTrainControl" 4 "EngineProtection" 3 "RoadSpeedGovernor" 2 "PTOGovernor" 1 "CruiseControl" 0 "AcceleratorPedal" ;
 VAL_ 2348810494 TransmissionRate 7 "UseStandardRate" 6 "25ms" 5 "50ms" 4 "100ms" 3 "250ms" 2 "500ms" 1 "750ms" 0 "1000ms" ;

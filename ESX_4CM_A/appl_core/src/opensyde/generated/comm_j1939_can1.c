@@ -20,11 +20,11 @@
 ///check for correct version of structure definitions
 #if OSY_COM_CONFIG_DEFINITION_VERSION != 0x0003U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3381572178 mt_Variable;
+static T_osy_non_existing_type_3967369822 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-COMM_J1939_CAN1_PROJECT_ID_3381572178
+COMM_J1939_CAN1_PROJECT_ID_3967369822
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -157,8 +157,8 @@ static const T_osy_com_message_mux_definition mat_MessagesMuxTx[3] =
 static const T_osy_com_message_definition mat_MessagesTx[COMM_J1939_CAN1_NUMBER_OF_TX_MSGS] =
 {
    { 0xc0000feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[0], &mat_MessagesMuxTx[0] },  /// TSC1 (Torque/Speed Control 1)
-   { 0x18ff0003U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[1], &mat_MessagesMuxTx[1] },  /// DISP_FDBK1 (General UI Machine Feedback 1)
-   { 0x18ff0103U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[2], &mat_MessagesMuxTx[2] }  /// DISP_FDBK2 (General UI Machine Feedback 2)
+   { 0x18ff0000U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[1], &mat_MessagesMuxTx[1] },  /// DISP_FDBK1 (General UI Machine Feedback 1)
+   { 0x18ff0100U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[2], &mat_MessagesMuxTx[2] }  /// DISP_FDBK2 (General UI Machine Feedback 2)
 };
 
 ///Rx message definitions
@@ -176,8 +176,8 @@ static const T_osy_com_message_definition mat_MessagesRx[COMM_J1939_CAN1_NUMBER_
    { 0xcf004feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 310U, 0U, &mat_StatusMuxRxMessages[0], &mat_MessagesMuxRx[0] },  /// EEC1 (Electronic Engine Controller 1)
    { 0x18feeefeU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 3010U, 0U, &mat_StatusMuxRxMessages[1], &mat_MessagesMuxRx[1] },  /// ET1 (Engine Temperature 1)
    { 0x18fef6feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 1510U, 0U, &mat_StatusMuxRxMessages[2], &mat_MessagesMuxRx[2] },  /// IC1 (Intake/Exhaust Conditions 1)
-   { 0x18ff021dU, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[3], &mat_MessagesMuxRx[3] },  /// DISP_CMD1 (General UI Machine Parameters 2)
-   { 0x18ff041dU, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[4], &mat_MessagesMuxRx[4] }  /// DISP_CMD2 (General UI Machine Parameters 1)
+   { 0x18ff0200U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[3], &mat_MessagesMuxRx[3] },  /// DISP_CMD1 (General UI Machine Parameters 2)
+   { 0x18ff0400U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[4], &mat_MessagesMuxRx[4] }  /// DISP_CMD2 (General UI Machine Parameters 1)
 };
 
 /* -- Module Global Function Prototypes ----------------------------------------------------------------------------- */

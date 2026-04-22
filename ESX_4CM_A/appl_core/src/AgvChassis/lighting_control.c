@@ -149,11 +149,11 @@ sint16 update_lightControl(void)
 
     //LED Indicator
     if(mt_lighting.u8_work_status == WORK_ON)
-        u8_led_status = BLUE_ON | GREEN_OFF | AMBER_OFF | RED_OFF;
+        u8_led_status = BLUE_ON | GREEN_ON | AMBER_OFF | RED_OFF;
     else if(mt_lighting.u8_head_status == HEAD_ON)
         u8_led_status = BLUE_OFF | GREEN_ON | AMBER_OFF | RED_OFF;
     else
-        u8_led_status = BLUE_OFF | GREEN_ON | AMBER_OFF | RED_ON;
+        u8_led_status = BLUE_OFF | GREEN_OFF | AMBER_OFF | RED_ON;
 
     //FR-16.7 - FR-16.8 Transmit to the display and button panel
     *mt_lighting.pu8_lgt_select_mode = u8_led_status;
@@ -165,6 +165,7 @@ sint16 update_lightControl(void)
     if(u8_head_flt_status == FALSE)
     {
         set_outputValue("HEADLIGHTS", (float32)(mt_lighting.u8_head_status));
+
     }
     get_outputFaultStatus("WORKLIGHTS", &u8_work_flt_status);
     if(u8_work_flt_status == FALSE)
