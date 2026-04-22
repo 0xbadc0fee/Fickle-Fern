@@ -113,8 +113,8 @@ int main(void)
 
     s16_Error += init_hwInputs();       // Initialize HW Inputs
     s16_Error += init_hwOutputs();      // Initialize HW Outputs
-    s16_Error += init_nvmParameters();  // Initialize NVM Objects
     s16_Error += init_dashHandler();    // Initialize Dashboard Objects
+    s16_Error += init_nvmParameters();  // Initialize NVM Objects
 
     s16_Error += init_faultHandler();   // Initialize Fault / Alarm (DM1) Handler
 
@@ -131,7 +131,7 @@ int main(void)
         s16_Error += init_rotaryTrapControl   (&gt_can_devs, &gt_rotaryTrapCheckpoints);
         s16_Error += init_stickBControl       (&gt_can_devs, &gt_stickBConfig);
         s16_Error += init_stickRemoverControl (&gt_can_devs);
-        s16_Error += init_propulsionControl   (&gt_can_devs, &gt_propCheckpoints);
+        s16_Error += init_propulsionControl   (&gt_can_devs, &gt_propCheckpoints, &gt_propConfig);
         s16_Error += init_powerAssistControl  (&gt_can_devs, &gt_paConfig);
         s16_Error += init_suctionFanControl   (&gt_can_devs, &gt_suctionFanConfig, &gt_suctionFanCheckpoints);
         s16_Error += init_engineStarterControl(&gt_can_devs, &gt_engineStarterCheckpoints);

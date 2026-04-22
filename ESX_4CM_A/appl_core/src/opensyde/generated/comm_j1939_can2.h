@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define COMM_J1939_CAN2_PROJECT_ID_3381572178 void comm_j1939_can2_project_id_3381572178(void) {}
+#define COMM_J1939_CAN2_PROJECT_ID_3967369822 void comm_j1939_can2_project_id_3967369822(void) {}
 
 ///Index of Tx messages
 #define COMM_J1939_CAN2_TX_MSG_INDEX_E31_LIGHTS (0U)
@@ -48,7 +48,7 @@ extern const T_osy_com_protocol_configuration gt_comm_j1939_can2_ProtocolConfigu
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void comm_j1939_can2_project_id_3381572178(void);
+extern void comm_j1939_can2_project_id_3967369822(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

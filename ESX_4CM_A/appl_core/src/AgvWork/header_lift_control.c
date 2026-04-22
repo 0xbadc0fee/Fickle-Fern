@@ -113,7 +113,7 @@ sint16 update_headerControl(void)
     //FR-1.5 get the relief switch status and pass value onto CAN
     get_inputValue("RELIEF_PRESS", &f32_relief_switch);
     //FR-1.6
-    *(mt_hdr_control.pu8_relief_swich) = (uint8)f32_relief_switch;
+    *(mt_hdr_control.pu8_relief_swich) = ((uint8)f32_relief_switch == 0)? TRUE:FALSE;
 
     mt_hdr_control.pt_chkPoints->f32_chk3 = f32_relief_switch;
 
@@ -134,8 +134,8 @@ sint16 update_headerControl(void)
             get_inputValue("RIGHT_SWITCH", &f32_right_pedal);
             get_inputValue("LEFT_SWITCH", &f32_left_pedal);
 
-            mt_hdr_control.u8_lift_command = (uint8)f32_right_pedal;
-            mt_hdr_control.u8_lower_command = (uint8)f32_left_pedal;
+            mt_hdr_control.u8_lift_command = ((uint8)f32_right_pedal > 0)? FALSE:TRUE;
+            mt_hdr_control.u8_lower_command =((uint8)f32_left_pedal > 0)? FALSE:TRUE;
         }
     }
 

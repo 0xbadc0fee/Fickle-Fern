@@ -28,7 +28,9 @@ extern "C" {
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define OSY_INIT_DPD_BUS_NUMBER_CAN_CHANNEL_0       0U
 #define OSY_INIT_DPD_BUS_NUMBER_CAN_CHANNEL_1       1U
-#define OSY_INIT_DPD_NUMBER_OF_CAN_CHANNELS         2U
+#define OSY_INIT_DPD_BUS_NUMBER_CAN_CHANNEL_2       2U
+#define OSY_INIT_DPD_BUS_NUMBER_CAN_CHANNEL_3       3U
+#define OSY_INIT_DPD_NUMBER_OF_CAN_CHANNELS         4U
 #define OSY_INIT_DPD_NUMBER_OF_ETHERNET_CHANNELS    0U
 
 #define OSY_INIT_DPD_NUMBER_OF_PARALLEL_CONNECTIONS 1U

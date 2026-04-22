@@ -9,7 +9,7 @@
         <node>node_display/node_ui.xml</node>
         <node>node_tcg_4/node_ui.xml</node>
     </nodes>
-    <buses length="2">
+    <buses length="4">
         <bus>
             <line>
                 <color r="206" g="206" b="217" a="255"/>
@@ -34,15 +34,39 @@
             </line>
             <color-middle-line r="255" g="255" b="255" a="255"/>
         </bus>
+        <bus>
+            <line>
+                <color r="206" g="206" b="217" a="255"/>
+                <width pixels="6"/>
+                <zorder value="12"/>
+                <interaction-points>
+                    <interaction-point x="206" y="342"/>
+                    <interaction-point x="639" y="342"/>
+                </interaction-points>
+            </line>
+            <color-middle-line r="255" g="255" b="255" a="255"/>
+        </bus>
+        <bus>
+            <line>
+                <color r="206" g="206" b="217" a="255"/>
+                <width pixels="6"/>
+                <zorder value="14"/>
+                <interaction-points>
+                    <interaction-point x="229" y="567"/>
+                    <interaction-point x="529" y="567"/>
+                </interaction-points>
+            </line>
+            <color-middle-line r="255" g="255" b="255" a="255"/>
+        </bus>
     </buses>
-    <bus-text-elements length="2">
+    <bus-text-elements length="4">
         <bus-text-element bus-index="0">
             <box>
                 <position x="129" y="302"/>
-                <size width="109.8125" height="30"/>
+                <size width="109.8125" height="32"/>
                 <zorder value="2"/>
             </box>
-            <font-style>Segoe UI,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+            <font-style>Segoe UI,-1,18,5,50,1,0,0,0,0</font-style>
             <font-color>
                 <bright r="57" g="57" b="109" a="255"/>
                 <dark r="255" g="255" b="255" a="255"/>
@@ -52,15 +76,41 @@
         <bus-text-element bus-index="1">
             <box>
                 <position x="131" y="587"/>
-                <size width="76" height="30"/>
+                <size width="76" height="32"/>
                 <zorder value="8"/>
             </box>
-            <font-style>Segoe UI,-1,16,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
+            <font-style>Segoe UI,-1,18,5,50,1,0,0,0,0</font-style>
             <font-color>
                 <bright r="57" g="57" b="109" a="255"/>
                 <dark r="255" g="255" b="255" a="255"/>
             </font-color>
             <text-content>CAN_B</text-content>
+        </bus-text-element>
+        <bus-text-element bus-index="2">
+            <box>
+                <position x="211" y="362"/>
+                <size width="97.078125" height="56"/>
+                <zorder value="11"/>
+            </box>
+            <font-style>Segoe UI,-1,18,5,50,1,0,0,0,0</font-style>
+            <font-color>
+                <bright r="57" g="57" b="109" a="255"/>
+                <dark r="255" g="255" b="255" a="255"/>
+            </font-color>
+            <text-content>NewCANBus</text-content>
+        </bus-text-element>
+        <bus-text-element bus-index="3">
+            <box>
+                <position x="234" y="587"/>
+                <size width="112.34375" height="56"/>
+                <zorder value="13"/>
+            </box>
+            <font-style>Segoe UI,-1,18,5,50,1,0,0,0,0</font-style>
+            <font-color>
+                <bright r="57" g="57" b="109" a="255"/>
+                <dark r="255" g="255" b="255" a="255"/>
+            </font-color>
+            <text-content>NewCANBus_2</text-content>
         </bus-text-element>
     </bus-text-elements>
     <text-elements/>

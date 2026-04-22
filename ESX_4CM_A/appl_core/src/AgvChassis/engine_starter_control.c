@@ -103,7 +103,7 @@ sint16 update_engineStarterControl(void)
     uint8 u8_joystick_neutral = FALSE;
     uint8 u8_suction_fan_status = FALSE;
     uint8 u8_shaft_drive_status = FALSE;
-    uint8 u8_neutral_safe = NEUTRAL_SAFE_FALSE;
+    uint8 u8_neutral_safe = NEUTRAL_SAFE_TRUE;
 
 
     // FR-12.1 Read ignition start hardware input
@@ -144,15 +144,15 @@ sint16 update_engineStarterControl(void)
     (u8_suction_fan_status == X_OFF) &&
     (u8_shaft_drive_status == X_OFF))
     {
-        u8_neutral_safe = NEUTRAL_SAFE_TRUE;
+        u8_neutral_safe = NEUTRAL_SAFE_FALSE;
     }
     else
     {
-        u8_neutral_safe = NEUTRAL_SAFE_FALSE;
+        u8_neutral_safe = NEUTRAL_SAFE_TRUE;
     }
 
     // FR-12.3 Output Engine Start Signal only when all permissive are valid
-    if((u8_start_req == TRUE) && (u8_neutral_safe == NEUTRAL_SAFE_TRUE))
+    if((u8_start_req == TRUE) && (u8_neutral_safe == NEUTRAL_SAFE_FALSE))
     {
         mt_engine.u8_engine_start_cmd = ENGINE_START_CMD_ON;
 
@@ -162,7 +162,7 @@ sint16 update_engineStarterControl(void)
         mt_engine.u8_engine_start_cmd = ENGINE_START_CMD_OFF;
     }
 
-    s16_error += set_outputValue("STARTER_RELAY",mt_engine.u8_engine_start_cmd );
+    s16_error += set_outputValue("STARTER_RELAY",mt_engine.u8_engine_start_cmd);
 
     // FR-12.5 Transmit Neutral Safe status to display via CAN
     if(mt_engine.pu8_neutral_safe_status != NULL)
