@@ -39,11 +39,13 @@
 #include "system.h"
 #include "can_device_definition.h"
 
+#include "engine_starter_control.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 /* -- Module Global Function Prototypes ---------------------------------------------------------------------------- */
 sint16 calc_wheelSpeed(void);
-sint16 check_edcInterlocks(uint8 *u8_edc_enable);
+sint16 check_edcInterlocks();
 sint16 output_edcValves(void);
 sint16 check_ccLimits(void);
 sint16 ramp_targetSpeedCommand(E_RampTypes _rampType);
@@ -68,7 +70,7 @@ T_PropulsionControl mt_prop_control; //!< Instance of the propulsion control sta
  *  \return s16_error Error Code
  *  \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_chkProp)
+sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_chkProp, T_Config_Propulsion *_configProp)
 {
     sint16 s16_error = C_NO_ERR;
 
@@ -87,6 +89,8 @@ sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_c
 
     //populate local copy of NVM elements
     mt_prop_control.pt_chkProp = _chkProp;
+
+    mt_prop_control.pt_config = _configProp;
 
     //iniitalize helpers
     toggleButton_init(&mt_prop_control.t_active_gear, &mt_prop_control.u8_active_gear, 250, FALSE);
@@ -141,13 +145,16 @@ sint16 update_propulsionControl(void)
 
 
     //FR-13.5 & IR13.1 Check EDC Enable Interlocks
-    s16_error += check_edcInterlocks(&mt_prop_control.u8_edc_enable);
+    s16_error += check_edcInterlocks();
     mt_prop_control.pt_chkProp->u8_edc_enable = mt_prop_control.u8_edc_enable;
 
+    //FR-13.7/8/12/13/14/15/16/17
+    s16_error += calc_joystickSpeedCommand();
 
     //FR-13.6 - EDC Disabled
     if(!mt_prop_control.u8_edc_enable)
     {
+
         //Ramp speed command to 0
         mt_prop_control.f32_raw_output = 0.0;
         s16_error += ramp_targetSpeedCommand(E_MAX_DECCEL_RAMP);
@@ -192,6 +199,8 @@ sint16 update_propulsionControl(void)
 
     //update hardware output values
     s16_error += output_edcValves();
+
+
 
     return s16_error;
 }
@@ -464,7 +473,7 @@ sint16 calc_wheelSpeed(void)
  * \return s16_error Error Code
  * \retval C_NO_ERR Function Executed Properly
  */
-sint16 check_edcInterlocks(uint8 *u8_edc_enable)
+sint16 check_edcInterlocks(void)
 {
     sint16 s16_error = C_NO_ERR;
     float32 f32_park_brake = TRUE;
@@ -477,19 +486,18 @@ sint16 check_edcInterlocks(uint8 *u8_edc_enable)
     s16_error += get_outputFaultStatus("PROPEL_REV", &u8_rev_status);
 
     //FR-13.5 Interlock Logic
-    //get_engineStatus(&u8_engine_status);
-    //u8_engine_status = *(mt_prop_control.pu8_engine_status);
+    get_engineStatus(&u8_engine_status);
 
     if(u8_engine_status == ENGINE_RUNNING)
     {
         if(get_system_time_ms() < EDC_STARTUP_DELAY || u8_fwd_status || u8_rev_status || f32_park_brake)
-            *u8_edc_enable = FALSE;
+           mt_prop_control.u8_edc_enable = FALSE;
         else
-            *u8_edc_enable = TRUE;
+            mt_prop_control.u8_edc_enable = TRUE;
     }
     else
     {
-        *u8_edc_enable = FALSE;
+        mt_prop_control.u8_edc_enable = FALSE;
     }
 
     return s16_error;

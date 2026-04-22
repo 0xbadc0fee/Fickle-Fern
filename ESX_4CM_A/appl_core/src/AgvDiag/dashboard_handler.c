@@ -87,6 +87,7 @@ sint16 init_dashHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
 
+
     (void)osy_dph_lock_data_pool(DASHBOARD_DATA_POOL_INDEX);
 
     //Expand out the Checkpoint Mapping File
@@ -95,6 +96,7 @@ sint16 init_dashHandler(void)
     #undef CNTRL2DP
 
     (void)osy_dph_unlock_data_pool(DASHBOARD_DATA_POOL_INDEX);
+
 
     return s16_error;
 }

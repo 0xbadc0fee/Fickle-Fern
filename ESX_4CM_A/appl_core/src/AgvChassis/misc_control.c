@@ -165,6 +165,9 @@ sint16 update_fuelLevel(void)
 
         f32_fuel_pct = CLAMP(f32_fuel_pct, 0.0F, 100.0F);
 
+        gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_test3 = f32_fuel_pct;
+        gt_Dashboard_DataPoolValues.t_GeneralTestingValues.u32_test4 = mt_misc.pt_config->u16_fuel_full_voltage;
+
         // fuel level average percent
         movingAdvFlt(&mt_misc.t_fuel_level_flt, f32_fuel_pct);
 
@@ -317,7 +320,7 @@ sint16 update_miscControl(void)
     if(u8_in_fault == FALSE)
     {
         get_inputValue("HYD_FLUID_LEVEL", &f32_value);
-        *(mt_misc.pu8_low_hydraulic_fluid_indicator) = f32_value;
+        *(mt_misc.pu8_low_hydraulic_fluid_indicator) = ((uint8)f32_value > 0)? FALSE : TRUE;
     }
     else
     {

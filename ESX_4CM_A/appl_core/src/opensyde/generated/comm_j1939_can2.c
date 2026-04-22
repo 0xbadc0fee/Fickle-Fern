@@ -20,11 +20,11 @@
 ///check for correct version of structure definitions
 #if OSY_COM_CONFIG_DEFINITION_VERSION != 0x0003U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3381572178 mt_Variable;
+static T_osy_non_existing_type_3967369822 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-COMM_J1939_CAN2_PROJECT_ID_3381572178
+COMM_J1939_CAN2_PROJECT_ID_3967369822
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -112,8 +112,8 @@ static const T_osy_com_message_mux_definition mat_MessagesMuxRx[2] =
 
 static const T_osy_com_message_definition mat_MessagesRx[COMM_J1939_CAN2_NUMBER_OF_RX_MSGS] =
 {
-   { 0xcfdd6feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 310U, 0U, &mat_StatusMuxRxMessages[0], &mat_MessagesMuxRx[0] },  /// BJM1 (Basic Joystick Message 1)
-   { 0x18ffa1a1U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 310U, 1U, &mat_StatusMuxRxMessages[1], &mat_MessagesMuxRx[1] }  /// E1_BTN_STATUS (Button Panel Button States)
+   { 0xcfdd633U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 0U, &mat_StatusMuxRxMessages[0], &mat_MessagesMuxRx[0] },  /// BJM1 (Basic Joystick Message 1)
+   { 0x18ffa1a1U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 1U, &mat_StatusMuxRxMessages[1], &mat_MessagesMuxRx[1] }  /// E1_BTN_STATUS (Button Panel Button States)
 };
 
 /* -- Module Global Function Prototypes ----------------------------------------------------------------------------- */

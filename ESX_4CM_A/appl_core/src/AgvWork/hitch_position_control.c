@@ -125,10 +125,10 @@ sint16 update_hitchPosControl(void)
         if((u8_right_pedal_fault == FALSE) && (u8_left_pedal_fault == FALSE))
         {
             get_inputValue("RIGHT_SWITCH", &f32_right_pedal);
-            mt_hp_control.u8_out_command = (uint8)f32_right_pedal;
+            mt_hp_control.u8_out_command = ((uint8)f32_right_pedal > 0)?FALSE:TRUE;
 
             get_inputValue("LEFT_SWITCH", &f32_left_pedal);
-            mt_hp_control.u8_in_command = (uint8)f32_left_pedal;
+            mt_hp_control.u8_in_command = ((uint8)f32_left_pedal > 0)?FALSE:TRUE;
         }
         else
         {

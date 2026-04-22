@@ -6,7 +6,7 @@
         <com-message-containers length="4">
             <com-message-container com-protocol-usage-flag="true">
                 <tx-messages length="2">
-                    <com-message can-id="419365405" is-extended="true" dlc="8" cycle-time="0" minimum-cycle-time="10" receive-timeout="0">
+                    <com-message can-id="419365376" is-extended="true" dlc="8" cycle-time="0" minimum-cycle-time="10" receive-timeout="0">
                         <name>DISP_CMD1</name>
                         <comment>General UI Machine Parameters 2</comment>
                         <tx-method>on-application-event</tx-method>
@@ -58,7 +58,7 @@
                             </com-signal>
                         </com-signals>
                     </com-message>
-                    <com-message can-id="419365917" is-extended="true" dlc="8" cycle-time="0" minimum-cycle-time="10" receive-timeout="0">
+                    <com-message can-id="419365888" is-extended="true" dlc="8" cycle-time="0" minimum-cycle-time="10" receive-timeout="0">
                         <name>DISP_CMD2</name>
                         <comment>General UI Machine Parameters 1</comment>
                         <tx-method>on-application-event</tx-method>
@@ -124,7 +124,7 @@
                             </com-signal>
                         </com-signals>
                     </com-message>
-                    <com-message can-id="419364867" is-extended="true" dlc="8" cycle-time="100" minimum-cycle-time="10" receive-timeout="310">
+                    <com-message can-id="419364864" is-extended="true" dlc="8" cycle-time="100" minimum-cycle-time="10" receive-timeout="310">
                         <name>DISP_FDBK1</name>
                         <comment>General UI Machine Feedback 1</comment>
                         <tx-method>cyclic</tx-method>
@@ -261,7 +261,7 @@
                             </com-signal>
                         </com-signals>
                     </com-message>
-                    <com-message can-id="419365123" is-extended="true" dlc="8" cycle-time="100" minimum-cycle-time="10" receive-timeout="310">
+                    <com-message can-id="419365120" is-extended="true" dlc="8" cycle-time="100" minimum-cycle-time="10" receive-timeout="310">
                         <name>DISP_FDBK2</name>
                         <comment>General UI Machine Feedback 2</comment>
                         <tx-method>cyclic</tx-method>
