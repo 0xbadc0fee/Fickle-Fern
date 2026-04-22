@@ -29,7 +29,7 @@
                 </data-elements>
             </list>
             <list>
-                <data-elements length="10">
+                <data-elements length="24">
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
@@ -39,6 +39,20 @@
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="true"/>
                     <data-element auto_min_max_active="false"/>
                 </data-elements>
             </list>

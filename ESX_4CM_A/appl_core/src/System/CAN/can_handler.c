@@ -26,9 +26,11 @@
 #include "x_can.h"
 #include "x_osf.h"
 #include "osy_dph_data_pool_protector.h"
+#include "osy_com_engine.h"
 
 //PROJECT
 #include "j1939_data_pool.h"
+#include "comm_j1939_can1.h"
 #include "can_handler.h"
 
 #include "can_device_definition.h"
@@ -133,6 +135,17 @@ sint16 update_canOutputs(void)
 
     return s16_error;
 
+}
+
+void force_canMessage(uint8 u8_can_bus)
+{
+    if(u8_can_bus == X_CAN_BUS_01)
+    {
+        for (uint8 i = 0; i < COMM_J1939_CAN1_NUMBER_OF_TX_MSGS; i++)
+        {
+            osy_com_engine_force_tx_message(&gt_comm_j1939_can1_ProtocolConfiguration, i);
+        }
+    }
 }
 
 /** \brief Check if CAN bus is available

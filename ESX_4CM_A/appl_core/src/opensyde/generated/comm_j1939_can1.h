@@ -19,13 +19,14 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define COMM_J1939_CAN1_PROJECT_ID_3967369822 void comm_j1939_can1_project_id_3967369822(void) {}
+#define COMM_J1939_CAN1_PROJECT_ID_3925491901 void comm_j1939_can1_project_id_3925491901(void) {}
 
 ///Index of Tx messages
 #define COMM_J1939_CAN1_TX_MSG_INDEX_TSC1 (0U)
 #define COMM_J1939_CAN1_TX_MSG_INDEX_DISP_FDBK1 (1U)
 #define COMM_J1939_CAN1_TX_MSG_INDEX_DISP_FDBK2 (2U)
-#define COMM_J1939_CAN1_NUMBER_OF_TX_MSGS (3U)
+#define COMM_J1939_CAN1_TX_MSG_INDEX_ENGINEACK (3U)
+#define COMM_J1939_CAN1_NUMBER_OF_TX_MSGS (4U)
 
 ///Index of Rx messages
 #define COMM_J1939_CAN1_RX_MSG_INDEX_EEC1 (0U)
@@ -35,6 +36,15 @@ extern "C" {
 #define COMM_J1939_CAN1_RX_MSG_INDEX_DISP_CMD2 (4U)
 #define COMM_J1939_CAN1_NUMBER_OF_RX_MSGS (5U)
 
+///Index of Tx multiplexed messages
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_ENGINEACK_VALUE_0 (0U)
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_ENGINEACK_VALUE_1 (1U)
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_ENGINEACK_VALUE_2 (2U)
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_ENGINEACK_VALUE_3 (3U)
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_ENGINEACK_VALUE_4 (4U)
+#define COMM_J1939_CAN1_TX_MSG_MUX_INDEX_ENGINEACK_VALUE_5 (5U)
+#define COMM_J1939_CAN1_TX_MSG_ENGINEACK_NUM_MUX_MSGS (6U)
+
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
@@ -43,7 +53,7 @@ extern const T_osy_com_protocol_configuration gt_comm_j1939_can1_ProtocolConfigu
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void comm_j1939_can1_project_id_3967369822(void);
+extern void comm_j1939_can1_project_id_3925491901(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus

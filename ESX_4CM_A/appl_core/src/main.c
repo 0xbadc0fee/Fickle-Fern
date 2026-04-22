@@ -113,9 +113,7 @@ int main(void)
 
     s16_Error += init_hwInputs();       // Initialize HW Inputs
     s16_Error += init_hwOutputs();      // Initialize HW Outputs
-    s16_Error += init_dashHandler();    // Initialize Dashboard Objects
     s16_Error += init_nvmParameters();  // Initialize NVM Objects
-
     s16_Error += init_faultHandler();   // Initialize Fault / Alarm (DM1) Handler
 
     //Initialize AgvWork Controls
@@ -150,8 +148,22 @@ int main(void)
 
     system_keep_alive(TRUE);
 
+    uint32 u32_now = 0;
+    uint32 u32_send_time = 0;
+
     do
     {
+
+        u32_now = get_system_time_ms();
+        if(u32_now < 5000)
+        {
+            if((u32_now - u32_send_time) > 200)
+            {
+                force_canMessage(0);    //force all messages on CAN 1
+                u32_send_time = u32_now;
+            }
+        }
+
         //Run Control Sequence
 
         //Inputs

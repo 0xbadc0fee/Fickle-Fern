@@ -20,11 +20,11 @@
 ///check for correct version of structure definitions
 #if OSY_COM_CONFIG_DEFINITION_VERSION != 0x0003U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3967369822 mt_Variable;
+static T_osy_non_existing_type_3925491901 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-COMM_J1939_CAN1_PROJECT_ID_3967369822
+COMM_J1939_CAN1_PROJECT_ID_3925491901
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -34,7 +34,7 @@ static T_osy_com_message_status mat_StatusTx[COMM_J1939_CAN1_NUMBER_OF_TX_MSGS];
 static T_osy_com_message_status mat_StatusRx[COMM_J1939_CAN1_NUMBER_OF_RX_MSGS];
 
 ///mux status
-static T_osy_com_message_mux_status mat_StatusMuxTxMessages[3];
+static T_osy_com_message_mux_status mat_StatusMuxTxMessages[9];
 static T_osy_com_message_mux_status mat_StatusMuxRxMessages[5];
 
 ///Tx signal definitions
@@ -93,6 +93,84 @@ static const T_osy_com_signal_definition mat_DISP_FDBK2[7] =
    { OSY_COM_BYTE_ORDER_LITTLE, 48U, 8U, 0U, 42U }
 };
 
+static const T_osy_com_signal_definition mat_EngineACKValue0[9] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 60U, 3U, 0U, 55U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 49U, 7U, 0U, 48U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 21U, 0U, 43U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 21U, 11U, 0U, 44U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 3U, 0U, 45U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 35U, 5U, 0U, 46U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 47U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 4U, 0U, 54U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 63U, 1U, 0U, 56U }
+};
+
+static const T_osy_com_signal_definition mat_EngineACKValue1[9] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 60U, 3U, 0U, 55U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 49U, 7U, 0U, 49U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 21U, 0U, 43U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 21U, 11U, 0U, 44U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 3U, 0U, 45U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 35U, 5U, 0U, 46U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 47U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 4U, 0U, 54U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 63U, 1U, 0U, 56U }
+};
+
+static const T_osy_com_signal_definition mat_EngineACKValue2[9] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 60U, 3U, 0U, 55U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 49U, 7U, 0U, 50U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 21U, 0U, 43U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 21U, 11U, 0U, 44U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 3U, 0U, 45U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 35U, 5U, 0U, 46U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 47U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 4U, 0U, 54U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 63U, 1U, 0U, 56U }
+};
+
+static const T_osy_com_signal_definition mat_EngineACKValue3[9] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 60U, 3U, 0U, 55U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 49U, 7U, 0U, 51U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 21U, 0U, 43U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 21U, 11U, 0U, 44U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 3U, 0U, 45U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 35U, 5U, 0U, 46U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 47U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 4U, 0U, 54U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 63U, 1U, 0U, 56U }
+};
+
+static const T_osy_com_signal_definition mat_EngineACKValue4[9] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 60U, 3U, 0U, 55U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 49U, 7U, 0U, 52U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 21U, 0U, 43U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 21U, 11U, 0U, 44U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 3U, 0U, 45U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 35U, 5U, 0U, 46U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 47U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 4U, 0U, 54U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 63U, 1U, 0U, 56U }
+};
+
+static const T_osy_com_signal_definition mat_EngineACKValue5[9] =
+{
+   { OSY_COM_BYTE_ORDER_LITTLE, 60U, 3U, 0U, 55U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 49U, 7U, 0U, 53U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 0U, 21U, 0U, 43U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 21U, 11U, 0U, 44U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 32U, 3U, 0U, 45U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 35U, 5U, 0U, 46U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 40U, 8U, 0U, 47U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 56U, 4U, 0U, 54U },
+   { OSY_COM_BYTE_ORDER_LITTLE, 63U, 1U, 0U, 56U }
+};
+
 ///Rx signal definitions
 static const T_osy_com_signal_definition mat_EEC1[8] =
 {
@@ -147,18 +225,25 @@ static const T_osy_com_signal_definition mat_DISP_CMD2[2] =
 };
 
 ///Tx message definitions
-static const T_osy_com_message_mux_definition mat_MessagesMuxTx[3] =
+static const T_osy_com_message_mux_definition mat_MessagesMuxTx[9] =
 {
    { 0U, 10U, &mat_TSC1[0] },
    { 0U, 26U, &mat_DISP_FDBK1[0] },
-   { 0U, 7U, &mat_DISP_FDBK2[0] }
+   { 0U, 7U, &mat_DISP_FDBK2[0] },
+   { 0U, 9U, &mat_EngineACKValue0[0] },
+   { 1U, 9U, &mat_EngineACKValue1[0] },
+   { 2U, 9U, &mat_EngineACKValue2[0] },
+   { 3U, 9U, &mat_EngineACKValue3[0] },
+   { 4U, 9U, &mat_EngineACKValue4[0] },
+   { 5U, 9U, &mat_EngineACKValue5[0] }
 };
 
 static const T_osy_com_message_definition mat_MessagesTx[COMM_J1939_CAN1_NUMBER_OF_TX_MSGS] =
 {
    { 0xc0000feU, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[0], &mat_MessagesMuxTx[0] },  /// TSC1 (Torque/Speed Control 1)
    { 0x18ff0000U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[1], &mat_MessagesMuxTx[1] },  /// DISP_FDBK1 (General UI Machine Feedback 1)
-   { 0x18ff0100U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[2], &mat_MessagesMuxTx[2] }  /// DISP_FDBK2 (General UI Machine Feedback 2)
+   { 0x18ff0100U, 1U, 8U, OSY_COM_COMM_METHOD_CYCLIC, 0U, 0U, 100U, 0U, &mat_StatusMuxTxMessages[2], &mat_MessagesMuxTx[2] },  /// DISP_FDBK2 (General UI Machine Feedback 2)
+   { 0x18ee0003U, 1U, 8U, OSY_COM_COMM_METHOD_ON_EVENT, 0U, 0U, 0U, 6U, &mat_StatusMuxTxMessages[3], &mat_MessagesMuxTx[3] }  /// EngineACK
 };
 
 ///Rx message definitions

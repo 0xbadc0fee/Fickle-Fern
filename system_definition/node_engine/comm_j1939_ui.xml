@@ -39,7 +39,7 @@
                         </com-signals>
                     </com-message>
                 </tx-messages>
-                <rx-messages length="1">
+                <rx-messages length="2">
                     <com-message use-auto-receive-timeout="true" receive-timeout-disabled="true">
                         <com-signals length="10">
                             <com-signal color-index="32"/>
@@ -52,6 +52,24 @@
                             <com-signal color-index="20"/>
                             <com-signal color-index="6"/>
                             <com-signal color-index="34"/>
+                        </com-signals>
+                    </com-message>
+                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
+                        <com-signals length="14">
+                            <com-signal color-index="23"/>
+                            <com-signal color-index="46"/>
+                            <com-signal color-index="8"/>
+                            <com-signal color-index="6"/>
+                            <com-signal color-index="51"/>
+                            <com-signal color-index="55"/>
+                            <com-signal color-index="41"/>
+                            <com-signal color-index="62"/>
+                            <com-signal color-index="3"/>
+                            <com-signal color-index="48"/>
+                            <com-signal color-index="27"/>
+                            <com-signal color-index="32"/>
+                            <com-signal color-index="58"/>
+                            <com-signal color-index="17"/>
                         </com-signals>
                     </com-message>
                 </rx-messages>
