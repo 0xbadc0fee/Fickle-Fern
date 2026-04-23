@@ -412,14 +412,19 @@ sint16 ramp_targetSpeedCommand(E_RampTypes _rampType)
 {
     sint16 s16_error = C_NO_ERR;
 
+    float32 f32_ramp_in = 0.0F;
+    float32 f32_ramp_down = 0.0F;
+
     switch(_rampType)
     {
         case E_ACCEL_RAMP:
-            set_rampRate(&mt_prop_control.t_js_command, ACCEL_RATE);
+            f32_ramp_in = ((mt_prop_control.pt_config->u16_max_curr_fwd - mt_prop_control.pt_config->u16_min_curr_fwd)/mt_prop_control.pt_config->u8_ramp_inc_time);
+            set_rampRate(&mt_prop_control.t_js_command, f32_ramp_in);
             break;
 
         case E_DECCEL_RAMP:
-            set_rampRate(&mt_prop_control.t_js_command, DECCEL_RATE);
+            f32_ramp_down = ((mt_prop_control.pt_config->u16_max_curr_rev - mt_prop_control.pt_config->u16_min_curr_rev)/mt_prop_control.pt_config->u8_ramp_dec_time);
+            set_rampRate(&mt_prop_control.t_js_command, f32_ramp_down);
             break;
 
         case E_MAX_DECCEL_RAMP:
