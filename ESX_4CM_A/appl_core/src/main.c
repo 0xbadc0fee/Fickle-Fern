@@ -159,7 +159,7 @@ int main(void)
         {
             if((u32_now - u32_send_time) > 200)
             {
-                force_canMessage(0);    //force all messages on CAN 1
+                force_canMessage(0, 0x18ee0005U);    //force Engine Ack (CAN1)
                 u32_send_time = u32_now;
             }
         }

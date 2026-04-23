@@ -137,13 +137,18 @@ sint16 update_canOutputs(void)
 
 }
 
-void force_canMessage(uint8 u8_can_bus)
+void force_canMessage(uint8 u8_can_bus, uint32 u32_can_id)
 {
+    uint32 u32_temp_id = 0;
+
     if(u8_can_bus == X_CAN_BUS_01)
     {
         for (uint8 i = 0; i < COMM_J1939_CAN1_NUMBER_OF_TX_MSGS; i++)
         {
-            osy_com_engine_force_tx_message(&gt_comm_j1939_can1_ProtocolConfiguration, i);
+            u32_temp_id = gt_comm_j1939_can1_ProtocolConfiguration.t_ProtocolDefinition.pt_TxMessages[i].u32_MessageId;
+
+            if(u32_temp_id == u32_can_id)
+                osy_com_engine_force_tx_message(&gt_comm_j1939_can1_ProtocolConfiguration, i);
         }
     }
 }

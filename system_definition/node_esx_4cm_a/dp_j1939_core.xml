@@ -10,7 +10,7 @@
             <list>
                 <name>CAN1_TX</name>
                 <comment/>
-                <data-elements length="57">
+                <data-elements length="52">
                     <data-element factor="1" offset="0" interpret_as_string="false">
                         <name>ControlPurpose</name>
                         <type base-type="uint8" is-array="false"/>
@@ -588,67 +588,7 @@
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false">
-                        <name>VehicleSystem</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="127"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
-                        <name>VehicleSystem1</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="127"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
                         <name>VehicleSystem2</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="127"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
-                        <name>VehicleSystem3</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="127"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
-                        <name>VehicleSystem4</name>
-                        <type base-type="uint8" is-array="false"/>
-                        <comment/>
-                        <min-value value="0"/>
-                        <max-value value="127"/>
-                        <unit/>
-                        <access>read-write</access>
-                        <data-set-values>
-                            <data-set-value value="0"/>
-                        </data-set-values>
-                    </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
-                        <name>VehicleSystem5</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
                         <min-value value="0"/>
@@ -688,7 +628,7 @@
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
-                            <data-set-value value="0"/>
+                            <data-set-value value="2"/>
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false">

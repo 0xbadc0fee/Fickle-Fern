@@ -40,7 +40,7 @@ extern T_CANDevices gt_can_devs; //!< External reference to the global structure
 sint16 init_canInterfaces(void);
 sint16 update_canInputs(void);
 sint16 update_canOutputs(void);
-void force_canMessage(uint8 u8_can_bus);
+void force_canMessage(uint8 u8_can_bus, uint32 u32_id);
 bool can_get_availability_state(const uint16 ou16_Channel);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */

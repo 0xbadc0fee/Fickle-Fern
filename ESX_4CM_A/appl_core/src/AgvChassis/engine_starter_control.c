@@ -159,7 +159,9 @@ sint16 update_engineStarterControl(void)
     }
 
     // FR-12.3 Output Engine Start Signal only when all permissive are valid
-    if((u8_start_req == TRUE) && (u8_neutral_safe == NEUTRAL_SAFE_FALSE))
+    if((u8_start_req == TRUE) &&
+       (u8_neutral_safe == NEUTRAL_SAFE_FALSE) &&
+       (mt_engine.u8_engine_status != ENGINE_RUNNING))
     {
         mt_engine.u8_engine_start_cmd = ENGINE_START_CMD_ON;
 

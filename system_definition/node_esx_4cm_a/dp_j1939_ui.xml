@@ -4,12 +4,7 @@
     <data-pool>
         <lists length="8">
             <list>
-                <data-elements length="57">
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
+                <data-elements length="52">
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
                     <data-element auto_min_max_active="false"/>
