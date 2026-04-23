@@ -536,7 +536,7 @@
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
-                            <data-set-value value="200121"/>
+                            <data-set-value value="14150"/>
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false">
@@ -548,7 +548,7 @@
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
-                            <data-set-value value="57"/>
+                            <data-set-value value="252"/>
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false">
@@ -584,7 +584,7 @@
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
-                            <data-set-value value="3"/>
+                            <data-set-value value="132"/>
                         </data-set-values>
                     </data-element>
                     <data-element factor="1" offset="0" interpret_as_string="false">

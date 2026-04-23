@@ -19,7 +19,7 @@ extern "C" {
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-#define J1939_PROJECT_ID_3098241898 void j1939_project_id_3098241898(void) {}
+#define J1939_PROJECT_ID_2007553714 void j1939_project_id_2007553714(void) {}
 
 ///Index of this Datapool
 #define J1939_DATA_POOL_INDEX (2U)
@@ -800,7 +800,7 @@ extern const T_osy_dpa_data_pool gt_J1939_DataPool;
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 ///unique ID to ensure consistency between .h and .c files
-extern void j1939_project_id_3098241898(void);
+extern void j1939_project_id_2007553714(void);
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
 #ifdef __cplusplus
