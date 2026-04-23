@@ -3,7 +3,7 @@
     <file-version>1</file-version>
     <node datapool-auto-nvm-start-address="true">
         <type>ESX-4CM-A</type>
-        <properties>
+        <properties x-app-support="false">
             <name>ESX_4CM_A</name>
             <comment/>
             <diagnostic-server>open-syde</diagnostic-server>

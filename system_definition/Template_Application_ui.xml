@@ -66,7 +66,7 @@
                 <size width="109.8125" height="32"/>
                 <zorder value="2"/>
             </box>
-            <font-style>Segoe UI,-1,18,5,50,1,0,0,0,0</font-style>
+            <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
             <font-color>
                 <bright r="57" g="57" b="109" a="255"/>
                 <dark r="255" g="255" b="255" a="255"/>
@@ -79,7 +79,7 @@
                 <size width="76" height="32"/>
                 <zorder value="8"/>
             </box>
-            <font-style>Segoe UI,-1,18,5,50,1,0,0,0,0</font-style>
+            <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
             <font-color>
                 <bright r="57" g="57" b="109" a="255"/>
                 <dark r="255" g="255" b="255" a="255"/>
@@ -92,7 +92,7 @@
                 <size width="97.078125" height="56"/>
                 <zorder value="11"/>
             </box>
-            <font-style>Segoe UI,-1,18,5,50,1,0,0,0,0</font-style>
+            <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
             <font-color>
                 <bright r="57" g="57" b="109" a="255"/>
                 <dark r="255" g="255" b="255" a="255"/>
@@ -105,7 +105,7 @@
                 <size width="112.34375" height="56"/>
                 <zorder value="13"/>
             </box>
-            <font-style>Segoe UI,-1,18,5,50,1,0,0,0,0</font-style>
+            <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
             <font-color>
                 <bright r="57" g="57" b="109" a="255"/>
                 <dark r="255" g="255" b="255" a="255"/>
@@ -117,4 +117,5 @@
     <boundaries/>
     <images/>
     <line-arrows/>
+    <last-known-halc-crcs/>
 </opensyde-system-ui-definition>

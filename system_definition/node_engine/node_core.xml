@@ -3,7 +3,7 @@
     <file-version>1</file-version>
     <node datapool-auto-nvm-start-address="true">
         <type>3rd Party</type>
-        <properties>
+        <properties x-app-support="false">
             <name>Engine</name>
             <comment/>
             <diagnostic-server>none</diagnostic-server>

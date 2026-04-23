@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <opensyde-system-definition>
     <file-version>3</file-version>
+    <properties name-max-char-limit="31"/>
     <node-groups length="0"/>
     <nodes length="6">
         <node>node_esx_4cm_a/node_core.xml</node>
@@ -16,6 +17,7 @@
             <comment/>
             <type>can</type>
             <bitrate number="250000"/>
+            <can-fd active="false" bitrate="2000000"/>
             <bus-id number="0"/>
             <rx-delta-time number="0"/>
         </bus>
@@ -24,6 +26,7 @@
             <comment/>
             <type>can</type>
             <bitrate number="250000"/>
+            <can-fd active="false" bitrate="2000000"/>
             <bus-id number="1"/>
             <rx-delta-time number="0"/>
         </bus>
@@ -32,6 +35,7 @@
             <comment/>
             <type>can</type>
             <bitrate number="250000"/>
+            <can-fd active="false" bitrate="2000000"/>
             <bus-id number="2"/>
             <rx-delta-time number="0"/>
         </bus>
@@ -40,6 +44,7 @@
             <comment/>
             <type>can</type>
             <bitrate number="250000"/>
+            <can-fd active="false" bitrate="2000000"/>
             <bus-id number="3"/>
             <rx-delta-time number="0"/>
         </bus>
