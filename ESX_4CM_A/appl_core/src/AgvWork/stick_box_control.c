@@ -143,7 +143,7 @@ sint16 update_stickBControl(void)
     get_inputValue("CAB_DOOR", &f32_door_value);
 
     get_outputFaultStatus("STICKBOX_ON", &u8_on_output_fault);
-    get_outputFaultStatus("STICKBOX_OPEN", &u8_open_output_fault);
+    get_outputFaultStatus("STICKBOX_CLOSE", &u8_open_output_fault);
 
     // Determine ignition ON status
     get_engineRuntime(&u32_engine_runtime);
@@ -177,7 +177,6 @@ sint16 update_stickBControl(void)
         mt_stick_box.u8_open_cmd = STICK_BOX_CMD_OFF;
     }
 
-
     // FR-10.7 Mutual exclusivity, Close has priority if both requested
     if((mt_stick_box.u8_closed_cmd == STICK_BOX_CMD_ON) &&
     (mt_stick_box.u8_open_cmd == STICK_BOX_CMD_ON))
@@ -190,8 +189,8 @@ sint16 update_stickBControl(void)
     {
         if(!u8_on_output_fault)
         {
-            set_outputValue("STICKBOX_ON", (float32)mt_stick_box.u8_closed_cmd);
-            set_outputValue("STICKBOX_OPEN", STICK_BOX_CMD_OFF);
+            set_outputValue("STICKBOX_CLOSE", (float32)mt_stick_box.u8_closed_cmd);
+            set_outputValue("STICKBOX_ON", STICK_BOX_CMD_OFF);
 
             //FR-10.10 LED indicators to button panel
             *(mt_stick_box.pu8_close_led_status) = BLUE_OFF | GREEN_ON | AMBER_OFF | RED_OFF;
@@ -206,7 +205,7 @@ sint16 update_stickBControl(void)
     {
         if(!u8_open_output_fault && !u8_on_output_fault)
         {
-            set_outputValue("STICKBOX_OPEN", (float32)mt_stick_box.u8_open_cmd);
+            set_outputValue("STICKBOX_CLOSE", (float32)mt_stick_box.u8_open_cmd);
             set_outputValue("STICKBOX_ON", (float32)mt_stick_box.u8_open_cmd);
 
             //FR-10.10 LED indicators to button panel
@@ -222,7 +221,7 @@ sint16 update_stickBControl(void)
     {
         if(!u8_open_output_fault && !u8_on_output_fault)
         {
-            set_outputValue("STICKBOX_OPEN", STICK_BOX_CMD_OFF);
+            set_outputValue("STICKBOX_CLOSE", STICK_BOX_CMD_OFF);
             set_outputValue("STICKBOX_ON", STICK_BOX_CMD_OFF);
 
             //FR-10.10 LED indicators to button panel
@@ -231,13 +230,9 @@ sint16 update_stickBControl(void)
         }
     }
 
-    *(mt_stick_box.pu8_open_led_status) =
-    (mt_stick_box.u8_closed_cmd == STICK_BOX_CMD_ON) ? 0x01u : //RED SOILD
-    (mt_stick_box.u8_open_cmd == STICK_BOX_CMD_ON) ? 0x10u :  //GREEN SOLID
-    0x00u;
-
+    // closed is no led start and when pushed it turns red
+    // open is green start but goes red when pushed
     return s16_error;
-
 }
 
 //EOF

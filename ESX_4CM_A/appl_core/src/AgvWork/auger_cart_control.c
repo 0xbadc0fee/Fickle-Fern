@@ -184,8 +184,6 @@ sint16 update_augerControl(void)
     s16_error = toggleButton(&mt_augerc.t_btn_auto, u8_aug_cmd, u8_aug_btn_reset);
     s16_error += toggleButton(&mt_augerc.t_btn_manual, u8_man_cmd, u8_man_btn_reset);
 
-
-
     //FR-9.3 The control module shall enforce mutual exclusivity to the Auger Unload Enable and Manual Unload commands giving preference to Manual Unload Enable in case of a conflict.
     if((mt_augerc.u8_manual_latched == AUGER_ENABLED) && (mt_augerc.u8_auto_latched == AUGER_ENABLED))
     {

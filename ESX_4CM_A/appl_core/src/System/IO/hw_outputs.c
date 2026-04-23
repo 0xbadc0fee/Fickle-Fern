@@ -155,10 +155,10 @@ T_VehicleOutput tvo_dv_sweep =
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
-    .u8_diagEnabled = TRUE,
+    .u8_diagEnabled = FALSE,
     .t_fault=
     {
-        .u8_dm1_enable      = TRUE,
+        .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520206,
         .t_fmi = {
@@ -428,7 +428,7 @@ T_VehicleOutput tvo_stickbox_on =
 
 T_VehicleOutput tvo_stickbox_open=
 {
-    .Name_Description = "STICKBOX_OPEN",
+    .Name_Description = "STICKBOX_CLOSE",
     .u16_hardwareID = X_OUT_OPHSP2A_2,
     .e_outputType = OT_DIGITAL,
     .f32_outputValue = 0.0F,
