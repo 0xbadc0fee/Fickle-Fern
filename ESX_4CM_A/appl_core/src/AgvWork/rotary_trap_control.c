@@ -154,15 +154,12 @@ sint16 update_rotaryTrapControl(void)
     mt_rotary_trap.t_trap_ramp.f32_min_limit = f32_range_min;
     mt_rotary_trap.t_trap_ramp.f32_max_limit = f32_range_max;
 
-    // Valid range path
-    if((u8_range == ROTARY_TRAP_RANGE_LOW) ||
-    (u8_range == ROTARY_TRAP_RANGE_MED) ||
-    (u8_range == ROTARY_TRAP_RANGE_MAX))
-    {
         // FR-4.7 Shaft drive disabled
         if(u8_shaft_drive == FALSE)
         {
             f32_target_cmd_pct = ROTARY_TRAP_DISABLED;
+            mt_rotary_trap.t_trap_ramp.f32_min_limit = ROTARY_TRAP_DISABLED;
+            mt_rotary_trap.t_trap_ramp.f32_max_limit = ROTARY_TRAP_DISABLED;
         }
         // FR-4.6 Full speed override
         else if(u8_trap_speed_increase == TRUE)
@@ -182,7 +179,6 @@ sint16 update_rotaryTrapControl(void)
         }
 
         f32_target_cmd_pct = CLAMP_F32(f32_target_cmd_pct, ROTARY_TRAP_PWM_MIN,ROTARY_TRAP_PWM_MAX);
-    }
 
     //Publish checkpoints
     mt_rotary_trap.pt_cp_rotarytrap->f32_trap_target_cmd = f32_target_cmd_pct;
