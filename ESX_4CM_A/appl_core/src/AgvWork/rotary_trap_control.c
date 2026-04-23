@@ -147,7 +147,6 @@ sint16 update_rotaryTrapControl(void)
             f32_target_cmd_pct = mt_rotary_trap.t_trap_ramp.f32_output;
             s16_error += C_WARN;
             break;
-
     }
 
     //set the trap speed ramping object limits
@@ -164,7 +163,8 @@ sint16 update_rotaryTrapControl(void)
         // FR-4.6 Full speed override
         else if(u8_trap_speed_increase == TRUE)
         {
-            f32_target_cmd_pct = f32_range_max;
+            f32_target_cmd_pct = ROTARY_TRAP_MAX_MAX;
+            mt_rotary_trap.t_trap_ramp.f32_max_limit = ROTARY_TRAP_MAX_MAX;
         }
         // Normal scaling path
         else if(f32_wheel_speed_mph >= 0)
