@@ -97,7 +97,7 @@ sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_c
     toggleButton_init(&mt_prop_control.t_speed_limit_enable, &mt_prop_control.u8_speed_limit_enable, 250, FALSE);
     toggleButton_init(&mt_prop_control.t_cc_enable, &mt_prop_control.u8_cc_enable, 250, FALSE);
 
-    rampInit(&mt_prop_control.t_js_command, ACCEL_RATE, JS_MIN_Y_POS, JS_MAX_Y_POS, JS_NEUTRAL_POS);
+    rampInit(&mt_prop_control.t_js_command, ACCEL_RATE, 0, 1000, JS_NEUTRAL_POS);
 
     movingFltInit(&mt_prop_control.t_filter_wheel_speed,
                   mt_prop_control.af32_ws_buf,
@@ -295,11 +295,23 @@ sint16 calc_joystickSpeedCommand(void)
         case E_JOYSTICK_FWD:
             mt_prop_control.u8_neutral_ind = FALSE;
             mt_prop_control.u8_reverse_ind = FALSE;
+            mt_prop_control.f32_raw_output = ((mt_prop_control.f32_raw_output / 10000.0f)
+                                              * (mt_prop_control.pt_config->u16_max_curr_fwd - mt_prop_control.pt_config->u16_min_curr_fwd))
+                                              + mt_prop_control.pt_config->u16_min_curr_fwd;
+
+            mt_prop_control.t_js_command.f32_min_limit = mt_prop_control.pt_config->u16_min_curr_fwd;
+            mt_prop_control.t_js_command.f32_max_limit = mt_prop_control.pt_config->u16_max_curr_fwd;
             break;
 
         case E_JOYSTICK_REV:
             mt_prop_control.u8_neutral_ind = FALSE;
             mt_prop_control.u8_reverse_ind = TRUE;
+            mt_prop_control.f32_raw_output = ((mt_prop_control.f32_raw_output / 10000.0f)
+                                              * (mt_prop_control.pt_config->u16_max_curr_rev - mt_prop_control.pt_config->u16_min_curr_rev))
+                                              + mt_prop_control.pt_config->u16_min_curr_rev;
+
+            mt_prop_control.t_js_command.f32_min_limit = mt_prop_control.pt_config->u16_min_curr_rev;
+            mt_prop_control.t_js_command.f32_max_limit = mt_prop_control.pt_config->u16_max_curr_rev;
             break;
 
         case E_JOYSTICK_NEU:
