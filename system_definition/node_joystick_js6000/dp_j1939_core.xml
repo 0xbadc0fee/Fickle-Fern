@@ -11,7 +11,7 @@
                 <name>CAN1_TX</name>
                 <comment/>
                 <data-elements length="10">
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_BTN1_ELEV</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Elevator On/Off Control</comment>
@@ -23,7 +23,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_BTN2_SHAFTS</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Cleaning Chains On/Off Control</comment>
@@ -35,7 +35,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_BTN3_RT_INC</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Rotary Trap Speed Increase Control</comment>
@@ -47,7 +47,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_BTN4_SF</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Suction Fan On/Off Control</comment>
@@ -59,7 +59,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_BTN5_HDRLIFT</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Reports when the joystick button has been pressed.</comment>
@@ -71,7 +71,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_BTN6_HDRLWR</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Reports when the joystick button has been pressed.</comment>
@@ -83,7 +83,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.10000000000000001" offset="0" interpret_as_string="false">
+                    <data-element factor="0.10000000000000001" offset="0">
                         <name>JS_YPOS</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>The position of the joystick in the relative motion of travel from the neutral position.</comment>
@@ -95,7 +95,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_Y_NEGATVE</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Reports when the current joystick position is on the negative travel side (back, left, counterclockwise, down) relative to the</comment>
@@ -107,7 +107,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_Y_NEUTRAL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Reports when the current joystick position is in the neutral position for that axis of travel.</comment>
@@ -119,7 +119,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>JS_Y_POSITIVE</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the</comment>

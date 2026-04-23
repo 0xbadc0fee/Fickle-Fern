@@ -22,14 +22,14 @@
                 <rx-messages length="1">
                     <com-message use-auto-receive-timeout="true" receive-timeout-disabled="true">
                         <com-signals length="10">
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="0"/>
-                            <com-signal color-index="41"/>
+                            <com-signal color-index="7"/>
+                            <com-signal color-index="55"/>
+                            <com-signal color-index="46"/>
+                            <com-signal color-index="34"/>
+                            <com-signal color-index="48"/>
+                            <com-signal color-index="57"/>
+                            <com-signal color-index="50"/>
+                            <com-signal color-index="24"/>
                             <com-signal color-index="60"/>
                             <com-signal color-index="26"/>
                         </com-signals>

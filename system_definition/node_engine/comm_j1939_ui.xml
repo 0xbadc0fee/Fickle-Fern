@@ -41,15 +41,12 @@
                 </tx-messages>
                 <rx-messages length="2">
                     <com-message use-auto-receive-timeout="true" receive-timeout-disabled="true">
-                        <com-signals length="10">
+                        <com-signals length="7">
                             <com-signal color-index="32"/>
                             <com-signal color-index="36"/>
-                            <com-signal color-index="56"/>
                             <com-signal color-index="25"/>
                             <com-signal color-index="12"/>
                             <com-signal color-index="30"/>
-                            <com-signal color-index="23"/>
-                            <com-signal color-index="20"/>
                             <com-signal color-index="6"/>
                             <com-signal color-index="34"/>
                         </com-signals>

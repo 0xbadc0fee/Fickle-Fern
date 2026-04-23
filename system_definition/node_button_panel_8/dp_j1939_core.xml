@@ -11,7 +11,7 @@
                 <name>CAN1_TX</name>
                 <comment/>
                 <data-elements length="9">
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BNT06_ManUL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Auger Manual Unload - Button 06 State</comment>
@@ -23,7 +23,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN01_Aux1</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Auxillary 1 - Button 01 State</comment>
@@ -35,7 +35,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN02_AutoUL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Auger Auto Unload - Button 02 State</comment>
@@ -47,7 +47,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN03_SB_OP</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Stick Box Open - Button 03 State</comment>
@@ -59,7 +59,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN04_Lights</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Light Selector - Button 04 State</comment>
@@ -71,7 +71,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN05_PA</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Power Assist Enable - Button 05 State</comment>
@@ -83,7 +83,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN07_SB_CL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Stick Box Close - Button 07 State</comment>
@@ -95,7 +95,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN08_SR</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Stick Remover - Button 08 State</comment>
@@ -107,7 +107,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>MUX</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
@@ -131,7 +131,7 @@
                 <name>CAN1_RX</name>
                 <comment/>
                 <data-elements length="10">
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN01_IND_Aux1</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Auxillary - Button 1 LED Control</comment>
@@ -143,7 +143,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN02_IND_AutoUL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Auger Auto Unload - Button 2 LED Control</comment>
@@ -155,7 +155,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN03_IND_SB_OP</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Stick Box Open - Button 3 LED Control</comment>
@@ -167,7 +167,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN04_IND_Lights</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Light Selector - Button 4 LED Control</comment>
@@ -179,7 +179,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN05_IND_PA</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Power Assist Enable - Button 5 LED Control</comment>
@@ -191,7 +191,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN06_IND_ManUL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Auger Manual Unload - Button 6 LED Control</comment>
@@ -203,7 +203,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN07_IND_SB_CL</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Stick Box Close - Button 7 LED Control</comment>
@@ -215,7 +215,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN08_IND_SR</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Stick Remover - Button 8 LED Control</comment>
@@ -227,7 +227,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>BTN_BACKLIGHT</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Backlight Control</comment>
@@ -239,7 +239,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>E1_IND_MUX</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>

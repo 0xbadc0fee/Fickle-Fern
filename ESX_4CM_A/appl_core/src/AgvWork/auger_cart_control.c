@@ -166,7 +166,7 @@ sint16 update_augerControl(void)
     //FR-9.2 Disable Auger Cart and reset when conditions not satisfied
     if((u8_door_fault_status == TRUE) ||
     (f32_door_value != DOOR_CLOSED) ||
-    (u32_engine_runtime >= PROGRAM_START_DEB_MS) ||
+    (u32_engine_runtime <= PROGRAM_START_DEB_MS) ||
     (u8_hitch_on == TRUE))
     {
         u8_common_reset = TRUE;

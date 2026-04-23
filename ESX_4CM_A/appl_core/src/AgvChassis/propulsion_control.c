@@ -151,10 +151,9 @@ sint16 update_propulsionControl(void)
     //FR-13.7/8/12/13/14/15/16/17
     s16_error += calc_joystickSpeedCommand();
 
-    //FR-13.6 - EDC Disabled
+   //FR-13.6 - EDC Disabled
     if(!mt_prop_control.u8_edc_enable)
     {
-
         //Ramp speed command to 0
         mt_prop_control.f32_raw_output = 0.0;
         s16_error += ramp_targetSpeedCommand(E_MAX_DECCEL_RAMP);
@@ -231,7 +230,6 @@ sint16 check_joystickInterlocks(void)
 
     if(f32_door_state || u8_door_status || u8_pb_status || *(mt_prop_control.pu16_joy_y_pos)  == JOYSTICK_FAULT)
         mt_prop_control.u8_speed_enable = FALSE;
-
     else
         mt_prop_control.u8_speed_enable = TRUE;
 

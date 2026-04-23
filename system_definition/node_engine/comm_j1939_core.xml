@@ -134,11 +134,11 @@
                     </com-message>
                 </tx-messages>
                 <rx-messages length="2">
-                    <com-message can-id="201326595" is-extended="true" dlc="8" cycle-time="100" minimum-cycle-time="10" receive-timeout="310">
+                    <com-message can-id="201326595" is-extended="true" dlc="8" cycle-time="20" minimum-cycle-time="10" receive-timeout="310">
                         <name>TSC1</name>
                         <comment>Torque/Speed Control 1</comment>
                         <tx-method>cyclic</tx-method>
-                        <com-signals length="10">
+                        <com-signals length="7">
                             <com-signal data-element-index="0" bit-start="35" bit-length="5" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
@@ -149,42 +149,27 @@
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="695"/>
                             </com-signal>
-                            <com-signal data-element-index="2" bit-start="2" bit-length="2" multiplexer-value="0">
-                                <byte-order>intel</byte-order>
-                                <multiplexer-type>default</multiplexer-type>
-                                <j1939-suspect-parameter spn="696"/>
-                            </com-signal>
-                            <com-signal data-element-index="3" bit-start="8" bit-length="16" multiplexer-value="0">
+                            <com-signal data-element-index="2" bit-start="8" bit-length="16" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="898"/>
                             </com-signal>
-                            <com-signal data-element-index="4" bit-start="24" bit-length="8" multiplexer-value="0">
+                            <com-signal data-element-index="3" bit-start="24" bit-length="8" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="518"/>
                             </com-signal>
-                            <com-signal data-element-index="5" bit-start="40" bit-length="4" multiplexer-value="0">
+                            <com-signal data-element-index="4" bit-start="40" bit-length="4" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="4191"/>
                             </com-signal>
-                            <com-signal data-element-index="6" bit-start="60" bit-length="4" multiplexer-value="0">
-                                <byte-order>intel</byte-order>
-                                <multiplexer-type>default</multiplexer-type>
-                                <j1939-suspect-parameter spn="4207"/>
-                            </com-signal>
-                            <com-signal data-element-index="7" bit-start="56" bit-length="4" multiplexer-value="0">
-                                <byte-order>intel</byte-order>
-                                <multiplexer-type>default</multiplexer-type>
-                                <j1939-suspect-parameter spn="4206"/>
-                            </com-signal>
-                            <com-signal data-element-index="8" bit-start="4" bit-length="2" multiplexer-value="0">
+                            <com-signal data-element-index="5" bit-start="4" bit-length="2" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="897"/>
                             </com-signal>
-                            <com-signal data-element-index="9" bit-start="32" bit-length="3" multiplexer-value="0">
+                            <com-signal data-element-index="6" bit-start="32" bit-length="3" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="3349"/>
@@ -196,47 +181,47 @@
                         <comment/>
                         <tx-method>on-application-event</tx-method>
                         <com-signals length="9">
-                            <com-signal data-element-index="10" bit-start="0" bit-length="21" multiplexer-value="0">
+                            <com-signal data-element-index="7" bit-start="0" bit-length="21" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="11" bit-start="21" bit-length="11" multiplexer-value="0">
+                            <com-signal data-element-index="8" bit-start="21" bit-length="11" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="12" bit-start="32" bit-length="3" multiplexer-value="0">
+                            <com-signal data-element-index="9" bit-start="32" bit-length="3" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="13" bit-start="35" bit-length="5" multiplexer-value="0">
+                            <com-signal data-element-index="10" bit-start="35" bit-length="5" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="14" bit-start="40" bit-length="8" multiplexer-value="0">
+                            <com-signal data-element-index="11" bit-start="40" bit-length="8" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="15" bit-start="49" bit-length="7" multiplexer-value="2">
+                            <com-signal data-element-index="12" bit-start="49" bit-length="7" multiplexer-value="2">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="16" bit-start="56" bit-length="4" multiplexer-value="0">
+                            <com-signal data-element-index="13" bit-start="56" bit-length="4" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="17" bit-start="60" bit-length="3" multiplexer-value="0">
+                            <com-signal data-element-index="14" bit-start="60" bit-length="3" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="18" bit-start="63" bit-length="1" multiplexer-value="0">
+                            <com-signal data-element-index="15" bit-start="63" bit-length="1" multiplexer-value="0">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>default</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>

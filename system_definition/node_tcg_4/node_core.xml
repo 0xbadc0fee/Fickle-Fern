@@ -3,7 +3,7 @@
     <file-version>1</file-version>
     <node datapool-auto-nvm-start-address="true">
         <type>TCG-4</type>
-        <properties x-app-support="true">
+        <properties>
             <name>TCG_4</name>
             <comment/>
             <diagnostic-server>open-syde</diagnostic-server>
@@ -68,6 +68,5 @@
         <applications length="0"/>
         <com-protocols length="0"/>
         <data-pools length="0"/>
-        <x-app-properties-file>x_app_properties.xml</x-app-properties-file>
     </node>
 </opensyde-node-core-definition>

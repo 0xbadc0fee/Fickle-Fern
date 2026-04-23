@@ -3,7 +3,7 @@
     <file-version>1</file-version>
     <node datapool-auto-nvm-start-address="true">
         <type>3rd Party</type>
-        <properties x-app-support="false">
+        <properties>
             <name>Joystick_JS6000</name>
             <comment/>
             <diagnostic-server>none</diagnostic-server>
