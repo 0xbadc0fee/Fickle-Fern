@@ -80,7 +80,7 @@
                     </com-message>
                 </tx-messages>
                 <rx-messages length="5">
-                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="false">
+                    <com-message use-auto-receive-timeout="true" receive-timeout-disabled="true">
                         <com-signals length="8">
                             <com-signal color-index="62"/>
                             <com-signal color-index="59"/>

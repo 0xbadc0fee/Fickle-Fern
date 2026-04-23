@@ -139,16 +139,23 @@ sint16 update_engineStarterControl(void)
     }
 
     // FR-12.4 Compute Neutral Safe
-    if((mt_engine.u8_engine_status == ENGINE_OFF) &&
-    (u8_joystick_neutral == TRUE) &&
-    (u8_suction_fan_status == X_OFF) &&
-    (u8_shaft_drive_status == X_OFF))
+    if(mt_engine.u8_engine_status == ENGINE_OFF)
     {
-        u8_neutral_safe = NEUTRAL_SAFE_FALSE;
+        if((u8_joystick_neutral   == TRUE) &&
+           (u8_suction_fan_status == X_OFF) &&
+           (u8_shaft_drive_status == X_OFF))
+        {
+            u8_neutral_safe = NEUTRAL_SAFE_FALSE;
+        }
+        else
+        {
+            u8_neutral_safe = NEUTRAL_SAFE_TRUE;
+        }
     }
+
     else
     {
-        u8_neutral_safe = NEUTRAL_SAFE_TRUE;
+        u8_neutral_safe = NEUTRAL_SAFE_FALSE;
     }
 
     // FR-12.3 Output Engine Start Signal only when all permissive are valid

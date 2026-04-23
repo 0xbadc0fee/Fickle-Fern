@@ -20,11 +20,11 @@
 ///check for correct version of structure definitions
 #if OSY_COM_CONFIG_DEFINITION_VERSION != 0x0003U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3925491901 mt_Variable;
+static T_osy_non_existing_type_2168385174 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-COMM_J1939_CAN2_PROJECT_ID_3925491901
+COMM_J1939_CAN2_PROJECT_ID_2168385174
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
