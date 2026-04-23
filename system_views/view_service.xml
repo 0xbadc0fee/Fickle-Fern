@@ -290,7 +290,7 @@
                             <size width="435" height="56"/>
                             <zorder value="2"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -459,7 +459,7 @@
                             <size width="435" height="56"/>
                             <zorder value="3"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -794,10 +794,10 @@ Follow the procedure below to recalibrate.</text-content>
                     <text-element>
                         <box>
                             <position x="398" y="41.789473684210535"/>
-                            <size width="234" height="56"/>
+                            <size width="323" height="56"/>
                             <zorder value="3"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1035,11 +1035,11 @@ For example, if the customer wants the suction fan to come up to speed faster, a
                 <text-elements>
                     <text-element>
                         <box>
-                            <position x="285" y="41.789473684210535"/>
+                            <position x="264" y="40.789473684210535"/>
                             <size width="566.046875" height="56"/>
                             <zorder value="3"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1115,11 +1115,11 @@ For best results, perform this calibration when the engine has NOT been run for 
                     </text-element>
                     <text-element>
                         <box>
-                            <position x="1137" y="41.789473684210535"/>
-                            <size width="803.046875" height="104"/>
+                            <position x="1185" y="42.789473684210535"/>
+                            <size width="803.046875" height="56"/>
                             <zorder value="16"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1401,11 +1401,11 @@ For best results, perform this calibration when the engine has NOT been run for 
                 <text-elements>
                     <text-element>
                         <box>
-                            <position x="343" y="41.78947368421052"/>
-                            <size width="566.046875" height="56"/>
+                            <position x="370.9765625" y="40.78947368421052"/>
+                            <size width="342.0234375" height="56"/>
                             <zorder value="3"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1414,11 +1414,11 @@ For best results, perform this calibration when the engine has NOT been run for 
                     </text-element>
                     <text-element>
                         <box>
-                            <position x="303.94227504244463" y="301.46915676287517"/>
+                            <position x="311.94227504244463" y="302.46915676287517"/>
                             <size width="178.046875" height="56"/>
                             <zorder value="10"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1427,11 +1427,11 @@ For best results, perform this calibration when the engine has NOT been run for 
                     </text-element>
                     <text-element>
                         <box>
-                            <position x="307.94227504244463" y="527.46915676287517"/>
+                            <position x="311.94227504244463" y="527.46915676287517"/>
                             <size width="178.046875" height="32"/>
                             <zorder value="11"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1440,11 +1440,11 @@ For best results, perform this calibration when the engine has NOT been run for 
                     </text-element>
                     <text-element>
                         <box>
-                            <position x="300.94227504244463" y="627.46915676287517"/>
+                            <position x="311.94227504244463" y="627.46915676287517"/>
                             <size width="178.046875" height="32"/>
                             <zorder value="12"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1453,11 +1453,11 @@ For best results, perform this calibration when the engine has NOT been run for 
                     </text-element>
                     <text-element>
                         <box>
-                            <position x="91.942275042444635" y="457.46915676287517"/>
+                            <position x="37.9765625" y="458.46915676287517"/>
                             <size width="948.046875" height="32"/>
                             <zorder value="15"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1466,11 +1466,11 @@ For best results, perform this calibration when the engine has NOT been run for 
                     </text-element>
                     <text-element>
                         <box>
-                            <position x="54.942275042444635" y="153.46915676287517"/>
+                            <position x="37.9765625" y="154.46915676287517"/>
                             <size width="948.046875" height="128"/>
                             <zorder value="16"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1481,11 +1481,11 @@ If the customer does not have a cart with a stick remover, the "Close" stick box
                     </text-element>
                     <text-element>
                         <box>
-                            <position x="303.94227504244463" y="729.46915676287517"/>
+                            <position x="311.94227504244463" y="729.46915676287517"/>
                             <size width="178.046875" height="32"/>
                             <zorder value="17"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1496,7 +1496,7 @@ If the customer does not have a cart with a stick remover, the "Close" stick box
                 <boundaries>
                     <boundary>
                         <box>
-                            <position x="21" y="20"/>
+                            <position x="20.5" y="20"/>
                             <size width="983" height="100"/>
                             <zorder value="2"/>
                         </box>
@@ -1622,7 +1622,7 @@ If the customer does not have a cart with a stick remover, the "Close" stick box
                             <size width="178.046875" height="56"/>
                             <zorder value="2"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1635,7 +1635,7 @@ If the customer does not have a cart with a stick remover, the "Close" stick box
                             <size width="178.046875" height="56"/>
                             <zorder value="4"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1645,11 +1645,11 @@ If the customer does not have a cart with a stick remover, the "Close" stick box
                     </text-element>
                     <text-element>
                         <box>
-                            <position x="236" y="47.78947368421052"/>
+                            <position x="236" y="39.78947368421052"/>
                             <size width="566.046875" height="56"/>
                             <zorder value="5"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1662,7 +1662,7 @@ If the customer does not have a cart with a stick remover, the "Close" stick box
                             <size width="948.046875" height="56"/>
                             <zorder value="6"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1673,10 +1673,10 @@ Later 8700s and 8770s use Elevator Control Valve FL#3512 (Brand Hydraulics #PEFC
                     <text-element>
                         <box>
                             <position x="266.94227504244463" y="230.46915676287517"/>
-                            <size width="446.05772495755537" height="56"/>
+                            <size width="446.046875" height="32"/>
                             <zorder value="7"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1871,7 +1871,7 @@ Later 8700s and 8770s use Elevator Control Valve FL#3512 (Brand Hydraulics #PEFC
                             <size width="70" height="32"/>
                             <zorder value="9"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1884,7 +1884,7 @@ Later 8700s and 8770s use Elevator Control Valve FL#3512 (Brand Hydraulics #PEFC
                             <size width="566.046875" height="56"/>
                             <zorder value="3"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1907,10 +1907,10 @@ Later 8700s and 8770s use Elevator Control Valve FL#3512 (Brand Hydraulics #PEFC
                     <text-element>
                         <box>
                             <position x="125.94227504244463" y="425.46915676287517"/>
-                            <size width="791.05772495755537" height="149.53084323712483"/>
+                            <size width="791.046875" height="128"/>
                             <zorder value="11"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1925,7 +1925,7 @@ For example, if the customer wants the suction fan to come up to speed faster, a
                             <size width="251" height="32"/>
                             <zorder value="7"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1935,10 +1935,10 @@ For example, if the customer wants the suction fan to come up to speed faster, a
                     <text-element>
                         <box>
                             <position x="408.84550084889634" y="188.39388794567054"/>
-                            <size width="206.15449915110361" height="56"/>
+                            <size width="206.140625" height="32"/>
                             <zorder value="8"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -1951,7 +1951,7 @@ For example, if the customer wants the suction fan to come up to speed faster, a
                             <size width="251" height="32"/>
                             <zorder value="6"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,18,5,400,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="91" g="91" b="91" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -2332,11 +2332,11 @@ For example, if the customer wants the suction fan to come up to speed faster, a
                 <text-elements>
                     <text-element>
                         <box>
-                            <position x="285" y="38"/>
-                            <size width="435" height="32"/>
+                            <position x="343.57142857142856" y="38"/>
+                            <size width="435" height="56"/>
                             <zorder value="3"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
@@ -2565,11 +2565,11 @@ Note: this will reduce the max speed in both high and low range</text-content>
                 <text-elements>
                     <text-element>
                         <box>
-                            <position x="340" y="52"/>
-                            <size width="435" height="32"/>
+                            <position x="243" y="42"/>
+                            <size width="612" height="104"/>
                             <zorder value="3"/>
                         </box>
-                        <font-style>Segoe UI,-1,18,5,400,1,0,0,0,0,0,0,0,0,0,1</font-style>
+                        <font-style>Segoe UI,-1,36,5,700,0,0,0,0,0,0,0,0,0,0,1</font-style>
                         <font-color>
                             <bright r="255" g="255" b="255" a="255"/>
                             <dark r="255" g="255" b="255" a="255"/>
