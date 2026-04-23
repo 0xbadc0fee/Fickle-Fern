@@ -153,6 +153,22 @@ void force_canMessage(uint8 u8_can_bus, uint32 u32_can_id)
     }
 }
 
+void set_canMessageActive(uint8 u8_can_bus, uint32 u32_can_id, uint8 u8_status)
+{
+    uint32 u32_temp_id = 0;
+
+    if(u8_can_bus == X_CAN_BUS_01)
+    {
+        for (uint8 i = 0; i < COMM_J1939_CAN1_NUMBER_OF_TX_MSGS; i++)
+        {
+            u32_temp_id = gt_comm_j1939_can1_ProtocolConfiguration.t_ProtocolDefinition.pt_TxMessages[i].u32_MessageId;
+
+            if(u32_temp_id == u32_can_id)
+                osy_com_engine_set_message_active(&gt_comm_j1939_can1_ProtocolConfiguration, i, OSY_COM_MESSAGE_TYPE_TX, u8_status);
+        }
+    }
+}
+
 /** \brief Check if CAN bus is available
  *
  *  This function checks to determine if a CAN bus is initialized and available on the given hardware

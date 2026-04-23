@@ -779,6 +779,13 @@
                                 <invalid-name-placeholder/>
                                 <hal-channel-name/>
                             </expanded-tree-item>
+                            <expanded-tree-item valid-layers="3" is-valid="true" use-array-element-index="false" array-element-index="0">
+                                <index node="0" data-pool="1" list="8" element="0"/>
+                                <source-type>datapool-element</source-type>
+                                <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                <invalid-name-placeholder/>
+                                <hal-channel-name/>
+                            </expanded-tree-item>
                             <expanded-tree-item valid-layers="2" is-valid="true" use-array-element-index="false" array-element-index="0">
                                 <index node="0" data-pool="1" list="0" element="0"/>
                                 <source-type>datapool-element</source-type>

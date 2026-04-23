@@ -163,6 +163,10 @@ int main(void)
                 u32_send_time = u32_now;
             }
         }
+        else
+        {
+            set_canMessageActive(0, 0x18ee0005U, 0);
+        }
 
         //Run Control Sequence
 

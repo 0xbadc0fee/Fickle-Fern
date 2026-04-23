@@ -20,11 +20,11 @@
 ///check for correct version of structure definitions
 #if OSY_COM_CONFIG_DEFINITION_VERSION != 0x0003U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3990675041 mt_Variable;
+static T_osy_non_existing_type_2445812306 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-COMM_J1939_CAN2_PROJECT_ID_3990675041
+COMM_J1939_CAN2_PROJECT_ID_2445812306
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -59,7 +59,7 @@ static const T_osy_com_signal_definition mat_E31_LIGHTSValue176[8] =
 static const T_osy_com_signal_definition mat_E31_LIGHTSValue177[2] =
 {
    { OSY_COM_BYTE_ORDER_LITTLE, 0U, 8U, 2U, 9U },
-   { OSY_COM_BYTE_ORDER_LITTLE, 16U, 8U, 2U, 7U }
+   { OSY_COM_BYTE_ORDER_LITTLE, 8U, 8U, 2U, 7U }
 };
 
 ///Rx signal definitions

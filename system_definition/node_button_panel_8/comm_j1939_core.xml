@@ -100,7 +100,7 @@
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="0"/>
                             </com-signal>
-                            <com-signal data-element-index="7" bit-start="16" bit-length="8" multiplexer-value="177">
+                            <com-signal data-element-index="7" bit-start="8" bit-length="8" multiplexer-value="177">
                                 <byte-order>intel</byte-order>
                                 <multiplexer-type>multiplexed</multiplexer-type>
                                 <j1939-suspect-parameter spn="520656"/>

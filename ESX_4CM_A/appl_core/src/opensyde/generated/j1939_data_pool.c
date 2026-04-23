@@ -17,11 +17,11 @@
 ///check for correct version of structure definitions
 #if OSY_DPA_DATA_POOL_DEFINITION_VERSION != 0x0004U
 ///if compilation fails here the openSYDE library version does not match the version of the generated code
-static T_osy_non_existing_type_3098241898 mt_Variable;
+static T_osy_non_existing_type_2007553714 mt_Variable;
 #endif
 
 ///ensure file consistency (if compilation fails here the .h file does not match this .c file)
-J1939_PROJECT_ID_3098241898
+J1939_PROJECT_ID_2007553714
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -194,11 +194,11 @@ static const T_J1939_CAN1_TX_Values mat_CAN1_TXDataSetValues [J1939_CAN1_TX_NUMB
       0U,   ///< DISP_FDBK2_SF_RPM (Suction Fan Speed (RPM))
       0U,   ///< DISP_FDBK2_SW_MajorRev (Software Version - Major)
       0U,   ///< DISP_FDBK2_SW_MinorRev (Software Version - Minor )
-      200121UL,   ///< EngineACK_IdentityNumber ()
-      57U,   ///< EngineACK_ManufacturerCode (Assigned by NMEA 2000 Committee)
+      14150UL,   ///< EngineACK_IdentityNumber ()
+      252U,   ///< EngineACK_ManufacturerCode (Assigned by NMEA 2000 Committee)
       0U,   ///< EngineACK_ECUInstance ()
       0U,   ///< EngineACK_FunctionInstance ()
-      3U,   ///< EngineACK_Function ()
+      132U,   ///< EngineACK_Function ()
       0U,   ///< EngineACK_VehicleSystem2 ()
       0U,   ///< EngineACK_VehicleSystemInstance ()
       2U,   ///< EngineACK_IndustryGroup (0 = Global; _   1  = On-Highway; _   2  = Agricultural and Forestry; _   3  = Construction; _   4  = Marine;_   5  = Industrial - Process_          Control - Stationary (Gen-Sets)_   6  = Reserve for SAE_   7  = Reserve for SAE)
