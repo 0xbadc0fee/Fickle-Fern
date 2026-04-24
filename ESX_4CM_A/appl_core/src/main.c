@@ -32,17 +32,16 @@
 #include "osy_srv.h"
 
 #include "STW_4CM_HAL/system.h"
+#include "can_handler_lib.h"
 
 #include "hw_inputs.h"
 #include "hw_outputs.h"
-
-#include "can_device_definition.h"
-#include "ethernet_init.h"
-
 #include "nvm_handler.h"
 #include "fault_handler.h"
-#include "can_handler.h"
 #include "dashboard_handler.h"
+
+#include "can_device_definition.h"
+
 #include "hitch_position_control.h"
 #include "header_lift_control.h"
 #include "auger_cart_control.h"
@@ -107,8 +106,7 @@ int main(void)
     uint8 u8_ign_status;
 
     //Initialize System
-    s16_Error  = ethernet_init();       // Initialize Ethernet
-    s16_Error += init_canInterfaces();  // Initialize CAN
+    s16_Error = init_canInterfaces();  // Initialize CAN
     s16_Error += osy_srv_init();        // Initialize openSYDE System
 
     s16_Error += init_hwInputs();       // Initialize HW Inputs
@@ -148,25 +146,8 @@ int main(void)
 
     system_keep_alive(TRUE);
 
-    uint32 u32_now = 0;
-    uint32 u32_send_time = 0;
-
     do
     {
-
-        u32_now = get_system_time_ms();
-        if(u32_now < 5000)
-        {
-            if((u32_now - u32_send_time) > 200)
-            {
-                force_canMessage(0, 0x18ee0005U);    //force Engine Ack (CAN1)
-                u32_send_time = u32_now;
-            }
-        }
-        else
-        {
-            set_canMessageActive(0, 0x18ee0005U, 0);
-        }
 
         //Run Control Sequence
 

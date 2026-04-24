@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 /**
- * \file       can_handler.h
+ * \file       can_handler_lib.h
  * \brief      System - CAN Device Interface
  *
  * \addtogroup System

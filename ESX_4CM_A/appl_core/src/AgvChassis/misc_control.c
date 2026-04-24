@@ -36,6 +36,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 #include "fault_handler.h"
+#include "nvm_handler.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
@@ -356,6 +357,14 @@ sint16 update_miscControl(void)
         clear_machineFaults();
     }
     mt_misc.u8_prev_clear_cmd = *(mt_misc.pu8_clear_faults_cmd);
+
+    //reset all machine parameters
+    if(mt_misc.pt_cp_misc->u8_reset_params)
+    {
+        reset_nvmParameters();  //Apply Dataset into EEPROM
+        init_nvmParameters();   //read from EEPROM into RAM
+        mt_misc.pt_cp_misc->u8_reset_params = 0;
+    }
 
 
     return s16_error;

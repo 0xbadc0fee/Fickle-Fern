@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 /**
- * \file       can_handler.c
+ * \file       can_handler_lib.c
  * \brief      System - CAN Device Interface
  *
  * \addtogroup System
@@ -31,7 +31,7 @@
 //PROJECT
 #include "j1939_data_pool.h"
 #include "comm_j1939_can1.h"
-#include "can_handler.h"
+#include "can_handler_lib.h"
 
 #include "can_device_definition.h"
 #include "can_engine.h"
