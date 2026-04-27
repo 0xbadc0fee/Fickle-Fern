@@ -232,51 +232,75 @@ sint16 check_inputFaultStatus(uint8 u8_input)
 
     if (u32_hwInputFault)
     {
-        at_vehicleInputs[u8_input].t_fault.u8_fault_status = TRUE;
-
         // SHORT UB+ / OL
         if (((u32_hwInputFault & X_IN_FAULT_SHORT_TO_UB) == X_IN_FAULT_SHORT_TO_UB))
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_SHORT_UB].u8_is_active = TRUE;
+            at_vehicleInputs[u8_input].t_fault.u8_fault_status = TRUE;
+        }
         else
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_SHORT_UB].u8_is_active = FALSE;
+        }
 
         // SHORT TO GND
         if (((u32_hwInputFault & X_IN_FAULT_SHORT_TO_GND) == X_IN_FAULT_SHORT_TO_GND))
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_SHORT_GND].u8_is_active = TRUE;
+            at_vehicleInputs[u8_input].t_fault.u8_fault_status = TRUE;
+        }
         else
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_SHORT_GND].u8_is_active = FALSE;
-
+        }
         // OPEN LOAD
         if (((u32_hwInputFault & X_IN_FAULT_OPEN_LOAD) == X_IN_FAULT_OPEN_LOAD))
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_OL].u8_is_active = TRUE;
+            at_vehicleInputs[u8_input].t_fault.u8_fault_status = TRUE;
+        }
         else
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_OL].u8_is_active = FALSE;
-
+        }
         // HIGH FREQ
         if (((u32_hwInputFault & X_IN_FAULT_FREQUENCY_UPPER_LIMIT) == X_IN_FAULT_FREQUENCY_UPPER_LIMIT))
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_HIGH_FREQ].u8_is_active = TRUE;
+            at_vehicleInputs[u8_input].t_fault.u8_fault_status = TRUE;
+        }
         else
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_HIGH_FREQ].u8_is_active = FALSE;
-
+        }
         // LOW FREQ
         if (((u32_hwInputFault & X_IN_FAULT_FREQUENCY_LOWER_LIMIT) == X_IN_FAULT_FREQUENCY_LOWER_LIMIT))
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_LOW_FREQ].u8_is_active = TRUE;
+        }
         else
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_LOW_FREQ].u8_is_active = FALSE;
-
+        }
         // LOW DC
         if (((u32_hwInputFault & X_IN_FAULT_DUTY_CYCLE_LOWER_LIMIT) == X_IN_FAULT_DUTY_CYCLE_LOWER_LIMIT))
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_LOW_DC].u8_is_active = TRUE;
+        }
         else
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_LOW_DC].u8_is_active = FALSE;
-
+        }
         // HIGH DC
         if (((u32_hwInputFault & X_IN_FAULT_DUTY_CYCLE_UPPER_LIMIT) == X_IN_FAULT_DUTY_CYCLE_UPPER_LIMIT))
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_HIGH_DC].u8_is_active = TRUE;
+        }
         else
+        {
             at_vehicleInputs[u8_input].t_fault.t_fmi[e_INFAULT_HIGH_DC].u8_is_active = FALSE;
+        }
     }
-
     else if (s16_Error == C_NO_ERR && !u32_hwInputFault) //!< If no errors and no returned faults: set fault fields to FALSE
     {
         at_vehicleInputs[u8_input].t_fault.u8_fault_status = FALSE;
@@ -289,7 +313,6 @@ sint16 check_inputFaultStatus(uint8 u8_input)
 
     return s16_Error;
 }
-
 
 //Getter Functions  ------------------------------------------------------------------------
 

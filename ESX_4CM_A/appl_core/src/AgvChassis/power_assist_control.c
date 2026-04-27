@@ -39,7 +39,6 @@
 #include "power_assist_control.h"
 #include "propulsion_control.h"
 #include "engine_starter_control.h"
-#include "dashboard_data_pool.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define PROGRAM_START_DEB_MS      (3000u)  //!< Program start debounce time in milliseconds (3 seconds)
@@ -204,10 +203,6 @@ sint16 update_powerAssistControl(void)
            mt_power_assist.u8_fault_active = TRUE;
            s16_error = C_WARN;
        }
-
-       gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_test3 = (float32)mt_power_assist.u8_traction_valve_cmd;
-
-         gt_Dashboard_DataPoolValues.t_GeneralTestingValues.u8_test1=mt_power_assist.u8_power_assist_status;
 
        //FR-15.7 Output Traction Valve Switch command to hardware Traction Valve Coil
            set_outputValue("TRACTION_VALVE", (float32)mt_power_assist.u8_traction_valve_cmd);

@@ -3,7 +3,7 @@
     <file-version>1</file-version>
     <node datapool-auto-nvm-start-address="true">
         <type>TCG-4</type>
-        <properties x-app-support="false">
+        <properties>
             <name>TCG_4</name>
             <comment/>
             <diagnostic-server>open-syde</diagnostic-server>

@@ -11,7 +11,7 @@
                 <name>ElevatorConfig</name>
                 <comment/>
                 <data-elements length="2">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="0">
+                    <data-element factor="1" offset="0" nvm-start-address="0">
                         <name>vl3512_enable</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -23,7 +23,7 @@
                             <data-set-value value="1"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="1">
+                    <data-element factor="1" offset="0" nvm-start-address="1">
                         <name>vl3514_enable</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -48,7 +48,7 @@
                 <name>HeaderConfig</name>
                 <comment/>
                 <data-elements length="1">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="5">
+                    <data-element factor="1" offset="0" nvm-start-address="5">
                         <name>joystick_hll_enable</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -72,7 +72,7 @@
                 <name>StickBoxConfig</name>
                 <comment/>
                 <data-elements length="1">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="10">
+                    <data-element factor="1" offset="0" nvm-start-address="10">
                         <name>stick_box_installed</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -96,7 +96,7 @@
                 <name>PowerAssistConfig</name>
                 <comment/>
                 <data-elements length="1">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="15">
+                    <data-element factor="1" offset="0" nvm-start-address="15">
                         <name>power_assist_installed</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -120,7 +120,7 @@
                 <name>PorpulsionConfig</name>
                 <comment/>
                 <data-elements length="7">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="20">
+                    <data-element factor="1" offset="0" nvm-start-address="20">
                         <name>tire_diameter</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -132,7 +132,7 @@
                             <data-set-value value="31.5"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="24">
+                    <data-element factor="1" offset="0" nvm-start-address="24">
                         <name>max_curr_fwd</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -144,7 +144,7 @@
                             <data-set-value value="1300"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="26">
+                    <data-element factor="1" offset="0" nvm-start-address="26">
                         <name>min_curr_fwd</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -156,7 +156,7 @@
                             <data-set-value value="200"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="28">
+                    <data-element factor="1" offset="0" nvm-start-address="28">
                         <name>max_curr_rev</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -168,7 +168,7 @@
                             <data-set-value value="1300"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="30">
+                    <data-element factor="1" offset="0" nvm-start-address="30">
                         <name>min_curr_rev</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -180,7 +180,7 @@
                             <data-set-value value="200"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="32">
+                    <data-element factor="1" offset="0" nvm-start-address="32">
                         <name>ramp_inc_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -192,7 +192,7 @@
                             <data-set-value value="4"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="33">
+                    <data-element factor="1" offset="0" nvm-start-address="33">
                         <name>ramp_dec_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -216,7 +216,7 @@
                 <name>CoolingFanConfig</name>
                 <comment/>
                 <data-elements length="3">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="40">
+                    <data-element factor="1" offset="0" nvm-start-address="40">
                         <name>purge_cycle_time</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Time between cooling fan purge cycles (auto)</comment>
@@ -228,7 +228,7 @@
                             <data-set-value value="600"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="42">
+                    <data-element factor="1" offset="0" nvm-start-address="42">
                         <name>purge_active_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Time fan spends in Reverse during purge</comment>
@@ -240,7 +240,7 @@
                             <data-set-value value="10"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="43">
+                    <data-element factor="1" offset="0" nvm-start-address="43">
                         <name>hyd_oil_cal</name>
                         <type base-type="float32" is-array="false"/>
                         <comment>Hydraulic Oil Temperature Sensor Cal offset</comment>
@@ -264,7 +264,7 @@
                 <name>SuctionFanConfig</name>
                 <comment/>
                 <data-elements length="3">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="50">
+                    <data-element factor="1" offset="0" nvm-start-address="50">
                         <name>sf_6_7_enable</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -273,10 +273,10 @@
                         <unit/>
                         <access>read-write</access>
                         <data-set-values>
-                            <data-set-value value="0"/>
+                            <data-set-value value="1"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="51">
+                    <data-element factor="1" offset="0" nvm-start-address="51">
                         <name>sf_inc_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -288,7 +288,7 @@
                             <data-set-value value="6"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="52">
+                    <data-element factor="1" offset="0" nvm-start-address="52">
                         <name>sf_dec_time</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -312,7 +312,7 @@
                 <name>MiscConfig</name>
                 <comment/>
                 <data-elements length="5">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="70">
+                    <data-element factor="1" offset="0" nvm-start-address="70">
                         <name>fuel_full_voltage</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -324,7 +324,7 @@
                             <data-set-value value="4500"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="72">
+                    <data-element factor="1" offset="0" nvm-start-address="72">
                         <name>filter_rstn_max</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -336,7 +336,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="73">
+                    <data-element factor="1" offset="0" nvm-start-address="73">
                         <name>af_max_voltage</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -348,7 +348,7 @@
                             <data-set-value value="4500"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="75">
+                    <data-element factor="1" offset="0" nvm-start-address="75">
                         <name>af_min_voltage</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -360,7 +360,7 @@
                             <data-set-value value="500"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="77">
+                    <data-element factor="1" offset="0" nvm-start-address="77">
                         <name>af_fault_pct</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>
@@ -384,7 +384,7 @@
                 <name>FrontSweepsConfig</name>
                 <comment/>
                 <data-elements length="1">
-                    <data-element factor="1" offset="0" interpret_as_string="false" nvm-start-address="80">
+                    <data-element factor="1" offset="0" nvm-start-address="80">
                         <name>sweeps_installed</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter description</comment>

@@ -5,47 +5,47 @@
         <lists length="8">
             <list>
                 <data-elements length="21">
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
                 </data-elements>
             </list>
             <list>
                 <data-elements length="16">
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="false"/>
-                    <data-element auto_min_max_active="true"/>
-                    <data-element auto_min_max_active="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="true" interpret_as_string="false"/>
+                    <data-element auto_min_max_active="false" interpret_as_string="false"/>
                 </data-elements>
             </list>
             <list>

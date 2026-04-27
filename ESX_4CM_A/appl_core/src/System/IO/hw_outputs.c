@@ -155,10 +155,10 @@ T_VehicleOutput tvo_dv_sweep =
     .f32_prevOutputValue = 0.0F,
     .mq_outputChanged = TRUE,
 
-    .u8_diagEnabled = FALSE,
+    .u8_diagEnabled = TRUE,
     .t_fault=
     {
-        .u8_dm1_enable      = FALSE,
+        .u8_dm1_enable      = TRUE,
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520206,
         .t_fmi = {

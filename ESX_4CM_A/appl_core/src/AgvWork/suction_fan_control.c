@@ -41,6 +41,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 
+#include "dashboard_data_pool.h"
 // -- Defines ------------------------------------------------------------------------------------------------------
 #define PROGRAM_START_DEB_MS (3000u) //!< Startup debounce delay in milliseconds (3 seconds)
 // -- Types --------------------------------------------------------------------------------------------------------
@@ -98,7 +99,7 @@ sint16 init_suctionFanControl(T_CANDevices     *_can_devs,
                   sizeof(mt_suction_fan.af32_speed_buf)/sizeof(float32),
                   SUCTION_FAN_SAFE_OUTPUT,
                   sizeof(mt_suction_fan.af32_speed_buf)/sizeof(float32),
-                  50);
+                  20);
 
     //Initialize Ramp helper
     s16_error += rampInit(&mt_suction_fan.t_speed_ramp,
@@ -114,9 +115,9 @@ sint16 init_suctionFanControl(T_CANDevices     *_can_devs,
     mt_suction_fan.t_pid_state.u64_last_time = 0u;
 
     // PID output is PWM duty cycle percent (0-10000)
-    mt_suction_fan.t_pid_coeff.f32_kp = 5.0F;
-    mt_suction_fan.t_pid_coeff.f32_ki = 2.0F;
-    mt_suction_fan.t_pid_coeff.f32_kd = 0.0F;
+    mt_suction_fan.t_pid_coeff.f32_kp = 1.75F;
+    mt_suction_fan.t_pid_coeff.f32_ki = 1.75F;
+    mt_suction_fan.t_pid_coeff.f32_kd = 0.01F;
     mt_suction_fan.t_pid_coeff.s32_min_output = 0;
     mt_suction_fan.t_pid_coeff.s32_max_output = 10000;
 
@@ -214,40 +215,38 @@ sint16 update_suctionFanControl(void)
         f32_speed_req_rpm = SUCTION_FAN_SAFE_OUTPUT;
     }
 
+    float32 f32_setrate = 0.0F;
     //set ramp rate based on if target is higher or lower than current target
     if(f32_speed_req_rpm > mt_suction_fan.f32_prev_req_rpm)
     {
-        set_rampRate(&mt_suction_fan.t_speed_ramp, (float32)mt_suction_fan.pt_nvm->u8_fan_inc_time);
+        f32_setrate = (SUCTION_FAN_CMD_MAX/((float32)mt_suction_fan.pt_nvm->u8_fan_inc_time));
     }
     else if (f32_speed_req_rpm <= mt_suction_fan.f32_prev_req_rpm)
     {
-        set_rampRate(&mt_suction_fan.t_speed_ramp, (float32)mt_suction_fan.pt_nvm->u8_fan_dec_time);
+        //set_rampRate(&mt_suction_fan.t_speed_ramp, (float32)mt_suction_fan.pt_nvm->u8_fan_dec_time);
+        f32_setrate = (SUCTION_FAN_CMD_MAX/((float32)mt_suction_fan.pt_nvm->u8_fan_dec_time));
     }
-
+    set_rampRate(&mt_suction_fan.t_speed_ramp, f32_setrate);
 
     s16_error += rampCalc(f32_speed_req_rpm, &mt_suction_fan.t_speed_ramp);
 
+//    mt_suction_fan.t_pid_coeff.f32_kp = gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_kp;
+//    mt_suction_fan.t_pid_coeff.f32_ki = gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_ki;
+//    mt_suction_fan.t_pid_coeff.f32_kd = gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_kd;
+//
+    gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_feedback= mt_suction_fan.f32_shaft_rpm;
+    gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_target= mt_suction_fan.t_speed_ramp.f32_output;
+
+    s16_error += PidOutput(mt_suction_fan.t_speed_ramp.f32_output,
+                           mt_suction_fan.f32_shaft_rpm,
+                           &mt_suction_fan.t_pid_state,
+                           &mt_suction_fan.t_pid_coeff);
+
+
     // FR-5.9 Closed-loop PID control
-    if ((u8_btn_reset == FALSE) &&
-        (mt_suction_fan.u8_enable_latched == SUCTION_FAN_ENABLED)&&
-        (u8_speed_fault == FALSE))
-    {
-        s16_error += PidOutput(mt_suction_fan.t_speed_ramp.f32_output,
-                               mt_suction_fan.f32_shaft_rpm,
-                               &mt_suction_fan.t_pid_state,
-                               &mt_suction_fan.t_pid_coeff);
+    f32_pwm_cmd = mt_suction_fan.t_pid_state.f32_output;
 
-        f32_pwm_cmd = mt_suction_fan.t_pid_state.f32_output;
-    }
-    else if ((mt_suction_fan.u8_enable_latched == SUCTION_FAN_ENABLED)&&
-            (u8_speed_fault == TRUE))
-    {
-        //open loop control?
-        //f32_pwm_cmd = mt_suction_fan.t_speed_ramp.f32_output * 100.0f;
-        f32_pwm_cmd = SUCTION_FAN_SAFE_OUTPUT;
-    }
-
-    else
+    if (u8_speed_fault == TRUE)
     {
         f32_pwm_cmd = SUCTION_FAN_SAFE_OUTPUT;
     }
@@ -271,7 +270,7 @@ sint16 update_suctionFanControl(void)
     if (mt_suction_fan.pt_cp_sfan != NULL)
     {
         mt_suction_fan.pt_cp_sfan->u8_suctionFanOn =  mt_suction_fan.u8_enable_latched;
-        mt_suction_fan.pt_cp_sfan->u16_pwmStatus = (uint16)f32_pwm_cmd;
+        mt_suction_fan.pt_cp_sfan->u16_pwmStatus = ((uint16)f32_pwm_cmd /100u);
     }
 
     mt_suction_fan.f32_prev_req_rpm = f32_speed_req_rpm;
@@ -295,13 +294,13 @@ sint16 calc_sfSpeed(void)
 {
     sint16 s16_error = C_NO_ERR;
     float32 f32_mRPM = 0.0;
-    float32 f32_ratio = 209.0;
+    float32 f32_ratio = 2.09;
 
     //determine what the suction fan drive ratio actually is
     if(mt_suction_fan.pt_nvm->u8_6_7_enable)
-        f32_ratio = 209.0;
+        f32_ratio = 2.09;
     else
-        f32_ratio = 310.0;
+        f32_ratio = 3.10;
 
     s16_error += get_inputValue("FAN_SPEED", &mt_suction_fan.f32_fan_frequency);
 

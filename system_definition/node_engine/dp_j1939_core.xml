@@ -11,7 +11,7 @@
                 <name>CAN1_TX</name>
                 <comment/>
                 <data-elements length="21">
-                    <data-element factor="0.125" offset="0" interpret_as_string="false">
+                    <data-element factor="0.125" offset="0">
                         <name>ActlEngPrcntTrqueHighResolution</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>This parameter displays an additional torque in percent of the reference engine torque.</comment>
@@ -23,7 +23,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-125" interpret_as_string="false">
+                    <data-element factor="1" offset="-125">
                         <name>ActualEngPercentTorque</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The calculated output torque of the engine.</comment>
@@ -35,7 +35,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-125" interpret_as_string="false">
+                    <data-element factor="1" offset="-125">
                         <name>DriversDemandEngPercentTorque</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The requested torque output of the engine by the driver.</comment>
@@ -47,7 +47,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-125" interpret_as_string="false">
+                    <data-element factor="1" offset="-125">
                         <name>EngDemandPercentTorque</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The requested torque output of the engine by all dynamic internal inputs, including smoke control, noise control and low</comment>
@@ -59,7 +59,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.125" offset="0" interpret_as_string="false">
+                    <data-element factor="0.125" offset="0">
                         <name>EngSpeed</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Actual engine speed which is calculated over a minimum crankshaft angle of 720 degrees divided by the number of cylinders.</comment>
@@ -71,7 +71,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>EngStarterMode</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>There are several phases in a starting action and different reasons why a start cannot take place.</comment>
@@ -83,7 +83,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>EngTorqueMode</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>State signal which indicates which engine torque mode is currently generating, limiting, or controlling the torque.</comment>
@@ -95,7 +95,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>SrcAddrssOfCtrllngDvcFrEngCntrl</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The source address of the SAE J1939 device currently controlling the engine.</comment>
@@ -107,7 +107,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-40" interpret_as_string="false">
+                    <data-element factor="1" offset="-40">
                         <name>EngCoolantTemp</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Temperature of liquid found in engine cooling system.</comment>
@@ -119,7 +119,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-40" interpret_as_string="false">
+                    <data-element factor="1" offset="-40">
                         <name>EngFuelTemp1</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Temperature of fuel (or gas) passing through the first fuel control system.</comment>
@@ -131,7 +131,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-40" interpret_as_string="false">
+                    <data-element factor="1" offset="-40">
                         <name>EngIntercoolerTemp</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Temperature of liquid found in the intercooler located after the turbocharger.</comment>
@@ -143,7 +143,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.40000000000000002" offset="0" interpret_as_string="false">
+                    <data-element factor="0.40000000000000002" offset="0">
                         <name>EngIntercoolerThermostatOpening</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The current position of the thermostat used to regulate the temperature of the engine intercooler.</comment>
@@ -155,7 +155,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.03125" offset="-273" interpret_as_string="false">
+                    <data-element factor="0.03125" offset="-273">
                         <name>EngOilTemp1</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Temperature of the engine lubricant.</comment>
@@ -167,7 +167,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.03125" offset="-273" interpret_as_string="false">
+                    <data-element factor="0.03125" offset="-273">
                         <name>EngTurboOilTemp</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Temperature of the turbocharger lubricant.</comment>
@@ -179,7 +179,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.050000000000000003" offset="0" interpret_as_string="false">
+                    <data-element factor="0.050000000000000003" offset="0">
                         <name>EngAirFilter1DiffPress</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign</comment>
@@ -191,7 +191,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="2" offset="0" interpret_as_string="false">
+                    <data-element factor="2" offset="0">
                         <name>EngAirIntakePress</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Absolute air pressure at input port to intake manifold or air box.</comment>
@@ -203,7 +203,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.5" offset="0" interpret_as_string="false">
+                    <data-element factor="0.5" offset="0">
                         <name>EngCoolantFilterDiffPress</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter</comment>
@@ -215,7 +215,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.5" offset="0" interpret_as_string="false">
+                    <data-element factor="0.5" offset="0">
                         <name>EngDslPrtclateFilterIntakePress</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.</comment>
@@ -227,7 +227,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.03125" offset="-273" interpret_as_string="false">
+                    <data-element factor="0.03125" offset="-273">
                         <name>EngExhaustGasTemp</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Temperature of combustion byproducts leaving the engine.</comment>
@@ -239,7 +239,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="2" offset="0" interpret_as_string="false">
+                    <data-element factor="2" offset="0">
                         <name>EngIntakeManifold1Press</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>The gage pressure measurement of the air intake manifold.</comment>
@@ -251,7 +251,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-40" interpret_as_string="false">
+                    <data-element factor="1" offset="-40">
                         <name>EngIntakeManifold1Temp</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Temperature of pre-combustion air found in intake manifold of engine air supply system.</comment>
@@ -275,7 +275,7 @@
                 <name>CAN1_RX</name>
                 <comment/>
                 <data-elements length="16">
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>ControlPurpose</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>State signal which indicates which control mode the sending device is using to generate the TSC1 command.</comment>
@@ -287,7 +287,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>EngOverrideCtrlMode</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
@@ -299,7 +299,7 @@
                             <data-set-value value="1"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.125" offset="0" interpret_as_string="false">
+                    <data-element factor="0.125" offset="0">
                         <name>EngRqedSpeed_SpeedLimit</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Parameter provided to the engine from external sources in the torque/speed control message.</comment>
@@ -311,7 +311,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="-125" interpret_as_string="false">
+                    <data-element factor="1" offset="-125">
                         <name>EngRqedTorque_TorqueLimit</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>Parameter provided to the engine or retarder in the torque/speed control message for controlling or limiting the output torque.</comment>
@@ -323,7 +323,7 @@
                             <data-set-value value="255"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="0.125" offset="0" interpret_as_string="false">
+                    <data-element factor="0.125" offset="0">
                         <name>EngineRequestedTorqueHiRes</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>This parameter displays an additional torque in percent of the reference engine torque.</comment>
@@ -335,7 +335,7 @@
                             <data-set-value value="7"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>OverrideCtrlModePriority</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
@@ -347,7 +347,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>TransmissionRate</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.</comment>
@@ -359,7 +359,7 @@
                             <data-set-value value="6"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>IdentityNumber</name>
                         <type base-type="uint32" is-array="false"/>
                         <comment/>
@@ -371,7 +371,7 @@
                             <data-set-value value="200121"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>ManufacturerCode</name>
                         <type base-type="uint16" is-array="false"/>
                         <comment>Assigned by NMEA 2000 Committee</comment>
@@ -383,7 +383,7 @@
                             <data-set-value value="57"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>ECUInstance</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
@@ -395,7 +395,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>FunctionInstance</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
@@ -407,7 +407,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>Function</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
@@ -419,7 +419,7 @@
                             <data-set-value value="3"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>VehicleSystem2</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
@@ -431,7 +431,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>VehicleSystemInstance</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>
@@ -443,7 +443,7 @@
                             <data-set-value value="0"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>IndustryGroup</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment>0 = Global; 
@@ -463,7 +463,7 @@
                             <data-set-value value="2"/>
                         </data-set-values>
                     </data-element>
-                    <data-element factor="1" offset="0" interpret_as_string="false">
+                    <data-element factor="1" offset="0">
                         <name>ArbitraryAddressCapable</name>
                         <type base-type="uint8" is-array="false"/>
                         <comment/>

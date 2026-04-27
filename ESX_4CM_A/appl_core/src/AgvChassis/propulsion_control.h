@@ -47,14 +47,14 @@
 
 #define WHEEL_DIAMETER         31.5f  //!<Wheel Diameter in Inches
 #define WHEEL_PPR              44.0f  //!<Pulses per wheel revolution
-#define GEAR_RATIO             2.517f //!<Flory Wheel Gear Ratio
+#define GEAR_RATIO             25.17f //!<Flory Wheel Gear Ratio
 
 #define HIGH_SPEED_GEAR         1             //!< Indicator for high speed gear selection
 #define LOW_SPEED_GEAR          0             //!< Indicator for low speed gear selection
 
 #define EDC_STARTUP_DELAY      4000     //!<40000ms EDC enable startup delay.
 
-#define NEUTRAL_DEADBAND      250.0f    //!<Joystick deadband of +/- 250 units
+#define NEUTRAL_DEADBAND      100.0f    //!<Joystick deadband of +/- 250 units
 #define SPEED_LIMIT_PER      4750.0f    //!< Speed enviro is selected - limit joystick Y pos to 47.5%
 
 #define ACCEL_RATE              1500.0f       //!< Standard acceleration ramping rate
