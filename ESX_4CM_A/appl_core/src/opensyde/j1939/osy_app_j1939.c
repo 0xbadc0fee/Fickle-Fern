@@ -17,6 +17,7 @@
 #include "osy_com_j1939_handler.h"
 #include "osy_dph_data_pool_protector.h"
 #include "osy_com_trg_definitions.h"
+#include "osy_dph_data_set_handler.h"
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 #define COMM_STACK_J1939_0_NUMBER_OF_RX_FILTERS (1U)
 #define J1939_DM_SOURCE_ADDRESS      (5u)
@@ -513,6 +514,10 @@ sint16 osy_app_j1939_init(void)
    {
       s16_Return = m_InitJ1939Dm2Rx();
    }
+
+   //apply inital value datasets datasets
+
+   osy_dph_apply_data_set(J1939_DATA_POOL_INDEX,J1939_LIST_INDEX_CAN1_TX,0);
 
    return s16_Return;
 }

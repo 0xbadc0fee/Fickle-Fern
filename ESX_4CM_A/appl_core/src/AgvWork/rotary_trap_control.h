@@ -60,7 +60,7 @@
 #define ROTARY_TRAP_PWM_THRESHOLD_CURRENT (4000.0F) //!< Threshold current for PWM activation
 #define ROTARY_TRAP_PWM_END_CURRENT     (18000.0F)  //!< End current limit for PWM control
 
-#define ROTARY_TRAP_RAMP_RATE           (10.0F)     //!< Current ramp rate (mA per second)
+#define ROTARY_TRAP_RAMP_RATE           (10000.0F)     //!< Current ramp rate (mA per second)
 #define MAX_FIELD_GS                    (8.0F)      //!< Maximum Field Strength (Gauss)
 #define MIN_FIELD_GS                    (0.0F)      //!< Minimum Field Strength (Gauss)
 

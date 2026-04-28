@@ -43,11 +43,11 @@
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 #define THROTTLE_REQ_RPM_ZERO           (0.0F)      //!< Zero RPM request value
-#define THROTTLE_DEFAULT_START_RPM      (100.0F)    //!< Default starting RPM value
-#define THROTTLE_ENGINE_SPEED_MIN_RPM   (100.0F)    //!< Minimum allowable engine speed in RPM
+#define THROTTLE_DEFAULT_START_RPM      (1000.0F)    //!< Default starting RPM value
+#define THROTTLE_ENGINE_SPEED_MIN_RPM   (1000.0F)    //!< Minimum allowable engine speed in RPM
 #define THROTTLE_ENGINE_SPEED_MAX_RPM   (2350.0F)   //!< Maximum allowable engine speed in RPM
 
-#define THROTTLE_RAMP_RATE              (500.0F)    //!< Ramping rate for engine speed changes
+#define THROTTLE_RAMP_RATE              (200.0F)    //!< Ramping rate for engine speed changes
 #define THROTTLE_ADJUST_RPM             (50.0F)     //!< RPM step size for incremental throttle adjustments
 
 #define THROTTLE_HOLD_TIME_MS           (1000u)     //!< Button hold time threshold in milliseconds

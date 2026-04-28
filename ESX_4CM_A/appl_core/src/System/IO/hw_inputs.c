@@ -223,7 +223,6 @@ T_VehicleInput tvi_wheel_speed =
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520109,
         .t_fmi = {
-            [e_INFAULT_LOW_FREQ]  = {.u8_is_active = FALSE, .u8_fmi_value = 4},
             [e_INFAULT_HIGH_FREQ] = {.u8_is_active = FALSE, .u8_fmi_value = 8},
             [e_INFAULT_OL]        = {.u8_is_active = FALSE, .u8_fmi_value = 64},
         }
@@ -256,14 +255,13 @@ T_VehicleInput tvi_fan_speed =
     .f32_inputValue         = FALSE,
     .f32_prevInputValue     = FALSE,
     .mq_inputChanged        = TRUE,
-    .u8_diagEnabled         = TRUE,
+    .u8_diagEnabled         = FALSE,
     .t_fault=
     {
-        .u8_dm1_enable      = TRUE,
+        .u8_dm1_enable      = FALSE,
         .u8_fault_status    = FALSE,
         .u32_spn            = SPN_520111,
         .t_fmi = {
-            [e_INFAULT_LOW_FREQ]  = {.u8_is_active = FALSE, .u8_fmi_value = 4},
             [e_INFAULT_HIGH_FREQ] = {.u8_is_active = FALSE, .u8_fmi_value = 8},
             [e_INFAULT_OL]        = {.u8_is_active = FALSE, .u8_fmi_value = 64},
         }

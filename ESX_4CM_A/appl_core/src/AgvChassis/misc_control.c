@@ -36,8 +36,7 @@
 #include "hw_inputs.h"
 #include "hw_outputs.h"
 #include "fault_handler.h"
-
-#include "dashboard_data_pool.h"
+#include "nvm_handler.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 
@@ -90,9 +89,6 @@ sint16 update_filterMinder(void)
 
         // Filter restriction percent
         movingAdvFlt(&mt_misc.t_minder_flt, f32_filter_pct);
-
-        gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_test3 = f32_raw;
-        gt_Dashboard_DataPoolValues.t_GeneralTestingValues.s16_test2 = (sint16)mt_misc.t_minder_flt.f32_out;
 
         // If filtered output is greater than stored max for 1000 ms, reset stored max to filter value
         if(mt_misc.t_minder_flt.f32_out > mt_misc.pt_config->u8_filter_rstn_max)
@@ -164,9 +160,6 @@ sint16 update_fuelLevel(void)
                          ((100.0f*FUEL_RAW_MIN)/(mt_misc.pt_config->u16_fuel_full_voltage-FUEL_RAW_MIN));
 
         f32_fuel_pct = CLAMP(f32_fuel_pct, 0.0F, 100.0F);
-
-        gt_Dashboard_DataPoolValues.t_GeneralTestingValues.f32_test3 = f32_fuel_pct;
-        gt_Dashboard_DataPoolValues.t_GeneralTestingValues.u32_test4 = mt_misc.pt_config->u16_fuel_full_voltage;
 
         // fuel level average percent
         movingAdvFlt(&mt_misc.t_fuel_level_flt, f32_fuel_pct);
@@ -364,6 +357,14 @@ sint16 update_miscControl(void)
         clear_machineFaults();
     }
     mt_misc.u8_prev_clear_cmd = *(mt_misc.pu8_clear_faults_cmd);
+
+    //reset all machine parameters
+    if(mt_misc.pt_cp_misc->u8_reset_params)
+    {
+        reset_nvmParameters();  //Apply Dataset into EEPROM
+        init_nvmParameters();   //read from EEPROM into RAM
+        mt_misc.pt_cp_misc->u8_reset_params = 0;
+    }
 
 
     return s16_error;

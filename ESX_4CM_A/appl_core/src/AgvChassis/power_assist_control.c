@@ -192,7 +192,7 @@ sint16 update_powerAssistControl(void)
        else
        {
            mt_power_assist.u8_traction_valve_cmd =
-               (f32_trac_switch_cmd != 0.0F) ? TRACTION_VALVE_ON : TRACTION_VALVE_OFF;
+               (f32_trac_switch_cmd >= 0.0F) ? TRACTION_VALVE_OFF : TRACTION_VALVE_ON;
        }
 
        //IR-15.1 / IR-15.3 Any invalid output/input combination = NO TRACTION ASSIST operation

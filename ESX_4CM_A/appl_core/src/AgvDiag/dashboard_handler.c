@@ -74,7 +74,7 @@ T_ChkPoints_Mis gt_miscCheckpoints;              //!<Structure that holds theMis
 
 /* -- Implementation  ---------------------------------------------------------------------------------------------- */
 /**
- * \brief Initializes control variables from the dashboard data pool.
+ * \brief Synchronizes control variables from the dashboard data pool.
  *
  * This function locks the dashboard data pool, maps the stored dashboard values
  * into their corresponding local control variables using the definition file,
@@ -83,7 +83,7 @@ T_ChkPoints_Mis gt_miscCheckpoints;              //!<Structure that holds theMis
  * \return s16_error Error Code
  * \retval C_NO_ERR Function Executed Properly
  */
-sint16 init_dashHandler(void)
+sint16 sync_dashHandler(void)
 {
     sint16 s16_error = C_NO_ERR;
 

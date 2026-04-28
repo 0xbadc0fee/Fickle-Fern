@@ -46,7 +46,7 @@
 #define SUCTION_FAN_SAFE_OUTPUT         (0.0F)      //!< Default safe PWM output
 #define SUCTION_FAN_SAFE_SPEED_RPM      (0.0F)      //!< Default safe speed in RPM
 #define SUCTION_FAN_CMD_MIN             (0.0F)      //!< Minimum operator command value
-#define SUCTION_FAN_CMD_MAX             (1000.0F)   //!< Maximum operator command value
+#define SUCTION_FAN_CMD_MAX             (1500.0F)   //!< Maximum operator command value
 #define SUCTION_FAN_PWM_MIN             (0.0F)      //!< Minimum allowable PWM duty cycle
 #define SUCTION_FAN_PWM_MAX             (10000.0F)  //!< Maximum allowable PWM duty cycle
 

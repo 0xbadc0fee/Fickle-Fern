@@ -41,6 +41,7 @@
 #include "engine_starter_control.h"
 #include "hw_inputs.h"
 #include "hw_outputs.h"
+#include "can_handler_lib.h"
 
 // -- Defines ------------------------------------------------------------------------------------------------------
 
@@ -114,7 +115,22 @@ sint16 update_throttleControl(void)
     float32 f32_final_req_rpm = THROTTLE_REQ_RPM_ZERO;
 
     uint32 u32_now_ms = get_system_time_ms();
+    uint32 u32_send_time = get_system_time_ms();
     uint32 u32_engine_runtime = 0;
+
+    //initial engine - address shake (required?)
+    if(u32_now_ms < 5000)
+    {
+        if((u32_now_ms - u32_send_time) > 200)
+        {
+            force_canMessage(0, 0x18ee0005U);    //force Engine Ack (CAN1)
+            u32_send_time = u32_now_ms;
+        }
+    }
+    else
+    {
+        set_canMessageActive(0, 0x18ee0005U, 0);
+    }
 
     if((mt_throttle.pu8_eng_ovrrd_ctrl_mode == NULL) ||
     (mt_throttle.pu8_engine_speed_ctrl_req == NULL) ||
@@ -134,15 +150,14 @@ sint16 update_throttleControl(void)
     if(u8_up_fault == FALSE)
     {
         get_inputValue("THROTTLE_UP", &f32_up_cmd);
-        u8_up_cmd = (uint8)f32_up_cmd;
+        u8_up_cmd = ((uint8)f32_up_cmd >0)? FALSE:TRUE;
     }
 
     if(u8_down_fault == FALSE)
     {
         get_inputValue("THROTTLE_DOWN", &f32_down_cmd);
-        u8_down_cmd = (uint8)f32_down_cmd;
+        u8_down_cmd = ((uint8)f32_down_cmd >0)? FALSE:TRUE;
     }
-
 
     //register throttle command
     if(u8_down_cmd)
@@ -251,23 +266,12 @@ sint16 update_throttleControl(void)
                                                THROTTLE_ENGINE_SPEED_MAX_RPM);
 
     //Default TSC1 fields
-    *(mt_throttle.pu8_eng_req_torq_hires) = 0;
+    *(mt_throttle.pu8_eng_req_torq_hires) = 0xF;
     *(mt_throttle.pu8_ctrl_purpose) = 0u;
-    *(mt_throttle.pu8_eng_req_torq_limit) = 125u;
+    *(mt_throttle.pu8_eng_req_torq_limit) = 255u;
     *(mt_throttle.pu8_engine_override_ctrl_pri) = 0u;
     *(mt_throttle.pu8_engine_speed_ctrl_req) = 2u;
-
-
-    // Timeout-specific control
-    if((mt_throttle.u8_engine_status == ENGINE_OFF) &&
-       (u32_now_ms - mt_throttle.u32_engine_state_change_time_ms) >= THROTTLE_6S_DELAY_MS)
-    {
-        *(mt_throttle.pu8_eng_ovrrd_ctrl_mode) = TRUE;
-    }
-    else
-    {
-        *(mt_throttle.pu8_eng_ovrrd_ctrl_mode) = FALSE;
-    }
+    *(mt_throttle.pu8_eng_ovrrd_ctrl_mode) = TRUE;
 
     // Output
     *(mt_throttle.pu16_engine_req_speed) = (uint16)(mt_throttle.f32_target_req_rpm / 0.125f);

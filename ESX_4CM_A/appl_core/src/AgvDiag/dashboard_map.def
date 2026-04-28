@@ -89,6 +89,6 @@ CNTRL2DP(filterMax, 	gt_miscConfig.u8_af_fault_pct, 	 						gt_Dashboard_DataPoo
 CNTRL2DP(fuelHigh, 		gt_miscConfig.u16_fuel_full_voltage, 	 				gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_fuel_full_voltage)
 CNTRL2DP(filterMax, 	gt_miscConfig.u16_af_max_voltage, 	 					gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_filter_high_cal)
 CNTRL2DP(fuelHigh, 		gt_miscConfig.u16_af_min_voltage, 	 				    gt_Dashboard_DataPoolValues.t_MiscControlValues.u16_p_filter_low_cal)
-
+CNTRL2DP(fuelHigh, 		gt_miscCheckpoints.u8_reset_params, 	 				gt_Dashboard_DataPoolValues.t_MiscControlValues.u8_p_reset_params)
 
 
