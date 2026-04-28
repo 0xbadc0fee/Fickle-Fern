@@ -47,7 +47,7 @@
 #define FRONT_SWEEPS_PWM_THRESHOLD_CURRENT (4000.0F)  //!< Starting current threshold [mA]
 #define FRONT_SWEEPS_PWM_END_CURRENT       (18000.0F) //!< Maximum allowable current [mA]
 
-#define FRONT_SWEEPS_RAMP_RATE             (1000.0F)  //!< Speed adjustment ramp rate [units/sec]
+#define FRONT_SWEEPS_RAMP_RATE             (10000.0F)  //!< Speed adjustment ramp rate [units/sec]
 
 /* -- Types -------------------------------------------------------------------------------------------------------- */
 

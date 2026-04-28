@@ -329,7 +329,7 @@ T_VehicleOutput tvo_propel_fwd =
 {
     .Name_Description = "PROPEL_FWD",
     .u16_hardwareID = X_OUT_OPHSP2A_4,
-    .e_outputType = OT_PWM,
+    .e_outputType = OT_CC,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
@@ -354,7 +354,7 @@ T_VehicleOutput tvo_propel_rev =
 {
     .Name_Description = "PROPEL_REV",
     .u16_hardwareID = X_OUT_OPHSP2A_5,
-    .e_outputType = OT_PWM,
+    .e_outputType = OT_CC,
 
     .f32_outputValue = 0.0F,
     .f32_prevOutputValue = 0.0F,
@@ -428,7 +428,7 @@ T_VehicleOutput tvo_stickbox_on =
 
 T_VehicleOutput tvo_stickbox_open=
 {
-    .Name_Description = "STICKBOX_OPEN",
+    .Name_Description = "STICKBOX_CLOSE",
     .u16_hardwareID = X_OUT_OPHSP2A_2,
     .e_outputType = OT_DIGITAL,
     .f32_outputValue = 0.0F,

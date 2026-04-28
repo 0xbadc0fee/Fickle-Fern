@@ -129,7 +129,7 @@ BO_ 2566848768 DISP_FDBK2: 8 ESX_4CM_A
  SG_ SF_HPTenths : 24|8@1- (1,0) [0|0] ""  Display
  SG_ SF_HP : 16|8@1- (1,0) [0|0] ""  Display
 
-BO_ 2566846206 IC1: 8 Engine
+BO_ 2566845952 IC1: 8 Engine
  SG_ EngCoolantFilterDiffPress : 56|8@1+ (0.5,0) [0|125] "kPa"  ESX_4CM_A
  SG_ EngExhaustGasTemp : 40|16@1+ (0.03125,-273) [4294967023|1734.96875] "deg C"  ESX_4CM_A
  SG_ EngAirFilter1DiffPress : 32|8@1+ (0.05,0) [0|12.5] "kPa"  ESX_4CM_A
@@ -138,7 +138,7 @@ BO_ 2566846206 IC1: 8 Engine
  SG_ EngDslPrtclateFilterIntakePress : 0|8@1+ (0.5,0) [0|125] "kPa"  ESX_4CM_A
  SG_ EngAirIntakePress : 24|8@1+ (2,0) [0|500] "kPa"  ESX_4CM_A
 
-BO_ 2348810494 TSC1: 8 ESX_4CM_A
+BO_ 2348810243 TSC1: 8 ESX_4CM_A
  SG_ MessageCounter : 56|4@1+ (1,0) [0|15] "" Vector__XXX
  SG_ ControlPurpose : 35|5@1+ (1,0) [0|31] "" Vector__XXX
  SG_ TransmissionRate : 32|3@1+ (1,0) [0|7] "" Vector__XXX
@@ -150,7 +150,7 @@ BO_ 2348810494 TSC1: 8 ESX_4CM_A
  SG_ MessageChecksum : 60|4@1+ (1,0) [0|15] "" Vector__XXX
  SG_ EngineRequestedTorqueHiRes : 40|4@1+ (0.125,0) [0|0.875] "%" Vector__XXX
 
-BO_ 2566844158 ET1: 8 Engine
+BO_ 2566843904 ET1: 8 Engine
  SG_ EngFuelTemp1 : 8|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
  SG_ EngIntercoolerThermostatOpening : 56|8@1+ (0.4,0) [0|100] "%"  ESX_4CM_A
  SG_ EngIntercoolerTemp : 48|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
@@ -158,7 +158,7 @@ BO_ 2566844158 ET1: 8 Engine
  SG_ EngOilTemp1 : 16|16@1+ (0.03125,-273) [4294967023|1734.96875] "deg C"  ESX_4CM_A
  SG_ EngCoolantTemp : 0|8@1+ (1,-40) [4294967256|210] "deg C"  ESX_4CM_A
 
-BO_ 2364540158 EEC1: 8 Engine
+BO_ 2364539904 EEC1: 8 Engine
  SG_ SrcAddrssOfCtrllngDvcFrEngCntrl : 40|8@1+ (1,0) [0|255] "" Vector__XXX
  SG_ ActlEngPrcntTrqueHighResolution : 4|4@1+ (0.125,0) [0|0.875] "%" Vector__XXX
  SG_ EngDemandPercentTorque : 56|8@1+ (1,-125) [4294967171|125] "%" Vector__XXX
@@ -258,39 +258,39 @@ CM_ SG_ 2566848768 FuelGagePrcnt "Fuel Gauge Level (Percent)";
 CM_ SG_ 2566848768 SW_MinorRev "Software Version - Minor ";
 CM_ SG_ 2566848768 SW_MajorRev "Software Version - Major";
 CM_ SG_ 2566848768 AirFilterRestrictPrcnt "Air Restriction Gauge Percent";
-CM_ BO_ 2566846206 "Intake/Exhaust Conditions 1";
-CM_ SG_ 2566846206 EngCoolantFilterDiffPress "Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter";
-CM_ SG_ 2566846206 EngExhaustGasTemp "Temperature of combustion byproducts leaving the engine.";
-CM_ SG_ 2566846206 EngAirFilter1DiffPress "Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign";
-CM_ SG_ 2566846206 EngIntakeManifold1Temp "Temperature of pre-combustion air found in intake manifold of engine air supply system.";
-CM_ SG_ 2566846206 EngIntakeManifold1Press "The gage pressure measurement of the air intake manifold.";
-CM_ SG_ 2566846206 EngDslPrtclateFilterIntakePress "Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.";
-CM_ SG_ 2566846206 EngAirIntakePress "Absolute air pressure at input port to intake manifold or air box.";
-CM_ BO_ 2348810494 "Torque/Speed Control 1";
-CM_ SG_ 2348810494 MessageCounter "The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time.";
-CM_ SG_ 2348810494 ControlPurpose "State signal which indicates which control mode the sending device is using to generate the TSC1 command.";
-CM_ SG_ 2348810494 TransmissionRate "This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.";
-CM_ SG_ 2348810494 EngRqedTorque_TorqueLimit "Parameter provided to the engine or retarder in the torque/speed control message for controlling or limiting the output torque.";
-CM_ SG_ 2348810494 EngRqedSpeed_SpeedLimit "Parameter provided to the engine from external sources in the torque/speed control message.";
-CM_ SG_ 2348810494 EngRqedSpeedCtrlConditions "This mode tells the engine control system the governor characteristics that are desired during speed control.";
-CM_ SG_ 2348810494 MessageChecksum "The checksum is used to verify the signal path from the transmitting device to the receiving device.";
-CM_ SG_ 2348810494 EngineRequestedTorqueHiRes "This parameter displays an additional torque in percent of the reference engine torque.";
-CM_ BO_ 2566844158 "Engine Temperature 1";
-CM_ SG_ 2566844158 EngFuelTemp1 "Temperature of fuel (or gas) passing through the first fuel control system.";
-CM_ SG_ 2566844158 EngIntercoolerThermostatOpening "The current position of the thermostat used to regulate the temperature of the engine intercooler.";
-CM_ SG_ 2566844158 EngIntercoolerTemp "Temperature of liquid found in the intercooler located after the turbocharger.";
-CM_ SG_ 2566844158 EngTurboOilTemp "Temperature of the turbocharger lubricant.";
-CM_ SG_ 2566844158 EngOilTemp1 "Temperature of the engine lubricant.";
-CM_ SG_ 2566844158 EngCoolantTemp "Temperature of liquid found in engine cooling system.";
-CM_ BO_ 2364540158 "Electronic Engine Controller 1";
-CM_ SG_ 2364540158 SrcAddrssOfCtrllngDvcFrEngCntrl "The source address of the SAE J1939 device currently controlling the engine.";
-CM_ SG_ 2364540158 ActlEngPrcntTrqueHighResolution "This parameter displays an additional torque in percent of the reference engine torque.";
-CM_ SG_ 2364540158 EngDemandPercentTorque "The requested torque output of the engine by all dynamic internal inputs, including smoke control, noise control and low";
-CM_ SG_ 2364540158 EngStarterMode "There are several phases in a starting action and different reasons why a start cannot take place.";
-CM_ SG_ 2364540158 EngSpeed "Actual engine speed which is calculated over a minimum crankshaft angle of 720 degrees divided by the number of cylinders.";
-CM_ SG_ 2364540158 ActualEngPercentTorque "The calculated output torque of the engine.";
-CM_ SG_ 2364540158 DriversDemandEngPercentTorque "The requested torque output of the engine by the driver.";
-CM_ SG_ 2364540158 EngTorqueMode "State signal which indicates which engine torque mode is currently generating, limiting, or controlling the torque.";
+CM_ BO_ 2566845952 "Intake/Exhaust Conditions 1";
+CM_ SG_ 2566845952 EngCoolantFilterDiffPress "Change in coolant pressure, measured across the filter, due to the filter and any accumulation of solid or semisolid matter";
+CM_ SG_ 2566845952 EngExhaustGasTemp "Temperature of combustion byproducts leaving the engine.";
+CM_ SG_ 2566845952 EngAirFilter1DiffPress "Change in engine air system pressure, measured across the filter, due to the filter and any accumulation of solid foreign";
+CM_ SG_ 2566845952 EngIntakeManifold1Temp "Temperature of pre-combustion air found in intake manifold of engine air supply system.";
+CM_ SG_ 2566845952 EngIntakeManifold1Press "The gage pressure measurement of the air intake manifold.";
+CM_ SG_ 2566845952 EngDslPrtclateFilterIntakePress "Exhaust back pressure as a result of particle accumulation on filter media placed in the exhaust stream.";
+CM_ SG_ 2566845952 EngAirIntakePress "Absolute air pressure at input port to intake manifold or air box.";
+CM_ BO_ 2348810243 "Torque/Speed Control 1";
+CM_ SG_ 2348810243 MessageCounter "The message counter is used to detect situations where the transmitting ECU malfunction repeats the same frame all the time.";
+CM_ SG_ 2348810243 ControlPurpose "State signal which indicates which control mode the sending device is using to generate the TSC1 command.";
+CM_ SG_ 2348810243 TransmissionRate "This parameter indicates the transmission rate at which the sending device will transmit the TSC1 message.";
+CM_ SG_ 2348810243 EngRqedTorque_TorqueLimit "Parameter provided to the engine or retarder in the torque/speed control message for controlling or limiting the output torque.";
+CM_ SG_ 2348810243 EngRqedSpeed_SpeedLimit "Parameter provided to the engine from external sources in the torque/speed control message.";
+CM_ SG_ 2348810243 EngRqedSpeedCtrlConditions "This mode tells the engine control system the governor characteristics that are desired during speed control.";
+CM_ SG_ 2348810243 MessageChecksum "The checksum is used to verify the signal path from the transmitting device to the receiving device.";
+CM_ SG_ 2348810243 EngineRequestedTorqueHiRes "This parameter displays an additional torque in percent of the reference engine torque.";
+CM_ BO_ 2566843904 "Engine Temperature 1";
+CM_ SG_ 2566843904 EngFuelTemp1 "Temperature of fuel (or gas) passing through the first fuel control system.";
+CM_ SG_ 2566843904 EngIntercoolerThermostatOpening "The current position of the thermostat used to regulate the temperature of the engine intercooler.";
+CM_ SG_ 2566843904 EngIntercoolerTemp "Temperature of liquid found in the intercooler located after the turbocharger.";
+CM_ SG_ 2566843904 EngTurboOilTemp "Temperature of the turbocharger lubricant.";
+CM_ SG_ 2566843904 EngOilTemp1 "Temperature of the engine lubricant.";
+CM_ SG_ 2566843904 EngCoolantTemp "Temperature of liquid found in engine cooling system.";
+CM_ BO_ 2364539904 "Electronic Engine Controller 1";
+CM_ SG_ 2364539904 SrcAddrssOfCtrllngDvcFrEngCntrl "The source address of the SAE J1939 device currently controlling the engine.";
+CM_ SG_ 2364539904 ActlEngPrcntTrqueHighResolution "This parameter displays an additional torque in percent of the reference engine torque.";
+CM_ SG_ 2364539904 EngDemandPercentTorque "The requested torque output of the engine by all dynamic internal inputs, including smoke control, noise control and low";
+CM_ SG_ 2364539904 EngStarterMode "There are several phases in a starting action and different reasons why a start cannot take place.";
+CM_ SG_ 2364539904 EngSpeed "Actual engine speed which is calculated over a minimum crankshaft angle of 720 degrees divided by the number of cylinders.";
+CM_ SG_ 2364539904 ActualEngPercentTorque "The calculated output torque of the engine.";
+CM_ SG_ 2364539904 DriversDemandEngPercentTorque "The requested torque output of the engine by the driver.";
+CM_ SG_ 2364539904 EngTorqueMode "State signal which indicates which engine torque mode is currently generating, limiting, or controlling the torque.";
 CM_ BO_ 2365445886 "Basic Joystick Message 1";
 CM_ SG_ 2365445886 JS_YPOS "The position of the joystick in the relative motion of travel from the neutral position.";
 CM_ SG_ 2365445886 JS_Y_POSITIVE "Reports when the current joystick position is on the positive travel side (forward, right, clockwise, up) relative to the";
@@ -436,79 +436,79 @@ BA_ "SPN" SG_ 2566848768 SW_MajorRev 520533;
 BA_ "SPN" SG_ 2566848768 AirFilterRestrictPrcnt 520532;
 BA_ "SPN" SG_ 2566848768 SF_HPTenths 520531;
 BA_ "SPN" SG_ 2566848768 SF_HP 520530;
-BA_ "GenMsgSendType" BO_ 2566846206 0;
-BA_ "GenMsgCycleTime" BO_ 2566846206 500;
-BA_ "VFrameFormat" BO_ 2566846206 3;
-BA_ "SigType" SG_ 2566846206 EngCoolantFilterDiffPress 1;
-BA_ "SPN" SG_ 2566846206 EngCoolantFilterDiffPress 112;
-BA_ "SigType" SG_ 2566846206 EngExhaustGasTemp 1;
-BA_ "SPN" SG_ 2566846206 EngExhaustGasTemp 173;
-BA_ "SigType" SG_ 2566846206 EngAirFilter1DiffPress 1;
-BA_ "SPN" SG_ 2566846206 EngAirFilter1DiffPress 107;
-BA_ "SigType" SG_ 2566846206 EngIntakeManifold1Temp 1;
-BA_ "SPN" SG_ 2566846206 EngIntakeManifold1Temp 105;
-BA_ "SigType" SG_ 2566846206 EngIntakeManifold1Press 1;
-BA_ "SPN" SG_ 2566846206 EngIntakeManifold1Press 102;
-BA_ "SigType" SG_ 2566846206 EngDslPrtclateFilterIntakePress 1;
-BA_ "SPN" SG_ 2566846206 EngDslPrtclateFilterIntakePress 81;
-BA_ "SigType" SG_ 2566846206 EngAirIntakePress 1;
-BA_ "SPN" SG_ 2566846206 EngAirIntakePress 106;
-BA_ "GenMsgSendType" BO_ 2348810494 8;
-BA_ "VFrameFormat" BO_ 2348810494 3;
-BA_ "SigType" SG_ 2348810494 MessageCounter 0;
-BA_ "SPN" SG_ 2348810494 MessageCounter 4206;
-BA_ "SigType" SG_ 2348810494 ControlPurpose 0;
-BA_ "SPN" SG_ 2348810494 ControlPurpose 3350;
-BA_ "SigType" SG_ 2348810494 TransmissionRate 0;
-BA_ "SPN" SG_ 2348810494 TransmissionRate 3349;
-BA_ "SigType" SG_ 2348810494 EngRqedTorque_TorqueLimit 1;
-BA_ "SPN" SG_ 2348810494 EngRqedTorque_TorqueLimit 518;
-BA_ "SigType" SG_ 2348810494 EngRqedSpeed_SpeedLimit 1;
-BA_ "SPN" SG_ 2348810494 EngRqedSpeed_SpeedLimit 898;
-BA_ "SigType" SG_ 2348810494 OverrideCtrlModePriority 0;
-BA_ "SPN" SG_ 2348810494 OverrideCtrlModePriority 897;
-BA_ "SigType" SG_ 2348810494 EngRqedSpeedCtrlConditions 0;
-BA_ "SPN" SG_ 2348810494 EngRqedSpeedCtrlConditions 696;
-BA_ "SigType" SG_ 2348810494 EngOverrideCtrlMode 0;
-BA_ "SPN" SG_ 2348810494 EngOverrideCtrlMode 695;
-BA_ "SigType" SG_ 2348810494 MessageChecksum 0;
-BA_ "SPN" SG_ 2348810494 MessageChecksum 4207;
-BA_ "SigType" SG_ 2348810494 EngineRequestedTorqueHiRes 0;
-BA_ "SPN" SG_ 2348810494 EngineRequestedTorqueHiRes 4191;
-BA_ "GenMsgSendType" BO_ 2566844158 0;
-BA_ "GenMsgCycleTime" BO_ 2566844158 1000;
-BA_ "VFrameFormat" BO_ 2566844158 3;
-BA_ "SigType" SG_ 2566844158 EngFuelTemp1 1;
-BA_ "SPN" SG_ 2566844158 EngFuelTemp1 174;
-BA_ "SigType" SG_ 2566844158 EngIntercoolerThermostatOpening 1;
-BA_ "SPN" SG_ 2566844158 EngIntercoolerThermostatOpening 1134;
-BA_ "SigType" SG_ 2566844158 EngIntercoolerTemp 1;
-BA_ "SPN" SG_ 2566844158 EngIntercoolerTemp 52;
-BA_ "SigType" SG_ 2566844158 EngTurboOilTemp 1;
-BA_ "SPN" SG_ 2566844158 EngTurboOilTemp 176;
-BA_ "SigType" SG_ 2566844158 EngOilTemp1 1;
-BA_ "SPN" SG_ 2566844158 EngOilTemp1 175;
-BA_ "SigType" SG_ 2566844158 EngCoolantTemp 1;
-BA_ "SPN" SG_ 2566844158 EngCoolantTemp 1637;
-BA_ "GenMsgSendType" BO_ 2364540158 0;
-BA_ "GenMsgCycleTime" BO_ 2364540158 100;
-BA_ "VFrameFormat" BO_ 2364540158 3;
-BA_ "SigType" SG_ 2364540158 SrcAddrssOfCtrllngDvcFrEngCntrl 1;
-BA_ "SPN" SG_ 2364540158 SrcAddrssOfCtrllngDvcFrEngCntrl 1483;
-BA_ "SigType" SG_ 2364540158 ActlEngPrcntTrqueHighResolution 1;
-BA_ "SPN" SG_ 2364540158 ActlEngPrcntTrqueHighResolution 4154;
-BA_ "SigType" SG_ 2364540158 EngDemandPercentTorque 1;
-BA_ "SPN" SG_ 2364540158 EngDemandPercentTorque 2432;
-BA_ "SigType" SG_ 2364540158 EngStarterMode 4;
-BA_ "SPN" SG_ 2364540158 EngStarterMode 1675;
-BA_ "SigType" SG_ 2364540158 EngSpeed 1;
-BA_ "SPN" SG_ 2364540158 EngSpeed 190;
-BA_ "SigType" SG_ 2364540158 ActualEngPercentTorque 1;
-BA_ "SPN" SG_ 2364540158 ActualEngPercentTorque 513;
-BA_ "SigType" SG_ 2364540158 DriversDemandEngPercentTorque 1;
-BA_ "SPN" SG_ 2364540158 DriversDemandEngPercentTorque 512;
-BA_ "SigType" SG_ 2364540158 EngTorqueMode 4;
-BA_ "SPN" SG_ 2364540158 EngTorqueMode 899;
+BA_ "GenMsgSendType" BO_ 2566845952 0;
+BA_ "GenMsgCycleTime" BO_ 2566845952 500;
+BA_ "VFrameFormat" BO_ 2566845952 3;
+BA_ "SigType" SG_ 2566845952 EngCoolantFilterDiffPress 1;
+BA_ "SPN" SG_ 2566845952 EngCoolantFilterDiffPress 112;
+BA_ "SigType" SG_ 2566845952 EngExhaustGasTemp 1;
+BA_ "SPN" SG_ 2566845952 EngExhaustGasTemp 173;
+BA_ "SigType" SG_ 2566845952 EngAirFilter1DiffPress 1;
+BA_ "SPN" SG_ 2566845952 EngAirFilter1DiffPress 107;
+BA_ "SigType" SG_ 2566845952 EngIntakeManifold1Temp 1;
+BA_ "SPN" SG_ 2566845952 EngIntakeManifold1Temp 105;
+BA_ "SigType" SG_ 2566845952 EngIntakeManifold1Press 1;
+BA_ "SPN" SG_ 2566845952 EngIntakeManifold1Press 102;
+BA_ "SigType" SG_ 2566845952 EngDslPrtclateFilterIntakePress 1;
+BA_ "SPN" SG_ 2566845952 EngDslPrtclateFilterIntakePress 81;
+BA_ "SigType" SG_ 2566845952 EngAirIntakePress 1;
+BA_ "SPN" SG_ 2566845952 EngAirIntakePress 106;
+BA_ "GenMsgSendType" BO_ 2348810243 8;
+BA_ "VFrameFormat" BO_ 2348810243 3;
+BA_ "SigType" SG_ 2348810243 MessageCounter 0;
+BA_ "SPN" SG_ 2348810243 MessageCounter 4206;
+BA_ "SigType" SG_ 2348810243 ControlPurpose 0;
+BA_ "SPN" SG_ 2348810243 ControlPurpose 3350;
+BA_ "SigType" SG_ 2348810243 TransmissionRate 0;
+BA_ "SPN" SG_ 2348810243 TransmissionRate 3349;
+BA_ "SigType" SG_ 2348810243 EngRqedTorque_TorqueLimit 1;
+BA_ "SPN" SG_ 2348810243 EngRqedTorque_TorqueLimit 518;
+BA_ "SigType" SG_ 2348810243 EngRqedSpeed_SpeedLimit 1;
+BA_ "SPN" SG_ 2348810243 EngRqedSpeed_SpeedLimit 898;
+BA_ "SigType" SG_ 2348810243 OverrideCtrlModePriority 0;
+BA_ "SPN" SG_ 2348810243 OverrideCtrlModePriority 897;
+BA_ "SigType" SG_ 2348810243 EngRqedSpeedCtrlConditions 0;
+BA_ "SPN" SG_ 2348810243 EngRqedSpeedCtrlConditions 696;
+BA_ "SigType" SG_ 2348810243 EngOverrideCtrlMode 0;
+BA_ "SPN" SG_ 2348810243 EngOverrideCtrlMode 695;
+BA_ "SigType" SG_ 2348810243 MessageChecksum 0;
+BA_ "SPN" SG_ 2348810243 MessageChecksum 4207;
+BA_ "SigType" SG_ 2348810243 EngineRequestedTorqueHiRes 0;
+BA_ "SPN" SG_ 2348810243 EngineRequestedTorqueHiRes 4191;
+BA_ "GenMsgSendType" BO_ 2566843904 0;
+BA_ "GenMsgCycleTime" BO_ 2566843904 1000;
+BA_ "VFrameFormat" BO_ 2566843904 3;
+BA_ "SigType" SG_ 2566843904 EngFuelTemp1 1;
+BA_ "SPN" SG_ 2566843904 EngFuelTemp1 174;
+BA_ "SigType" SG_ 2566843904 EngIntercoolerThermostatOpening 1;
+BA_ "SPN" SG_ 2566843904 EngIntercoolerThermostatOpening 1134;
+BA_ "SigType" SG_ 2566843904 EngIntercoolerTemp 1;
+BA_ "SPN" SG_ 2566843904 EngIntercoolerTemp 52;
+BA_ "SigType" SG_ 2566843904 EngTurboOilTemp 1;
+BA_ "SPN" SG_ 2566843904 EngTurboOilTemp 176;
+BA_ "SigType" SG_ 2566843904 EngOilTemp1 1;
+BA_ "SPN" SG_ 2566843904 EngOilTemp1 175;
+BA_ "SigType" SG_ 2566843904 EngCoolantTemp 1;
+BA_ "SPN" SG_ 2566843904 EngCoolantTemp 1637;
+BA_ "GenMsgSendType" BO_ 2364539904 0;
+BA_ "GenMsgCycleTime" BO_ 2364539904 100;
+BA_ "VFrameFormat" BO_ 2364539904 3;
+BA_ "SigType" SG_ 2364539904 SrcAddrssOfCtrllngDvcFrEngCntrl 1;
+BA_ "SPN" SG_ 2364539904 SrcAddrssOfCtrllngDvcFrEngCntrl 1483;
+BA_ "SigType" SG_ 2364539904 ActlEngPrcntTrqueHighResolution 1;
+BA_ "SPN" SG_ 2364539904 ActlEngPrcntTrqueHighResolution 4154;
+BA_ "SigType" SG_ 2364539904 EngDemandPercentTorque 1;
+BA_ "SPN" SG_ 2364539904 EngDemandPercentTorque 2432;
+BA_ "SigType" SG_ 2364539904 EngStarterMode 4;
+BA_ "SPN" SG_ 2364539904 EngStarterMode 1675;
+BA_ "SigType" SG_ 2364539904 EngSpeed 1;
+BA_ "SPN" SG_ 2364539904 EngSpeed 190;
+BA_ "SigType" SG_ 2364539904 ActualEngPercentTorque 1;
+BA_ "SPN" SG_ 2364539904 ActualEngPercentTorque 513;
+BA_ "SigType" SG_ 2364539904 DriversDemandEngPercentTorque 1;
+BA_ "SPN" SG_ 2364539904 DriversDemandEngPercentTorque 512;
+BA_ "SigType" SG_ 2364539904 EngTorqueMode 4;
+BA_ "SPN" SG_ 2364539904 EngTorqueMode 899;
 BA_ "GenMsgSendType" BO_ 2365445886 0;
 BA_ "GenMsgCycleTime" BO_ 2365445886 100;
 BA_ "VFrameFormat" BO_ 2365445886 3;
@@ -578,17 +578,17 @@ VAL_ 2566848512 MISC_BrakeStatus 0 "Disengaged" 1 "Engaged" ;
 VAL_ 2566848512 MISC_DoorStatus 0 "Door Closed" 1 "Door Open" ;
 VAL_ 2566848512 FUEL_LevelLow 0 "Fuel Level OK" 1 "Fuel Level Low" ;
 VAL_ 2566848512 AIRFILT_ServiceRqd 0 "FILTER OK" 1 "SERVICE REQ" ;
-VAL_ 2348810494 MessageCounter 14 "Reserved" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "Reserved" 15 "Not Available" ;
-VAL_ 2348810494 ControlPurpose 5 "TemporaryPowerTrainControl" 4 "EngineProtection" 3 "RoadSpeedGovernor" 2 "PTOGovernor" 1 "CruiseControl" 0 "AcceleratorPedal" ;
-VAL_ 2348810494 TransmissionRate 7 "UseStandardRate" 6 "25ms" 5 "50ms" 4 "100ms" 3 "250ms" 2 "500ms" 1 "750ms" 0 "1000ms" ;
-VAL_ 2348810494 OverrideCtrlModePriority 3 "LowPriority" 2 "MdmPrrtyUsdFrPwrtrnCtrlOprtnsWh" 1 "HighPriority" 0 "HghstPrrtyUsdFrSttnsThtRqrImmdt" ;
-VAL_ 2348810494 EngRqedSpeedCtrlConditions 2 "ThsCtrlCndtnHsBnOptmzdTMnmzRpmO" 3 "StbltyOptmzdFrDrvlnEnggdAnd_OrI" 1 "StbltyOptmzdFrDrvlnDsnggdAndNnl" 0 "ThsSpdGvrnrGnSlctnIsAdjstdTPrvd" ;
-VAL_ 2348810494 EngOverrideCtrlMode 3 "Spd_TrqLmtCtrlLmtSpdAnd_OrTrqBs" 2 "TrqCtrlCntrlTrqTInclddDsrdTrqVl" 1 "SpdCtrlGvrnSpdTInclddDsrdSpdVle" 0 "OvrrdDsbldDsblAnyExstngCtrlCmdd" ;
-VAL_ 2348810494 MessageChecksum 15 "Not Available" ;
-VAL_ 2348810494 EngineRequestedTorqueHiRes 15 "Not Available" 14 "Not Available" 13 "Not Available" 12 "Not Available" 11 "Not Available" 10 "Not Available" 9 "Not Available" 8 "Not Available" ;
-VAL_ 2364540158 ActlEngPrcntTrqueHighResolution 8 "1111NotAvailable" 7 "0875" 1 "0125" 0 "0000" ;
-VAL_ 2364540158 EngStarterMode 15 "notAvailable" 14 "error" 12 "starterInhibitedReasonUnknown" 9 "1011Reserved" 8 "strtrInhbtdDueToStarterOvertemp" 7 "strtrInhbtdDToActiveImmobilizer" 6 "strtrInhbtdDTDrvlnEnggdOthrTrns" 5 "strtrInhbtdDTEngNtReadyForStart" 4 "strtrInhbtdDToEngAlreadyRunning" 3 "strtFnshdStrtrNtActvAftrHvngBnA" 2 "starterActiveGearEngaged" 1 "starterActiveGearNotEngaged" 0 "startNotRqed" ;
-VAL_ 2364540158 EngTorqueMode 15 "Not available" 11 "Remote accelerator" 10 "Braking system" 9 "High speed governor" 8 "Torque limiting" 7 "ABS control" 6 "Transmission control" 5 "ASR control" 4 "Road speed governor" 3 "PTO governor" 2 "Cruise control" 1 "Accelerator pedal/operator selec" 0 "Low idle governor/no request (de" ;
+VAL_ 2348810243 MessageCounter 14 "Reserved" 13 "Reserved" 12 "Reserved" 11 "Reserved" 10 "Reserved" 9 "Reserved" 8 "Reserved" 15 "Not Available" ;
+VAL_ 2348810243 ControlPurpose 5 "TemporaryPowerTrainControl" 4 "EngineProtection" 3 "RoadSpeedGovernor" 2 "PTOGovernor" 1 "CruiseControl" 0 "AcceleratorPedal" ;
+VAL_ 2348810243 TransmissionRate 7 "UseStandardRate" 6 "25ms" 5 "50ms" 4 "100ms" 3 "250ms" 2 "500ms" 1 "750ms" 0 "1000ms" ;
+VAL_ 2348810243 OverrideCtrlModePriority 3 "LowPriority" 2 "MdmPrrtyUsdFrPwrtrnCtrlOprtnsWh" 1 "HighPriority" 0 "HghstPrrtyUsdFrSttnsThtRqrImmdt" ;
+VAL_ 2348810243 EngRqedSpeedCtrlConditions 2 "ThsCtrlCndtnHsBnOptmzdTMnmzRpmO" 3 "StbltyOptmzdFrDrvlnEnggdAnd_OrI" 1 "StbltyOptmzdFrDrvlnDsnggdAndNnl" 0 "ThsSpdGvrnrGnSlctnIsAdjstdTPrvd" ;
+VAL_ 2348810243 EngOverrideCtrlMode 3 "Spd_TrqLmtCtrlLmtSpdAnd_OrTrqBs" 2 "TrqCtrlCntrlTrqTInclddDsrdTrqVl" 1 "SpdCtrlGvrnSpdTInclddDsrdSpdVle" 0 "OvrrdDsbldDsblAnyExstngCtrlCmdd" ;
+VAL_ 2348810243 MessageChecksum 15 "Not Available" ;
+VAL_ 2348810243 EngineRequestedTorqueHiRes 15 "Not Available" 14 "Not Available" 13 "Not Available" 12 "Not Available" 11 "Not Available" 10 "Not Available" 9 "Not Available" 8 "Not Available" ;
+VAL_ 2364539904 ActlEngPrcntTrqueHighResolution 8 "1111NotAvailable" 7 "0875" 1 "0125" 0 "0000" ;
+VAL_ 2364539904 EngStarterMode 15 "notAvailable" 14 "error" 12 "starterInhibitedReasonUnknown" 9 "1011Reserved" 8 "strtrInhbtdDueToStarterOvertemp" 7 "strtrInhbtdDToActiveImmobilizer" 6 "strtrInhbtdDTDrvlnEnggdOthrTrns" 5 "strtrInhbtdDTEngNtReadyForStart" 4 "strtrInhbtdDToEngAlreadyRunning" 3 "strtFnshdStrtrNtActvAftrHvngBnA" 2 "starterActiveGearEngaged" 1 "starterActiveGearNotEngaged" 0 "startNotRqed" ;
+VAL_ 2364539904 EngTorqueMode 15 "Not available" 11 "Remote accelerator" 10 "Braking system" 9 "High speed governor" 8 "Torque limiting" 7 "ABS control" 6 "Transmission control" 5 "ASR control" 4 "Road speed governor" 3 "PTO governor" 2 "Cruise control" 1 "Accelerator pedal/operator selec" 0 "Low idle governor/no request (de" ;
 VAL_ 2365445886 JS_Y_POSITIVE 3 "NotAvailable" 2 "ErrorIndicator" 1 "OnPositiveSideOfNeutral" 0 "NotOnPositiveSideOfNeutral" ;
 VAL_ 2365445886 JS_Y_NEGATVE 3 "NotAvailable" 2 "ErrorIndicator" 1 "OnNegativeSideOfNeutral" 0 "NotOnNegativeSideOfNeutral" ;
 VAL_ 2365445886 JS_Y_NEUTRAL 3 "NotAvailable" 2 "ErrorIndicator" 1 "InNeutralPos" 0 "NotInNeutralPos" ;

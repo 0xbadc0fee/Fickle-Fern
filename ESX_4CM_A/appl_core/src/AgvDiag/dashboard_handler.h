@@ -39,7 +39,7 @@ extern T_ChkPoints_CoolingFan    gt_coolingFanCheckpoints;        //!< Global ch
 extern T_ChkPoints_Mis           gt_miscCheckpoints;              //!< Global checkpoints for Miscellaneous functions
 
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
-sint16 init_dashHandler(void);
+sint16 sync_dashHandler(void);
 sint16 update_dashHandler(void);
 
 #endif /* APPL_CORE_SRC_AGVDIAG_CHECKPOINT_HANDLER_H_ */

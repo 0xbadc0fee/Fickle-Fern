@@ -132,7 +132,7 @@
                     <label show-caption="true" show-unit="true">
                         <base>
                             <box>
-                                <position x="282" y="220"/>
+                                <position x="349.77777777777794" y="302.22222222222229"/>
                                 <size width="150" height="84"/>
                                 <zorder value="4"/>
                             </box>
@@ -160,7 +160,7 @@
                     <label show-caption="true" show-unit="true">
                         <base>
                             <box>
-                                <position x="529" y="235"/>
+                                <position x="543.44444444444434" y="306.11111111111109"/>
                                 <size width="150" height="84"/>
                                 <zorder value="6"/>
                             </box>
@@ -251,6 +251,174 @@
                             <data-pool-elements>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
                                     <index node="0" data-pool="0" list="10" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>default</type>
+                    </label>
+                    <label show-caption="true" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="466.69230769230785" y="406.53846153846149"/>
+                                <size width="150" height="84"/>
+                                <zorder value="10"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="3" element="0"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit>%</unit>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>default</type>
+                    </label>
+                    <label show-caption="true" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="469.63348416289614" y="518.89140271493216"/>
+                                <size width="150" height="84"/>
+                                <zorder value="11"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="3" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>default</type>
+                    </label>
+                    <label show-caption="true" show-unit="false">
+                        <base>
+                            <box>
+                                <position x="444.4545454545455" y="86.818181818181813"/>
+                                <size width="238.87878787878788" height="84"/>
+                                <zorder value="12"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="6" element="1"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>default</type>
+                    </label>
+                    <label show-caption="true" show-unit="true">
+                        <base>
+                            <box>
+                                <position x="118.8888888888889" y="396.66666666666669"/>
+                                <size width="280" height="84"/>
+                                <zorder value="13"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="6" element="3"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>default</type>
+                    </label>
+                    <label show-caption="true" show-unit="true">
+                        <base>
+                            <box>
+                                <position x="117.7777777777778" y="504.44444444444457"/>
+                                <size width="255.55555555555554" height="84"/>
+                                <zorder value="14"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="6" element="4"/>
+                                    <source-type>datapool-element</source-type>
+                                    <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                    <invalid-name-placeholder/>
+                                    <hal-channel-name/>
+                                    <scaling use-default="true" factor="1" offset="0">
+                                        <unit/>
+                                    </scaling>
+                                    <display-formatter is-active="false">
+                                        <string/>
+                                    </display-formatter>
+                                    <display-name/>
+                                </data-pool-element>
+                            </data-pool-elements>
+                            <display-style>opensyde</display-style>
+                        </base>
+                        <caption>VALUE-LABEL</caption>
+                        <type>default</type>
+                    </label>
+                    <label show-caption="true" show-unit="true">
+                        <base>
+                            <box>
+                                <position x="230" y="98.8888888888889"/>
+                                <size width="150" height="84"/>
+                                <zorder value="15"/>
+                            </box>
+                            <data-pool-elements>
+                                <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
+                                    <index node="0" data-pool="0" list="6" element="0"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -651,7 +819,7 @@
                             <value array="false" value="0">
                                 <type>uint8</type>
                             </value>
-                            <value array="false" value="1">
+                            <value array="false" value="0">
                                 <type>uint8</type>
                             </value>
                             <value array="false" value="1">
@@ -678,16 +846,16 @@
                             <value array="false" value="31.5">
                                 <type>float32</type>
                             </value>
-                            <value array="false" value="0">
+                            <value array="false" value="1300">
                                 <type>uint16</type>
                             </value>
-                            <value array="false" value="0">
+                            <value array="false" value="200">
                                 <type>uint16</type>
                             </value>
-                            <value array="false" value="0">
+                            <value array="false" value="1300">
                                 <type>uint16</type>
                             </value>
-                            <value array="false" value="0">
+                            <value array="false" value="200">
                                 <type>uint16</type>
                             </value>
                             <value array="false" value="0">
@@ -699,7 +867,7 @@
                             <value array="false" value="60">
                                 <type>uint16</type>
                             </value>
-                            <value array="false" value="1">
+                            <value array="false" value="10">
                                 <type>uint8</type>
                             </value>
                             <value array="false" value="0">
@@ -714,7 +882,7 @@
                             <value array="false" value="0">
                                 <type>uint8</type>
                             </value>
-                            <value array="false" value="0">
+                            <value array="false" value="1">
                                 <type>uint8</type>
                             </value>
                         </values>
@@ -774,6 +942,27 @@
                             </expanded-tree-item>
                             <expanded-tree-item valid-layers="3" is-valid="true" use-array-element-index="false" array-element-index="0">
                                 <index node="0" data-pool="1" list="4" element="0"/>
+                                <source-type>datapool-element</source-type>
+                                <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                <invalid-name-placeholder/>
+                                <hal-channel-name/>
+                            </expanded-tree-item>
+                            <expanded-tree-item valid-layers="3" is-valid="true" use-array-element-index="false" array-element-index="0">
+                                <index node="0" data-pool="1" list="5" element="0"/>
+                                <source-type>datapool-element</source-type>
+                                <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                <invalid-name-placeholder/>
+                                <hal-channel-name/>
+                            </expanded-tree-item>
+                            <expanded-tree-item valid-layers="3" is-valid="true" use-array-element-index="false" array-element-index="0">
+                                <index node="0" data-pool="1" list="6" element="0"/>
+                                <source-type>datapool-element</source-type>
+                                <invalid-type-placeholder>diag</invalid-type-placeholder>
+                                <invalid-name-placeholder/>
+                                <hal-channel-name/>
+                            </expanded-tree-item>
+                            <expanded-tree-item valid-layers="3" is-valid="true" use-array-element-index="false" array-element-index="0">
+                                <index node="0" data-pool="1" list="8" element="0"/>
                                 <source-type>datapool-element</source-type>
                                 <invalid-type-placeholder>diag</invalid-type-placeholder>
                                 <invalid-name-placeholder/>
@@ -957,7 +1146,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="5" element="1"/>
+                                    <index node="0" data-pool="0" list="5" element="6"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -971,7 +1160,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="5" element="2"/>
+                                    <index node="0" data-pool="0" list="5" element="7"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -985,7 +1174,7 @@
                                     <display-name/>
                                 </data-pool-element>
                                 <data-pool-element is-valid="true" use-array-element-index="false" array-element-index="0">
-                                    <index node="0" data-pool="0" list="5" element="3"/>
+                                    <index node="0" data-pool="0" list="5" element="8"/>
                                     <source-type>datapool-element</source-type>
                                     <invalid-type-placeholder>diag</invalid-type-placeholder>
                                     <invalid-name-placeholder/>
@@ -1018,6 +1207,20 @@
         </dashboards>
         <rail-assignments>
             <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="3" element="0"/>
+                <threshold array="false" value="25">
+                    <type>uint8</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="3" element="1"/>
+                <threshold array="false" value="0">
+                    <type>uint8</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
                 <id node="0" data-pool="0" list="4" element="0"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
@@ -1032,23 +1235,37 @@
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="5" element="1"/>
+                <id node="0" data-pool="0" list="5" element="6"/>
                 <threshold array="false" value="6553">
                     <type>sint16</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="5" element="2"/>
+                <id node="0" data-pool="0" list="5" element="7"/>
                 <threshold array="false" value="6.8056469e+37">
                     <type>float32</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
             <rail-assignment rail-index="0">
-                <id node="0" data-pool="0" list="5" element="3"/>
+                <id node="0" data-pool="0" list="5" element="8"/>
                 <threshold array="false" value="429496729">
                     <type>uint32</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="6" element="0"/>
+                <threshold array="false" value="6.8056469e+37">
+                    <type>float32</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="6" element="1"/>
+                <threshold array="false" value="6.8056469e+37">
+                    <type>float32</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>
@@ -1056,6 +1273,20 @@
                 <id node="0" data-pool="0" list="6" element="2"/>
                 <threshold array="false" value="25">
                     <type>uint8</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="6" element="3"/>
+                <threshold array="false" value="200">
+                    <type>uint16</type>
+                </threshold>
+                <transmission-mode>cyclic</transmission-mode>
+            </rail-assignment>
+            <rail-assignment rail-index="1">
+                <id node="0" data-pool="0" list="6" element="4"/>
+                <threshold array="false" value="200">
+                    <type>uint16</type>
                 </threshold>
                 <transmission-mode>cyclic</transmission-mode>
             </rail-assignment>

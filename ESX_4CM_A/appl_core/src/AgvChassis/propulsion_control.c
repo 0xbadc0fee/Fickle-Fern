@@ -97,14 +97,14 @@ sint16 init_propulsionControl(T_CANDevices *_can_dev, T_ChkPoints_Propulsion *_c
     toggleButton_init(&mt_prop_control.t_speed_limit_enable, &mt_prop_control.u8_speed_limit_enable, 250, FALSE);
     toggleButton_init(&mt_prop_control.t_cc_enable, &mt_prop_control.u8_cc_enable, 250, FALSE);
 
-    rampInit(&mt_prop_control.t_js_command, ACCEL_RATE, JS_MIN_Y_POS, JS_MAX_Y_POS, JS_NEUTRAL_POS);
+    rampInit(&mt_prop_control.t_js_command, ACCEL_RATE, 0, 1000, JS_NEUTRAL_POS);
 
     movingFltInit(&mt_prop_control.t_filter_wheel_speed,
-                  mt_prop_control.af32_ws_buf,
-                  sizeof(mt_prop_control.af32_ws_buf)/sizeof(float32),
-                  0.0f,
-                  sizeof(mt_prop_control.af32_ws_buf)/sizeof(float32),
-                  50);
+    mt_prop_control.af32_ws_buf,
+    sizeof(mt_prop_control.af32_ws_buf)/sizeof(float32),
+    0.0f,
+    sizeof(mt_prop_control.af32_ws_buf)/sizeof(float32),
+    50);
 
 
     return s16_error;
@@ -154,7 +154,6 @@ sint16 update_propulsionControl(void)
     //FR-13.6 - EDC Disabled
     if(!mt_prop_control.u8_edc_enable)
     {
-
         //Ramp speed command to 0
         mt_prop_control.f32_raw_output = 0.0;
         s16_error += ramp_targetSpeedCommand(E_MAX_DECCEL_RAMP);
@@ -231,7 +230,6 @@ sint16 check_joystickInterlocks(void)
 
     if(f32_door_state || u8_door_status || u8_pb_status || *(mt_prop_control.pu16_joy_y_pos)  == JOYSTICK_FAULT)
         mt_prop_control.u8_speed_enable = FALSE;
-
     else
         mt_prop_control.u8_speed_enable = TRUE;
 
@@ -252,7 +250,7 @@ sint16 calc_joystickSpeedCommand(void)
 {
     sint16 s16_error = C_NO_ERR;
 
-    mt_prop_control.u16_joystick_command = *(mt_prop_control.pu16_joy_y_pos)*10;
+    mt_prop_control.u16_joystick_command = (*(mt_prop_control.pu16_joy_y_pos) * 10.0F);
 
     //FR-13.16/17 - Speed Limit Functionality
     if(mt_prop_control.u8_speed_limit_enable)
@@ -264,21 +262,23 @@ sint16 calc_joystickSpeedCommand(void)
     //FR-12/13/14/15 - Cruise Control Functionality
     s16_error += check_ccLimits();
 
+    mt_prop_control.f32_raw_output = mt_prop_control.u16_joystick_command;
+
     //FR13.7 Joystick Command Calculation
-    if (mt_prop_control.u16_joystick_command < 250.0)
-        mt_prop_control.f32_raw_output = 0.0;
-
-    else if (mt_prop_control.u16_joystick_command <= 750.0)
-        mt_prop_control.f32_raw_output = (2.0 * mt_prop_control.u16_joystick_command) + 500.0;
-
-    else if (mt_prop_control.u16_joystick_command <= 1500.0)
-        mt_prop_control.f32_raw_output = ((4.0 / 3.0) * mt_prop_control.u16_joystick_command) + 1000.0;
-
-    else if (mt_prop_control.u16_joystick_command <= 9000.0)
-        mt_prop_control.f32_raw_output = ((4.0 / 5.0) * mt_prop_control.u16_joystick_command) + 1800.0;
-
-    else
-        mt_prop_control.f32_raw_output = 9000.0;
+//        if (mt_prop_control.u16_joystick_command < 100.0)
+//            mt_prop_control.f32_raw_output = 2.5f*mt_prop_control.u16_joystick_command;
+//
+//        else if (mt_prop_control.u16_joystick_command <= 200.0)
+//            mt_prop_control.f32_raw_output = 5.0f*mt_prop_control.u16_joystick_command - 250.0f;
+//
+//        else if (mt_prop_control.u16_joystick_command <= 300.0)
+//            mt_prop_control.f32_raw_output = 7.5f*mt_prop_control.u16_joystick_command -750.f;
+//
+//        else if (mt_prop_control.u16_joystick_command <= 900.0)
+//            mt_prop_control.f32_raw_output = 12.5f*mt_prop_control.u16_joystick_command -2250.0f;
+//
+//        else if (mt_prop_control.u16_joystick_command <= 1000.0)
+//            mt_prop_control.f32_raw_output = 10.0f*mt_prop_control.u16_joystick_command;
 
     //FR-13.8 Joystick State Calculation
     if(*(mt_prop_control.pu8_joy_fwd) && mt_prop_control.u16_joystick_command >= NEUTRAL_DEADBAND)
@@ -295,11 +295,23 @@ sint16 calc_joystickSpeedCommand(void)
         case E_JOYSTICK_FWD:
             mt_prop_control.u8_neutral_ind = FALSE;
             mt_prop_control.u8_reverse_ind = FALSE;
+            mt_prop_control.f32_raw_output = ((mt_prop_control.f32_raw_output / 10000.0f)
+            * (mt_prop_control.pt_config->u16_max_curr_fwd - mt_prop_control.pt_config->u16_min_curr_fwd))
+                                              + mt_prop_control.pt_config->u16_min_curr_fwd;
+
+            mt_prop_control.t_js_command.f32_min_limit = mt_prop_control.pt_config->u16_min_curr_fwd;
+            mt_prop_control.t_js_command.f32_max_limit = mt_prop_control.pt_config->u16_max_curr_fwd;
             break;
 
         case E_JOYSTICK_REV:
             mt_prop_control.u8_neutral_ind = FALSE;
             mt_prop_control.u8_reverse_ind = TRUE;
+            mt_prop_control.f32_raw_output = ((mt_prop_control.f32_raw_output / 10000.0f)
+            * (mt_prop_control.pt_config->u16_max_curr_rev - mt_prop_control.pt_config->u16_min_curr_rev))
+                                              + mt_prop_control.pt_config->u16_min_curr_rev;
+
+            mt_prop_control.t_js_command.f32_min_limit = mt_prop_control.pt_config->u16_min_curr_rev;
+            mt_prop_control.t_js_command.f32_max_limit = mt_prop_control.pt_config->u16_max_curr_rev;
             break;
 
         case E_JOYSTICK_NEU:
@@ -368,7 +380,7 @@ sint16 calc_rampType(void)
     sint16 s16_error = C_NO_ERR;
 
     if(mt_prop_control.u8_prev_joystick_state != mt_prop_control.u8_joystick_state &&
-       mt_prop_control.u8_joystick_state != E_JOYSTICK_NEU)
+    mt_prop_control.u8_joystick_state != E_JOYSTICK_NEU)
     {
         mt_prop_control.e_rampType = E_CHANGE_DIR_RAMP;
     }
@@ -402,14 +414,19 @@ sint16 ramp_targetSpeedCommand(E_RampTypes _rampType)
 {
     sint16 s16_error = C_NO_ERR;
 
+    float32 f32_ramp_in = 0.0F;
+    float32 f32_ramp_down = 0.0F;
+
     switch(_rampType)
     {
         case E_ACCEL_RAMP:
-            set_rampRate(&mt_prop_control.t_js_command, ACCEL_RATE);
+            f32_ramp_in = ((mt_prop_control.pt_config->u16_max_curr_fwd - mt_prop_control.pt_config->u16_min_curr_fwd)/mt_prop_control.pt_config->u8_ramp_inc_time);
+            set_rampRate(&mt_prop_control.t_js_command, f32_ramp_in);
             break;
 
         case E_DECCEL_RAMP:
-            set_rampRate(&mt_prop_control.t_js_command, DECCEL_RATE);
+            f32_ramp_down = ((mt_prop_control.pt_config->u16_max_curr_rev - mt_prop_control.pt_config->u16_min_curr_rev)/mt_prop_control.pt_config->u8_ramp_dec_time);
+            set_rampRate(&mt_prop_control.t_js_command, f32_ramp_down);
             break;
 
         case E_MAX_DECCEL_RAMP:
@@ -451,12 +468,13 @@ sint16 calc_wheelSpeed(void)
 
     s16_error += get_inputValue("WHEEL_SPEED", &mt_prop_control.f32_wheel_frequency);
 
-    f32_rpm = (mt_prop_control.f32_wheel_frequency/1000.0f) * 60.0f / WHEEL_PPR;
+    f32_rpm = (((mt_prop_control.f32_wheel_frequency/1000.0f) * 60.0f) / WHEEL_PPR);
     mt_prop_control.pt_chkProp->f32_wheel_rpm = f32_rpm;
 
     s16_error += movingAdvFlt(&mt_prop_control.t_filter_wheel_speed, f32_rpm);
 
-    mt_prop_control.f32_wheel_speed_mph = (mt_prop_control.t_filter_wheel_speed.f32_out * mt_prop_control.pt_config->f32_tire_diameter) / (GEAR_RATIO * 336.0f);
+    mt_prop_control.f32_wheel_speed_mph = (mt_prop_control.t_filter_wheel_speed.f32_out * mt_prop_control.pt_config->f32_tire_diameter)
+                                            / (GEAR_RATIO * 336.0F);
 
     return s16_error;
 }
@@ -491,7 +509,7 @@ sint16 check_edcInterlocks(void)
     if(u8_engine_status == ENGINE_RUNNING)
     {
         if(get_system_time_ms() < EDC_STARTUP_DELAY || u8_fwd_status || u8_rev_status || f32_park_brake)
-           mt_prop_control.u8_edc_enable = FALSE;
+            mt_prop_control.u8_edc_enable = FALSE;
         else
             mt_prop_control.u8_edc_enable = TRUE;
     }

@@ -1,6 +1,6 @@
 //-----------------------------------------------------------------------------
 /**
- * \file       can_handler.c
+ * \file       can_handler_lib.c
  * \brief      System - CAN Device Interface
  *
  * \addtogroup System
@@ -26,10 +26,12 @@
 #include "x_can.h"
 #include "x_osf.h"
 #include "osy_dph_data_pool_protector.h"
+#include "osy_com_engine.h"
 
 //PROJECT
 #include "j1939_data_pool.h"
-#include "can_handler.h"
+#include "comm_j1939_can1.h"
+#include "can_handler_lib.h"
 
 #include "can_device_definition.h"
 #include "can_engine.h"
@@ -133,6 +135,38 @@ sint16 update_canOutputs(void)
 
     return s16_error;
 
+}
+
+void force_canMessage(uint8 u8_can_bus, uint32 u32_can_id)
+{
+    uint32 u32_temp_id = 0;
+
+    if(u8_can_bus == X_CAN_BUS_01)
+    {
+        for (uint8 i = 0; i < COMM_J1939_CAN1_NUMBER_OF_TX_MSGS; i++)
+        {
+            u32_temp_id = gt_comm_j1939_can1_ProtocolConfiguration.t_ProtocolDefinition.pt_TxMessages[i].u32_MessageId;
+
+            if(u32_temp_id == u32_can_id)
+                osy_com_engine_force_tx_message(&gt_comm_j1939_can1_ProtocolConfiguration, i);
+        }
+    }
+}
+
+void set_canMessageActive(uint8 u8_can_bus, uint32 u32_can_id, uint8 u8_status)
+{
+    uint32 u32_temp_id = 0;
+
+    if(u8_can_bus == X_CAN_BUS_01)
+    {
+        for (uint8 i = 0; i < COMM_J1939_CAN1_NUMBER_OF_TX_MSGS; i++)
+        {
+            u32_temp_id = gt_comm_j1939_can1_ProtocolConfiguration.t_ProtocolDefinition.pt_TxMessages[i].u32_MessageId;
+
+            if(u32_temp_id == u32_can_id)
+                osy_com_engine_set_message_active(&gt_comm_j1939_can1_ProtocolConfiguration, i, OSY_COM_MESSAGE_TYPE_TX, u8_status);
+        }
+    }
 }
 
 /** \brief Check if CAN bus is available

@@ -50,7 +50,6 @@ CNTRL2DP(neutralState, 	   		 gt_can_devs.t_display.u8_neutral_safe_status, 	  	
 
 /* Throttle Control Outputs */
 CNTRL2DP(engineOverrideCtrlMode, gt_can_devs.t_engine.u8_eng_ovrrd_ctrl_mode, 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngOverrideCtrlMode)
-CNTRL2DP(engineReqSpeedCtrlCond, gt_can_devs.t_engine.u8_engine_speed_ctrl_req, 		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngRqedSpeedCtrlConditions)
 CNTRL2DP(engineReqSpeedCtrlCond, gt_can_devs.t_engine.u8_engine_override_ctrl_pri, 		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_OverrideCtrlModePriority)
 CNTRL2DP(engineSpeedLimit, 	   	 gt_can_devs.t_engine.u16_engine_req_speed, 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u16_TSC1_EngRqedSpeed_SpeedLimit)
 CNTRL2DP(engineTorqLimit, 	     gt_can_devs.t_engine.u8_eng_req_torq_limit, 	  		 gt_J1939_DataPoolValues.t_CAN1_TXValues.u8_TSC1_EngRqedTorque_TorqueLimit)

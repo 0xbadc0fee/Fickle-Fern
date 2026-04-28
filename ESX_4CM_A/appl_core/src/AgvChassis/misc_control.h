@@ -90,6 +90,7 @@ typedef struct
         uint8 u8_brakes_engaged;//!<Checkpoint Brakes Engaged
         uint8 u8_sw_major_revision;//!<Checkpoint SW Major Revision
         uint8 u8_sw_minor_revision;//!<Checkpoint SW Minor Revision
+        uint8 u8_reset_params;  //!<Reset Parameters command from Dash
 }T_ChkPoints_Mis;
 
 /**

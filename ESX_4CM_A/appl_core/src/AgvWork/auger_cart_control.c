@@ -166,7 +166,7 @@ sint16 update_augerControl(void)
     //FR-9.2 Disable Auger Cart and reset when conditions not satisfied
     if((u8_door_fault_status == TRUE) ||
     (f32_door_value != DOOR_CLOSED) ||
-    (u32_engine_runtime >= PROGRAM_START_DEB_MS) ||
+    (u32_engine_runtime <= PROGRAM_START_DEB_MS) ||
     (u8_hitch_on == TRUE))
     {
         u8_common_reset = TRUE;
@@ -183,8 +183,6 @@ sint16 update_augerControl(void)
     //FR-9.1-2 Apply latching and reset logic to Auger and Manual Unload. Force to safe state if fault.
     s16_error = toggleButton(&mt_augerc.t_btn_auto, u8_aug_cmd, u8_aug_btn_reset);
     s16_error += toggleButton(&mt_augerc.t_btn_manual, u8_man_cmd, u8_man_btn_reset);
-
-
 
     //FR-9.3 The control module shall enforce mutual exclusivity to the Auger Unload Enable and Manual Unload commands giving preference to Manual Unload Enable in case of a conflict.
     if((mt_augerc.u8_manual_latched == AUGER_ENABLED) && (mt_augerc.u8_auto_latched == AUGER_ENABLED))

@@ -55,7 +55,6 @@
 typedef struct
 {
     uint8 u8_power_assist_installed; //!<Configuration parameter for Power Assist Enable
-
 }T_Config_PowerAssistControl;
 
 /**
