@@ -55,3 +55,7 @@ ESX_4CM_A/appl_core_release/
 ESX_4CM_A/boot_core_release/
 ESX_4CM_A/safety_core_release/
 doc/Software Documentation/output_HTML/
+
+# CLI/CMake build strategy experiments
+/build/
+ESX_4CM_A/*/compile_commands.json
