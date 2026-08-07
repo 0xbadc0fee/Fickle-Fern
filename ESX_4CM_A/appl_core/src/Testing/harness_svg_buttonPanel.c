@@ -31,7 +31,7 @@
 
 
 /* -- Module Global Variables --------------------------------------------------------------------------------------- */
-T_CANDevices gt_can_devs;
+T_HarnessSignalsButtonPanel gt_svg;
 
 /* -- Module Global Function Prototypes ----------------------------------------------------------------------------- */
 
@@ -40,8 +40,10 @@ T_CANDevices gt_can_devs;
 sint16 update_harnessInputs(void)
 {
     sint16 s16_error = C_NO_ERR;
+    gt_svg.u8_testerCounter = 0;
+    gt_svg.u8_testerReset = 0;
 
-    #define SVG2CNTRL(name, CNRL_VALUE, SVG_VALUE) VAR_ASSIGN((CNTRL_VALUE), (SVG_VALUE));
+    #define SVG2CNTRL(name, CNTRL_VALUE, SVG_VALUE) VAR_ASSIGN((CNTRL_VALUE), (SVG_VALUE));
     #include "svg_in_map_buttonPanel.def"
     #undef SVG2CNTRL
 

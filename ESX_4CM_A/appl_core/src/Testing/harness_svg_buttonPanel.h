@@ -20,9 +20,22 @@
 
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
+typedef struct
+{
+        //Local variable
+        uint8 u8_testerCounter;
+        uint8 u8_testerReset;
+
+        // SVG2CNTRL Signals
+        uint8 u8_svgButtonPanelB1;
+
+        // CNTRL2SVG Signals
+        uint8 u8_svgButtonPanelLED1;
+}T_HarnessSignalsButtonPanel;
+
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-extern T_CANDevices gt_can_devs; //!< part of seam where DLL SVG connects
+//extern T_HarnessSignalsButtonPanel gt_svg; //!< part of seam where DLL SVG connects
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
