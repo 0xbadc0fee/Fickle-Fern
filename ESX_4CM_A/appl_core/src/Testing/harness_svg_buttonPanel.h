@@ -15,6 +15,7 @@
 #include <stdbool.h>
 
 #include "SPN_definitions.h"  // Only needed for VAR_ASSIGN macro
+#include "can_device_definition.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 
@@ -35,7 +36,8 @@ typedef struct
 
 
 /* -- Global Variables ---------------------------------------------------------------------------------------------- */
-//extern T_HarnessSignalsButtonPanel gt_svg; //!< part of seam where DLL SVG connects
+extern T_HarnessSignalsButtonPanel gt_svg; //!< part of seam where DLL SVG connects
+extern T_CANDevices gt_can_devs;
 /* -- Function Prototypes ------------------------------------------------------------------------------------------- */
 
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
