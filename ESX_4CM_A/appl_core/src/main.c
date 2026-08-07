@@ -58,7 +58,10 @@
 #include "cooling_fan_control.h"
 #include "misc_control.h"
 
+#include "harness_svg_buttonPanel.h"
+
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
+//#define SVG_HARNESS
 
 /* -- Types --------------------------------------------------------------------------------------------------------- */
 
@@ -114,6 +117,7 @@ int main(void)
     s16_Error += init_nvmParameters();  // Initialize NVM Objects
     s16_Error += init_faultHandler();   // Initialize Fault / Alarm (DM1) Handler
 
+
     //Initialize AgvWork Controls
     if(C_NO_ERR == s16_Error)
     {
@@ -155,6 +159,11 @@ int main(void)
         update_hwInputs();
         update_canInputs();
 
+        //Conditional Compile for tests
+        #ifdef SVG_HARNESS
+        update_harnessIntputs();
+        #endif
+
         //Run AgvChassis Controls
         update_lightControl();
         update_powerAssistControl();
@@ -175,6 +184,12 @@ int main(void)
         update_stickBControl();
         update_stickRemoverControl();
         update_suctionFanControl();
+
+
+        //Conditional Compile for tests
+        #ifdef SVG_HARNESS
+        update_harnessOutputs();
+        #endif
 
         //Outputs
         update_faultHandler();
