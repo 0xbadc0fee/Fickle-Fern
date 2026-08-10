@@ -33,25 +33,13 @@ extern "C" {
 // second call - see harness_api.c). To reset state between test cases, reload the
 // DLL rather than calling harness_init() twice against the same load.
 __declspec(dllexport) sint16 harness_init(void);
-
-// One logic cycle: update_hwInputs() -> update_lightControl() -> update_hwOutputs().
-// Stage the input (harness_set_button4_state) before calling; read the result
-// (harness_get_button4_lights) after it returns. See harness_api.c for why this drives
-// the accessor seam directly rather than routing through the gt_svg / .def seam.
 __declspec(dllexport) sint16 harness_step(void);
 
 // Signal accessors - hand-written, one pair per signal (see CLAUDE.md's Bridge
 // Interface section for why this isn't a generated/table-driven lookup). RAW by
 // contract: no scaling here, that is the Python bridge's job.
-
-// Button 1 (free/unmapped) - original plumbing PoC pair.
 __declspec(dllexport) void  harness_set_button1_state(uint8 ou8_value);
 __declspec(dllexport) uint8 harness_get_button1_state(void);
-
-// Button 4 (lighting control) - functional-test pair. set drives the soft-key press
-// the lighting state machine reads; get returns the decoded LED-indicator byte it writes.
-__declspec(dllexport) void  harness_set_button4_state(uint8 ou8_value);
-__declspec(dllexport) uint8 harness_get_button4_lights(void);
 
 #ifdef __cplusplus
 }
