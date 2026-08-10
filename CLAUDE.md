@@ -104,3 +104,90 @@ As you go, record what you actually discover — the real Category-1 breakages
 hit, the concrete stub symbol work list, which source files compiled clean vs.
 needed shims. This discovery is itself a deliverable (it maps the application's
 logic/hardware entanglement); surface it rather than only fixing silently.
+
+## Findings to date (milestone: BIOS stub file complete, 2026-08-07)
+
+`Testing/harness_bios_stubs.c` now exists and is verified: it closes the
+entire `x_in_*`/`x_out_*`/`x_msw_*`/`x_uext_*` BIOS symbol surface demanded by
+the in-scope HAL layer (`hw_outputs.c`, `hw_inputs.c`, `output_handler_lib.c`,
+`input_handler_lib.c`). Built per `Testing/harness_bios_stubs_spec.md`
+(Option 2 — all symbols stubbed in one pass, not just the lighting subset).
+
+**Category-1 breakage: none, anywhere probed so far.** `hw_outputs.c`,
+`hw_inputs.c`, `output_handler_lib.c`, `input_handler_lib.c`, and the full
+vendor header chain they pull in (`x_out.h`, `x_out_client.h`, `x_msw.h`,
+`x_uext.h`, `x_in.h`, `x_in_client.h`, `x_stdtypes.h`, `stwtypes.h`,
+`stwerrors.h`, `gcc_attributes.h`) all compile clean under MinGW-w64 with
+`-Wall -Wdouble-promotion`, zero warnings. No TriCore intrinsic/pragma shim
+has been needed yet. (Only fix needed anywhere in this cluster was an
+include-path gap: `output_handler_lib.h` pulls `osy_com_j1939_dm1.h`, which
+lives in `libs/opensyde_j1939_handler/`, not the core HAL include dirs.)
+
+**Real BIOS symbol count is 34, not the 31 first estimated in the stub spec.**
+Two symbol names in that spec's inventory don't exist as real functions
+(`x_out_set_dither` — only `x_out_cc_set_dither` is real; `x_out_pid_parameters`
+— that's the type `T_x_out_pid_parameters`, the real function is
+`x_out_set_control_parameters`). Four real symbols were missing from that
+inventory because they live in headers the spec didn't list
+(`x_msw.h`/`x_uext.h`, not `x_out.h`): `x_msw_set_state` (main-switch enable,
+called at `output_handler_lib.c` init), `x_uext_diag`,
+`x_uext_set_voltage_setpoint`, `x_uext_get_active_faults` (the `vref_1` UEXT
+reference output in `hw_outputs.c`). Net: 31 (spec) − 2 (phantom) + 4
+(missing) = 34 (actual, confirmed by full symbol-closure check).
+
+**Out-parameter population was needed in exactly 3 places**, not on every
+diagnostic function as a first read of the spec implied: `x_out_get_active_faults`,
+`x_in_get_active_faults`, `x_uext_get_active_faults`. Every other diag function
+(`x_out_digital_diag`, `x_out_pwm_diag`, `x_out_cc_diag_v2`, `x_in_digital_diag`,
+`x_in_voltage_diag`, `x_in_current_diag`, `x_in_frequency_diag`, `x_uext_diag`)
+has no out-parameter in its real signature — return-code only. Always check the
+real header before assuming a diag function needs out-param writes.
+
+**No stub needed to go deeper than "return constant / touch harness memory."**
+Every Tier C accessor bottoms out in one of four small harness-owned arrays
+sized off the vendor's own `X_OUT_COUNT`/`X_IN_COUNT`/`X_MSW_COUNT`/
+`X_UEXT_COUNT` constants (29/32/3/4), indexed directly by channel since all
+`X_OUT_*`/`X_IN_*`/`X_MSW_*`/`X_UEXT_*` IDs are contiguous 0-based. No stub
+calls back into the BIOS surface, so the undefined-symbol list never grew
+during implementation.
+
+**Confirmed Tier A (inert, out-of-scope) symbols:** `x_out_client_await_allocations`
+and its input-side mirror `x_in_client_await_allocations` are genuine
+inter-core (ICC) handshakes — call-site comments read "wait for safety core
+output/input allocation" (appl_core is a "client" awaiting a channel-ownership
+allocation from `safety_core`). Confirmed via `appl_core.map`/`.xml`: the real
+TriCore implementation of `x_in_client_await_allocations` compiles to just 4
+bytes, reinforcing that a benign-constant stub is a faithful match, not an
+oversimplification.
+
+**Toolchain correction — gcc works from both Bash and PowerShell.** An earlier
+belief (and a claim repeated in `harness_bios_stubs_spec.md`) that the Bash
+tool's sandbox "silently kills cc1.exe" and PowerShell was required is
+**incorrect** and was retested twice. The actual cause of the silent
+exit-1/zero-output failure: MSYS2's `C:\msys64\mingw64\bin` was not on `PATH`,
+so `cc1.exe` (which depends on DLLs in that directory — libgmp/libmpfr/libmpc/
+libiconv/libwinpthread/zlib) failed to load before it could print anything.
+This reproduces identically in Bash and PowerShell, and is fixed identically
+in both by prepending `C:\msys64\mingw64\bin` to `PATH` for the session
+(`export PATH="/c/msys64/mingw64/bin:$PATH"` in Bash,
+`$env:PATH = "C:\msys64\mingw64\bin;" + $env:PATH` in PowerShell). Invoking
+gcc by full path alone, without that PATH entry, is not sufficient. Any
+future doc/spec should stop citing "Bash sandbox kills cc1" as the reason to
+prefer PowerShell — the real requirement is just the PATH fix, and either
+shell works once it's applied.
+
+**Verification method used:** compiled `harness_bios_stubs.c` alone (34
+defined, 0 undefined via `nm`), then compiled it together with all four
+in-scope HAL files and computed the union of every `U` (undefined) symbol
+across all five objects, cross-checked against the union of every `T`
+(defined) symbol in the same five objects. Only `strcmp` remained unresolved
+— standard MinGW libc, resolved automatically at final DLL link, not a BIOS
+concern. Zero unresolved BIOS symbols confirmed.
+
+**Not yet done:** no host CMake/build target or actual `.dll` link exists yet
+(this was object-file-level verification only, no `harness_init`/
+`harness_step`/exported-accessor wiring). No source file outside this HAL/IO
+cluster (`hw_outputs.c`, `hw_inputs.c`, `output_handler_lib.c`,
+`input_handler_lib.c`, `alarm_handler_lib.c` not yet probed) has been checked
+for Category-1 breakage — the "zero breakage so far" finding is scoped to
+what's actually been probed, not a claim about the whole codebase.
