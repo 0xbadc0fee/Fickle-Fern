@@ -5,5 +5,5 @@
 */    
      
 /* Button Panel Params from SVG to CNTRL*/
-SVG2CNTRL(button01_OnOff, gt_can_devs.t_buttonPanel.u8_b1_state, gt_svg.u8_svgButtonPanelB1)
+SVG2CNTRL(button04_state, gt_can_devs.t_buttonPanel.u8_b4_state, gt_svg.u8_svgKeyPad01_b4_state)
      
