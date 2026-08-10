@@ -2,7 +2,7 @@
 /*
  * harness_bios_stubs.c
  *
- *  Host-DLL BIOS stub layer (x_in / x_out / x_msw / x_uext substitution).
+ *  Host-DLL BIOS stub layer (x_in / x_out / x_msw / x_uext / x_nvm substitution).
  *  See harness_bios_stubs_spec.md for the build spec this file implements.
  *
  *  HOST BUILD ONLY. The real TriCore `.a` BIOS archives cannot link host-side
@@ -28,6 +28,8 @@
 #endif
 
 /* -- Includes ------------------------------------------------------------------------------------------------------ */
+#include <string.h> // memset/memcpy - NVM backing-store implementation (Section D below)
+
 // Real vendor headers - included so the compiler checks every stub body against the official signature.
 #include "x_out.h"
 #include "x_out_client.h"
@@ -35,6 +37,7 @@
 #include "x_uext.h"
 #include "x_in.h"
 #include "x_in_client.h"
+#include "x_nvm.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------ */
 /* -- Types ----------------------------------------------------------------------------------------------------------- */
@@ -84,8 +87,29 @@ static T_HarnessInChannel   gat_harnessIn[X_IN_COUNT];
 static T_HarnessMswChannel  gat_harnessMsw[X_MSW_COUNT];
 static T_HarnessUextChannel gat_harnessUext[X_UEXT_COUNT];
 
+// Harness-owned flat byte-addressable NVM (EEPROM) backing store, added 2026-08-10 (nvm_handler_lib.c probe).
+// Sized to comfortably exceed the highest address actually exercised today (nvm_handler_lib.c's fault block:
+// NVM_FAULTS_START_ADDR + NVM_FAULTS_SIZE = 31000) without this file depending on that app-layer header -
+// this file's dependency surface stays limited to vendor BIOS headers, same as the rest of the file.
+#define HARNESS_NVM_SIZE_BYTES 32768u
+static uint8 gau8_harnessNvm[HARNESS_NVM_SIZE_BYTES];
+static uint8 gu8_harnessNvmErased = 0u;
+
 /* -- Module Global Function Prototypes ----------------------------------------------------------------------------- */
 /* -- Implementation ------------------------------------------------------------------------------------------------ */
+
+// Lazily fills the NVM backing store with 0xFF (erased-EEPROM convention) exactly once. Required for
+// correctness, not just realism: nvm_handler_lib.c's fault_nvm_init() searches for an empty slot by
+// checking for the sentinel header value 0xFFFFFFFF - a zero-initialized array would never match that
+// sentinel, so every fault_nvm_init() call would spuriously fall through to NVM_EEPROM_OVERFLOW.
+static void EnsureHarnessNvmErased(void)
+{
+    if (gu8_harnessNvmErased == 0u)
+    {
+        memset(gau8_harnessNvm, 0xFF, sizeof(gau8_harnessNvm));
+        gu8_harnessNvmErased = 1u;
+    }
+}
 
 //======================================================================================================================
 // Section A - Tier A, INERT (out-of-scope: multicore allocation)
@@ -361,6 +385,30 @@ sint16 x_in_get_frequency(const uint16 ou16_Channel, uint32 * const opu32_Freque
     *opu32_Frequency = gat_harnessIn[ou16_Channel].u32_frequency;
     *opu32_DutyCycle = gat_harnessIn[ou16_Channel].u32_dutyCycle;
     return C_NO_ERR;
+}
+
+//======================================================================================================================
+// Section D - Tier C, NVM (EEPROM) - new in-scope BIOS family, discovered probing nvm_handler_lib.c (2026-08-10).
+// Reads/writes the flat harness-owned byte array above - never hardware, never the vendor archive.
+//======================================================================================================================
+
+sint16 x_nvm_read(uint32 const ou32_Address, uint32 const ou32_Count, uint8 * const opu8_Data)
+{
+    EnsureHarnessNvmErased();
+    memcpy(opu8_Data, &gau8_harnessNvm[ou32_Address], ou32_Count);
+    return C_NO_ERR;
+}
+
+sint16 x_nvm_write(uint32 const ou32_Address, uint32 const ou32_Count, uint8 const * const opu8_Data)
+{
+    EnsureHarnessNvmErased();
+    memcpy(&gau8_harnessNvm[ou32_Address], opu8_Data, ou32_Count);
+    return C_NO_ERR;
+}
+
+uint32 x_nvm_get_size(void)
+{
+    return HARNESS_NVM_SIZE_BYTES;
 }
 
 //EOF

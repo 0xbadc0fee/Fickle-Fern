@@ -58,4 +58,5 @@ doc/Software Documentation/output_HTML/
 
 # CLI/CMake build strategy experiments
 /build/
+/build-harness/
 ESX_4CM_A/*/compile_commands.json
