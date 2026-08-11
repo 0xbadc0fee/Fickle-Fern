@@ -44,7 +44,7 @@ sint16 update_harnessInputs(void)
     gt_svg.u8_testerReset = 0;
 
     #define SVG2CNTRL(name, CNTRL_VALUE, SVG_VALUE) VAR_ASSIGN((CNTRL_VALUE), (SVG_VALUE));
-    #include "svg_in_map_buttonPanel.def"
+    #include "Fixtures/lighting_control/fixture.def"
     #undef SVG2CNTRL
 
     return s16_error;
@@ -55,7 +55,7 @@ sint16 update_harnessOutputs(void)
     sint16 s16_error = C_NO_ERR;
 
     #define CNTRL2SVG(name, CNTRL_VALUE, SVG_VALUE) VAR_ASSIGN((SVG_VALUE), (CNTRL_VALUE));
-    #include "svg_out_map_buttonPanel.def"
+    #include "Fixtures/lighting_control/fixture.def"
     #undef CNTRL2SVG
 
     return s16_error;

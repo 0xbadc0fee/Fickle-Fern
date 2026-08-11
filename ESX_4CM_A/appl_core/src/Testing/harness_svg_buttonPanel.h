@@ -28,10 +28,10 @@ typedef struct
         uint8 u8_testerReset;
 
         // SVG2CNTRL Signals
-        uint8 u8_svgButtonPanelB1;
+        uint8 u8_svgKeypad01_b04_state;
 
         // CNTRL2SVG Signals
-        uint8 u8_svgButtonPanelLED1;
+        uint8 u8_svgKeypad01_b04_lights;
 }T_HarnessSignalsButtonPanel;
 
 
