@@ -28,9 +28,9 @@ add_library(svg_harness SHARED
     ../appl_core/src/System/IO/hw_inputs.c
     ../appl_core/src/HAL/output_handler_lib.c
     ../appl_core/src/HAL/input_handler_lib.c
-    ../appl_core/src/Testing/harness_bios_stubs.c
-    ../appl_core/src/Testing/harness_can_devs.c
-    ../appl_core/src/Testing/harness_api.c
+    ../appl_core/src/Testing/harness/harness_bios_stubs.c
+    ../appl_core/src/Testing/harness/harness_can_devs.c
+    ../appl_core/src/Testing/harness/harness_api.c
 )
 
 set_target_properties(svg_harness PROPERTIES PREFIX "")

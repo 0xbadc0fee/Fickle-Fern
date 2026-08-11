@@ -60,3 +60,7 @@ doc/Software Documentation/output_HTML/
 /build/
 /build-harness/
 ESX_4CM_A/*/compile_commands.json
+
+# Host harness per-fixture build outputs (test artifacts only, never shipped)
+*.dll
+ESX_4CM_A/appl_core/src/Testing/Fixtures/**/*.map

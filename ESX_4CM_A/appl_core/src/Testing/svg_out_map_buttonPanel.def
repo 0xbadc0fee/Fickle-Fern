@@ -1,9 +1,0 @@
-/* svg_out_map_buttonPanel.def
-*  Created on: Aug 7, 2026
-*  Author: silas.curfman
-*
-*/    
-     
-/* Button Panel Params from SVG to CNTRL*/
-CNTRL2SVG(button04_lights, gt_can_devs.t_buttonPanel.u8_b4_lights, gt_svg.u8_svgKeypad01_b4_lights)
-     

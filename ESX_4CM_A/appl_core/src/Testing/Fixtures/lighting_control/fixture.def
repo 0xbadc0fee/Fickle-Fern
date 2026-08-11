@@ -1,0 +1,32 @@
+/* fixture.def  (lighting_control fixture)
+ *
+ *  REFERENCE TEMPLATE. Seam-2 round-trip proven 2026-08-11 (see fixture_signals.h).
+ *
+ *  SINGLE SOURCE OF TRUTH for this fixture's signal set. Each row declares one
+ *  signal that crosses the bridge<->DLL seam. The SAME rows are expanded twice by
+ *  the harness copy functions (harness_svg_copy.c), once per direction, via the
+ *  X-macro pattern:
+ *
+ *    SVG2CNTRL(tag, CNTRL_lvalue, SVG_lvalue)  - bridge input  : SVG -> CNTRL
+ *    CNTRL2SVG(tag, CNTRL_lvalue, SVG_lvalue)  - bridge output : CNTRL -> SVG
+ *
+ *  Argument 1 (tag) is the friendly-name key. It is elevated to load-bearing:
+ *    - it is the SVG's primary data-signal attribute value, and
+ *    - it names the hand-written accessor for this signal (harness_set_<tag> /
+ *      harness_get_<tag>).
+ *  Keep the tag, the accessor name, and the SVG data-signal in sync by hand.
+ *
+ *  FIXED FILENAME: this file is named fixture.def in EVERY fixture folder. The
+ *  harness #includes "fixture.def" and the build points -I at the active fixture
+ *  folder. That indirection is what lets one harness serve any fixture without
+ *  edits. Do not rename per fixture.
+ *
+ *  Created on: Aug 11, 2026
+ *      Author: silas.curfman
+ */
+
+/* Button 04 soft-key press: SVG -> CNTRL (bridge input) */
+SVG2CNTRL(button04_state,  gt_can_devs.t_buttonPanel.u8_b4_state,  gt_svg.u8_svgKeypad01_b04_state)
+
+/* Button 04 decoded LED byte: CNTRL -> SVG (bridge output) */
+CNTRL2SVG(button04_lights, gt_can_devs.t_buttonPanel.u8_b4_lights, gt_svg.u8_svgKeypad01_b04_lights)

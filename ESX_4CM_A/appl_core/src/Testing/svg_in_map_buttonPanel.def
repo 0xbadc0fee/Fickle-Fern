@@ -1,9 +1,0 @@
-/* svg_in_map_buttonPanel.def
-*  Created on: Aug 7, 2026
-*  Author: silas.curfman
-*
-*/    
-     
-/* Button Panel Params from SVG to CNTRL*/
-SVG2CNTRL(button04_state, gt_can_devs.t_buttonPanel.u8_b4_state, gt_svg.u8_svgKeyPad01_b4_state)
-     
