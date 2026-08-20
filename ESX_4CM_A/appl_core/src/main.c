@@ -58,7 +58,6 @@
 #include "cooling_fan_control.h"
 #include "misc_control.h"
 
-#include "harness_svg_buttonPanel.h"
 
 /* -- Defines ------------------------------------------------------------------------------------------------------- */
 //#define SVG_HARNESS

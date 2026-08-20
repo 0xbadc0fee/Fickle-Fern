@@ -1,0 +1,61 @@
+/* fixture.def  (lighting_control fixture)
+ *
+ *  REFERENCE TEMPLATE. Seam-2 round-trip proven 2026-08-11 (see fixture_signals.h).
+ *
+ *  SINGLE SOURCE OF TRUTH for this fixture's signal set. Each row declares one
+ *  signal that crosses the bridge<->DLL seam. The SAME rows are expanded twice by
+ *  the harness copy functions (harness_svg_copy.c), once per direction, via the
+ *  X-macro pattern:
+ *
+ *    SVG2CNTRL(tag, CNTRL_lvalue, SVG_lvalue)  - bridge input  : SVG -> CNTRL
+ *    CNTRL2SVG(tag, CNTRL_lvalue, SVG_lvalue)  - bridge output : CNTRL -> SVG
+ *
+ *  Argument 1 (tag) is the friendly-name key. It is elevated to load-bearing:
+ *    - it is the SVG's primary data-signal attribute value, and
+ *    - it names the hand-written accessor for this signal (harness_set_<tag> /
+ *      harness_get_<tag>).
+ *  Keep the tag, the accessor name, and the SVG data-signal in sync by hand.
+ *
+ *  FIXED FILENAME: this file is named fixture.def in EVERY fixture folder. The
+ *  harness #includes "fixture.def" and the build points -I at the active fixture
+ *  folder. That indirection is what lets one harness serve any fixture without
+ *  edits. Do not rename per fixture.
+ *
+ *  Created on: Aug 11, 2026
+ *      Author: silas.curfman
+ */
+
+/* 8-Button Panel soft-key press: SVG -> CNTRL (bridge input) */
+SVG2CNTRL(button01_state,  gt_can_devs.t_buttonPanel.u8_b1_state,  gt_svg.u8_svgKeypad01_b01_state)
+SVG2CNTRL(button02_state,  gt_can_devs.t_buttonPanel.u8_b2_state,  gt_svg.u8_svgKeypad01_b02_state)
+SVG2CNTRL(button03_state,  gt_can_devs.t_buttonPanel.u8_b3_state,  gt_svg.u8_svgKeypad01_b03_state)
+SVG2CNTRL(button04_state,  gt_can_devs.t_buttonPanel.u8_b4_state,  gt_svg.u8_svgKeypad01_b04_state)
+SVG2CNTRL(button05_state,  gt_can_devs.t_buttonPanel.u8_b5_state,  gt_svg.u8_svgKeypad01_b05_state)
+SVG2CNTRL(button06_state,  gt_can_devs.t_buttonPanel.u8_b6_state,  gt_svg.u8_svgKeypad01_b06_state)
+SVG2CNTRL(button07_state,  gt_can_devs.t_buttonPanel.u8_b7_state,  gt_svg.u8_svgKeypad01_b07_state)
+SVG2CNTRL(button08_state,  gt_can_devs.t_buttonPanel.u8_b8_state,  gt_svg.u8_svgKeypad01_b08_state)
+
+/* TODO - add SVG2CNTRL for Ignition Switch, see T_VehicleInput tvi_ignition_switch */
+/* TODO - add SVG2CNTRL for Operator Presence / Cab Door, see T_VehicleInput tvi_cab_door */
+
+/* JS6000 J1939 Joystick */
+SVG2CNTRL(joystick01_axis_pos, gt_can_devs.t_joystick.u16_yPos,      gt_svg.u8_svgJoystick01_u16_yPos )
+SVG2CNTRL(joystick01_axis_fwd, gt_can_devs.t_joystick.u8_fwd_status, gt_svg.u8_svgJoystick01_u8_fwd_status)
+SVG2CNTRL(joystick01_axis_rev, gt_can_devs.t_joystick.u8_rev_status, gt_svg.u8_svgJoystick01_u8_rev_status)
+SVG2CNTRL(joystick01_b01_state, gt_can_devs.t_joystick.u8_b1_state,  gt_svg.u8_svgJoystick01_u8_b01_state)
+SVG2CNTRL(joystick01_b02_state, gt_can_devs.t_joystick.u8_b2_state,  gt_svg.u8_svgJoystick01_u8_b02_state)
+SVG2CNTRL(joystick01_b03_state, gt_can_devs.t_joystick.u8_b3_state,  gt_svg.u8_svgJoystick01_u8_b03_state)
+SVG2CNTRL(joystick01_b04_state, gt_can_devs.t_joystick.u8_b4_state,  gt_svg.u8_svgJoystick01_u8_b04_state)
+SVG2CNTRL(joystick01_b05_state, gt_can_devs.t_joystick.u8_b5_state,  gt_svg.u8_svgJoystick01_u8_b05_state)
+SVG2CNTRL(joystick01_b06_state, gt_can_devs.t_joystick.u8_b6_state,  gt_svg.u8_svgJoystick01_u8_b06_state)
+
+
+/* Button 04 decoded LED byte: CNTRL -> SVG (bridge output) */
+CNTRL2SVG(button01_lights, gt_can_devs.t_buttonPanel.u8_b1_lights, gt_svg.u8_svgKeypad01_b01_lights)
+CNTRL2SVG(button02_lights, gt_can_devs.t_buttonPanel.u8_b2_lights, gt_svg.u8_svgKeypad01_b02_lights)
+CNTRL2SVG(button03_lights, gt_can_devs.t_buttonPanel.u8_b3_lights, gt_svg.u8_svgKeypad01_b03_lights)
+CNTRL2SVG(button04_lights, gt_can_devs.t_buttonPanel.u8_b4_lights, gt_svg.u8_svgKeypad01_b04_lights)
+CNTRL2SVG(button05_lights, gt_can_devs.t_buttonPanel.u8_b5_lights, gt_svg.u8_svgKeypad01_b05_lights)
+CNTRL2SVG(button06_lights, gt_can_devs.t_buttonPanel.u8_b6_lights, gt_svg.u8_svgKeypad01_b06_lights)
+CNTRL2SVG(button07_lights, gt_can_devs.t_buttonPanel.u8_b7_lights, gt_svg.u8_svgKeypad01_b07_lights)
+CNTRL2SVG(button08_lights, gt_can_devs.t_buttonPanel.u8_b8_lights, gt_svg.u8_svgKeypad01_b08_lights)
